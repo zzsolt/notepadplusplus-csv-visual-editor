@@ -113,6 +113,40 @@ public sealed class CsvDialectDetectorTests
     }
 
     [Fact]
+    public void Detect_LogicalRecordLimit_DoesNotParseMalformedSuffix()
+    {
+        const string text = "A,B\n1,2\n3,4\n\"unterminated,field";
+        var options = new CsvDialectDetectionOptions { MaximumLogicalRecords = 3 };
+
+        var result = CsvDialectDetector.Detect(text, options);
+
+        Assert.NotNull(result.SuggestedDialect);
+        Assert.Equal(',', result.SuggestedDialect.Delimiter);
+        var comma = result.Candidates.Single(static candidate => candidate.Delimiter == ',');
+        Assert.Equal(3, comma.SampledRecordCount);
+        Assert.Equal(0, comma.ParseErrorCount);
+    }
+
+    [Fact]
+    public void Detect_CharacterLimit_DoesNotBuildARecordFromTruncatedSuffix()
+    {
+        const string text = "A,B\n1,2\n3,4\n\"unterminated,field";
+        var options = new CsvDialectDetectionOptions
+        {
+            MaximumLogicalRecords = 20,
+            MaximumSampleCharacters = 12
+        };
+
+        var result = CsvDialectDetector.Detect(text, options);
+
+        Assert.NotNull(result.SuggestedDialect);
+        Assert.Equal(',', result.SuggestedDialect.Delimiter);
+        var comma = result.Candidates.Single(static candidate => candidate.Delimiter == ',');
+        Assert.Equal(3, comma.SampledRecordCount);
+        Assert.Equal(0, comma.ParseErrorCount);
+    }
+
+    [Fact]
     public void Detect_ExposesEverySupportedCandidateScore()
     {
         var result = CsvDialectDetector.Detect("a,b\n1,2\n3,4");
