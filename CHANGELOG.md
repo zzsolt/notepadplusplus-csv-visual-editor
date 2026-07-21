@@ -6,6 +6,25 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Added
 
+- Host-independent CSV dialect model for comma, semicolon, and tab delimiters.
+- Explainable delimiter detection with candidate scores, confidence levels, ambiguity diagnostics, and decimal-comma caution.
+- Character-state CSV parser that processes logical records without splitting quoted multiline fields.
+- Support for empty and trailing fields, quoted delimiters, doubled quotes, embedded CRLF/LF, blank records, and leading U+FEFF handling.
+- Immutable CSV record/cell models with raw decoded-text source spans.
+- Structured diagnostics for malformed quotes and inconsistent field counts.
+- xUnit.net v3 parser test project pinned to `xunit.v3.mtp-v2` 3.2.2.
+- Public parser and test-strategy documentation.
+- `0.3.0-alpha` Native AOT test-package naming.
+
+### Changed
+
+- CI now runs both the dependency-free bootstrap smoke checks and the xUnit parser matrix.
+- About text describes the 0.3 parser boundary.
+
+## [0.2.0-alpha] — 2026-07-21
+
+### Added
+
 - Immutable `ActiveDocumentSnapshot` core model.
 - Host abstraction for reading the active editor document.
 - Notepad++/Scintilla adapter that reads the current editor buffer, including unsaved changes.
@@ -17,9 +36,13 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Changed
 
-- `Open Visual Table` and both Refresh actions now acquire the active editor snapshot.
-- The panel no longer shows bootstrap placeholder columns; it shows sanitized snapshot metadata.
-- About text and public documentation now describe the 0.2 snapshot boundary.
+- `Open Visual Table` and both Refresh actions acquire the active editor snapshot.
+- The panel shows sanitized snapshot metadata instead of bootstrap placeholder columns.
+
+### Validated
+
+- Automated build, smoke-test, Native AOT publish, and package creation.
+- Complete Notepad++ 8.9.7 x64 host acceptance, including unsaved buffers, tab switching, both Refresh paths, untitled buffers, dark mode, lifecycle behavior, and no editor modification.
 
 ## [0.1.0-alpha] — 2026-07-21
 
