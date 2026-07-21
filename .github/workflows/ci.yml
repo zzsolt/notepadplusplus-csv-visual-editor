@@ -51,16 +51,37 @@ jobs:
             -c Release `
             -f net10.0-windows `
             -r win-x64 `
-            -o artifacts/CsvVisualEditor *>&1 |
+            -o artifacts/publish *>&1 |
               Tee-Object -FilePath artifacts/publish.log
           exit $LASTEXITCODE
 
-      - name: Upload plugin and publish diagnostics
+      - name: Create installable test ZIP
+        if: steps.publish.outcome == 'success'
+        shell: pwsh
+        run: |
+          $pluginDirectory = 'artifacts/package/CsvVisualEditor'
+          New-Item -ItemType Directory -Path $pluginDirectory -Force | Out-Null
+          Copy-Item 'artifacts/publish/CsvVisualEditor.dll' $pluginDirectory
+          Compress-Archive `
+            -Path $pluginDirectory `
+            -DestinationPath 'artifacts/CsvVisualEditor-0.1.0-alpha-win-x64.zip' `
+            -CompressionLevel Optimal `
+            -Force
+
+      - name: Upload installable test package
+        if: steps.publish.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-0.1.0-alpha-win-x64
+          path: artifacts/CsvVisualEditor-0.1.0-alpha-win-x64.zip
+          if-no-files-found: error
+
+      - name: Upload publish diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: CsvVisualEditor-win-x64
-          path: artifacts
+          name: CsvVisualEditor-publish-diagnostics
+          path: artifacts/publish.log
           if-no-files-found: error
 
       - name: Fail workflow when publish failed
