@@ -46,10 +46,28 @@ jobs:
         run: dotnet run --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj -c Release --no-restore
 
       - name: Run xUnit parser tests
+        id: parser_tests
+        continue-on-error: true
         shell: pwsh
-        run: dotnet run --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj -c Release --no-restore
+        run: |
+          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
+          dotnet run `
+            --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj `
+            -c Release `
+            --no-restore *>&1 |
+              Tee-Object -FilePath artifacts/parser-tests.log
+          exit $LASTEXITCODE
+
+      - name: Upload parser test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-parser-test-diagnostics
+          path: artifacts/parser-tests.log
+          if-no-files-found: error
 
       - name: Publish x64 Native AOT plugin
+        if: steps.parser_tests.outcome == 'success'
         id: publish
         continue-on-error: true
         shell: pwsh
@@ -85,14 +103,19 @@ jobs:
           if-no-files-found: error
 
       - name: Upload publish diagnostics
-        if: always()
+        if: always() && steps.publish.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-publish-diagnostics
           path: artifacts/publish.log
           if-no-files-found: error
 
+      - name: Fail workflow when parser tests failed
+        if: steps.parser_tests.outcome != 'success'
+        shell: pwsh
+        run: throw 'Parser tests failed. Inspect parser-tests.log in the workflow artifact.'
+
       - name: Fail workflow when publish failed
-        if: steps.publish.outcome != 'success'
+        if: steps.parser_tests.outcome == 'success' && steps.publish.outcome != 'success'
         shell: pwsh
         run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
