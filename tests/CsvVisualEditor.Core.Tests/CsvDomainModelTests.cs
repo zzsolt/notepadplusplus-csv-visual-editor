@@ -48,6 +48,11 @@ public sealed class CsvDomainModelTests
         Assert.Throws<ArgumentOutOfRangeException>(() =>
             CsvDialectDetector.Detect(
                 "a,b",
+                new CsvDialectDetectionOptions { MaximumSampleCharacters = 0 }));
+
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            CsvDialectDetector.Detect(
+                "a,b",
                 new CsvDialectDetectionOptions { MinimumSuggestionScore = 101 }));
     }
 }
