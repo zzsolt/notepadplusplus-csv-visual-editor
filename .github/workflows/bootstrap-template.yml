@@ -1,3 +1,4 @@
+# Temporary bootstrap workflow. It will be replaced by the normal project CI after the official template is committed.
 name: Bootstrap official Notepad++ template
 
 on:
