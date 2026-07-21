@@ -67,6 +67,31 @@ public sealed class CsvParserTests
     }
 
     [Fact]
+    public void Parse_LoneCarriageReturn_SeparatesLogicalRecords()
+    {
+        var result = CsvParser.Parse("A,B\r1,2\r3,4", CsvDialect.Create(','));
+
+        Assert.False(result.HasErrors);
+        Assert.Equal(3, result.Records.Count);
+        Assert.Equal(["A", "B"], Values(result.Records[0]));
+        Assert.Equal(["1", "2"], Values(result.Records[1]));
+        Assert.Equal(["3", "4"], Values(result.Records[2]));
+    }
+
+    [Fact]
+    public void Parse_UnicodeContent_PreservesDecodedValues()
+    {
+        const string text = "Név,Város,Jegyzet\nÁrvíztűrő tükörfúrógép,Budapest,東京🙂";
+
+        var result = CsvParser.Parse(text, CsvDialect.Create(','));
+
+        Assert.False(result.HasErrors);
+        Assert.Equal("Árvíztűrő tükörfúrógép", result.Records[1].Cells[0].Value);
+        Assert.Equal("Budapest", result.Records[1].Cells[1].Value);
+        Assert.Equal("東京🙂", result.Records[1].Cells[2].Value);
+    }
+
+    [Fact]
     public void Parse_BlankPhysicalRecord_IsRepresentedWithoutAddingTrailingPhantomRecord()
     {
         var result = CsvParser.Parse("a,b\r\n\r\n1,2\r\n", CsvDialect.Create(','));
