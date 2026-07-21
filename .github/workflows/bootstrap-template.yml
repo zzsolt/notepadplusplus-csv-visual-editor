@@ -1,0 +1,47 @@
+name: Bootstrap official Notepad++ template
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/initial-plugin-mvp
+    paths:
+      - .github/workflows/bootstrap-template.yml
+
+permissions:
+  contents: read
+
+jobs:
+  generate-and-build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install official Notepad++ .NET templates
+        shell: pwsh
+        run: dotnet new install Npp.DotNet.Templates@2.1.0
+
+      - name: Generate WinForms plugin project
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path generated -Force | Out-Null
+          dotnet new npp-winforms-plugin --name CsvVisualEditor --output generated/CsvVisualEditor
+          Get-ChildItem generated/CsvVisualEditor -Recurse | Select-Object FullName
+
+      - name: Publish x64 Native AOT plugin
+        shell: pwsh
+        run: dotnet publish generated/CsvVisualEditor/CsvVisualEditor.csproj -c Release -r win-x64
+
+      - name: Upload generated official template
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-npp-winforms-template
+          path: generated/CsvVisualEditor
+          if-no-files-found: error
