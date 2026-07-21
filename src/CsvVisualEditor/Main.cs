@@ -1,5 +1,6 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using System.Runtime.InteropServices;
 
@@ -10,6 +11,8 @@ partial class Main : IDotNetPlugin
     private const int DialogCommandIndex = 0;
 
     private static readonly IDotNetPlugin Instance;
+    private readonly IActiveDocumentReader _activeDocumentReader =
+        new NotepadActiveDocumentReader();
     private CsvGridForm? _gridForm;
 
     static Main()
@@ -24,7 +27,6 @@ partial class Main : IDotNetPlugin
             "Open Visual Table",
             ToggleDialog,
             new ShortcutKey(ctrl: false, alt: true, shift: false, Keys.F10));
-
         Utils.SetCommand("Refresh Table", RefreshTable);
         Utils.MakeSeparator();
         Utils.SetCommand("About", ShowAboutDialog);
@@ -67,6 +69,7 @@ partial class Main : IDotNetPlugin
                 $"{PluginAssemblyName}.dll",
                 SystemIcons.Application);
             _gridForm.RefreshRequested += OnRefreshRequested;
+            LoadActiveDocumentSnapshot();
             return;
         }
 
@@ -77,34 +80,62 @@ partial class Main : IDotNetPlugin
         else
         {
             _gridForm.ShowDockingForm();
+            LoadActiveDocumentSnapshot();
         }
     }
 
     private void RefreshTable()
     {
-        EnsureDialogVisible();
-        _gridForm?.ShowBootstrapState();
-    }
-
-    private void EnsureDialogVisible()
-    {
-        if (_gridForm is null || !_gridForm.Visible)
+        if (_gridForm is null)
         {
             ToggleDialog();
+            return;
         }
+
+        if (!_gridForm.Visible)
+        {
+            _gridForm.ShowDockingForm();
+        }
+
+        LoadActiveDocumentSnapshot();
     }
 
     private void OnRefreshRequested(object? sender, EventArgs e)
     {
-        _gridForm?.ShowBootstrapState();
+        LoadActiveDocumentSnapshot();
+    }
+
+    private void LoadActiveDocumentSnapshot()
+    {
+        if (_gridForm is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var snapshot = _activeDocumentReader.ReadActiveDocument();
+            _gridForm.ShowDocumentSnapshot(snapshot);
+        }
+        catch (InvalidOperationException exception)
+        {
+            _gridForm.ShowSnapshotError(exception.Message);
+        }
+        catch (Exception)
+        {
+            _gridForm.ShowSnapshotError(
+                "The active Notepad++ document could not be read. " +
+                "No editor content was changed.");
+        }
     }
 
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.1.0\n\n" +
+            "CSV Visual Editor 0.2.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
-            "This bootstrap version validates the dockable WinForms plugin shell.",
+            "This version reads an immutable snapshot of the active editor buffer. " +
+            "CSV parsing and editing are not enabled yet.",
             $"About {PluginDisplayName}",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
