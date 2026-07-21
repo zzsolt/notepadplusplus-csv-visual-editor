@@ -9,6 +9,15 @@
     <AssemblyName>CsvVisualEditor</AssemblyName>
     <RootNamespace>CsvVisualEditor</RootNamespace>
     <Version>0.1.0</Version>
+
+    <!--
+      The Windows Forms runtime currently emits framework-owned IL3000/IL3053
+      Native AOT analysis warnings. The official Npp.DotNet WinForms template
+      permits these warnings, so this host project must not promote linker/ILC
+      warnings to errors. Nullable warnings in our own C# code remain errors.
+    -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
