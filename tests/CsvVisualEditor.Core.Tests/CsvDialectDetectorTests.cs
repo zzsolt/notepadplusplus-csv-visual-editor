@@ -54,8 +54,9 @@ public sealed class CsvDialectDetectorTests
 
         Assert.Null(result.SuggestedDialect);
         Assert.Equal(CsvDelimiterConfidence.None, result.Confidence);
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.NoReliableDelimiter));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.NoReliableDelimiter);
     }
 
     [Fact]
@@ -105,8 +106,9 @@ public sealed class CsvDialectDetectorTests
 
         var result = CsvDialectDetector.Detect(text);
 
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.AmbiguousDelimiter));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.AmbiguousDelimiter);
         Assert.NotEqual(CsvDelimiterConfidence.High, result.Confidence);
     }
 
