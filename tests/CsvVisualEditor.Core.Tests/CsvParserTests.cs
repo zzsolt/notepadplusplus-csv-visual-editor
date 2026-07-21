@@ -92,8 +92,9 @@ public sealed class CsvParserTests
 
         Assert.True(result.HasErrors);
         Assert.Equal("unfinished", result.Records[0].Cells[1].Value);
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnterminatedQuotedField));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnterminatedQuotedField);
     }
 
     [Fact]
@@ -103,8 +104,9 @@ public sealed class CsvParserTests
 
         Assert.True(result.HasErrors);
         Assert.Equal("a\"b", result.Records[0].Cells[0].Value);
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnexpectedQuoteInUnquotedField));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnexpectedQuoteInUnquotedField);
     }
 
     [Fact]
@@ -114,8 +116,9 @@ public sealed class CsvParserTests
 
         Assert.True(result.HasErrors);
         Assert.Equal("ax", result.Records[0].Cells[0].Value);
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnexpectedCharacterAfterClosingQuote));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.UnexpectedCharacterAfterClosingQuote);
     }
 
     [Fact]
@@ -125,8 +128,9 @@ public sealed class CsvParserTests
 
         Assert.False(result.HasErrors);
         Assert.Equal(2, result.ExpectedFieldCount);
-        var diagnostic = Assert.Single(result.Diagnostics.Where(
-            static item => item.Code == CsvDiagnosticCodes.InconsistentFieldCount));
+        var diagnostic = Assert.Single(
+            result.Diagnostics,
+            static item => item.Code == CsvDiagnosticCodes.InconsistentFieldCount);
         Assert.Equal(2, diagnostic.RecordIndex);
         Assert.Equal(CsvDiagnosticSeverity.Warning, diagnostic.Severity);
     }
@@ -137,8 +141,9 @@ public sealed class CsvParserTests
         var result = CsvParser.Parse("\uFEFFA,B\n1,2", CsvDialect.Create(','));
 
         Assert.Equal("A", result.Records[0].Cells[0].Value);
-        Assert.True(result.Diagnostics.Any(
-            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.LeadingBomRemoved));
+        Assert.Contains(
+            result.Diagnostics,
+            static diagnostic => diagnostic.Code == CsvDiagnosticCodes.LeadingBomRemoved);
         Assert.Equal(1, result.Records[0].SourceSpan.Start);
     }
 
