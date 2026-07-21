@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.2 active-document snapshot alpha**. The plugin can read an immutable copy of the active Notepad++ editor buffer, including unsaved changes, and display sanitized snapshot metadata. CSV parsing and table rows are the next milestones.
+> Development status: **0.3 CSV parser alpha under validation**. The plugin reads the active Notepad++ editor buffer, including unsaved changes. The host-independent core now contains delimiter detection and logical-record parsing; binding parsed rows to the visual grid is the next milestone.
 
 ## Current capabilities
 
@@ -13,19 +13,23 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - light/dark mode response
 - `Open Visual Table`, `Refresh Table`, and `About` commands
 - direct active-buffer reading through Notepad++/Scintilla
-- unsaved editor changes included in the snapshot
-- immutable snapshot with document identity, character/byte lengths, code page, caret/selection state, modified state, capture time, and SHA-256 content identity
+- unsaved editor changes included in an immutable snapshot
+- document identity, character/byte lengths, code page, caret/selection state, modified state, capture time, and SHA-256 decoded-content identity
 - explicit 64 MiB snapshot safety limit with a visible error instead of silent truncation
+- comma, semicolon, and tab delimiter candidates
+- explainable delimiter scoring with confidence and diagnostics
+- record-aware CSV parser supporting quoted delimiters, doubled quotes, and embedded CRLF/LF
+- empty/trailing fields, blank records, source character spans, BOM-like decoded input, and malformed-input diagnostics
+- dependency-free bootstrap smoke checks plus an xUnit.net v3 parser matrix
 - Native AOT publishing, so the target machine should not require a separately installed .NET runtime
-- automated core smoke checks and GitHub Actions build
 
-The panel intentionally displays snapshot metadata rather than document content in this milestone. This makes buffer access testable without copying potentially sensitive CSV values into screenshots.
+The current docked panel still displays sanitized snapshot metadata rather than parsed CSV values. Parser correctness is being validated independently before UI binding.
 
 ## Not implemented yet
 
-- delimiter detection
-- quoted-field-aware CSV parsing
-- CSV rows and columns in the visual grid
+- parsed CSV rows and columns in the visual grid
+- header-mode selection and header inference
+- manual delimiter override UI
 - automatic refresh after editor changes
 - filtering, sorting, search, or large-file virtualization
 - cell editing or write-back
@@ -33,10 +37,11 @@ The panel intentionally displays snapshot metadata rather than document content 
 ## Repository layout
 
 ```text
-src/CsvVisualEditor.Core/              Host-independent snapshot, table, and CSV-domain logic
+src/CsvVisualEditor.Core/              Host-independent snapshot, CSV, and table-domain logic
 src/CsvVisualEditor/                   Notepad++ plugin and WinForms user interface
-tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free automated smoke checks
-docs/                                  Public architecture documentation
+tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free bootstrap regression checks
+tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser and detector matrix
+docs/                                  Public architecture, parser, and test documentation
 ```
 
 ## Build requirements
@@ -60,13 +65,23 @@ dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
     -o artifacts/CsvVisualEditor
 ```
 
-Run the host-independent smoke checks:
+Run the dependency-free bootstrap checks:
 
 ```powershell
 dotnet run `
     --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj `
     -c Release
 ```
+
+Run the xUnit.net v3 parser matrix:
+
+```powershell
+dotnet run `
+    --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj `
+    -c Release
+```
+
+The conventional test project pins `xunit.v3.mtp-v2` version `3.2.2`.
 
 ## Manual installation
 
@@ -94,14 +109,15 @@ Use **Refresh** after changing the active document. The metadata should update f
 
 Milestone 0.1 plugin loading, docking, commands, dark mode, shutdown, restart, and Native AOT operation were manually accepted in Notepad++ 8.9.7.
 
-For milestone 0.2, CI can validate the snapshot model and native build. A real Notepad++ test must additionally confirm that changing unsaved text and pressing Refresh changes the character count, modified state, and content identity shown in the panel.
+Milestone 0.2 active-buffer reading was accepted after successful automated validation and complete Notepad++ 8.9.7 x64 host testing, including unsaved edits, tab switching, both Refresh paths, untitled buffers, dark mode, lifecycle behavior, and confirmation that editor text was not modified.
+
+Milestone 0.3 parser correctness is validated in the host-independent core before parsed data is exposed in the UI. See `docs/csv-parser.md` and `docs/testing.md`.
 
 ## Roadmap
 
-1. **Current:** read and identify the active Notepad++ editor buffer.
-2. Detect comma, semicolon, and tab delimiters.
-3. Parse quoted fields and embedded line breaks correctly.
-4. Populate the visual table and report parse errors.
-5. Add sorting, filtering, search, and large-file handling.
-6. Add safe two-way cell editing with conflict and undo/redo support.
-7. Package releases for eventual Notepad++ Plugins Admin submission.
+1. **Accepted:** read and identify the active Notepad++ editor buffer.
+2. **Current:** detect comma, semicolon, and tab dialects and parse logical CSV records.
+3. Populate the visual table, expose diagnostics, and add user overrides.
+4. Add sorting, filtering, search, and large-file handling.
+5. Add safe two-way cell editing with conflict and undo/redo support.
+6. Package releases for eventual Notepad++ Plugins Admin submission.
