@@ -15,7 +15,7 @@ public static class CsvDialectDetector
         options.Validate();
 
         var candidates = CsvDialect.SupportedDelimiters
-            .Select(delimiter => ScoreCandidate(text, delimiter, options.MaximumLogicalRecords))
+            .Select(delimiter => ScoreCandidate(text, delimiter, options))
             .OrderByDescending(static candidate => candidate.Score)
             .ThenBy(static candidate => CandidateOrder(candidate.Delimiter))
             .ToArray();
@@ -69,21 +69,17 @@ public static class CsvDialectDetector
     private static CsvDelimiterCandidateScore ScoreCandidate(
         string text,
         char delimiter,
-        int maximumLogicalRecords)
+        CsvDialectDetectionOptions options)
     {
         var dialect = CsvDialect.Create(delimiter);
-        var parseResult = CsvParser.Parse(
+        var parseResult = CsvParser.ParseSample(
             text,
             dialect,
-            new CsvParseOptions
-            {
-                RemoveLeadingBom = true,
-                ReportInconsistentFieldCounts = false
-            });
+            options.MaximumLogicalRecords,
+            options.MaximumSampleCharacters);
 
         var sampledRecords = parseResult.Records
             .Where(static record => !record.IsBlank)
-            .Take(maximumLogicalRecords)
             .ToArray();
 
         var sampledRecordCount = sampledRecords.Length;
@@ -104,7 +100,14 @@ public static class CsvDialectDetector
             multiFieldRecordCount = sampledRecords.Count(static record => record.FieldCount > 1);
         }
 
-        var delimiterStatistics = CountDelimitersOutsideQuotes(text, delimiter, dialect.Quote);
+        var sampledCharacterEnd = parseResult.Records.Count > 0
+            ? parseResult.Records[^1].SourceSpan.End
+            : Math.Min(text.Length, options.MaximumSampleCharacters);
+        var delimiterStatistics = CountDelimitersOutsideQuotes(
+            text,
+            delimiter,
+            dialect.Quote,
+            sampledCharacterEnd);
         var parseErrorCount = parseResult.Diagnostics.Count(
             static diagnostic => diagnostic.Severity == CsvDiagnosticSeverity.Error);
 
@@ -195,18 +198,20 @@ public static class CsvDialectDetector
     private static (int DelimiterCount, int NumericAdjacentCount) CountDelimitersOutsideQuotes(
         string text,
         char delimiter,
-        char quote)
+        char quote,
+        int maximumExclusive)
     {
         var delimiterCount = 0;
         var numericAdjacentCount = 0;
         var inQuotes = false;
+        var scanEnd = Math.Min(text.Length, maximumExclusive);
 
-        for (var index = 0; index < text.Length; index++)
+        for (var index = 0; index < scanEnd; index++)
         {
             var current = text[index];
             if (current == quote)
             {
-                if (inQuotes && index + 1 < text.Length && text[index + 1] == quote)
+                if (inQuotes && index + 1 < scanEnd && text[index + 1] == quote)
                 {
                     index++;
                     continue;
@@ -224,7 +229,7 @@ public static class CsvDialectDetector
             delimiterCount++;
             if (delimiter == ',' &&
                 index > 0 &&
-                index + 1 < text.Length &&
+                index + 1 < scanEnd &&
                 char.IsDigit(text[index - 1]) &&
                 char.IsDigit(text[index + 1]))
             {
