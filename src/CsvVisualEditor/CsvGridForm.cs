@@ -4,6 +4,7 @@ using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using Npp.DotNet.Plugin.Winforms;
 using Npp.DotNet.Plugin.Winforms.Classes;
+using System.Globalization;
 
 internal sealed class CsvGridForm : DockingForm
 {
@@ -22,7 +23,7 @@ internal sealed class CsvGridForm : DockingForm
         _refreshButton = new ToolStripButton("Refresh")
         {
             DisplayStyle = ToolStripItemDisplayStyle.Text,
-            ToolTipText = "Refresh the visual table from the active Notepad++ document"
+            ToolTipText = "Refresh the snapshot from the active Notepad++ editor buffer"
         };
         _refreshButton.Click += (_, _) => RefreshRequested?.Invoke(this, EventArgs.Empty);
 
@@ -37,14 +38,14 @@ internal sealed class CsvGridForm : DockingForm
         {
             AllowUserToAddRows = false,
             AllowUserToDeleteRows = false,
-            AllowUserToOrderColumns = true,
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+            AllowUserToOrderColumns = false,
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None,
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize,
             Dock = DockStyle.Fill,
             EditMode = DataGridViewEditMode.EditProgrammatically,
             MultiSelect = false,
             ReadOnly = true,
-            RowHeadersVisible = true,
+            RowHeadersVisible = false,
             SelectionMode = DataGridViewSelectionMode.FullRowSelect
         };
 
@@ -80,16 +81,41 @@ internal sealed class CsvGridForm : DockingForm
 
     public void ShowBootstrapState()
     {
-        _grid.Rows.Clear();
-        _grid.Columns.Clear();
+        PrepareMetadataGrid();
+        AddMetadataRow("Status", "Waiting for the active Notepad++ document snapshot.");
+        _statusLabel.Text = "Plugin shell ready. Reading the active editor buffer...";
+    }
 
-        foreach (var columnName in TableColumnNameGenerator.Create(3))
-        {
-            _grid.Columns.Add(columnName.Replace(' ', '_'), columnName);
-        }
+    public void ShowDocumentSnapshot(ActiveDocumentSnapshot snapshot)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+
+        PrepareMetadataGrid();
+        AddMetadataRow("Document", snapshot.DisplayName);
+        AddMetadataRow(
+            "Path",
+            string.IsNullOrWhiteSpace(snapshot.DocumentPath)
+                ? "(untitled editor buffer)"
+                : snapshot.DocumentPath);
+        AddMetadataRow("Characters", FormatNumber(snapshot.CharacterCount));
+        AddMetadataRow("Editor bytes", FormatNumber(snapshot.EditorByteLength));
+        AddMetadataRow("Scintilla code page", snapshot.CodePage.ToString(CultureInfo.InvariantCulture));
+        AddMetadataRow("Modified", snapshot.IsModified ? "Yes" : "No");
+        AddMetadataRow("Caret position", FormatNumber(snapshot.CaretPosition));
+        AddMetadataRow("Selection length", FormatNumber(snapshot.SelectionLength));
+        AddMetadataRow("Captured UTC", snapshot.CapturedAtUtc.ToString("O", CultureInfo.InvariantCulture));
+        AddMetadataRow("Content identity", $"{snapshot.ContentSha256[..16]}…");
 
         _statusLabel.Text =
-            "Plugin shell ready. Active-document CSV loading is the next implementation phase.";
+            $"Snapshot loaded from editor buffer: {snapshot.DisplayName} — " +
+            $"{FormatNumber(snapshot.CharacterCount)} characters.";
+    }
+
+    public void ShowSnapshotError(string message)
+    {
+        PrepareMetadataGrid();
+        AddMetadataRow("Snapshot error", message);
+        _statusLabel.Text = "Active-document snapshot failed. No editor content was changed.";
     }
 
     public override void ToggleDarkMode(bool isDark)
@@ -133,5 +159,40 @@ internal sealed class CsvGridForm : DockingForm
     {
         base.AttachEventHandlers();
         _grid.Focus();
+    }
+
+    private void PrepareMetadataGrid()
+    {
+        _grid.Rows.Clear();
+        _grid.Columns.Clear();
+
+        _grid.Columns.Add(
+            new DataGridViewTextBoxColumn
+            {
+                Name = "Property",
+                HeaderText = "Property",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                MinimumWidth = 120,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+        _grid.Columns.Add(
+            new DataGridViewTextBoxColumn
+            {
+                Name = "Value",
+                HeaderText = "Value",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                MinimumWidth = 220,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+    }
+
+    private void AddMetadataRow(string property, string value)
+    {
+        _grid.Rows.Add(property, value);
+    }
+
+    private static string FormatNumber(long value)
+    {
+        return value.ToString("N0", CultureInfo.CurrentCulture);
     }
 }
