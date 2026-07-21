@@ -132,10 +132,10 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.2.0-alpha\n\n" +
+            "CSV Visual Editor 0.3.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
-            "This version reads an immutable snapshot of the active editor buffer. " +
-            "CSV parsing and editing are not enabled yet.",
+            "This version includes host-independent CSV dialect detection and " +
+            "record-aware parsing. Grid population and editing are not enabled yet.",
             $"About {PluginDisplayName}",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
