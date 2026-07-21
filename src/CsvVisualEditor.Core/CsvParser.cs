@@ -13,10 +13,54 @@ public static class CsvParser
         CsvDialect dialect,
         CsvParseOptions? options = null)
     {
+        options ??= CsvParseOptions.Default;
+        return ParseCore(text, dialect, options, maximumLogicalRecords: null, maximumCharacters: null);
+    }
+
+    internal static CsvParseResult ParseSample(
+        string text,
+        CsvDialect dialect,
+        int maximumLogicalRecords,
+        int maximumCharacters)
+    {
+        if (maximumLogicalRecords <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(maximumLogicalRecords),
+                maximumLogicalRecords,
+                "At least one logical record must be sampled.");
+        }
+
+        if (maximumCharacters <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(maximumCharacters),
+                maximumCharacters,
+                "At least one character must be available for sampling.");
+        }
+
+        return ParseCore(
+            text,
+            dialect,
+            new CsvParseOptions
+            {
+                RemoveLeadingBom = true,
+                ReportInconsistentFieldCounts = false
+            },
+            maximumLogicalRecords,
+            maximumCharacters);
+    }
+
+    private static CsvParseResult ParseCore(
+        string text,
+        CsvDialect dialect,
+        CsvParseOptions options,
+        int? maximumLogicalRecords,
+        int? maximumCharacters)
+    {
         ArgumentNullException.ThrowIfNull(text);
         ArgumentNullException.ThrowIfNull(dialect);
-
-        options ??= CsvParseOptions.Default;
+        ArgumentNullException.ThrowIfNull(options);
 
         var records = new List<CsvRecord>();
         var diagnostics = new List<CsvDiagnostic>();
@@ -34,6 +78,10 @@ public static class CsvParser
             position = 1;
         }
 
+        var scanEnd = maximumCharacters.HasValue
+            ? Math.Min(text.Length, maximumCharacters.Value)
+            : text.Length;
+        var stoppedAtSampleLimit = false;
         var recordIndex = 0;
         var recordStart = position;
         var fieldStart = position;
@@ -43,7 +91,7 @@ public static class CsvParser
         var afterClosingQuote = false;
         var recordHasData = false;
 
-        while (position < text.Length)
+        while (position < scanEnd)
         {
             var current = text[position];
 
@@ -51,7 +99,7 @@ public static class CsvParser
             {
                 if (current == dialect.Quote)
                 {
-                    if (position + 1 < text.Length && text[position + 1] == dialect.Quote)
+                    if (position + 1 < scanEnd && text[position + 1] == dialect.Quote)
                     {
                         fieldBuilder.Append(dialect.Quote);
                         position += 2;
@@ -84,7 +132,13 @@ public static class CsvParser
                 {
                     AddCell(position);
                     AddRecord(position);
-                    position = ConsumeLineBreak(text, position);
+                    position = ConsumeLineBreak(text, position, scanEnd);
+                    if (HasReachedRecordLimit())
+                    {
+                        stoppedAtSampleLimit = true;
+                        break;
+                    }
+
                     ResetRecord(position);
                     continue;
                 }
@@ -127,7 +181,13 @@ public static class CsvParser
             {
                 AddCell(position);
                 AddRecord(position);
-                position = ConsumeLineBreak(text, position);
+                position = ConsumeLineBreak(text, position, scanEnd);
+                if (HasReachedRecordLimit())
+                {
+                    stoppedAtSampleLimit = true;
+                    break;
+                }
+
                 ResetRecord(position);
                 continue;
             }
@@ -148,20 +208,26 @@ public static class CsvParser
             position++;
         }
 
-        if (inQuotedField)
-        {
-            diagnostics.Add(new CsvDiagnostic(
-                CsvDiagnosticSeverity.Error,
-                CsvDiagnosticCodes.UnterminatedQuotedField,
-                "The final quoted field was not terminated before the end of text.",
-                text.Length,
-                recordIndex));
-        }
+        var reachedTextEnd = position >= text.Length;
+        var reachedCharacterLimit = !reachedTextEnd && position >= scanEnd;
 
-        if (recordHasData || fieldStart < text.Length || afterClosingQuote)
+        if (!stoppedAtSampleLimit && !reachedCharacterLimit)
         {
-            AddCell(text.Length);
-            AddRecord(text.Length);
+            if (inQuotedField)
+            {
+                diagnostics.Add(new CsvDiagnostic(
+                    CsvDiagnosticSeverity.Error,
+                    CsvDiagnosticCodes.UnterminatedQuotedField,
+                    "The final quoted field was not terminated before the end of text.",
+                    text.Length,
+                    recordIndex));
+            }
+
+            if (recordHasData || fieldStart < text.Length || afterClosingQuote)
+            {
+                AddCell(text.Length);
+                AddRecord(text.Length);
+            }
         }
 
         var expectedFieldCount = DetermineExpectedFieldCount(records);
@@ -201,6 +267,9 @@ public static class CsvParser
                 new CsvSourceSpan(recordStart, endExclusive - recordStart)));
             recordIndex++;
         }
+
+        bool HasReachedRecordLimit() =>
+            maximumLogicalRecords.HasValue && records.Count >= maximumLogicalRecords.Value;
 
         void ResetField(int start)
         {
@@ -242,10 +311,10 @@ public static class CsvParser
 
     private static bool IsLineBreak(char value) => value is '\r' or '\n';
 
-    private static int ConsumeLineBreak(string text, int position)
+    private static int ConsumeLineBreak(string text, int position, int scanEnd)
     {
         if (text[position] == '\r' &&
-            position + 1 < text.Length &&
+            position + 1 < scanEnd &&
             text[position + 1] == '\n')
         {
             return position + 2;
