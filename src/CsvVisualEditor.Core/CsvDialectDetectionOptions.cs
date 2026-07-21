@@ -9,6 +9,8 @@ public sealed record CsvDialectDetectionOptions
 
     public int MaximumLogicalRecords { get; init; } = 20;
 
+    public int MaximumSampleCharacters { get; init; } = 1_048_576;
+
     public int MinimumSuggestionScore { get; init; } = 35;
 
     internal void Validate()
@@ -19,6 +21,14 @@ public sealed record CsvDialectDetectionOptions
                 nameof(MaximumLogicalRecords),
                 MaximumLogicalRecords,
                 "At least one logical record must be sampled.");
+        }
+
+        if (MaximumSampleCharacters <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(MaximumSampleCharacters),
+                MaximumSampleCharacters,
+                "At least one character must be available for sampling.");
         }
 
         if (MinimumSuggestionScore is < 0 or > 100)
