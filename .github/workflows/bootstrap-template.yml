@@ -42,12 +42,23 @@ jobs:
           Get-ChildItem generated/CsvVisualEditor -Recurse | Select-Object FullName
 
       - name: Publish x64 Native AOT plugin
+        id: publish
+        continue-on-error: true
         shell: pwsh
-        run: dotnet publish generated/CsvVisualEditor/CsvVisualEditor.csproj -c Release -r win-x64
+        run: |
+          dotnet publish generated/CsvVisualEditor/CsvVisualEditor.csproj -c Release -r win-x64 *>&1 |
+            Tee-Object -FilePath generated/CsvVisualEditor/publish.log
+          exit $LASTEXITCODE
 
-      - name: Upload generated official template
+      - name: Upload generated official template and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: official-npp-winforms-template
           path: generated/CsvVisualEditor
           if-no-files-found: error
+
+      - name: Fail workflow when publish failed
+        if: steps.publish.outcome != 'success'
+        shell: pwsh
+        run: throw 'Native AOT publish failed. Inspect the uploaded publish.log artifact.'
