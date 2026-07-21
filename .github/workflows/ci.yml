@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - agent/**
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        shell: pwsh
+        run: |
+          dotnet restore src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj
+          dotnet restore tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj
+          dotnet restore src/CsvVisualEditor/CsvVisualEditor.csproj -r win-x64
+
+      - name: Build core library
+        shell: pwsh
+        run: dotnet build src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj -c Release --no-restore
+
+      - name: Run smoke tests
+        shell: pwsh
+        run: dotnet run --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj -c Release
+
+      - name: Publish x64 Native AOT plugin
+        shell: pwsh
+        run: |
+          dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
+            -c Release `
+            -f net10.0-windows `
+            -r win-x64 `
+            -o artifacts/CsvVisualEditor
+
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-win-x64
+          path: artifacts/CsvVisualEditor
+          if-no-files-found: error
