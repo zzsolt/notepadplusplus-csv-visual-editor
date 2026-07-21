@@ -42,17 +42,28 @@ jobs:
         run: dotnet run --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj -c Release
 
       - name: Publish x64 Native AOT plugin
+        id: publish
+        continue-on-error: true
         shell: pwsh
         run: |
+          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
           dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
             -c Release `
             -f net10.0-windows `
             -r win-x64 `
-            -o artifacts/CsvVisualEditor
+            -o artifacts/CsvVisualEditor *>&1 |
+              Tee-Object -FilePath artifacts/publish.log
+          exit $LASTEXITCODE
 
-      - name: Upload plugin artifact
+      - name: Upload plugin and publish diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-win-x64
-          path: artifacts/CsvVisualEditor
+          path: artifacts
           if-no-files-found: error
+
+      - name: Fail workflow when publish failed
+        if: steps.publish.outcome != 'success'
+        shell: pwsh
+        run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
