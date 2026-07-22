@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj" />
+    <Compile Include="../../src/CsvVisualEditor/NativeAotRoots.cs" Link="NativeAotRoots.cs" />
   </ItemGroup>
 </Project>
