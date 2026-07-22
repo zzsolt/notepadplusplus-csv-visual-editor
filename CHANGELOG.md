@@ -28,11 +28,13 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Global Refresh Table refuses to discard an active Edit session.
 - A successful Apply rebuilds the table and session from the resulting editor buffer.
 - Selection-restoration failure is recorded as non-critical after a successful document replacement.
+- The first writable alpha permits Apply only for Scintilla code page 65001 (UTF-8); viewing remains available for other readable code pages.
 
 ### Safety
 
 - Apply reads a fresh active-document snapshot immediately before replacement.
-- No Scintilla method is called for NoChanges or any conflict state.
+- No Scintilla replacement method is called for NoChanges or any conflict state.
+- Non-UTF-8 Apply is blocked before constructing the replacement adapter, preventing lossy code-page conversion.
 - Ready Apply performs exactly one whole-document replacement inside one undo action.
 - `EndUndoAction` executes in `finally` after a successful Begin.
 - The plugin does not set or clear the Notepad++ save point.
@@ -43,7 +45,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 - 122/122 xUnit tests passed on the first complete integration head.
 - Strict core build, bootstrap smoke, Native AOT runtime, real plugin AOT publish, and 0.7 package creation passed.
-- A later final gate adds explicit Native AOT Apply-coordinator execution and non-critical selection-restoration behavior.
+- A later final gate adds explicit Native AOT Apply-coordinator execution, non-critical selection-restoration behavior, and UTF-8-only Apply enforcement.
 - Complete Notepad++ 8.9.7 x64 host acceptance is pending.
 
 ## [0.6.0-alpha] — 2026-07-22
