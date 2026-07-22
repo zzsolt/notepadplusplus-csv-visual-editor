@@ -4,10 +4,10 @@ CSV Visual Editor is split into a host-independent core and a thin Notepad++/Win
 
 ## Projects
 
-- `CsvVisualEditor.Core`: immutable editor snapshots, CSV dialect detection, record-aware parsing, diagnostics, and read-only table projection.
-- `CsvVisualEditor`: Native AOT Notepad++ plugin, Scintilla adapter, orchestration, and dockable WinForms user interface.
+- `CsvVisualEditor.Core`: immutable editor snapshots, CSV dialect detection, record-aware parsing, diagnostics, safe table-build policy, and read-only table projection.
+- `CsvVisualEditor`: Native AOT Notepad++ plugin, Scintilla adapter, minimal orchestration, and dockable WinForms user interface.
 - `CsvVisualEditor.Core.SmokeTests`: dependency-free executable checks for the accepted bootstrap and snapshot baseline.
-- `CsvVisualEditor.Core.Tests`: xUnit.net v3 parser, detector, and table-projection matrix.
+- `CsvVisualEditor.Core.Tests`: xUnit.net v3 parser, detector, table-builder, and table-projection matrix.
 
 ## End-to-end read flow
 
@@ -23,30 +23,27 @@ NotepadActiveDocumentReader
         ▼
 ActiveDocumentSnapshot
         │
+        ▼
+CsvTableBuilder
         ├── automatic CsvDialectDetector
         │       └── Medium/High confidence only
-        │
         ├── or explicit comma/semicolon/tab override
-        │
-        ▼
-CsvParser
-        │
-        ▼
-immutable CsvParseResult
-        │
-        ▼
-CsvTableProjector
-        │
-        ▼
-immutable bounded CsvTableProjection
-        │
-        ▼
-read-only WinForms DataGridView
+        ├── CsvParser
+        └── CsvTableProjector
+                │
+                ▼
+        CsvTableBuildResult
+        ├── Empty
+        ├── DelimiterSelectionRequired
+        └── Ready(parse result + bounded projection)
+                │
+                ▼
+read-only WinForms DataGridView or safe metadata/error state
 ```
 
 `IActiveDocumentReader` belongs to the host-independent core. `NotepadActiveDocumentReader` belongs to the plugin project and is the only component that knows about `PluginData`, Notepad++, or Scintilla.
 
-The detector, parser, and table projector accept immutable models or decoded strings and do not reference Notepad++, Scintilla, Windows Forms, or disk I/O.
+`CsvTableBuilder` owns delimiter trust policy, header mode, parsing, and visual limits. These decisions are therefore testable without Notepad++ or WinForms.
 
 ## Snapshot model
 
@@ -113,7 +110,25 @@ Scoring considers:
 
 The detector uses a bounded default sample of 20 logical records and 1 MiB decoded characters. It returns every candidate score plus `None`, `Low`, `Medium`, or `High` confidence.
 
-The UI trusts automatic selection only at `Medium` or `High` confidence. `Low`, ambiguous, and absent suggestions show a safe metadata/instruction state until the user chooses comma, semicolon, or tab explicitly.
+`CsvTableBuilder` accepts automatic selection only at `Medium` or `High` confidence. `Low`, ambiguous, and absent suggestions return `DelimiterSelectionRequired`; the UI must not silently guess.
+
+## Table-build result
+
+`CsvTableBuildOptions` contains:
+
+- optional delimiter override;
+- explicit `FirstRecord` or `NoHeader` mode;
+- maximum displayed rows;
+- maximum displayed columns;
+- maximum aggregate displayed cells.
+
+`CsvTableBuildResult` has three states:
+
+- `Empty` — decoded input contains no characters;
+- `DelimiterSelectionRequired` — automatic evidence is not trustworthy and candidate scores are retained;
+- `Ready` — parse result and bounded projection are available.
+
+This keeps structural policy outside `CsvGridForm` and makes weak-detection/manual-override behavior part of the core test gate.
 
 ## Read-only table projection
 
@@ -156,11 +171,14 @@ The DataGridView row header displays the one-based logical-record number. Sortin
 The current alpha has explicit UI safety limits:
 
 - maximum 10,000 displayed data rows;
-- maximum 512 displayed columns.
+- maximum 512 displayed columns;
+- maximum 250,000 aggregate displayed cells.
 
-When rows exceed the limit, the first 10,000 are shown and the status line states the displayed and total counts. This is visible truncation of the view only; parse results are not changed.
+The displayed row count is the smallest count allowed by the row and aggregate-cell budgets. For example, a 100-column result can display at most 2,500 rows.
 
-When columns exceed the limit, table rendering is refused with a visible error. No columns are silently hidden.
+When rows exceed a limit, the first permitted rows are shown and the status line states displayed and total counts. This is visible truncation of the view only; parse results are not changed.
+
+When columns exceed 512, or a single row cannot fit the aggregate cell budget, table rendering is refused with a visible error. No columns are silently hidden.
 
 These limits are not a final large-file strategy. Virtual mode, paging, cancellation, and measured performance remain later work.
 
@@ -195,6 +213,8 @@ Automatic refresh after arbitrary editor modifications remains deferred until no
 - parser errors produce partial read-only tables plus structural counts;
 - no source values are written to logs or diagnostics;
 - table projection never mutates parser output;
+- row and cell limiting is visible;
+- column overflow is refused instead of hidden;
 - unexpected host or table failures produce generic non-destructive messages;
 - no editor write, disk write, serialization, conflict handling, or undo/redo path exists.
 
@@ -218,6 +238,7 @@ Automatic refresh after arbitrary editor modifications remains deferred until no
 
 ### Current 0.4
 
+- host-independent table-build policy;
 - explicit delimiter and header controls;
 - bounded read-only table projection;
 - parsed CSV values in DataGridView;
