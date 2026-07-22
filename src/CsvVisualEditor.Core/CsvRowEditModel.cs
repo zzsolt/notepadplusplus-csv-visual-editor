@@ -253,9 +253,12 @@ public sealed class CsvRowEditModel
 
     private string[] NormalizeValues(IReadOnlyList<string>? values)
     {
+        var normalized = new string[ColumnCount];
+        Array.Fill(normalized, string.Empty);
+
         if (values is null)
         {
-            return new string[ColumnCount];
+            return normalized;
         }
 
         if (values.Count > ColumnCount)
@@ -265,7 +268,6 @@ public sealed class CsvRowEditModel
                 nameof(values));
         }
 
-        var normalized = new string[ColumnCount];
         for (var index = 0; index < values.Count; index++)
         {
             normalized[index] = values[index] ?? throw new ArgumentException(
