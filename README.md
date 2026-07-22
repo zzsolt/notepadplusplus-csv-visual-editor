@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.5 read-only search and diagnostics alpha under validation**. The plugin reads the active Notepad++ editor buffer, including unsaved changes, renders a read-only table, and now adds view-only search, selected-column filtering, stable sorting, and detailed diagnostics without modifying the source CSV.
+> Development status: **0.5 read-only search and diagnostics alpha accepted**. The plugin reads the active Notepad++ editor buffer, including unsaved changes, renders a read-only table, and provides view-only search, selected-column filtering, stable sorting, and detailed diagnostics without modifying the source CSV.
 
 ## Current capabilities
 
@@ -147,13 +147,13 @@ Milestone 0.3 delimiter detection and record-aware parsing passed the strict hos
 
 Milestone 0.4 read-only visual table, Native AOT row headers, automatic dock sizing, and content-aware columns were accepted and merged after Notepad++ 8.9.7 x64 host testing.
 
-Milestone 0.5 requires both automated validation and fresh Notepad++ 8.9.7 x64 acceptance because search, sorting, tabs, and detailed diagnostics add new WinForms runtime paths.
+Milestone 0.5 search, selected-column filtering, stable sorting, diagnostics, dark mode, refresh, active-tab switching, hide/reopen, restart, and no-mutation behavior were accepted in Notepad++ 8.9.7 x64 after 81/81 automated tests and Native AOT runtime validation.
 
 ## Roadmap
 
 1. **Accepted:** active Notepad++ buffer snapshot.
 2. **Accepted:** delimiter detection and record-aware CSV parser.
 3. **Accepted:** read-only visual table with explicit delimiter/header controls.
-4. **Current:** diagnostics UI, search, filtering, stable view sorting, and scalable rendering.
-5. Add safe two-way cell editing with conflict and undo/redo support.
+4. **Accepted:** diagnostics UI, search, filtering, stable view sorting, and host lifecycle validation.
+5. **Current:** safe two-way cell editing foundation with deterministic serialization, dirty tracking, conflict protection, and undo/redo integration.
 6. Package releases for eventual Notepad++ Plugins Admin submission.
