@@ -32,12 +32,24 @@ public static class CsvTableProjector
                 $"current visual-table limit of {options.MaximumColumns:N0}. No columns were hidden.");
         }
 
+        if (columnCount > options.MaximumCells)
+        {
+            throw new InvalidOperationException(
+                $"One visual row would require {columnCount:N0} cells, which exceeds the current " +
+                $"aggregate cell limit of {options.MaximumCells:N0}. No columns were hidden.");
+        }
+
         var columnNames = CreateColumnNames(headerRecord, columnCount);
         var columns = columnNames
             .Select(static (name, index) => new CsvTableColumn(index, name))
             .ToArray();
 
-        var rowsToDisplay = Math.Min(totalDataRecordCount, options.MaximumRows);
+        var rowsAllowedByCellBudget = columnCount == 0
+            ? options.MaximumRows
+            : options.MaximumCells / columnCount;
+        var rowsToDisplay = Math.Min(
+            totalDataRecordCount,
+            Math.Min(options.MaximumRows, rowsAllowedByCellBudget));
         var rows = new CsvTableRow[rowsToDisplay];
         for (var displayIndex = 0; displayIndex < rowsToDisplay; displayIndex++)
         {
