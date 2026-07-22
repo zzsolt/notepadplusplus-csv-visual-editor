@@ -15,6 +15,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Manual delimiter recovery when automatic detection is weak, ambiguous, or unavailable.
 - Explicit 10,000-row, 512-column, and 250,000-cell visual limits with non-silent behavior.
 - xUnit table-builder and projection tests for delimiter gating, header modes, unique names, inconsistent widths, limits, and empty input.
+- Native AOT runtime smoke library that executes CSV table building and DataGridView population for both automatic and manual-comma modes.
 - Developer and contact information in the About dialog.
 - `0.4.0-alpha` Native AOT test-package naming.
 
@@ -24,8 +25,16 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Automatic detection is accepted only at Medium or High confidence.
 - Inconsistent-width records are padded only in the rectangular view and remain unchanged in parser output.
 - The displayed row count is constrained by both row and aggregate-cell budgets.
-- CI diagnostics now cover parser, detector, table-builder, and table-projection tests together.
+- CI diagnostics now cover strict build, bootstrap smoke, xUnit core tests, Native AOT table runtime execution, and plugin publishing separately.
 - About text describes the 0.4 read-only table boundary.
+
+### Fixed
+
+- Preserved the public parameterless `DataGridViewRowHeaderCell` constructor required by WinForms reflective row-header creation under Native AOT. Without this root, setting source record numbers failed at runtime with `MissingMethodException` even though compilation and publishing succeeded.
+
+### Validated
+
+- The Native AOT runtime smoke test now creates a three-column, one-row read-only DataGridView from synthetic CSV in both automatic and manual-comma modes, including source row-header numbering.
 
 ## [0.3.0-alpha] — 2026-07-21
 
