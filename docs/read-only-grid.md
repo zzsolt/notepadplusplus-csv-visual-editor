@@ -73,9 +73,12 @@ Malformed CSV may still produce a partial read-only table. Diagnostics are struc
 
 - snapshot input limit: 64 MiB according to Scintilla editor-byte length;
 - displayed data rows: 10,000;
-- displayed columns: 512.
+- displayed columns: 512;
+- aggregate displayed cells: 250,000.
 
-Row limiting is stated explicitly in the status bar. Column overflow refuses rendering and shows an error; columns are never silently hidden.
+The actual displayed row count is the smallest value allowed by the row limit and the aggregate cell budget. For example, a 100-column table can display at most 2,500 rows in this alpha.
+
+Row/cell limiting is stated explicitly in the status bar. Column overflow, or a single row wider than the aggregate cell budget, refuses rendering and shows an error; columns are never silently hidden.
 
 ## Non-goals of milestone 0.4
 
