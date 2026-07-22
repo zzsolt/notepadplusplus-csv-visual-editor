@@ -66,6 +66,7 @@ internal static class Program
 
         using var grid = CreateGrid();
         Bind(grid, result.Projection);
+        grid.PerformLayout();
 
         Require(grid.Columns.Count == 3, $"{caseName}: expected 3 columns.");
         Require(grid.Rows.Count == 1, $"{caseName}: expected 1 data row.");
@@ -82,6 +83,17 @@ internal static class Program
                 StringComparison.Ordinal),
             $"{caseName}: second cell mismatch.");
         Require(grid.ReadOnly, $"{caseName}: grid must remain read-only.");
+        Require(
+            grid.Columns.Cast<DataGridViewColumn>().All(
+                static column => column.AutoSizeMode == DataGridViewAutoSizeColumnMode.Fill),
+            $"{caseName}: every table column must use Fill sizing.");
+        Require(
+            grid.Columns.Cast<DataGridViewColumn>().All(
+                static column => column.MinimumWidth == 90),
+            $"{caseName}: every table column must retain the readable minimum width.");
+        Require(
+            grid.Columns[0].FillWeight > grid.Columns[2].FillWeight,
+            $"{caseName}: the longer e-mail column should receive more relative width than Password.");
     }
 
     private static DataGridView CreateGrid() =>
@@ -95,11 +107,14 @@ internal static class Program
             EditMode = DataGridViewEditMode.EditProgrammatically,
             ReadOnly = true,
             RowHeadersVisible = true,
-            SelectionMode = DataGridViewSelectionMode.CellSelect
+            SelectionMode = DataGridViewSelectionMode.CellSelect,
+            Size = new Size(760, 300)
         };
 
     private static void Bind(DataGridView grid, CsvTableProjection projection)
     {
+        var fillWeights = CsvColumnFillWeightCalculator.Calculate(projection);
+
         foreach (var column in projection.Columns)
         {
             grid.Columns.Add(
@@ -107,9 +122,10 @@ internal static class Program
                 {
                     Name = $"CsvColumn{column.Index}",
                     HeaderText = column.Name,
-                    MinimumWidth = 70,
-                    SortMode = DataGridViewColumnSortMode.NotSortable,
-                    Width = 160
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = fillWeights[column.Index],
+                    MinimumWidth = 90,
+                    SortMode = DataGridViewColumnSortMode.NotSortable
                 });
         }
 
