@@ -19,6 +19,7 @@ public sealed class CsvEditorApplyCoordinatorTests
 
         Assert.Equal(CsvEditorApplyStatus.NoChanges, result.Status);
         Assert.False(result.WasApplied);
+        Assert.False(result.SelectionRestored);
         Assert.Empty(target.Calls);
     }
 
@@ -52,6 +53,7 @@ public sealed class CsvEditorApplyCoordinatorTests
 
         Assert.Equal(expectedStatus, result.Status);
         Assert.False(result.WasApplied);
+        Assert.False(result.SelectionRestored);
         Assert.Equal(1, result.ChangedCellCount);
         Assert.Null(result.ReplacementSha256);
         Assert.Empty(target.Calls);
@@ -74,6 +76,7 @@ public sealed class CsvEditorApplyCoordinatorTests
 
         Assert.Equal(CsvEditorApplyStatus.Applied, result.Status);
         Assert.True(result.WasApplied);
+        Assert.True(result.SelectionRestored);
         Assert.Equal(1, result.ChangedCellCount);
         Assert.Equal(1, result.ChangedRecordCount);
         Assert.NotNull(result.ReplacementSha256);
@@ -100,11 +103,12 @@ public sealed class CsvEditorApplyCoordinatorTests
             ReplacementByteLength = 5
         };
 
-        _ = CsvEditorApplyCoordinator.Execute(
+        var result = CsvEditorApplyCoordinator.Execute(
             context.Session,
             context.Snapshot,
             target);
 
+        Assert.True(result.SelectionRestored);
         Assert.Contains("SetSelection:5:5", target.Calls);
     }
 
@@ -159,7 +163,7 @@ public sealed class CsvEditorApplyCoordinatorTests
     }
 
     [Fact]
-    public void Execute_SelectionFailure_StillEndsUndoAction()
+    public void Execute_SelectionFailure_ReportsAppliedAndEndsUndoAction()
     {
         var context = CreateDirtyContext();
         var target = new RecordingTarget
@@ -168,13 +172,14 @@ public sealed class CsvEditorApplyCoordinatorTests
             SelectionException = new InvalidOperationException("synthetic selection failure")
         };
 
-        var exception = Assert.Throws<InvalidOperationException>(() =>
-            CsvEditorApplyCoordinator.Execute(
-                context.Session,
-                context.Snapshot,
-                target));
+        var result = CsvEditorApplyCoordinator.Execute(
+            context.Session,
+            context.Snapshot,
+            target);
 
-        Assert.Equal("synthetic selection failure", exception.Message);
+        Assert.Equal(CsvEditorApplyStatus.Applied, result.Status);
+        Assert.True(result.WasApplied);
+        Assert.False(result.SelectionRestored);
         Assert.Equal(
             [
                 "BeginUndoAction",
