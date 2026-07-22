@@ -43,6 +43,8 @@ public static class CsvTableProjector
         {
             var sourceRecord = parseResult.Records[dataRecordStart + displayIndex];
             var values = new string[columnCount];
+            Array.Fill(values, string.Empty);
+
             for (var columnIndex = 0; columnIndex < sourceRecord.Cells.Count; columnIndex++)
             {
                 values[columnIndex] = sourceRecord.Cells[columnIndex].Value;
