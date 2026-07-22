@@ -11,6 +11,7 @@ partial class Main : IDotNetPlugin
     private const string DeveloperName = "Zolnai Zsolt";
     private const string DeveloperEmail = "zzsolt@gmail.com";
     private const int DialogCommandIndex = 0;
+    private const int Utf8CodePage = 65001;
     private const int MaximumDisplayedRows = 10_000;
     private const int MaximumDisplayedColumns = 512;
     private const int MaximumDisplayedCells = 250_000;
@@ -157,6 +158,20 @@ partial class Main : IDotNetPlugin
             return;
         }
 
+        if (_gridForm.EditSession.Baseline.CodePage != Utf8CodePage ||
+            currentSnapshot.CodePage != Utf8CodePage)
+        {
+            MessageBox.Show(
+                "Apply is currently supported only for UTF-8 editor buffers " +
+                "(Scintilla code page 65001). No editor content was changed. " +
+                "Use Revert All, convert the document to UTF-8 in Notepad++, " +
+                "then reopen Edit mode.",
+                PluginDisplayName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            return;
+        }
+
         CsvEditorApplyResult result;
         try
         {
@@ -173,7 +188,19 @@ partial class Main : IDotNetPlugin
 
         if (result.WasApplied)
         {
+            var selectionRestored = result.SelectionRestored;
             LoadActiveDocumentTable();
+            if (!selectionRestored)
+            {
+                MessageBox.Show(
+                    "The CSV changes were applied successfully, but the previous " +
+                    "caret or selection could not be restored. The document remains " +
+                    "fully undoable as one action.",
+                    PluginDisplayName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
             return;
         }
 
@@ -265,8 +292,9 @@ partial class Main : IDotNetPlugin
             "CSV Visual Editor 0.7.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
             "Edit mode uses deterministic CSV serialization, fresh-buffer conflict checks, " +
-            "and one Scintilla undo transaction. Applying changes modifies only the active " +
-            "Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
+            "and one Scintilla undo transaction. Apply currently supports UTF-8 editor " +
+            "buffers only and modifies only the active Notepad++ editor buffer; saving " +
+            "to disk remains a normal Notepad++ action.\n\n" +
             $"Developer: {DeveloperName}\n" +
             $"Contact: {DeveloperEmail}",
             $"About {PluginDisplayName}",
