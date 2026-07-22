@@ -195,10 +195,10 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.4.0-alpha\n\n" +
+            "CSV Visual Editor 0.5.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV viewer for Notepad++.\n" +
-            "This version displays parsed CSV rows in a read-only grid with explicit " +
-            "delimiter and header controls. Editing is not enabled yet.\n\n" +
+            "This version adds read-only search, column filtering, stable view sorting, " +
+            "and detailed parser diagnostics. The source editor buffer is never changed.\n\n" +
             $"Developer: {DeveloperName}\n" +
             $"Contact: {DeveloperEmail}",
             $"About {PluginDisplayName}",
