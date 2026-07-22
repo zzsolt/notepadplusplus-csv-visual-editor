@@ -29,12 +29,14 @@ public sealed record CsvEditorApplyResult
         CsvEditorApplyStatus status,
         int changedCellCount,
         int changedRecordCount,
-        string? replacementSha256)
+        string? replacementSha256,
+        bool selectionRestored)
     {
         Status = status;
         ChangedCellCount = changedCellCount;
         ChangedRecordCount = changedRecordCount;
         ReplacementSha256 = replacementSha256;
+        SelectionRestored = selectionRestored;
     }
 
     public CsvEditorApplyStatus Status { get; }
@@ -44,6 +46,8 @@ public sealed record CsvEditorApplyResult
     public int ChangedRecordCount { get; }
 
     public string? ReplacementSha256 { get; }
+
+    public bool SelectionRestored { get; }
 
     public bool WasApplied => Status == CsvEditorApplyStatus.Applied;
 
@@ -71,10 +75,13 @@ public sealed record CsvEditorApplyResult
             status,
             plan.ChangedCellCount,
             changedRecordCount: 0,
-            replacementSha256: null);
+            replacementSha256: null,
+            selectionRestored: false);
     }
 
-    internal static CsvEditorApplyResult Applied(CsvEditPreview preview)
+    internal static CsvEditorApplyResult Applied(
+        CsvEditPreview preview,
+        bool selectionRestored)
     {
         ArgumentNullException.ThrowIfNull(preview);
 
@@ -82,7 +89,8 @@ public sealed record CsvEditorApplyResult
             CsvEditorApplyStatus.Applied,
             preview.ChangedCellCount,
             preview.ChangedRecordCount,
-            preview.ContentSha256);
+            preview.ContentSha256,
+            selectionRestored);
     }
 }
 
@@ -110,6 +118,7 @@ public static class CsvEditorApplyCoordinator
         var preview = plan.Preview ?? throw new InvalidOperationException(
             "The Ready apply plan did not contain a replacement preview.");
 
+        var selectionRestored = false;
         target.BeginUndoAction();
         try
         {
@@ -120,16 +129,27 @@ public static class CsvEditorApplyCoordinator
                     "The editor replacement returned an invalid document length.");
             }
 
-            target.SetSelection(
-                ClampPosition(currentSnapshot.AnchorPosition, newByteLength),
-                ClampPosition(currentSnapshot.CaretPosition, newByteLength));
+            try
+            {
+                target.SetSelection(
+                    ClampPosition(currentSnapshot.AnchorPosition, newByteLength),
+                    ClampPosition(currentSnapshot.CaretPosition, newByteLength));
+                selectionRestored = true;
+            }
+            catch (Exception)
+            {
+                // Selection restoration is non-critical after a successful atomic
+                // replacement. The result records the failure without misreporting
+                // the document replacement itself as unsuccessful.
+                selectionRestored = false;
+            }
         }
         finally
         {
             target.EndUndoAction();
         }
 
-        return CsvEditorApplyResult.Applied(preview);
+        return CsvEditorApplyResult.Applied(preview, selectionRestored);
     }
 
     private static long ClampPosition(long position, long documentByteLength)
