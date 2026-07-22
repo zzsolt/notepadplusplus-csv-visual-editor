@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.7 editable-grid alpha under host validation**. Edit mode can modify an active UTF-8 Notepad++ editor buffer through deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.7 editable-grid alpha accepted in Notepad++ 8.9.7 x64**. Edit mode can modify an active UTF-8 Notepad++ editor buffer through deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction. Saving to disk remains a normal Notepad++ action.
 
 ## Current capabilities
 
@@ -156,7 +156,7 @@ Milestones 0.1–0.5 were manually accepted in Notepad++ 8.9.7 x64.
 
 Milestone 0.6 safe-editing foundation passed 112/112 xUnit tests, strict build, Native AOT serializer/edit-session/conflict execution, and full Native AOT plugin publishing.
 
-Milestone 0.7 currently passes the expanded core test matrix, Native AOT Apply-coordinator execution, and full Native AOT plugin publishing. Complete Notepad++ 8.9.7 x64 acceptance is required before merge, especially UTF-8-only Apply enforcement, one-step Ctrl+Z/Ctrl+Y, modified-marker, normal Save ownership, and conflict blocking.
+Milestone 0.7 passed 122/122 xUnit tests, strict build, Native AOT Apply-coordinator execution, full Native AOT plugin publishing, and complete Notepad++ 8.9.7 x64 owner acceptance on 2026-07-22. The accepted host matrix includes Edit/Revert, dirty indicators, UTF-8 Apply, one-step Ctrl+Z/Ctrl+Y, modified-marker and normal Save ownership, structural CSV values, inconsistent-width preservation, content and active-document conflict blocking, lifecycle behavior, no-change behavior, and non-UTF-8 Apply refusal.
 
 See:
 
@@ -169,7 +169,7 @@ See:
 2. **Accepted:** delimiter detection and record-aware CSV parser.
 3. **Accepted:** read-only visual table.
 4. **Accepted:** diagnostics, search, filtering, and stable view sorting.
-5. **Accepted foundation:** deterministic serialization, dirty tracking, and conflict planning.
-6. **Current:** UTF-8 editable cells, single-undo Apply, and real-host undo/redo/conflict acceptance.
-7. Add verified non-UTF-8 round-trip writing, row/column operations, and source navigation.
+5. **Accepted:** deterministic serialization, dirty tracking, and conflict planning.
+6. **Accepted:** UTF-8 editable cells, single-undo Apply, Save ownership, and real-host conflict acceptance.
+7. **Next:** verified non-UTF-8 round-trip writing, row/column operations, and source navigation.
 8. Package releases for eventual Notepad++ Plugins Admin submission.
