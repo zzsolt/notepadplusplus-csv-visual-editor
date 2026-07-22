@@ -5,6 +5,7 @@
 - Notepad++ 8.9.7 x64
 - Windows x64
 - CSV Visual Editor 0.7.0-alpha
+- UTF-8 test documents for successful Apply scenarios
 
 Use synthetic data only. Confirm the SHA-256 values supplied with the test package before installation.
 
@@ -13,14 +14,16 @@ Use synthetic data only. Confirm the SHA-256 values supplied with the test packa
 - Edit mode is explicit and off by default.
 - Revert All never changes the Notepad++ editor buffer.
 - Apply changes the active editor buffer only.
+- Successful Apply currently requires Scintilla code page 65001 (UTF-8).
+- A non-UTF-8 editor buffer must be rejected before any replacement call.
 - The plugin never saves directly to disk.
-- No editor call occurs after document, code-page, or content conflict.
+- No editor call occurs after document, code-page, content, or unsupported-encoding conflict.
 - One Ctrl+Z must undo the complete Apply.
 - One Ctrl+Y must redo the complete Apply.
 
 ## Test A — basic Edit, dirty state, and Revert All
 
-Use:
+Use a UTF-8 document:
 
 ```csv
 EmailAddress,UserName,Group
@@ -43,22 +46,23 @@ delta@example.invalid,delta,Admins
 
 ## Test B — Apply, modified marker, undo, redo, and Save ownership
 
-1. Enter Edit mode again.
-2. Change `beta` to `beta-applied`.
-3. Select **Apply**.
-4. Confirm the Notepad++ editor text changes immediately.
-5. Confirm Notepad++ displays its modified-document marker.
-6. Confirm the plugin leaves Edit mode and rebuilds the table from the editor.
-7. Press Ctrl+Z once.
-8. Confirm the complete pre-Apply CSV returns in one step.
-9. Press Ctrl+Y once.
-10. Confirm the complete applied CSV returns in one step.
-11. Use normal Notepad++ Save.
-12. Confirm the modified marker clears through the normal Notepad++ workflow.
+1. Confirm the Notepad++ status bar reports UTF-8.
+2. Enter Edit mode again.
+3. Change `beta` to `beta-applied`.
+4. Select **Apply**.
+5. Confirm the Notepad++ editor text changes immediately.
+6. Confirm Notepad++ displays its modified-document marker.
+7. Confirm the plugin leaves Edit mode and rebuilds the table from the editor.
+8. Press Ctrl+Z once.
+9. Confirm the complete pre-Apply CSV returns in one step.
+10. Press Ctrl+Y once.
+11. Confirm the complete applied CSV returns in one step.
+12. Use normal Notepad++ Save.
+13. Confirm the modified marker clears through the normal Notepad++ workflow.
 
 ## Test C — structural CSV serialization
 
-Use:
+Use a UTF-8 document:
 
 ```csv
 Name,Note,City
@@ -86,7 +90,7 @@ Apply and confirm:
 
 ## Test D — inconsistent-width preservation
 
-Use:
+Use a UTF-8 document:
 
 ```csv
 Name,Age
@@ -145,6 +149,18 @@ After Revert All or successful Apply:
 2. Confirm Apply remains disabled.
 3. Exit Edit mode normally.
 4. Confirm editor and disk content remain unchanged.
+
+## Test I — non-UTF-8 Apply refusal
+
+1. Create a synthetic CSV and convert it in Notepad++ to a non-UTF-8 encoding such as ANSI/Windows-1252.
+2. Open the visual table and enter Edit mode.
+3. Change one grid cell.
+4. Select Apply.
+5. Confirm a warning states that Apply currently supports only UTF-8 / Scintilla code page 65001.
+6. Confirm the editor buffer is unchanged.
+7. Confirm the disk file is unchanged.
+8. Confirm the dirty grid session remains available for Revert All.
+9. Use Revert All, convert the document to UTF-8 in Notepad++, refresh, and verify a later Apply can proceed normally.
 
 ## Acceptance result
 
