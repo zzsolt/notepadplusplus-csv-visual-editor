@@ -15,6 +15,8 @@ public sealed record CsvTableBuildOptions
 
     public int MaximumColumns { get; init; } = 512;
 
+    public int MaximumCells { get; init; } = 250_000;
+
     internal void Validate()
     {
         if (DelimiterOverride is char delimiter && !CsvDialect.SupportedDelimiters.Contains(delimiter))
@@ -29,7 +31,8 @@ public sealed record CsvTableBuildOptions
         {
             HeaderMode = HeaderMode,
             MaximumRows = MaximumRows,
-            MaximumColumns = MaximumColumns
+            MaximumColumns = MaximumColumns,
+            MaximumCells = MaximumCells
         }.Validate();
     }
 }
