@@ -4,33 +4,49 @@ CSV Visual Editor is split into a host-independent core and a thin Notepad++/Win
 
 ## Projects
 
-- `CsvVisualEditor.Core`: immutable editor snapshots, CSV dialect detection, record-aware parsing, diagnostics, and later table-domain logic.
-- `CsvVisualEditor`: Native AOT Notepad++ plugin, Scintilla adapter, and dockable WinForms user interface.
+- `CsvVisualEditor.Core`: immutable editor snapshots, CSV dialect detection, record-aware parsing, diagnostics, and read-only table projection.
+- `CsvVisualEditor`: Native AOT Notepad++ plugin, Scintilla adapter, orchestration, and dockable WinForms user interface.
 - `CsvVisualEditor.Core.SmokeTests`: dependency-free executable checks for the accepted bootstrap and snapshot baseline.
-- `CsvVisualEditor.Core.Tests`: xUnit.net v3 parser and detector matrix.
+- `CsvVisualEditor.Core.Tests`: xUnit.net v3 parser, detector, and table-projection matrix.
 
-## Host boundary
+## End-to-end read flow
 
-The editor buffer is the source of truth. The plugin must not reopen the current file from disk when reading content because the Notepad++ buffer may contain unsaved changes.
+The live editor buffer is the source of truth. The plugin does not reopen the active path from disk.
 
 ```text
-Notepad++ / Scintilla
+Notepad++ / Scintilla active buffer
         │
-        │ PluginData.Editor.GetText(), metadata calls
+        │ PluginData.Editor.GetText() and metadata
         ▼
 NotepadActiveDocumentReader
         │
-        │ IActiveDocumentReader
         ▼
 ActiveDocumentSnapshot
         │
-        ├── current metadata view
-        └── CsvDialectDetector → CsvParser → immutable CSV model
+        ├── automatic CsvDialectDetector
+        │       └── Medium/High confidence only
+        │
+        ├── or explicit comma/semicolon/tab override
+        │
+        ▼
+CsvParser
+        │
+        ▼
+immutable CsvParseResult
+        │
+        ▼
+CsvTableProjector
+        │
+        ▼
+immutable bounded CsvTableProjection
+        │
+        ▼
+read-only WinForms DataGridView
 ```
 
 `IActiveDocumentReader` belongs to the host-independent core. `NotepadActiveDocumentReader` belongs to the plugin project and is the only component that knows about `PluginData`, Notepad++, or Scintilla.
 
-The detector and parser accept decoded strings and do not reference Notepad++, Scintilla, Windows Forms, or disk I/O.
+The detector, parser, and table projector accept immutable models or decoded strings and do not reference Notepad++, Scintilla, Windows Forms, or disk I/O.
 
 ## Snapshot model
 
@@ -50,121 +66,169 @@ The detector and parser accept decoded strings and do not reference Notepad++, S
 
 The SHA-256 value is a stable decoded-content identity, not an internal Notepad++ buffer revision or original-file byte hash.
 
-## CSV core model
+## CSV parser model
 
-Milestone 0.3 introduces immutable host-independent models:
+The host-independent parser model contains:
 
-- `CsvDialect` and `CsvHeaderMode`;
-- `CsvSourceSpan` for zero-based character offsets in decoded text;
-- `CsvCell` and `CsvRecord`;
+- `CsvDialect` and explicit `CsvHeaderMode`;
+- `CsvSourceSpan` for zero-based decoded-string character offsets;
+- immutable `CsvCell` and `CsvRecord`;
 - `CsvDiagnostic` with severity, stable code, offset, and optional record index;
-- `CsvParseResult`;
-- `CsvDelimiterCandidateScore` and `CsvDialectDetectionResult`.
+- immutable `CsvParseResult`;
+- delimiter candidate scores and detection result with confidence.
 
-Collections are copied into read-only views at model boundaries so later UI code cannot mutate parser output accidentally.
+Collections are copied into read-only views at model boundaries so UI code cannot mutate parser output.
 
 ## Record-aware parser
 
-`CsvParser` is a character-state machine. It does not call `Split` on physical lines before quote processing.
+`CsvParser` is a character-state machine. It never splits physical lines before quote processing.
 
-Main states are conceptually:
+It supports:
 
-```text
-field start
-    ├── quote → quoted field
-    ├── delimiter → empty field
-    ├── line break → end logical record
-    └── other → unquoted field
-
-quoted field
-    ├── doubled quote → literal quote
-    ├── closing quote → after-closing-quote state
-    └── any character, including CR/LF → field content
-
-after closing quote
-    ├── delimiter → next field
-    ├── record separator → next record
-    ├── end of text → finish
-    └── other → diagnostic and lossless recovery
-```
-
-The parser preserves partial results for malformed input and adds diagnostics rather than modifying source text or silently discarding characters.
+- comma, semicolon, and tab;
+- CRLF, LF, and lone CR record separators;
+- quoted delimiters;
+- doubled quote escapes;
+- embedded line breaks inside quoted fields;
+- empty and trailing fields;
+- blank logical records;
+- Unicode and leading decoded U+FEFF handling;
+- partial malformed-input results with structured diagnostics.
 
 Expected record width is the modal field count among non-blank logical records. Differing widths produce warnings, not destructive normalization.
 
 ## Dialect detection
 
-`CsvDialectDetector` evaluates comma, semicolon, and tab candidates using the same parser implementation.
+`CsvDialectDetector` evaluates comma, semicolon, and tab candidates with the same quote and logical-record semantics as the parser.
 
 Scoring considers:
 
 - logical-record field-count consistency;
-- modal field width;
-- number of multi-field records;
-- delimiter occurrences outside quoted fields;
-- parser errors and inconsistent widths;
+- modal width;
+- multi-field records;
+- delimiter occurrences outside quotes;
+- parser errors;
 - sample size;
 - decimal-comma-like numeric adjacency.
 
-The result includes all candidate scores and a confidence level. Weak or ambiguous structures produce diagnostics and must remain user-overridable. No reliable candidate produces no suggestion rather than an invented delimiter.
+The detector uses a bounded default sample of 20 logical records and 1 MiB decoded characters. It returns every candidate score plus `None`, `Low`, `Medium`, or `High` confidence.
 
-## Safety boundary
+The UI trusts automatic selection only at `Medium` or `High` confidence. `Low`, ambiguous, and absent suggestions show a safe metadata/instruction state until the user chooses comma, semicolon, or tab explicitly.
 
-The current adapter refuses snapshots larger than 64 MiB based on the Scintilla-reported byte length. The limit is explicit and produces a visible error. Content is never silently truncated.
+## Read-only table projection
 
-The panel still shows snapshot metadata rather than source values. Parser tests use synthetic data, and source text is not logged.
+`CsvTableProjector` converts `CsvParseResult` into a rectangular immutable view model without changing parser records.
+
+### Header modes
+
+The toolbar exposes two explicit choices:
+
+- **First row is header** — the first logical record supplies display headers and is not displayed as a data row.
+- **No header row** — every logical record remains data and columns are named `Column 1` through `Column N`.
+
+Header inference is not implemented. The selected behavior is visible at all times.
+
+### Display column names
+
+When the first record is used as a header:
+
+- surrounding and repeated whitespace is normalized for display;
+- embedded line breaks become spaces;
+- empty names receive deterministic `Column N` fallbacks;
+- duplicates are disambiguated case-insensitively with ` (2)`, ` (3)`, and so on;
+- source cell values are not changed.
+
+### Inconsistent widths
+
+The projection column count is the maximum field count among parsed records. Shorter records receive empty strings only in the rectangular display model. The original `CsvRecord.Cells` collections remain unchanged, and parser warnings stay available.
+
+### Source identity
+
+Every projected row retains:
+
+- the original logical-record index;
+- the original decoded-text source span.
+
+The DataGridView row header displays the one-based logical-record number. Sorting is disabled in milestone 0.4 so source order remains visually stable.
+
+## Display limits
+
+The current alpha has explicit UI safety limits:
+
+- maximum 10,000 displayed data rows;
+- maximum 512 displayed columns.
+
+When rows exceed the limit, the first 10,000 are shown and the status line states the displayed and total counts. This is visible truncation of the view only; parse results are not changed.
+
+When columns exceed the limit, table rendering is refused with a visible error. No columns are silently hidden.
+
+These limits are not a final large-file strategy. Virtual mode, paging, cancellation, and measured performance remain later work.
+
+## WinForms presentation
+
+The docked panel contains:
+
+- Refresh button;
+- Delimiter selector: Auto detect, Comma, Semicolon, Tab;
+- Header selector: First row is header, No header row;
+- read-only `DataGridView`;
+- status line showing document, row/column counts, delimiter source/confidence, header mode, and parser diagnostic counts.
+
+Cells use programmatic edit mode and all columns are non-sortable. Changing either selector rereads and rebuilds the current live editor buffer.
 
 ## Refresh model
 
-The accepted explicit-refresh behavior is:
+Snapshot acquisition and table rebuilding occur when:
 
-- opening a newly created panel reads the active buffer;
-- reopening a hidden panel reads the active buffer;
-- the toolbar Refresh button reads the active buffer;
-- `Plugins → CSV Visual Editor → Refresh Table` reads the active buffer.
+- the panel is first created;
+- a hidden panel is shown again;
+- the panel Refresh button is pressed;
+- `Plugins → CSV Visual Editor → Refresh Table` is invoked;
+- delimiter or header selection changes.
 
-Automatic refresh remains deferred until notification, throttling, stale-state, and hidden-panel behavior are designed.
+Automatic refresh after arbitrary editor modifications remains deferred until notification, debounce, stale-state, hidden-panel, and large-buffer behavior are designed.
 
-## Error behavior
+## Safety and error behavior
 
-- known snapshot-size errors are displayed in the panel;
-- unexpected host-read failures produce a generic non-destructive message;
-- parser errors are structured diagnostics attached to partial results;
-- exceptions and parsing never modify the editor buffer or disk.
+- snapshots above 64 MiB Scintilla byte length are refused visibly;
+- weak automatic delimiter detection requires explicit selection;
+- parser errors produce partial read-only tables plus structural counts;
+- no source values are written to logs or diagnostics;
+- table projection never mutates parser output;
+- unexpected host or table failures produce generic non-destructive messages;
+- no editor write, disk write, serialization, conflict handling, or undo/redo path exists.
 
 ## Milestone boundary
 
-### Accepted milestone 0.1
+### Accepted 0.1
 
-- Native AOT plugin loading;
-- menu commands;
-- dockable WinForms panel;
-- dark mode;
-- clean shutdown/restart;
-- CI and packaging.
+- Native AOT plugin loading, commands, docking, dark mode, lifecycle, CI, and packaging.
 
-### Accepted milestone 0.2
+### Accepted 0.2
 
-- active editor-buffer snapshot;
-- unsaved content included;
-- immutable core model and content identity;
-- sanitized metadata display;
-- explicit refresh and size/error states;
+- live active-buffer snapshot including unsaved and untitled content;
+- explicit refresh and safety/error states;
 - complete Notepad++ 8.9.7 x64 host acceptance.
 
-### Current milestone 0.3
+### Accepted 0.3
 
-- explicit CSV dialect model;
-- delimiter candidate scoring and confidence;
-- record-aware quoted-field parser;
-- immutable rows/cells/source spans;
-- parser diagnostics;
-- conventional xUnit.net v3 test matrix.
+- delimiter detection with confidence and diagnostics;
+- record-aware parser and immutable source spans;
+- strict xUnit.net v3 parser matrix and Native AOT regression.
+
+### Current 0.4
+
+- explicit delimiter and header controls;
+- bounded read-only table projection;
+- parsed CSV values in DataGridView;
+- row source numbers and diagnostic summary;
+- developer/contact information in About;
+- pending Windows CI and Notepad++ 8.9.7 x64 host acceptance.
 
 ### Deferred
 
-- binding parsed records to the DataGridView;
-- header inference and user override controls;
-- source navigation;
-- automatic refresh and stale-state notifications;
-- editing, serialization, conflict detection, and Notepad++ undo/redo.
+- detailed diagnostics list;
+- source navigation and character-to-Scintilla position mapping;
+- automatic refresh/stale indicator;
+- search, filtering, stable view sorting, and virtualization;
+- editing, serialization, conflict detection, rollback, and Notepad++ undo/redo.
