@@ -4,6 +4,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+## [0.5.0-alpha] — 2026-07-22
+
 ### Added
 
 - Host-independent `CsvTableViewBuilder` for immutable search, filtering, and stable view sorting.
@@ -21,7 +23,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Changed
 
-- CSV data columns now use programmatic sort glyphs while the underlying parser projection remains unchanged.
+- CSV data columns use programmatic sort glyphs while the underlying parser projection remains unchanged.
 - Status text reports matching-row counts and the active view sort.
 - Dark-mode handling covers both toolbars, both tabs, the visual table, and diagnostics grid.
 - `CsvDialectDetectionResult.Diagnostics` is exposed through the `IReadOnlyList<CsvDiagnostic>` abstraction rather than a concrete collection type.
@@ -33,6 +35,12 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Stable sorting preserves original source order for equal values.
 - Source logical-record numbers remain attached to filtered and sorted rows.
 - No Scintilla write, disk write, serializer, edit, or write-back path was added.
+
+### Validated
+
+- 81/81 xUnit tests passed.
+- Native AOT search, filtering, stable sorting, ToolStrip, Timer, TabControl, and diagnostics-grid runtime paths passed.
+- Notepad++ 8.9.7 x64 owner acceptance passed for layout, search, selected-column filtering, Clear, three-state sorting, source row identity, valid and malformed diagnostics, delimiter/header rebuild, Refresh, active-tab switching, hide/reopen, restart, dark mode, and no editor/disk mutation.
 
 ## [0.4.0-alpha] — 2026-07-22
 
