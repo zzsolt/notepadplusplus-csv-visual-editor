@@ -124,9 +124,16 @@ jobs:
             exit $LASTEXITCODE
           }
 
-          & 'artifacts/native-aot-smoke/CsvVisualEditor.NativeAot.SmokeTests.exe' *>&1 |
-            Tee-Object -FilePath $logPath -Append
-          exit $LASTEXITCODE
+          try {
+            & tests/CsvVisualEditor.NativeAot.SmokeTests/Invoke-Smoke.ps1 `
+              -LibraryPath artifacts/native-aot-smoke/CsvVisualEditor.NativeAot.SmokeTests.dll `
+              -LogPath artifacts/native-aot-runtime-smoke-execution.log *>&1 |
+                Tee-Object -FilePath $logPath -Append
+          }
+          catch {
+            $_ | Out-String | Tee-Object -FilePath $logPath -Append
+            exit 1
+          }
 
       - name: Upload Native AOT runtime smoke diagnostics
         if: always() && steps.native_aot_smoke.outcome != 'skipped'
