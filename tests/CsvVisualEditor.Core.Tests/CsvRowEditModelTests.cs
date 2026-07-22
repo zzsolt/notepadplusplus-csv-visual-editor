@@ -168,7 +168,16 @@ public sealed class CsvRowEditModelTests
         var snapshot = CreateSnapshot(source);
         var dialect = CsvDialect.Create(',', headerMode: CsvHeaderMode.FirstRecord);
         var parseResult = CsvParser.Parse(source, dialect);
-        var projection = CsvTableProjector.Create(
+        var fullProjection = CsvTableProjector.Create(
+            parseResult,
+            new CsvTableProjectionOptions
+            {
+                HeaderMode = CsvHeaderMode.FirstRecord,
+                MaximumRows = 10_000,
+                MaximumColumns = 512,
+                MaximumCells = 250_000
+            });
+        var limitedProjection = CsvTableProjector.Create(
             parseResult,
             new CsvTableProjectionOptions
             {
@@ -177,11 +186,11 @@ public sealed class CsvRowEditModelTests
                 MaximumColumns = 512,
                 MaximumCells = 250_000
             });
-        var session = CsvEditSession.Create(snapshot, parseResult, projection);
+        var session = CsvEditSession.Create(snapshot, parseResult, fullProjection);
 
-        Assert.True(projection.IsRowLimited);
+        Assert.True(limitedProjection.IsRowLimited);
         Assert.Throws<InvalidOperationException>(() =>
-            CsvRowEditModel.Create(session, projection));
+            CsvRowEditModel.Create(session, limitedProjection));
     }
 
     private static BuildContext CreateContext(
