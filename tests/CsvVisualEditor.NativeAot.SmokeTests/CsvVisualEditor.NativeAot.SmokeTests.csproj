@@ -10,6 +10,14 @@
     <RootNamespace>CsvVisualEditor.NativeAot.SmokeTests</RootNamespace>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>nullable</WarningsAsErrors>
+    <NoWarn>$(NoWarn);NETSDK1175</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TrimMode>link</TrimMode>
+    <StackTraceSupport>true</StackTraceSupport>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <UseSizeOptimizedLinq>true</UseSizeOptimizedLinq>
   </PropertyGroup>
 
   <ItemGroup>
