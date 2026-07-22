@@ -21,10 +21,18 @@ public static class CsvTableBuilder
 
         CsvDialectDetectionResult? detectionResult = null;
         CsvDialect dialect;
-        var delimiterWasAutomatic = options.DelimiterOverride is null;
+        bool delimiterWasAutomatic;
 
-        if (delimiterWasAutomatic)
+        if (options.DelimiterOverride is char delimiterOverride)
         {
+            delimiterWasAutomatic = false;
+            dialect = CsvDialect.Create(
+                delimiterOverride,
+                headerMode: options.HeaderMode);
+        }
+        else
+        {
+            delimiterWasAutomatic = true;
             detectionResult = CsvDialectDetector.Detect(text);
             if (!detectionResult.IsReliable || detectionResult.SuggestedDialect is null)
             {
@@ -33,12 +41,6 @@ public static class CsvTableBuilder
 
             dialect = CsvDialect.Create(
                 detectionResult.SuggestedDialect.Delimiter,
-                headerMode: options.HeaderMode);
-        }
-        else
-        {
-            dialect = CsvDialect.Create(
-                options.DelimiterOverride.Value,
                 headerMode: options.HeaderMode);
         }
 
