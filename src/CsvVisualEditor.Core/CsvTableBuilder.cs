@@ -49,7 +49,8 @@ public static class CsvTableBuilder
             {
                 HeaderMode = options.HeaderMode,
                 MaximumRows = options.MaximumRows,
-                MaximumColumns = options.MaximumColumns
+                MaximumColumns = options.MaximumColumns,
+                MaximumCells = options.MaximumCells
             });
 
         return CsvTableBuildResult.Ready(
