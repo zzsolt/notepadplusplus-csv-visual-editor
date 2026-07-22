@@ -8,6 +8,8 @@ partial class Main : IDotNetPlugin
 {
     private const string PluginDisplayName = "CSV Visual Editor";
     private const string PluginAssemblyName = "CsvVisualEditor";
+    private const string DeveloperName = "Zolnai Zsolt";
+    private const string DeveloperEmail = "zzsolt@gmail.com";
     private const int DialogCommandIndex = 0;
 
     private static readonly IDotNetPlugin Instance;
@@ -135,7 +137,9 @@ partial class Main : IDotNetPlugin
             "CSV Visual Editor 0.3.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
             "This version includes host-independent CSV dialect detection and " +
-            "record-aware parsing. Grid population and editing are not enabled yet.",
+            "record-aware parsing. Grid population and editing are not enabled yet.\n\n" +
+            $"Developer: {DeveloperName}\n" +
+            $"Contact: {DeveloperEmail}",
             $"About {PluginDisplayName}",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
