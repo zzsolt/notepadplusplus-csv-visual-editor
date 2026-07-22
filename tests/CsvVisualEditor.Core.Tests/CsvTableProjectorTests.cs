@@ -93,6 +93,29 @@ public sealed class CsvTableProjectorTests
     }
 
     [Fact]
+    public void Create_CellBudget_LimitsRowsAndRetainsTotalCount()
+    {
+        var parseResult = CsvParser.Parse(
+            "1,a,x\n2,b,y\n3,c,z\n4,d,w",
+            CsvDialect.Create(','));
+
+        var projection = CsvTableProjector.Create(
+            parseResult,
+            new CsvTableProjectionOptions
+            {
+                HeaderMode = CsvHeaderMode.NoHeader,
+                MaximumRows = 10,
+                MaximumCells = 6
+            });
+
+        Assert.True(projection.IsRowLimited);
+        Assert.Equal(4, projection.TotalDataRecordCount);
+        Assert.Equal(2, projection.DisplayedRowCount);
+        Assert.Equal(["1", "a", "x"], projection.Rows[0].Values);
+        Assert.Equal(["2", "b", "y"], projection.Rows[1].Values);
+    }
+
+    [Fact]
     public void Create_ColumnLimit_RejectsInsteadOfSilentlyHidingColumns()
     {
         var parseResult = CsvParser.Parse("A,B,C\n1,2,3", CsvDialect.Create(','));
@@ -103,6 +126,24 @@ public sealed class CsvTableProjectorTests
                 new CsvTableProjectionOptions { MaximumColumns = 2 }));
 
         Assert.Contains("exceeds", exception.Message, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("No columns were hidden", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Create_CellBudgetSmallerThanOneRow_RejectsInsteadOfHidingColumns()
+    {
+        var parseResult = CsvParser.Parse("A,B,C\n1,2,3", CsvDialect.Create(','));
+
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+            CsvTableProjector.Create(
+                parseResult,
+                new CsvTableProjectionOptions
+                {
+                    MaximumColumns = 3,
+                    MaximumCells = 2
+                }));
+
+        Assert.Contains("aggregate cell limit", exception.Message, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("No columns were hidden", exception.Message, StringComparison.Ordinal);
     }
 
@@ -145,6 +186,11 @@ public sealed class CsvTableProjectorTests
             CsvTableProjector.Create(
                 parseResult,
                 new CsvTableProjectionOptions { MaximumColumns = 0 }));
+
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            CsvTableProjector.Create(
+                parseResult,
+                new CsvTableProjectionOptions { MaximumCells = 0 }));
     }
 
     private static string[] ColumnNames(CsvTableProjection projection) =>
