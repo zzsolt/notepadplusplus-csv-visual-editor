@@ -4,6 +4,7 @@ using CsvVisualEditor.Core;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 
 internal static class Program
 {
@@ -31,10 +32,11 @@ internal static class Program
         try
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            RunSerializerCase();
             RunCase("automatic", delimiterOverride: null);
             RunCase("manual comma", delimiterOverride: ',');
             WriteDiagnostic(
-                "All Native AOT CSV table, search, sorting, and diagnostics UI smoke tests passed.");
+                "All Native AOT CSV table, view, serializer, edit-session, and diagnostics UI smoke tests passed.");
             return 0;
         }
         catch (Exception exception)
@@ -99,7 +101,89 @@ internal static class Program
             $"{caseName}: the longer e-mail column should receive more relative width than Password.");
 
         RunViewCase(caseName, result.Projection);
+        RunEditSessionCase(caseName, result.ParseResult, result.Projection);
         RunViewControlsCase(caseName);
+    }
+
+    private static void RunSerializerCase()
+    {
+        var policy = CsvSerializationPolicy.Create(
+            CsvDialect.Create(';'),
+            "\n",
+            hasTerminalNewLine: true,
+            hasLeadingBom: true);
+        string[][] records =
+        [
+            ["Név", "Megjegyzés"],
+            ["Árvíztűrő", "idézőjel: \" és pontosvessző; valamint\núj sor"]
+        ];
+
+        var serialized = CsvSerializer.SerializeRecords(records, policy);
+        Require(serialized.StartsWith('\uFEFF'), "serializer: leading BOM was not retained.");
+        Require(serialized.EndsWith('\n'), "serializer: terminal LF was not retained.");
+        Require(
+            serialized.Contains(
+                "\"idézőjel: \"\" és pontosvessző; valamint\núj sor\"",
+                StringComparison.Ordinal),
+            "serializer: structural characters were not quoted deterministically.");
+    }
+
+    private static void RunEditSessionCase(
+        string caseName,
+        CsvParseResult parseResult,
+        CsvTableProjection projection)
+    {
+        var baseline = CreateSnapshot(Sample);
+        var session = CsvEditSession.Create(baseline, parseResult, projection);
+
+        Require(!session.IsDirty, $"{caseName}: new edit session must be clean.");
+        Require(session.RecordCount == 4, $"{caseName}: edit session record count mismatch.");
+        Require(session.HeaderSourceRecordIndex == 0, $"{caseName}: header identity mismatch.");
+
+        session.SetCellValue(1, 2, "TEMP,\"b\"");
+        Require(session.IsDirty, $"{caseName}: edited session must be dirty.");
+        Require(session.ChangedCellCount == 1, $"{caseName}: changed-cell count mismatch.");
+        Require(session.ChangedRecordCount == 1, $"{caseName}: changed-record count mismatch.");
+
+        var preview = session.CreatePreview();
+        Require(preview.HasChanges, $"{caseName}: preview must report changes.");
+        Require(
+            preview.Text.Contains("\"TEMP,\"\"b\"\"\"", StringComparison.Ordinal),
+            $"{caseName}: edited structural value was not serialized safely.");
+        Require(
+            preview.Text.EndsWith("gamma@other.invalid,gamma@other.invalid,TEMP-c\r\n", StringComparison.Ordinal),
+            $"{caseName}: unchanged final record or separator was modified.");
+
+        var readyPlan = session.CreateApplyPlan(baseline);
+        Require(readyPlan.IsReady, $"{caseName}: matching baseline should produce Ready plan.");
+        Require(readyPlan.Preview is not null, $"{caseName}: Ready plan must contain preview.");
+
+        var changedSnapshot = CreateSnapshot(
+            Sample.Replace("TEMP-c", "EXTERNAL", StringComparison.Ordinal));
+        var conflictPlan = session.CreateApplyPlan(changedSnapshot);
+        Require(
+            conflictPlan.Status == CsvEditApplyStatus.ContentChanged,
+            $"{caseName}: changed source content must block apply planning.");
+        Require(conflictPlan.Preview is null, $"{caseName}: conflict plan must not expose replacement preview.");
+
+        Require(session.RevertAll(), $"{caseName}: Revert All should report a change.");
+        Require(!session.IsDirty, $"{caseName}: Revert All must clear dirty state.");
+        Require(
+            string.Equals(session.CreatePreview().Text, Sample, StringComparison.Ordinal),
+            $"{caseName}: Revert All must restore exact source text.");
+    }
+
+    private static ActiveDocumentSnapshot CreateSnapshot(string text)
+    {
+        return ActiveDocumentSnapshot.Create(
+            @"C:\Synthetic\native-aot.csv",
+            text,
+            Encoding.UTF8.GetByteCount(text),
+            codePage: 65001,
+            caretPosition: 0,
+            anchorPosition: 0,
+            isModified: false,
+            new DateTimeOffset(2026, 7, 22, 8, 0, 0, TimeSpan.Zero));
     }
 
     private static void RunViewCase(
