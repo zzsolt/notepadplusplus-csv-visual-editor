@@ -2,6 +2,8 @@ namespace CsvVisualEditor.NativeAot.SmokeTests;
 
 using CsvVisualEditor.Core;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 internal static class Program
 {
@@ -9,21 +11,34 @@ internal static class Program
         "EmailAddress,UserName,Password\r\n" +
         "muller.bela@example.invalid,bmuller@example.invalid,TEMP-password\r\n";
 
-    [STAThread]
-    private static int Main()
+    [UnmanagedCallersOnly(
+        EntryPoint = "RunCsvVisualTableSmoke",
+        CallConvs = [typeof(CallConvCdecl)])]
+    public static int RunCsvVisualTableSmoke()
+    {
+        var result = 99;
+        var thread = new Thread(() => result = RunOnStaThread());
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        thread.Join();
+        return result;
+    }
+
+    private static int RunOnStaThread()
     {
         try
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             RunCase("automatic", delimiterOverride: null);
             RunCase("manual comma", delimiterOverride: ',');
-            Console.WriteLine("All Native AOT CSV table runtime smoke tests passed.");
+            WriteDiagnostic("All Native AOT CSV table runtime smoke tests passed.");
             return 0;
         }
         catch (Exception exception)
         {
-            Console.Error.WriteLine($"{exception.GetType().FullName}: {exception.Message}");
-            Console.Error.WriteLine(exception.StackTrace);
+            WriteDiagnostic(
+                $"{exception.GetType().FullName}: {exception.Message}{Environment.NewLine}" +
+                exception.StackTrace);
             return 1;
         }
     }
@@ -109,6 +124,15 @@ internal static class Program
             var rowIndex = grid.Rows.Add(values);
             grid.Rows[rowIndex].HeaderCell.Value =
                 (row.SourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+        }
+    }
+
+    private static void WriteDiagnostic(string message)
+    {
+        var path = Environment.GetEnvironmentVariable("CSV_VISUAL_EDITOR_SMOKE_LOG");
+        if (!string.IsNullOrWhiteSpace(path))
+        {
+            File.WriteAllText(path, message);
         }
     }
 
