@@ -37,20 +37,56 @@ jobs:
           dotnet restore tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj
           dotnet restore src/CsvVisualEditor/CsvVisualEditor.csproj -r win-x64
 
-      - name: Build core library
+      - name: Create diagnostics directory
         shell: pwsh
-        run: dotnet build src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj -c Release --no-restore
+        run: New-Item -ItemType Directory -Path artifacts -Force | Out-Null
+
+      - name: Build core library
+        id: core_build
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          dotnet build src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj `
+            -c Release `
+            --no-restore *>&1 |
+              Tee-Object -FilePath artifacts/core-build.log
+          exit $LASTEXITCODE
+
+      - name: Upload core build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-core-build-diagnostics
+          path: artifacts/core-build.log
+          if-no-files-found: error
 
       - name: Run bootstrap smoke tests
+        if: steps.core_build.outcome == 'success'
+        id: smoke_tests
+        continue-on-error: true
         shell: pwsh
-        run: dotnet run --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj -c Release --no-restore
+        run: |
+          dotnet run `
+            --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj `
+            -c Release `
+            --no-restore *>&1 |
+              Tee-Object -FilePath artifacts/smoke-tests.log
+          exit $LASTEXITCODE
+
+      - name: Upload smoke test diagnostics
+        if: always() && steps.smoke_tests.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-smoke-test-diagnostics
+          path: artifacts/smoke-tests.log
+          if-no-files-found: error
 
       - name: Run xUnit parser and table tests
+        if: steps.core_build.outcome == 'success' && steps.smoke_tests.outcome == 'success'
         id: core_tests
         continue-on-error: true
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
           dotnet run `
             --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj `
             -c Release `
@@ -59,7 +95,7 @@ jobs:
           exit $LASTEXITCODE
 
       - name: Upload core test diagnostics
-        if: always()
+        if: always() && steps.core_tests.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-core-test-diagnostics
@@ -67,12 +103,14 @@ jobs:
           if-no-files-found: error
 
       - name: Publish x64 Native AOT plugin
-        if: steps.core_tests.outcome == 'success'
+        if: >-
+          steps.core_build.outcome == 'success' &&
+          steps.smoke_tests.outcome == 'success' &&
+          steps.core_tests.outcome == 'success'
         id: publish
         continue-on-error: true
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
           dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
             -c Release `
             -f net10.0-windows `
@@ -110,12 +148,29 @@ jobs:
           path: artifacts/publish.log
           if-no-files-found: error
 
+      - name: Fail workflow when core build failed
+        if: steps.core_build.outcome != 'success'
+        shell: pwsh
+        run: throw 'Core build failed. Inspect core-build.log in the workflow artifact.'
+
+      - name: Fail workflow when smoke tests failed
+        if: steps.core_build.outcome == 'success' && steps.smoke_tests.outcome != 'success'
+        shell: pwsh
+        run: throw 'Bootstrap smoke tests failed. Inspect smoke-tests.log in the workflow artifact.'
+
       - name: Fail workflow when core tests failed
-        if: steps.core_tests.outcome != 'success'
+        if: >-
+          steps.core_build.outcome == 'success' &&
+          steps.smoke_tests.outcome == 'success' &&
+          steps.core_tests.outcome != 'success'
         shell: pwsh
         run: throw 'Core parser/table tests failed. Inspect core-tests.log in the workflow artifact.'
 
       - name: Fail workflow when publish failed
-        if: steps.core_tests.outcome == 'success' && steps.publish.outcome != 'success'
+        if: >-
+          steps.core_build.outcome == 'success' &&
+          steps.smoke_tests.outcome == 'success' &&
+          steps.core_tests.outcome == 'success' &&
+          steps.publish.outcome != 'success'
         shell: pwsh
         run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
