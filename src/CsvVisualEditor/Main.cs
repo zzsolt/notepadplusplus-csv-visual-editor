@@ -69,12 +69,15 @@ partial class Main : IDotNetPlugin
     {
         if (_gridForm is null)
         {
-            _gridForm = new CsvGridForm(
+            var gridForm = new CsvGridForm(
                 DialogCommandIndex,
                 $"{PluginAssemblyName}.dll",
                 SystemIcons.Application);
-            _gridForm.RefreshRequested += OnRefreshRequested;
+            _gridForm = gridForm;
+            gridForm.RefreshRequested += OnRefreshRequested;
             LoadActiveDocumentTable();
+            gridForm.BeginInvoke(
+                (Action)(() => NotepadDockWidthAdjuster.TryExpandInitialRightDock(gridForm)));
             return;
         }
 
