@@ -7,13 +7,14 @@ All notable changes to CSV Visual Editor will be documented in this file.
 ### Added
 
 - Read-only visual CSV table backed by immutable parser output.
+- Host-independent `CsvTableBuilder` result states for empty input, manual delimiter requirement, and ready tables.
 - Visible delimiter selector for automatic, comma, semicolon, and tab modes.
 - Visible header selector for First row is header and No header row modes.
 - Host-independent table projection with deterministic fallback, duplicate, empty, whitespace, and multiline header handling.
 - Source logical-record numbers in DataGridView row headers.
 - Manual delimiter recovery when automatic detection is weak, ambiguous, or unavailable.
-- Explicit 10,000-row and 512-column visual-table limits with non-silent behavior.
-- xUnit table-projection tests for header modes, unique names, inconsistent widths, limits, and empty input.
+- Explicit 10,000-row, 512-column, and 250,000-cell visual limits with non-silent behavior.
+- xUnit table-builder and projection tests for delimiter gating, header modes, unique names, inconsistent widths, limits, and empty input.
 - Developer and contact information in the About dialog.
 - `0.4.0-alpha` Native AOT test-package naming.
 
@@ -22,7 +23,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - The panel now renders parsed CSV values instead of snapshot metadata when a trustworthy or explicitly selected dialect is available.
 - Automatic detection is accepted only at Medium or High confidence.
 - Inconsistent-width records are padded only in the rectangular view and remain unchanged in parser output.
-- CI diagnostics now cover the parser and table-projection test matrix together.
+- The displayed row count is constrained by both row and aggregate-cell budgets.
+- CI diagnostics now cover parser, detector, table-builder, and table-projection tests together.
 - About text describes the 0.4 read-only table boundary.
 
 ## [0.3.0-alpha] — 2026-07-21
