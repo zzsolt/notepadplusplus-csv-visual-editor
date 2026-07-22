@@ -75,6 +75,7 @@ partial class Main : IDotNetPlugin
                 SystemIcons.Application);
             _gridForm = gridForm;
             gridForm.RefreshRequested += OnRefreshRequested;
+            gridForm.ApplyRequested += OnApplyRequested;
             LoadActiveDocumentTable();
             gridForm.BeginInvoke(
                 (Action)(() => NotepadDockWidthAdjuster.TryExpandInitialRightDock(gridForm)));
@@ -88,7 +89,10 @@ partial class Main : IDotNetPlugin
         else
         {
             _gridForm.ShowDockingForm();
-            LoadActiveDocumentTable();
+            if (!_gridForm.IsEditMode)
+            {
+                LoadActiveDocumentTable();
+            }
         }
     }
 
@@ -97,6 +101,17 @@ partial class Main : IDotNetPlugin
         if (_gridForm is null)
         {
             ToggleDialog();
+            return;
+        }
+
+        if (_gridForm.IsEditMode)
+        {
+            MessageBox.Show(
+                "Refresh is disabled while Edit mode is active. " +
+                "Apply or Revert All pending changes first.",
+                PluginDisplayName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
             return;
         }
 
@@ -110,7 +125,59 @@ partial class Main : IDotNetPlugin
 
     private void OnRefreshRequested(object? sender, EventArgs e)
     {
-        LoadActiveDocumentTable();
+        if (_gridForm?.IsEditMode != true)
+        {
+            LoadActiveDocumentTable();
+        }
+    }
+
+    private void OnApplyRequested(object? sender, EventArgs e)
+    {
+        if (_gridForm is null ||
+            !_gridForm.IsEditMode ||
+            _gridForm.EditSession is null)
+        {
+            return;
+        }
+
+        if (!_gridForm.CommitPendingEdit())
+        {
+            _gridForm.ShowApplyError();
+            return;
+        }
+
+        ActiveDocumentSnapshot currentSnapshot;
+        try
+        {
+            currentSnapshot = _activeDocumentReader.ReadActiveDocument();
+        }
+        catch (Exception)
+        {
+            _gridForm.ShowApplyError();
+            return;
+        }
+
+        CsvEditorApplyResult result;
+        try
+        {
+            result = CsvEditorApplyCoordinator.Execute(
+                _gridForm.EditSession,
+                currentSnapshot,
+                new NotepadEditorReplacementTarget());
+        }
+        catch (Exception)
+        {
+            _gridForm.ShowApplyError();
+            return;
+        }
+
+        if (result.WasApplied)
+        {
+            LoadActiveDocumentTable();
+            return;
+        }
+
+        _gridForm.ShowApplyConflict(result.Status);
     }
 
     private void LoadActiveDocumentTable()
@@ -195,10 +262,11 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.5.0-alpha\n\n" +
-            "A graphical, spreadsheet-like CSV viewer for Notepad++.\n" +
-            "This version adds read-only search, column filtering, stable view sorting, " +
-            "and detailed parser diagnostics. The source editor buffer is never changed.\n\n" +
+            "CSV Visual Editor 0.7.0-alpha\n\n" +
+            "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
+            "Edit mode uses deterministic CSV serialization, fresh-buffer conflict checks, " +
+            "and one Scintilla undo transaction. Applying changes modifies only the active " +
+            "Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
             $"Developer: {DeveloperName}\n" +
             $"Contact: {DeveloperEmail}",
             $"About {PluginDisplayName}",
@@ -211,6 +279,7 @@ partial class Main : IDotNetPlugin
         if (_gridForm is not null)
         {
             _gridForm.RefreshRequested -= OnRefreshRequested;
+            _gridForm.ApplyRequested -= OnApplyRequested;
             _gridForm.Dispose();
             _gridForm = null;
         }
