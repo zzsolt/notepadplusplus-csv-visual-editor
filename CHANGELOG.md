@@ -4,6 +4,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.0-alpha] — 2026-07-22
+
 ### Added
 
 - Explicit Edit mode, disabled by default.
@@ -43,10 +45,12 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Validated
 
-- 122/122 xUnit tests passed on the first complete integration head.
-- Strict core build, bootstrap smoke, Native AOT runtime, real plugin AOT publish, and 0.7 package creation passed.
-- A later final gate adds explicit Native AOT Apply-coordinator execution, non-critical selection-restoration behavior, and UTF-8-only Apply enforcement.
-- Complete Notepad++ 8.9.7 x64 host acceptance is pending.
+- 122/122 xUnit tests passed.
+- Strict core build and bootstrap smoke passed.
+- Native AOT serializer, edit-session, Apply coordinator, conflict blocking, and diagnostics UI smoke passed.
+- Full win-x64 Native AOT plugin publish and installable package creation passed.
+- Complete Notepad++ 8.9.7 x64 owner acceptance passed on 2026-07-22.
+- Accepted host coverage included Edit/Revert, dirty indicators, UTF-8 Apply, one-step Ctrl+Z/Ctrl+Y, modified marker, normal Save ownership, structural and multiline CSV values, Unicode, inconsistent-width preservation, content and active-document conflict blocking, lifecycle behavior, no-change behavior, and non-UTF-8 Apply refusal.
 
 ## [0.6.0-alpha] — 2026-07-22
 
