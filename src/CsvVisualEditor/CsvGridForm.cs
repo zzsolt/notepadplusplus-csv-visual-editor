@@ -15,6 +15,7 @@ internal sealed class CsvGridForm : DockingForm
     private const int DelimiterTabIndex = 3;
     private const int HeaderFirstRecordIndex = 0;
     private const int HeaderNoneIndex = 1;
+    private const int TableColumnMinimumWidth = 90;
 
     private static readonly NppTbMsg InitialDockPosition = NppTbMsg.DWS_DF_CONT_RIGHT;
 
@@ -201,6 +202,7 @@ internal sealed class CsvGridForm : DockingForm
         ArgumentNullException.ThrowIfNull(projection);
 
         PrepareTableGrid();
+        var fillWeights = CsvColumnFillWeightCalculator.Calculate(projection);
         _grid.SuspendLayout();
         try
         {
@@ -211,9 +213,10 @@ internal sealed class CsvGridForm : DockingForm
                     {
                         Name = $"CsvColumn{column.Index}",
                         HeaderText = column.Name,
-                        MinimumWidth = 70,
-                        SortMode = DataGridViewColumnSortMode.NotSortable,
-                        Width = 160
+                        AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                        FillWeight = fillWeights[column.Index],
+                        MinimumWidth = TableColumnMinimumWidth,
+                        SortMode = DataGridViewColumnSortMode.NotSortable
                     });
             }
 
