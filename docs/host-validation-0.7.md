@@ -1,5 +1,17 @@
 # Milestone 0.7 host validation
 
+## Acceptance status
+
+**ACCEPTED — 2026-07-22**
+
+The repository owner confirmed that every test in this document behaved as specified in Notepad++ 8.9.7 x64. The submitted evidence also showed:
+
+- content-conflict Apply blocking while retaining the dirty grid session;
+- non-UTF-8/ANSI Apply refusal with no editor content change;
+- dirty row marker and changed-cell/record counters remaining visible.
+
+Only synthetic test data was used. Screenshots are not committed to this repository.
+
 ## Target environment
 
 - Notepad++ 8.9.7 x64
@@ -7,21 +19,21 @@
 - CSV Visual Editor 0.7.0-alpha
 - UTF-8 test documents for successful Apply scenarios
 
-Use synthetic data only. Confirm the SHA-256 values supplied with the test package before installation.
-
 ## Safety expectations
 
 - Edit mode is explicit and off by default.
 - Revert All never changes the Notepad++ editor buffer.
 - Apply changes the active editor buffer only.
 - Successful Apply currently requires Scintilla code page 65001 (UTF-8).
-- A non-UTF-8 editor buffer must be rejected before any replacement call.
+- A non-UTF-8 editor buffer is rejected before any replacement call.
 - The plugin never saves directly to disk.
 - No editor call occurs after document, code-page, content, or unsupported-encoding conflict.
-- One Ctrl+Z must undo the complete Apply.
-- One Ctrl+Y must redo the complete Apply.
+- One Ctrl+Z undoes the complete Apply.
+- One Ctrl+Y redoes the complete Apply.
 
 ## Test A — basic Edit, dirty state, and Revert All
+
+**Result: PASS**
 
 Use a UTF-8 document:
 
@@ -33,34 +45,35 @@ gamma@other.invalid,gamma,Users
 delta@example.invalid,delta,Admins
 ```
 
-1. Open the visual table.
-2. Confirm the grid is read-only before Edit.
-3. Select **Edit**.
-4. Confirm Refresh, Delimiter, Header, Search, and sorting are disabled.
-5. Change `beta` to `beta-edited`.
-6. Confirm the original source row number remains `3` and displays `*`.
-7. Confirm change count reports one cell in one row.
-8. Select **Revert All**.
-9. Confirm the grid returns to `beta`, the `*` disappears, and the editor text remains unchanged.
-10. Leave Edit mode successfully after the session is clean.
+Validated behavior:
+
+1. The grid is read-only before Edit.
+2. Edit mode enables cell editing.
+3. Refresh, Delimiter, Header, Search, and sorting are disabled.
+4. A changed source record retains row number `3` and displays `*`.
+5. The change count reports one cell in one row.
+6. Revert All restores the original grid value and removes the marker.
+7. Revert All does not change the Notepad++ editor text.
+8. Clean Edit mode can be exited normally.
 
 ## Test B — Apply, modified marker, undo, redo, and Save ownership
 
-1. Confirm the Notepad++ status bar reports UTF-8.
-2. Enter Edit mode again.
-3. Change `beta` to `beta-applied`.
-4. Select **Apply**.
-5. Confirm the Notepad++ editor text changes immediately.
-6. Confirm Notepad++ displays its modified-document marker.
-7. Confirm the plugin leaves Edit mode and rebuilds the table from the editor.
-8. Press Ctrl+Z once.
-9. Confirm the complete pre-Apply CSV returns in one step.
-10. Press Ctrl+Y once.
-11. Confirm the complete applied CSV returns in one step.
-12. Use normal Notepad++ Save.
-13. Confirm the modified marker clears through the normal Notepad++ workflow.
+**Result: PASS**
+
+Validated behavior:
+
+1. Apply succeeds for a UTF-8 editor buffer.
+2. The Notepad++ editor text changes immediately.
+3. Notepad++ displays its modified-document marker.
+4. The plugin leaves Edit mode and rebuilds the table from the editor.
+5. One Ctrl+Z restores the complete pre-Apply CSV.
+6. One Ctrl+Y restores the complete applied CSV.
+7. Normal Notepad++ Save clears the modified marker.
+8. The plugin performs no direct disk save.
 
 ## Test C — structural CSV serialization
+
+**Result: PASS**
 
 Use a UTF-8 document:
 
@@ -70,15 +83,15 @@ Alice,plain,Budapest
 Bob,simple,Szeged
 ```
 
-In Edit mode set cells to:
+Validated edited values included:
 
-- `Alice` Note: `contains,comma`
-- `Bob` Note: `contains "quote"`
-- `Bob` City: a multiline value containing an actual line break
-- one value: `東京 🗼`
-- one value with leading and trailing spaces
+- a delimiter-containing value;
+- quotes;
+- an actual multiline value;
+- Unicode text including `東京 🗼`;
+- leading and trailing spaces.
 
-Apply and confirm:
+Validated behavior:
 
 - delimiter-containing values are quoted;
 - quotes are doubled;
@@ -90,6 +103,8 @@ Apply and confirm:
 
 ## Test D — inconsistent-width preservation
 
+**Result: PASS**
+
 Use a UTF-8 document:
 
 ```csv
@@ -99,69 +114,92 @@ Bob
 Charlie,42,Extra
 ```
 
-1. Select Comma manually if automatic detection requires it.
-2. Confirm `CSV004` warnings for source records 3 and 4.
-3. Enter Edit mode.
-4. Edit Bob's padded Age cell to `40`.
-5. Apply.
-6. Confirm Bob becomes `Bob,40`.
-7. Confirm Charlie remains `Charlie,42,Extra` without data loss.
-8. Undo once and confirm the exact original inconsistent-width text returns.
+Validated behavior:
+
+- `CSV004` warnings identify the inconsistent records;
+- editing Bob's padded Age cell produces `Bob,40`;
+- Charlie remains `Charlie,42,Extra`;
+- extra data is not discarded;
+- one undo restores the exact original inconsistent-width text.
 
 ## Test E — content conflict
 
-1. Enter Edit mode and change one grid cell.
-2. Without applying, modify the same Notepad++ editor buffer directly.
-3. Select Apply in the plugin.
-4. Confirm Apply is blocked with a content-change message.
-5. Confirm the plugin does not overwrite the direct editor change.
-6. Confirm the dirty grid session remains available for review or Revert All.
+**Result: PASS**
+
+Validated behavior:
+
+- a direct editor-buffer change after Edit mode starts blocks Apply;
+- the status reports that the editor buffer changed;
+- the direct editor change is not overwritten;
+- the dirty grid session remains available for review or Revert All;
+- no blind replacement occurs.
 
 ## Test F — wrong active document conflict
 
-1. Start a dirty Edit session in document A.
-2. Switch to document B.
-3. Select Apply.
-4. Confirm Apply is blocked because another document is active.
-5. Confirm document B is unchanged.
-6. Return to document A and either Apply or Revert All.
+**Result: PASS**
+
+Validated behavior:
+
+- a dirty session started in document A cannot be applied while document B is active;
+- document B remains unchanged;
+- returning to document A allows the session to be handled safely.
 
 ## Test G — lifecycle and locked transitions
 
-While a dirty Edit session exists:
+**Result: PASS**
 
-- invoke the global **Refresh Table** command and confirm it is refused;
-- hide and reopen the panel and confirm the session remains;
-- attempt to exit Edit mode and confirm Apply/Revert All is required;
-- confirm dark mode remains readable;
-- confirm no automatic Apply occurs.
+Validated behavior while a dirty Edit session exists:
 
-After Revert All or successful Apply:
+- global Refresh Table is refused;
+- hiding and reopening the panel retains the session;
+- leaving Edit mode requires Apply or Revert All;
+- dark mode remains readable;
+- no automatic Apply occurs.
+
+Validated behavior after Revert All or successful Apply:
 
 - panel hide/reopen works;
 - active-tab refresh works normally;
 - restart loads the editor text normally;
-- no pending grid-only changes are silently written.
+- pending grid-only changes are never silently written.
 
 ## Test H — no-change behavior
 
-1. Enter Edit mode without changing a cell.
-2. Confirm Apply remains disabled.
-3. Exit Edit mode normally.
-4. Confirm editor and disk content remain unchanged.
+**Result: PASS**
+
+Validated behavior:
+
+- Apply remains disabled without a cell change;
+- clean Edit mode exits normally;
+- editor and disk content remain unchanged.
 
 ## Test I — non-UTF-8 Apply refusal
 
-1. Create a synthetic CSV and convert it in Notepad++ to a non-UTF-8 encoding such as ANSI/Windows-1252.
-2. Open the visual table and enter Edit mode.
-3. Change one grid cell.
-4. Select Apply.
-5. Confirm a warning states that Apply currently supports only UTF-8 / Scintilla code page 65001.
-6. Confirm the editor buffer is unchanged.
-7. Confirm the disk file is unchanged.
-8. Confirm the dirty grid session remains available for Revert All.
-9. Use Revert All, convert the document to UTF-8 in Notepad++, refresh, and verify a later Apply can proceed normally.
+**Result: PASS**
 
-## Acceptance result
+Validated with an ANSI/non-UTF-8 synthetic document:
 
-Record PASS/FAIL for every section. Do not commit screenshots containing private paths, real addresses, credentials, or production CSV values.
+- Edit mode and dirty tracking remain visible;
+- Apply displays the UTF-8/Scintilla code page 65001 warning;
+- the editor buffer remains unchanged;
+- the disk file remains unchanged;
+- the dirty grid session remains available for Revert All;
+- converting to UTF-8 and reopening Edit mode allows the supported Apply path.
+
+## Automated evidence
+
+```text
+Public branch: agent/editable-grid-apply
+Final implementation head before acceptance documentation: 62313931677e77c66d3c2e7f375caf969ba62511
+CI run: 29916768850
+xUnit: 122 total, 0 failed, 0 skipped
+Strict core build: PASS
+Bootstrap smoke: PASS
+Native AOT serializer/edit session/Apply coordinator/conflict smoke: PASS
+Full win-x64 Native AOT plugin publish: PASS
+Installable 0.7.0-alpha package: PASS
+```
+
+## Acceptance conclusion
+
+Milestone 0.7 satisfies its defined host boundary: safe UTF-8 cell editing, deterministic minimal-difference replacement, explicit Revert/Apply behavior, single-step host undo/redo, Notepad++ Save ownership, conflict blocking, and non-UTF-8 write refusal. The milestone is approved for merge.
