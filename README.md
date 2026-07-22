@@ -24,7 +24,7 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - deterministic fallback names for headerless CSV data
 - display-only normalization of empty, duplicate, whitespace, and multiline column headers
 - read-only table cells with source logical-record numbers in row headers
-- visible display limits: at most 10,000 rows and 512 columns in the current alpha
+- visible display limits: at most 10,000 rows, 512 columns, and 250,000 cells in the current alpha
 - dependency-free bootstrap smoke checks plus an xUnit.net v3 parser/table matrix
 - Native AOT publishing, so the target machine should not require a separately installed .NET runtime
 
@@ -34,8 +34,8 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - `Low`, ambiguous, or absent suggestions require a manual delimiter choice.
 - Parser errors produce partial read-only results plus diagnostics; source text is not rewritten.
 - Inconsistent record widths are padded only in the rectangular view; parser records remain unchanged.
-- More than 10,000 data rows are visibly limited in the grid status.
-- More than 512 columns are rejected visibly; no columns are silently hidden.
+- More than 10,000 data rows or a 250,000-cell budget are visibly limited in the grid status.
+- More than 512 columns, or a row wider than the aggregate cell budget, are rejected visibly; no columns are silently hidden.
 - The plugin does not write to the editor buffer or disk in this milestone.
 
 ## Not implemented yet
