@@ -6,6 +6,50 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Added
 
+- Explicit Edit mode, disabled by default.
+- Editable DataGridView cells only while Edit mode is active.
+- Apply and Revert All controls.
+- Visible changed-cell and changed-record counts.
+- Dirty-record `*` markers beside original source logical-record numbers.
+- Host-independent `CsvEditorApplyCoordinator` and `IEditorReplacementTarget` contract.
+- Apply results for Applied, NoChanges, document conflict, code-page conflict, and content conflict.
+- Thin Notepad++/Scintilla whole-document replacement adapter.
+- Fake-host tests for zero-call conflict behavior, exact one-undo call ordering, selection clamping, and failure cleanup.
+- Native AOT Apply-coordinator execution for successful replacement and conflict blocking.
+- Public 0.7 host-validation guide.
+- `0.7.0-alpha` assembly, About, and package version.
+
+### Changed
+
+- Entering Edit mode clears search/sort state and restores source order.
+- Refresh, delimiter, header, search, and sorting transitions are locked during Edit mode.
+- A dirty Edit session cannot be exited implicitly; Apply or Revert All is required.
+- Hiding and reopening the panel retains the Edit session instead of refreshing it.
+- Global Refresh Table refuses to discard an active Edit session.
+- A successful Apply rebuilds the table and session from the resulting editor buffer.
+- Selection-restoration failure is recorded as non-critical after a successful document replacement.
+
+### Safety
+
+- Apply reads a fresh active-document snapshot immediately before replacement.
+- No Scintilla method is called for NoChanges or any conflict state.
+- Ready Apply performs exactly one whole-document replacement inside one undo action.
+- `EndUndoAction` executes in `finally` after a successful Begin.
+- The plugin does not set or clear the Notepad++ save point.
+- Saving to disk remains a normal Notepad++ action.
+- No automatic Apply or direct disk write exists.
+
+### Validated
+
+- 122/122 xUnit tests passed on the first complete integration head.
+- Strict core build, bootstrap smoke, Native AOT runtime, real plugin AOT publish, and 0.7 package creation passed.
+- A later final gate adds explicit Native AOT Apply-coordinator execution and non-critical selection-restoration behavior.
+- Complete Notepad++ 8.9.7 x64 host acceptance is pending.
+
+## [0.6.0-alpha] — 2026-07-22
+
+### Added
+
 - Host-independent `CsvSerializationPolicy` for delimiter, quote, record-separator, terminal-newline, and leading-BOM behavior.
 - Deterministic comma, semicolon, and tab CSV serialization.
 - Safe quoting for delimiters, quotes, CR/LF, and leading/trailing whitespace.
@@ -29,7 +73,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Missing display-only fields are not silently written into source records.
 - Extra and trailing source fields are retained.
 - Conflict plans contain no replacement preview.
-- No editable grid, Scintilla write, or disk write is enabled in this foundation increment.
+- No editable grid, Scintilla write, or disk write was enabled in this foundation increment.
 
 ### Validated
 
@@ -38,6 +82,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Native AOT deterministic serialization passed.
 - Native AOT dirty tracking, preview, Revert All, Ready planning, and ContentChanged blocking passed.
 - Full win-x64 Native AOT plugin publish passed.
+- Accepted public squash merge: `5184de060c775d2df6db63fa9b42a9be3cf212c1`.
 
 ## [0.5.0-alpha] — 2026-07-22
 
@@ -52,125 +97,79 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Detailed diagnostics grid with severity, code, logical-record number, character offset, and message.
 - Combined delimiter-detection and parser diagnostics.
 - Clear action for the current search and view sort.
-- xUnit coverage for search, selected-column filtering, stable sorting, filter/sort composition, invalid indexes, and projection immutability.
-- Native AOT runtime coverage for table search, sorting, ToolStrip search controls, debounce timer, TabControl, and diagnostics DataGridView.
-- `0.5.0-alpha` Native AOT test-package naming.
-
-### Changed
-
-- CSV data columns use programmatic sort glyphs while the underlying parser projection remains unchanged.
-- Status text reports matching-row counts and the active view sort.
-- Dark-mode handling covers both toolbars, both tabs, the visual table, and diagnostics grid.
-- `CsvDialectDetectionResult.Diagnostics` is exposed through the `IReadOnlyList<CsvDiagnostic>` abstraction rather than a concrete collection type.
-- About text describes the 0.5 read-only search and diagnostics boundary.
+- xUnit and Native AOT coverage for search, filtering, stable sorting, ToolStrip, Timer, TabControl, and diagnostics DataGridView.
 
 ### Safety
 
 - Search, filtering, and sorting remain entirely view-only.
 - Stable sorting preserves original source order for equal values.
 - Source logical-record numbers remain attached to filtered and sorted rows.
-- No Scintilla write, disk write, serializer, edit, or write-back path was added.
+- No Scintilla write, disk write, edit, or write-back path was added.
 
 ### Validated
 
 - 81/81 xUnit tests passed.
-- Native AOT search, filtering, stable sorting, ToolStrip, Timer, TabControl, and diagnostics-grid runtime paths passed.
-- Notepad++ 8.9.7 x64 owner acceptance passed for layout, search, selected-column filtering, Clear, three-state sorting, source row identity, valid and malformed diagnostics, delimiter/header rebuild, Refresh, active-tab switching, hide/reopen, restart, dark mode, and no editor/disk mutation.
+- Complete Notepad++ 8.9.7 x64 owner acceptance passed.
+- Accepted public squash merge: `9aa11992142297c7c40c021d71c3565a71977217`.
 
 ## [0.4.0-alpha] — 2026-07-22
 
 ### Added
 
 - Read-only visual CSV table backed by immutable parser output.
-- Host-independent `CsvTableBuilder` result states for empty input, manual delimiter requirement, and ready tables.
-- Visible delimiter selector for automatic, comma, semicolon, and tab modes.
-- Visible header selector for First row is header and No header row modes.
-- Host-independent table projection with deterministic fallback, duplicate, empty, whitespace, and multiline header handling.
+- Automatic/manual delimiter and explicit header controls.
+- Host-independent rectangular projection with special-header handling.
 - Source logical-record numbers in DataGridView row headers.
-- Manual delimiter recovery when automatic detection is weak, ambiguous, or unavailable.
-- Explicit 10,000-row, 512-column, and 250,000-cell visual limits with non-silent behavior.
-- xUnit table-builder and projection tests for delimiter gating, header modes, unique names, inconsistent widths, limits, and empty input.
-- Native AOT runtime smoke library that executes CSV table building and DataGridView population for both automatic and manual-comma modes.
-- DPI-aware initial dock-width policy with tests for default, user-sized, small-host, and high-DPI layouts.
-- Content-aware, bounded column fill-weight calculation with deterministic row sampling and multiline handling.
-- Developer and contact information in the About dialog.
-
-### Changed
-
-- The panel renders parsed CSV values instead of snapshot metadata when a trustworthy or explicitly selected dialect is available.
-- Automatic detection is accepted only at Medium or High confidence.
-- Inconsistent-width records are padded only in the rectangular view and remain unchanged in parser output.
-- The displayed row count is constrained by both row and aggregate-cell budgets.
-- A newly created right-side panel that is still at the Notepad++ default width is expanded once to a usable width after first display.
-- Existing user-sized wider dock layouts are preserved, and small Notepad++ windows retain a minimum editor area.
-- Visual CSV columns use `DataGridView` Fill sizing, weighted by sampled header and cell lengths.
-- Every visual CSV column retains a 90-pixel minimum width, with horizontal scrolling for wide tables.
-- Column fill sizing follows subsequent dock-panel resizing while preserving manual column resize support.
-- CI diagnostics cover strict build, bootstrap smoke, xUnit core tests, Native AOT table runtime execution, and plugin publishing separately.
+- Explicit row, column, and aggregate-cell limits.
+- Native AOT DataGridView runtime smoke.
+- DPI-aware initial dock-width policy.
+- Content-aware full-width column sizing.
+- Developer and contact information in About.
 
 ### Fixed
 
-- Preserved the public parameterless `DataGridViewRowHeaderCell` constructor required by WinForms reflective row-header creation under Native AOT.
-- Corrected the unusably narrow first-open dock layout caused by host registration before the derived WinForms `ClientSize` is applied.
-- Removed unused right-side grid workspace for tables whose natural column widths are narrower than the dock panel.
+- Preserved the WinForms row-header constructor required under Native AOT.
+- Corrected the unusably narrow first-open dock layout.
+- Removed unused right-side grid workspace.
 
 ### Validated
 
 - 69/69 xUnit tests passed.
-- Native AOT table/DataGridView runtime smoke passed.
-- Notepad++ 8.9.7 x64 owner acceptance passed.
+- Complete Notepad++ 8.9.7 x64 owner acceptance passed.
 - Accepted public squash merge: `d17dd7f46f600fac2896f21239d7833dd00dd727`.
 
 ## [0.3.0-alpha] — 2026-07-21
 
 ### Added
 
-- Host-independent CSV dialect model for comma, semicolon, and tab delimiters.
-- Explainable delimiter detection with candidate scores, confidence levels, ambiguity diagnostics, and decimal-comma caution.
-- Character-state CSV parser that processes logical records without splitting quoted multiline fields.
-- Support for empty and trailing fields, quoted delimiters, doubled quotes, embedded CRLF/LF, blank records, Unicode, and leading U+FEFF handling.
-- Immutable CSV record/cell models with raw decoded-text source spans.
-- Structured diagnostics for malformed quotes and inconsistent field counts.
-- xUnit.net v3 parser test project pinned to `xunit.v3.mtp-v2` 3.2.2.
-- Public parser and test-strategy documentation.
+- Explainable comma, semicolon, and tab detection.
+- Record-aware parser for quoted delimiters, doubled quotes, and embedded CRLF/LF.
+- Empty/trailing fields, blank records, Unicode, BOM, source spans, and diagnostics.
+- xUnit.net v3 parser test project.
 
 ### Validated
 
-- Strict core build, 38/38 parser and detector tests, Native AOT publish, and clean x64 package creation.
+- 38/38 parser and detector tests, Native AOT publish, and package creation passed.
 
 ## [0.2.0-alpha] — 2026-07-21
 
 ### Added
 
-- Immutable `ActiveDocumentSnapshot` core model.
-- Host abstraction for reading the active editor document.
-- Notepad++/Scintilla adapter that reads the current editor buffer, including unsaved changes.
-- Snapshot metadata for document identity, character and editor-byte lengths, code page, caret and selection, modified state, UTC capture time, and SHA-256 content identity.
-- Explicit 64 MiB snapshot safety limit with a visible non-destructive error state.
-- Docked metadata view and refresh behavior for the active buffer.
-- Core smoke checks for snapshot creation, hashing, normalization, and invalid input.
-
-### Changed
-
-- `Open Visual Table` and both Refresh actions acquire the active editor snapshot.
-- The panel shows sanitized snapshot metadata instead of bootstrap placeholder columns.
+- Immutable active-editor snapshot.
+- Notepad++/Scintilla live-buffer adapter, including unsaved changes.
+- Metadata, SHA-256 identity, and 64 MiB safety limit.
 
 ### Validated
 
-- Automated build, smoke-test, Native AOT publish, and package creation.
-- Complete Notepad++ 8.9.7 x64 host acceptance, including unsaved buffers, tab switching, both Refresh paths, untitled buffers, dark mode, lifecycle behavior, and no editor modification.
+- Complete Notepad++ 8.9.7 x64 snapshot, dark-mode, lifecycle, and no-mutation acceptance passed.
 
 ## [0.1.0-alpha] — 2026-07-21
 
 ### Added
 
-- Initial C#/.NET 10 Notepad++ plugin project based on the official `Npp.DotNet.Plugin` WinForms integration model.
-- Dockable `DataGridView` shell with refresh command and status bar.
-- Native AOT x64 publish workflow.
-- Host-independent core project and dependency-free smoke checks.
-- Public architecture and build documentation.
+- Initial C#/.NET 10 Native AOT Notepad++ plugin shell.
+- Dockable DataGridView panel and CI packaging.
 
 ### Validated
 
-- Automated restore, build, smoke-test, Native AOT publish, and package creation.
-- Successful manual loading and runtime acceptance in Notepad++ 8.9.7.
+- Successful loading and runtime acceptance in Notepad++ 8.9.7 x64.
