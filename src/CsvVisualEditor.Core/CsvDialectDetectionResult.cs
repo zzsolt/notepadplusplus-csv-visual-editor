@@ -28,7 +28,7 @@ public sealed record CsvDialectDetectionResult
 
     public ReadOnlyCollection<CsvDelimiterCandidateScore> Candidates { get; }
 
-    public ReadOnlyCollection<CsvDiagnostic> Diagnostics { get; }
+    public IReadOnlyList<CsvDiagnostic> Diagnostics { get; }
 
     public bool HasSuggestion => SuggestedDialect is not null;
 
