@@ -9,7 +9,9 @@ internal static class Program
 {
     private const string Sample =
         "EmailAddress,UserName,Password\r\n" +
-        "muller.bela@example.invalid,bmuller@example.invalid,TEMP-password\r\n";
+        "muller.bela@example.invalid,bmuller@example.invalid,TEMP-b\r\n" +
+        "alpha@example.invalid,alpha@example.invalid,TEMP-a\r\n" +
+        "gamma@other.invalid,gamma@other.invalid,TEMP-c\r\n";
 
     [UnmanagedCallersOnly(
         EntryPoint = "RunCsvVisualTableSmoke",
@@ -31,7 +33,8 @@ internal static class Program
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             RunCase("automatic", delimiterOverride: null);
             RunCase("manual comma", delimiterOverride: ',');
-            WriteDiagnostic("All Native AOT CSV table runtime smoke tests passed.");
+            WriteDiagnostic(
+                "All Native AOT CSV table, search, sorting, and diagnostics UI smoke tests passed.");
             return 0;
         }
         catch (Exception exception)
@@ -65,11 +68,11 @@ internal static class Program
         }
 
         using var grid = CreateGrid();
-        Bind(grid, result.Projection);
+        Bind(grid, result.Projection.Rows, result.Projection);
         grid.PerformLayout();
 
         Require(grid.Columns.Count == 3, $"{caseName}: expected 3 columns.");
-        Require(grid.Rows.Count == 1, $"{caseName}: expected 1 data row.");
+        Require(grid.Rows.Count == 3, $"{caseName}: expected 3 data rows.");
         Require(
             string.Equals(
                 Convert.ToString(grid.Columns[0].HeaderText, CultureInfo.InvariantCulture),
@@ -94,6 +97,98 @@ internal static class Program
         Require(
             grid.Columns[0].FillWeight > grid.Columns[2].FillWeight,
             $"{caseName}: the longer e-mail column should receive more relative width than Password.");
+
+        RunViewCase(caseName, result.Projection);
+        RunViewControlsCase(caseName);
+    }
+
+    private static void RunViewCase(
+        string caseName,
+        CsvTableProjection projection)
+    {
+        var originalOrder = projection.Rows
+            .Select(static row => row.SourceRecordIndex)
+            .ToArray();
+        var view = CsvTableViewBuilder.Build(
+            projection,
+            new CsvTableViewOptions
+            {
+                SearchText = "EXAMPLE.INVALID",
+                SearchColumnIndex = 0,
+                SortColumnIndex = 1,
+                SortDirection = CsvTableSortDirection.Descending
+            });
+
+        Require(view.IsFiltered, $"{caseName}: search view should be filtered.");
+        Require(view.IsSorted, $"{caseName}: search view should be sorted.");
+        Require(view.VisibleRowCount == 2, $"{caseName}: expected two matching rows.");
+        Require(
+            view.Rows[0].SourceRecordIndex == 1 &&
+            view.Rows[1].SourceRecordIndex == 2,
+            $"{caseName}: stable descending view order mismatch.");
+        Require(
+            projection.Rows.Select(static row => row.SourceRecordIndex)
+                .SequenceEqual(originalOrder),
+            $"{caseName}: view operations must not mutate projection order.");
+
+        using var filteredGrid = CreateGrid();
+        Bind(filteredGrid, view.Rows, projection);
+        Require(
+            filteredGrid.Rows.Count == 2,
+            $"{caseName}: filtered grid should contain two rows.");
+        Require(
+            string.Equals(
+                Convert.ToString(
+                    filteredGrid.Rows[0].HeaderCell.Value,
+                    CultureInfo.InvariantCulture),
+                "2",
+                StringComparison.Ordinal),
+            $"{caseName}: filtered row must retain source logical-record number.");
+    }
+
+    private static void RunViewControlsCase(string caseName)
+    {
+        using var searchBox = new ToolStripTextBox
+        {
+            Text = "example.invalid"
+        };
+        using var columnCombo = new ToolStripComboBox
+        {
+            DropDownStyle = ComboBoxStyle.DropDownList
+        };
+        columnCombo.Items.AddRange(["All columns", "EmailAddress"]);
+        columnCombo.SelectedIndex = 0;
+
+        using var searchStrip = new ToolStrip();
+        searchStrip.Items.Add(searchBox);
+        searchStrip.Items.Add(columnCombo);
+
+        using var tablePage = new TabPage("Table");
+        using var diagnosticsPage = new TabPage("Diagnostics (1)");
+        using var tabs = new TabControl();
+        tabs.TabPages.Add(tablePage);
+        tabs.TabPages.Add(diagnosticsPage);
+        tabs.SelectedTab = diagnosticsPage;
+
+        using var diagnosticsGrid = CreateDiagnosticsGrid();
+        diagnosticsPage.Controls.Add(diagnosticsGrid);
+        diagnosticsGrid.Rows.Add("Warning", "CSV004", "2", "24", "Synthetic diagnostic");
+
+        using var timer = new System.Windows.Forms.Timer
+        {
+            Interval = 250
+        };
+
+        Require(
+            tabs.TabPages.Count == 2 && tabs.SelectedTab == diagnosticsPage,
+            $"{caseName}: diagnostics tab control mismatch.");
+        Require(
+            searchStrip.Items.Count == 2 && columnCombo.SelectedIndex == 0,
+            $"{caseName}: search toolbar mismatch.");
+        Require(
+            diagnosticsGrid.Rows.Count == 1 && diagnosticsGrid.Columns.Count == 5,
+            $"{caseName}: diagnostics grid mismatch.");
+        Require(timer.Interval == 250, $"{caseName}: search debounce timer mismatch.");
     }
 
     private static DataGridView CreateGrid() =>
@@ -111,7 +206,34 @@ internal static class Program
             Size = new Size(760, 300)
         };
 
-    private static void Bind(DataGridView grid, CsvTableProjection projection)
+    private static DataGridView CreateDiagnosticsGrid()
+    {
+        var grid = new DataGridView
+        {
+            AllowUserToAddRows = false,
+            AllowUserToDeleteRows = false,
+            ReadOnly = true,
+            RowHeadersVisible = false
+        };
+
+        foreach (var name in new[] { "Severity", "Code", "Record", "Character", "Message" })
+        {
+            grid.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = name,
+                    HeaderText = name,
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                });
+        }
+
+        return grid;
+    }
+
+    private static void Bind(
+        DataGridView grid,
+        IEnumerable<CsvTableRow> rows,
+        CsvTableProjection projection)
     {
         var fillWeights = CsvColumnFillWeightCalculator.Calculate(projection);
 
@@ -125,11 +247,11 @@ internal static class Program
                     AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                     FillWeight = fillWeights[column.Index],
                     MinimumWidth = 90,
-                    SortMode = DataGridViewColumnSortMode.NotSortable
+                    SortMode = DataGridViewColumnSortMode.Programmatic
                 });
         }
 
-        foreach (var row in projection.Rows)
+        foreach (var row in rows)
         {
             var values = new object[row.Values.Count];
             for (var index = 0; index < row.Values.Count; index++)
