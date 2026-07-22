@@ -13,6 +13,7 @@ partial class Main : IDotNetPlugin
     private const int DialogCommandIndex = 0;
     private const int MaximumDisplayedRows = 10_000;
     private const int MaximumDisplayedColumns = 512;
+    private const int MaximumDisplayedCells = 250_000;
 
     private static readonly IDotNetPlugin Instance;
     private readonly IActiveDocumentReader _activeDocumentReader =
@@ -143,7 +144,8 @@ partial class Main : IDotNetPlugin
                     DelimiterOverride = _gridForm.SelectedDelimiterOverride,
                     HeaderMode = _gridForm.SelectedHeaderMode,
                     MaximumRows = MaximumDisplayedRows,
-                    MaximumColumns = MaximumDisplayedColumns
+                    MaximumColumns = MaximumDisplayedColumns,
+                    MaximumCells = MaximumDisplayedCells
                 });
 
             switch (buildResult.Status)
