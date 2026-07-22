@@ -36,7 +36,7 @@ internal static class Program
             RunCase("automatic", delimiterOverride: null);
             RunCase("manual comma", delimiterOverride: ',');
             WriteDiagnostic(
-                "All Native AOT CSV table, view, serializer, edit-session, and diagnostics UI smoke tests passed.");
+                "All Native AOT CSV table, view, serializer, edit-session, apply-coordinator, and diagnostics UI smoke tests passed.");
             return 0;
         }
         catch (Exception exception)
@@ -158,6 +158,28 @@ internal static class Program
         Require(readyPlan.IsReady, $"{caseName}: matching baseline should produce Ready plan.");
         Require(readyPlan.Preview is not null, $"{caseName}: Ready plan must contain preview.");
 
+        var applyTarget = new RecordingReplacementTarget(
+            Encoding.UTF8.GetByteCount(preview.Text));
+        var applyResult = CsvEditorApplyCoordinator.Execute(
+            session,
+            baseline,
+            applyTarget);
+        Require(
+            applyResult.Status == CsvEditorApplyStatus.Applied,
+            $"{caseName}: coordinator did not report Applied.");
+        Require(
+            applyTarget.Calls.SequenceEqual(
+            [
+                "BeginUndoAction",
+                "ReplaceWholeDocument",
+                "SetSelection:0:0",
+                "EndUndoAction"
+            ]),
+            $"{caseName}: coordinator call order mismatch.");
+        Require(
+            string.Equals(applyTarget.ReplacementText, preview.Text, StringComparison.Ordinal),
+            $"{caseName}: coordinator replacement text mismatch.");
+
         var changedSnapshot = CreateSnapshot(
             Sample.Replace("TEMP-c", "EXTERNAL", StringComparison.Ordinal));
         var conflictPlan = session.CreateApplyPlan(changedSnapshot);
@@ -165,6 +187,18 @@ internal static class Program
             conflictPlan.Status == CsvEditApplyStatus.ContentChanged,
             $"{caseName}: changed source content must block apply planning.");
         Require(conflictPlan.Preview is null, $"{caseName}: conflict plan must not expose replacement preview.");
+
+        var conflictTarget = new RecordingReplacementTarget(0);
+        var conflictResult = CsvEditorApplyCoordinator.Execute(
+            session,
+            changedSnapshot,
+            conflictTarget);
+        Require(
+            conflictResult.Status == CsvEditorApplyStatus.ContentChanged,
+            $"{caseName}: coordinator did not retain ContentChanged status.");
+        Require(
+            conflictTarget.Calls.Count == 0,
+            $"{caseName}: conflict coordinator must not call the editor target.");
 
         Require(session.RevertAll(), $"{caseName}: Revert All should report a change.");
         Require(!session.IsDirty, $"{caseName}: Revert All must clear dirty state.");
@@ -247,6 +281,20 @@ internal static class Program
         searchStrip.Items.Add(searchBox);
         searchStrip.Items.Add(columnCombo);
 
+        using var editButton = new ToolStripButton("Edit");
+        using var applyButton = new ToolStripButton("Apply")
+        {
+            Enabled = false
+        };
+        using var revertButton = new ToolStripButton("Revert All")
+        {
+            Enabled = false
+        };
+        using var editStrip = new ToolStrip();
+        editStrip.Items.Add(editButton);
+        editStrip.Items.Add(applyButton);
+        editStrip.Items.Add(revertButton);
+
         using var tablePage = new TabPage("Table");
         using var diagnosticsPage = new TabPage("Diagnostics (1)");
         using var tabs = new TabControl();
@@ -269,6 +317,9 @@ internal static class Program
         Require(
             searchStrip.Items.Count == 2 && columnCombo.SelectedIndex == 0,
             $"{caseName}: search toolbar mismatch.");
+        Require(
+            editStrip.Items.Count == 3 && !applyButton.Enabled && !revertButton.Enabled,
+            $"{caseName}: edit toolbar initial state mismatch.");
         Require(
             diagnosticsGrid.Rows.Count == 1 && diagnosticsGrid.Columns.Count == 5,
             $"{caseName}: diagnostics grid mismatch.");
@@ -363,6 +414,36 @@ internal static class Program
         if (!condition)
         {
             throw new InvalidOperationException(message);
+        }
+    }
+
+    private sealed class RecordingReplacementTarget(long replacementByteLength)
+        : IEditorReplacementTarget
+    {
+        public List<string> Calls { get; } = [];
+
+        public string? ReplacementText { get; private set; }
+
+        public void BeginUndoAction()
+        {
+            Calls.Add("BeginUndoAction");
+        }
+
+        public long ReplaceWholeDocument(string text)
+        {
+            ReplacementText = text;
+            Calls.Add("ReplaceWholeDocument");
+            return replacementByteLength;
+        }
+
+        public void SetSelection(long anchorPosition, long caretPosition)
+        {
+            Calls.Add($"SetSelection:{anchorPosition}:{caretPosition}");
+        }
+
+        public void EndUndoAction()
+        {
+            Calls.Add("EndUndoAction");
         }
     }
 }
