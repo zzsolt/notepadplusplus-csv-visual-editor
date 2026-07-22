@@ -35,6 +35,7 @@ jobs:
           dotnet restore src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj
           dotnet restore tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj
           dotnet restore tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj
+          dotnet restore tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj -r win-x64
           dotnet restore src/CsvVisualEditor/CsvVisualEditor.csproj -r win-x64
 
       - name: Create diagnostics directory
@@ -102,11 +103,45 @@ jobs:
           path: artifacts/core-tests.log
           if-no-files-found: error
 
-      - name: Publish x64 Native AOT plugin
+      - name: Publish and run Native AOT table runtime smoke test
         if: >-
           steps.core_build.outcome == 'success' &&
           steps.smoke_tests.outcome == 'success' &&
           steps.core_tests.outcome == 'success'
+        id: native_aot_smoke
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $logPath = 'artifacts/native-aot-runtime-smoke.log'
+          dotnet publish tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj `
+            -c Release `
+            -f net10.0-windows `
+            -r win-x64 `
+            --no-restore `
+            -o artifacts/native-aot-smoke *>&1 |
+              Tee-Object -FilePath $logPath
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          & 'artifacts/native-aot-smoke/CsvVisualEditor.NativeAot.SmokeTests.exe' *>&1 |
+            Tee-Object -FilePath $logPath -Append
+          exit $LASTEXITCODE
+
+      - name: Upload Native AOT runtime smoke diagnostics
+        if: always() && steps.native_aot_smoke.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-native-aot-runtime-smoke-diagnostics
+          path: artifacts/native-aot-runtime-smoke.log
+          if-no-files-found: error
+
+      - name: Publish x64 Native AOT plugin
+        if: >-
+          steps.core_build.outcome == 'success' &&
+          steps.smoke_tests.outcome == 'success' &&
+          steps.core_tests.outcome == 'success' &&
+          steps.native_aot_smoke.outcome == 'success'
         id: publish
         continue-on-error: true
         shell: pwsh
@@ -166,11 +201,21 @@ jobs:
         shell: pwsh
         run: throw 'Core parser/table tests failed. Inspect core-tests.log in the workflow artifact.'
 
+      - name: Fail workflow when Native AOT runtime smoke failed
+        if: >-
+          steps.core_build.outcome == 'success' &&
+          steps.smoke_tests.outcome == 'success' &&
+          steps.core_tests.outcome == 'success' &&
+          steps.native_aot_smoke.outcome != 'success'
+        shell: pwsh
+        run: throw 'Native AOT table runtime smoke failed. Inspect native-aot-runtime-smoke.log.'
+
       - name: Fail workflow when publish failed
         if: >-
           steps.core_build.outcome == 'success' &&
           steps.smoke_tests.outcome == 'success' &&
           steps.core_tests.outcome == 'success' &&
+          steps.native_aot_smoke.outcome == 'success' &&
           steps.publish.outcome != 'success'
         shell: pwsh
         run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
