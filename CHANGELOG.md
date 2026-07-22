@@ -4,6 +4,41 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Host-independent `CsvSerializationPolicy` for delimiter, quote, record-separator, terminal-newline, and leading-BOM behavior.
+- Deterministic comma, semicolon, and tab CSV serialization.
+- Safe quoting for delimiters, quotes, CR/LF, and leading/trailing whitespace.
+- `CsvEditSession` with immutable active-document baseline.
+- Per-cell dirty tracking and changed-cell/record counts.
+- Cell and full-session reversion.
+- Minimal-difference edit previews that retain unchanged raw records and exact following separators.
+- Original field-count retention for inconsistent-width records.
+- Safe extension of display-padded records only when padded cells are edited.
+- `CsvEditApplyPlan` conflict states for document identity, code page, and editor-content changes.
+- Strict stale-parser verification by reparsing the active snapshot and comparing records, cells, spans, quoted states, and diagnostics.
+- Preview replacement SHA-256.
+- Public safe-editing architecture documentation.
+- Native AOT serializer, edit-session, reversion, Ready-plan, and content-conflict runtime coverage.
+
+### Safety
+
+- Parser-error and row-limited projections cannot start an edit session.
+- Stale parser output cannot be reused for different source text, even with matching length and compatible spans.
+- Unchanged records are never unnecessarily normalized.
+- Missing display-only fields are not silently written into source records.
+- Extra and trailing source fields are retained.
+- Conflict plans contain no replacement preview.
+- No editable grid, Scintilla write, or disk write is enabled in this foundation increment.
+
+### Validated
+
+- 112/112 xUnit tests passed.
+- Strict core Release build and bootstrap smoke passed.
+- Native AOT deterministic serialization passed.
+- Native AOT dirty tracking, preview, Revert All, Ready planning, and ContentChanged blocking passed.
+- Full win-x64 Native AOT plugin publish passed.
+
 ## [0.5.0-alpha] — 2026-07-22
 
 ### Added
