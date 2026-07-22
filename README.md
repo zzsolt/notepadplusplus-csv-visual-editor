@@ -2,14 +2,14 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.4 read-only visual table alpha under validation**. The plugin reads the active Notepad++ editor buffer, including unsaved changes, detects or explicitly selects the delimiter, parses logical CSV records, and displays them in a read-only grid.
+> Development status: **0.5 read-only search and diagnostics alpha under validation**. The plugin reads the active Notepad++ editor buffer, including unsaved changes, renders a read-only table, and now adds view-only search, selected-column filtering, stable sorting, and detailed diagnostics without modifying the source CSV.
 
 ## Current capabilities
 
 - 64-bit Windows / Notepad++ target
 - C# and .NET 10
 - Windows Forms `DataGridView`
-- dockable plugin panel
+- dockable plugin panel with an automatically usable initial width
 - light/dark mode response
 - `Open Visual Table`, `Refresh Table`, and `About` commands
 - direct active-buffer reading through Notepad++/Scintilla
@@ -24,8 +24,14 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - deterministic fallback names for headerless CSV data
 - display-only normalization of empty, duplicate, whitespace, and multiline column headers
 - read-only table cells with source logical-record numbers in row headers
+- content-aware full-width columns with readable minimum widths and horizontal-scroll fallback
+- case-insensitive search across all columns or one selected column
+- 250 ms search debounce to avoid rebuilding the view on every immediate keystroke
+- stable, three-state view sorting by column-header click: ascending, descending, source order
+- dedicated **Table** and **Diagnostics** tabs
+- diagnostic rows with severity, code, logical record, character offset, and message
 - visible display limits: at most 10,000 rows, 512 columns, and 250,000 cells in the current alpha
-- dependency-free bootstrap smoke checks plus an xUnit.net v3 parser/table matrix
+- dependency-free bootstrap checks, xUnit.net v3 tests, and Native AOT runtime smoke tests
 - Native AOT publishing, so the target machine should not require a separately installed .NET runtime
 
 ## Safety behavior
@@ -34,6 +40,9 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - `Low`, ambiguous, or absent suggestions require a manual delimiter choice.
 - Parser errors produce partial read-only results plus diagnostics; source text is not rewritten.
 - Inconsistent record widths are padded only in the rectangular view; parser records remain unchanged.
+- Search, filtering, and sorting operate only on immutable projected rows.
+- Stable sorting retains source order for values that compare equally.
+- Source logical-record numbers remain visible after filtering and sorting.
 - More than 10,000 data rows or a 250,000-cell budget are visibly limited in the grid status.
 - More than 512 columns, or a row wider than the aggregate cell budget, are rejected visibly; no columns are silently hidden.
 - The plugin does not write to the editor buffer or disk in this milestone.
@@ -42,18 +51,19 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 
 - automatic header inference
 - automatic refresh after editor changes
-- detailed diagnostic list UI
-- source navigation
-- filtering, sorting, search, or large-file virtualization
-- cell editing or write-back
+- navigation from a diagnostic or visual row to the source editor position
+- advanced filter expressions
+- large-file virtualization beyond the current explicit display limits
+- cell editing, serialization, conflict handling, or write-back
 
 ## Repository layout
 
 ```text
-src/CsvVisualEditor.Core/              Host-independent snapshot, CSV, and table-domain logic
+src/CsvVisualEditor.Core/              Host-independent snapshot, CSV, table, and view logic
 src/CsvVisualEditor/                   Notepad++ plugin and WinForms user interface
 tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free bootstrap regression checks
-tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, detector, and table-projection matrix
+tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, detector, table, and view matrix
+tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms/runtime regression gate
 docs/                                  Public architecture, parser, table, and test documentation
 ```
 
@@ -86,7 +96,7 @@ dotnet run `
     -c Release
 ```
 
-Run the xUnit.net v3 parser and table matrix:
+Run the xUnit.net v3 parser, table, and view matrix:
 
 ```powershell
 dotnet run `
@@ -116,13 +126,16 @@ Restart Notepad++, then use:
 Plugins → CSV Visual Editor → Open Visual Table
 ```
 
-The toolbar exposes:
+The panel exposes two tool rows:
 
 ```text
 Refresh | Delimiter: Auto/Comma/Semicolon/Tab | Header: First row/No header
+Search: <text> | In: All columns/<column> | Clear | Diagnostics (n)
 ```
 
-Use **Refresh** after changing the active document. Changing either dropdown also rebuilds the current table from the live editor buffer.
+Use **Refresh** after changing the active document. Changing the delimiter or header dropdown rebuilds the table from the live editor buffer. Search and sorting are view-only and do not refresh or modify the editor text.
+
+Click a CSV column header repeatedly to cycle through ascending, descending, and original source order. Use **Clear** to remove the active search and view sort.
 
 ## Validation boundary
 
@@ -132,13 +145,15 @@ Milestone 0.2 active-buffer reading was accepted after complete Notepad++ 8.9.7 
 
 Milestone 0.3 delimiter detection and record-aware parsing passed the strict host-independent test matrix and Native AOT regression gate.
 
-Milestone 0.4 requires both automated validation and manual Notepad++ 8.9.7 x64 acceptance because the CSV rows are now exposed in the UI.
+Milestone 0.4 read-only visual table, Native AOT row headers, automatic dock sizing, and content-aware columns were accepted and merged after Notepad++ 8.9.7 x64 host testing.
+
+Milestone 0.5 requires both automated validation and fresh Notepad++ 8.9.7 x64 acceptance because search, sorting, tabs, and detailed diagnostics add new WinForms runtime paths.
 
 ## Roadmap
 
 1. **Accepted:** active Notepad++ buffer snapshot.
 2. **Accepted:** delimiter detection and record-aware CSV parser.
-3. **Current:** read-only visual table with explicit delimiter/header controls.
-4. Add diagnostics UI, search, filtering, stable view sorting, and scalable rendering.
+3. **Accepted:** read-only visual table with explicit delimiter/header controls.
+4. **Current:** diagnostics UI, search, filtering, stable view sorting, and scalable rendering.
 5. Add safe two-way cell editing with conflict and undo/redo support.
 6. Package releases for eventual Notepad++ Plugins Admin submission.
