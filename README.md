@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.5 read-only search and diagnostics alpha accepted**. The plugin reads the active Notepad++ editor buffer, including unsaved changes, renders a read-only table, and provides view-only search, selected-column filtering, stable sorting, and detailed diagnostics without modifying the source CSV.
+> Development status: **0.6 safe-editing foundation validated; the current Notepad++ interface remains read-only**. The core now provides deterministic minimal-difference serialization, dirty tracking, and conflict planning, but no editor-buffer or disk write is enabled yet.
 
 ## Current capabilities
 
@@ -26,10 +26,14 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - read-only table cells with source logical-record numbers in row headers
 - content-aware full-width columns with readable minimum widths and horizontal-scroll fallback
 - case-insensitive search across all columns or one selected column
-- 250 ms search debounce to avoid rebuilding the view on every immediate keystroke
-- stable, three-state view sorting by column-header click: ascending, descending, source order
+- 250 ms search debounce
+- stable, three-state view sorting: ascending, descending, source order
 - dedicated **Table** and **Diagnostics** tabs
-- diagnostic rows with severity, code, logical record, character offset, and message
+- structured diagnostics with severity, code, logical record, character offset, and message
+- host-independent edit-session baseline and per-cell dirty tracking
+- deterministic comma/semicolon/tab CSV serialization
+- minimal-difference previews that preserve unchanged raw records and line separators
+- document, code-page, and content-hash conflict planning
 - visible display limits: at most 10,000 rows, 512 columns, and 250,000 cells in the current alpha
 - dependency-free bootstrap checks, xUnit.net v3 tests, and Native AOT runtime smoke tests
 - Native AOT publishing, so the target machine should not require a separately installed .NET runtime
@@ -43,9 +47,12 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - Search, filtering, and sorting operate only on immutable projected rows.
 - Stable sorting retains source order for values that compare equally.
 - Source logical-record numbers remain visible after filtering and sorting.
+- An edit session is rejected for parser errors, row-limited projections, omitted records/columns, or stale parser output.
+- Apply planning is blocked when document identity, code page, or editor-content SHA-256 changed.
+- Unchanged records retain their exact original raw representation in an edit preview.
 - More than 10,000 data rows or a 250,000-cell budget are visibly limited in the grid status.
 - More than 512 columns, or a row wider than the aggregate cell budget, are rejected visibly; no columns are silently hidden.
-- The plugin does not write to the editor buffer or disk in this milestone.
+- The current plugin interface does not write to the editor buffer or disk.
 
 ## Not implemented yet
 
@@ -54,17 +61,20 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - navigation from a diagnostic or visual row to the source editor position
 - advanced filter expressions
 - large-file virtualization beyond the current explicit display limits
-- cell editing, serialization, conflict handling, or write-back
+- editable DataGridView cells
+- Apply/Revert user-interface controls
+- one-transaction Scintilla write-back and host undo/redo integration
+- conflict dialog and real-host editing acceptance
 
 ## Repository layout
 
 ```text
-src/CsvVisualEditor.Core/              Host-independent snapshot, CSV, table, and view logic
+src/CsvVisualEditor.Core/              Snapshot, CSV, table, view, serialization, and edit-session logic
 src/CsvVisualEditor/                   Notepad++ plugin and WinForms user interface
 tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free bootstrap regression checks
-tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, detector, table, and view matrix
-tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms/runtime regression gate
-docs/                                  Public architecture, parser, table, and test documentation
+tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, table, view, serializer, and edit-session matrix
+tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms and core runtime regression gate
+docs/                                  Public architecture and validation documentation
 ```
 
 ## Build requirements
@@ -96,7 +106,7 @@ dotnet run `
     -c Release
 ```
 
-Run the xUnit.net v3 parser, table, and view matrix:
+Run the xUnit.net v3 matrix:
 
 ```powershell
 dotnet run `
@@ -126,28 +136,22 @@ Restart Notepad++, then use:
 Plugins → CSV Visual Editor → Open Visual Table
 ```
 
-The panel exposes two tool rows:
+The current panel exposes:
 
 ```text
 Refresh | Delimiter: Auto/Comma/Semicolon/Tab | Header: First row/No header
 Search: <text> | In: All columns/<column> | Clear | Diagnostics (n)
 ```
 
-Use **Refresh** after changing the active document. Changing the delimiter or header dropdown rebuilds the table from the live editor buffer. Search and sorting are view-only and do not refresh or modify the editor text.
-
-Click a CSV column header repeatedly to cycle through ascending, descending, and original source order. Use **Clear** to remove the active search and view sort.
+Use **Refresh** after changing the active document. Search and sorting are view-only and do not modify the editor text.
 
 ## Validation boundary
 
-Milestone 0.1 plugin loading, docking, commands, dark mode, shutdown, restart, and Native AOT operation were manually accepted in Notepad++ 8.9.7 x64.
+Milestones 0.1–0.5 were manually accepted in Notepad++ 8.9.7 x64, including snapshot handling, parsing, read-only table rendering, search, sorting, diagnostics, dark mode, lifecycle behavior, and no-mutation guarantees.
 
-Milestone 0.2 active-buffer reading was accepted after complete Notepad++ 8.9.7 x64 host testing, including unsaved edits, tab switching, both Refresh paths, untitled buffers, dark mode, lifecycle behavior, and confirmation that editor text was not modified.
+Milestone 0.6 safe-editing foundation passed 112/112 xUnit tests, strict build, Native AOT serializer/edit-session/conflict execution, and full Native AOT plugin publishing. It is host-independent and introduces no visible editing or write path, so no new manual Notepad++ package is required for this foundation increment.
 
-Milestone 0.3 delimiter detection and record-aware parsing passed the strict host-independent test matrix and Native AOT regression gate.
-
-Milestone 0.4 read-only visual table, Native AOT row headers, automatic dock sizing, and content-aware columns were accepted and merged after Notepad++ 8.9.7 x64 host testing.
-
-Milestone 0.5 search, selected-column filtering, stable sorting, diagnostics, dark mode, refresh, active-tab switching, hide/reopen, restart, and no-mutation behavior were accepted in Notepad++ 8.9.7 x64 after 81/81 automated tests and Native AOT runtime validation.
+See [`docs/safe-editing-foundation.md`](docs/safe-editing-foundation.md) for the edit-session and conflict model.
 
 ## Roadmap
 
@@ -155,5 +159,6 @@ Milestone 0.5 search, selected-column filtering, stable sorting, diagnostics, da
 2. **Accepted:** delimiter detection and record-aware CSV parser.
 3. **Accepted:** read-only visual table with explicit delimiter/header controls.
 4. **Accepted:** diagnostics UI, search, filtering, stable view sorting, and host lifecycle validation.
-5. **Current:** safe two-way cell editing foundation with deterministic serialization, dirty tracking, conflict protection, and undo/redo integration.
-6. Package releases for eventual Notepad++ Plugins Admin submission.
+5. **Validated foundation:** deterministic serialization, dirty tracking, minimal-difference preview, and conflict planning.
+6. **Next host increment:** editable cells, Apply/Revert, one Scintilla undo transaction, conflict UI, and host undo/redo acceptance.
+7. Package releases for eventual Notepad++ Plugins Admin submission.
