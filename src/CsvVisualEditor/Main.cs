@@ -134,56 +134,46 @@ partial class Main : IDotNetPlugin
             return;
         }
 
-        if (snapshot.Text.Length == 0)
-        {
-            _gridForm.ShowEmptyDocument(snapshot);
-            return;
-        }
-
         try
         {
-            var delimiterOverride = _gridForm.SelectedDelimiterOverride;
-            var headerMode = _gridForm.SelectedHeaderMode;
-            CsvDialectDetectionResult? detectionResult = null;
-            CsvDialect dialect;
-            var delimiterWasAutomatic = delimiterOverride is null;
-
-            if (delimiterWasAutomatic)
-            {
-                detectionResult = CsvDialectDetector.Detect(snapshot.Text);
-                if (!detectionResult.IsReliable || detectionResult.SuggestedDialect is null)
+            var buildResult = CsvTableBuilder.Build(
+                snapshot.Text,
+                new CsvTableBuildOptions
                 {
-                    _gridForm.ShowDelimiterSelectionRequired(snapshot, detectionResult);
-                    return;
-                }
-
-                dialect = CsvDialect.Create(
-                    detectionResult.SuggestedDialect.Delimiter,
-                    headerMode: headerMode);
-            }
-            else
-            {
-                dialect = CsvDialect.Create(
-                    delimiterOverride.Value,
-                    headerMode: headerMode);
-            }
-
-            var parseResult = CsvParser.Parse(snapshot.Text, dialect);
-            var projection = CsvTableProjector.Create(
-                parseResult,
-                new CsvTableProjectionOptions
-                {
-                    HeaderMode = headerMode,
+                    DelimiterOverride = _gridForm.SelectedDelimiterOverride,
+                    HeaderMode = _gridForm.SelectedHeaderMode,
                     MaximumRows = MaximumDisplayedRows,
                     MaximumColumns = MaximumDisplayedColumns
                 });
 
-            _gridForm.ShowVisualTable(
-                snapshot,
-                parseResult,
-                projection,
-                detectionResult,
-                delimiterWasAutomatic);
+            switch (buildResult.Status)
+            {
+                case CsvTableBuildStatus.Empty:
+                    _gridForm.ShowEmptyDocument(snapshot);
+                    return;
+
+                case CsvTableBuildStatus.DelimiterSelectionRequired
+                    when buildResult.DetectionResult is not null:
+                    _gridForm.ShowDelimiterSelectionRequired(
+                        snapshot,
+                        buildResult.DetectionResult);
+                    return;
+
+                case CsvTableBuildStatus.Ready
+                    when buildResult.ParseResult is not null &&
+                         buildResult.Projection is not null:
+                    _gridForm.ShowVisualTable(
+                        snapshot,
+                        buildResult.ParseResult,
+                        buildResult.Projection,
+                        buildResult.DetectionResult,
+                        buildResult.DelimiterWasAutomatic);
+                    return;
+
+                default:
+                    throw new InvalidOperationException(
+                        "The table builder returned an incomplete result.");
+            }
         }
         catch (InvalidOperationException exception)
         {
