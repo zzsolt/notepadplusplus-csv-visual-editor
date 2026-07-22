@@ -6,6 +6,38 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Added
 
+- Host-independent `CsvTableViewBuilder` for immutable search, filtering, and stable view sorting.
+- Case-insensitive search across every visible column.
+- Optional search scope limited to one selected column.
+- 250 ms search debounce in the WinForms panel.
+- Three-state programmatic column sorting: ascending, descending, and original source order.
+- Dedicated Table and Diagnostics tabs.
+- Detailed diagnostics grid with severity, code, logical-record number, character offset, and message.
+- Combined delimiter-detection and parser diagnostics.
+- Clear action for the current search and view sort.
+- xUnit coverage for search, selected-column filtering, stable sorting, filter/sort composition, invalid indexes, and projection immutability.
+- Native AOT runtime coverage for table search, sorting, ToolStrip search controls, debounce timer, TabControl, and diagnostics DataGridView.
+- `0.5.0-alpha` Native AOT test-package naming.
+
+### Changed
+
+- CSV data columns now use programmatic sort glyphs while the underlying parser projection remains unchanged.
+- Status text reports matching-row counts and the active view sort.
+- Dark-mode handling covers both toolbars, both tabs, the visual table, and diagnostics grid.
+- `CsvDialectDetectionResult.Diagnostics` is exposed through the `IReadOnlyList<CsvDiagnostic>` abstraction rather than a concrete collection type.
+- About text describes the 0.5 read-only search and diagnostics boundary.
+
+### Safety
+
+- Search, filtering, and sorting remain entirely view-only.
+- Stable sorting preserves original source order for equal values.
+- Source logical-record numbers remain attached to filtered and sorted rows.
+- No Scintilla write, disk write, serializer, edit, or write-back path was added.
+
+## [0.4.0-alpha] — 2026-07-22
+
+### Added
+
 - Read-only visual CSV table backed by immutable parser output.
 - Host-independent `CsvTableBuilder` result states for empty input, manual delimiter requirement, and ready tables.
 - Visible delimiter selector for automatic, comma, semicolon, and tab modes.
@@ -19,34 +51,32 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - DPI-aware initial dock-width policy with tests for default, user-sized, small-host, and high-DPI layouts.
 - Content-aware, bounded column fill-weight calculation with deterministic row sampling and multiline handling.
 - Developer and contact information in the About dialog.
-- `0.4.0-alpha` Native AOT test-package naming.
 
 ### Changed
 
-- The panel now renders parsed CSV values instead of snapshot metadata when a trustworthy or explicitly selected dialect is available.
+- The panel renders parsed CSV values instead of snapshot metadata when a trustworthy or explicitly selected dialect is available.
 - Automatic detection is accepted only at Medium or High confidence.
 - Inconsistent-width records are padded only in the rectangular view and remain unchanged in parser output.
 - The displayed row count is constrained by both row and aggregate-cell budgets.
 - A newly created right-side panel that is still at the Notepad++ default width is expanded once to a usable width after first display.
 - Existing user-sized wider dock layouts are preserved, and small Notepad++ windows retain a minimum editor area.
-- Visual CSV columns now use `DataGridView` Fill sizing, weighted by sampled header and cell lengths, so short tables fill the panel without unused grey workspace.
-- Every visual CSV column retains a 90-pixel minimum width; wide or high-column-count tables therefore use horizontal scrolling instead of collapsing into unreadable cells.
-- Column fill sizing automatically follows subsequent dock-panel resizing while preserving manual column resize support.
-- CI diagnostics now cover strict build, bootstrap smoke, xUnit core tests, Native AOT table runtime execution, and plugin publishing separately.
-- About text describes the 0.4 read-only table boundary.
+- Visual CSV columns use `DataGridView` Fill sizing, weighted by sampled header and cell lengths.
+- Every visual CSV column retains a 90-pixel minimum width, with horizontal scrolling for wide tables.
+- Column fill sizing follows subsequent dock-panel resizing while preserving manual column resize support.
+- CI diagnostics cover strict build, bootstrap smoke, xUnit core tests, Native AOT table runtime execution, and plugin publishing separately.
 
 ### Fixed
 
-- Preserved the public parameterless `DataGridViewRowHeaderCell` constructor required by WinForms reflective row-header creation under Native AOT. Without this root, setting source record numbers failed at runtime with `MissingMethodException` even though compilation and publishing succeeded.
-- Corrected the unusably narrow first-open dock layout caused by the Notepad++ host registering the docking container before the derived WinForms `ClientSize` is applied.
+- Preserved the public parameterless `DataGridViewRowHeaderCell` constructor required by WinForms reflective row-header creation under Native AOT.
+- Corrected the unusably narrow first-open dock layout caused by host registration before the derived WinForms `ClientSize` is applied.
 - Removed unused right-side grid workspace for tables whose natural column widths are narrower than the dock panel.
 
 ### Validated
 
-- The Native AOT runtime smoke test creates a three-column, one-row read-only DataGridView from synthetic CSV in both automatic and manual-comma modes, including source row-header numbering.
-- The Native AOT runtime smoke test verifies Fill sizing, the readable minimum width, and larger relative width for longer content.
-- Initial dock-width calculations are validated for the Notepad++ 200-pixel default, preserved user layouts, constrained small windows, DPI scaling, and invalid inputs.
-- Column weights are validated for long versus short values, empty fields, multiline values, maximum caps, deterministic sampling, and invalid sample limits.
+- 69/69 xUnit tests passed.
+- Native AOT table/DataGridView runtime smoke passed.
+- Notepad++ 8.9.7 x64 owner acceptance passed.
+- Accepted public squash merge: `d17dd7f46f600fac2896f21239d7833dd00dd727`.
 
 ## [0.3.0-alpha] — 2026-07-21
 
