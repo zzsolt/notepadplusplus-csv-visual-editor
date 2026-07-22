@@ -17,6 +17,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - xUnit table-builder and projection tests for delimiter gating, header modes, unique names, inconsistent widths, limits, and empty input.
 - Native AOT runtime smoke library that executes CSV table building and DataGridView population for both automatic and manual-comma modes.
 - DPI-aware initial dock-width policy with tests for default, user-sized, small-host, and high-DPI layouts.
+- Content-aware, bounded column fill-weight calculation with deterministic row sampling and multiline handling.
 - Developer and contact information in the About dialog.
 - `0.4.0-alpha` Native AOT test-package naming.
 
@@ -28,6 +29,9 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - The displayed row count is constrained by both row and aggregate-cell budgets.
 - A newly created right-side panel that is still at the Notepad++ default width is expanded once to a usable width after first display.
 - Existing user-sized wider dock layouts are preserved, and small Notepad++ windows retain a minimum editor area.
+- Visual CSV columns now use `DataGridView` Fill sizing, weighted by sampled header and cell lengths, so short tables fill the panel without unused grey workspace.
+- Every visual CSV column retains a 90-pixel minimum width; wide or high-column-count tables therefore use horizontal scrolling instead of collapsing into unreadable cells.
+- Column fill sizing automatically follows subsequent dock-panel resizing while preserving manual column resize support.
 - CI diagnostics now cover strict build, bootstrap smoke, xUnit core tests, Native AOT table runtime execution, and plugin publishing separately.
 - About text describes the 0.4 read-only table boundary.
 
@@ -35,11 +39,14 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 - Preserved the public parameterless `DataGridViewRowHeaderCell` constructor required by WinForms reflective row-header creation under Native AOT. Without this root, setting source record numbers failed at runtime with `MissingMethodException` even though compilation and publishing succeeded.
 - Corrected the unusably narrow first-open dock layout caused by the Notepad++ host registering the docking container before the derived WinForms `ClientSize` is applied.
+- Removed unused right-side grid workspace for tables whose natural column widths are narrower than the dock panel.
 
 ### Validated
 
-- The Native AOT runtime smoke test now creates a three-column, one-row read-only DataGridView from synthetic CSV in both automatic and manual-comma modes, including source row-header numbering.
+- The Native AOT runtime smoke test creates a three-column, one-row read-only DataGridView from synthetic CSV in both automatic and manual-comma modes, including source row-header numbering.
+- The Native AOT runtime smoke test verifies Fill sizing, the readable minimum width, and larger relative width for longer content.
 - Initial dock-width calculations are validated for the Notepad++ 200-pixel default, preserved user layouts, constrained small windows, DPI scaling, and invalid inputs.
+- Column weights are validated for long versus short values, empty fields, multiline values, maximum caps, deterministic sampling, and invalid sample limits.
 
 ## [0.3.0-alpha] — 2026-07-21
 
