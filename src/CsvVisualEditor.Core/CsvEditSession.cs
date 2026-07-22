@@ -78,41 +78,10 @@ public sealed class CsvEditSession
         }
 
         var sourcePrefix = snapshot.Text[..parseResult.Records[0].SourceSpan.Start];
-        var records = new EditableRecord[parseResult.Records.Count];
-        for (var index = 0; index < parseResult.Records.Count; index++)
-        {
-            var sourceRecord = parseResult.Records[index];
-            var nextRecordStart = index + 1 < parseResult.Records.Count
-                ? parseResult.Records[index + 1].SourceSpan.Start
-                : snapshot.Text.Length;
-
-            if (sourceRecord.SourceSpan.End > nextRecordStart ||
-                nextRecordStart > snapshot.Text.Length)
-            {
-                throw new InvalidOperationException(
-                    "Parser source spans do not form a valid ordered view of the editor snapshot.");
-            }
-
-            var rawRecordText = snapshot.Text.Substring(
-                sourceRecord.SourceSpan.Start,
-                sourceRecord.SourceSpan.Length);
-            var separatorAfter = snapshot.Text.Substring(
-                sourceRecord.SourceSpan.End,
-                nextRecordStart - sourceRecord.SourceSpan.End);
-            var originalValues = new string[projection.ColumnCount];
-            Array.Fill(originalValues, string.Empty);
-            for (var fieldIndex = 0; fieldIndex < sourceRecord.Cells.Count; fieldIndex++)
-            {
-                originalValues[fieldIndex] = sourceRecord.Cells[fieldIndex].Value;
-            }
-
-            records[index] = new EditableRecord(
-                sourceRecord.Index,
-                sourceRecord.FieldCount,
-                originalValues,
-                rawRecordText,
-                separatorAfter);
-        }
+        var records = CreateEditableRecords(
+            snapshot.Text,
+            parseResult.Records,
+            projection.ColumnCount);
 
         ValidateExactSourceReconstruction(snapshot.Text, sourcePrefix, records);
 
@@ -298,6 +267,48 @@ public sealed class CsvEditSession
             ChangedCellCount);
     }
 
+    private static EditableRecord[] CreateEditableRecords(
+        string snapshotText,
+        IReadOnlyList<CsvRecord> sourceRecords,
+        int columnCount)
+    {
+        var records = new EditableRecord[sourceRecords.Count];
+        for (var index = 0; index < sourceRecords.Count; index++)
+        {
+            var sourceRecord = sourceRecords[index];
+            var nextRecordStart = index + 1 < sourceRecords.Count
+                ? sourceRecords[index + 1].SourceSpan.Start
+                : snapshotText.Length;
+
+            if (sourceRecord.SourceSpan.End > nextRecordStart ||
+                nextRecordStart > snapshotText.Length)
+            {
+                throw new InvalidOperationException(
+                    "Parser source spans do not form a valid ordered view of the editor snapshot.");
+            }
+
+            var originalValues = new string[columnCount];
+            Array.Fill(originalValues, string.Empty);
+            for (var fieldIndex = 0; fieldIndex < sourceRecord.Cells.Count; fieldIndex++)
+            {
+                originalValues[fieldIndex] = sourceRecord.Cells[fieldIndex].Value;
+            }
+
+            records[index] = new EditableRecord(
+                sourceRecord.Index,
+                sourceRecord.FieldCount,
+                originalValues,
+                snapshotText.Substring(
+                    sourceRecord.SourceSpan.Start,
+                    sourceRecord.SourceSpan.Length),
+                snapshotText.Substring(
+                    sourceRecord.SourceSpan.End,
+                    nextRecordStart - sourceRecord.SourceSpan.End));
+        }
+
+        return records;
+    }
+
     private static void ValidateEditableProjection(
         ActiveDocumentSnapshot snapshot,
         CsvParseResult parseResult,
@@ -308,6 +319,8 @@ public sealed class CsvEditSession
             throw new InvalidOperationException(
                 "Editing cannot start while the parsed CSV contains errors.");
         }
+
+        CsvParseResultVerifier.EnsureMatchesSnapshot(snapshot.Text, parseResult);
 
         if (projection.IsRowLimited ||
             projection.DisplayedRowCount != projection.TotalDataRecordCount)
