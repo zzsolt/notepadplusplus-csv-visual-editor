@@ -13,6 +13,8 @@ public sealed record CsvTableProjectionOptions
 
     public int MaximumColumns { get; init; } = 512;
 
+    public int MaximumCells { get; init; } = 250_000;
+
     internal void Validate()
     {
         if (HeaderMode is not CsvHeaderMode.FirstRecord and not CsvHeaderMode.NoHeader)
@@ -37,6 +39,14 @@ public sealed record CsvTableProjectionOptions
                 nameof(MaximumColumns),
                 MaximumColumns,
                 "At least one column must be allowed for display.");
+        }
+
+        if (MaximumCells <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(MaximumCells),
+                MaximumCells,
+                "At least one visual table cell must be allowed for display.");
         }
     }
 }
