@@ -4,7 +4,9 @@ using System.Windows.Forms;
 
 /// <summary>
 /// Keeps the CSV table row header readable and makes row-header clicks select
-/// the complete logical row without changing normal cell-click behavior.
+/// logical rows without changing normal cell-click behavior. Unmodified clicks
+/// are explicitly normalized; Ctrl and Shift clicks retain the built-in
+/// DataGridView multi-selection semantics.
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
@@ -25,7 +27,13 @@ internal static class CsvGridRowHeaderBehavior
         grid.RowsAdded += (_, _) => ConfigureWhenTableIsVisible(grid);
         grid.RowHeaderMouseClick += (_, eventArgs) =>
         {
-            if (eventArgs.Button == MouseButtons.Left)
+            if (eventArgs.Button != MouseButtons.Left)
+            {
+                return;
+            }
+
+            var modifiers = Control.ModifierKeys & (Keys.Control | Keys.Shift);
+            if (modifiers == Keys.None)
             {
                 SelectWholeRow(grid, eventArgs.RowIndex);
             }
@@ -68,6 +76,7 @@ internal static class CsvGridRowHeaderBehavior
         grid.RowHeadersWidthSizeMode =
             DataGridViewRowHeadersWidthSizeMode.EnableResizing;
         grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
+        grid.MultiSelect = true;
     }
 
     private static DataGridView? FindTableGrid(Control root)
