@@ -4,6 +4,66 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.0-alpha] — 2026-07-23
+
+### Added
+
+- Stable `CsvEditRowId` identities for source and inserted data rows.
+- Host-independent `CsvRowEditModel` with append, insert-before, insert-after, delete, restore, and Revert All transitions.
+- Immutable `CsvEditRowSnapshot` and `CsvRowEditPreview` models.
+- Explicit **Add Row** and **Delete Row** controls in Edit mode.
+- Header-only editing so a CSV header can receive its first data row.
+- Changed-cell, unique changed-row, inserted-row, and deleted-row counts.
+- `new:n *` row-header markers for inserted rows.
+- Deterministic structural preview generation with SHA-256.
+- Shared `CsvEditorReplacementPlan` for cell-only and structural Apply paths.
+- Structural fake-host tests for NoChanges, document/code-page/content conflicts, exact one-undo ordering, failure cleanup, and selection restoration.
+- Native AOT execution of structural preview, structural Apply, content-conflict zero-call behavior, and exact Revert All.
+- Public row-operation architecture and 0.8 host-validation guides.
+- `0.8.0-alpha` assembly, About, workflow artifact, and package version.
+
+### Changed
+
+- Source-row values remain owned by `CsvEditSession`; the structural model reads them live instead of duplicating mutable state.
+- Edit-mode grid rows now store stable `CsvEditRowId` values rather than visual row indexes.
+- Edit mode renders the structural source-order model and continues to lock filtering and sorting.
+- Add Row inserts after the selected stable row identity, or appends when no row is selected.
+- Delete Row deletes only the selected stable data-row identity; deleting an inserted row cancels that insertion.
+- Revert All restores cell edits, source deletions, insertions, source order, and exact original preview text.
+- Cell-only and structural Apply entry points converge on one private Begin/Replace/Selection/End coordinator.
+- Dirty status and the status bar now expose combined cell, row, insertion, and deletion counts.
+
+### Serialization
+
+- Unchanged source records retain exact raw source text.
+- Dirty source records retain the accepted original/padded field-count policy.
+- Inserted rows serialize the complete editable column width with explicit empty strings.
+- Interior boundaries retain the left surviving source record's exact separator when available.
+- Boundaries after inserted rows use the detected serialization newline.
+- Append after a source record without a terminal separator creates exactly one required record boundary.
+- Original terminal-newline state is preserved independently from interior record boundaries.
+- Deleting every headerless row retains only the source prefix, including an optional BOM.
+
+### Safety
+
+- Structural model creation requires matching document identity, code page, baseline SHA-256, dialect, source-record sequence, header record, column set, and complete source-order projection.
+- Row-limited and malformed projections remain non-editable.
+- Deleted rows cannot be edited or used as insertion anchors.
+- Visual DataGridView indexes are never used as persistent source identities.
+- Structural NoChanges and conflict plans expose no replacement text or replacement hash.
+- No editor target method is called for structural NoChanges or conflict states.
+- UTF-8-only Apply remains enforced before the Notepad++ replacement adapter is created.
+- Structural Apply remains one complete editor-buffer replacement inside one Scintilla undo transaction.
+- Saving remains a normal Notepad++ action; no direct disk write or save-point manipulation was added.
+
+### Validated
+
+- 159/159 xUnit tests passed on the first complete 0.8 UI integration head.
+- Strict core build and bootstrap smoke passed.
+- Native AOT structural preview, shared Apply coordinator, content-conflict zero-call path, and exact Revert All passed.
+- Full win-x64 Native AOT plugin publish and `0.8.0-alpha` package creation passed.
+- Complete Notepad++ 8.9.7 x64 host acceptance is pending.
+
 ## [0.7.0-alpha] — 2026-07-22
 
 ### Added
