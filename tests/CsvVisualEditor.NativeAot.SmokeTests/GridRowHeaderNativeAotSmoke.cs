@@ -13,8 +13,10 @@ internal static class GridRowHeaderNativeAotSmoke
         using var tableGrid = new DataGridView
         {
             AllowUserToAddRows = false,
-            RowHeadersVisible = true,
-            SelectionMode = DataGridViewSelectionMode.CellSelect
+            ClipboardCopyMode =
+                DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText,
+            RowHeadersVisible = false,
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect
         };
         using var diagnosticsGrid = new DataGridView
         {
@@ -22,9 +24,6 @@ internal static class GridRowHeaderNativeAotSmoke
             SelectionMode = DataGridViewSelectionMode.FullRowSelect
         };
 
-        tableGrid.Columns.Add("A", "A");
-        tableGrid.Columns.Add("B", "B");
-        tableGrid.Rows.Add("one", "two");
         form.Controls.Add(diagnosticsGrid);
         form.Controls.Add(tableGrid);
         form.CreateControl();
@@ -32,7 +31,12 @@ internal static class GridRowHeaderNativeAotSmoke
 
         Require(
             CsvGridRowHeaderBehavior.TryAttach(form),
-            "Native AOT row-header behavior did not find the table grid.");
+            "Native AOT row-header behavior did not find the hidden table grid during bootstrap.");
+
+        tableGrid.RowHeadersVisible = true;
+        tableGrid.Columns.Add("A", "A");
+        tableGrid.Columns.Add("B", "B");
+        tableGrid.Rows.Add("one", "two");
         Require(
             tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
             "Native AOT row-header width policy mismatch.");
