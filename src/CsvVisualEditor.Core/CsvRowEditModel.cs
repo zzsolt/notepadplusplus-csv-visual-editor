@@ -2,6 +2,7 @@ namespace CsvVisualEditor.Core;
 
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Security.Cryptography;
 using System.Text;
 
 /// <summary>
@@ -75,6 +76,66 @@ public sealed record CsvEditRowSnapshot
     public bool IsDeleted { get; }
 
     public ReadOnlyCollection<string> Values { get; }
+}
+
+/// <summary>
+/// Immutable structural preview. It is intentionally separate from the
+/// accepted 0.7 cell-only Apply contract until structural Apply is integrated.
+/// </summary>
+public sealed record CsvRowEditPreview
+{
+    internal CsvRowEditPreview(
+        string text,
+        int changedCellCount,
+        int changedRowCount,
+        int insertedRowCount,
+        int deletedRowCount)
+    {
+        ArgumentNullException.ThrowIfNull(text);
+
+        if (changedCellCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(changedCellCount));
+        }
+
+        if (changedRowCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(changedRowCount));
+        }
+
+        if (insertedRowCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(insertedRowCount));
+        }
+
+        if (deletedRowCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(deletedRowCount));
+        }
+
+        Text = text;
+        ChangedCellCount = changedCellCount;
+        ChangedRowCount = changedRowCount;
+        InsertedRowCount = insertedRowCount;
+        DeletedRowCount = deletedRowCount;
+        ContentSha256 = Convert.ToHexString(
+                SHA256.HashData(Encoding.UTF8.GetBytes(text)))
+            .ToLowerInvariant();
+    }
+
+    public string Text { get; }
+
+    public int ChangedCellCount { get; }
+
+    public int ChangedRowCount { get; }
+
+    public int InsertedRowCount { get; }
+
+    public int DeletedRowCount { get; }
+
+    public string ContentSha256 { get; }
+
+    public bool HasChanges => ChangedRowCount > 0;
 }
 
 /// <summary>
@@ -162,7 +223,7 @@ public sealed class CsvRowEditModel
             ? snapshot.Text
             : snapshot.Text[..parseResult.Records[0].SourceSpan.Start];
         var sourceRecords = CreateSourceRecordStates(snapshot.Text, parseResult.Records);
-        ValidateExactSourceReconstruction(snapshot.Text, sourcePrefix, sourceRecords.Values);
+        ValidateExactSourceReconstruction(snapshot.Text, sourcePrefix, parseResult.Records, sourceRecords);
 
         var rows = projection.Rows
             .Select(static projectedRow => new RowState(
@@ -318,12 +379,12 @@ public sealed class CsvRowEditModel
         return true;
     }
 
-    public CsvEditPreview CreatePreview()
+    public CsvRowEditPreview CreatePreview()
     {
         var outputRows = CreateOutputRows();
         if (outputRows.Count == 0)
         {
-            return new CsvEditPreview(
+            return new CsvRowEditPreview(
                 _sourcePrefix,
                 ChangedCellCount,
                 ChangedRowCount,
@@ -348,7 +409,7 @@ public sealed class CsvRowEditModel
             }
         }
 
-        return new CsvEditPreview(
+        return new CsvRowEditPreview(
             builder.ToString(),
             ChangedCellCount,
             ChangedRowCount,
@@ -393,7 +454,7 @@ public sealed class CsvRowEditModel
             var values = GetSourceValues(sourceRecordIndex);
             builder.Append(CsvSerializer.SerializeRecord(
                 values,
-                _session.GetOriginalFieldCount(sourceRecordIndex),
+                GetSerializedFieldCount(sourceRecordIndex, values),
                 _session.SerializationPolicy));
             return;
         }
@@ -402,6 +463,22 @@ public sealed class CsvRowEditModel
             outputRow.InsertedValues!,
             ColumnCount,
             _session.SerializationPolicy));
+    }
+
+    private int GetSerializedFieldCount(
+        int sourceRecordIndex,
+        IReadOnlyList<string> values)
+    {
+        var originalFieldCount = _session.GetOriginalFieldCount(sourceRecordIndex);
+        for (var index = values.Count - 1; index >= originalFieldCount; index--)
+        {
+            if (values[index].Length > 0)
+            {
+                return index + 1;
+            }
+        }
+
+        return originalFieldCount;
     }
 
     private string GetBoundarySeparator(OutputRow leftRow)
@@ -573,14 +650,16 @@ public sealed class CsvRowEditModel
     private static void ValidateExactSourceReconstruction(
         string originalText,
         string sourcePrefix,
-        IEnumerable<SourceRecordState> records)
+        IReadOnlyList<CsvRecord> sourceRecords,
+        IReadOnlyDictionary<int, SourceRecordState> states)
     {
         var builder = new StringBuilder(originalText.Length);
         builder.Append(sourcePrefix);
-        foreach (var record in records.OrderBy(static record => record.SourceRecordIndex))
+        foreach (var sourceRecord in sourceRecords)
         {
-            builder.Append(record.RawRecordText);
-            builder.Append(record.SeparatorAfter);
+            var state = states[sourceRecord.Index];
+            builder.Append(state.RawRecordText);
+            builder.Append(state.SeparatorAfter);
         }
 
         if (!string.Equals(originalText, builder.ToString(), StringComparison.Ordinal))
