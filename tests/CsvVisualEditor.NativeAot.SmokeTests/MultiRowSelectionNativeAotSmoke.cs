@@ -57,10 +57,13 @@ internal static class MultiRowSelectionNativeAotSmoke
         }
         grid.CreateControl();
 
+        // CurrentCell changes may update DataGridView selection state. Establish
+        // focus first, then create the complete-row selection snapshot exactly
+        // as the real row-header gestures leave it.
+        grid.CurrentCell = grid.Rows[2].Cells[0];
         grid.ClearSelection();
         grid.Rows[0].Selected = true;
         grid.Rows[2].Selected = true;
-        grid.CurrentCell = grid.Rows[2].Cells[0];
 
         var selected = CsvGridSelectionSnapshot.Capture(grid);
         Require(selected.Count == 2, "Native AOT selected-row snapshot count mismatch.");
@@ -76,8 +79,10 @@ internal static class MultiRowSelectionNativeAotSmoke
             string.Equals(model.CreatePreview().Text, "Name\nBeta", StringComparison.Ordinal),
             "Native AOT selected batch preview mismatch.");
 
-        grid.ClearSelection();
+        // A normal cell focus with no complete-row selection uses the documented
+        // current-row fallback.
         grid.CurrentCell = grid.Rows[1].Cells[0];
+        grid.ClearSelection();
         var fallback = CsvGridSelectionSnapshot.Capture(grid);
         Require(fallback.Count == 1, "Native AOT current-row fallback count mismatch.");
         Require(fallback[0].Id == sourceRows[1].Id, "Native AOT current-row fallback identity mismatch.");
