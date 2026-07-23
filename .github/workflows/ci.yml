@@ -140,7 +140,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-native-aot-runtime-smoke-diagnostics
-          path: artifacts/native-aot-runtime-smoke.log
+          path: |
+            artifacts/native-aot-runtime-smoke.log
+            artifacts/native-aot-runtime-smoke-execution.log
           if-no-files-found: error
 
       - name: Publish x64 Native AOT plugin
@@ -170,7 +172,7 @@ jobs:
           Copy-Item 'artifacts/publish/CsvVisualEditor.dll' $pluginDirectory
           Compress-Archive `
             -Path $pluginDirectory `
-            -DestinationPath 'artifacts/CsvVisualEditor-0.8.0-alpha-win-x64.zip' `
+            -DestinationPath 'artifacts/CsvVisualEditor-0.9.0-alpha-win-x64.zip' `
             -CompressionLevel Optimal `
             -Force
 
@@ -178,8 +180,8 @@ jobs:
         if: steps.publish.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: CsvVisualEditor-0.8.0-alpha-win-x64
-          path: artifacts/CsvVisualEditor-0.8.0-alpha-win-x64.zip
+          name: CsvVisualEditor-0.9.0-alpha-win-x64
+          path: artifacts/CsvVisualEditor-0.9.0-alpha-win-x64.zip
           if-no-files-found: error
 
       - name: Upload publish diagnostics
