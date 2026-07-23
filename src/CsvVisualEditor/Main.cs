@@ -291,9 +291,9 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.8.0-alpha\n\n" +
+            "CSV Visual Editor 0.9.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
-            "Edit mode supports deterministic cell editing plus Add Row and Delete Row. " +
+            "Edit mode supports deterministic cell editing, Add Row, and stable multi-row batch deletion. " +
             "Fresh-buffer conflict checks and one Scintilla undo transaction protect Apply. " +
             "Apply currently supports UTF-8 editor buffers only and modifies only the " +
             "active Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
