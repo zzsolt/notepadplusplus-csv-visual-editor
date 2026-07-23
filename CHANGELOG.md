@@ -4,6 +4,55 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.0-alpha] — 2026-07-23
+
+### Added
+
+- Atomic `CsvRowEditModelBatchOperations.DeleteRows` API using stable `CsvEditRowId` targets.
+- Immutable `CsvBatchDeleteResult` with target, source-deletion, inserted-cancellation, affected, and remaining-row counts.
+- Duplicate-ID normalization and complete prevalidation before the first structural mutation.
+- Mixed source-row deletion and inserted-row cancellation in one deterministic operation.
+- `CsvGridSelectionSnapshot` for immediately copying transient DataGridView selection into immutable stable IDs.
+- Ctrl selection of non-adjacent complete rows and Shift selection of contiguous row ranges.
+- Dynamic **Delete Row** / **Delete Rows (n)** command state.
+- Documented current-cell fallback when no complete row is selected.
+- Deterministic neighboring-row focus after batch deletion.
+- Nine batch-operation xUnit regressions covering atomicity, duplicates, ordering, mixed rows, BOM, mixed EOL, terminal newlines, inserted-only cleanup, and exact Revert All.
+- Native AOT batch preview, Apply, content-conflict zero-call, Revert, selected-row snapshot, and current-row fallback execution.
+- Public multi-row deletion architecture and Notepad++ 0.9 host-validation matrix.
+- `0.9.0-alpha` assembly, About, workflow artifact, and package version.
+
+### Changed
+
+- Edit mode now keeps DataGridView `MultiSelect` enabled while retaining `RowHeaderSelect` and ordinary cell editing.
+- Unmodified left row-header clicks still normalize to one complete-row selection.
+- Ctrl/Shift row-header clicks retain built-in WinForms multi-selection semantics instead of clearing prior selection.
+- Delete captures the current selection before mutation, converts it to stable IDs, and performs one core batch operation.
+- Selection enumeration order no longer affects structural output.
+- Button text and tooltip communicate one-row versus multi-row deletion targets.
+- Status messages distinguish source rows marked for deletion from inserted rows removed by cancellation.
+- Native AOT diagnostic artifacts now include both publish and execution logs.
+
+### Safety
+
+- DataGridView rows, indexes, and `SelectedRows` collections remain transient presentation state.
+- The complete unique stable-ID set is validated before any row mutation.
+- An unknown stable identity produces zero partial changes.
+- Built-in DataGridView row deletion remains disabled.
+- Selected inserted rows are cancelled; selected source rows remain restorable through Revert All.
+- NoChanges and document/code-page/content conflicts continue to call no editor method.
+- Batch Apply reuses the existing single Begin/Replace/Selection/End coordinator.
+- UTF-8-only Apply, one full-buffer replacement, normal Notepad++ Save ownership, and no direct disk writes remain unchanged.
+
+### Validated
+
+- 168/168 xUnit tests passed.
+- Strict core build and bootstrap smoke passed.
+- Native AOT mixed batch deletion, deterministic preview, Apply ordering, conflict zero-call behavior, and exact Revert All passed.
+- Native AOT stable non-adjacent selected-row snapshot and current-cell fallback passed after correcting the smoke setup order.
+- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation passed on the implementation head.
+- Complete Notepad++ 8.9.7 x64 owner acceptance is pending.
+
 ## [0.8.0-alpha] — 2026-07-23
 
 ### Added
