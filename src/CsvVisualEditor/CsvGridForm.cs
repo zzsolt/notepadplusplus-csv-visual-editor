@@ -26,6 +26,8 @@ internal sealed class CsvGridForm : DockingForm
     private readonly ToolStripComboBox _delimiterCombo;
     private readonly ToolStripComboBox _headerCombo;
     private readonly ToolStripButton _editButton;
+    private readonly ToolStripButton _addRowButton;
+    private readonly ToolStripButton _deleteRowButton;
     private readonly ToolStripButton _applyButton;
     private readonly ToolStripButton _revertAllButton;
     private readonly ToolStripLabel _dirtyLabel;
@@ -48,6 +50,7 @@ internal sealed class CsvGridForm : DockingForm
     private CsvTableProjection? _projection;
     private CsvDialectDetectionResult? _detectionResult;
     private CsvEditSession? _editSession;
+    private CsvRowEditModel? _rowEditModel;
     private CsvTableViewResult? _lastViewResult;
     private bool _delimiterWasAutomatic;
     private bool _updatingViewControls;
@@ -59,11 +62,9 @@ internal sealed class CsvGridForm : DockingForm
     public CsvGridForm(int dialogId, string pluginModuleName, Icon formIcon)
         : base(dialogId, pluginModuleName, FormTitle, null, formIcon, InitialDockPosition)
     {
-        _refreshButton = new ToolStripButton("Refresh")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            ToolTipText = "Read and render the current active Notepad++ editor buffer"
-        };
+        _refreshButton = CreateTextButton(
+            "Refresh",
+            "Read and render the current active Notepad++ editor buffer");
         _refreshButton.Click += (_, _) => RefreshRequested?.Invoke(this, EventArgs.Empty);
 
         _delimiterCombo = new ToolStripComboBox
@@ -96,33 +97,39 @@ internal sealed class CsvGridForm : DockingForm
         _headerCombo.SelectedIndex = HeaderFirstRecordIndex;
         _headerCombo.SelectedIndexChanged += OnDisplayOptionChanged;
 
-        _editButton = new ToolStripButton("Edit")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            Enabled = false,
-            ToolTipText = "Enter explicit cell-editing mode"
-        };
+        _editButton = CreateTextButton(
+            "Edit",
+            "Enter explicit cell and row editing mode");
+        _editButton.Enabled = false;
         _editButton.Click += (_, _) => ToggleEditMode();
 
-        _applyButton = new ToolStripButton("Apply")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            Enabled = false,
-            ToolTipText = "Apply all grid edits to the active editor as one undoable action"
-        };
+        _addRowButton = CreateTextButton(
+            "Add Row",
+            "Insert a new row after the selected row, or append when no row is selected");
+        _addRowButton.Enabled = false;
+        _addRowButton.Click += (_, _) => AddRow();
+
+        _deleteRowButton = CreateTextButton(
+            "Delete Row",
+            "Delete the selected data row from the pending edit session");
+        _deleteRowButton.Enabled = false;
+        _deleteRowButton.Click += (_, _) => DeleteCurrentRow();
+
+        _applyButton = CreateTextButton(
+            "Apply",
+            "Apply all cell and row edits to the active editor as one undoable action");
+        _applyButton.Enabled = false;
         _applyButton.Click += (_, _) => RequestApply();
 
-        _revertAllButton = new ToolStripButton("Revert All")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            Enabled = false,
-            ToolTipText = "Discard every pending grid edit"
-        };
+        _revertAllButton = CreateTextButton(
+            "Revert All",
+            "Discard every pending cell insertion and deletion change");
+        _revertAllButton.Enabled = false;
         _revertAllButton.Click += (_, _) => RevertAllEdits();
 
         _dirtyLabel = new ToolStripLabel("0 changes")
         {
-            ToolTipText = "Pending cell and record changes"
+            ToolTipText = "Pending cell and structural row changes"
         };
 
         _toolStrip = new ToolStrip
@@ -139,6 +146,8 @@ internal sealed class CsvGridForm : DockingForm
         _toolStrip.Items.Add(_headerCombo);
         _toolStrip.Items.Add(new ToolStripSeparator());
         _toolStrip.Items.Add(_editButton);
+        _toolStrip.Items.Add(_addRowButton);
+        _toolStrip.Items.Add(_deleteRowButton);
         _toolStrip.Items.Add(_applyButton);
         _toolStrip.Items.Add(_revertAllButton);
         _toolStrip.Items.Add(_dirtyLabel);
@@ -164,19 +173,15 @@ internal sealed class CsvGridForm : DockingForm
         _searchColumnCombo.SelectedIndex = 0;
         _searchColumnCombo.SelectedIndexChanged += OnSearchColumnChanged;
 
-        _clearSearchButton = new ToolStripButton("Clear")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            Enabled = false,
-            ToolTipText = "Clear the current search filter and view-only sort"
-        };
+        _clearSearchButton = CreateTextButton(
+            "Clear",
+            "Clear the current search filter and view-only sort");
+        _clearSearchButton.Enabled = false;
         _clearSearchButton.Click += (_, _) => ClearViewOptions();
 
-        _diagnosticsButton = new ToolStripButton("Diagnostics (0)")
-        {
-            DisplayStyle = ToolStripItemDisplayStyle.Text,
-            ToolTipText = "Show detailed parser and delimiter diagnostics"
-        };
+        _diagnosticsButton = CreateTextButton(
+            "Diagnostics (0)",
+            "Show detailed parser and delimiter diagnostics");
 
         _viewToolStrip = new ToolStrip
         {
@@ -211,6 +216,7 @@ internal sealed class CsvGridForm : DockingForm
         _grid.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
         _grid.ColumnHeaderMouseClick += OnTableColumnHeaderMouseClick;
         _grid.CellValueChanged += OnGridCellValueChanged;
+        _grid.SelectionChanged += (_, _) => UpdateControlAvailability();
 
         _diagnosticsGrid = CreateReadOnlyGrid(showRowHeaders: false);
         _diagnosticsGrid.MultiSelect = false;
@@ -242,7 +248,6 @@ internal sealed class CsvGridForm : DockingForm
             Spring = true,
             TextAlign = ContentAlignment.MiddleLeft
         };
-
         _statusStrip = new StatusStrip
         {
             Dock = DockStyle.Bottom,
@@ -291,6 +296,8 @@ internal sealed class CsvGridForm : DockingForm
     };
 
     public CsvEditSession? EditSession => _editSession;
+
+    public CsvRowEditModel? RowEditModel => _rowEditModel;
 
     public bool IsEditMode => _editMode;
 
@@ -342,7 +349,6 @@ internal sealed class CsvGridForm : DockingForm
             "Choose Comma, Semicolon, or Tab from the Delimiter list above.");
         PopulateDiagnostics(detectionResult.Diagnostics);
         _tabControl.SelectedTab = _tablePage;
-
         _statusLabel.Text =
             $"{snapshot.DisplayName} — automatic delimiter detection is not reliable; " +
             "manual selection is required.";
@@ -405,7 +411,7 @@ internal sealed class CsvGridForm : DockingForm
             CsvEditorApplyStatus.ContentChanged =>
                 "Apply blocked: the editor buffer changed after Edit mode started. Revert and refresh before editing again.",
             CsvEditorApplyStatus.NoChanges =>
-                "Nothing to apply: the edit session contains no pending cell changes.",
+                "Nothing to apply: the edit session contains no pending changes.",
             _ => "Apply was not completed. No automatic overwrite was attempted."
         };
     }
@@ -509,6 +515,13 @@ internal sealed class CsvGridForm : DockingForm
 
         base.Dispose(disposing);
     }
+
+    private static ToolStripButton CreateTextButton(string text, string toolTipText) =>
+        new(text)
+        {
+            DisplayStyle = ToolStripItemDisplayStyle.Text,
+            ToolTipText = toolTipText
+        };
 
     private static DataGridView CreateReadOnlyGrid(bool showRowHeaders)
     {
@@ -619,12 +632,12 @@ internal sealed class CsvGridForm : DockingForm
     {
         if (!_editMode ||
             _suppressGridChanges ||
-            _editSession is null ||
+            _rowEditModel is null ||
             e.RowIndex < 0 ||
             e.ColumnIndex < 0 ||
             e.RowIndex >= _grid.Rows.Count ||
             e.ColumnIndex >= _grid.Columns.Count ||
-            _grid.Rows[e.RowIndex].Tag is not int sourceRecordIndex)
+            _grid.Rows[e.RowIndex].Tag is not CsvEditRowId rowId)
         {
             return;
         }
@@ -632,7 +645,7 @@ internal sealed class CsvGridForm : DockingForm
         var value = Convert.ToString(
                 _grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value,
                 CultureInfo.InvariantCulture) ?? string.Empty;
-        _editSession.SetCellValue(sourceRecordIndex, e.ColumnIndex, value);
+        _rowEditModel.SetCellValue(rowId, e.ColumnIndex, value);
         UpdateDirtyIndicators();
     }
 
@@ -640,7 +653,7 @@ internal sealed class CsvGridForm : DockingForm
     {
         if (_editMode)
         {
-            if (_editSession?.IsDirty == true)
+            if (_rowEditModel?.IsDirty == true)
             {
                 _statusLabel.Text =
                     "Edit mode contains pending changes. Use Apply or Revert All before leaving Edit mode.";
@@ -656,7 +669,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private void EnterEditMode()
     {
-        if (_editSession is null || _projection is null)
+        if (_rowEditModel is null || _projection is null)
         {
             _statusLabel.Text =
                 "Edit mode is unavailable for the current table. Resolve parser errors or display limits first.";
@@ -677,9 +690,68 @@ internal sealed class CsvGridForm : DockingForm
         ApplyCurrentView();
     }
 
+    private void AddRow()
+    {
+        if (!_editMode || _rowEditModel is null)
+        {
+            return;
+        }
+
+        if (!CommitPendingEdit())
+        {
+            _statusLabel.Text =
+                "The active cell edit could not be committed. Correct the value before adding a row.";
+            return;
+        }
+
+        CsvEditRowId insertedId;
+        if (_grid.CurrentRow?.Tag is CsvEditRowId anchorId)
+        {
+            insertedId = _rowEditModel.InsertRowAfter(anchorId);
+        }
+        else
+        {
+            insertedId = _rowEditModel.AppendRow();
+        }
+
+        ApplyCurrentView();
+        SelectRow(insertedId, beginEdit: true);
+        _statusLabel.Text =
+            "A new row was added to the pending edit session. Apply writes it to the editor buffer; Revert All discards it.";
+    }
+
+    private void DeleteCurrentRow()
+    {
+        if (!_editMode ||
+            _rowEditModel is null ||
+            _grid.CurrentRow?.Tag is not CsvEditRowId rowId)
+        {
+            return;
+        }
+
+        if (!CommitPendingEdit())
+        {
+            _statusLabel.Text =
+                "The active cell edit could not be committed. Correct the value before deleting the row.";
+            return;
+        }
+
+        var previousDisplayIndex = _grid.CurrentRow.Index;
+        if (!_rowEditModel.DeleteRow(rowId))
+        {
+            return;
+        }
+
+        ApplyCurrentView();
+        SelectRowByDisplayIndex(previousDisplayIndex);
+        _statusLabel.Text = rowId.IsInserted
+            ? "The newly inserted row was removed from the pending session."
+            : "The source row is marked for deletion. Apply writes the deletion; Revert All restores it.";
+    }
+
     private void RequestApply()
     {
-        if (!_editMode || _editSession is null)
+        if (!_editMode || _rowEditModel is null)
         {
             return;
         }
@@ -691,7 +763,7 @@ internal sealed class CsvGridForm : DockingForm
             return;
         }
 
-        if (!_editSession.IsDirty)
+        if (!_rowEditModel.IsDirty)
         {
             ShowApplyConflict(CsvEditorApplyStatus.NoChanges);
             UpdateDirtyIndicators();
@@ -703,16 +775,16 @@ internal sealed class CsvGridForm : DockingForm
 
     private void RevertAllEdits()
     {
-        if (!_editMode || _editSession is null)
+        if (!_editMode || _rowEditModel is null)
         {
             return;
         }
 
         _grid.CancelEdit();
-        _editSession.RevertAll();
+        _rowEditModel.RevertAll();
         ApplyCurrentView();
         _statusLabel.Text =
-            "All pending grid edits were reverted. The Notepad++ editor buffer was not changed.";
+            "All pending cell and row edits were reverted. The Notepad++ editor buffer was not changed.";
     }
 
     private void ClearViewOptions()
@@ -794,12 +866,18 @@ internal sealed class CsvGridForm : DockingForm
         try
         {
             _editSession = CsvEditSession.Create(snapshot, parseResult, projection);
+            _rowEditModel = CsvRowEditModel.Create(
+                snapshot,
+                parseResult,
+                _editSession,
+                projection);
             _editButton.ToolTipText =
-                "Enter explicit cell-editing mode. Apply writes only to the editor buffer.";
+                "Enter explicit cell and row editing mode. Apply writes only to the editor buffer.";
         }
         catch (InvalidOperationException exception)
         {
             _editSession = null;
+            _rowEditModel = null;
             _editButton.ToolTipText = exception.Message;
         }
     }
@@ -811,34 +889,69 @@ internal sealed class CsvGridForm : DockingForm
             return;
         }
 
-        int? searchColumnIndex = !_editMode && _searchColumnCombo.SelectedIndex > 0
+        if (_editMode && _rowEditModel is not null)
+        {
+            RenderStructuralRows(_rowEditModel.GetVisibleRows());
+            UpdateDirtyIndicators();
+            return;
+        }
+
+        int? searchColumnIndex = _searchColumnCombo.SelectedIndex > 0
             ? _searchColumnCombo.SelectedIndex - 1
             : null;
         var view = CsvTableViewBuilder.Build(
             _projection,
             new CsvTableViewOptions
             {
-                SearchText = _editMode ? string.Empty : _searchBox.Text,
+                SearchText = _searchBox.Text,
                 SearchColumnIndex = searchColumnIndex,
-                SortColumnIndex = _editMode ? null : _sortColumnIndex,
-                SortDirection = _editMode
-                    ? CsvTableSortDirection.None
-                    : _sortDirection
+                SortColumnIndex = _sortColumnIndex,
+                SortDirection = _sortDirection
             });
         _lastViewResult = view;
+        RenderViewRows(view.Rows);
+        UpdateSortGlyphs();
+        UpdateDirtyIndicators();
+    }
 
+    private void RenderViewRows(IEnumerable<CsvTableRow> rows)
+    {
         _suppressGridChanges = true;
         _grid.SuspendLayout();
         try
         {
             _grid.Rows.Clear();
-            foreach (var row in view.Rows)
+            foreach (var row in rows)
             {
-                var values = CreateDisplayedValues(row);
-                var gridRowIndex = _grid.Rows.Add(values);
+                var gridRowIndex = _grid.Rows.Add(
+                    row.Values.Select(static value => (object)value).ToArray());
                 var gridRow = _grid.Rows[gridRowIndex];
                 gridRow.Tag = row.SourceRecordIndex;
-                SetRowHeader(gridRow, row.SourceRecordIndex);
+                gridRow.HeaderCell.Value =
+                    (row.SourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+            }
+        }
+        finally
+        {
+            _grid.ResumeLayout(performLayout: true);
+            _suppressGridChanges = false;
+        }
+    }
+
+    private void RenderStructuralRows(IEnumerable<CsvEditRowSnapshot> rows)
+    {
+        _suppressGridChanges = true;
+        _grid.SuspendLayout();
+        try
+        {
+            _grid.Rows.Clear();
+            foreach (var row in rows)
+            {
+                var gridRowIndex = _grid.Rows.Add(
+                    row.Values.Select(static value => (object)value).ToArray());
+                var gridRow = _grid.Rows[gridRowIndex];
+                gridRow.Tag = row.Id;
+                SetStructuralRowHeader(gridRow, row);
             }
 
             UpdateSortGlyphs();
@@ -848,38 +961,26 @@ internal sealed class CsvGridForm : DockingForm
             _grid.ResumeLayout(performLayout: true);
             _suppressGridChanges = false;
         }
-
-        UpdateDirtyIndicators();
-        UpdateStatus(view);
     }
 
-    private object[] CreateDisplayedValues(CsvTableRow row)
+    private void SetStructuralRowHeader(
+        DataGridViewRow gridRow,
+        CsvEditRowSnapshot row)
     {
-        if (!_editMode || _editSession is null)
+        if (row.IsInserted)
         {
-            return row.Values.Select(static value => (object)value).ToArray();
+            gridRow.HeaderCell.Value = $"new:{Math.Abs(row.Id.Value)} *";
+            return;
         }
 
-        var values = new object[_projection?.ColumnCount ?? row.Values.Count];
-        for (var columnIndex = 0; columnIndex < values.Length; columnIndex++)
-        {
-            values[columnIndex] = _editSession.GetValue(
-                row.SourceRecordIndex,
-                columnIndex);
-        }
-
-        return values;
-    }
-
-    private void SetRowHeader(DataGridViewRow gridRow, int sourceRecordIndex)
-    {
-        var isDirty = IsRecordDirty(sourceRecordIndex);
+        var sourceRecordIndex = row.SourceRecordIndex ??
+            throw new InvalidOperationException("A source row did not expose its source record index.");
         gridRow.HeaderCell.Value =
             (sourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture) +
-            (isDirty ? " *" : string.Empty);
+            (IsSourceRecordDirty(sourceRecordIndex) ? " *" : string.Empty);
     }
 
-    private bool IsRecordDirty(int sourceRecordIndex)
+    private bool IsSourceRecordDirty(int sourceRecordIndex)
     {
         if (_editSession is null)
         {
@@ -897,37 +998,75 @@ internal sealed class CsvGridForm : DockingForm
         return false;
     }
 
-    private void UpdateDirtyIndicators()
+    private void SelectRow(CsvEditRowId id, bool beginEdit)
     {
-        var changedCells = _editSession?.ChangedCellCount ?? 0;
-        var changedRecords = _editSession?.ChangedRecordCount ?? 0;
-        _dirtyLabel.Text = changedCells == 0
-            ? "0 changes"
-            : $"{FormatNumber(changedCells)} cells / {FormatNumber(changedRecords)} rows";
-
         foreach (DataGridViewRow row in _grid.Rows)
         {
-            if (row.Tag is int sourceRecordIndex)
+            if (row.Tag is CsvEditRowId candidate && candidate == id)
             {
-                SetRowHeader(row, sourceRecordIndex);
+                if (_grid.Columns.Count > 0)
+                {
+                    _grid.CurrentCell = row.Cells[0];
+                    if (beginEdit)
+                    {
+                        _grid.BeginEdit(selectAll: true);
+                    }
+                }
+
+                return;
+            }
+        }
+    }
+
+    private void SelectRowByDisplayIndex(int preferredIndex)
+    {
+        if (_grid.Rows.Count == 0 || _grid.Columns.Count == 0)
+        {
+            return;
+        }
+
+        var selectedIndex = Math.Clamp(preferredIndex, 0, _grid.Rows.Count - 1);
+        _grid.CurrentCell = _grid.Rows[selectedIndex].Cells[0];
+    }
+
+    private void UpdateDirtyIndicators()
+    {
+        var changedCells = _rowEditModel?.ChangedCellCount ?? 0;
+        var changedRows = _rowEditModel?.ChangedRowCount ?? 0;
+        var insertedRows = _rowEditModel?.InsertedRowCount ?? 0;
+        var deletedRows = _rowEditModel?.DeletedRowCount ?? 0;
+        var isDirty = _rowEditModel?.IsDirty ?? false;
+
+        _dirtyLabel.Text = !isDirty
+            ? "0 changes"
+            : $"{FormatNumber(changedCells)} cells / {FormatNumber(changedRows)} rows " +
+              $"(+{FormatNumber(insertedRows)} / -{FormatNumber(deletedRows)})";
+
+        if (_editMode && _rowEditModel is not null)
+        {
+            var snapshots = _rowEditModel.GetVisibleRows().ToDictionary(static row => row.Id);
+            foreach (DataGridViewRow gridRow in _grid.Rows)
+            {
+                if (gridRow.Tag is CsvEditRowId rowId && snapshots.TryGetValue(rowId, out var snapshot))
+                {
+                    SetStructuralRowHeader(gridRow, snapshot);
+                }
             }
         }
 
-        _applyButton.Enabled = _editMode && changedCells > 0;
-        _revertAllButton.Enabled = _editMode && changedCells > 0;
-
-        if (_lastViewResult is not null)
-        {
-            UpdateStatus(_lastViewResult);
-        }
+        UpdateControlAvailability();
+        UpdateStatus();
     }
 
     private void UpdateControlAvailability()
     {
         var hasTable = _projection is not null;
-        var canEdit = _editSession is not null &&
+        var canEdit = _rowEditModel is not null &&
                       _projection is not null &&
-                      _projection.DisplayedRowCount > 0;
+                      _projection.ColumnCount > 0;
+        var isDirty = _rowEditModel?.IsDirty ?? false;
+        var hasSelectedEditableRow =
+            _editMode && _grid.CurrentRow?.Tag is CsvEditRowId;
 
         _refreshButton.Enabled = !_editMode;
         _delimiterCombo.Enabled = !_editMode;
@@ -941,8 +1080,11 @@ internal sealed class CsvGridForm : DockingForm
         _editButton.Enabled = canEdit;
         _editButton.Text = _editMode ? "Exit Edit" : "Edit";
         _editButton.Checked = _editMode;
-        _applyButton.Enabled = _editMode && (_editSession?.IsDirty ?? false);
-        _revertAllButton.Enabled = _applyButton.Enabled;
+        _addRowButton.Enabled = _editMode && canEdit;
+        _deleteRowButton.Enabled = hasSelectedEditableRow;
+        _applyButton.Enabled = _editMode && isDirty;
+        _revertAllButton.Enabled = _editMode && isDirty;
+        _grid.MultiSelect = !_editMode;
         _grid.ReadOnly = !_editMode;
         _grid.EditMode = _editMode
             ? DataGridViewEditMode.EditOnKeystrokeOrF2
@@ -969,7 +1111,7 @@ internal sealed class CsvGridForm : DockingForm
                 : SortOrder.Descending;
     }
 
-    private void UpdateStatus(CsvTableViewResult view)
+    private void UpdateStatus()
     {
         if (_projection is null || _snapshot is null || _parseResult is null)
         {
@@ -982,13 +1124,28 @@ internal sealed class CsvGridForm : DockingForm
         var warningCount = allDiagnostics.Count(
             static diagnostic => diagnostic.Severity == CsvDiagnosticSeverity.Warning);
 
-        var rowDescription = view.IsFiltered
-            ? $"{FormatNumber(view.VisibleRowCount)} matching of " +
-              $"{FormatNumber(_projection.DisplayedRowCount)} displayed rows"
-            : _projection.IsRowLimited
-                ? $"showing {FormatNumber(_projection.DisplayedRowCount)} of " +
-                  $"{FormatNumber(_projection.TotalDataRecordCount)} rows"
-                : $"{FormatNumber(_projection.DisplayedRowCount)} rows";
+        string rowDescription;
+        if (_editMode && _rowEditModel is not null)
+        {
+            rowDescription = $"{FormatNumber(_rowEditModel.VisibleRowCount)} pending rows";
+        }
+        else if (_lastViewResult?.IsFiltered == true)
+        {
+            rowDescription =
+                $"{FormatNumber(_lastViewResult.VisibleRowCount)} matching of " +
+                $"{FormatNumber(_projection.DisplayedRowCount)} displayed rows";
+        }
+        else if (_projection.IsRowLimited)
+        {
+            rowDescription =
+                $"showing {FormatNumber(_projection.DisplayedRowCount)} of " +
+                $"{FormatNumber(_projection.TotalDataRecordCount)} rows";
+        }
+        else
+        {
+            rowDescription = $"{FormatNumber(_projection.DisplayedRowCount)} rows";
+        }
+
         var delimiterSource = _delimiterWasAutomatic
             ? $"automatic {_detectionResult?.Confidence.ToString().ToLowerInvariant() ?? "unknown"} confidence"
             : "manual selection";
@@ -998,13 +1155,17 @@ internal sealed class CsvGridForm : DockingForm
         var diagnosticDescription = errorCount == 0 && warningCount == 0
             ? "no parser diagnostics"
             : $"{errorCount} errors, {warningCount} warnings";
-        var sortDescription = view.IsSorted && view.SortColumnIndex is not null
-            ? $" — sorted by {_projection.Columns[view.SortColumnIndex.Value].Name} " +
-              view.SortDirection.ToString().ToLowerInvariant()
+        var sortDescription = !_editMode &&
+                              _lastViewResult?.IsSorted == true &&
+                              _lastViewResult.SortColumnIndex is not null
+            ? $" — sorted by {_projection.Columns[_lastViewResult.SortColumnIndex.Value].Name} " +
+              _lastViewResult.SortDirection.ToString().ToLowerInvariant()
             : string.Empty;
-        var editDescription = _editMode
-            ? $" — EDIT MODE: {FormatNumber(_editSession?.ChangedCellCount ?? 0)} changed cells in " +
-              $"{FormatNumber(_editSession?.ChangedRecordCount ?? 0)} rows"
+        var editDescription = _editMode && _rowEditModel is not null
+            ? $" — EDIT MODE: {FormatNumber(_rowEditModel.ChangedCellCount)} cells, " +
+              $"{FormatNumber(_rowEditModel.ChangedRowCount)} rows, " +
+              $"+{FormatNumber(_rowEditModel.InsertedRowCount)} / " +
+              $"-{FormatNumber(_rowEditModel.DeletedRowCount)}"
             : string.Empty;
 
         _statusLabel.Text =
@@ -1040,49 +1201,40 @@ internal sealed class CsvGridForm : DockingForm
 
     private void ConfigureDiagnosticsGrid()
     {
+        AddDiagnosticsColumn(
+            "Severity",
+            DataGridViewAutoSizeColumnMode.AllCells,
+            minimumWidth: 90);
+        AddDiagnosticsColumn(
+            "Code",
+            DataGridViewAutoSizeColumnMode.AllCells,
+            minimumWidth: 80);
+        AddDiagnosticsColumn(
+            "Record",
+            DataGridViewAutoSizeColumnMode.AllCells,
+            minimumWidth: 80);
+        AddDiagnosticsColumn(
+            "Character",
+            DataGridViewAutoSizeColumnMode.AllCells,
+            minimumWidth: 90);
+        AddDiagnosticsColumn(
+            "Message",
+            DataGridViewAutoSizeColumnMode.Fill,
+            minimumWidth: 260);
+    }
+
+    private void AddDiagnosticsColumn(
+        string name,
+        DataGridViewAutoSizeColumnMode autoSizeMode,
+        int minimumWidth)
+    {
         _diagnosticsGrid.Columns.Add(
             new DataGridViewTextBoxColumn
             {
-                Name = "Severity",
-                HeaderText = "Severity",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                MinimumWidth = 90,
-                SortMode = DataGridViewColumnSortMode.NotSortable
-            });
-        _diagnosticsGrid.Columns.Add(
-            new DataGridViewTextBoxColumn
-            {
-                Name = "Code",
-                HeaderText = "Code",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                MinimumWidth = 80,
-                SortMode = DataGridViewColumnSortMode.NotSortable
-            });
-        _diagnosticsGrid.Columns.Add(
-            new DataGridViewTextBoxColumn
-            {
-                Name = "Record",
-                HeaderText = "Record",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                MinimumWidth = 80,
-                SortMode = DataGridViewColumnSortMode.NotSortable
-            });
-        _diagnosticsGrid.Columns.Add(
-            new DataGridViewTextBoxColumn
-            {
-                Name = "Character",
-                HeaderText = "Character",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                MinimumWidth = 90,
-                SortMode = DataGridViewColumnSortMode.NotSortable
-            });
-        _diagnosticsGrid.Columns.Add(
-            new DataGridViewTextBoxColumn
-            {
-                Name = "Message",
-                HeaderText = "Message",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                MinimumWidth = 260,
+                Name = name,
+                HeaderText = name,
+                AutoSizeMode = autoSizeMode,
+                MinimumWidth = minimumWidth,
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });
     }
@@ -1123,7 +1275,7 @@ internal sealed class CsvGridForm : DockingForm
         _grid.Rows.Clear();
         _grid.Columns.Clear();
         _grid.RowHeadersVisible = true;
-        _grid.MultiSelect = true;
+        _grid.MultiSelect = !_editMode;
         _grid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         _grid.ReadOnly = !_editMode;
     }
@@ -1164,9 +1316,12 @@ internal sealed class CsvGridForm : DockingForm
         if (clearSession)
         {
             _editSession = null;
+            _rowEditModel = null;
         }
 
         _dirtyLabel.Text = "0 changes";
+        _addRowButton.Enabled = false;
+        _deleteRowButton.Enabled = false;
         _applyButton.Enabled = false;
         _revertAllButton.Enabled = false;
         _editButton.Checked = false;
