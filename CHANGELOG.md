@@ -32,6 +32,9 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Revert All restores cell edits, source deletions, insertions, source order, and exact original preview text.
 - Cell-only and structural Apply entry points converge on one private Begin/Replace/Selection/End coordinator.
 - Dirty status and the status bar now expose combined cell, row, insertion, and deletion counts.
+- Row headers use a readable 112-pixel width for complete `new:n *` labels.
+- Ordinary cell clicks remain cell selections while left row-header clicks select the complete stable row.
+- Row-header selection policy is reapplied after table reconstruction and is attached safely during the initial bootstrap state.
 
 ### Serialization
 
@@ -58,11 +61,13 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Validated
 
-- 159/159 xUnit tests passed on the first complete 0.8 UI integration head.
+- 159/159 xUnit tests passed.
 - Strict core build and bootstrap smoke passed.
 - Native AOT structural preview, shared Apply coordinator, content-conflict zero-call path, and exact Revert All passed.
+- Native AOT row-header discovery, preferred width, complete-row selection, and reconstruction reapplication passed.
 - Full win-x64 Native AOT plugin publish and `0.8.0-alpha` package creation passed.
-- Complete Notepad++ 8.9.7 x64 host acceptance is pending.
+- Complete Notepad++ 8.9.7 x64 owner acceptance passed on 2026-07-23.
+- Accepted host coverage included cell editing, Add Row, Delete Row, inserted-row cancellation, Revert All, combined Apply, one-step undo/redo, Save ownership, stable source identity after sorting, header-only insertion, multiline/Unicode values, mixed line endings, terminal-newline preservation, inconsistent widths, conflict blocking, non-UTF-8 refusal, lifecycle, light/dark mode, readable `new:n *` markers, and spreadsheet-style row-header selection.
 
 ## [0.7.0-alpha] — 2026-07-22
 
