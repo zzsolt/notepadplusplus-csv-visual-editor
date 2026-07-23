@@ -74,7 +74,9 @@ internal static class CsvGridRowHeaderBehavior
     {
         foreach (Control child in root.Controls)
         {
-            if (child is DataGridView grid && grid.RowHeadersVisible)
+            if (child is DataGridView grid &&
+                grid.ClipboardCopyMode ==
+                    DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText)
             {
                 return grid;
             }
