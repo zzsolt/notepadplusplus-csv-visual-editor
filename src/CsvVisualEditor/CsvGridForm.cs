@@ -111,7 +111,7 @@ internal sealed class CsvGridForm : DockingForm
 
         _deleteRowButton = CreateTextButton(
             "Delete Row",
-            "Delete the selected data row from the pending edit session");
+            "Delete the selected stable data row or rows from the pending edit session");
         _deleteRowButton.Enabled = false;
         _deleteRowButton.Click += (_, _) => DeleteCurrentRow();
 
@@ -722,9 +722,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private void DeleteCurrentRow()
     {
-        if (!_editMode ||
-            _rowEditModel is null ||
-            _grid.CurrentRow?.Tag is not CsvEditRowId rowId)
+        if (!_editMode || _rowEditModel is null)
         {
             return;
         }
@@ -732,21 +730,40 @@ internal sealed class CsvGridForm : DockingForm
         if (!CommitPendingEdit())
         {
             _statusLabel.Text =
-                "The active cell edit could not be committed. Correct the value before deleting the row.";
+                "The active cell edit could not be committed. Correct the value before deleting rows.";
             return;
         }
 
-        var previousDisplayIndex = _grid.CurrentRow.Index;
-        if (!_rowEditModel.DeleteRow(rowId))
+        var targets = CsvGridSelectionSnapshot.Capture(_grid);
+        if (targets.Count == 0)
         {
             return;
         }
 
+        var preferredDisplayIndex = targets.Min(static target => target.DisplayIndex);
+        CsvBatchDeleteResult result;
+        try
+        {
+            result = _rowEditModel.DeleteRows(
+                targets.Select(static target => target.Id));
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            _statusLabel.Text =
+                "The selected row set is no longer valid for this edit session. No rows were deleted.";
+            return;
+        }
+
+        if (!result.HasChanges)
+        {
+            UpdateDirtyIndicators();
+            _statusLabel.Text = "The selected rows were already deleted. No additional change was made.";
+            return;
+        }
+
         ApplyCurrentView();
-        SelectRowByDisplayIndex(previousDisplayIndex);
-        _statusLabel.Text = rowId.IsInserted
-            ? "The newly inserted row was removed from the pending session."
-            : "The source row is marked for deletion. Apply writes the deletion; Revert All restores it.";
+        SelectRowByDisplayIndex(preferredDisplayIndex);
+        _statusLabel.Text = FormatBatchDeleteStatus(result);
     }
 
     private void RequestApply()
@@ -1065,8 +1082,10 @@ internal sealed class CsvGridForm : DockingForm
                       _projection is not null &&
                       _projection.ColumnCount > 0;
         var isDirty = _rowEditModel?.IsDirty ?? false;
-        var hasSelectedEditableRow =
-            _editMode && _grid.CurrentRow?.Tag is CsvEditRowId;
+        var deletionTargets = _editMode
+            ? CsvGridSelectionSnapshot.Capture(_grid)
+            : Array.Empty<CsvGridSelectedRow>();
+        var deleteTargetCount = deletionTargets.Count;
 
         _refreshButton.Enabled = !_editMode;
         _delimiterCombo.Enabled = !_editMode;
@@ -1081,10 +1100,16 @@ internal sealed class CsvGridForm : DockingForm
         _editButton.Text = _editMode ? "Exit Edit" : "Edit";
         _editButton.Checked = _editMode;
         _addRowButton.Enabled = _editMode && canEdit;
-        _deleteRowButton.Enabled = hasSelectedEditableRow;
+        _deleteRowButton.Enabled = deleteTargetCount > 0;
+        _deleteRowButton.Text = deleteTargetCount > 1
+            ? $"Delete Rows ({FormatNumber(deleteTargetCount)})"
+            : "Delete Row";
+        _deleteRowButton.ToolTipText = deleteTargetCount > 1
+            ? "Delete every selected stable data row from the pending edit session"
+            : "Delete the selected stable data row from the pending edit session";
         _applyButton.Enabled = _editMode && isDirty;
         _revertAllButton.Enabled = _editMode && isDirty;
-        _grid.MultiSelect = !_editMode;
+        _grid.MultiSelect = hasTable;
         _grid.ReadOnly = !_editMode;
         _grid.EditMode = _editMode
             ? DataGridViewEditMode.EditOnKeystrokeOrF2
@@ -1275,8 +1300,8 @@ internal sealed class CsvGridForm : DockingForm
         _grid.Rows.Clear();
         _grid.Columns.Clear();
         _grid.RowHeadersVisible = true;
-        _grid.MultiSelect = !_editMode;
-        _grid.SelectionMode = DataGridViewSelectionMode.CellSelect;
+        _grid.MultiSelect = true;
+        _grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
         _grid.ReadOnly = !_editMode;
     }
 
@@ -1322,6 +1347,7 @@ internal sealed class CsvGridForm : DockingForm
         _dirtyLabel.Text = "0 changes";
         _addRowButton.Enabled = false;
         _deleteRowButton.Enabled = false;
+        _deleteRowButton.Text = "Delete Row";
         _applyButton.Enabled = false;
         _revertAllButton.Enabled = false;
         _editButton.Checked = false;
@@ -1333,6 +1359,28 @@ internal sealed class CsvGridForm : DockingForm
     private void AddMetadataRow(string property, string value)
     {
         _grid.Rows.Add(property, value);
+    }
+
+    private static string FormatBatchDeleteStatus(CsvBatchDeleteResult result)
+    {
+        if (result.DeletedSourceRowCount > 0 &&
+            result.CancelledInsertedRowCount > 0)
+        {
+            return $"{FormatNumber(result.DeletedSourceRowCount)} source rows are marked for deletion and " +
+                   $"{FormatNumber(result.CancelledInsertedRowCount)} inserted rows were removed from the pending session.";
+        }
+
+        if (result.DeletedSourceRowCount > 0)
+        {
+            return result.DeletedSourceRowCount == 1
+                ? "The source row is marked for deletion. Apply writes the deletion; Revert All restores it."
+                : $"{FormatNumber(result.DeletedSourceRowCount)} source rows are marked for deletion. " +
+                  "Apply writes the batch; Revert All restores every row.";
+        }
+
+        return result.CancelledInsertedRowCount == 1
+            ? "The newly inserted row was removed from the pending session."
+            : $"{FormatNumber(result.CancelledInsertedRowCount)} newly inserted rows were removed from the pending session.";
     }
 
     private static IReadOnlyList<CsvDiagnostic> GetAllDiagnostics(
