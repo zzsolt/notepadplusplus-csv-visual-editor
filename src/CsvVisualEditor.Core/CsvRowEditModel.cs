@@ -417,6 +417,61 @@ public sealed class CsvRowEditModel
             DeletedRowCount);
     }
 
+    public CsvEditorReplacementPlan CreateApplyPlan(
+        ActiveDocumentSnapshot currentSnapshot)
+    {
+        ArgumentNullException.ThrowIfNull(currentSnapshot);
+
+        if (!IsDirty)
+        {
+            return CsvEditorReplacementPlan.FromStructuralPreview(
+                CsvEditApplyStatus.NoChanges,
+                preview: null,
+                changedCellCount: 0,
+                changedRecordCount: 0,
+                insertedRowCount: 0,
+                deletedRowCount: 0);
+        }
+
+        if (!_session.Baseline.IsSameDocument(currentSnapshot))
+        {
+            return CreateConflictPlan(CsvEditApplyStatus.DocumentIdentityChanged);
+        }
+
+        if (_session.Baseline.CodePage != currentSnapshot.CodePage)
+        {
+            return CreateConflictPlan(CsvEditApplyStatus.CodePageChanged);
+        }
+
+        if (!string.Equals(
+                _session.Baseline.ContentSha256,
+                currentSnapshot.ContentSha256,
+                StringComparison.Ordinal))
+        {
+            return CreateConflictPlan(CsvEditApplyStatus.ContentChanged);
+        }
+
+        return CsvEditorReplacementPlan.FromStructuralPreview(
+            CsvEditApplyStatus.Ready,
+            CreatePreview(),
+            ChangedCellCount,
+            ChangedRowCount,
+            InsertedRowCount,
+            DeletedRowCount);
+    }
+
+    private CsvEditorReplacementPlan CreateConflictPlan(
+        CsvEditApplyStatus status)
+    {
+        return CsvEditorReplacementPlan.FromStructuralPreview(
+            status,
+            preview: null,
+            ChangedCellCount,
+            ChangedRowCount,
+            InsertedRowCount,
+            DeletedRowCount);
+    }
+
     private IReadOnlyList<OutputRow> CreateOutputRows()
     {
         var outputRows = new List<OutputRow>(VisibleRowCount + 1);
@@ -677,13 +732,36 @@ public sealed class CsvRowEditModel
     {
         CsvParseResultVerifier.EnsureMatchesSnapshot(snapshot.Text, parseResult);
 
-        if (!string.Equals(
+        if (!session.Baseline.IsSameDocument(snapshot) ||
+            snapshot.CodePage != session.Baseline.CodePage ||
+            !string.Equals(
                 snapshot.ContentSha256,
                 session.Baseline.ContentSha256,
                 StringComparison.Ordinal))
         {
             throw new InvalidOperationException(
-                "The structural row model and edit session must use the same editor snapshot.");
+                "The structural row model and edit session must use the same editor snapshot, document identity, and code page.");
+        }
+
+        if (parseResult.Dialect.Delimiter != session.SerializationPolicy.Delimiter ||
+            parseResult.Dialect.Quote != session.SerializationPolicy.Quote)
+        {
+            throw new InvalidOperationException(
+                "The structural row model and edit session must use the same CSV dialect.");
+        }
+
+        if (!parseResult.Records
+                .Select(static record => record.Index)
+                .SequenceEqual(session.SourceRecordIndexes))
+        {
+            throw new InvalidOperationException(
+                "The structural row model and edit session must represent the same source records.");
+        }
+
+        if (projection.HeaderSourceRecordIndex != session.HeaderSourceRecordIndex)
+        {
+            throw new InvalidOperationException(
+                "The structural row model and edit session must use the same header record.");
         }
 
         if (projection.ColumnCount != session.ColumnCount)
