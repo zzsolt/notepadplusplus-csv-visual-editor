@@ -77,6 +77,7 @@ partial class Main : IDotNetPlugin
             _gridForm = gridForm;
             gridForm.RefreshRequested += OnRefreshRequested;
             gridForm.ApplyRequested += OnApplyRequested;
+            CsvGridRowHeaderBehavior.TryAttach(gridForm);
             LoadActiveDocumentTable();
             gridForm.BeginInvoke(
                 (Action)(() => NotepadDockWidthAdjuster.TryExpandInitialRightDock(gridForm)));
