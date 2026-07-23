@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.7 editable-grid alpha accepted in Notepad++ 8.9.7 x64**. Edit mode can modify an active UTF-8 Notepad++ editor buffer through deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.8 row-operations alpha under Notepad++ host validation**. Edit mode supports cell editing plus explicit Add Row and Delete Row operations for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
 
 ## Current capabilities
 
@@ -30,13 +30,18 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - dedicated **Table** and **Diagnostics** tabs
 - structured diagnostics with severity, code, logical record, character offset, and message
 - explicit Edit mode, off by default
-- per-cell dirty tracking with changed-cell and changed-record counts
-- `*` dirty marker beside the original source logical-record number
+- direct data-cell editing
+- explicit **Add Row** and **Delete Row** controls
+- stable source-row identities independent of visible grid position
+- synthetic session-local identities for inserted rows
+- changed-cell, changed-row, inserted-row, and deleted-row counts
+- `*` marker beside changed source rows and `new:n *` markers beside inserted rows
 - Revert All without modifying the editor buffer
 - deterministic comma/semicolon/tab CSV serialization
 - minimal-difference previews that preserve unchanged raw records and line separators
+- deterministic insertion/deletion separator and terminal-newline handling
 - fresh document, code-page, and content-hash conflict checks immediately before Apply
-- Apply restricted to Scintilla code page 65001 (UTF-8) in the first writable alpha
+- Apply restricted to Scintilla code page 65001 (UTF-8) in the current writable alpha
 - one whole-document Scintilla replacement inside one undo action
 - normal Notepad++ modified-marker and Save ownership
 - visible display limits: at most 10,000 rows, 512 columns, and 250,000 cells in the current alpha
@@ -48,15 +53,32 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 1. Open a trustworthy, fully displayed CSV table. Viewing is not limited to UTF-8.
 2. Select **Edit**. Search and sorting are cleared and source order is restored.
 3. Edit data cells directly in the grid.
-4. Dirty records keep their original row number and add `*`.
-5. Select **Revert All** to discard every grid edit without touching the editor.
-6. Select **Apply** to re-read the active editor and perform a fresh conflict check.
-7. Apply is permitted only when both the session baseline and current editor buffer use Scintilla code page 65001 (UTF-8).
-8. A document, code-page, content, or unsupported-encoding condition blocks Apply with zero replacement calls.
-9. A valid Apply replaces the active editor buffer once inside one Scintilla undo action.
-10. Save through Notepad++ when ready.
+4. Select **Add Row** to insert after the selected row, or append when no row is selected.
+5. Select **Delete Row** to mark the selected source row for deletion; deleting a newly inserted row cancels that insertion.
+6. Changed source rows keep their original logical-record number and add `*`; inserted rows use `new:n *`.
+7. Select **Revert All** to discard every cell, insertion, and deletion change without touching the editor.
+8. Select **Apply** to re-read the active editor and perform a fresh conflict check.
+9. Apply is permitted only when both the session baseline and current editor buffer use Scintilla code page 65001 (UTF-8).
+10. A document, code-page, content, or unsupported-encoding condition blocks Apply with zero replacement calls.
+11. A valid Apply replaces the active editor buffer once inside one Scintilla undo action.
+12. Save through Notepad++ when ready.
 
 While Edit mode is active, Refresh, delimiter, header, search, and sort transitions are locked. A dirty Edit mode cannot be exited implicitly; use Apply or Revert All.
+
+## Row-operation behavior
+
+- Grid display indexes are never treated as persistent source identities.
+- Existing data rows retain their original parser record identity.
+- Inserted rows receive unique negative session-local identities internally.
+- The header is outside the deletable data-row model.
+- A source row remains restorable after pending deletion.
+- Deleting an inserted row cancels the insertion.
+- Add/Delete first commits the active cell editor or refuses the operation.
+- Unchanged source records retain their exact raw text.
+- Dirty source records and inserted records use deterministic CSV serialization.
+- Middle insertion/deletion preserves the left surviving source record's original separator when possible.
+- The original terminal-newline state is preserved independently.
+- Header-only CSV data can enter Edit mode and receive its first data row.
 
 ## Safety behavior
 
@@ -67,10 +89,12 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 - Search, filtering, and sorting operate only on immutable projected rows.
 - Stable sorting retains source order for values that compare equally.
 - Source logical-record numbers remain visible after filtering, sorting, and editing.
-- An edit session is rejected for parser errors, row-limited projections, omitted records/columns, or stale parser output.
+- Edit mode clears view-only filtering/sorting before structural operations begin.
+- An edit session is rejected for parser errors, row-limited projections, omitted records/columns, stale parser output, or mismatched snapshot/dialect metadata.
 - Apply is blocked when document identity, code page, or editor-content SHA-256 changed.
 - Apply is also blocked for non-UTF-8 editor buffers until explicit round-trip encoding validation is implemented.
 - No Scintilla replacement method is called for NoChanges or conflict states.
+- Cell-only and structural Apply share the same single host-write coordinator.
 - Unchanged records retain their exact original raw representation.
 - Missing display-only fields are not written unless the user edits them.
 - Extra and trailing fields remain preserved.
@@ -86,7 +110,8 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 - advanced filter expressions
 - large-file virtualization beyond the current explicit display limits
 - write-back for non-UTF-8 code pages with strict round-trip encoding validation
-- row insertion/deletion
+- row movement
+- multi-row structural operations
 - visual column-header editing
 - conflict merge/rebase workflow
 - Plugins Admin release packaging
@@ -94,11 +119,11 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 ## Repository layout
 
 ```text
-src/CsvVisualEditor.Core/              Snapshot, CSV, table, view, serialization, edit-session, and Apply coordination
+src/CsvVisualEditor.Core/              Snapshot, CSV, table, view, serialization, edit-session, row operations, and Apply coordination
 src/CsvVisualEditor/                   Notepad++ plugin, Scintilla adapter, and WinForms user interface
 tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free bootstrap regression checks
-tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, view, serializer, edit-session, and Apply matrix
-tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms and core runtime regression gate
+tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, view, serializer, row-operation, and Apply matrix
+tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms, structural Apply, and conflict runtime gate
 docs/                                  Public architecture and validation documentation
 ```
 
@@ -146,7 +171,7 @@ Plugins → CSV Visual Editor → Open Visual Table
 The panel exposes:
 
 ```text
-Refresh | Delimiter | Header | Edit | Apply | Revert All | change count
+Refresh | Delimiter | Header | Edit | Add Row | Delete Row | Apply | Revert All | change count
 Search | In: All columns/<column> | Clear | Diagnostics (n)
 ```
 
@@ -156,12 +181,16 @@ Milestones 0.1–0.5 were manually accepted in Notepad++ 8.9.7 x64.
 
 Milestone 0.6 safe-editing foundation passed 112/112 xUnit tests, strict build, Native AOT serializer/edit-session/conflict execution, and full Native AOT plugin publishing.
 
-Milestone 0.7 passed 122/122 xUnit tests, strict build, Native AOT Apply-coordinator execution, full Native AOT plugin publishing, and complete Notepad++ 8.9.7 x64 owner acceptance on 2026-07-22. The accepted host matrix includes Edit/Revert, dirty indicators, UTF-8 Apply, one-step Ctrl+Z/Ctrl+Y, modified-marker and normal Save ownership, structural CSV values, inconsistent-width preservation, content and active-document conflict blocking, lifecycle behavior, no-change behavior, and non-UTF-8 Apply refusal.
+Milestone 0.7 passed 122/122 xUnit tests, strict build, Native AOT Apply-coordinator execution, full Native AOT plugin publishing, and complete Notepad++ 8.9.7 x64 owner acceptance on 2026-07-22.
+
+Milestone 0.8 currently passes 159/159 xUnit tests, strict build, Native AOT structural preview and Apply/conflict execution, full win-x64 Native AOT plugin publishing, and `0.8.0-alpha` package creation. Complete Notepad++ 8.9.7 x64 owner acceptance is still required before merge.
 
 See:
 
 - [`docs/safe-editing-foundation.md`](docs/safe-editing-foundation.md)
 - [`docs/host-validation-0.7.md`](docs/host-validation-0.7.md)
+- [`docs/row-operations-foundation.md`](docs/row-operations-foundation.md)
+- [`docs/host-validation-0.8.md`](docs/host-validation-0.8.md)
 
 ## Roadmap
 
@@ -171,5 +200,6 @@ See:
 4. **Accepted:** diagnostics, search, filtering, and stable view sorting.
 5. **Accepted:** deterministic serialization, dirty tracking, and conflict planning.
 6. **Accepted:** UTF-8 editable cells, single-undo Apply, Save ownership, and real-host conflict acceptance.
-7. **Next:** verified non-UTF-8 round-trip writing, row/column operations, and source navigation.
-8. Package releases for eventual Notepad++ Plugins Admin submission.
+7. **Current:** stable Add Row/Delete Row operations using the same conflict and one-undo Apply path.
+8. Add verified non-UTF-8 round-trip writing, source navigation, and further structural operations.
+9. Package releases for eventual Notepad++ Plugins Admin submission.
