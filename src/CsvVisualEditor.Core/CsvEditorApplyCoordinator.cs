@@ -23,18 +23,161 @@ public enum CsvEditorApplyStatus
     ContentChanged
 }
 
+/// <summary>
+/// Host-neutral replacement plan shared by cell-only and structural edits.
+/// A Ready plan contains one complete replacement buffer; conflict plans never do.
+/// </summary>
+public sealed record CsvEditorReplacementPlan
+{
+    private CsvEditorReplacementPlan(
+        CsvEditApplyStatus status,
+        string? replacementText,
+        string? replacementSha256,
+        int changedCellCount,
+        int changedRecordCount,
+        int insertedRowCount,
+        int deletedRowCount)
+    {
+        if (changedCellCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(changedCellCount));
+        }
+
+        if (changedRecordCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(changedRecordCount));
+        }
+
+        if (insertedRowCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(insertedRowCount));
+        }
+
+        if (deletedRowCount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(deletedRowCount));
+        }
+
+        if (status == CsvEditApplyStatus.Ready)
+        {
+            ArgumentNullException.ThrowIfNull(replacementText);
+            ArgumentNullException.ThrowIfNull(replacementSha256);
+        }
+        else if (replacementText is not null || replacementSha256 is not null)
+        {
+            throw new ArgumentException(
+                "Only a Ready editor replacement plan may contain replacement content.",
+                nameof(replacementText));
+        }
+
+        Status = status;
+        ReplacementText = replacementText;
+        ReplacementSha256 = replacementSha256;
+        ChangedCellCount = changedCellCount;
+        ChangedRecordCount = changedRecordCount;
+        InsertedRowCount = insertedRowCount;
+        DeletedRowCount = deletedRowCount;
+    }
+
+    public CsvEditApplyStatus Status { get; }
+
+    public string? ReplacementText { get; }
+
+    public string? ReplacementSha256 { get; }
+
+    public int ChangedCellCount { get; }
+
+    public int ChangedRecordCount { get; }
+
+    public int InsertedRowCount { get; }
+
+    public int DeletedRowCount { get; }
+
+    public bool IsReady => Status == CsvEditApplyStatus.Ready;
+
+    internal static CsvEditorReplacementPlan FromCellPlan(CsvEditApplyPlan plan)
+    {
+        ArgumentNullException.ThrowIfNull(plan);
+
+        if (!plan.IsReady)
+        {
+            return new CsvEditorReplacementPlan(
+                plan.Status,
+                replacementText: null,
+                replacementSha256: null,
+                plan.ChangedCellCount,
+                changedRecordCount: 0,
+                insertedRowCount: 0,
+                deletedRowCount: 0);
+        }
+
+        var preview = plan.Preview ?? throw new InvalidOperationException(
+            "The Ready cell-edit plan did not contain a replacement preview.");
+        return new CsvEditorReplacementPlan(
+            CsvEditApplyStatus.Ready,
+            preview.Text,
+            preview.ContentSha256,
+            preview.ChangedCellCount,
+            preview.ChangedRecordCount,
+            insertedRowCount: 0,
+            deletedRowCount: 0);
+    }
+
+    internal static CsvEditorReplacementPlan FromStructuralPreview(
+        CsvEditApplyStatus status,
+        CsvRowEditPreview? preview,
+        int changedCellCount,
+        int changedRecordCount,
+        int insertedRowCount,
+        int deletedRowCount)
+    {
+        if (status == CsvEditApplyStatus.Ready)
+        {
+            ArgumentNullException.ThrowIfNull(preview);
+            return new CsvEditorReplacementPlan(
+                status,
+                preview.Text,
+                preview.ContentSha256,
+                preview.ChangedCellCount,
+                preview.ChangedRowCount,
+                preview.InsertedRowCount,
+                preview.DeletedRowCount);
+        }
+
+        if (preview is not null)
+        {
+            throw new ArgumentException(
+                "A non-Ready structural plan cannot expose a replacement preview.",
+                nameof(preview));
+        }
+
+        return new CsvEditorReplacementPlan(
+            status,
+            replacementText: null,
+            replacementSha256: null,
+            changedCellCount,
+            changedRecordCount,
+            insertedRowCount,
+            deletedRowCount);
+    }
+}
+
 public sealed record CsvEditorApplyResult
 {
     private CsvEditorApplyResult(
         CsvEditorApplyStatus status,
         int changedCellCount,
         int changedRecordCount,
+        int insertedRowCount,
+        int deletedRowCount,
         string? replacementSha256,
         bool selectionRestored)
     {
         Status = status;
         ChangedCellCount = changedCellCount;
         ChangedRecordCount = changedRecordCount;
+        InsertedRowCount = insertedRowCount;
+        DeletedRowCount = deletedRowCount;
         ReplacementSha256 = replacementSha256;
         SelectionRestored = selectionRestored;
     }
@@ -45,13 +188,17 @@ public sealed record CsvEditorApplyResult
 
     public int ChangedRecordCount { get; }
 
+    public int InsertedRowCount { get; }
+
+    public int DeletedRowCount { get; }
+
     public string? ReplacementSha256 { get; }
 
     public bool SelectionRestored { get; }
 
     public bool WasApplied => Status == CsvEditorApplyStatus.Applied;
 
-    internal static CsvEditorApplyResult FromPlan(CsvEditApplyPlan plan)
+    internal static CsvEditorApplyResult FromPlan(CsvEditorReplacementPlan plan)
     {
         ArgumentNullException.ThrowIfNull(plan);
 
@@ -68,35 +215,47 @@ public sealed record CsvEditorApplyResult
             _ => throw new ArgumentOutOfRangeException(
                 nameof(plan),
                 plan.Status,
-                "Unknown edit apply status.")
+                "Unknown editor replacement status.")
         };
 
         return new CsvEditorApplyResult(
             status,
             plan.ChangedCellCount,
-            changedRecordCount: 0,
+            plan.ChangedRecordCount,
+            plan.InsertedRowCount,
+            plan.DeletedRowCount,
             replacementSha256: null,
             selectionRestored: false);
     }
 
     internal static CsvEditorApplyResult Applied(
-        CsvEditPreview preview,
+        CsvEditorReplacementPlan plan,
         bool selectionRestored)
     {
-        ArgumentNullException.ThrowIfNull(preview);
+        ArgumentNullException.ThrowIfNull(plan);
+        if (!plan.IsReady ||
+            plan.ReplacementText is null ||
+            plan.ReplacementSha256 is null)
+        {
+            throw new ArgumentException(
+                "An applied result requires a complete Ready replacement plan.",
+                nameof(plan));
+        }
 
         return new CsvEditorApplyResult(
             CsvEditorApplyStatus.Applied,
-            preview.ChangedCellCount,
-            preview.ChangedRecordCount,
-            preview.ContentSha256,
+            plan.ChangedCellCount,
+            plan.ChangedRecordCount,
+            plan.InsertedRowCount,
+            plan.DeletedRowCount,
+            plan.ReplacementSha256,
             selectionRestored);
     }
 }
 
 /// <summary>
-/// Executes a conflict-checked edit plan against a host replacement target.
-/// The host is never called for NoChanges or conflict states.
+/// Executes conflict-checked cell or structural edits against one shared host
+/// replacement path. The host is never called for NoChanges or conflict states.
 /// </summary>
 public static class CsvEditorApplyCoordinator
 {
@@ -109,20 +268,45 @@ public static class CsvEditorApplyCoordinator
         ArgumentNullException.ThrowIfNull(currentSnapshot);
         ArgumentNullException.ThrowIfNull(target);
 
-        var plan = session.CreateApplyPlan(currentSnapshot);
+        return ExecutePlan(
+            CsvEditorReplacementPlan.FromCellPlan(
+                session.CreateApplyPlan(currentSnapshot)),
+            currentSnapshot,
+            target);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvRowEditModel rowModel,
+        ActiveDocumentSnapshot currentSnapshot,
+        IEditorReplacementTarget target)
+    {
+        ArgumentNullException.ThrowIfNull(rowModel);
+        ArgumentNullException.ThrowIfNull(currentSnapshot);
+        ArgumentNullException.ThrowIfNull(target);
+
+        return ExecutePlan(
+            rowModel.CreateApplyPlan(currentSnapshot),
+            currentSnapshot,
+            target);
+    }
+
+    private static CsvEditorApplyResult ExecutePlan(
+        CsvEditorReplacementPlan plan,
+        ActiveDocumentSnapshot currentSnapshot,
+        IEditorReplacementTarget target)
+    {
         if (!plan.IsReady)
         {
             return CsvEditorApplyResult.FromPlan(plan);
         }
 
-        var preview = plan.Preview ?? throw new InvalidOperationException(
-            "The Ready apply plan did not contain a replacement preview.");
-
+        var replacementText = plan.ReplacementText ?? throw new InvalidOperationException(
+            "The Ready replacement plan did not contain replacement text.");
         var selectionRestored = false;
         target.BeginUndoAction();
         try
         {
-            var newByteLength = target.ReplaceWholeDocument(preview.Text);
+            var newByteLength = target.ReplaceWholeDocument(replacementText);
             if (newByteLength < 0)
             {
                 throw new InvalidOperationException(
@@ -149,7 +333,7 @@ public static class CsvEditorApplyCoordinator
             target.EndUndoAction();
         }
 
-        return CsvEditorApplyResult.Applied(preview, selectionRestored);
+        return CsvEditorApplyResult.Applied(plan, selectionRestored);
     }
 
     private static long ClampPosition(long position, long documentByteLength)
