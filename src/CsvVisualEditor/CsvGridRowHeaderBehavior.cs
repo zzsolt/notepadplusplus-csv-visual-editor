@@ -268,6 +268,12 @@ internal static class CsvGridRowHeaderBehavior
             return;
         }
 
+        var graphics = eventArgs.Graphics;
+        if (graphics is null)
+        {
+            return;
+        }
+
         eventArgs.Paint(
             eventArgs.CellBounds,
             DataGridViewPaintParts.Background |
@@ -283,7 +289,7 @@ internal static class CsvGridRowHeaderBehavior
             glyphSize,
             glyphSize);
         ControlPaint.DrawCheckBox(
-            eventArgs.Graphics,
+            graphics,
             glyphBounds,
             isChecked ? ButtonState.Checked : ButtonState.Normal);
         eventArgs.Handled = true;
@@ -291,11 +297,15 @@ internal static class CsvGridRowHeaderBehavior
 
     private static void InvalidateSelectorCell(DataGridView grid, int rowIndex)
     {
-        if (grid.Columns.Contains(SelectorColumnName))
+        if (!grid.Columns.Contains(SelectorColumnName))
         {
-            grid.InvalidateCell(
-                grid.Columns[SelectorColumnName].Index,
-                rowIndex);
+            return;
+        }
+
+        var selectorColumn = grid.Columns[SelectorColumnName];
+        if (selectorColumn is not null)
+        {
+            grid.InvalidateCell(selectorColumn.Index, rowIndex);
         }
     }
 
