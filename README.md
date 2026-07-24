@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.9 multi-row deletion alpha under Notepad++ host validation**. Edit mode supports cell editing, Add Row, stable Ctrl/Shift row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.9 multi-row deletion alpha under Notepad++ host validation**. Edit mode supports cell editing, Add Row, an explicit checkbox-style **Select** column, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
 
 ## Current capabilities
 
@@ -37,11 +37,11 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - changed-cell, changed-row, inserted-row, and deleted-row counts
 - `*` marker beside changed source rows and `new:n *` markers beside inserted rows
 - readable 112-pixel row headers for inserted-row labels
-- ordinary cell selection plus spreadsheet-style full-row selection from the left row header
-- Ctrl selection of non-adjacent rows and Shift selection of contiguous row ranges
+- explicit checkbox-style **Select** column shown only in Edit mode
+- independent marking of non-adjacent rows without Ctrl/Shift or WinForms row-selection semantics
 - atomic batch deletion using immutable stable-row-ID snapshots
 - mixed source-row deletion and inserted-row cancellation in one operation
-- current-cell fallback when no complete row selection exists
+- current-cell fallback when no selector checkbox is marked
 - Revert All without modifying the editor buffer
 - deterministic comma/semicolon/tab CSV serialization
 - minimal-difference previews that preserve unchanged raw records and line separators
@@ -60,11 +60,11 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 2. Select **Edit**. Search and sorting are cleared and source order is restored.
 3. Edit data cells directly in the grid.
 4. Select **Add Row** to insert after the current row, or append when no row is current.
-5. Click a left row header to select a complete row.
-6. Use Ctrl+row-header click for non-adjacent rows or Shift+row-header click for a contiguous range.
-7. Select **Delete Row** or **Delete Rows (n)** to delete the stable selected rows as one pending operation.
-8. Selected source rows are marked for deletion; selected inserted rows are removed by cancelling their insertions.
-9. When no complete row is selected, Delete falls back to the current cell's stable row.
+5. Use the **Select** column at the right side of the grid to mark every row that should be deleted together.
+6. Marking and unmarking rows does not modify CSV values and does not require Ctrl or Shift.
+7. Select **Delete Rows (n)** to delete all marked stable rows as one pending operation.
+8. Marked source rows are marked for deletion; marked inserted rows are removed by cancelling their insertions.
+9. When no selector checkbox is marked, **Delete Row** falls back to the current cell's stable row.
 10. Changed source rows keep their original logical-record number and add `*`; inserted rows use `new:n *`.
 11. Select **Revert All** to discard every cell, insertion, and deletion change without touching the editor.
 12. Select **Apply** to re-read the active editor and perform a fresh conflict check.
@@ -88,8 +88,9 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 - Duplicate selected identities are normalized.
 - Selection enumeration order never influences serialized output.
 - Invalid stable identities produce zero partial batch changes.
-- Ordinary cell clicks remain cell selections; row-header clicks select complete stable rows.
-- The transient DataGridView selection is copied immediately to immutable stable IDs before deletion.
+- The explicit selector column is presentation-only and is never serialized as CSV data.
+- Marked rows are stored as stable IDs independently from DataGridView selection collections.
+- The selector is appended after real CSV columns, so editable CSV column indexes remain unchanged.
 - After deletion, focus moves deterministically to the smallest removed display position, clamped to the remaining grid.
 - Unchanged source records retain their exact raw text.
 - Dirty source records and inserted records use deterministic CSV serialization.
@@ -118,110 +119,3 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 - Apply changes only the editor buffer; no direct disk write or save-point manipulation occurs.
 - More than 10,000 data rows or a 250,000-cell budget are visibly limited in the grid status.
 - More than 512 columns, or a row wider than the aggregate cell budget, are rejected visibly; no columns are silently hidden.
-
-## Not implemented yet
-
-- automatic header inference
-- automatic refresh after editor changes
-- navigation from a diagnostic or visual row to the source editor position
-- advanced filter expressions
-- large-file virtualization beyond the current explicit display limits
-- write-back for non-UTF-8 code pages with strict round-trip encoding validation
-- row movement
-- visual column-header editing
-- conflict merge/rebase workflow
-- keyboard Delete-key integration
-- Plugins Admin release packaging
-
-## Repository layout
-
-```text
-src/CsvVisualEditor.Core/              Snapshot, CSV, table, view, serialization, edit-session, batch row operations, and Apply coordination
-src/CsvVisualEditor/                   Notepad++ plugin, stable selection snapshot, Scintilla adapter, and WinForms UI
-tests/CsvVisualEditor.Core.SmokeTests/ Dependency-free bootstrap regression checks
-tests/CsvVisualEditor.Core.Tests/      xUnit.net v3 parser, view, serializer, batch-row, and Apply matrix
-tests/CsvVisualEditor.NativeAot.SmokeTests/ Native AOT WinForms selection, structural Apply, and conflict runtime gates
-docs/                                  Public architecture and validation documentation
-```
-
-## Build requirements
-
-- Windows 10 or later
-- .NET 10 SDK
-- Visual Studio Build Tools with the C++ toolchain required by Native AOT
-- 64-bit Notepad++ for manual loading tests
-
-## Build and publish
-
-```powershell
-dotnet restore src/CsvVisualEditor/CsvVisualEditor.csproj -r win-x64
-
-dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
-    -c Release `
-    -f net10.0-windows `
-    -r win-x64 `
-    -o artifacts/CsvVisualEditor
-```
-
-Run the xUnit.net v3 matrix:
-
-```powershell
-dotnet run `
-    --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj `
-    -c Release
-```
-
-## Manual installation
-
-Copy the published DLL into:
-
-```text
-<Notepad++ installation>\plugins\CsvVisualEditor\CsvVisualEditor.dll
-```
-
-Restart Notepad++, then use:
-
-```text
-Plugins → CSV Visual Editor → Open Visual Table
-```
-
-The panel exposes:
-
-```text
-Refresh | Delimiter | Header | Edit | Add Row | Delete Row/Delete Rows (n) | Apply | Revert All | change count
-Search | In: All columns/<column> | Clear | Diagnostics (n)
-```
-
-## Validation boundary
-
-Milestones 0.1–0.5 were manually accepted in Notepad++ 8.9.7 x64.
-
-Milestone 0.6 safe-editing foundation passed 112/112 xUnit tests, strict build, Native AOT serializer/edit-session/conflict execution, and full Native AOT plugin publishing.
-
-Milestone 0.7 passed 122/122 xUnit tests, strict build, Native AOT Apply-coordinator execution, full Native AOT plugin publishing, and complete Notepad++ 8.9.7 x64 owner acceptance on 2026-07-22.
-
-Milestone 0.8 passed 159/159 xUnit tests, strict build, Native AOT structural preview, Apply/conflict/Revert execution, row-header selection smoke tests, full win-x64 Native AOT plugin publishing, and complete Notepad++ 8.9.7 x64 owner acceptance on 2026-07-23.
-
-Milestone 0.9 currently passes 168/168 xUnit tests, strict build, atomic batch-delete regression coverage, Native AOT batch preview/Apply/conflict/Revert execution, Native AOT stable multi-row selection snapshots, and full win-x64 plugin Native AOT publishing. Complete Notepad++ 8.9.7 x64 owner acceptance is still required before merge.
-
-See:
-
-- [`docs/safe-editing-foundation.md`](docs/safe-editing-foundation.md)
-- [`docs/host-validation-0.7.md`](docs/host-validation-0.7.md)
-- [`docs/row-operations-foundation.md`](docs/row-operations-foundation.md)
-- [`docs/host-acceptance-0.8.md`](docs/host-acceptance-0.8.md)
-- [`docs/multi-row-deletion-foundation.md`](docs/multi-row-deletion-foundation.md)
-- [`docs/host-validation-0.9.md`](docs/host-validation-0.9.md)
-
-## Roadmap
-
-1. **Accepted:** active Notepad++ buffer snapshot.
-2. **Accepted:** delimiter detection and record-aware CSV parser.
-3. **Accepted:** read-only visual table.
-4. **Accepted:** diagnostics, search, filtering, and stable view sorting.
-5. **Accepted:** deterministic serialization, dirty tracking, and conflict planning.
-6. **Accepted:** UTF-8 editable cells, single-undo Apply, Save ownership, and real-host conflict acceptance.
-7. **Accepted:** stable Add Row/Delete Row operations and spreadsheet-style row-header selection.
-8. **Current:** stable Ctrl/Shift multi-row selection and atomic batch deletion.
-9. Add verified non-UTF-8 round-trip writing, source navigation, row movement, and visual header editing.
-10. Package releases for eventual Notepad++ Plugins Admin submission.
