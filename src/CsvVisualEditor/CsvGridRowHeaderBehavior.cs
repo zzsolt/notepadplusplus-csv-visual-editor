@@ -4,9 +4,10 @@ using System.Windows.Forms;
 
 /// <summary>
 /// Keeps the CSV table row header readable and makes row-header clicks select
-/// logical rows without changing normal cell-click behavior. Unmodified clicks
-/// are explicitly normalized; Ctrl and Shift clicks retain the built-in
-/// DataGridView multi-selection semantics.
+/// logical rows without changing normal cell-click behavior. Every row-header
+/// gesture is normalized to complete DataGridView rows before deletion state is
+/// captured, including hosts that transiently expose Ctrl/Shift gestures as
+/// selected cells instead of SelectedRows.
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
@@ -36,7 +37,10 @@ internal static class CsvGridRowHeaderBehavior
             if (modifiers == Keys.None)
             {
                 SelectWholeRow(grid, eventArgs.RowIndex);
+                return;
             }
+
+            PromoteModifiedSelectionToWholeRows(grid, eventArgs.RowIndex);
         };
 
         return true;
@@ -46,9 +50,7 @@ internal static class CsvGridRowHeaderBehavior
     {
         ArgumentNullException.ThrowIfNull(grid);
 
-        if (rowIndex < 0 ||
-            rowIndex >= grid.Rows.Count ||
-            grid.Columns.Count == 0)
+        if (!IsValidDataRow(grid, rowIndex))
         {
             return false;
         }
@@ -58,11 +60,75 @@ internal static class CsvGridRowHeaderBehavior
             return false;
         }
 
+        ConfigureWhenTableIsVisible(grid);
         var row = grid.Rows[rowIndex];
         grid.ClearSelection();
         grid.CurrentCell = row.Cells[0];
         row.Selected = true;
         return true;
+    }
+
+    /// <summary>
+    /// Promotes the transient selection produced by a Ctrl/Shift row-header
+    /// gesture to complete rows. Some real WinForms hosts can leave only one
+    /// selected cell per intended row even while the visual multi-selection is
+    /// visible; SelectedRows is then empty and must not trigger current-row
+    /// fallback deletion.
+    /// </summary>
+    internal static bool PromoteModifiedSelectionToWholeRows(
+        DataGridView grid,
+        int clickedRowIndex)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+
+        if (!IsValidDataRow(grid, clickedRowIndex))
+        {
+            return false;
+        }
+
+        if (grid.IsCurrentCellInEditMode && !grid.EndEdit())
+        {
+            return false;
+        }
+
+        var selectedRowIndexes = new SortedSet<int>();
+        foreach (DataGridViewRow row in grid.SelectedRows)
+        {
+            if (IsValidDataRow(grid, row.Index))
+            {
+                selectedRowIndexes.Add(row.Index);
+            }
+        }
+
+        foreach (DataGridViewCell cell in grid.SelectedCells)
+        {
+            if (IsValidDataRow(grid, cell.RowIndex))
+            {
+                selectedRowIndexes.Add(cell.RowIndex);
+            }
+        }
+
+        if (selectedRowIndexes.Count == 0)
+        {
+            return false;
+        }
+
+        ConfigureWhenTableIsVisible(grid);
+        grid.ClearSelection();
+        foreach (var rowIndex in selectedRowIndexes)
+        {
+            grid.Rows[rowIndex].Selected = true;
+        }
+
+        return true;
+    }
+
+    private static bool IsValidDataRow(DataGridView grid, int rowIndex)
+    {
+        return rowIndex >= 0 &&
+               rowIndex < grid.Rows.Count &&
+               grid.Columns.Count > 0 &&
+               !grid.Rows[rowIndex].IsNewRow;
     }
 
     private static void ConfigureWhenTableIsVisible(DataGridView grid)
