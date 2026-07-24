@@ -19,7 +19,7 @@ internal static class MultiRowSelectionNativeAotSmoke
             caretPosition: 0,
             anchorPosition: 0,
             isModified: false,
-            new DateTimeOffset(2026, 7, 23, 13, 0, 0, TimeSpan.Zero));
+            new DateTimeOffset(2026, 7, 24, 6, 30, 0, TimeSpan.Zero));
         var dialect = CsvDialect.Create(
             ',',
             headerMode: CsvHeaderMode.FirstRecord);
@@ -57,13 +57,25 @@ internal static class MultiRowSelectionNativeAotSmoke
         }
         grid.CreateControl();
 
-        // CurrentCell changes may update DataGridView selection state. Establish
-        // focus first, then create the complete-row selection snapshot exactly
-        // as the real row-header gestures leave it.
+        // Reproduce the real-host failure: Ctrl/Shift row-header gestures can
+        // remain visible as one selected cell per intended row, leaving
+        // SelectedRows empty. The row-header behavior must promote that
+        // transient state to complete rows before the stable-ID snapshot.
+        grid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         grid.CurrentCell = grid.Rows[2].Cells[0];
         grid.ClearSelection();
-        grid.Rows[0].Selected = true;
-        grid.Rows[2].Selected = true;
+        grid.Rows[0].Cells[0].Selected = true;
+        grid.Rows[2].Cells[0].Selected = true;
+        Require(grid.SelectedRows.Count == 0, "Native AOT host-symptom setup unexpectedly selected complete rows.");
+        Require(
+            CsvGridRowHeaderBehavior.PromoteModifiedSelectionToWholeRows(grid, clickedRowIndex: 2),
+            "Native AOT host-symptom selection was not promoted to complete rows.");
+        Require(
+            grid.SelectionMode == DataGridViewSelectionMode.RowHeaderSelect,
+            "Native AOT promoted selection did not restore RowHeaderSelect mode.");
+        Require(grid.Rows[0].Selected, "Native AOT first intended row was not fully selected.");
+        Require(grid.Rows[2].Selected, "Native AOT last intended row was not fully selected.");
+        Require(grid.SelectedRows.Count == 2, "Native AOT promoted SelectedRows count mismatch.");
 
         var selected = CsvGridSelectionSnapshot.Capture(grid);
         Require(selected.Count == 2, "Native AOT selected-row snapshot count mismatch.");
