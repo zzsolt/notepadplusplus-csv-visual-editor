@@ -1,17 +1,22 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Core;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 /// <summary>
-/// Keeps the CSV table row header readable and makes row-header clicks select
-/// logical rows without changing normal cell-click behavior. Every row-header
-/// gesture is normalized to complete DataGridView rows before deletion state is
-/// captured, including hosts that transiently expose Ctrl/Shift gestures as
-/// selected cells instead of SelectedRows.
+/// Keeps the CSV table row header readable and owns row-header gesture
+/// handling. Ctrl/Shift semantics are tracked with stable row IDs rather than
+/// trusting the transient DataGridView selection representation supplied by the
+/// docked Notepad++ WinForms host.
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
     internal const int PreferredRowHeaderWidth = 112;
+
+    private static readonly ConditionalWeakTable<
+        DataGridView,
+        CsvGridManagedRowSelection> ManagedSelections = new();
 
     public static bool TryAttach(Control root)
     {
@@ -24,24 +29,25 @@ internal static class CsvGridRowHeaderBehavior
         }
 
         ConfigureWhenTableIsVisible(grid);
+        if (ManagedSelections.TryGetValue(grid, out _))
+        {
+            return true;
+        }
+
+        var state = new CsvGridManagedRowSelection();
+        ManagedSelections.Add(grid, state);
+
         grid.ColumnAdded += (_, _) => ConfigureWhenTableIsVisible(grid);
         grid.RowsAdded += (_, _) => ConfigureWhenTableIsVisible(grid);
-        grid.RowHeaderMouseClick += (_, eventArgs) =>
+        grid.RowsRemoved += (_, _) =>
         {
-            if (eventArgs.Button != MouseButtons.Left)
+            if (grid.Rows.Count == 0)
             {
-                return;
+                state.ResetToCurrentRowFallback();
             }
-
-            var modifiers = Control.ModifierKeys & (Keys.Control | Keys.Shift);
-            if (modifiers == Keys.None)
-            {
-                SelectWholeRow(grid, eventArgs.RowIndex);
-                return;
-            }
-
-            PromoteModifiedSelectionToWholeRows(grid, eventArgs.RowIndex);
         };
+        grid.CellMouseDown += (_, eventArgs) =>
+            OnCellMouseDown(grid, state, eventArgs);
 
         return true;
     }
@@ -55,6 +61,17 @@ internal static class CsvGridRowHeaderBehavior
             return false;
         }
 
+        if (ManagedSelections.TryGetValue(grid, out var state) &&
+            grid.Rows[rowIndex].Tag is CsvEditRowId rowId)
+        {
+            state.ApplyRowHeaderGesture(
+                GetVisibleStableOrder(grid),
+                rowId,
+                control: false,
+                shift: false);
+            return ApplyManagedSelectionNow(grid, state, rowId);
+        }
+
         if (grid.IsCurrentCellInEditMode && !grid.EndEdit())
         {
             return false;
@@ -62,26 +79,135 @@ internal static class CsvGridRowHeaderBehavior
 
         ConfigureWhenTableIsVisible(grid);
         var row = grid.Rows[rowIndex];
-        grid.ClearSelection();
         grid.CurrentCell = row.Cells[0];
+        grid.ClearSelection();
         row.Selected = true;
         return true;
     }
 
-    /// <summary>
-    /// Promotes the transient selection produced by a Ctrl/Shift row-header
-    /// gesture to complete rows. Some real WinForms hosts can leave only one
-    /// selected cell per intended row even while the visual multi-selection is
-    /// visible; SelectedRows is then empty and must not trigger current-row
-    /// fallback deletion.
-    /// </summary>
-    internal static bool PromoteModifiedSelectionToWholeRows(
+    internal static bool ApplyRowHeaderGestureForTesting(
         DataGridView grid,
-        int clickedRowIndex)
+        int rowIndex,
+        bool control,
+        bool shift)
     {
         ArgumentNullException.ThrowIfNull(grid);
 
-        if (!IsValidDataRow(grid, clickedRowIndex))
+        if (!IsValidDataRow(grid, rowIndex) ||
+            grid.Rows[rowIndex].Tag is not CsvEditRowId clickedId ||
+            !ManagedSelections.TryGetValue(grid, out var state))
+        {
+            return false;
+        }
+
+        state.ApplyRowHeaderGesture(
+            GetVisibleStableOrder(grid),
+            clickedId,
+            control,
+            shift);
+        return ApplyManagedSelectionNow(grid, state, clickedId);
+    }
+
+    internal static void ResetManagedSelectionForCurrentCell(DataGridView grid)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+
+        if (ManagedSelections.TryGetValue(grid, out var state))
+        {
+            state.ResetToCurrentRowFallback();
+        }
+    }
+
+    internal static CsvGridManagedSelectionSnapshot CaptureManagedSelection(
+        DataGridView grid)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+
+        return ManagedSelections.TryGetValue(grid, out var state)
+            ? state.Capture()
+            : new CsvGridManagedSelectionSnapshot(
+                HasExplicitRowHeaderContext: false,
+                SelectedIds: Array.Empty<CsvEditRowId>());
+    }
+
+    private static void OnCellMouseDown(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        DataGridViewCellMouseEventArgs eventArgs)
+    {
+        if (eventArgs.RowIndex < 0)
+        {
+            return;
+        }
+
+        if (eventArgs.ColumnIndex >= 0)
+        {
+            state.ResetToCurrentRowFallback();
+            return;
+        }
+
+        if (!IsValidDataRow(grid, eventArgs.RowIndex) ||
+            grid.Rows[eventArgs.RowIndex].Tag is not CsvEditRowId clickedId)
+        {
+            state.ResetToCurrentRowFallback();
+            return;
+        }
+
+        if (grid.IsCurrentCellInEditMode && !grid.EndEdit())
+        {
+            return;
+        }
+
+        var modifiers = Control.ModifierKeys;
+        state.ApplyRowHeaderGesture(
+            GetVisibleStableOrder(grid),
+            clickedId,
+            control: (modifiers & Keys.Control) != Keys.None,
+            shift: (modifiers & Keys.Shift) != Keys.None);
+
+        QueueManagedSelectionUpdate(grid, state, clickedId);
+    }
+
+    private static void QueueManagedSelectionUpdate(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        CsvEditRowId clickedId)
+    {
+        if (grid.IsDisposed || grid.Disposing)
+        {
+            return;
+        }
+
+        if (!grid.IsHandleCreated)
+        {
+            ApplyManagedSelectionNow(grid, state, clickedId);
+            return;
+        }
+
+        try
+        {
+            grid.BeginInvoke(
+                (Action)(() => ApplyManagedSelectionNow(grid, state, clickedId)));
+        }
+        catch (InvalidOperationException)
+        {
+            // The host can destroy the docking control between mouse input and
+            // the deferred callback. No model mutation has occurred.
+        }
+    }
+
+    private static bool ApplyManagedSelectionNow(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        CsvEditRowId clickedId)
+    {
+        if (grid.IsDisposed || grid.Disposing || grid.Columns.Count == 0)
+        {
+            return false;
+        }
+
+        var clickedRow = FindRow(grid, clickedId);
+        if (clickedRow is null)
         {
             return false;
         }
@@ -91,36 +217,57 @@ internal static class CsvGridRowHeaderBehavior
             return false;
         }
 
-        var selectedRowIndexes = new SortedSet<int>();
-        foreach (DataGridViewRow row in grid.SelectedRows)
-        {
-            if (IsValidDataRow(grid, row.Index))
-            {
-                selectedRowIndexes.Add(row.Index);
-            }
-        }
-
-        foreach (DataGridViewCell cell in grid.SelectedCells)
-        {
-            if (IsValidDataRow(grid, cell.RowIndex))
-            {
-                selectedRowIndexes.Add(cell.RowIndex);
-            }
-        }
-
-        if (selectedRowIndexes.Count == 0)
-        {
-            return false;
-        }
-
         ConfigureWhenTableIsVisible(grid);
+        grid.CurrentCell = clickedRow.Cells[0];
         grid.ClearSelection();
-        foreach (var rowIndex in selectedRowIndexes)
+
+        var selectedIds = state.Capture().SelectedIds.ToHashSet();
+        foreach (DataGridViewRow row in grid.Rows)
         {
-            grid.Rows[rowIndex].Selected = true;
+            if (row.Tag is not CsvEditRowId rowId ||
+                !selectedIds.Contains(rowId))
+            {
+                continue;
+            }
+
+            row.Selected = true;
+            foreach (DataGridViewCell cell in row.Cells)
+            {
+                cell.Selected = true;
+            }
         }
 
         return true;
+    }
+
+    private static IReadOnlyList<CsvEditRowId> GetVisibleStableOrder(
+        DataGridView grid)
+    {
+        var result = new List<CsvEditRowId>(grid.Rows.Count);
+        foreach (DataGridViewRow row in grid.Rows)
+        {
+            if (!row.IsNewRow && row.Tag is CsvEditRowId rowId)
+            {
+                result.Add(rowId);
+            }
+        }
+
+        return result;
+    }
+
+    private static DataGridViewRow? FindRow(
+        DataGridView grid,
+        CsvEditRowId id)
+    {
+        foreach (DataGridViewRow row in grid.Rows)
+        {
+            if (row.Tag is CsvEditRowId candidate && candidate == id)
+            {
+                return row;
+            }
+        }
+
+        return null;
     }
 
     private static bool IsValidDataRow(DataGridView grid, int rowIndex)
