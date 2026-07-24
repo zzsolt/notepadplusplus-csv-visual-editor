@@ -1,41 +1,50 @@
-# Milestone 0.9 host correction — plugin-owned Ctrl/Shift selection
+# Milestone 0.9 host correction — explicit row selector
 
 ## Reported host behavior
 
-During Notepad++ 8.9.7 x64 acceptance, Ctrl and Shift row-header gestures visibly selected multiple intended rows, but **Delete Row** removed only the current/last row.
+Three separate implementations based on Ctrl/Shift row-header selection failed in real Notepad++ 8.9.7 x64. The docked WinForms host visibly highlighted cells, but the deletion command still received only the current row.
 
-The first correction attempted to promote the WinForms `SelectedCells` state to `SelectedRows`. The owner retest showed identical behavior, proving that the docked host selection collections and event timing cannot be treated as authoritative for this command.
+The failed approaches were:
 
-## Final correction design
+1. reading `DataGridView.SelectedRows`;
+2. promoting `SelectedCells` to complete rows after the host event;
+3. maintaining a plugin-owned Ctrl/Shift row-header gesture state.
 
-The plugin now owns row-header selection state independently from WinForms visual collections:
+The owner retests showed that continuing to depend on row-header gesture timing was not a reliable product direction.
 
-1. `CellMouseDown` identifies a left row-header gesture before the host completes its own selection handling;
-2. the clicked row is read as a stable `CsvEditRowId`;
-3. Ctrl toggles that stable ID in a plugin-owned set;
-4. Shift computes a contiguous range from a plugin-owned stable anchor and the current structural display order;
-5. the resulting stable-ID set is retained, never DataGridView row/cell objects;
-6. a deferred visual update highlights the corresponding complete rows after host processing;
-7. `CsvGridSelectionSnapshot` reads only the plugin-owned stable-ID set for explicit row-header selection;
-8. a normal data-cell click clears the explicit row-header context and restores the documented current-row fallback.
+## Replacement design
 
-The Delete command therefore no longer depends on `SelectedRows`, `SelectedCells`, WinForms selection anchors, or host event ordering.
+Milestone 0.9 now uses an explicit **Select** column while Edit mode is active:
+
+1. the column is appended after the real CSV data columns, so CSV column indexes remain unchanged;
+2. clicking its checkbox-style cell toggles the row's stable `CsvEditRowId` in a plugin-owned set;
+3. the visible checkbox is presentation only and does not modify CSV cell values;
+4. `CsvGridSelectionSnapshot` reads the marked stable IDs in current structural order;
+5. multiple marked rows are passed to the existing atomic batch-delete model;
+6. structural rebuilds clear stale marks;
+7. leaving Edit mode removes the selector column;
+8. when no checkbox is marked, the accepted single-current-row **Delete Row** fallback remains available.
+
+The selector does not depend on Ctrl, Shift, `SelectedRows`, `SelectedCells`, WinForms anchors, or row-header event ordering.
 
 ## Interaction rules
 
-- plain row-header click: select exactly that row and set the Shift anchor;
-- Ctrl+row-header click: toggle that row without changing other selected rows;
-- Shift+row-header click: replace selection with the contiguous anchor-to-clicked range;
-- Ctrl+Shift+row-header click: add the contiguous range;
-- Ctrl deselection of the final selected row creates an explicit empty row selection and does not silently delete `CurrentRow`;
-- ordinary cell click: clear explicit row selection and use single current-row fallback.
+- enter Edit mode: a narrow **Select** column appears at the right side of the table;
+- click a selector cell: the checkbox is toggled;
+- mark several rows: the command changes to `Delete Rows (n)`;
+- click a marked row again: only that mark is removed;
+- click **Delete Rows (n)**: every marked stable row is deleted as one pending batch;
+- no marked rows: **Delete Row** applies only to the current row;
+- Revert All restores source rows and clears selector marks;
+- Exit Edit removes the selector column.
 
 ## Safety properties retained
 
-- stable IDs remain the only model identities;
-- no DataGridView row, cell, visual index, or collection is retained;
+- stable `CsvEditRowId` values remain the only model identities;
+- no DataGridView row, cell, visual index, or selection collection is retained;
 - the complete target set is captured before mutation;
 - core batch deletion remains fully prevalidated and atomic;
+- the selector column is never serialized as CSV data;
 - no editor call occurs before Apply;
 - Revert All remains exact;
 - Apply remains one whole-buffer replacement in one undo action;
@@ -45,24 +54,28 @@ The Delete command therefore no longer depends on `SelectedRows`, `SelectedCells
 
 The Native AOT smoke verifies:
 
-- plugin-owned non-adjacent Ctrl selection survives a deliberately cleared DataGridView visual selection;
-- three stable IDs are deleted as one batch;
+- the selector column appears only in editable mode and is appended after CSV columns;
+- three non-adjacent stable rows can be marked independently from visual grid selection;
+- clearing the DataGridView visual selection does not lose marked stable IDs;
+- three marked rows are deleted as one atomic batch;
 - exact Revert All;
-- Shift range selection from a stable anchor;
-- explicit empty selection suppresses current-row fallback;
-- ordinary cell context restores current-row fallback.
+- toggling a marked row removes only that target;
+- no marked rows retain the single-current-row fallback;
+- leaving editable mode removes the selector column.
 
 ## Required targeted host retest
 
-Using the original 0.9 synthetic five-row CSV:
+Using the original synthetic five-row CSV:
 
-- Ctrl-select Alpha, Gamma, and Epsilon by their left row headers;
+- enter Edit mode and confirm a **Select** column appears;
+- mark Alpha, Gamma, and Epsilon in that column;
 - confirm the command reads `Delete Rows (3)`;
 - delete and confirm only Beta and Delta remain;
 - Revert All;
-- Shift-select Beta through Delta;
+- mark Beta, Gamma, and Delta;
 - confirm the command reads `Delete Rows (3)`;
 - delete and confirm only Alpha and Epsilon remain;
-- Revert All.
+- Revert All;
+- exit Edit mode and confirm the **Select** column disappears.
 
 The complete `docs/host-validation-0.9.md` matrix remains required after this targeted correction passes.
