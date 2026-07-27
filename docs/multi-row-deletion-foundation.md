@@ -2,7 +2,7 @@
 
 ## Scope
 
-Milestone 0.9 extends the accepted 0.8 structural row model so users can explicitly mark multiple CSV data rows and delete them as one pending structural operation.
+Milestone 0.9 extends the accepted 0.8 structural row model so users can explicitly select multiple CSV data rows and delete them as one pending structural operation.
 
 The phase does not add another editor-write path. It reuses stable `CsvEditRowId` identities, deterministic structural serialization, fresh-buffer conflict checks, and the existing one-undo Apply coordinator.
 
@@ -10,38 +10,44 @@ The phase does not add another editor-write path. It reuses stable `CsvEditRowId
 
 - ordinary cell clicks continue to select/edit individual cells;
 - entering Edit mode appends a checkbox-style **Select** column after the real CSV columns;
-- clicking a selector cell marks or unmarks that stable row without editing CSV data;
-- marked rows may be adjacent or non-adjacent and do not require Ctrl or Shift;
-- Delete control acts on every marked row;
-- when no selector mark exists, Delete falls back to the current stable row;
+- clicking a selector cell toggles that stable row and highlights the complete row;
+- clicking a left row header selects the complete row and checks its selector box;
+- Ctrl+row-header toggles non-adjacent rows;
+- Shift+row-header selects a contiguous range from a stable anchor;
+- checkbox and row-header interactions always display the same complete-row selection;
+- clicking an ordinary CSV data cell clears complete-row selection;
+- Delete is disabled unless at least one complete row is explicitly selected;
+- Delete acts on every selected row;
 - the status area reports how many source rows and inserted rows are pending deletion/cancellation;
 - Revert All restores the exact original structural state;
 - Apply writes all pending changes as one undoable editor-buffer replacement;
-- leaving Edit mode removes the selector column and clears marks.
+- leaving Edit mode removes the selector column and clears selection.
 
-## Why row-header Ctrl/Shift was rejected
+## Why the earlier row-header attempts failed
 
-Three row-header interaction designs passed automated tests but failed owner testing in the real Notepad++ 8.9.7 x64 docked WinForms host:
+Three earlier interaction designs passed automated tests but failed owner testing in the real Notepad++ 8.9.7 x64 docked WinForms host:
 
 1. direct `SelectedRows` capture;
 2. post-event `SelectedCells` promotion;
-3. plugin-owned Ctrl/Shift row-header gesture state.
+3. a separate plugin-owned row-header gesture state that was not synchronized with the later working selector UI.
 
-In each case, multiple Name cells appeared selected, the command remained `Delete Row`, and only the current/last row was deleted. Milestone 0.9 therefore does not depend on row-header Ctrl/Shift selection.
+The failure was not the concept of row-header selection itself; it was deriving deletion intent from transient WinForms collections or keeping row-header intent separate from the visible working state. The current design makes checkbox and row-header input write to one stable-ID model, then renders DataGridView highlighting and checkboxes from that model.
 
 ## Identity and atomicity
 
 - DataGridView indexes and UI objects are presentation state only.
-- Selector marks retain only stable `CsvEditRowId` values.
-- Before mutation, marked IDs are copied in current structural order.
+- Complete-row selection retains only stable `CsvEditRowId` values plus one stable Shift anchor.
+- Selector and row-header gestures mutate the same selection state.
+- Before mutation, selected IDs are copied in current structural order.
 - Selection enumeration order must not influence output.
 - Validation occurs for the complete ID set before any row is mutated.
-- A failed active-cell commit or invalid marked identity results in zero structural changes.
+- A failed active-cell commit or invalid selected identity results in zero structural changes.
 - Source rows are marked for deletion and remain restorable.
-- Marked inserted rows are removed by cancelling those insertions.
+- Selected inserted rows are removed by cancelling those insertions.
 - Mixed source/inserted selections are processed atomically.
 - The selector column is presentation-only and is never serialized.
 - The selector is appended after all real CSV columns so CSV data-column indexes remain unchanged.
+- Ordinary current-cell focus is never promoted to a deletion target.
 
 ## Serialization
 
@@ -52,7 +58,7 @@ Batch deletion reuses the accepted `CsvRowEditModel` preview rules:
 - cancelled inserted rows are omitted;
 - mixed CRLF/LF separators remain deterministic;
 - original terminal-newline state remains independent and preserved;
-- delete-first, delete-middle, delete-last, delete-all, adjacent, and non-adjacent marked rows are covered explicitly.
+- delete-first, delete-middle, delete-last, delete-all, adjacent, and non-adjacent selected rows are covered explicitly.
 
 ## Apply safety
 
@@ -64,7 +70,9 @@ Batch deletion reuses the accepted `CsvRowEditModel` preview rules:
 
 ## Technical baseline
 
-The implementation uses an edit-only `DataGridViewCheckBoxColumn` as an explicit selector. Checkbox display is custom-painted; selector values are not part of row data and do not flow through the CSV cell-edit handler. Marked rows are stored in a plugin-owned stable-ID set and converted to immutable deletion targets immediately before mutation.
+The implementation uses an edit-only `DataGridViewCheckBoxColumn` as a visible selector. Checkbox display is custom-painted; selector values are not part of row data and do not flow through the CSV cell-edit handler.
+
+`CsvGridManagedRowSelection` owns the stable selected-ID set and Shift anchor. `CsvGridRowHeaderBehavior` translates selector clicks and row-header gestures into that state, then synchronizes complete-row highlighting and checkbox painting. `CsvGridSelectionSnapshot` returns only those explicit complete-row stable IDs. `SelectedRows`, `SelectedCells`, the current cell, and visual indexes are not deletion authority.
 
 Pinned dependency remains:
 
@@ -100,23 +108,26 @@ No dependency upgrade is part of milestone 0.9.
 
 ### Native AOT WinForms
 
-- selector appears only in editable mode;
-- selector is appended after CSV data columns;
-- non-adjacent stable rows can be marked independently from visual grid selection;
-- toggling removes only the intended mark;
-- no-mark current-row fallback remains;
-- selector removal clears marks outside Edit mode;
+- selector appears only in editable mode and remains after CSV columns;
+- checkbox selection visually highlights complete rows;
+- plain and Ctrl row-header gestures synchronize selector state and full-row highlighting;
+- Shift uses a stable anchor and structural display order;
+- toggling removes only the intended complete-row target;
+- ordinary cell context produces zero deletion targets;
+- selector removal clears selection outside Edit mode;
 - mixed structural preview and Apply execution remain intact;
-- read-only row-header width and ordinary single-row behavior remain compatible.
+- read-only row-header width remains compatible.
 
 ## Required Notepad++ host matrix
 
 - visible selector appearance/removal with Edit mode;
-- non-adjacent marked source rows;
-- mixed source/inserted marks;
+- checkbox-to-full-row visual synchronization;
+- row-header-to-checkbox synchronization;
+- Ctrl non-adjacent and Shift contiguous complete-row selection;
+- ordinary cell click clears complete-row selection and disables Delete;
+- mixed source/inserted selection;
 - dynamic `Delete Rows (n)` count;
-- Delete Marked Rows and Revert All;
-- no-mark current-row fallback;
+- Delete Selected Rows and Revert All;
 - Apply followed by one Ctrl+Z and one Ctrl+Y;
 - normal Save ownership;
 - sorting before Edit mode and source-order restoration;
@@ -130,7 +141,6 @@ No dependency upgrade is part of milestone 0.9.
 
 - row movement;
 - keyboard Delete-key integration unless separately proven safe;
-- row-header Ctrl/Shift as the batch-selection mechanism;
 - visual column-header editing;
 - non-UTF-8 write support;
 - source navigation;
