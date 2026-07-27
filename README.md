@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.9 multi-row deletion alpha under Notepad++ host validation**. Edit mode supports cell editing, Add Row, an explicit checkbox-style **Select** column, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.9 multi-row deletion alpha under Notepad++ host validation**. Edit mode supports cell editing, Add Row, synchronized checkbox/row-header complete-row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
 
 ## Current capabilities
 
@@ -37,11 +37,13 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - changed-cell, changed-row, inserted-row, and deleted-row counts
 - `*` marker beside changed source rows and `new:n *` markers beside inserted rows
 - readable 112-pixel row headers for inserted-row labels
-- explicit checkbox-style **Select** column shown only in Edit mode
-- independent marking of non-adjacent rows without Ctrl/Shift or WinForms row-selection semantics
+- checkbox-style **Select** column shown only in Edit mode
+- complete-row selection by checkbox or left row-header click
+- Ctrl+row-header non-adjacent selection and Shift+row-header contiguous range selection
+- two-way synchronization: checked boxes visually select complete rows, and row-header selection checks the matching boxes
+- ordinary data-cell clicks clear complete-row selection and disable Delete
 - atomic batch deletion using immutable stable-row-ID snapshots
 - mixed source-row deletion and inserted-row cancellation in one operation
-- current-cell fallback when no selector checkbox is marked
 - Revert All without modifying the editor buffer
 - deterministic comma/semicolon/tab CSV serialization
 - minimal-difference previews that preserve unchanged raw records and line separators
@@ -60,11 +62,13 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 2. Select **Edit**. Search and sorting are cleared and source order is restored.
 3. Edit data cells directly in the grid.
 4. Select **Add Row** to insert after the current row, or append when no row is current.
-5. Use the **Select** column at the right side of the grid to mark every row that should be deleted together.
-6. Marking and unmarking rows does not modify CSV values and does not require Ctrl or Shift.
-7. Select **Delete Rows (n)** to delete all marked stable rows as one pending operation.
-8. Marked source rows are marked for deletion; marked inserted rows are removed by cancelling their insertions.
-9. When no selector checkbox is marked, **Delete Row** falls back to the current cell's stable row.
+5. Select complete rows in either of two synchronized ways:
+   - click checkbox cells in the **Select** column;
+   - click left row headers, using Ctrl for non-adjacent rows or Shift for a contiguous range.
+6. Every explicitly selected row is highlighted as a complete row and has its **Select** checkbox checked.
+7. Clicking an ordinary CSV data cell clears complete-row selection. **Delete Row** remains disabled for cell-only focus.
+8. Select **Delete Row** or **Delete Rows (n)** to delete all explicitly selected stable rows as one pending operation.
+9. Selected source rows are marked for deletion; selected inserted rows are removed by cancelling their insertions.
 10. Changed source rows keep their original logical-record number and add `*`; inserted rows use `new:n *`.
 11. Select **Revert All** to discard every cell, insertion, and deletion change without touching the editor.
 12. Select **Apply** to re-read the active editor and perform a fresh conflict check.
@@ -84,12 +88,14 @@ While Edit mode is active, Refresh, delimiter, header, search, and sort transiti
 - A source row remains restorable after pending deletion.
 - Deleting an inserted row cancels the insertion.
 - Add/Delete first commits the active cell editor or refuses the operation.
+- Delete has no current-cell fallback: at least one complete row must be explicitly selected.
 - The complete batch target set is validated before the first model mutation.
 - Duplicate selected identities are normalized.
 - Selection enumeration order never influences serialized output.
 - Invalid stable identities produce zero partial batch changes.
-- The explicit selector column is presentation-only and is never serialized as CSV data.
-- Marked rows are stored as stable IDs independently from DataGridView selection collections.
+- The selector column is presentation-only and is never serialized as CSV data.
+- Checkbox and row-header gestures update one plugin-owned stable-ID selection model.
+- DataGridView `SelectedRows` and `SelectedCells` are not authoritative model identity.
 - The selector is appended after real CSV columns, so editable CSV column indexes remain unchanged.
 - After deletion, focus moves deterministically to the smallest removed display position, clamped to the remaining grid.
 - Unchanged source records retain their exact raw text.
