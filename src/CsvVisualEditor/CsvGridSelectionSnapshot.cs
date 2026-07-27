@@ -3,18 +3,19 @@ namespace CsvVisualEditor;
 using CsvVisualEditor.Core;
 
 /// <summary>
-/// One immutable stable row target copied from the explicit selector marks.
-/// DisplayIndex is used only to choose a neighboring row after a successful
-/// model mutation; Id is the only persistent model identity.
+/// One immutable stable complete-row target copied from the synchronized
+/// selector/row-header selection. DisplayIndex is used only to choose a
+/// neighboring row after a successful model mutation; Id is the only
+/// persistent model identity.
 /// </summary>
 internal readonly record struct CsvGridSelectedRow(
     CsvEditRowId Id,
     int DisplayIndex);
 
 /// <summary>
-/// Converts explicit checkbox-style row marks into deterministic stable IDs.
-/// DataGridView SelectedRows and SelectedCells are deliberately irrelevant.
-/// When no row is marked, the accepted single-current-row fallback is used.
+/// Converts explicit complete-row selection into deterministic stable IDs.
+/// Ordinary data-cell focus is never a deletion target: Delete is available
+/// only after a selector click or row-header gesture selected complete rows.
 /// </summary>
 internal static class CsvGridSelectionSnapshot
 {
@@ -23,27 +24,22 @@ internal static class CsvGridSelectionSnapshot
         ArgumentNullException.ThrowIfNull(grid);
 
         var managed = CsvGridRowHeaderBehavior.CaptureManagedSelection(grid);
-        if (managed.HasExplicitRowHeaderContext)
+        if (!managed.HasExplicitRowHeaderContext)
         {
-            var selectedIds = managed.SelectedIds.ToHashSet();
-            var selectedRows = new List<CsvGridSelectedRow>(selectedIds.Count);
-            foreach (DataGridViewRow row in grid.Rows)
+            return Array.Empty<CsvGridSelectedRow>();
+        }
+
+        var selectedIds = managed.SelectedIds.ToHashSet();
+        var selectedRows = new List<CsvGridSelectedRow>(selectedIds.Count);
+        foreach (DataGridViewRow row in grid.Rows)
+        {
+            if (row.Tag is CsvEditRowId rowId &&
+                selectedIds.Contains(rowId))
             {
-                if (row.Tag is CsvEditRowId rowId &&
-                    selectedIds.Contains(rowId))
-                {
-                    selectedRows.Add(new CsvGridSelectedRow(rowId, row.Index));
-                }
+                selectedRows.Add(new CsvGridSelectedRow(rowId, row.Index));
             }
-
-            return selectedRows;
         }
 
-        if (grid.CurrentRow is { Tag: CsvEditRowId currentRowId } currentRow)
-        {
-            return [new CsvGridSelectedRow(currentRowId, currentRow.Index)];
-        }
-
-        return Array.Empty<CsvGridSelectedRow>();
+        return selectedRows;
     }
 }
