@@ -12,12 +12,12 @@ Use synthetic data only. Confirm the SHA-256 values supplied with the test packa
 ## Safety expectations
 
 - Edit mode remains explicit and off by default.
-- Ordinary CSV cells remain directly editable only in Edit mode.
-- Edit mode shows a checkbox-style **Select** column after all real CSV columns.
-- Selector marks are not CSV values and are never serialized.
-- Multiple rows may be marked without Ctrl or Shift.
+- Ordinary data-cell clicks remain cell selections and are not deletion targets.
+- The **Select** column and left row headers are synchronized views of one complete-row selection state.
+- Checkbox clicks visually highlight complete rows.
+- Plain/Ctrl/Shift row-header gestures check the matching selector boxes.
+- Delete is disabled when no complete row is explicitly selected.
 - Delete operates on stable row identities captured before mutation.
-- With no selector marks, Delete falls back to the current stable row.
 - Source rows are marked for deletion; inserted rows are cancelled.
 - Revert All never changes the Notepad++ editor buffer.
 - Apply changes only the active editor buffer.
@@ -26,7 +26,7 @@ Use synthetic data only. Confirm the SHA-256 values supplied with the test packa
 - One Ctrl+Z undoes the complete batch Apply and one Ctrl+Y redoes it.
 - The plugin never saves directly to disk.
 
-## Test A — controls, selector lifecycle, and ordinary cell behavior
+## Test A — controls, selector visibility, and ordinary cell behavior
 
 Use:
 
@@ -41,48 +41,49 @@ Epsilon,Admins,false
 
 1. Open the visual table.
 2. Confirm the About dialog reports `0.9.0-alpha`.
-3. Before Edit mode, confirm the grid is read-only and there is no **Select** column.
+3. Before Edit mode, confirm the grid is read-only and no **Select** column is visible.
 4. Enter Edit mode.
-5. Confirm a narrow **Select** column appears at the right side, after `Enabled`.
-6. Click a normal data cell and confirm it can be edited normally.
-7. Confirm the selector did not shift the CSV data columns or write a checkbox value into the document model.
-8. With no selector marks, confirm the Delete control reads **Delete Row** and targets the current stable row.
-9. Exit Edit mode after Revert All or Apply and confirm the **Select** column disappears.
+5. Confirm a **Select** column appears after the real CSV columns.
+6. Click a normal CSV data cell.
+7. Confirm only that cell is selected, no selector box is checked, and **Delete Row** is disabled.
+8. Confirm cell editing, Add Row, Apply, and Revert All retain their 0.8 behavior.
 
-## Test B — non-adjacent explicit marks
+## Test B — checkbox selection and visual synchronization
 
-1. Enter Edit mode using the original Test A source.
-2. Mark Alpha, Gamma, and Epsilon in the **Select** column.
-3. Confirm exactly those three checkboxes are checked.
-4. Confirm the Delete control reads `Delete Rows (3)`.
-5. Click an ordinary cell in another row and confirm the three marks remain.
-6. Select **Delete Rows (3)**.
+1. Check Alpha in the **Select** column.
+2. Confirm the complete Alpha row becomes highlighted.
+3. Check Gamma and Epsilon.
+4. Confirm exactly Alpha, Gamma, and Epsilon are highlighted as complete rows.
+5. Confirm all three matching selector boxes are checked.
+6. Confirm the Delete control reads `Delete Rows (3)`.
+7. Click an ordinary Beta data cell.
+8. Confirm every selector box clears, the full-row highlights disappear, only the Beta cell remains selected, and Delete becomes disabled.
+
+## Test C — Ctrl non-adjacent row-header selection
+
+1. Click the left row header of Alpha.
+2. Hold Ctrl and click the left row headers of Gamma and Epsilon.
+3. Confirm exactly Alpha, Gamma, and Epsilon are highlighted as complete rows.
+4. Confirm their three selector boxes are checked.
+5. Confirm the Delete control reads `Delete Rows (3)`.
+6. Release Ctrl and select **Delete Rows (3)**.
 7. Confirm Alpha, Gamma, and Epsilon disappear from the pending grid.
 8. Confirm Beta and Delta remain in original source order.
 9. Confirm the status reports three source rows marked for deletion.
 10. Confirm no editor text changed before Apply.
 11. Select Revert All and confirm all five source rows return with their original source numbers.
-12. Confirm stale selector marks are cleared after Revert All.
 
-## Test C — contiguous rows without Shift
+## Test D — Shift contiguous range
 
-1. Enter Edit mode from the original source.
-2. Mark Beta, Gamma, and Delta using their selector cells.
-3. Confirm the button reads `Delete Rows (3)`.
-4. Delete the marked rows.
-5. Confirm Alpha and Epsilon remain.
-6. Revert All and confirm exact source restoration.
-7. Confirm selector marks are cleared.
-
-## Test D — mark and unmark
-
-1. Enter Edit mode.
-2. Mark Alpha, Gamma, and Epsilon.
-3. Click Gamma's selector again.
-4. Confirm only Alpha and Epsilon remain marked.
-5. Confirm the button reads `Delete Rows (2)`.
-6. Delete and confirm only Alpha and Epsilon are removed.
-7. Revert All.
+1. Enter Edit mode from the original Test A source.
+2. Click the Beta row header.
+3. Hold Shift and click the Delta row header.
+4. Confirm Beta, Gamma, and Delta are selected as a contiguous complete-row range.
+5. Confirm all three selector boxes are checked.
+6. Confirm the button reads `Delete Rows (3)`.
+7. Delete the selected rows.
+8. Confirm Alpha and Epsilon remain.
+9. Revert All and confirm exact source restoration.
 
 ## Test E — mixed source and inserted rows
 
@@ -99,23 +100,27 @@ Inserted-1 | Temporary | true
 Inserted-2 | Temporary | false
 ```
 
-4. Mark Beta, Inserted-1, Delta, and Inserted-2 in the selector column.
-5. Confirm four rows are marked and the button reads `Delete Rows (4)`.
-6. Delete the batch.
-7. Confirm Beta and Delta are counted as source deletions.
-8. Confirm both inserted rows are removed by cancelling their insertions.
-9. Confirm insertion count returns to zero and source deletion count becomes two.
-10. Revert All and confirm the exact original five-row source returns with no inserted rows or stale marks.
+4. Select Beta and Inserted-1 with their selector boxes.
+5. Ctrl-click the row headers of Delta and Inserted-2.
+6. Confirm all four matching boxes are checked and all four complete rows are highlighted.
+7. Confirm the button reads `Delete Rows (4)`.
+8. Delete the batch.
+9. Confirm Beta and Delta are counted as source deletions.
+10. Confirm both inserted rows are removed by cancelling their insertions.
+11. Confirm the insertion count returns to zero and source deletion count becomes two.
+12. Revert All and confirm the exact original five-row source returns with no inserted rows.
 
-## Test F — current-cell fallback
+## Test F — no current-cell deletion fallback
 
-1. Enter Edit mode with no selector checkbox marked.
+1. Enter Edit mode with no complete row selected.
 2. Click one ordinary cell in Gamma.
-3. Confirm the Delete control reads **Delete Row**.
-4. Select Delete Row.
-5. Confirm only Gamma is marked for deletion.
-6. Confirm no previously marked row is accidentally included.
-7. Revert All.
+3. Confirm no selector box is checked.
+4. Confirm **Delete Row** is disabled.
+5. Pressing or clicking elsewhere in the cell area must not mark Gamma for deletion.
+6. Click Gamma's left row header.
+7. Confirm the Gamma checkbox becomes checked, the complete row is highlighted, and **Delete Row** becomes enabled.
+8. Delete and confirm only Gamma is marked for deletion.
+9. Revert All.
 
 ## Test G — batch Apply, undo, redo, and Save
 
@@ -127,8 +132,8 @@ Inserted-2 | Temporary | false
 Inserted | Guests | true
 ```
 
-4. Mark Beta and Delta in the selector column.
-5. Delete the two marked source rows.
+4. Select Beta and Delta using either synchronized method.
+5. Delete the two selected source rows.
 6. Confirm the dirty summary reflects one cell edit, one surviving insertion, and two source deletions.
 7. Select Apply.
 8. Confirm the editor contains Alpha with `Editors`, omits Beta and Delta, and contains the inserted row.
@@ -141,17 +146,18 @@ Inserted | Guests | true
 
 ### First and last
 
-1. Mark Alpha and Epsilon.
-2. Delete and Apply.
-3. Confirm only the middle three source records remain.
-4. Confirm the original terminal-newline state is preserved.
-5. Undo once and confirm exact restoration.
+1. Select Alpha and Epsilon with Ctrl+row-header clicks or selector boxes.
+2. Confirm both methods show the same two checked/highlighted rows.
+3. Delete and Apply.
+4. Confirm only the middle three source records remain.
+5. Confirm the original terminal-newline state is preserved.
+6. Undo once and confirm exact restoration.
 
 ### All data rows
 
-1. Mark all five data rows.
-2. Confirm the button reads `Delete Rows (5)`.
-3. Delete all marked rows.
+1. Click the Alpha row header and Shift-click Epsilon.
+2. Confirm every data-row checkbox is checked.
+3. Delete all selected rows.
 4. Confirm the header remains and zero data rows are pending.
 5. Apply.
 6. Confirm the editor contains only the header with the original terminal-newline state.
@@ -162,7 +168,7 @@ Inserted | Guests | true
 1. Outside Edit mode, sort Name descending.
 2. Confirm row headers retain original source logical-record numbers.
 3. Enter Edit mode and confirm source order is restored.
-4. Mark source rows Beta and Delta.
+4. Select source rows Beta and Delta using row headers and verify their boxes.
 5. Delete and Apply.
 6. Confirm exactly Beta and Delta were removed.
 7. Undo once and confirm the exact original CSV.
@@ -177,14 +183,15 @@ Use synthetic UTF-8 data containing:
 - `Budapest`, `東京`, and emoji;
 - one short row and one row with an extra trailing field.
 
-1. Mark non-adjacent rows containing multiline and Unicode values.
-2. Delete them as one batch.
-3. Edit a padded cell in a surviving short row.
-4. Apply.
-5. Confirm surviving raw records retain their values and extra/trailing fields.
-6. Confirm the multiline record is either fully present or fully deleted as one logical record.
-7. Confirm Unicode remains intact.
-8. Undo once and confirm exact source restoration.
+1. Select non-adjacent rows containing multiline and Unicode values.
+2. Confirm each selected logical record has one checked selector and one complete-row highlight.
+3. Delete them as one batch.
+4. Edit a padded cell in a surviving short row.
+5. Apply.
+6. Confirm surviving raw records retain their values and extra/trailing fields.
+7. Confirm the multiline record is either fully present or fully deleted as one logical record.
+8. Confirm Unicode remains intact.
+9. Undo once and confirm exact source restoration.
 
 ## Test K — mixed EOL and terminal-newline preservation
 
@@ -198,9 +205,9 @@ Create controlled UTF-8 files with:
 
 For each variant:
 
-1. mark and delete adjacent rows;
+1. delete adjacent explicitly selected rows;
 2. undo;
-3. mark and delete non-adjacent first and last rows;
+3. delete non-adjacent first and last rows;
 4. Apply;
 5. confirm surviving source separators follow the accepted minimal-difference policy;
 6. confirm the original terminal-newline state is preserved;
@@ -210,7 +217,7 @@ For each variant:
 
 ### Content conflict
 
-1. Start a dirty session containing a marked batch deletion.
+1. Start a dirty session containing a batch deletion.
 2. Modify the same editor buffer directly.
 3. Select Apply.
 4. Confirm Apply is blocked and the direct editor change is not overwritten.
@@ -227,14 +234,14 @@ For each variant:
 ## Test M — non-UTF-8 refusal
 
 1. Convert a synthetic CSV in Notepad++ to ANSI/Windows-1252.
-2. Enter Edit mode and mark multiple rows.
+2. Enter Edit mode and explicitly select multiple rows.
 3. Delete the batch.
 4. Select Apply.
 5. Confirm the UTF-8/65001 warning appears.
 6. Confirm editor and disk content remain unchanged.
 7. Confirm the pending session remains available for Revert All.
 
-## Test N — lifecycle, mark reset, and dark mode
+## Test N — lifecycle, synchronization reset, and dark mode
 
 While a dirty batch session exists:
 
@@ -242,11 +249,11 @@ While a dirty batch session exists:
 - confirm no automatic Apply occurs;
 - confirm global Refresh is refused;
 - confirm Edit mode cannot exit without Apply/Revert All;
-- switch light/dark mode and confirm selector checkboxes, current cell, row headers, counters, and buttons remain readable;
-- after a deletion rebuild, confirm stale DataGridView rows and stale selector marks are not retained;
-- confirm the neighboring current row is deterministic;
-- after Revert All or successful Apply, confirm the selector starts clean;
-- after leaving Edit mode, confirm the selector column is removed.
+- switch light/dark mode and confirm checkboxes, selected rows, current cells, row headers, counters, and buttons remain readable;
+- after a deletion rebuild, confirm deleted row marks disappear and the neighboring current row is deterministic;
+- after an ordinary cell click, confirm row marks and checkbox checks clear;
+- after Revert All or successful Apply, confirm subsequent checkbox, Ctrl, and Shift complete-row selections work normally;
+- exit Edit mode and confirm the selector column disappears.
 
 ## Acceptance result
 
