@@ -12,14 +12,14 @@ internal static class MultiRowSelectionNativeAotSmoke
     {
         const string source = "Name\nAlpha\nBeta\nGamma\nDelta";
         var snapshot = ActiveDocumentSnapshot.Create(
-            @"C:\Synthetic\native-explicit-selector.csv",
+            @"C:\Synthetic\native-synchronized-row-selection.csv",
             source,
             Encoding.UTF8.GetByteCount(source),
             codePage: 65001,
             caretPosition: 0,
             anchorPosition: 0,
             isModified: false,
-            new DateTimeOffset(2026, 7, 24, 8, 0, 0, TimeSpan.Zero));
+            new DateTimeOffset(2026, 7, 27, 12, 0, 0, TimeSpan.Zero));
         var dialect = CsvDialect.Create(
             ',',
             headerMode: CsvHeaderMode.FirstRecord);
@@ -58,12 +58,12 @@ internal static class MultiRowSelectionNativeAotSmoke
         grid.CreateControl();
         Require(
             CsvGridRowHeaderBehavior.TryAttach(form),
-            "Native AOT explicit row selector did not attach to the table grid.");
+            "Native AOT synchronized row selection did not attach to the table grid.");
 
         grid.Columns.Add("Name", "Name");
         Require(
             CsvGridRowHeaderBehavior.HasSelectorColumn(grid),
-            "Native AOT explicit selector column was not added in editable mode.");
+            "Native AOT selector column was not added in editable mode.");
         Require(
             grid.Columns[grid.Columns.Count - 1].Name ==
                 CsvGridRowHeaderBehavior.SelectorColumnName,
@@ -75,6 +75,7 @@ internal static class MultiRowSelectionNativeAotSmoke
             grid.Rows[index].Tag = row.Id;
         }
 
+        // Checkbox-style selection must also highlight complete rows visually.
         Require(
             CsvGridRowHeaderBehavior.ToggleSelectorForTesting(grid, rowIndex: 0),
             "Native AOT selector toggle failed for Alpha.");
@@ -84,12 +85,13 @@ internal static class MultiRowSelectionNativeAotSmoke
         Require(
             CsvGridRowHeaderBehavior.ToggleSelectorForTesting(grid, rowIndex: 3),
             "Native AOT selector toggle failed for Delta.");
+        Require(grid.Rows[0].Selected, "Selector did not visually select Alpha's complete row.");
+        Require(grid.Rows[2].Selected, "Selector did not visually select Gamma's complete row.");
+        Require(grid.Rows[3].Selected, "Selector did not visually select Delta's complete row.");
+        Require(!grid.Rows[1].Selected, "Selector unexpectedly selected Beta.");
 
-        // The marked stable IDs remain authoritative even when WinForms visual
-        // selection is cleared or represented differently by the docked host.
-        grid.ClearSelection();
         var selected = CsvGridSelectionSnapshot.Capture(grid);
-        Require(selected.Count == 3, "Native AOT explicit selector snapshot count mismatch.");
+        Require(selected.Count == 3, "Native AOT selector snapshot count mismatch.");
         Require(selected[0].Id == sourceRows[0].Id, "Native AOT selector first identity mismatch.");
         Require(selected[1].Id == sourceRows[2].Id, "Native AOT selector middle identity mismatch.");
         Require(selected[2].Id == sourceRows[3].Id, "Native AOT selector final identity mismatch.");
@@ -105,24 +107,59 @@ internal static class MultiRowSelectionNativeAotSmoke
             string.Equals(model.CreatePreview().Text, source, StringComparison.Ordinal),
             "Native AOT explicit batch Revert All should restore exact source text.");
 
-        // Toggling a checked mark off removes only that stable target.
-        CsvGridRowHeaderBehavior.ResetManagedSelectionForCurrentCell(grid);
-        CsvGridRowHeaderBehavior.ToggleSelectorForTesting(grid, rowIndex: 1);
-        CsvGridRowHeaderBehavior.ToggleSelectorForTesting(grid, rowIndex: 3);
-        CsvGridRowHeaderBehavior.ToggleSelectorForTesting(grid, rowIndex: 1);
-        var oneMarked = CsvGridSelectionSnapshot.Capture(grid);
-        Require(oneMarked.Count == 1, "Native AOT selector toggle-off count mismatch.");
-        Require(oneMarked[0].Id == sourceRows[3].Id, "Native AOT selector toggle-off identity mismatch.");
+        // Plain and Ctrl row-header gestures must synchronize the same stable-ID
+        // selector state and the complete-row visual selection.
+        CsvGridRowHeaderBehavior.ClearManagedSelection(grid);
+        Require(
+            CsvGridRowHeaderBehavior.ApplyRowHeaderGestureForTesting(
+                grid,
+                rowIndex: 1,
+                control: false,
+                shift: false),
+            "Native AOT plain row-header gesture failed for Beta.");
+        Require(
+            CsvGridRowHeaderBehavior.ApplyRowHeaderGestureForTesting(
+                grid,
+                rowIndex: 3,
+                control: true,
+                shift: false),
+            "Native AOT Ctrl row-header gesture failed for Delta.");
+        var ctrlSelection = CsvGridSelectionSnapshot.Capture(grid);
+        Require(ctrlSelection.Count == 2, "Native AOT Ctrl row-header count mismatch.");
+        Require(ctrlSelection[0].Id == sourceRows[1].Id, "Native AOT Ctrl first identity mismatch.");
+        Require(ctrlSelection[1].Id == sourceRows[3].Id, "Native AOT Ctrl second identity mismatch.");
+        Require(grid.Rows[1].Selected && grid.Rows[3].Selected,
+            "Native AOT Ctrl row-header selection was not visually synchronized.");
 
-        // With no marked checkboxes the accepted single-current-row fallback is
-        // retained for the ordinary Delete Row command.
-        CsvGridRowHeaderBehavior.ResetManagedSelectionForCurrentCell(grid);
+        // Shift uses the stable anchor and visible structural order.
+        CsvGridRowHeaderBehavior.ClearManagedSelection(grid);
+        CsvGridRowHeaderBehavior.ApplyRowHeaderGestureForTesting(
+            grid,
+            rowIndex: 0,
+            control: false,
+            shift: false);
+        CsvGridRowHeaderBehavior.ApplyRowHeaderGestureForTesting(
+            grid,
+            rowIndex: 2,
+            control: false,
+            shift: true);
+        var range = CsvGridSelectionSnapshot.Capture(grid);
+        Require(range.Count == 3, "Native AOT Shift row-header count mismatch.");
+        Require(range[0].Id == sourceRows[0].Id, "Native AOT Shift first identity mismatch.");
+        Require(range[1].Id == sourceRows[1].Id, "Native AOT Shift middle identity mismatch.");
+        Require(range[2].Id == sourceRows[2].Id, "Native AOT Shift final identity mismatch.");
+        Require(grid.Rows[0].Selected && grid.Rows[1].Selected && grid.Rows[2].Selected,
+            "Native AOT Shift row-header selection was not visually synchronized.");
+
+        // Ordinary cell context is deliberately not deletable. There is no
+        // current-row fallback after explicit complete-row selection is cleared.
+        CsvGridRowHeaderBehavior.ClearManagedSelection(grid);
         grid.CurrentCell = grid.Rows[2].Cells[0];
         grid.ClearSelection();
-        var fallback = CsvGridSelectionSnapshot.Capture(grid);
-        Require(fallback.Count == 1, "Native AOT current-row fallback count mismatch.");
-        Require(fallback[0].Id == sourceRows[2].Id, "Native AOT current-row fallback identity mismatch.");
-        Require(fallback[0].DisplayIndex == 2, "Native AOT current-row fallback display index mismatch.");
+        grid.CurrentCell.Selected = true;
+        Require(
+            CsvGridSelectionSnapshot.Capture(grid).Count == 0,
+            "Native AOT ordinary cell context incorrectly became a deletion target.");
 
         // Leaving editable mode removes the selector column and clears marks.
         grid.ReadOnly = true;
