@@ -1,7 +1,9 @@
 namespace CsvVisualEditor.NativeAot.SmokeTests;
 
 using CsvVisualEditor;
+using CsvVisualEditor.Core;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows.Forms;
 
 internal static class GridRowHeaderNativeAotSmoke
@@ -9,6 +11,31 @@ internal static class GridRowHeaderNativeAotSmoke
     [ModuleInitializer]
     internal static void Run()
     {
+        const string source = "A,B\none,two";
+        var snapshot = ActiveDocumentSnapshot.Create(
+            @"C:\Synthetic\native-row-header.csv",
+            source,
+            Encoding.UTF8.GetByteCount(source),
+            codePage: 65001,
+            caretPosition: 0,
+            anchorPosition: 0,
+            isModified: false,
+            new DateTimeOffset(2026, 7, 27, 12, 0, 0, TimeSpan.Zero));
+        var dialect = CsvDialect.Create(',', headerMode: CsvHeaderMode.FirstRecord);
+        var parseResult = CsvParser.Parse(source, dialect);
+        var projection = CsvTableProjector.Create(
+            parseResult,
+            new CsvTableProjectionOptions
+            {
+                HeaderMode = CsvHeaderMode.FirstRecord,
+                MaximumRows = 10,
+                MaximumColumns = 10,
+                MaximumCells = 100
+            });
+        var session = CsvEditSession.Create(snapshot, parseResult, projection);
+        var model = CsvRowEditModel.Create(snapshot, parseResult, session, projection);
+        var stableRow = model.GetVisibleRows().Single();
+
         using var form = new Form();
         using var tableGrid = new DataGridView
         {
@@ -37,7 +64,8 @@ internal static class GridRowHeaderNativeAotSmoke
         tableGrid.RowHeadersVisible = true;
         tableGrid.Columns.Add("A", "A");
         tableGrid.Columns.Add("B", "B");
-        tableGrid.Rows.Add("one", "two");
+        var rowIndex = tableGrid.Rows.Add("one", "two");
+        tableGrid.Rows[rowIndex].Tag = stableRow.Id;
         Require(
             tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
             "Native AOT row-header width policy mismatch.");
@@ -56,6 +84,9 @@ internal static class GridRowHeaderNativeAotSmoke
         Require(
             tableGrid.SelectedCells.Count == tableGrid.Columns.Count,
             "Native AOT row-header selection did not select every CSV row cell.");
+        Require(
+            CsvGridSelectionSnapshot.Capture(tableGrid).Count == 1,
+            "Native AOT row-header selection did not synchronize stable selection state.");
 
         tableGrid.RowHeadersVisible = false;
         tableGrid.RowHeadersVisible = true;
