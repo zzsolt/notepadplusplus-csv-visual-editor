@@ -12,25 +12,29 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Immutable `CsvBatchDeleteResult` with target, source-deletion, inserted-cancellation, affected, and remaining-row counts.
 - Duplicate-ID normalization and complete prevalidation before the first structural mutation.
 - Mixed source-row deletion and inserted-row cancellation in one deterministic operation.
-- Explicit checkbox-style **Select** column shown only in Edit mode and appended after real CSV columns.
-- Plugin-owned stable marked-row set independent from DataGridView selection collections.
+- Checkbox-style **Select** column shown only in Edit mode and appended after real CSV columns.
+- Shared plugin-owned stable complete-row selection state for selector boxes and row-header gestures.
+- Plain, Ctrl, Shift, and Ctrl+Shift row-header selection based on stable IDs and a stable anchor.
+- Two-way visual synchronization: selector boxes highlight complete rows, and row-header selection updates selector boxes.
 - Dynamic **Delete Row** / **Delete Rows (n)** command state.
-- Current-row fallback when no selector checkbox is marked.
 - Deterministic neighboring-row focus after batch deletion.
 - Nine batch-operation xUnit regressions covering atomicity, duplicates, ordering, mixed rows, BOM, mixed EOL, terminal newlines, inserted-only cleanup, and exact Revert All.
-- Native AOT explicit-selector, batch preview, Apply, conflict-zero-call, Revert, fallback, and selector-lifecycle execution.
+- Native AOT synchronized selector/row-header, batch preview, Apply, conflict-zero-call, Revert, and selector-lifecycle execution.
 - Public multi-row deletion architecture and Notepad++ 0.9 host-validation matrix.
 - `0.9.0-alpha` assembly, About, workflow artifact, and package version.
 
 ### Changed
 
-- Multi-row deletion no longer uses Ctrl/Shift row-header selection after three real-host implementations failed in Notepad++ 8.9.7 x64.
+- The working explicit selector is now the visible state indicator for row-header selection rather than a separate interaction model.
+- Row-header Ctrl/Shift gestures update stable `CsvEditRowId` targets directly and do not derive deletion intent from `SelectedRows` or `SelectedCells`.
+- Clicking an ordinary CSV data cell clears complete-row selection and disables Delete.
+- Current-cell row deletion fallback was removed; Delete requires at least one explicitly selected complete row.
 - Selector marks retain only stable `CsvEditRowId` values and never enter the CSV cell model.
-- Delete captures the explicit marked-ID set before mutation and performs one core batch operation.
+- Delete captures the explicit stable-ID set before mutation and performs one core batch operation.
 - Selection enumeration order no longer affects structural output.
-- Button text and tooltip communicate one-row versus marked multi-row deletion targets.
+- Button text and tooltip communicate one-row versus multi-row deletion targets.
 - Status messages distinguish source rows marked for deletion from inserted rows removed by cancellation.
-- Leaving Edit mode removes the selector column and clears marks.
+- Leaving Edit mode removes the selector column and clears complete-row selection.
 - Native AOT diagnostic artifacts include both publish and execution logs.
 
 ### Safety
@@ -38,22 +42,24 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - DataGridView rows, cells, indexes, and selection collections remain presentation state only.
 - Selector state is never serialized as CSV data.
 - Appending the selector preserves all existing CSV data-column indexes.
+- Ordinary cell focus cannot accidentally become a row-deletion target.
 - The complete unique stable-ID set is validated before any row mutation.
 - An unknown stable identity produces zero partial changes.
 - Built-in DataGridView row deletion remains disabled.
-- Marked inserted rows are cancelled; marked source rows remain restorable through Revert All.
+- Selected inserted rows are cancelled; selected source rows remain restorable through Revert All.
 - NoChanges and document/code-page/content conflicts continue to call no editor method.
 - Batch Apply reuses the existing single Begin/Replace/Selection/End coordinator.
 - UTF-8-only Apply, one full-buffer replacement, normal Notepad++ Save ownership, and no direct disk writes remain unchanged.
 
 ### Validated
 
-- 168/168 xUnit tests passed.
+- 168/168 xUnit tests passed before the synchronized-selection increment.
 - Strict core build and bootstrap smoke passed.
-- Native AOT explicit selector appearance, placement, non-adjacent marks, toggle-off, visual-selection independence, atomic deletion, current-row fallback, selector removal, and exact Revert All passed.
+- Native AOT explicit selector appearance, placement, visual full-row synchronization, atomic deletion, and exact Revert All are covered.
+- Native AOT plain/Ctrl/Shift row-header selection, selector synchronization, ordinary-cell zero-target behavior, and selector removal are covered.
 - Native AOT mixed batch deletion, deterministic preview, Apply ordering, and conflict zero-call behavior passed.
-- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation passed.
-- Complete Notepad++ 8.9.7 x64 owner acceptance is pending for the explicit selector.
+- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation remain required for the final synchronized-selection head.
+- The owner confirmed the checkbox-only selector deletion path works in Notepad++ 8.9.7 x64; synchronized row-header acceptance is pending.
 
 ## [0.8.0-alpha] — 2026-07-23
 
