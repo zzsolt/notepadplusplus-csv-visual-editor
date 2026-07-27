@@ -500,6 +500,8 @@ internal static class CsvGridRowHeaderBehavior
         grid.RowHeadersWidth = PreferredRowHeaderWidth;
         grid.RowHeadersWidthSizeMode =
             DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+        grid.RowHeadersDefaultCellStyle.Alignment =
+            DataGridViewContentAlignment.MiddleCenter;
         grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
         grid.MultiSelect = true;
     }
