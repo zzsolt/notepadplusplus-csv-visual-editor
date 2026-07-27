@@ -70,6 +70,10 @@ internal static class GridRowHeaderNativeAotSmoke
             tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
             "Native AOT row-header width policy mismatch.");
         Require(
+            tableGrid.RowHeadersDefaultCellStyle.Alignment ==
+                DataGridViewContentAlignment.MiddleCenter,
+            "Native AOT row-header numbers are not centered.");
+        Require(
             !CsvGridRowHeaderBehavior.HasSelectorColumn(tableGrid),
             "Native AOT selector column must not appear while the table is read-only.");
 
@@ -94,6 +98,10 @@ internal static class GridRowHeaderNativeAotSmoke
         Require(
             tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
             "Native AOT row-header width was not restored after table reconstruction.");
+        Require(
+            tableGrid.RowHeadersDefaultCellStyle.Alignment ==
+                DataGridViewContentAlignment.MiddleCenter,
+            "Native AOT row-header centering was not restored after reconstruction.");
         Require(
             !CsvGridRowHeaderBehavior.HasSelectorColumn(tableGrid),
             "Native AOT reconstruction added a selector outside Edit mode.");
