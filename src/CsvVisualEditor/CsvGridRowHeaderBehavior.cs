@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 /// <summary>
-/// Keeps row headers readable and supplies an explicit checkbox-style selector
-/// column while Edit mode is active. Batch deletion targets come from stable
-/// row IDs marked in this column, never from DataGridView selection semantics.
+/// Keeps row headers readable and supplies one explicit complete-row selection
+/// model shared by the checkbox-style selector column and row-header gestures.
+/// Stable row IDs are authoritative; DataGridView selection is presentation only.
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
@@ -74,17 +74,9 @@ internal static class CsvGridRowHeaderBehavior
             }
         };
         grid.CellMouseDown += (_, eventArgs) =>
-            OnSelectorMouseDown(grid, state, eventArgs);
+            OnGridMouseDown(grid, state, eventArgs);
         grid.CellPainting += (_, eventArgs) =>
             PaintSelectorCell(grid, state, eventArgs);
-        grid.RowHeaderMouseClick += (_, eventArgs) =>
-        {
-            if (eventArgs.Button == MouseButtons.Left &&
-                (Control.ModifierKeys & (Keys.Control | Keys.Shift)) == Keys.None)
-            {
-                SelectWholeRow(grid, eventArgs.RowIndex);
-            }
-        };
 
         SynchronizeColumn();
         return true;
@@ -94,7 +86,9 @@ internal static class CsvGridRowHeaderBehavior
     {
         ArgumentNullException.ThrowIfNull(grid);
 
-        if (!IsValidDataRow(grid, rowIndex))
+        if (!IsValidDataRow(grid, rowIndex) ||
+            grid.Rows[rowIndex].Tag is not CsvEditRowId rowId ||
+            !ManagedSelections.TryGetValue(grid, out var state))
         {
             return false;
         }
@@ -104,17 +98,9 @@ internal static class CsvGridRowHeaderBehavior
             return false;
         }
 
-        ConfigureRowHeaders(grid);
-        var row = grid.Rows[rowIndex];
-        var firstDataColumnIndex = FindFirstDataColumnIndex(grid);
-        if (firstDataColumnIndex < 0)
-        {
-            return false;
-        }
-
-        grid.CurrentCell = row.Cells[firstDataColumnIndex];
-        grid.ClearSelection();
-        row.Selected = true;
+        state.ReplaceWith(rowId);
+        SynchronizeVisualSelection(grid, state, rowIndex);
+        InvalidateSelectorColumn(grid);
         return true;
     }
 
@@ -132,18 +118,50 @@ internal static class CsvGridRowHeaderBehavior
         }
 
         state.Toggle(rowId);
-        InvalidateSelectorCell(grid, rowIndex);
+        SynchronizeVisualSelection(grid, state, rowIndex);
+        InvalidateSelectorColumn(grid);
+        return true;
+    }
+
+    internal static bool ApplyRowHeaderGestureForTesting(
+        DataGridView grid,
+        int rowIndex,
+        bool control,
+        bool shift)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+
+        if (!IsValidDataRow(grid, rowIndex) ||
+            grid.Rows[rowIndex].Tag is not CsvEditRowId rowId ||
+            !ManagedSelections.TryGetValue(grid, out var state))
+        {
+            return false;
+        }
+
+        state.ApplyRowHeaderGesture(
+            rowId,
+            GetVisibleStableOrder(grid),
+            control,
+            shift);
+        SynchronizeVisualSelection(grid, state, rowIndex);
+        InvalidateSelectorColumn(grid);
         return true;
     }
 
     internal static void ResetManagedSelectionForCurrentCell(DataGridView grid)
+    {
+        ClearManagedSelection(grid);
+    }
+
+    internal static void ClearManagedSelection(DataGridView grid)
     {
         ArgumentNullException.ThrowIfNull(grid);
 
         if (ManagedSelections.TryGetValue(grid, out var state))
         {
             state.Clear();
-            grid.Invalidate();
+            grid.ClearSelection();
+            InvalidateSelectorColumn(grid);
         }
     }
 
@@ -184,6 +202,12 @@ internal static class CsvGridRowHeaderBehavior
     {
         if (grid.Columns.Contains(SelectorColumnName))
         {
+            var existing = grid.Columns[SelectorColumnName];
+            if (existing is not null)
+            {
+                existing.DisplayIndex = grid.Columns.Count - 1;
+            }
+
             return;
         }
 
@@ -192,7 +216,7 @@ internal static class CsvGridRowHeaderBehavior
             {
                 Name = SelectorColumnName,
                 HeaderText = "Select",
-                ToolTipText = "Mark rows to delete together",
+                ToolTipText = "Select complete rows for deletion",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 Width = SelectorColumnWidth,
                 MinimumWidth = SelectorColumnWidth,
@@ -216,21 +240,52 @@ internal static class CsvGridRowHeaderBehavior
         }
     }
 
-    private static void OnSelectorMouseDown(
+    private static void OnGridMouseDown(
         DataGridView grid,
         CsvGridManagedRowSelection state,
         DataGridViewCellMouseEventArgs eventArgs)
     {
         if (eventArgs.Button != MouseButtons.Left ||
-            eventArgs.RowIndex < 0 ||
-            eventArgs.ColumnIndex < 0 ||
-            eventArgs.ColumnIndex >= grid.Columns.Count ||
-            !string.Equals(
+            !IsValidDataRow(grid, eventArgs.RowIndex))
+        {
+            return;
+        }
+
+        if (eventArgs.ColumnIndex == -1)
+        {
+            OnRowHeaderMouseDown(grid, state, eventArgs.RowIndex);
+            return;
+        }
+
+        if (eventArgs.ColumnIndex < 0 ||
+            eventArgs.ColumnIndex >= grid.Columns.Count)
+        {
+            return;
+        }
+
+        if (string.Equals(
                 grid.Columns[eventArgs.ColumnIndex].Name,
                 SelectorColumnName,
-                StringComparison.Ordinal) ||
-            !IsValidDataRow(grid, eventArgs.RowIndex) ||
-            grid.Rows[eventArgs.RowIndex].Tag is not CsvEditRowId rowId)
+                StringComparison.Ordinal))
+        {
+            OnSelectorMouseDown(grid, state, eventArgs.RowIndex);
+            return;
+        }
+
+        // A normal data-cell click deliberately leaves complete-row selection
+        // context. Delete therefore becomes unavailable until a selector or row
+        // header explicitly selects one or more complete rows again.
+        state.Clear();
+        grid.ClearSelection();
+        InvalidateSelectorColumn(grid);
+    }
+
+    private static void OnSelectorMouseDown(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        int rowIndex)
+    {
+        if (grid.Rows[rowIndex].Tag is not CsvEditRowId rowId)
         {
             return;
         }
@@ -241,14 +296,101 @@ internal static class CsvGridRowHeaderBehavior
         }
 
         state.Toggle(rowId);
-        InvalidateSelectorCell(grid, eventArgs.RowIndex);
+        SynchronizeVisualSelection(grid, state, rowIndex);
+        InvalidateSelectorColumn(grid);
+        QueueVisualSynchronization(grid, state, rowIndex);
+    }
 
-        var firstDataColumnIndex = FindFirstDataColumnIndex(grid);
-        if (firstDataColumnIndex >= 0)
+    private static void OnRowHeaderMouseDown(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        int rowIndex)
+    {
+        if (grid.Rows[rowIndex].Tag is not CsvEditRowId rowId)
         {
-            grid.ClearSelection();
-            grid.CurrentCell = grid.Rows[eventArgs.RowIndex].Cells[firstDataColumnIndex];
-            grid.CurrentCell.Selected = true;
+            return;
+        }
+
+        if (grid.IsCurrentCellInEditMode && !grid.EndEdit())
+        {
+            return;
+        }
+
+        var modifiers = Control.ModifierKeys;
+        state.ApplyRowHeaderGesture(
+            rowId,
+            GetVisibleStableOrder(grid),
+            control: (modifiers & Keys.Control) == Keys.Control,
+            shift: (modifiers & Keys.Shift) == Keys.Shift);
+
+        SynchronizeVisualSelection(grid, state, rowIndex);
+        InvalidateSelectorColumn(grid);
+        QueueVisualSynchronization(grid, state, rowIndex);
+    }
+
+    private static void QueueVisualSynchronization(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        int preferredRowIndex)
+    {
+        if (!grid.IsHandleCreated || grid.IsDisposed || grid.Disposing)
+        {
+            return;
+        }
+
+        try
+        {
+            grid.BeginInvoke((Action)(() =>
+            {
+                if (grid.IsDisposed || grid.Disposing)
+                {
+                    return;
+                }
+
+                SynchronizeVisualSelection(grid, state, preferredRowIndex);
+                InvalidateSelectorColumn(grid);
+            }));
+        }
+        catch (InvalidOperationException)
+        {
+            // The handle can disappear while Notepad++ is closing the docked form.
+        }
+    }
+
+    private static void SynchronizeVisualSelection(
+        DataGridView grid,
+        CsvGridManagedRowSelection state,
+        int preferredRowIndex)
+    {
+        if (grid.Rows.Count == 0)
+        {
+            return;
+        }
+
+        ConfigureRowHeaders(grid);
+        var firstDataColumnIndex = FindFirstDataColumnIndex(grid);
+        if (firstDataColumnIndex < 0)
+        {
+            return;
+        }
+
+        if (IsValidDataRow(grid, preferredRowIndex))
+        {
+            grid.CurrentCell = grid.Rows[preferredRowIndex].Cells[firstDataColumnIndex];
+        }
+
+        var selected = state.Capture(GetVisibleStableOrder(grid));
+        var selectedIds = selected.SelectedIds.ToHashSet();
+
+        grid.ClearSelection();
+        foreach (DataGridViewRow row in grid.Rows)
+        {
+            if (!row.IsNewRow &&
+                row.Tag is CsvEditRowId rowId &&
+                selectedIds.Contains(rowId))
+            {
+                row.Selected = true;
+            }
         }
     }
 
@@ -295,7 +437,7 @@ internal static class CsvGridRowHeaderBehavior
         eventArgs.Handled = true;
     }
 
-    private static void InvalidateSelectorCell(DataGridView grid, int rowIndex)
+    private static void InvalidateSelectorColumn(DataGridView grid)
     {
         if (!grid.Columns.Contains(SelectorColumnName))
         {
@@ -305,7 +447,7 @@ internal static class CsvGridRowHeaderBehavior
         var selectorColumn = grid.Columns[SelectorColumnName];
         if (selectorColumn is not null)
         {
-            grid.InvalidateCell(selectorColumn.Index, rowIndex);
+            grid.InvalidateColumn(selectorColumn.Index);
         }
     }
 
@@ -358,6 +500,8 @@ internal static class CsvGridRowHeaderBehavior
         grid.RowHeadersWidth = PreferredRowHeaderWidth;
         grid.RowHeadersWidthSizeMode =
             DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+        grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
+        grid.MultiSelect = true;
     }
 
     private static DataGridView? FindTableGrid(Control root)
