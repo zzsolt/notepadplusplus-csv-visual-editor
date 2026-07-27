@@ -53,12 +53,12 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ### Validated
 
-- 168/168 xUnit tests passed before the synchronized-selection increment.
+- 168/168 xUnit tests passed.
 - Strict core build and bootstrap smoke passed.
-- Native AOT explicit selector appearance, placement, visual full-row synchronization, atomic deletion, and exact Revert All are covered.
-- Native AOT plain/Ctrl/Shift row-header selection, selector synchronization, ordinary-cell zero-target behavior, and selector removal are covered.
+- Native AOT explicit selector appearance, placement, visual full-row synchronization, atomic deletion, and exact Revert All passed.
+- Native AOT plain/Ctrl/Shift row-header selection, selector synchronization, ordinary-cell zero-target behavior, and selector removal passed.
 - Native AOT mixed batch deletion, deterministic preview, Apply ordering, and conflict zero-call behavior passed.
-- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation remain required for the final synchronized-selection head.
+- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation passed in CI `30267490767` on public head `cdd9c8f4a2b87caa21c489e04f44fa86fb25040f`.
 - The owner confirmed the checkbox-only selector deletion path works in Notepad++ 8.9.7 x64; synchronized row-header acceptance is pending.
 
 ## [0.8.0-alpha] — 2026-07-23
