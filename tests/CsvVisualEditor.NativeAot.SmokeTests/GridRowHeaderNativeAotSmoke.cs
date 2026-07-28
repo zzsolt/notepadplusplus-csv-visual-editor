@@ -20,7 +20,7 @@ internal static class GridRowHeaderNativeAotSmoke
             caretPosition: 0,
             anchorPosition: 0,
             isModified: false,
-            new DateTimeOffset(2026, 7, 27, 12, 0, 0, TimeSpan.Zero));
+            new DateTimeOffset(2026, 7, 28, 12, 0, 0, TimeSpan.Zero));
         var dialect = CsvDialect.Create(',', headerMode: CsvHeaderMode.FirstRecord);
         var parseResult = CsvParser.Parse(source, dialect);
         var projection = CsvTableProjector.Create(
@@ -66,9 +66,10 @@ internal static class GridRowHeaderNativeAotSmoke
         tableGrid.Columns.Add("B", "B");
         var rowIndex = tableGrid.Rows.Add("one", "two");
         tableGrid.Rows[rowIndex].Tag = stableRow.Id;
+
         Require(
-            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
-            "Native AOT row-header width policy mismatch.");
+            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.CompactRowHeaderWidth,
+            "Native AOT read-only row-header width must remain compact.");
         Require(
             tableGrid.RowHeadersDefaultCellStyle.Alignment ==
                 DataGridViewContentAlignment.MiddleCenter,
@@ -92,12 +93,32 @@ internal static class GridRowHeaderNativeAotSmoke
             CsvGridSelectionSnapshot.Capture(tableGrid).Count == 1,
             "Native AOT row-header selection did not synchronize stable selection state.");
 
+        tableGrid.ReadOnly = false;
+        Require(
+            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
+            "Native AOT Edit-mode row-header width must accommodate structural labels.");
+        Require(
+            CsvGridRowHeaderBehavior.HasSelectorColumn(tableGrid),
+            "Native AOT selector column did not appear in Edit mode.");
+        Require(
+            tableGrid.RowHeadersDefaultCellStyle.Alignment ==
+                DataGridViewContentAlignment.MiddleCenter,
+            "Native AOT Edit-mode row-header centering changed unexpectedly.");
+
+        tableGrid.ReadOnly = true;
+        Require(
+            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.CompactRowHeaderWidth,
+            "Native AOT row-header width did not return to compact read-only mode.");
+        Require(
+            !CsvGridRowHeaderBehavior.HasSelectorColumn(tableGrid),
+            "Native AOT selector column was not removed after leaving Edit mode.");
+
         tableGrid.RowHeadersVisible = false;
         tableGrid.RowHeadersVisible = true;
         tableGrid.Columns.Add("C", "C");
         Require(
-            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.PreferredRowHeaderWidth,
-            "Native AOT row-header width was not restored after table reconstruction.");
+            tableGrid.RowHeadersWidth == CsvGridRowHeaderBehavior.CompactRowHeaderWidth,
+            "Native AOT compact row-header width was not restored after reconstruction.");
         Require(
             tableGrid.RowHeadersDefaultCellStyle.Alignment ==
                 DataGridViewContentAlignment.MiddleCenter,
