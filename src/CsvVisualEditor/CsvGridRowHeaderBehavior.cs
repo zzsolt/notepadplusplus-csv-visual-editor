@@ -5,14 +5,12 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 /// <summary>
-/// Keeps row headers readable and supplies one explicit complete-row selection
-/// model shared by the checkbox-style selector column and row-header gestures.
+/// Supplies one explicit complete-row selection model shared by the checkbox
+/// selector, native row-header gestures, and the adjacent row-indicator column.
 /// Stable row IDs are authoritative; DataGridView selection is presentation only.
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
-    internal const int CompactRowHeaderWidth = 64;
-    internal const int PreferredRowHeaderWidth = 112;
     internal const string SelectorColumnName = "CsvRowSelector";
 
     private const int SelectorColumnWidth = 58;
@@ -31,50 +29,51 @@ internal static class CsvGridRowHeaderBehavior
             return false;
         }
 
-        ConfigureRowHeaders(grid);
+        CsvGridRowPresentation.ConfigureNativeRowHeaders(grid);
         if (ManagedSelections.TryGetValue(grid, out _))
         {
-            SynchronizeSelectorColumn(grid);
             return true;
         }
 
         var state = new CsvGridManagedRowSelection();
         ManagedSelections.Add(grid, state);
 
-        var synchronizingColumn = false;
-        void SynchronizeColumn()
+        var synchronizingColumns = false;
+        void SynchronizeColumns()
         {
-            if (synchronizingColumn || grid.IsDisposed || grid.Disposing)
+            if (synchronizingColumns || grid.IsDisposed || grid.Disposing)
             {
                 return;
             }
 
-            synchronizingColumn = true;
+            synchronizingColumns = true;
             try
             {
                 SynchronizeSelectorColumn(grid);
+                CsvGridRowPresentation.RefreshLayout(grid);
             }
             finally
             {
-                synchronizingColumn = false;
+                synchronizingColumns = false;
             }
         }
 
-        grid.ReadOnlyChanged += (_, _) =>
+        grid.ReadOnlyChanged += (_, _) => SynchronizeColumns();
+        grid.RowHeadersVisibleChanged += (_, _) =>
+            CsvGridRowPresentation.RefreshLayout(grid);
+        grid.DpiChangedAfterParent += (_, _) =>
+            CsvGridRowPresentation.RefreshLayout(grid);
+        grid.FontChanged += (_, _) =>
+            CsvGridRowPresentation.RefreshLayout(grid);
+        grid.ColumnRemoved += (_, _) =>
         {
-            ConfigureRowHeaders(grid);
-            SynchronizeColumn();
+            if (!CsvGridRowPresentation.HasRowIndicatorColumn(grid))
+            {
+                state.Clear();
+            }
         };
-        grid.ColumnAdded += (_, _) =>
-        {
-            ConfigureRowHeaders(grid);
-            SynchronizeColumn();
-        };
-        grid.ColumnRemoved += (_, _) => SynchronizeColumn();
-        grid.RowsAdded += (_, _) => ConfigureRowHeaders(grid);
         grid.RowsRemoved += (_, _) =>
         {
-            ConfigureRowHeaders(grid);
             if (grid.Rows.Count == 0)
             {
                 state.Clear();
@@ -85,7 +84,6 @@ internal static class CsvGridRowHeaderBehavior
         grid.CellPainting += (_, eventArgs) =>
             PaintSelectorCell(grid, state, eventArgs);
 
-        SynchronizeColumn();
         return true;
     }
 
@@ -193,9 +191,35 @@ internal static class CsvGridRowHeaderBehavior
         return grid.Columns.Contains(SelectorColumnName);
     }
 
+    internal static void SynchronizeTablePresentation(DataGridView grid)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+
+        CsvGridRowPresentation.EnsureRowIndicatorColumn(grid);
+        SynchronizeSelectorColumn(grid);
+        CsvGridRowPresentation.RefreshLayout(grid);
+    }
+
+    internal static void RefreshPresentationLayout(DataGridView grid)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        CsvGridRowPresentation.RefreshLayout(grid);
+    }
+
+    internal static bool IsPresentationColumn(DataGridViewColumn column)
+    {
+        ArgumentNullException.ThrowIfNull(column);
+        return CsvGridRowPresentation.IsRowIndicatorColumn(column) ||
+               string.Equals(
+                   column.Name,
+                   SelectorColumnName,
+                   StringComparison.Ordinal);
+    }
+
     private static void SynchronizeSelectorColumn(DataGridView grid)
     {
-        if (!grid.ReadOnly && grid.Columns.Count > 0)
+        if (!grid.ReadOnly &&
+            CsvGridRowPresentation.HasRowIndicatorColumn(grid))
         {
             EnsureSelectorColumn(grid);
         }
@@ -270,8 +294,23 @@ internal static class CsvGridRowHeaderBehavior
             return;
         }
 
+        var clickedColumn = grid.Columns[eventArgs.ColumnIndex];
+        if (CsvGridRowPresentation.IsRowIndicatorColumn(clickedColumn))
+        {
+            if (grid.Rows[eventArgs.RowIndex].Tag is CsvEditRowId)
+            {
+                OnRowHeaderMouseDown(grid, state, eventArgs.RowIndex);
+            }
+            else
+            {
+                SelectReadOnlyIndicatorRow(grid, eventArgs.RowIndex);
+            }
+
+            return;
+        }
+
         if (string.Equals(
-                grid.Columns[eventArgs.ColumnIndex].Name,
+                clickedColumn.Name,
                 SelectorColumnName,
                 StringComparison.Ordinal))
         {
@@ -285,6 +324,58 @@ internal static class CsvGridRowHeaderBehavior
         state.Clear();
         grid.ClearSelection();
         InvalidateSelectorColumn(grid);
+    }
+
+    private static void SelectReadOnlyIndicatorRow(
+        DataGridView grid,
+        int rowIndex)
+    {
+        ApplyReadOnlyIndicatorSelection(grid, rowIndex);
+        QueueReadOnlyIndicatorSelection(grid, rowIndex);
+    }
+
+    private static void ApplyReadOnlyIndicatorSelection(
+        DataGridView grid,
+        int rowIndex)
+    {
+        var firstDataColumnIndex = FindFirstDataColumnIndex(grid);
+        if (firstDataColumnIndex < 0 || !IsValidDataRow(grid, rowIndex))
+        {
+            return;
+        }
+
+        grid.ClearSelection();
+        grid.CurrentCell = grid.Rows[rowIndex].Cells[firstDataColumnIndex];
+        grid.Rows[rowIndex].Selected = true;
+    }
+
+    private static void QueueReadOnlyIndicatorSelection(
+        DataGridView grid,
+        int rowIndex)
+    {
+        if (!grid.IsHandleCreated || grid.IsDisposed || grid.Disposing)
+        {
+            return;
+        }
+
+        try
+        {
+            grid.BeginInvoke((Action)(() =>
+            {
+                if (!grid.IsDisposed && !grid.Disposing)
+                {
+                    // CellMouseDown precedes the DataGridView's own cell-focus
+                    // processing. Reapply the row selection afterward so the
+                    // dedicated number cell behaves like the native row header
+                    // in the docked host rather than collapsing to one cell.
+                    ApplyReadOnlyIndicatorSelection(grid, rowIndex);
+                }
+            }));
+        }
+        catch (InvalidOperationException)
+        {
+            // The handle can disappear while Notepad++ is closing the docked form.
+        }
     }
 
     private static void OnSelectorMouseDown(
@@ -374,7 +465,7 @@ internal static class CsvGridRowHeaderBehavior
             return;
         }
 
-        ConfigureRowHeaders(grid);
+        CsvGridRowPresentation.ConfigureNativeRowHeaders(grid);
         var firstDataColumnIndex = FindFirstDataColumnIndex(grid);
         if (firstDataColumnIndex < 0)
         {
@@ -462,10 +553,7 @@ internal static class CsvGridRowHeaderBehavior
     {
         foreach (DataGridViewColumn column in grid.Columns)
         {
-            if (!string.Equals(
-                    column.Name,
-                    SelectorColumnName,
-                    StringComparison.Ordinal))
+            if (!IsPresentationColumn(column))
             {
                 return column.Index;
             }
@@ -495,24 +583,6 @@ internal static class CsvGridRowHeaderBehavior
                rowIndex < grid.Rows.Count &&
                grid.Columns.Count > 0 &&
                !grid.Rows[rowIndex].IsNewRow;
-    }
-
-    private static void ConfigureRowHeaders(DataGridView grid)
-    {
-        if (!grid.RowHeadersVisible)
-        {
-            return;
-        }
-
-        grid.RowHeadersWidth = grid.ReadOnly
-            ? CompactRowHeaderWidth
-            : PreferredRowHeaderWidth;
-        grid.RowHeadersWidthSizeMode =
-            DataGridViewRowHeadersWidthSizeMode.EnableResizing;
-        grid.RowHeadersDefaultCellStyle.Alignment =
-            DataGridViewContentAlignment.MiddleCenter;
-        grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
-        grid.MultiSelect = true;
     }
 
     private static DataGridView? FindTableGrid(Control root)

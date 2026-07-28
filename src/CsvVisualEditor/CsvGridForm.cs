@@ -496,6 +496,7 @@ internal sealed class CsvGridForm : DockingForm
                 enableVisualStyles: true);
         }
 
+        CsvGridRowHeaderBehavior.RefreshPresentationLayout(_grid);
         Invalidate(invalidateChildren: true);
     }
 
@@ -540,7 +541,6 @@ internal sealed class CsvGridForm : DockingForm
             MultiSelect = true,
             ReadOnly = true,
             RowHeadersVisible = showRowHeaders,
-            RowHeadersWidth = 72,
             SelectionMode = DataGridViewSelectionMode.CellSelect
         };
         grid.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
@@ -596,7 +596,11 @@ internal sealed class CsvGridForm : DockingForm
         object? sender,
         DataGridViewCellMouseEventArgs e)
     {
-        if (_projection is null || e.ColumnIndex < 0 || _editMode)
+        if (_projection is null ||
+            e.ColumnIndex < 0 ||
+            e.ColumnIndex >= _grid.Columns.Count ||
+            _editMode ||
+            CsvGridRowHeaderBehavior.IsPresentationColumn(_grid.Columns[e.ColumnIndex]))
         {
             return;
         }
@@ -637,6 +641,7 @@ internal sealed class CsvGridForm : DockingForm
             e.ColumnIndex < 0 ||
             e.RowIndex >= _grid.Rows.Count ||
             e.ColumnIndex >= _grid.Columns.Count ||
+            CsvGridRowHeaderBehavior.IsPresentationColumn(_grid.Columns[e.ColumnIndex]) ||
             _grid.Rows[e.RowIndex].Tag is not CsvEditRowId rowId)
         {
             return;
@@ -853,6 +858,8 @@ internal sealed class CsvGridForm : DockingForm
                     SortMode = DataGridViewColumnSortMode.Programmatic
                 });
         }
+
+        CsvGridRowHeaderBehavior.SynchronizeTablePresentation(_grid);
     }
 
     private void PopulateSearchColumns(CsvTableProjection projection)
@@ -944,8 +951,11 @@ internal sealed class CsvGridForm : DockingForm
                     row.Values.Select(static value => (object)value).ToArray());
                 var gridRow = _grid.Rows[gridRowIndex];
                 gridRow.Tag = row.SourceRecordIndex;
-                gridRow.HeaderCell.Value =
-                    (row.SourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+                var logicalRecordNumber = row.SourceRecordIndex + 1;
+                CsvGridRowPresentation.SetRowIndicator(
+                    gridRow,
+                    logicalRecordNumber.ToString(CultureInfo.InvariantCulture),
+                    $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
             }
         }
         finally
@@ -953,6 +963,8 @@ internal sealed class CsvGridForm : DockingForm
             _grid.ResumeLayout(performLayout: true);
             _suppressGridChanges = false;
         }
+
+        CsvGridRowHeaderBehavior.RefreshPresentationLayout(_grid);
     }
 
     private void RenderStructuralRows(IEnumerable<CsvEditRowSnapshot> rows)
@@ -968,7 +980,7 @@ internal sealed class CsvGridForm : DockingForm
                     row.Values.Select(static value => (object)value).ToArray());
                 var gridRow = _grid.Rows[gridRowIndex];
                 gridRow.Tag = row.Id;
-                SetStructuralRowHeader(gridRow, row);
+                SetStructuralRowIndicator(gridRow, row);
             }
 
             UpdateSortGlyphs();
@@ -978,23 +990,35 @@ internal sealed class CsvGridForm : DockingForm
             _grid.ResumeLayout(performLayout: true);
             _suppressGridChanges = false;
         }
+
+        CsvGridRowHeaderBehavior.RefreshPresentationLayout(_grid);
     }
 
-    private void SetStructuralRowHeader(
+    private void SetStructuralRowIndicator(
         DataGridViewRow gridRow,
         CsvEditRowSnapshot row)
     {
         if (row.IsInserted)
         {
-            gridRow.HeaderCell.Value = $"new:{Math.Abs(row.Id.Value)} *";
+            var insertedNumber = Math.Abs(row.Id.Value);
+            CsvGridRowPresentation.SetRowIndicator(
+                gridRow,
+                $"new:{insertedNumber.ToString(CultureInfo.InvariantCulture)} *",
+                $"Pending inserted row {insertedNumber.ToString(CultureInfo.CurrentCulture)}; not yet applied");
             return;
         }
 
         var sourceRecordIndex = row.SourceRecordIndex ??
             throw new InvalidOperationException("A source row did not expose its source record index.");
-        gridRow.HeaderCell.Value =
-            (sourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture) +
-            (IsSourceRecordDirty(sourceRecordIndex) ? " *" : string.Empty);
+        var logicalRecordNumber = sourceRecordIndex + 1;
+        var isDirty = IsSourceRecordDirty(sourceRecordIndex);
+        CsvGridRowPresentation.SetRowIndicator(
+            gridRow,
+            logicalRecordNumber.ToString(CultureInfo.InvariantCulture) +
+                (isDirty ? " *" : string.Empty),
+            isDirty
+                ? $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}; modified in the pending edit session"
+                : $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
     }
 
     private bool IsSourceRecordDirty(int sourceRecordIndex)
@@ -1066,9 +1090,11 @@ internal sealed class CsvGridForm : DockingForm
             {
                 if (gridRow.Tag is CsvEditRowId rowId && snapshots.TryGetValue(rowId, out var snapshot))
                 {
-                    SetStructuralRowHeader(gridRow, snapshot);
+                    SetStructuralRowIndicator(gridRow, snapshot);
                 }
             }
+
+            CsvGridRowHeaderBehavior.RefreshPresentationLayout(_grid);
         }
 
         UpdateControlAvailability();

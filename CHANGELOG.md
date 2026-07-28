@@ -4,6 +4,32 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed logical-record/state text from the native `DataGridViewRowHeaderCell`, eliminating direct visual coupling between the current-row glyph and the active row number.
+- Replaced the rejected fixed 64/112-pixel row-header policy with a glyph-only native header plus a dedicated, content-measured `#` row-indicator column.
+- Prevented ordinary Edit mode from reserving permanent space for `new:n *` labels that do not exist.
+
+### Changed
+
+- Native row headers now use WinForms `AutoSizeToAllHeaders` for framework-owned glyph, DPI, theme, RTL, high-contrast, and editing-icon capacity.
+- Logical-record numbers and `n *` / `new:n *` state labels are centered in a frozen read-only column that is physically appended but visually first.
+- The `#` cell is an additional whole-row gesture target; native row-header and checkbox behavior continue to share the same stable-ID selection model.
+- Structural label tooltips explain modified and inserted pending state.
+- Unused row-error icon capacity is disabled; native current-row editing indication remains enabled.
+
+### Safety
+
+- Physical CSV data-column indexes remain unchanged; both presentation columns are added only after CSV columns.
+- The row-indicator and selector never enter the CSV model, serialization, conflict detection, or Apply path.
+- Existing checkbox/full-row/Ctrl/Shift/Delete/Revert stable-ID behavior remains authoritative.
+- Custom native row-header painting was intentionally avoided so WinForms retains theme, DPI, high-contrast, RTL, and accessibility ownership.
+
+### Validation status
+
+- Native AOT coverage now verifies glyph-only native headers, aligned indicator values, content-driven structural width, unchanged CSV indexes, selector placement, dark-mode refresh, reconstruction, and accepted selection/deletion behavior.
+- Final visual acceptance remains pending in the owner's real Notepad++ 8.9.7 x64 host; this changelog does not claim the host defect is closed.
+
 ## [0.9.0-alpha] — 2026-07-23
 
 ### Added

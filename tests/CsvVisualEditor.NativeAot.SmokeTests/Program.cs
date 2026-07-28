@@ -1,5 +1,6 @@
 namespace CsvVisualEditor.NativeAot.SmokeTests;
 
+using CsvVisualEditor;
 using CsvVisualEditor.Core;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -254,14 +255,18 @@ internal static class Program
         Require(
             filteredGrid.Rows.Count == 2,
             $"{caseName}: filtered grid should contain two rows.");
+        var rowIndicatorColumn =
+            filteredGrid.Columns[CsvGridRowPresentation.RowIndicatorColumnName] ??
+            throw new InvalidOperationException("Row-indicator column was not configured.");
         Require(
+            filteredGrid.Rows[0].HeaderCell.Value is null &&
             string.Equals(
                 Convert.ToString(
-                    filteredGrid.Rows[0].HeaderCell.Value,
+                    filteredGrid.Rows[0].Cells[rowIndicatorColumn.Index].Value,
                     CultureInfo.InvariantCulture),
                 "2",
                 StringComparison.Ordinal),
-            $"{caseName}: filtered row must retain source logical-record number.");
+            $"{caseName}: filtered row must retain its logical-record number outside the native glyph cell.");
     }
 
     private static void RunViewControlsCase(string caseName)
@@ -386,6 +391,8 @@ internal static class Program
                 });
         }
 
+        CsvGridRowHeaderBehavior.SynchronizeTablePresentation(grid);
+
         foreach (var row in rows)
         {
             var values = new object[row.Values.Count];
@@ -395,9 +402,14 @@ internal static class Program
             }
 
             var rowIndex = grid.Rows.Add(values);
-            grid.Rows[rowIndex].HeaderCell.Value =
-                (row.SourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+            var logicalRecordNumber = row.SourceRecordIndex + 1;
+            CsvGridRowPresentation.SetRowIndicator(
+                grid.Rows[rowIndex],
+                logicalRecordNumber.ToString(CultureInfo.InvariantCulture),
+                $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
         }
+
+        CsvGridRowHeaderBehavior.RefreshPresentationLayout(grid);
     }
 
     private static void WriteDiagnostic(string message)

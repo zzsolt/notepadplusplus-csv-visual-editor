@@ -13,9 +13,9 @@ Use synthetic data only. Confirm the SHA-256 values supplied with the test packa
 
 - Edit mode remains explicit and off by default.
 - Ordinary data-cell clicks remain cell selections and are not deletion targets.
-- The **Select** column and left row headers are synchronized views of one complete-row selection state.
+- The **Select** column, native left row-header lane, and adjacent `#` row-indicator column are synchronized views of one complete-row selection state.
 - Checkbox clicks visually highlight complete rows.
-- Plain/Ctrl/Shift row-header gestures check the matching selector boxes.
+- Plain/Ctrl/Shift gestures from either the native row header or `#` row-indicator cell check the matching selector boxes.
 - Delete is disabled when no complete row is explicitly selected.
 - Delete operates on stable row identities captured before mutation.
 - Source rows are marked for deletion; inserted rows are cancelled.
@@ -25,6 +25,39 @@ Use synthetic data only. Confirm the SHA-256 values supplied with the test packa
 - Conflicts and unsupported encodings perform zero replacement calls.
 - One Ctrl+Z undoes the complete batch Apply and one Ctrl+Y redoes it.
 - The plugin never saves directly to disk.
+
+
+## Test 0 — focused row-layout acceptance gate
+
+Use the five-row CSV from Test A and perform this section before any mutation test.
+
+### Read-only mode
+
+1. Open the visual table at the normal Notepad++ dock width.
+2. Confirm the far-left native row-header lane is narrow and contains the current-row arrow but no number text.
+3. Confirm the adjacent frozen `#` column contains logical-record numbers `2` through `6` as one visually aligned vertical column.
+4. Move the current cell through all five rows. Confirm the arrow moves in the native lane while every number remains at exactly the same horizontal position as before; the active number must not shift relative to inactive numbers.
+5. Confirm there is no excessive blank band before the first CSV data column.
+6. Click both the narrow native row header and the number cell for different rows. Confirm each selects the complete row.
+7. Sort Name descending and confirm the `#` values retain their original source logical-record numbers.
+
+### Edit mode and structural state
+
+8. Enter Edit mode without changing data. Confirm the native row-header lane and ordinary source-number column do not make a large mode-sized jump.
+9. Confirm the **Select** column appears at the far right and all real CSV columns retain their order.
+10. Change one source cell. Confirm that source row becomes `n *` in the `#` column without moving the current-row arrow into the number column.
+11. Add two rows. Confirm their labels are `new:1 *` and `new:2 *`; only the `#` column grows as much as required for those actual labels.
+12. Hover a dirty and inserted label and confirm its tooltip explains the pending state.
+13. Revert All. Confirm the inserted labels disappear and the `#` column releases unnecessary width; the native glyph lane remains unchanged.
+14. Exit and re-enter Edit mode. Confirm the compact ordinary-source layout is stable.
+
+### Lifecycle, theme, and DPI
+
+15. Hide and reopen the panel; confirm the same row/glyph separation.
+16. Switch Notepad++ light/dark mode; confirm arrow, numbers, markers, selection, and tooltips remain readable.
+17. At Windows 100%, 125%, and 150% scaling where available, reopen the panel and repeat steps 2–5. Confirm neither clipping nor an excessive permanent band appears.
+
+**Acceptance boundary:** automated tests verify the separation policy, but this section remains pending until the owner confirms it in Notepad++ 8.9.7 x64. Do not describe the visual defect as finally resolved before that confirmation.
 
 ## Test A — controls, selector visibility, and ordinary cell behavior
 
@@ -41,7 +74,7 @@ Epsilon,Admins,false
 
 1. Open the visual table.
 2. Confirm the About dialog reports `0.9.0-alpha`.
-3. Before Edit mode, confirm the grid is read-only and no **Select** column is visible.
+3. Before Edit mode, confirm the grid is read-only, the `#` row-indicator column is visually first, and no **Select** column is visible.
 4. Enter Edit mode.
 5. Confirm a **Select** column appears after the real CSV columns.
 6. Click a normal CSV data cell.
@@ -166,7 +199,7 @@ Inserted | Guests | true
 ## Test I — sorting and stable identity
 
 1. Outside Edit mode, sort Name descending.
-2. Confirm row headers retain original source logical-record numbers.
+2. Confirm the `#` row-indicator column retains original source logical-record numbers.
 3. Enter Edit mode and confirm source order is restored.
 4. Select source rows Beta and Delta using row headers and verify their boxes.
 5. Delete and Apply.
@@ -249,11 +282,11 @@ While a dirty batch session exists:
 - confirm no automatic Apply occurs;
 - confirm global Refresh is refused;
 - confirm Edit mode cannot exit without Apply/Revert All;
-- switch light/dark mode and confirm checkboxes, selected rows, current cells, row headers, counters, and buttons remain readable;
+- switch light/dark mode and confirm checkboxes, selected rows, current cells, native glyph lane, `#` labels, counters, and buttons remain readable;
 - after a deletion rebuild, confirm deleted row marks disappear and the neighboring current row is deterministic;
 - after an ordinary cell click, confirm row marks and checkbox checks clear;
 - after Revert All or successful Apply, confirm subsequent checkbox, Ctrl, and Shift complete-row selections work normally;
-- exit Edit mode and confirm the selector column disappears.
+- exit Edit mode and confirm the selector column disappears while the compact `#` row-indicator column remains.
 
 ## Acceptance result
 

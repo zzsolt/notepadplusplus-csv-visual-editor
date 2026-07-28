@@ -164,7 +164,7 @@ Every projected row retains:
 - the original logical-record index;
 - the original decoded-text source span.
 
-The DataGridView row header displays the one-based logical-record number. Sorting is disabled in milestone 0.4 so source order remains visually stable.
+The projected one-based logical-record number is rendered in the dedicated `#` row-indicator column. Native DataGridView row headers remain glyph-only current-row/selection targets, so the active glyph cannot displace the number column.
 
 ## Display limits
 
@@ -193,6 +193,20 @@ The docked panel contains:
 - status line showing document, row/column counts, delimiter source/confidence, header mode, and parser diagnostic counts.
 
 Cells use programmatic edit mode and all columns are non-sortable. Changing either selector rereads and rebuilds the current live editor buffer.
+
+### Milestone 0.9 row presentation
+
+`CsvGridRowPresentation` separates framework-owned row-header behavior from plugin-owned labels:
+
+- the native row-header cell contains no record text and retains WinForms current-row glyph, theme, DPI, RTL, high-contrast, and accessibility behavior;
+- native width uses `AutoSizeToAllHeaders`; no read-only/Edit fixed-width pair exists;
+- a frozen read-only `#` column displays aligned logical-record numbers and pending `*` / `new:n *` state;
+- that column is physically appended after CSV data columns but assigned display index zero, preserving every CSV data-column index;
+- content measurement occurs after rendering, so only labels that actually exist affect width;
+- the Edit-only selector remains physically and visually last;
+- native row-header, `#`-cell, and selector gestures converge on the same plugin-owned stable-ID selection state.
+
+The plugin intentionally does not custom-paint native row-header text. Reproducing private glyph/theme/text layout would increase DPI, dark-mode, high-contrast, RTL, accessibility, and framework-version risk.
 
 ## Refresh model
 

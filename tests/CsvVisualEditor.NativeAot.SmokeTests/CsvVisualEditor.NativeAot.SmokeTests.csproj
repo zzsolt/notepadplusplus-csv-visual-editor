@@ -24,6 +24,7 @@
     <ProjectReference Include="../../src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj" />
     <Compile Include="../../src/CsvVisualEditor/NativeAotRoots.cs" Link="NativeAotRoots.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvGridManagedRowSelection.cs" Link="CsvGridManagedRowSelection.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvGridRowPresentation.cs" Link="CsvGridRowPresentation.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvGridRowHeaderBehavior.cs" Link="CsvGridRowHeaderBehavior.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvGridSelectionSnapshot.cs" Link="CsvGridSelectionSnapshot.cs" />
   </ItemGroup>

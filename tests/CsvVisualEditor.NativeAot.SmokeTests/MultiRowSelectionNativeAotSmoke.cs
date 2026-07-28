@@ -61,6 +61,14 @@ internal static class MultiRowSelectionNativeAotSmoke
             "Native AOT synchronized row selection did not attach to the table grid.");
 
         grid.Columns.Add("Name", "Name");
+        CsvGridRowHeaderBehavior.SynchronizeTablePresentation(grid);
+        Require(
+            CsvGridRowPresentation.HasRowIndicatorColumn(grid),
+            "Native AOT row-indicator column was not added beside the native glyph lane.");
+        Require(
+            grid.Columns[0].Name == "Name" &&
+            grid.Columns[CsvGridRowPresentation.RowIndicatorColumnName]!.DisplayIndex == 0,
+            "Native AOT presentation changed the physical CSV column index or visual row-label position.");
         Require(
             CsvGridRowHeaderBehavior.HasSelectorColumn(grid),
             "Native AOT selector column was not added in editable mode.");
@@ -73,7 +81,17 @@ internal static class MultiRowSelectionNativeAotSmoke
         {
             var index = grid.Rows.Add(row.Values[0]);
             grid.Rows[index].Tag = row.Id;
+            var logicalRecordNumber = (row.SourceRecordIndex ??
+                throw new InvalidOperationException("Source row index was not available.")) + 1;
+            CsvGridRowPresentation.SetRowIndicator(
+                grid.Rows[index],
+                logicalRecordNumber.ToString(),
+                $"Source logical record {logicalRecordNumber}");
         }
+        CsvGridRowHeaderBehavior.RefreshPresentationLayout(grid);
+        Require(
+            grid.Rows.Cast<DataGridViewRow>().All(static row => row.HeaderCell.Value is null),
+            "Native AOT managed selection put labels back into native glyph cells.");
 
         // Checkbox-style selection must also highlight complete rows visually.
         Require(
@@ -166,6 +184,9 @@ internal static class MultiRowSelectionNativeAotSmoke
         Require(
             !CsvGridRowHeaderBehavior.HasSelectorColumn(grid),
             "Native AOT selector column was not removed outside editable mode.");
+        Require(
+            CsvGridRowPresentation.HasRowIndicatorColumn(grid),
+            "Native AOT row-indicator column was removed outside editable mode.");
     }
 
     private static void Require(bool condition, string message)

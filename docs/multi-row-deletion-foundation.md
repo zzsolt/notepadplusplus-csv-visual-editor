@@ -45,8 +45,9 @@ The failure was not the concept of row-header selection itself; it was deriving 
 - Source rows are marked for deletion and remain restorable.
 - Selected inserted rows are removed by cancelling those insertions.
 - Mixed source/inserted selections are processed atomically.
-- The selector column is presentation-only and is never serialized.
-- The selector is appended after all real CSV columns so CSV data-column indexes remain unchanged.
+- The selector and row-indicator columns are presentation-only and are never serialized.
+- Both presentation columns are physically appended after all real CSV columns so CSV data-column indexes remain unchanged.
+- The row indicator is visually first while the selector remains visually last.
 - Ordinary current-cell focus is never promoted to a deletion target.
 
 ## Serialization
@@ -72,7 +73,9 @@ Batch deletion reuses the accepted `CsvRowEditModel` preview rules:
 
 The implementation uses an edit-only `DataGridViewCheckBoxColumn` as a visible selector. Checkbox display is custom-painted; selector values are not part of row data and do not flow through the CSV cell-edit handler.
 
-`CsvGridManagedRowSelection` owns the stable selected-ID set and Shift anchor. `CsvGridRowHeaderBehavior` translates selector clicks and row-header gestures into that state, then synchronizes complete-row highlighting and checkbox painting. `CsvGridSelectionSnapshot` returns only those explicit complete-row stable IDs. `SelectedRows`, `SelectedCells`, the current cell, and visual indexes are not deletion authority.
+`CsvGridRowPresentation` separates the native current-row glyph lane from logical-record/state labels. Native row-header values remain empty and WinForms auto-sizes its own glyph/theme/DPI area. A read-only, frozen `#` column renders aligned source numbers plus dirty/inserted markers. It is physically appended after CSV columns but displayed first, so visual placement does not alter CSV model column indexes. Its content-driven width expands only for labels that actually exist.
+
+`CsvGridManagedRowSelection` owns the stable selected-ID set and Shift anchor. `CsvGridRowHeaderBehavior` translates selector clicks plus native-row-header or `#`-cell gestures into that state, then synchronizes complete-row highlighting and checkbox painting. `CsvGridSelectionSnapshot` returns only those explicit complete-row stable IDs. `SelectedRows`, `SelectedCells`, the current cell, and visual indexes are not deletion authority.
 
 Pinned dependency remains:
 
@@ -108,7 +111,11 @@ No dependency upgrade is part of milestone 0.9.
 
 ### Native AOT WinForms
 
-- selector appears only in editable mode and remains after CSV columns;
+- native row headers remain glyph-only and use framework auto-sizing;
+- aligned logical-record/state labels occupy a separate visually first, physically appended column;
+- source CSV column indexes remain unchanged;
+- selector appears only in editable mode and remains visually/physically after presentation and CSV columns;
+- content-driven structural labels do not widen the native glyph lane;
 - checkbox selection visually highlights complete rows;
 - plain and Ctrl row-header gestures synchronize selector state and full-row highlighting;
 - Shift uses a stable anchor and structural display order;
@@ -116,10 +123,14 @@ No dependency upgrade is part of milestone 0.9.
 - ordinary cell context produces zero deletion targets;
 - selector removal clears selection outside Edit mode;
 - mixed structural preview and Apply execution remain intact;
-- read-only row-header width remains compatible.
+- read-only/Edit transitions, dark-mode refresh, and reconstruction preserve the glyph/label separation.
 
 ## Required Notepad++ host matrix
 
+- compact glyph-only native row header in read-only and Edit modes;
+- aligned frozen `#` number/state column with no active-row number displacement;
+- content-driven `n *` / `new:n *` width and tooltip behavior;
+- 100%, 125%, and 150% DPI plus light/dark-mode readability;
 - visible selector appearance/removal with Edit mode;
 - checkbox-to-full-row visual synchronization;
 - row-header-to-checkbox synchronization;
