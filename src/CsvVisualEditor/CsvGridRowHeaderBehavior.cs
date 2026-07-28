@@ -59,8 +59,6 @@ internal static class CsvGridRowHeaderBehavior
         }
 
         grid.ReadOnlyChanged += (_, _) => SynchronizeColumns();
-        grid.RowHeadersVisibleChanged += (_, _) =>
-            CsvGridRowPresentation.RefreshLayout(grid);
         grid.DpiChangedAfterParent += (_, _) =>
             CsvGridRowPresentation.RefreshLayout(grid);
         grid.FontChanged += (_, _) =>
