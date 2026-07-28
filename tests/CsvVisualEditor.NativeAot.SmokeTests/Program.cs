@@ -74,7 +74,12 @@ internal static class Program
         Bind(grid, result.Projection.Rows, result.Projection);
         grid.PerformLayout();
 
-        Require(grid.Columns.Count == 3, $"{caseName}: expected 3 columns.");
+        Require(grid.Columns.Count == 4, $"{caseName}: expected 3 CSV columns plus the row indicator.");
+        var dataColumns = grid.Columns
+            .Cast<DataGridViewColumn>()
+            .Where(static column => !CsvGridRowHeaderBehavior.IsPresentationColumn(column))
+            .ToArray();
+        Require(dataColumns.Length == 3, $"{caseName}: expected exactly 3 physical CSV columns.");
         Require(grid.Rows.Count == 3, $"{caseName}: expected 3 data rows.");
         Require(
             string.Equals(
@@ -90,13 +95,12 @@ internal static class Program
             $"{caseName}: second cell mismatch.");
         Require(grid.ReadOnly, $"{caseName}: grid must remain read-only.");
         Require(
-            grid.Columns.Cast<DataGridViewColumn>().All(
+            dataColumns.All(
                 static column => column.AutoSizeMode == DataGridViewAutoSizeColumnMode.Fill),
-            $"{caseName}: every table column must use Fill sizing.");
+            $"{caseName}: every CSV data column must use Fill sizing.");
         Require(
-            grid.Columns.Cast<DataGridViewColumn>().All(
-                static column => column.MinimumWidth == 90),
-            $"{caseName}: every table column must retain the readable minimum width.");
+            dataColumns.All(static column => column.MinimumWidth == 90),
+            $"{caseName}: every CSV data column must retain the readable minimum width.");
         Require(
             grid.Columns[0].FillWeight > grid.Columns[2].FillWeight,
             $"{caseName}: the longer e-mail column should receive more relative width than Password.");
