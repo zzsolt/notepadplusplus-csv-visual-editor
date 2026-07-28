@@ -11,6 +11,7 @@ using System.Windows.Forms;
 /// </summary>
 internal static class CsvGridRowHeaderBehavior
 {
+    internal const int CompactRowHeaderWidth = 64;
     internal const int PreferredRowHeaderWidth = 112;
     internal const string SelectorColumnName = "CsvRowSelector";
 
@@ -59,15 +60,21 @@ internal static class CsvGridRowHeaderBehavior
             }
         }
 
-        grid.ReadOnlyChanged += (_, _) => SynchronizeColumn();
+        grid.ReadOnlyChanged += (_, _) =>
+        {
+            ConfigureRowHeaders(grid);
+            SynchronizeColumn();
+        };
         grid.ColumnAdded += (_, _) =>
         {
             ConfigureRowHeaders(grid);
             SynchronizeColumn();
         };
         grid.ColumnRemoved += (_, _) => SynchronizeColumn();
+        grid.RowsAdded += (_, _) => ConfigureRowHeaders(grid);
         grid.RowsRemoved += (_, _) =>
         {
+            ConfigureRowHeaders(grid);
             if (grid.Rows.Count == 0)
             {
                 state.Clear();
@@ -497,7 +504,9 @@ internal static class CsvGridRowHeaderBehavior
             return;
         }
 
-        grid.RowHeadersWidth = PreferredRowHeaderWidth;
+        grid.RowHeadersWidth = grid.ReadOnly
+            ? CompactRowHeaderWidth
+            : PreferredRowHeaderWidth;
         grid.RowHeadersWidthSizeMode =
             DataGridViewRowHeadersWidthSizeMode.EnableResizing;
         grid.RowHeadersDefaultCellStyle.Alignment =
