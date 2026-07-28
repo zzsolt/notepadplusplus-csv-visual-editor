@@ -1,0 +1,28 @@
+name: Source Snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create source snapshot
+        shell: bash
+        run: git archive --format=zip --output source-snapshot.zip HEAD
+
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-source-snapshot
+          path: source-snapshot.zip
+          if-no-files-found: error
