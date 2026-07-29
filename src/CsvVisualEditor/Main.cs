@@ -165,7 +165,7 @@ partial class Main : IDotNetPlugin
             result = CsvEditorApplyCoordinator.Execute(
                 _gridForm.RowEditModel,
                 currentSnapshot,
-                new NotepadEditorReplacementTarget());
+                static () => new NotepadEditorReplacementTarget());
         }
         catch (Exception)
         {

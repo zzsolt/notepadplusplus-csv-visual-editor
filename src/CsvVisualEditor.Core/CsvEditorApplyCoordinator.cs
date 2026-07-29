@@ -334,7 +334,7 @@ public static class CsvEditorApplyCoordinator
             CsvEditorReplacementPlan.FromCellPlan(
                 session.CreateApplyPlan(currentSnapshot)),
             currentSnapshot,
-            target,
+            () => target,
             encodingPolicy);
     }
 
@@ -343,14 +343,11 @@ public static class CsvEditorApplyCoordinator
         ActiveDocumentSnapshot currentSnapshot,
         IEditorReplacementTarget target)
     {
-        ArgumentNullException.ThrowIfNull(rowModel);
-        ArgumentNullException.ThrowIfNull(currentSnapshot);
         ArgumentNullException.ThrowIfNull(target);
-
         return Execute(
             rowModel,
             currentSnapshot,
-            target,
+            () => target,
             CsvEncodingApplyPolicy.Utf8Only);
     }
 
@@ -360,22 +357,48 @@ public static class CsvEditorApplyCoordinator
         IEditorReplacementTarget target,
         CsvEncodingApplyPolicy encodingPolicy)
     {
+        ArgumentNullException.ThrowIfNull(target);
+        return Execute(
+            rowModel,
+            currentSnapshot,
+            () => target,
+            encodingPolicy);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvRowEditModel rowModel,
+        ActiveDocumentSnapshot currentSnapshot,
+        Func<IEditorReplacementTarget> targetFactory)
+    {
+        return Execute(
+            rowModel,
+            currentSnapshot,
+            targetFactory,
+            CsvEncodingApplyPolicy.Utf8Only);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvRowEditModel rowModel,
+        ActiveDocumentSnapshot currentSnapshot,
+        Func<IEditorReplacementTarget> targetFactory,
+        CsvEncodingApplyPolicy encodingPolicy)
+    {
         ArgumentNullException.ThrowIfNull(rowModel);
         ArgumentNullException.ThrowIfNull(currentSnapshot);
-        ArgumentNullException.ThrowIfNull(target);
+        ArgumentNullException.ThrowIfNull(targetFactory);
         ArgumentNullException.ThrowIfNull(encodingPolicy);
 
         return ExecutePlan(
             rowModel.CreateApplyPlan(currentSnapshot),
             currentSnapshot,
-            target,
+            targetFactory,
             encodingPolicy);
     }
 
     private static CsvEditorApplyResult ExecutePlan(
         CsvEditorReplacementPlan plan,
         ActiveDocumentSnapshot currentSnapshot,
-        IEditorReplacementTarget target,
+        Func<IEditorReplacementTarget> targetFactory,
         CsvEncodingApplyPolicy encodingPolicy)
     {
         if (!plan.IsReady)
@@ -396,6 +419,8 @@ public static class CsvEditorApplyCoordinator
                 encodingPreflight);
         }
 
+        var target = targetFactory() ?? throw new InvalidOperationException(
+            "The editor replacement target factory returned null.");
         var selectionRestored = false;
         target.BeginUndoAction();
         try

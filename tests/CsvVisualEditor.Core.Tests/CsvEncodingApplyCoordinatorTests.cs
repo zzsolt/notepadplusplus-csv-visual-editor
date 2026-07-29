@@ -27,6 +27,26 @@ public sealed class CsvEncodingApplyCoordinatorTests
     }
 
     [Fact]
+    public void Execute_ReadyLegacyCodePage_DefaultPolicyDoesNotConstructEditorTarget()
+    {
+        var context = CreateContext(1250);
+        context.Session.SetCellValue(1, 1, Hungarian);
+        var factoryCalls = 0;
+
+        var result = CsvEditorApplyCoordinator.Execute(
+            context.Session,
+            context.Snapshot,
+            () =>
+            {
+                factoryCalls++;
+                return new RecordingTarget();
+            });
+
+        Assert.Equal(CsvEditorApplyStatus.EncodingWriteNotEnabled, result.Status);
+        Assert.Equal(0, factoryCalls);
+    }
+
+    [Fact]
     public void Execute_EnabledWindows1250UnrepresentableText_BlocksBeforeEditor()
     {
         var context = CreateContext(1250);
