@@ -2,9 +2,9 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.9 multi-row deletion alpha accepted in Notepad++ 8.9.7 x64**. Edit mode supports cell editing, Add Row, synchronized checkbox/row-header complete-row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.10 encoding-safe Apply alpha under development**, based on the owner-accepted 0.9 milestone. Edit mode supports cell editing, Add Row, synchronized checkbox/row-header complete-row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
 
-> The owner accepted the final native-glyph/row-number separation package on 2026-07-29 and authorized milestone closure.
+> The first 0.10 increment adds strict host-independent encoding representability checks while real non-UTF-8 Notepad++ writes remain disabled pending host proof.
 
 ## Current capabilities
 
@@ -52,12 +52,25 @@ CSV Visual Editor is a Notepad++ plugin for working with CSV files through a gra
 - minimal-difference previews that preserve unchanged raw records and line separators
 - deterministic insertion/deletion separator and terminal-newline handling
 - fresh document, code-page, and content-hash conflict checks immediately before Apply
-- Apply restricted to Scintilla code page 65001 (UTF-8) in the current writable alpha
+- explicit UTF-8, US-ASCII, Windows-1250, and Windows-1252 encoding profiles with strict no-replacement round-trip validation
+- production host Apply remains restricted to Scintilla code page 65001 (UTF-8); legacy profiles are preflight-only until real-host validation
 - one whole-document Scintilla replacement inside one undo action
 - normal Notepad++ modified-marker and Save ownership
 - visible display limits: at most 10,000 rows, 512 columns, and 250,000 cells in the current alpha
 - dependency-free bootstrap checks, xUnit.net v3 tests, and Native AOT runtime smoke tests
 - Native AOT publishing, so the target machine should not require a separately installed .NET runtime
+
+## 0.10 encoding boundary
+
+The plugin now evaluates the complete proposed replacement through an explicit encoding profile before any editor target is constructed:
+
+- UTF-8 (`65001`), US-ASCII (`20127`), Windows-1250, and Windows-1252 have strict host-independent profiles;
+- encoder and decoder exception fallbacks reject replacement-character conversion;
+- exact ordinal encode/decode equality is required;
+- unsupported, unrepresentable, and not-yet-enabled candidates produce sanitized results with no CSV values;
+- the production authorization remains UTF-8-only.
+
+The pinned Npp.DotNet bridge encodes `ReplaceTarget(string)` using the current document code page and its normal fallback behavior. The strict plugin preflight is therefore necessary, but legacy writes still require real Notepad++ proof for code-page retention, undo/redo, Save, and reopen before they may be enabled.
 
 ## Edit and Apply behavior
 
