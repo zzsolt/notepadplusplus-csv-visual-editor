@@ -2,9 +2,9 @@
 
 CSV Visual Editor is a Notepad++ plugin for working with CSV files through a graphical, spreadsheet-like table.
 
-> Development status: **0.9 multi-row deletion alpha under Notepad++ host validation**. Edit mode supports cell editing, Add Row, synchronized checkbox/row-header complete-row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
+> Development status: **0.9 multi-row deletion alpha accepted in Notepad++ 8.9.7 x64**. Edit mode supports cell editing, Add Row, synchronized checkbox/row-header complete-row selection, and atomic batch deletion for UTF-8 editor buffers. Deterministic minimal-difference serialization, fresh-buffer conflict checks, and one Scintilla undo transaction protect Apply. Saving to disk remains a normal Notepad++ action.
 
-> The native-glyph/row-number separation is covered by automated checks but remains pending owner visual acceptance in Notepad++ 8.9.7 x64.
+> The owner accepted the final native-glyph/row-number separation package on 2026-07-29 and authorized milestone closure.
 
 ## Current capabilities
 

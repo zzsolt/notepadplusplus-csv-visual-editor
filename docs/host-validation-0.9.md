@@ -291,3 +291,10 @@ While a dirty batch session exists:
 ## Acceptance result
 
 Record PASS/FAIL for every section. Do not commit screenshots containing private paths, real addresses, credentials, or production CSV values.
+
+
+## Owner acceptance — 2026-07-29
+
+The owner reported that the final package was “tökéletes lett” in the target Notepad++ 8.9.7 x64 environment and explicitly authorized closing milestone 0.9 and starting milestone 0.10. This closes the previously pending native-glyph/row-label visual gate and confirms that the accepted checkbox, complete-row, Ctrl, Shift, Delete, batch deletion, and Revert behavior did not regress in the accepted package.
+
+The final automated evidence remains CI run `30387337728`, job `90369811550`, with 168/168 xUnit tests, Native AOT runtime smoke, win-x64 publish, and packaging passing. The owner did not provide a separate item-by-item A–N transcript; the milestone closure records the owner-level final-package acceptance and explicit merge authorization rather than inventing individual test observations.

@@ -4,6 +4,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.0-alpha] — 2026-07-29
+
 ### Fixed
 
 - Removed logical-record/state text from the native `DataGridViewRowHeaderCell`, eliminating direct visual coupling between the current-row glyph and the active row number.
@@ -28,9 +30,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 ### Validation status
 
 - Native AOT coverage now verifies glyph-only native headers, aligned indicator values, content-driven structural width, unchanged CSV indexes, selector placement, dark-mode refresh, reconstruction, and accepted selection/deletion behavior.
-- Final visual acceptance remains pending in the owner's real Notepad++ 8.9.7 x64 host; this changelog does not claim the host defect is closed.
+- The owner accepted the final package in Notepad++ 8.9.7 x64 on 2026-07-29 and explicitly authorized closing milestone 0.9.
 
-## [0.9.0-alpha] — 2026-07-23
 
 ### Added
 
@@ -84,8 +85,8 @@ All notable changes to CSV Visual Editor will be documented in this file.
 - Native AOT explicit selector appearance, placement, visual full-row synchronization, atomic deletion, and exact Revert All passed.
 - Native AOT plain/Ctrl/Shift row-header selection, selector synchronization, ordinary-cell zero-target behavior, and selector removal passed.
 - Native AOT mixed batch deletion, deterministic preview, Apply ordering, and conflict zero-call behavior passed.
-- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation passed in CI `30267490767` on public head `cdd9c8f4a2b87caa21c489e04f44fa86fb25040f`.
-- The owner confirmed the checkbox-only selector deletion path works in Notepad++ 8.9.7 x64; synchronized row-header acceptance is pending.
+- Full win-x64 Native AOT plugin publish and `0.9.0-alpha` package creation passed in final CI `30387337728` on public head `ee686b75e65800dd1e6e959e477d60fd1d2234d1`.
+- The owner accepted synchronized checkbox/native-header/`#` selection, batch deletion, Revert, and the final row-presentation package in Notepad++ 8.9.7 x64.
 
 ## [0.8.0-alpha] — 2026-07-23
 
