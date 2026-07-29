@@ -29,20 +29,41 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Restore
-        shell: pwsh
-        run: |
-          dotnet restore src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj
-          dotnet restore tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj
-          dotnet restore tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj
-          dotnet restore tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj -r win-x64
-          dotnet restore src/CsvVisualEditor/CsvVisualEditor.csproj -r win-x64
-
       - name: Create diagnostics directory
         shell: pwsh
         run: New-Item -ItemType Directory -Path artifacts -Force | Out-Null
 
+      - name: Restore
+        id: restore
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $logPath = 'artifacts/restore.log'
+          $restoreCommands = @(
+            @('src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj'),
+            @('tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj'),
+            @('tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj'),
+            @('tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj', '-r', 'win-x64'),
+            @('src/CsvVisualEditor/CsvVisualEditor.csproj', '-r', 'win-x64')
+          )
+          foreach ($arguments in $restoreCommands) {
+            dotnet restore @arguments *>&1 |
+              Tee-Object -FilePath $logPath -Append
+            if ($LASTEXITCODE -ne 0) {
+              exit $LASTEXITCODE
+            }
+          }
+
+      - name: Upload restore diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-restore-diagnostics
+          path: artifacts/restore.log
+          if-no-files-found: error
+
       - name: Build core library
+        if: steps.restore.outcome == 'success'
         id: core_build
         continue-on-error: true
         shell: pwsh
@@ -54,7 +75,7 @@ jobs:
           exit $LASTEXITCODE
 
       - name: Upload core build diagnostics
-        if: always()
+        if: always() && steps.core_build.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-core-build-diagnostics
@@ -192,8 +213,13 @@ jobs:
           path: artifacts/publish.log
           if-no-files-found: error
 
+      - name: Fail workflow when restore failed
+        if: steps.restore.outcome != 'success'
+        shell: pwsh
+        run: throw 'Restore failed. Inspect restore.log in the workflow artifact.'
+
       - name: Fail workflow when core build failed
-        if: steps.core_build.outcome != 'success'
+        if: steps.restore.outcome == 'success' && steps.core_build.outcome != 'success'
         shell: pwsh
         run: throw 'Core build failed. Inspect core-build.log in the workflow artifact.'
 
