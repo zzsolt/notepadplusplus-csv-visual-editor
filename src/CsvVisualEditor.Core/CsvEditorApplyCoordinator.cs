@@ -308,14 +308,11 @@ public static class CsvEditorApplyCoordinator
         ActiveDocumentSnapshot currentSnapshot,
         IEditorReplacementTarget target)
     {
-        ArgumentNullException.ThrowIfNull(session);
-        ArgumentNullException.ThrowIfNull(currentSnapshot);
         ArgumentNullException.ThrowIfNull(target);
-
         return Execute(
             session,
             currentSnapshot,
-            target,
+            () => target,
             CsvEncodingApplyPolicy.Utf8Only);
     }
 
@@ -325,16 +322,42 @@ public static class CsvEditorApplyCoordinator
         IEditorReplacementTarget target,
         CsvEncodingApplyPolicy encodingPolicy)
     {
+        ArgumentNullException.ThrowIfNull(target);
+        return Execute(
+            session,
+            currentSnapshot,
+            () => target,
+            encodingPolicy);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvEditSession session,
+        ActiveDocumentSnapshot currentSnapshot,
+        Func<IEditorReplacementTarget> targetFactory)
+    {
+        return Execute(
+            session,
+            currentSnapshot,
+            targetFactory,
+            CsvEncodingApplyPolicy.Utf8Only);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvEditSession session,
+        ActiveDocumentSnapshot currentSnapshot,
+        Func<IEditorReplacementTarget> targetFactory,
+        CsvEncodingApplyPolicy encodingPolicy)
+    {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(currentSnapshot);
-        ArgumentNullException.ThrowIfNull(target);
+        ArgumentNullException.ThrowIfNull(targetFactory);
         ArgumentNullException.ThrowIfNull(encodingPolicy);
 
         return ExecutePlan(
             CsvEditorReplacementPlan.FromCellPlan(
                 session.CreateApplyPlan(currentSnapshot)),
             currentSnapshot,
-            () => target,
+            targetFactory,
             encodingPolicy);
     }
 
