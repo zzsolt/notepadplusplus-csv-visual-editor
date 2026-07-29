@@ -1,0 +1,28 @@
+name: Source Snapshot 0.11
+
+on:
+  push:
+    branches:
+      - agent/multi-cell-clipboard
+    paths:
+      - .github/workflows/source-snapshot-0.11.yml
+      - .source-snapshot-0.11
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create source snapshot
+        shell: bash
+        run: git archive --format=zip --output source-snapshot-0.11.zip HEAD
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-source-snapshot-0.11
+          path: source-snapshot-0.11.zip
+          if-no-files-found: error
