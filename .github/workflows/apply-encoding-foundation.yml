@@ -24,10 +24,9 @@ jobs:
       - name: Decode and validate patch
         shell: bash
         run: |
-          base64 --decode .encoding-foundation/patch.b64 | gzip --decompress > /tmp/encoding-foundation.patch
-          echo "62ab739bc9304877ef5ac24076d3fbcb0ba09cfa91039cbacc66ede503d01bea  /tmp/encoding-foundation.patch.gz" > /tmp/expected.sha256
-          gzip -c /tmp/encoding-foundation.patch > /tmp/encoding-foundation.patch.gz
-          sha256sum --check /tmp/expected.sha256
+          cat .encoding-foundation/part-* | base64 --decode > /tmp/encoding-foundation.patch.gz
+          echo "62ab739bc9304877ef5ac24076d3fbcb0ba09cfa91039cbacc66ede503d01bea  /tmp/encoding-foundation.patch.gz" | sha256sum --check
+          gzip --decompress --stdout /tmp/encoding-foundation.patch.gz > /tmp/encoding-foundation.patch
           git apply --check /tmp/encoding-foundation.patch
 
       - name: Apply audited foundation
