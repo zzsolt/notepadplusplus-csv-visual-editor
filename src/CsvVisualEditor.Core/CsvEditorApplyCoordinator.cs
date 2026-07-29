@@ -20,7 +20,11 @@ public enum CsvEditorApplyStatus
     Applied,
     DocumentIdentityChanged,
     CodePageChanged,
-    ContentChanged
+    ContentChanged,
+    EncodingWriteNotEnabled,
+    UnsupportedCodePage,
+    TextNotRepresentable,
+    EncodingRoundTripMismatch
 }
 
 /// <summary>
@@ -171,7 +175,8 @@ public sealed record CsvEditorApplyResult
         int insertedRowCount,
         int deletedRowCount,
         string? replacementSha256,
-        bool selectionRestored)
+        bool selectionRestored,
+        CsvEncodingApplyPreflightResult? encodingPreflight)
     {
         Status = status;
         ChangedCellCount = changedCellCount;
@@ -180,6 +185,7 @@ public sealed record CsvEditorApplyResult
         DeletedRowCount = deletedRowCount;
         ReplacementSha256 = replacementSha256;
         SelectionRestored = selectionRestored;
+        EncodingPreflight = encodingPreflight;
     }
 
     public CsvEditorApplyStatus Status { get; }
@@ -195,6 +201,8 @@ public sealed record CsvEditorApplyResult
     public string? ReplacementSha256 { get; }
 
     public bool SelectionRestored { get; }
+
+    public CsvEncodingApplyPreflightResult? EncodingPreflight { get; }
 
     public bool WasApplied => Status == CsvEditorApplyStatus.Applied;
 
@@ -225,14 +233,49 @@ public sealed record CsvEditorApplyResult
             plan.InsertedRowCount,
             plan.DeletedRowCount,
             replacementSha256: null,
-            selectionRestored: false);
+            selectionRestored: false,
+            encodingPreflight: null);
+    }
+
+    internal static CsvEditorApplyResult EncodingBlocked(
+        CsvEditorReplacementPlan plan,
+        CsvEditorApplyStatus status,
+        CsvEncodingApplyPreflightResult encodingPreflight)
+    {
+        ArgumentNullException.ThrowIfNull(plan);
+        ArgumentNullException.ThrowIfNull(encodingPreflight);
+        if (!plan.IsReady || encodingPreflight.IsReady)
+        {
+            throw new ArgumentException(
+                "Encoding blocking requires a Ready replacement plan and a blocked preflight.",
+                nameof(encodingPreflight));
+        }
+
+        return new CsvEditorApplyResult(
+            status,
+            plan.ChangedCellCount,
+            plan.ChangedRecordCount,
+            plan.InsertedRowCount,
+            plan.DeletedRowCount,
+            replacementSha256: null,
+            selectionRestored: false,
+            encodingPreflight);
     }
 
     internal static CsvEditorApplyResult Applied(
         CsvEditorReplacementPlan plan,
-        bool selectionRestored)
+        bool selectionRestored,
+        CsvEncodingApplyPreflightResult encodingPreflight)
     {
         ArgumentNullException.ThrowIfNull(plan);
+        ArgumentNullException.ThrowIfNull(encodingPreflight);
+        if (!encodingPreflight.IsReady)
+        {
+            throw new ArgumentException(
+                "An applied result requires a successful encoding preflight.",
+                nameof(encodingPreflight));
+        }
+
         if (!plan.IsReady ||
             plan.ReplacementText is null ||
             plan.ReplacementSha256 is null)
@@ -249,7 +292,8 @@ public sealed record CsvEditorApplyResult
             plan.InsertedRowCount,
             plan.DeletedRowCount,
             plan.ReplacementSha256,
-            selectionRestored);
+            selectionRestored,
+            encodingPreflight);
     }
 }
 
@@ -268,11 +312,30 @@ public static class CsvEditorApplyCoordinator
         ArgumentNullException.ThrowIfNull(currentSnapshot);
         ArgumentNullException.ThrowIfNull(target);
 
+        return Execute(
+            session,
+            currentSnapshot,
+            target,
+            CsvEncodingApplyPolicy.Utf8Only);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvEditSession session,
+        ActiveDocumentSnapshot currentSnapshot,
+        IEditorReplacementTarget target,
+        CsvEncodingApplyPolicy encodingPolicy)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(currentSnapshot);
+        ArgumentNullException.ThrowIfNull(target);
+        ArgumentNullException.ThrowIfNull(encodingPolicy);
+
         return ExecutePlan(
             CsvEditorReplacementPlan.FromCellPlan(
                 session.CreateApplyPlan(currentSnapshot)),
             currentSnapshot,
-            target);
+            target,
+            encodingPolicy);
     }
 
     public static CsvEditorApplyResult Execute(
@@ -284,16 +347,36 @@ public static class CsvEditorApplyCoordinator
         ArgumentNullException.ThrowIfNull(currentSnapshot);
         ArgumentNullException.ThrowIfNull(target);
 
+        return Execute(
+            rowModel,
+            currentSnapshot,
+            target,
+            CsvEncodingApplyPolicy.Utf8Only);
+    }
+
+    public static CsvEditorApplyResult Execute(
+        CsvRowEditModel rowModel,
+        ActiveDocumentSnapshot currentSnapshot,
+        IEditorReplacementTarget target,
+        CsvEncodingApplyPolicy encodingPolicy)
+    {
+        ArgumentNullException.ThrowIfNull(rowModel);
+        ArgumentNullException.ThrowIfNull(currentSnapshot);
+        ArgumentNullException.ThrowIfNull(target);
+        ArgumentNullException.ThrowIfNull(encodingPolicy);
+
         return ExecutePlan(
             rowModel.CreateApplyPlan(currentSnapshot),
             currentSnapshot,
-            target);
+            target,
+            encodingPolicy);
     }
 
     private static CsvEditorApplyResult ExecutePlan(
         CsvEditorReplacementPlan plan,
         ActiveDocumentSnapshot currentSnapshot,
-        IEditorReplacementTarget target)
+        IEditorReplacementTarget target,
+        CsvEncodingApplyPolicy encodingPolicy)
     {
         if (!plan.IsReady)
         {
@@ -302,6 +385,17 @@ public static class CsvEditorApplyCoordinator
 
         var replacementText = plan.ReplacementText ?? throw new InvalidOperationException(
             "The Ready replacement plan did not contain replacement text.");
+        var encodingPreflight = encodingPolicy.Evaluate(
+            currentSnapshot.CodePage,
+            replacementText);
+        if (!encodingPreflight.IsReady)
+        {
+            return CsvEditorApplyResult.EncodingBlocked(
+                plan,
+                MapEncodingStatus(encodingPreflight.Status),
+                encodingPreflight);
+        }
+
         var selectionRestored = false;
         target.BeginUndoAction();
         try
@@ -333,7 +427,33 @@ public static class CsvEditorApplyCoordinator
             target.EndUndoAction();
         }
 
-        return CsvEditorApplyResult.Applied(plan, selectionRestored);
+        return CsvEditorApplyResult.Applied(
+            plan,
+            selectionRestored,
+            encodingPreflight);
+    }
+
+    private static CsvEditorApplyStatus MapEncodingStatus(
+        CsvEncodingApplyPreflightStatus status)
+    {
+        return status switch
+        {
+            CsvEncodingApplyPreflightStatus.HostWriteNotEnabled =>
+                CsvEditorApplyStatus.EncodingWriteNotEnabled,
+            CsvEncodingApplyPreflightStatus.UnsupportedCodePage =>
+                CsvEditorApplyStatus.UnsupportedCodePage,
+            CsvEncodingApplyPreflightStatus.TextNotRepresentable =>
+                CsvEditorApplyStatus.TextNotRepresentable,
+            CsvEncodingApplyPreflightStatus.RoundTripMismatch =>
+                CsvEditorApplyStatus.EncodingRoundTripMismatch,
+            CsvEncodingApplyPreflightStatus.Ready => throw new ArgumentException(
+                "A successful encoding preflight cannot be mapped to a blocked Apply status.",
+                nameof(status)),
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(status),
+                status,
+                "Unknown encoding Apply preflight status.")
+        };
     }
 
     private static long ClampPosition(long position, long documentByteLength)

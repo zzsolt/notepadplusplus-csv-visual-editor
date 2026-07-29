@@ -11,7 +11,6 @@ partial class Main : IDotNetPlugin
     private const string DeveloperName = "Zolnai Zsolt";
     private const string DeveloperEmail = "zzsolt@gmail.com";
     private const int DialogCommandIndex = 0;
-    private const int Utf8CodePage = 65001;
     private const int MaximumDisplayedRows = 10_000;
     private const int MaximumDisplayedColumns = 512;
     private const int MaximumDisplayedCells = 250_000;
@@ -160,20 +159,6 @@ partial class Main : IDotNetPlugin
             return;
         }
 
-        if (_gridForm.EditSession.Baseline.CodePage != Utf8CodePage ||
-            currentSnapshot.CodePage != Utf8CodePage)
-        {
-            MessageBox.Show(
-                "Apply is currently supported only for UTF-8 editor buffers " +
-                "(Scintilla code page 65001). No editor content was changed. " +
-                "Use Revert All, convert the document to UTF-8 in Notepad++, " +
-                "then reopen Edit mode.",
-                PluginDisplayName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
-            return;
-        }
-
         CsvEditorApplyResult result;
         try
         {
@@ -206,7 +191,56 @@ partial class Main : IDotNetPlugin
             return;
         }
 
+        if (IsEncodingApplyBlocked(result.Status))
+        {
+            ShowEncodingApplyBlocked(result);
+            return;
+        }
+
         _gridForm.ShowApplyConflict(result.Status);
+    }
+
+    private static bool IsEncodingApplyBlocked(CsvEditorApplyStatus status)
+    {
+        return status is
+            CsvEditorApplyStatus.EncodingWriteNotEnabled or
+            CsvEditorApplyStatus.UnsupportedCodePage or
+            CsvEditorApplyStatus.TextNotRepresentable or
+            CsvEditorApplyStatus.EncodingRoundTripMismatch;
+    }
+
+    private static void ShowEncodingApplyBlocked(CsvEditorApplyResult result)
+    {
+        var codePage = result.EncodingPreflight?.CodePage;
+        var codePageText = codePage is null
+            ? "the current editor code page"
+            : $"Scintilla code page {codePage.Value}";
+        var message = result.Status switch
+        {
+            CsvEditorApplyStatus.EncodingWriteNotEnabled =>
+                $"Apply is not yet enabled for {codePageText}. No editor content was changed. " +
+                "The current production write policy remains UTF-8-only (code page 65001). " +
+                "Use Revert All or convert the document to UTF-8 in Notepad++, then reopen Edit mode.",
+            CsvEditorApplyStatus.UnsupportedCodePage =>
+                $"Apply is blocked because {codePageText} has no explicit supported encoding profile. " +
+                "No editor content was changed.",
+            CsvEditorApplyStatus.TextNotRepresentable =>
+                $"Apply is blocked because the pending replacement cannot be represented exactly in {codePageText}. " +
+                "No replacement character was used and no editor content was changed.",
+            CsvEditorApplyStatus.EncodingRoundTripMismatch =>
+                $"Apply is blocked because strict encoding validation for {codePageText} did not round-trip exactly. " +
+                "No editor content was changed.",
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(result),
+                result.Status,
+                "The Apply result is not an encoding-blocked status.")
+        };
+
+        MessageBox.Show(
+            message,
+            PluginDisplayName,
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning);
     }
 
     private void LoadActiveDocumentTable()
@@ -291,7 +325,7 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.9.0-alpha\n\n" +
+            "CSV Visual Editor 0.10.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
             "Edit mode supports deterministic cell editing, Add Row, and stable multi-row batch deletion. " +
             "Fresh-buffer conflict checks and one Scintilla undo transaction protect Apply. " +
