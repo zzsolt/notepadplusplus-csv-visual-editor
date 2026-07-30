@@ -1,11 +1,12 @@
 name: Apply 0.11 Host Input and Performance Fix
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/multi-cell-clipboard
+      - main
     paths:
       - .automation/apply-0.11-host-input-performance.trigger
+      - .github/workflows/apply-0.11-host-input-performance.yml
 
 permissions:
   contents: write
