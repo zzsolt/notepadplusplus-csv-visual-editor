@@ -10,6 +10,10 @@ using System.Text;
 /// </summary>
 public sealed class CsvClipboardMatrix
 {
+    private const int MaximumRows = 10_000;
+    private const int MaximumColumns = 512;
+    private const int MaximumCells = 250_000;
+
     private readonly string[][] _rows;
 
     private CsvClipboardMatrix(string[][] rows, int columnCount)
@@ -42,33 +46,40 @@ public sealed class CsvClipboardMatrix
     public static CsvClipboardMatrix Parse(string text)
     {
         ArgumentNullException.ThrowIfNull(text);
+        ValidateControlCharacters(text);
 
         var physicalRows = SplitRows(text);
+        if (physicalRows.Count > MaximumRows)
+        {
+            throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
+        }
+
         var parsedRows = new string[physicalRows.Count][];
-        var maximumColumns = 0;
+        var expectedColumns = -1;
         for (var rowIndex = 0; rowIndex < physicalRows.Count; rowIndex++)
         {
             var cells = physicalRows[rowIndex].Split('\t', StringSplitOptions.None);
+            if (cells.Length > MaximumColumns)
+            {
+                throw new FormatException("The clipboard contains more columns than the editor can paste safely.");
+            }
+
+            expectedColumns = expectedColumns < 0 ? cells.Length : expectedColumns;
+            if (cells.Length != expectedColumns)
+            {
+                throw new FormatException("Clipboard rows must form one rectangular cell matrix.");
+            }
+
+            if ((long)(rowIndex + 1) * expectedColumns > MaximumCells)
+            {
+                throw new FormatException("The clipboard cell matrix exceeds the safe paste limit.");
+            }
+
             parsedRows[rowIndex] = cells;
-            maximumColumns = Math.Max(maximumColumns, cells.Length);
         }
 
-        maximumColumns = Math.Max(maximumColumns, 1);
-        for (var rowIndex = 0; rowIndex < parsedRows.Length; rowIndex++)
-        {
-            if (parsedRows[rowIndex].Length == maximumColumns)
-            {
-                continue;
-            }
-
-            Array.Resize(ref parsedRows[rowIndex], maximumColumns);
-            for (var columnIndex = 0; columnIndex < maximumColumns; columnIndex++)
-            {
-                parsedRows[rowIndex][columnIndex] ??= string.Empty;
-            }
-        }
-
-        return new CsvClipboardMatrix(parsedRows, maximumColumns);
+        expectedColumns = Math.Max(expectedColumns, 1);
+        return new CsvClipboardMatrix(parsedRows, expectedColumns);
     }
 
     public string ToTabSeparatedText()
@@ -130,6 +141,22 @@ public sealed class CsvClipboardMatrix
         }
 
         return rows;
+    }
+
+    private static void ValidateControlCharacters(string text)
+    {
+        foreach (var character in text)
+        {
+            if (character == '\t' || character == '\r' || character == '\n')
+            {
+                continue;
+            }
+
+            if (character == '\0' || char.IsControl(character))
+            {
+                throw new FormatException("The clipboard contains an unsupported control character.");
+            }
+        }
     }
 
     private static bool EndsWithLineBreak(string text) =>
