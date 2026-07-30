@@ -41,9 +41,46 @@ The replacement path:
 - batch-adds rows for smaller and editable tables;
 - sizes row presentation using displayed native headers and a representative maximum label rather than rescanning all cells.
 
-## Automated verification boundary
+## Final automated evidence
 
-The implementation must pass strict build, the complete xUnit suite, Native AOT runtime smoke, win-x64 Native AOT plugin publish, and packaging before a new owner package is supplied.
+```text
+Verified implementation head:
+a184102c0e6d799feeab885d0448039a2a3137c5
+
+CI run: 30544656058 — PASS
+CI job: 90877643050 — PASS
+Restore: PASS
+Strict core build: PASS
+Bootstrap smoke: PASS
+Core xUnit: 228/228 PASS
+Errors: 0
+Failed: 0
+Skipped: 0
+Not Run: 0
+Time: 0.976s
+Windows Native AOT runtime smoke: PASS
+win-x64 Native AOT plugin publish: PASS
+Installable package creation/upload: PASS
+
+Artifact ID: 8760277999
+Artifact name: CsvVisualEditor-0.11.0-alpha-win-x64
+Artifact size: 7,737,569 bytes
+Outer artifact ZIP SHA-256:
+3340fb6cf67626f119c02a397bc9473e1d05f620adf63296db3d4c9dddb93dd3
+
+Inner install ZIP size: 7,753,943 bytes
+Inner install ZIP SHA-256:
+5b62acf4f127bcd8dc44ee85f41b654bd1d72ecae930b5062c85e14ad7bf8c64
+
+CsvVisualEditor.dll size: 20,545,536 bytes
+CsvVisualEditor.dll SHA-256:
+a70cfce6eec99dacafc91dd134d8dd13f65172cd013e40e2748806fa2129da50
+
+Install layout:
+CsvVisualEditor/CsvVisualEditor.dll
+```
+
+The xUnit suite increased from 221 to 228 tests. The new tests cover the bounded virtual-row policy and negative input validation; the Native AOT smoke also validates that the large-grid policy remains available after trimming. Plugin publish proves that the direct grid command path, native window hook, background-load integration, lazy edit model, and virtual DataGridView code compile under the production Native AOT configuration.
 
 Automated success does not establish that either host issue is solved. The owner must retest in Notepad++ 8.9.7 x64.
 
