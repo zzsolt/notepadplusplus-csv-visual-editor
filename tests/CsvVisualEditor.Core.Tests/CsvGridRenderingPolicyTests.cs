@@ -1,6 +1,7 @@
 namespace CsvVisualEditor.Core.Tests;
 
 using CsvVisualEditor.Core;
+using Xunit;
 
 public sealed class CsvGridRenderingPolicyTests
 {
