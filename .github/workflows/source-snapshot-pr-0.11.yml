@@ -1,0 +1,28 @@
+name: Source Snapshot PR 0.11
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Archive source
+        shell: bash
+        run: git archive --format=zip --output source-snapshot-pr-0.11.zip HEAD
+      - name: Upload source
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-source-snapshot-pr-0.11
+          path: source-snapshot-pr-0.11.zip
+          if-no-files-found: error
