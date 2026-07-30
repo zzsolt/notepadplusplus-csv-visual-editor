@@ -96,9 +96,19 @@ internal sealed class CsvGridClipboardController : IMessageFilter
                     builder.Append('\t');
                 }
 
-                var value = grid.Rows[rectangle.Value.StartRow + rowOffset]
-                    .Cells[rectangle.Value.StartColumn + columnOffset].Value;
-                builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty);
+                var value = Convert.ToString(
+                    grid.Rows[rectangle.Value.StartRow + rowOffset]
+                        .Cells[rectangle.Value.StartColumn + columnOffset].Value,
+                    CultureInfo.InvariantCulture) ?? string.Empty;
+                if (ContainsClipboardDelimiter(value))
+                {
+                    ShowStatus(
+                        form,
+                        "Copy blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
+                    return true;
+                }
+
+                builder.Append(value);
             }
         }
 
@@ -166,7 +176,17 @@ internal sealed class CsvGridClipboardController : IMessageFilter
             return true;
         }
 
-        var matrix = CsvClipboardMatrix.Parse(clipboardText);
+        CsvClipboardMatrix matrix;
+        try
+        {
+            matrix = CsvClipboardMatrix.Parse(clipboardText);
+        }
+        catch (FormatException exception)
+        {
+            ShowStatus(form, $"Paste blocked: {exception.Message} No data was changed.");
+            return true;
+        }
+
         var selectedRectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
         if (selectedRectangle is null)
         {
@@ -216,9 +236,20 @@ internal sealed class CsvGridClipboardController : IMessageFilter
             return true;
         }
 
-        var changed = plan.Apply(model);
+        int changed;
+        try
+        {
+            changed = plan.Apply(model);
+        }
+        catch (InvalidOperationException)
+        {
+            ShowStatus(form, "Paste blocked because the pending edit model changed. No partial paste was retained.");
+            return true;
+        }
+
         SynchronizeGridValues(grid, plan.Edits);
         RestoreSelection(grid, plan.Edits.Select(static edit => edit.Address).ToArray());
+        form.RefreshClipboardEditState();
         ShowStatus(
             form,
             changed == 0
@@ -227,6 +258,9 @@ internal sealed class CsvGridClipboardController : IMessageFilter
         );
         return true;
     }
+
+    private static bool ContainsClipboardDelimiter(string value) =>
+        value.Contains('\t') || value.Contains('\r') || value.Contains('\n');
 
     private static void SynchronizeGridValues(
         DataGridView grid,
