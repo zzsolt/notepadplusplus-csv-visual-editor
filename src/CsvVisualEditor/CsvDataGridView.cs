@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using System.ComponentModel;
+
 /// <summary>
 /// DataGridView command-key seam that works inside the native Notepad++ host.
 /// Application-level WinForms message filters are not reliable when Notepad++ owns
@@ -8,6 +10,8 @@ namespace CsvVisualEditor;
 /// </summary>
 internal sealed class CsvDataGridView : DataGridView
 {
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal Func<Keys, bool>? ClipboardCommandHandler { get; set; }
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
