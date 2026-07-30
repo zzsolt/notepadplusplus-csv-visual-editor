@@ -1,0 +1,68 @@
+name: Apply 0.11 Host Input and Performance Fix
+
+on:
+  push:
+    branches:
+      - agent/multi-cell-clipboard
+    paths:
+      - .automation/apply-0.11-host-input-performance.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout milestone branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/multi-cell-clipboard
+          fetch-depth: 0
+
+      - name: Verify, decode and apply patch
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          sha256sum \
+            .automation/0.11-host-input-performance.patch.b64.part00 \
+            .automation/0.11-host-input-performance.patch.b64.part01 \
+            .automation/0.11-host-input-performance.patch.b64.part02 \
+            .automation/0.11-host-input-performance.patch.b64.part03 \
+            .automation/0.11-host-input-performance.patch.b64.part04 \
+            .automation/subparts/p05.* \
+            .automation/subparts/p06.* \
+            .automation/subparts/p07.*
+
+          cat \
+            .automation/0.11-host-input-performance.patch.b64.part00 \
+            .automation/0.11-host-input-performance.patch.b64.part01 \
+            .automation/0.11-host-input-performance.patch.b64.part02 \
+            .automation/0.11-host-input-performance.patch.b64.part03 \
+            .automation/0.11-host-input-performance.patch.b64.part04 \
+            .automation/subparts/p05.* \
+            .automation/subparts/p06.* \
+            .automation/subparts/p07.* \
+            > /tmp/0.11.patch.b64
+
+          echo "9897e0d26d6775a5b76b901150787e6a544922478c4fd7a8b6e9fc285b38f155  /tmp/0.11.patch.b64" | sha256sum -c -
+          base64 --decode /tmp/0.11.patch.b64 > /tmp/0.11.patch
+          echo "100b40204f775b9f849b1275cda24bd8dba64defbad3ec5a172fdaf887f8b68b  /tmp/0.11.patch" | sha256sum -c -
+
+          git apply --check /tmp/0.11.patch
+          git apply /tmp/0.11.patch
+
+          rm -rf .automation
+          rm -f .github/workflows/apply-0.11-host-input-performance.yml
+          rm -f .github/workflows/source-snapshot-debug-0.11.yml
+          rm -f .github/workflows/source-snapshot-pr-0.11.yml
+          rm -f .source-snapshot-debug-0.11
+
+          git add --all
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "fix: route host paste and virtualize large grids"
+          git push origin HEAD:agent/multi-cell-clipboard
