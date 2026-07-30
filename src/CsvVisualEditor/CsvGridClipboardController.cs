@@ -2,59 +2,82 @@ namespace CsvVisualEditor;
 
 using CsvVisualEditor.Core;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-internal sealed class CsvGridClipboardController
+/// <summary>
+/// Application-level Ctrl+C/Ctrl+V bridge for the CSV grid. The bridge resolves the
+/// focused DataGridView at message time, keeps DataGridView objects presentation-only,
+/// and sends paste operations exclusively to the pending CsvRowEditModel.
+/// </summary>
+internal sealed class CsvGridClipboardController : IMessageFilter
 {
-    private readonly DataGridView _grid;
-    private readonly Func<bool> _isEditMode;
-    private readonly Func<CsvRowEditModel?> _getModel;
-    private readonly Func<bool> _commitPendingEdit;
-    private readonly Action _refreshView;
-    private readonly Action<string> _showStatus;
+    private const int WmKeyDown = 0x0100;
+    private static int _registered;
 
-    public CsvGridClipboardController(
-        DataGridView grid,
-        Func<bool> isEditMode,
-        Func<CsvRowEditModel?> getModel,
-        Func<bool> commitPendingEdit,
-        Action refreshView,
-        Action<string> showStatus)
+    [ModuleInitializer]
+    internal static void Initialize()
     {
-        _grid = grid ?? throw new ArgumentNullException(nameof(grid));
-        _isEditMode = isEditMode ?? throw new ArgumentNullException(nameof(isEditMode));
-        _getModel = getModel ?? throw new ArgumentNullException(nameof(getModel));
-        _commitPendingEdit = commitPendingEdit ?? throw new ArgumentNullException(nameof(commitPendingEdit));
-        _refreshView = refreshView ?? throw new ArgumentNullException(nameof(refreshView));
-        _showStatus = showStatus ?? throw new ArgumentNullException(nameof(showStatus));
-    }
-
-    public void OnKeyDown(object? sender, KeyEventArgs e)
-    {
-        if (!e.Control || e.Alt)
+        if (Interlocked.Exchange(ref _registered, 1) != 0)
         {
             return;
         }
 
-        if (e.KeyCode == Keys.C && TryCopy())
+        if (Application.MessageLoop)
         {
-            e.Handled = true;
-            e.SuppressKeyPress = true;
+            Application.AddMessageFilter(new CsvGridClipboardController());
+            return;
         }
-        else if (e.KeyCode == Keys.V && TryPaste())
+
+        EventHandler? registerOnIdle = null;
+        registerOnIdle = (_, _) =>
         {
-            e.Handled = true;
-            e.SuppressKeyPress = true;
-        }
+            Application.Idle -= registerOnIdle;
+            Application.AddMessageFilter(new CsvGridClipboardController());
+        };
+        Application.Idle += registerOnIdle;
     }
 
-    public bool TryCopy()
+    public bool PreFilterMessage(ref Message message)
     {
-        var rectangle = CaptureRectangle(useCurrentCellWhenEmpty: true);
+        if (message.Msg != WmKeyDown ||
+            (Control.ModifierKeys & Keys.Control) != Keys.Control ||
+            (Control.ModifierKeys & Keys.Alt) == Keys.Alt)
+        {
+            return false;
+        }
+
+        var key = (Keys)(int)message.WParam;
+        if (key is not Keys.C and not Keys.V)
+        {
+            return false;
+        }
+
+        var grid = FindGrid(Control.FromHandle(message.HWnd));
+        if (grid is null || grid.FindForm() is not CsvGridForm form)
+        {
+            return false;
+        }
+
+        // While a cell's text editor is active, preserve the standard text-level
+        // copy/paste behavior. Rectangle commands operate when the grid owns focus.
+        if (grid.IsCurrentCellInEditMode)
+        {
+            return false;
+        }
+
+        return key == Keys.C
+            ? TryCopy(grid, form)
+            : TryPaste(grid, form);
+    }
+
+    private static bool TryCopy(DataGridView grid, CsvGridForm form)
+    {
+        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
         if (rectangle is null)
         {
-            _showStatus("Copy requires one contiguous rectangular selection of CSV data cells.");
+            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
             return true;
         }
 
@@ -73,7 +96,7 @@ internal sealed class CsvGridClipboardController
                     builder.Append('\t');
                 }
 
-                var value = _grid.Rows[rectangle.Value.StartRow + rowOffset]
+                var value = grid.Rows[rectangle.Value.StartRow + rowOffset]
                     .Cells[rectangle.Value.StartColumn + columnOffset].Value;
                 builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty);
             }
@@ -82,34 +105,43 @@ internal sealed class CsvGridClipboardController
         try
         {
             Clipboard.SetText(builder.ToString(), TextDataFormat.UnicodeText);
-            _showStatus($"Copied {rectangle.Value.RowCount} × {rectangle.Value.ColumnCount} CSV cells.");
+            ShowStatus(
+                form,
+                $"Copied {rectangle.Value.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
+                $"{rectangle.Value.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
         }
         catch (ExternalException)
         {
-            _showStatus("The Windows clipboard is temporarily unavailable. No data was changed.");
+            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
         }
 
         return true;
     }
 
-    public bool TryPaste()
+    private static bool TryPaste(DataGridView grid, CsvGridForm form)
     {
-        if (!_isEditMode())
+        if (!form.IsEditMode)
         {
-            _showStatus("Paste is available only in Edit mode.");
+            ShowStatus(form, "Paste is available only in Edit mode.");
             return true;
         }
 
-        var model = _getModel();
+        var model = form.RowEditModel;
         if (model is null)
         {
-            _showStatus("Paste is unavailable for the current table.");
+            ShowStatus(form, "Paste is unavailable for the current table.");
             return true;
         }
 
-        if (!_commitPendingEdit())
+        if (CsvGridRowHeaderBehavior.CaptureManagedSelection(grid).SelectedIds.Count > 0)
         {
-            _showStatus("The active cell edit could not be committed. Correct the value before pasting.");
+            ShowStatus(form, "Paste requires a CSV-cell rectangle, not complete-row deletion selection.");
+            return true;
+        }
+
+        if (!form.CommitPendingEdit())
+        {
+            ShowStatus(form, "The active cell edit could not be committed. Correct the value before pasting.");
             return true;
         }
 
@@ -118,39 +150,48 @@ internal sealed class CsvGridClipboardController
         {
             if (!Clipboard.ContainsText())
             {
-                _showStatus("The clipboard does not contain plain text cells.");
+                ShowStatus(form, "The clipboard does not contain plain text cells.");
                 return true;
             }
 
             clipboardText = Clipboard.GetText(TextDataFormat.UnicodeText);
+            if (clipboardText.Length == 0)
+            {
+                clipboardText = Clipboard.GetText(TextDataFormat.Text);
+            }
         }
         catch (ExternalException)
         {
-            _showStatus("The Windows clipboard is temporarily unavailable. No data was changed.");
+            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
             return true;
         }
 
         var matrix = CsvClipboardMatrix.Parse(clipboardText);
-        var selectedRectangle = CaptureRectangle(useCurrentCellWhenEmpty: true);
+        var selectedRectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
         if (selectedRectangle is null)
         {
-            _showStatus("Paste requires one contiguous rectangular selection of CSV data cells.");
+            ShowStatus(form, "Paste requires one contiguous rectangular selection of CSV data cells.");
             return true;
         }
 
         var target = selectedRectangle.Value;
         if (target.CellCount == 1 && !matrix.IsSingleCell)
         {
-            target = new GridRectangle(target.StartRow, target.StartColumn, matrix.RowCount, matrix.ColumnCount);
+            target = new GridRectangle(
+                target.StartRow,
+                target.StartColumn,
+                matrix.RowCount,
+                matrix.ColumnCount);
         }
 
-        var orderedRowIds = _grid.Rows.Cast<DataGridViewRow>()
+        var orderedRowIds = grid.Rows
+            .Cast<DataGridViewRow>()
             .Select(static row => row.Tag)
             .OfType<CsvEditRowId>()
             .ToArray();
-        if (orderedRowIds.Length != _grid.Rows.Count)
+        if (orderedRowIds.Length != grid.Rows.Count)
         {
-            _showStatus("Paste targets are unavailable outside the stable Edit-mode row model.");
+            ShowStatus(form, "Paste targets are unavailable outside the stable Edit-mode row model.");
             return true;
         }
 
@@ -164,32 +205,59 @@ internal sealed class CsvGridClipboardController
             matrix);
         if (!plan.IsReady)
         {
-            _showStatus(plan.Status switch
+            ShowStatus(form, plan.Status switch
             {
-                CsvClipboardPasteStatus.ShapeMismatch => "Paste blocked: clipboard and selected rectangles have different dimensions.",
-                CsvClipboardPasteStatus.TargetOutsideSession => "Paste blocked: the target rectangle extends beyond the CSV table.",
+                CsvClipboardPasteStatus.ShapeMismatch =>
+                    "Paste blocked: clipboard and selected rectangles have different dimensions.",
+                CsvClipboardPasteStatus.TargetOutsideSession =>
+                    "Paste blocked: the target rectangle extends beyond the CSV table.",
                 _ => "Paste blocked: there is no editable target rectangle."
             });
             return true;
         }
 
         var changed = plan.Apply(model);
-        var addresses = plan.Edits.Select(static edit => edit.Address).ToArray();
-        _refreshView();
-        RestoreSelection(addresses);
-        _showStatus(changed == 0
-            ? "Paste completed; target values were already identical."
-            : $"Pasted {changed} changed cells into the pending edit session.");
+        SynchronizeGridValues(grid, plan.Edits);
+        RestoreSelection(grid, plan.Edits.Select(static edit => edit.Address).ToArray());
+        ShowStatus(
+            form,
+            changed == 0
+                ? "Paste completed; all target values were already identical."
+                : $"Pasted {changed.ToString(CultureInfo.CurrentCulture)} changed cells into the pending edit session. Apply writes them to Notepad++."
+        );
         return true;
     }
 
-    private GridRectangle? CaptureRectangle(bool useCurrentCellWhenEmpty)
+    private static void SynchronizeGridValues(
+        DataGridView grid,
+        IReadOnlyList<CsvClipboardCellEdit> edits)
     {
-        var selected = _grid.SelectedCells.Cast<DataGridViewCell>()
-            .Where(IsCsvDataCell)
+        var rowsById = grid.Rows
+            .Cast<DataGridViewRow>()
+            .Where(static row => row.Tag is CsvEditRowId)
+            .ToDictionary(static row => (CsvEditRowId)row.Tag!, static row => row);
+
+        foreach (var edit in edits)
+        {
+            if (rowsById.TryGetValue(edit.Address.RowId, out var row))
+            {
+                row.Cells[edit.Address.ColumnIndex].Value = edit.Value;
+            }
+        }
+    }
+
+    private static GridRectangle? CaptureRectangle(
+        DataGridView grid,
+        bool useCurrentCellWhenEmpty)
+    {
+        var selected = grid.SelectedCells
+            .Cast<DataGridViewCell>()
+            .Where(cell => IsCsvDataCell(grid, cell))
             .ToArray();
-        if (selected.Length == 0 && useCurrentCellWhenEmpty &&
-            _grid.CurrentCell is DataGridViewCell current && IsCsvDataCell(current))
+        if (selected.Length == 0 &&
+            useCurrentCellWhenEmpty &&
+            grid.CurrentCell is DataGridViewCell current &&
+            IsCsvDataCell(grid, current))
         {
             selected = [current];
         }
@@ -203,7 +271,11 @@ internal sealed class CsvGridClipboardController
         var lastRow = selected.Max(static cell => cell.RowIndex);
         var firstColumn = selected.Min(static cell => cell.ColumnIndex);
         var lastColumn = selected.Max(static cell => cell.ColumnIndex);
-        var rectangle = new GridRectangle(firstRow, firstColumn, lastRow - firstRow + 1, lastColumn - firstColumn + 1);
+        var rectangle = new GridRectangle(
+            firstRow,
+            firstColumn,
+            lastRow - firstRow + 1,
+            lastColumn - firstColumn + 1);
         if (selected.Length != rectangle.CellCount)
         {
             return null;
@@ -213,8 +285,8 @@ internal sealed class CsvGridClipboardController
         {
             for (var columnIndex = firstColumn; columnIndex <= lastColumn; columnIndex++)
             {
-                var cell = _grid.Rows[rowIndex].Cells[columnIndex];
-                if (!IsCsvDataCell(cell) || !cell.Selected)
+                var cell = grid.Rows[rowIndex].Cells[columnIndex];
+                if (!IsCsvDataCell(grid, cell) || !cell.Selected)
                 {
                     return null;
                 }
@@ -224,35 +296,92 @@ internal sealed class CsvGridClipboardController
         return rectangle;
     }
 
-    private bool IsCsvDataCell(DataGridViewCell cell) =>
-        cell.RowIndex >= 0 && cell.ColumnIndex >= 0 &&
-        !CsvGridRowHeaderBehavior.IsPresentationColumn(_grid.Columns[cell.ColumnIndex]);
+    private static bool IsCsvDataCell(DataGridView grid, DataGridViewCell cell) =>
+        cell.RowIndex >= 0 &&
+        cell.ColumnIndex >= 0 &&
+        cell.RowIndex < grid.Rows.Count &&
+        cell.ColumnIndex < grid.Columns.Count &&
+        !CsvGridRowHeaderBehavior.IsPresentationColumn(grid.Columns[cell.ColumnIndex]);
 
-    private void RestoreSelection(IReadOnlyList<CsvCellAddress> addresses)
+    private static void RestoreSelection(
+        DataGridView grid,
+        IReadOnlyList<CsvCellAddress> addresses)
     {
-        _grid.ClearSelection();
+        grid.ClearSelection();
         DataGridViewCell? first = null;
+        var rowsById = grid.Rows
+            .Cast<DataGridViewRow>()
+            .Where(static row => row.Tag is CsvEditRowId)
+            .ToDictionary(static row => (CsvEditRowId)row.Tag!, static row => row);
+
         foreach (var address in addresses)
         {
-            foreach (DataGridViewRow row in _grid.Rows)
+            if (!rowsById.TryGetValue(address.RowId, out var row) ||
+                address.ColumnIndex < 0 ||
+                address.ColumnIndex >= grid.Columns.Count)
             {
-                if (row.Tag is CsvEditRowId rowId && rowId == address.RowId)
-                {
-                    var cell = row.Cells[address.ColumnIndex];
-                    cell.Selected = true;
-                    first ??= cell;
-                    break;
-                }
+                continue;
             }
+
+            var cell = row.Cells[address.ColumnIndex];
+            cell.Selected = true;
+            first ??= cell;
         }
 
         if (first is not null)
         {
-            _grid.CurrentCell = first;
+            grid.CurrentCell = first;
         }
     }
 
-    private readonly record struct GridRectangle(int StartRow, int StartColumn, int RowCount, int ColumnCount)
+    private static DataGridView? FindGrid(Control? control)
+    {
+        while (control is not null)
+        {
+            if (control is DataGridView grid)
+            {
+                return grid;
+            }
+
+            control = control.Parent;
+        }
+
+        return null;
+    }
+
+    private static void ShowStatus(CsvGridForm form, string message)
+    {
+        foreach (var control in EnumerateControls(form))
+        {
+            if (control is StatusStrip strip)
+            {
+                var label = strip.Items.OfType<ToolStripStatusLabel>().FirstOrDefault();
+                if (label is not null)
+                {
+                    label.Text = message;
+                    return;
+                }
+            }
+        }
+    }
+
+    private static IEnumerable<Control> EnumerateControls(Control root)
+    {
+        foreach (Control child in root.Controls)
+        {
+            yield return child;
+            foreach (var descendant in EnumerateControls(child))
+            {
+                yield return descendant;
+            }
+        }
+    }
+
+    private readonly record struct GridRectangle(
+        int StartRow,
+        int StartColumn,
+        int RowCount,
+        int ColumnCount)
     {
         public int CellCount => checked(RowCount * ColumnCount);
     }
