@@ -3,11 +3,11 @@ namespace CsvVisualEditor.Core;
 using System.Collections.ObjectModel;
 
 /// <summary>
-/// Stable address of one editable CSV cell. The row identity is the source record index
-/// used by <see cref="CsvEditSession"/> and the column identity is the physical CSV column.
-/// Presentation columns and DataGridView object identity are deliberately excluded.
+/// Stable address of one editable CSV cell. Row identity is a CsvEditRowId and column
+/// identity is the physical CSV column index. Presentation objects and display indexes
+/// are deliberately excluded.
 /// </summary>
-public readonly record struct CsvCellAddress(int SourceRecordIndex, int ColumnIndex);
+public readonly record struct CsvCellAddress(CsvEditRowId RowId, int ColumnIndex);
 
 public enum CsvClipboardPasteStatus
 {
@@ -17,13 +17,11 @@ public enum CsvClipboardPasteStatus
     TargetOutsideSession
 }
 
-public sealed record CsvClipboardCellEdit(
-    CsvCellAddress Address,
-    string Value);
+public sealed record CsvClipboardCellEdit(CsvCellAddress Address, string Value);
 
 /// <summary>
-/// Fully prevalidated immutable paste operation. Applying a ready plan cannot discover a
-/// new address or shape error halfway through mutation.
+/// Fully prevalidated immutable paste operation. The plan targets stable row IDs and
+/// physical CSV columns and can therefore survive presentation-only column ordering.
 /// </summary>
 public sealed class CsvClipboardPastePlan
 {
@@ -42,16 +40,16 @@ public sealed class CsvClipboardPastePlan
     public ReadOnlyCollection<CsvClipboardCellEdit> Edits { get; }
 
     public static CsvClipboardPastePlan Create(
-        CsvEditSession session,
-        IReadOnlyList<int> orderedSourceRecordIndexes,
+        CsvRowEditModel model,
+        IReadOnlyList<CsvEditRowId> orderedRowIds,
         int startRowOffset,
         int startColumnIndex,
         int targetRowCount,
         int targetColumnCount,
         CsvClipboardMatrix matrix)
     {
-        ArgumentNullException.ThrowIfNull(session);
-        ArgumentNullException.ThrowIfNull(orderedSourceRecordIndexes);
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(orderedRowIds);
         ArgumentNullException.ThrowIfNull(matrix);
 
         if (targetRowCount <= 0 || targetColumnCount <= 0)
@@ -68,8 +66,8 @@ public sealed class CsvClipboardPastePlan
 
         if (startRowOffset < 0 ||
             startColumnIndex < 0 ||
-            startRowOffset + targetRowCount > orderedSourceRecordIndexes.Count ||
-            startColumnIndex + targetColumnCount > session.ColumnCount)
+            startRowOffset + targetRowCount > orderedRowIds.Count ||
+            startColumnIndex + targetColumnCount > model.ColumnCount)
         {
             return new CsvClipboardPastePlan(CsvClipboardPasteStatus.TargetOutsideSession, []);
         }
@@ -79,16 +77,19 @@ public sealed class CsvClipboardPastePlan
         {
             for (var rowOffset = 0; rowOffset < targetRowCount; rowOffset++)
             {
-                var sourceRecordIndex = orderedSourceRecordIndexes[startRowOffset + rowOffset];
+                var rowId = orderedRowIds[startRowOffset + rowOffset];
+                var row = model.GetRow(rowId);
+                if (row.IsDeleted)
+                {
+                    return new CsvClipboardPastePlan(CsvClipboardPasteStatus.TargetOutsideSession, []);
+                }
+
                 for (var columnOffset = 0; columnOffset < targetColumnCount; columnOffset++)
                 {
                     var columnIndex = startColumnIndex + columnOffset;
-
-                    // Force validation of every stable address before creating a Ready plan.
-                    _ = session.GetValue(sourceRecordIndex, columnIndex);
-
+                    _ = row.Values[columnIndex];
                     edits.Add(new CsvClipboardCellEdit(
-                        new CsvCellAddress(sourceRecordIndex, columnIndex),
+                        new CsvCellAddress(rowId, columnIndex),
                         broadcast ? matrix[0, 0] : matrix[rowOffset, columnOffset]));
                 }
             }
@@ -102,34 +103,53 @@ public sealed class CsvClipboardPastePlan
     }
 
     /// <summary>
-    /// Applies an already validated plan to the pending edit model. No Scintilla or disk
-    /// operation occurs here. Returns the number of values that actually changed.
+    /// Applies the plan atomically to the pending row-edit model. If an unexpected model
+    /// error occurs, already changed cells are restored before the exception is rethrown.
+    /// No Scintilla or disk operation occurs here.
     /// </summary>
-    public int Apply(CsvEditSession session)
+    public int Apply(CsvRowEditModel model)
     {
-        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(model);
         if (!IsReady)
         {
             throw new InvalidOperationException("Only a ready clipboard paste plan can be applied.");
         }
 
-        // Revalidate before the first mutation so a plan cannot be applied to a different
-        // session shape and fail after a partial update.
-        foreach (var edit in Edits)
+        var originals = new string[Edits.Count];
+        for (var index = 0; index < Edits.Count; index++)
         {
-            _ = session.GetValue(edit.Address.SourceRecordIndex, edit.Address.ColumnIndex);
+            var edit = Edits[index];
+            var row = model.GetRow(edit.Address.RowId);
+            if (row.IsDeleted)
+            {
+                throw new InvalidOperationException("A clipboard target row is no longer editable.");
+            }
+
+            originals[index] = row.Values[edit.Address.ColumnIndex];
         }
 
         var changed = 0;
-        foreach (var edit in Edits)
+        var appliedCount = 0;
+        try
         {
-            if (session.SetCellValue(
-                    edit.Address.SourceRecordIndex,
-                    edit.Address.ColumnIndex,
-                    edit.Value))
+            for (; appliedCount < Edits.Count; appliedCount++)
             {
-                changed++;
+                var edit = Edits[appliedCount];
+                if (model.SetCellValue(edit.Address.RowId, edit.Address.ColumnIndex, edit.Value))
+                {
+                    changed++;
+                }
             }
+        }
+        catch
+        {
+            for (var index = appliedCount - 1; index >= 0; index--)
+            {
+                var edit = Edits[index];
+                model.SetCellValue(edit.Address.RowId, edit.Address.ColumnIndex, originals[index]);
+            }
+
+            throw;
         }
 
         return changed;
