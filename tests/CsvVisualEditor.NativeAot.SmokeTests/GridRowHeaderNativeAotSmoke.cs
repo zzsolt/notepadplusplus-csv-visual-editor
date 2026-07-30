@@ -87,7 +87,7 @@ internal static class GridRowHeaderNativeAotSmoke
             "Row-indicator labels are not centered in their dedicated column.");
         Require(
             tableGrid.RowHeadersWidthSizeMode ==
-                DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders,
+                DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders,
             "Native row-header width must be framework-measured from glyph/theme/DPI requirements.");
         Require(tableGrid.ShowEditingIcon, "Native current-row indication was disabled.");
         Require(!tableGrid.ShowRowErrors, "Unused native row-error capacity remains enabled.");
@@ -234,7 +234,7 @@ internal static class GridRowHeaderNativeAotSmoke
             "Native AOT reconstruction did not restore the row-indicator column.");
         Require(
             tableGrid.RowHeadersWidthSizeMode ==
-                DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders,
+                DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders,
             "Native AOT reconstruction did not restore native glyph auto-sizing.");
         Require(
             tableGrid.Rows[0].HeaderCell.Value is null,

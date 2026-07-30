@@ -4,15 +4,14 @@ using System.Windows.Forms;
 
 /// <summary>
 /// Owns the visual row-identity lane without mixing logical record labels with
-/// the native DataGridView row-header glyph lane. Native row headers remain the
-/// current-row indicator and row-selection hit target; a normal read-only grid
-/// column renders aligned row labels and pending structural markers.
+/// the native DataGridView row-header glyph lane.
 /// </summary>
 internal static class CsvGridRowPresentation
 {
     internal const string RowIndicatorColumnName = "CsvRowIndicator";
 
     private const int MinimumIndicatorWidthLogicalPixels = 36;
+    private const int IndicatorMeasurementMarginLogicalPixels = 10;
 
     internal static void ConfigureNativeRowHeaders(DataGridView grid)
     {
@@ -23,17 +22,13 @@ internal static class CsvGridRowPresentation
             return;
         }
 
-        // DataGridViewRowHeaderCell reserves a native leading lane for the
-        // current-row arrow/pencil/star before it lays out any text. Keeping
-        // labels out of that cell lets the framework own glyph, theme, DPI,
-        // high-contrast, and accessibility behavior without optical shifts.
+        // Native glyph sizing is retained, but only displayed headers participate.
+        // All header values are null, so scanning every one of many thousands of rows
+        // adds cost without changing the glyph lane width.
         grid.RowHeadersWidthSizeMode =
-            DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
         grid.RowHeadersDefaultCellStyle.Padding = Padding.Empty;
         grid.ShowEditingIcon = true;
-
-        // This plugin never stores row-level ErrorText. Disabling an unused
-        // error-icon lane avoids reserving additional native header capacity.
         grid.ShowRowErrors = false;
         grid.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
         grid.MultiSelect = true;
@@ -81,6 +76,7 @@ internal static class CsvGridRowPresentation
 
         column.Frozen = true;
         column.MinimumWidth = ScaleLogicalPixels(grid, MinimumIndicatorWidthLogicalPixels);
+        column.Tag ??= "#";
     }
 
     internal static bool HasRowIndicatorColumn(DataGridView grid)
@@ -92,10 +88,38 @@ internal static class CsvGridRowPresentation
     internal static bool IsRowIndicatorColumn(DataGridViewColumn column)
     {
         ArgumentNullException.ThrowIfNull(column);
-        return string.Equals(
-            column.Name,
-            RowIndicatorColumnName,
-            StringComparison.Ordinal);
+        return string.Equals(column.Name, RowIndicatorColumnName, StringComparison.Ordinal);
+    }
+
+    internal static void SetSizingLabel(DataGridView grid, string label)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(label);
+
+        if (!HasRowIndicatorColumn(grid))
+        {
+            return;
+        }
+
+        var column = grid.Columns[RowIndicatorColumnName] ??
+            throw new InvalidOperationException("The row-indicator column could not be resolved.");
+        if (column.Tag is not string current || label.Length > current.Length)
+        {
+            column.Tag = label;
+        }
+    }
+
+    internal static void ResetSizingLabel(DataGridView grid, string label)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(label);
+
+        if (HasRowIndicatorColumn(grid))
+        {
+            var column = grid.Columns[RowIndicatorColumnName] ??
+                throw new InvalidOperationException("The row-indicator column could not be resolved.");
+            column.Tag = label;
+        }
     }
 
     internal static void SetRowIndicator(
@@ -112,11 +136,22 @@ internal static class CsvGridRowPresentation
         var column = grid.Columns[RowIndicatorColumnName] ??
             throw new InvalidOperationException("The row-indicator column is not configured.");
 
-        // A null native row-header value is intentional: the native cell paints
-        // only its framework-owned current-row glyph while the adjacent normal
-        // cell provides one stable, aligned label column for every row.
+        SetDetachedRowIndicator(row, column.Index, label, toolTipText);
+        SetSizingLabel(grid, label);
+    }
+
+    internal static void SetDetachedRowIndicator(
+        DataGridViewRow row,
+        int indicatorColumnIndex,
+        string label,
+        string toolTipText)
+    {
+        ArgumentNullException.ThrowIfNull(row);
+        ArgumentNullException.ThrowIfNull(label);
+        ArgumentNullException.ThrowIfNull(toolTipText);
+
         row.HeaderCell.Value = null;
-        var cell = row.Cells[column.Index];
+        var cell = row.Cells[indicatorColumnIndex];
         cell.Value = label;
         cell.ToolTipText = toolTipText;
     }
@@ -141,23 +176,22 @@ internal static class CsvGridRowPresentation
         column.MinimumWidth = ScaleLogicalPixels(grid, MinimumIndicatorWidthLogicalPixels);
         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
 
-        // All row labels are bounded by the table's 10,000-row limit. One
-        // explicit content measurement after a render is deterministic and
-        // avoids a permanent mode-sized band or continuous auto-size work.
-        grid.AutoResizeColumn(
-            column.Index,
-            DataGridViewAutoSizeColumnMode.AllCells);
-        if (column.Width < column.MinimumWidth)
-        {
-            column.Width = column.MinimumWidth;
-        }
+        var sizingLabel = column.Tag as string ?? "#";
+        var measured = TextRenderer.MeasureText(
+            sizingLabel,
+            grid.Font,
+            Size.Empty,
+            TextFormatFlags.NoPadding | TextFormatFlags.SingleLine).Width;
+        var padding = column.DefaultCellStyle.Padding.Horizontal;
+        column.Width = Math.Max(
+            column.MinimumWidth,
+            measured + padding +
+            ScaleLogicalPixels(grid, IndicatorMeasurementMarginLogicalPixels));
     }
 
     private static int ScaleLogicalPixels(DataGridView grid, int logicalPixels)
     {
         var dpi = grid.DeviceDpi > 0 ? grid.DeviceDpi : 96;
-        return Math.Max(
-            1,
-            (int)Math.Ceiling(logicalPixels * dpi / 96d));
+        return Math.Max(1, (int)Math.Ceiling(logicalPixels * dpi / 96d));
     }
 }

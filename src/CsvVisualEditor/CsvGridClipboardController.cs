@@ -2,134 +2,85 @@ namespace CsvVisualEditor;
 
 using CsvVisualEditor.Core;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
 /// <summary>
-/// Application-level Ctrl+C/Ctrl+V bridge for the CSV grid. The bridge resolves the
-/// focused DataGridView at message time, keeps DataGridView objects presentation-only,
-/// and sends paste operations exclusively to the pending CsvRowEditModel.
+/// Spreadsheet clipboard service called directly by the CSV DataGridView command
+/// path and by the active cell editor's WM_PASTE hook. It deliberately does not
+/// depend on Application.AddMessageFilter because Notepad++ owns the native message loop.
 /// </summary>
-internal sealed class CsvGridClipboardController : IMessageFilter
+internal static class CsvGridClipboardController
 {
-    private const int WmKeyDown = 0x0100;
-    private static int _registered;
 
-    [ModuleInitializer]
-    internal static void Initialize()
+    internal static bool TryHandleGridCommand(
+        DataGridView grid,
+        CsvGridForm form,
+        Keys keyData)
     {
-        if (Interlocked.Exchange(ref _registered, 1) != 0)
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(form);
+
+        var key = keyData & Keys.KeyCode;
+        if (key == Keys.C)
         {
-            return;
+            return grid.IsCurrentCellInEditMode
+                ? false
+                : TryCopy(grid, form);
         }
 
-        if (Application.MessageLoop)
-        {
-            Application.AddMessageFilter(new CsvGridClipboardController());
-            return;
-        }
-
-        EventHandler? registerOnIdle = null;
-        registerOnIdle = (_, _) =>
-        {
-            Application.Idle -= registerOnIdle;
-            Application.AddMessageFilter(new CsvGridClipboardController());
-        };
-        Application.Idle += registerOnIdle;
-    }
-
-    public bool PreFilterMessage(ref Message message)
-    {
-        if (message.Msg != WmKeyDown ||
-            (Control.ModifierKeys & Keys.Control) != Keys.Control ||
-            (Control.ModifierKeys & Keys.Alt) == Keys.Alt)
+        if (key != Keys.V)
         {
             return false;
         }
 
-        var key = (Keys)(int)message.WParam;
-        if (key is not Keys.C and not Keys.V)
+        if (!TryReadClipboardText(form, out var clipboardText))
         {
-            return false;
-        }
-
-        var grid = FindGrid(Control.FromHandle(message.HWnd));
-        if (grid is null || grid.FindForm() is not CsvGridForm form)
-        {
-            return false;
-        }
-
-        // While a cell's text editor is active, preserve the standard text-level
-        // copy/paste behavior. Rectangle commands operate when the grid owns focus.
-        if (grid.IsCurrentCellInEditMode)
-        {
-            return false;
-        }
-
-        return key == Keys.C
-            ? TryCopy(grid, form)
-            : TryPaste(grid, form);
-    }
-
-    private static bool TryCopy(DataGridView grid, CsvGridForm form)
-    {
-        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
-        if (rectangle is null)
-        {
-            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
             return true;
         }
 
-        var builder = new StringBuilder();
-        for (var rowOffset = 0; rowOffset < rectangle.Value.RowCount; rowOffset++)
+        var target = CsvClipboardCommandRouting.ResolvePasteTarget(
+            grid.IsCurrentCellInEditMode,
+            clipboardText);
+        if (target == CsvClipboardPasteRoutingTarget.InCellEditor)
         {
-            if (rowOffset > 0)
-            {
-                builder.Append("\r\n");
-            }
-
-            for (var columnOffset = 0; columnOffset < rectangle.Value.ColumnCount; columnOffset++)
-            {
-                if (columnOffset > 0)
-                {
-                    builder.Append('\t');
-                }
-
-                var value = Convert.ToString(
-                    grid.Rows[rectangle.Value.StartRow + rowOffset]
-                        .Cells[rectangle.Value.StartColumn + columnOffset].Value,
-                    CultureInfo.InvariantCulture) ?? string.Empty;
-                if (ContainsClipboardDelimiter(value))
-                {
-                    ShowStatus(
-                        form,
-                        "Copy blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
-                    return true;
-                }
-
-                builder.Append(value);
-            }
+            return false;
         }
 
-        try
+        return TryPasteText(grid, form, clipboardText);
+    }
+
+    internal static bool TryHandleEditingControlPaste(
+        DataGridView grid,
+        CsvGridForm form,
+        out string clipboardText)
+    {
+        clipboardText = string.Empty;
+        if (!TryReadClipboardText(form, out var text))
         {
-            Clipboard.SetText(builder.ToString(), TextDataFormat.UnicodeText);
-            ShowStatus(
-                form,
-                $"Copied {rectangle.Value.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
-                $"{rectangle.Value.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
-        }
-        catch (ExternalException)
-        {
-            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+            return true;
         }
 
+        if (CsvClipboardCommandRouting.ResolvePasteTarget(
+                isCellEditorActive: true,
+                text) != CsvClipboardPasteRoutingTarget.Grid)
+        {
+            return false;
+        }
+
+        clipboardText = text;
         return true;
     }
 
-    private static bool TryPaste(DataGridView grid, CsvGridForm form)
+    internal static bool TryPasteText(
+        DataGridView grid,
+        CsvGridForm form,
+        string clipboardText)
     {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(form);
+        ArgumentNullException.ThrowIfNull(clipboardText);
+
         if (!form.IsEditMode)
         {
             ShowStatus(form, "Paste is available only in Edit mode.");
@@ -152,27 +103,6 @@ internal sealed class CsvGridClipboardController : IMessageFilter
         if (!form.CommitPendingEdit())
         {
             ShowStatus(form, "The active cell edit could not be committed. Correct the value before pasting.");
-            return true;
-        }
-
-        string clipboardText;
-        try
-        {
-            if (!Clipboard.ContainsText())
-            {
-                ShowStatus(form, "The clipboard does not contain plain text cells.");
-                return true;
-            }
-
-            clipboardText = Clipboard.GetText(TextDataFormat.UnicodeText);
-            if (clipboardText.Length == 0)
-            {
-                clipboardText = Clipboard.GetText(TextDataFormat.Text);
-            }
-        }
-        catch (ExternalException)
-        {
-            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
             return true;
         }
 
@@ -257,6 +187,90 @@ internal sealed class CsvGridClipboardController : IMessageFilter
                 : $"Pasted {changed.ToString(CultureInfo.CurrentCulture)} changed cells into the pending edit session. Apply writes them to Notepad++."
         );
         return true;
+    }
+
+    private static bool TryCopy(DataGridView grid, CsvGridForm form)
+    {
+        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
+        if (rectangle is null)
+        {
+            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
+            return true;
+        }
+
+        var builder = new StringBuilder();
+        for (var rowOffset = 0; rowOffset < rectangle.Value.RowCount; rowOffset++)
+        {
+            if (rowOffset > 0)
+            {
+                builder.Append("\r\n");
+            }
+
+            for (var columnOffset = 0; columnOffset < rectangle.Value.ColumnCount; columnOffset++)
+            {
+                if (columnOffset > 0)
+                {
+                    builder.Append('\t');
+                }
+
+                var value = Convert.ToString(
+                    grid.Rows[rectangle.Value.StartRow + rowOffset]
+                        .Cells[rectangle.Value.StartColumn + columnOffset].Value,
+                    CultureInfo.InvariantCulture) ?? string.Empty;
+                if (ContainsClipboardDelimiter(value))
+                {
+                    ShowStatus(
+                        form,
+                        "Copy blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
+                    return true;
+                }
+
+                builder.Append(value);
+            }
+        }
+
+        try
+        {
+            Clipboard.SetText(builder.ToString(), TextDataFormat.UnicodeText);
+            ShowStatus(
+                form,
+                $"Copied {rectangle.Value.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
+                $"{rectangle.Value.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
+        }
+        catch (ExternalException)
+        {
+            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+        }
+
+        return true;
+    }
+
+    private static bool TryReadClipboardText(
+        CsvGridForm form,
+        out string clipboardText)
+    {
+        clipboardText = string.Empty;
+        try
+        {
+            if (!Clipboard.ContainsText())
+            {
+                ShowStatus(form, "The clipboard does not contain plain text cells.");
+                return false;
+            }
+
+            clipboardText = Clipboard.GetText(TextDataFormat.UnicodeText);
+            if (clipboardText.Length == 0)
+            {
+                clipboardText = Clipboard.GetText(TextDataFormat.Text);
+            }
+
+            return true;
+        }
+        catch (ExternalException)
+        {
+            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+            return false;
+        }
     }
 
     private static bool ContainsClipboardDelimiter(string value) =>
@@ -368,22 +382,7 @@ internal sealed class CsvGridClipboardController : IMessageFilter
         }
     }
 
-    private static DataGridView? FindGrid(Control? control)
-    {
-        while (control is not null)
-        {
-            if (control is DataGridView grid)
-            {
-                return grid;
-            }
-
-            control = control.Parent;
-        }
-
-        return null;
-    }
-
-    private static void ShowStatus(CsvGridForm form, string message)
+    internal static void ShowStatus(CsvGridForm form, string message)
     {
         foreach (var control in EnumerateControls(form))
         {

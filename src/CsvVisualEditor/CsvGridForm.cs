@@ -52,6 +52,9 @@ internal sealed class CsvGridForm : DockingForm
     private CsvEditSession? _editSession;
     private CsvRowEditModel? _rowEditModel;
     private CsvTableViewResult? _lastViewResult;
+    private readonly CsvEditingControlPasteHook _editingControlPasteHook = new();
+    private IReadOnlyList<CsvTableRow> _virtualReadOnlyRows = Array.Empty<CsvTableRow>();
+    private bool _usingVirtualReadOnlyRows;
     private bool _delimiterWasAutomatic;
     private bool _updatingViewControls;
     private bool _suppressGridChanges;
@@ -216,7 +219,15 @@ internal sealed class CsvGridForm : DockingForm
         _grid.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
         _grid.ColumnHeaderMouseClick += OnTableColumnHeaderMouseClick;
         _grid.CellValueChanged += OnGridCellValueChanged;
+        _grid.CellValueNeeded += OnGridCellValueNeeded;
+        _grid.CellToolTipTextNeeded += OnGridCellToolTipTextNeeded;
+        _grid.EditingControlShowing += OnGridEditingControlShowing;
         _grid.SelectionChanged += (_, _) => UpdateControlAvailability();
+        if (_grid is CsvDataGridView csvGrid)
+        {
+            csvGrid.ClipboardCommandHandler = keyData =>
+                CsvGridClipboardController.TryHandleGridCommand(csvGrid, this, keyData);
+        }
 
         _diagnosticsGrid = CreateReadOnlyGrid(showRowHeaders: false);
         _diagnosticsGrid.MultiSelect = false;
@@ -314,6 +325,22 @@ internal sealed class CsvGridForm : DockingForm
         _statusLabel.Text = "Plugin ready. Reading the active editor buffer...";
     }
 
+    public void ShowLoadingDocument(ActiveDocumentSnapshot snapshot)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+
+        ResetVisualTableContext();
+        PrepareMetadataGrid();
+        AddMetadataRow("Document", snapshot.DisplayName);
+        AddMetadataRow("Status", "Parsing and preparing a bounded visual table in the background…");
+        AddMetadataRow(
+            "Snapshot",
+            $"{FormatNumber(snapshot.CharacterCount)} characters / {FormatNumber(snapshot.EditorByteLength)} editor bytes");
+        _tabControl.SelectedTab = _tablePage;
+        _statusLabel.Text =
+            $"{snapshot.DisplayName} — loading CSV data in the background; Notepad++ remains responsive.";
+    }
+
     public void ShowEmptyDocument(ActiveDocumentSnapshot snapshot)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
@@ -378,7 +405,7 @@ internal sealed class CsvGridForm : DockingForm
         PopulateTableColumns(projection);
         PopulateSearchColumns(projection);
         PopulateDiagnostics(GetAllDiagnostics(detectionResult, parseResult));
-        TryCreateEditSession(snapshot, parseResult, projection);
+        ConfigureLazyEditCapability();
         UpdateControlAvailability();
         ApplyCurrentView();
         _tabControl.SelectedTab = _tablePage;
@@ -510,6 +537,7 @@ internal sealed class CsvGridForm : DockingForm
     {
         if (disposing)
         {
+            _editingControlPasteHook.Dispose();
             _searchTimer.Stop();
             _searchTimer.Dispose();
         }
@@ -526,7 +554,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private static DataGridView CreateReadOnlyGrid(bool showRowHeaders)
     {
-        var grid = new DataGridView
+        var grid = new CsvDataGridView
         {
             AllowUserToAddRows = false,
             AllowUserToDeleteRows = false,
@@ -546,6 +574,94 @@ internal sealed class CsvGridForm : DockingForm
         grid.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
         grid.RowTemplate.Height = 22;
         return grid;
+    }
+
+    private void OnGridCellValueNeeded(
+        object? sender,
+        DataGridViewCellValueEventArgs e)
+    {
+        if (!_usingVirtualReadOnlyRows ||
+            e.RowIndex < 0 ||
+            e.RowIndex >= _virtualReadOnlyRows.Count ||
+            e.ColumnIndex < 0 ||
+            e.ColumnIndex >= _grid.Columns.Count)
+        {
+            return;
+        }
+
+        var row = _virtualReadOnlyRows[e.RowIndex];
+        if (e.ColumnIndex < row.Values.Count)
+        {
+            e.Value = row.Values[e.ColumnIndex];
+            return;
+        }
+
+        if (CsvGridRowPresentation.IsRowIndicatorColumn(_grid.Columns[e.ColumnIndex]))
+        {
+            e.Value = (row.SourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+        }
+    }
+
+    private void OnGridCellToolTipTextNeeded(
+        object? sender,
+        DataGridViewCellToolTipTextNeededEventArgs e)
+    {
+        if (!_usingVirtualReadOnlyRows ||
+            e.RowIndex < 0 ||
+            e.RowIndex >= _virtualReadOnlyRows.Count ||
+            e.ColumnIndex < 0 ||
+            e.ColumnIndex >= _grid.Columns.Count ||
+            !CsvGridRowPresentation.IsRowIndicatorColumn(_grid.Columns[e.ColumnIndex]))
+        {
+            return;
+        }
+
+        var logicalRecordNumber = _virtualReadOnlyRows[e.RowIndex].SourceRecordIndex + 1;
+        e.ToolTipText =
+            $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}";
+    }
+
+    private void OnGridEditingControlShowing(
+        object? sender,
+        DataGridViewEditingControlShowingEventArgs e)
+    {
+        _editingControlPasteHook.Attach(e.Control, TryHandleEditingControlPasteMessage);
+    }
+
+    private bool TryHandleEditingControlPasteMessage()
+    {
+        if (!CsvGridClipboardController.TryHandleEditingControlPaste(
+                _grid,
+                this,
+                out var clipboardText))
+        {
+            return false;
+        }
+
+        if (clipboardText.Length == 0)
+        {
+            return true;
+        }
+
+        try
+        {
+            BeginInvoke((Action)(() =>
+            {
+                if (!IsDisposed && !Disposing)
+                {
+                    CsvGridClipboardController.TryPasteText(
+                        _grid,
+                        this,
+                        clipboardText);
+                }
+            }));
+        }
+        catch (InvalidOperationException)
+        {
+            // The dock may be closing while WM_PASTE is unwinding.
+        }
+
+        return true;
     }
 
     private void OnDisplayOptionChanged(object? sender, EventArgs e)
@@ -674,7 +790,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private void EnterEditMode()
     {
-        if (_rowEditModel is null || _projection is null)
+        if (_projection is null || !EnsureEditSession())
         {
             _statusLabel.Text =
                 "Edit mode is unavailable for the current table. Resolve parser errors or display limits first.";
@@ -882,27 +998,82 @@ internal sealed class CsvGridForm : DockingForm
         }
     }
 
-    private void TryCreateEditSession(
-        ActiveDocumentSnapshot snapshot,
-        CsvParseResult parseResult,
-        CsvTableProjection projection)
+    private void ConfigureLazyEditCapability()
     {
+        _editSession = null;
+        _rowEditModel = null;
+        _editButton.ToolTipText = CanStartEditMode()
+            ? "Enter explicit cell and row editing mode. The full edit model is created only when requested."
+            : GetEditUnavailableReason();
+    }
+
+    private bool CanStartEditMode()
+    {
+        return _snapshot is not null &&
+               _parseResult is not null &&
+               _projection is not null &&
+               _projection.ColumnCount > 0 &&
+               !_parseResult.HasErrors &&
+               !_projection.IsRowLimited &&
+               _projection.DisplayedRowCount == _projection.TotalDataRecordCount;
+    }
+
+    private string GetEditUnavailableReason()
+    {
+        if (_parseResult?.HasErrors == true)
+        {
+            return "Editing cannot start while the parsed CSV contains errors.";
+        }
+
+        if (_projection?.IsRowLimited == true ||
+            (_projection is not null &&
+             _projection.DisplayedRowCount != _projection.TotalDataRecordCount))
+        {
+            return "Editing cannot start from a row-limited visual projection.";
+        }
+
+        return "Editing is unavailable for the current table.";
+    }
+
+    private bool EnsureEditSession()
+    {
+        if (_editSession is not null && _rowEditModel is not null)
+        {
+            return true;
+        }
+
+        if (!CanStartEditMode() ||
+            _snapshot is null ||
+            _parseResult is null ||
+            _projection is null)
+        {
+            _editButton.ToolTipText = GetEditUnavailableReason();
+            return false;
+        }
+
+        _statusLabel.Text = "Preparing the complete edit session…";
         try
         {
-            _editSession = CsvEditSession.Create(snapshot, parseResult, projection);
+            _editSession = CsvEditSession.Create(
+                _snapshot,
+                _parseResult,
+                _projection);
             _rowEditModel = CsvRowEditModel.Create(
-                snapshot,
-                parseResult,
+                _snapshot,
+                _parseResult,
                 _editSession,
-                projection);
+                _projection);
             _editButton.ToolTipText =
                 "Enter explicit cell and row editing mode. Apply writes only to the editor buffer.";
+            return true;
         }
         catch (InvalidOperationException exception)
         {
             _editSession = null;
             _rowEditModel = null;
             _editButton.ToolTipText = exception.Message;
+            _statusLabel.Text = exception.Message;
+            return false;
         }
     }
 
@@ -938,24 +1109,55 @@ internal sealed class CsvGridForm : DockingForm
         UpdateDirtyIndicators();
     }
 
-    private void RenderViewRows(IEnumerable<CsvTableRow> rows)
+    private void RenderViewRows(IReadOnlyList<CsvTableRow> rows)
     {
+        var useVirtualRows = CsvGridRenderingPolicy.ShouldUseVirtualReadOnlyRows(
+            rows.Count,
+            _projection?.ColumnCount ?? 0);
+
         _suppressGridChanges = true;
         _grid.SuspendLayout();
         try
         {
-            _grid.Rows.Clear();
-            foreach (var row in rows)
+            ResetRenderedRows(useVirtualRows);
+            CsvGridRowPresentation.ResetSizingLabel(
+                _grid,
+                GetMaximumReadOnlyIndicatorLabel(rows));
+
+            if (useVirtualRows)
             {
-                var gridRowIndex = _grid.Rows.Add(
-                    row.Values.Select(static value => (object)value).ToArray());
-                var gridRow = _grid.Rows[gridRowIndex];
-                gridRow.Tag = row.SourceRecordIndex;
-                var logicalRecordNumber = row.SourceRecordIndex + 1;
-                CsvGridRowPresentation.SetRowIndicator(
-                    gridRow,
-                    logicalRecordNumber.ToString(CultureInfo.InvariantCulture),
-                    $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
+                _virtualReadOnlyRows = rows;
+                _usingVirtualReadOnlyRows = true;
+                _grid.RowCount = rows.Count;
+            }
+            else
+            {
+                var indicatorColumnIndex = GetRowIndicatorColumnIndex();
+                var gridRows = new DataGridViewRow[rows.Count];
+                for (var index = 0; index < rows.Count; index++)
+                {
+                    var sourceRow = rows[index];
+                    var gridRow = new DataGridViewRow();
+                    gridRow.CreateCells(_grid);
+                    for (var columnIndex = 0; columnIndex < sourceRow.Values.Count; columnIndex++)
+                    {
+                        gridRow.Cells[columnIndex].Value = sourceRow.Values[columnIndex];
+                    }
+
+                    gridRow.Tag = sourceRow.SourceRecordIndex;
+                    var logicalRecordNumber = sourceRow.SourceRecordIndex + 1;
+                    CsvGridRowPresentation.SetDetachedRowIndicator(
+                        gridRow,
+                        indicatorColumnIndex,
+                        logicalRecordNumber.ToString(CultureInfo.InvariantCulture),
+                        $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
+                    gridRows[index] = gridRow;
+                }
+
+                if (gridRows.Length > 0)
+                {
+                    _grid.Rows.AddRange(gridRows);
+                }
             }
         }
         finally
@@ -969,18 +1171,41 @@ internal sealed class CsvGridForm : DockingForm
 
     private void RenderStructuralRows(IEnumerable<CsvEditRowSnapshot> rows)
     {
+        var snapshots = rows as IReadOnlyList<CsvEditRowSnapshot> ?? rows.ToArray();
         _suppressGridChanges = true;
         _grid.SuspendLayout();
         try
         {
-            _grid.Rows.Clear();
-            foreach (var row in rows)
+            ResetRenderedRows(useVirtualRows: false);
+            var indicatorColumnIndex = GetRowIndicatorColumnIndex();
+            CsvGridRowPresentation.ResetSizingLabel(
+                _grid,
+                GetMaximumStructuralIndicatorLabel(snapshots));
+
+            var gridRows = new DataGridViewRow[snapshots.Count];
+            for (var index = 0; index < snapshots.Count; index++)
             {
-                var gridRowIndex = _grid.Rows.Add(
-                    row.Values.Select(static value => (object)value).ToArray());
-                var gridRow = _grid.Rows[gridRowIndex];
-                gridRow.Tag = row.Id;
-                SetStructuralRowIndicator(gridRow, row);
+                var snapshot = snapshots[index];
+                var gridRow = new DataGridViewRow();
+                gridRow.CreateCells(_grid);
+                for (var columnIndex = 0; columnIndex < snapshot.Values.Count; columnIndex++)
+                {
+                    gridRow.Cells[columnIndex].Value = snapshot.Values[columnIndex];
+                }
+
+                gridRow.Tag = snapshot.Id;
+                var indicator = GetStructuralRowIndicator(snapshot);
+                CsvGridRowPresentation.SetDetachedRowIndicator(
+                    gridRow,
+                    indicatorColumnIndex,
+                    indicator.Label,
+                    indicator.ToolTipText);
+                gridRows[index] = gridRow;
+            }
+
+            if (gridRows.Length > 0)
+            {
+                _grid.Rows.AddRange(gridRows);
             }
 
             UpdateSortGlyphs();
@@ -998,27 +1223,83 @@ internal sealed class CsvGridForm : DockingForm
         DataGridViewRow gridRow,
         CsvEditRowSnapshot row)
     {
+        var indicator = GetStructuralRowIndicator(row);
+        CsvGridRowPresentation.SetRowIndicator(
+            gridRow,
+            indicator.Label,
+            indicator.ToolTipText);
+    }
+
+    private (string Label, string ToolTipText) GetStructuralRowIndicator(
+        CsvEditRowSnapshot row)
+    {
         if (row.IsInserted)
         {
             var insertedNumber = Math.Abs(row.Id.Value);
-            CsvGridRowPresentation.SetRowIndicator(
-                gridRow,
+            return (
                 $"new:{insertedNumber.ToString(CultureInfo.InvariantCulture)} *",
                 $"Pending inserted row {insertedNumber.ToString(CultureInfo.CurrentCulture)}; not yet applied");
-            return;
         }
 
         var sourceRecordIndex = row.SourceRecordIndex ??
             throw new InvalidOperationException("A source row did not expose its source record index.");
         var logicalRecordNumber = sourceRecordIndex + 1;
         var isDirty = IsSourceRecordDirty(sourceRecordIndex);
-        CsvGridRowPresentation.SetRowIndicator(
-            gridRow,
+        return (
             logicalRecordNumber.ToString(CultureInfo.InvariantCulture) +
                 (isDirty ? " *" : string.Empty),
             isDirty
                 ? $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}; modified in the pending edit session"
                 : $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
+    }
+
+    private void ResetRenderedRows(bool useVirtualRows)
+    {
+        if (_grid.VirtualMode)
+        {
+            _grid.RowCount = 0;
+        }
+        else
+        {
+            _grid.Rows.Clear();
+        }
+
+        _virtualReadOnlyRows = Array.Empty<CsvTableRow>();
+        _usingVirtualReadOnlyRows = false;
+        _grid.VirtualMode = useVirtualRows;
+    }
+
+    private int GetRowIndicatorColumnIndex()
+    {
+        var column = _grid.Columns[CsvGridRowPresentation.RowIndicatorColumnName] ??
+            throw new InvalidOperationException("The row-indicator column is not configured.");
+        return column.Index;
+    }
+
+    private static string GetMaximumReadOnlyIndicatorLabel(IReadOnlyList<CsvTableRow> rows)
+    {
+        if (rows.Count == 0)
+        {
+            return "#";
+        }
+
+        var maximumSourceRecordIndex = rows.Max(static row => row.SourceRecordIndex);
+        return (maximumSourceRecordIndex + 1).ToString(CultureInfo.InvariantCulture);
+    }
+
+    private string GetMaximumStructuralIndicatorLabel(IReadOnlyList<CsvEditRowSnapshot> rows)
+    {
+        var maximum = "#";
+        foreach (var row in rows)
+        {
+            var label = GetStructuralRowIndicator(row).Label;
+            if (label.Length > maximum.Length)
+            {
+                maximum = label;
+            }
+        }
+
+        return maximum;
     }
 
     private bool IsSourceRecordDirty(int sourceRecordIndex)
@@ -1104,9 +1385,7 @@ internal sealed class CsvGridForm : DockingForm
     private void UpdateControlAvailability()
     {
         var hasTable = _projection is not null;
-        var canEdit = _rowEditModel is not null &&
-                      _projection is not null &&
-                      _projection.ColumnCount > 0;
+        var canEdit = CanStartEditMode();
         var isDirty = _rowEditModel?.IsDirty ?? false;
         var deletionTargets = _editMode
             ? CsvGridSelectionSnapshot.Capture(_grid)
@@ -1292,7 +1571,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private void PrepareMetadataGrid()
     {
-        _grid.Rows.Clear();
+        ResetRenderedRows(useVirtualRows: false);
         _grid.Columns.Clear();
         _grid.ReadOnly = true;
         _grid.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -1323,7 +1602,7 @@ internal sealed class CsvGridForm : DockingForm
 
     private void PrepareTableGrid()
     {
-        _grid.Rows.Clear();
+        ResetRenderedRows(useVirtualRows: false);
         _grid.Columns.Clear();
         _grid.RowHeadersVisible = true;
         _grid.MultiSelect = true;

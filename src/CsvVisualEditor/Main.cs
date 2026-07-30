@@ -18,6 +18,8 @@ partial class Main : IDotNetPlugin
     private static readonly IDotNetPlugin Instance;
     private readonly IActiveDocumentReader _activeDocumentReader =
         new NotepadActiveDocumentReader();
+    private CancellationTokenSource? _loadCancellation;
+    private int _loadGeneration;
     private CsvGridForm? _gridForm;
 
     static Main()
@@ -268,69 +270,143 @@ partial class Main : IDotNetPlugin
             return;
         }
 
+        var gridForm = _gridForm;
+        var options = new CsvTableBuildOptions
+        {
+            DelimiterOverride = gridForm.SelectedDelimiterOverride,
+            HeaderMode = gridForm.SelectedHeaderMode,
+            MaximumRows = MaximumDisplayedRows,
+            MaximumColumns = MaximumDisplayedColumns,
+            MaximumCells = MaximumDisplayedCells
+        };
+        var generation = Interlocked.Increment(ref _loadGeneration);
+        var cancellation = new CancellationTokenSource();
+        var previousCancellation = Interlocked.Exchange(
+            ref _loadCancellation,
+            cancellation);
+        previousCancellation?.Cancel();
+        previousCancellation?.Dispose();
+
+        gridForm.ShowLoadingDocument(snapshot);
+        _ = BuildAndDisplayTableAsync(
+            gridForm,
+            snapshot,
+            options,
+            generation,
+            cancellation.Token);
+    }
+
+    private async Task BuildAndDisplayTableAsync(
+        CsvGridForm gridForm,
+        ActiveDocumentSnapshot snapshot,
+        CsvTableBuildOptions options,
+        int generation,
+        CancellationToken cancellationToken)
+    {
+        CsvTableBuildResult? buildResult = null;
+        string? errorMessage = null;
         try
         {
-            var buildResult = CsvTableBuilder.Build(
-                snapshot.Text,
-                new CsvTableBuildOptions
-                {
-                    DelimiterOverride = _gridForm.SelectedDelimiterOverride,
-                    HeaderMode = _gridForm.SelectedHeaderMode,
-                    MaximumRows = MaximumDisplayedRows,
-                    MaximumColumns = MaximumDisplayedColumns,
-                    MaximumCells = MaximumDisplayedCells
-                });
-
-            switch (buildResult.Status)
-            {
-                case CsvTableBuildStatus.Empty:
-                    _gridForm.ShowEmptyDocument(snapshot);
-                    return;
-
-                case CsvTableBuildStatus.DelimiterSelectionRequired
-                    when buildResult.DetectionResult is not null:
-                    _gridForm.ShowDelimiterSelectionRequired(
-                        snapshot,
-                        buildResult.DetectionResult);
-                    return;
-
-                case CsvTableBuildStatus.Ready
-                    when buildResult.ParseResult is not null &&
-                         buildResult.Projection is not null:
-                    _gridForm.ShowVisualTable(
-                        snapshot,
-                        buildResult.ParseResult,
-                        buildResult.Projection,
-                        buildResult.DetectionResult,
-                        buildResult.DelimiterWasAutomatic);
-                    return;
-
-                default:
-                    throw new InvalidOperationException(
-                        "The table builder returned an incomplete result.");
-            }
+            buildResult = await Task.Run(
+                () => CsvTableBuilder.Build(snapshot.Text, options),
+                cancellationToken).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
         }
         catch (InvalidOperationException exception)
         {
-            _gridForm.ShowTableError(exception.Message);
+            errorMessage = exception.Message;
         }
         catch (Exception)
         {
-            _gridForm.ShowTableError(
+            errorMessage =
                 "The editor buffer could not be converted into a visual table. " +
-                "Choose an explicit delimiter or refresh after correcting the document.");
+                "Choose an explicit delimiter or refresh after correcting the document.";
+        }
+
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
+
+        try
+        {
+            gridForm.BeginInvoke((Action)(() =>
+            {
+                if (cancellationToken.IsCancellationRequested ||
+                    generation != Volatile.Read(ref _loadGeneration) ||
+                    _gridForm != gridForm ||
+                    gridForm.IsDisposed ||
+                    gridForm.Disposing)
+                {
+                    return;
+                }
+
+                if (errorMessage is not null)
+                {
+                    gridForm.ShowTableError(errorMessage);
+                    return;
+                }
+
+                PresentTableBuildResult(
+                    gridForm,
+                    snapshot,
+                    buildResult ??
+                    throw new InvalidOperationException(
+                        "The background table build completed without a result."));
+            }));
+        }
+        catch (InvalidOperationException)
+        {
+            // The docking form was destroyed while the background build completed.
+        }
+    }
+
+    private static void PresentTableBuildResult(
+        CsvGridForm gridForm,
+        ActiveDocumentSnapshot snapshot,
+        CsvTableBuildResult buildResult)
+    {
+        switch (buildResult.Status)
+        {
+            case CsvTableBuildStatus.Empty:
+                gridForm.ShowEmptyDocument(snapshot);
+                return;
+
+            case CsvTableBuildStatus.DelimiterSelectionRequired
+                when buildResult.DetectionResult is not null:
+                gridForm.ShowDelimiterSelectionRequired(
+                    snapshot,
+                    buildResult.DetectionResult);
+                return;
+
+            case CsvTableBuildStatus.Ready
+                when buildResult.ParseResult is not null &&
+                     buildResult.Projection is not null:
+                gridForm.ShowVisualTable(
+                    snapshot,
+                    buildResult.ParseResult,
+                    buildResult.Projection,
+                    buildResult.DetectionResult,
+                    buildResult.DelimiterWasAutomatic);
+                return;
+
+            default:
+                throw new InvalidOperationException(
+                    "The table builder returned an incomplete result.");
         }
     }
 
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.10.0-alpha\n\n" +
+            "CSV Visual Editor 0.11.0-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
-            "Edit mode supports deterministic cell editing, Add Row, and stable multi-row batch deletion. " +
-            "Fresh-buffer conflict checks and one Scintilla undo transaction protect Apply. " +
-            "Apply currently supports UTF-8 editor buffers only and modifies only the " +
-            "active Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
+            "Edit mode supports deterministic cell editing, row operations, and spreadsheet-style rectangular copy/paste. " +
+            "Fresh-buffer conflict checks, strict encoding validation, and one Scintilla undo transaction protect Apply. " +
+            "The plugin modifies only the active Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
             $"Developer: {DeveloperName}\n" +
             $"Contact: {DeveloperEmail}",
             $"About {PluginDisplayName}",
@@ -340,6 +416,11 @@ partial class Main : IDotNetPlugin
 
     private void PluginCleanUp()
     {
+        Interlocked.Increment(ref _loadGeneration);
+        var cancellation = Interlocked.Exchange(ref _loadCancellation, null);
+        cancellation?.Cancel();
+        cancellation?.Dispose();
+
         if (_gridForm is not null)
         {
             _gridForm.RefreshRequested -= OnRefreshRequested;
