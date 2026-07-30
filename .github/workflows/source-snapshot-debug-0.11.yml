@@ -1,0 +1,31 @@
+name: Source Snapshot Debug 0.11
+
+on:
+  push:
+    branches:
+      - agent/multi-cell-clipboard
+    paths:
+      - .source-snapshot-debug-0.11
+      - .github/workflows/source-snapshot-debug-0.11.yml
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: agent/multi-cell-clipboard
+          fetch-depth: 0
+      - name: Archive source
+        shell: bash
+        run: git archive --format=zip --output source-snapshot-debug-0.11.zip HEAD
+      - name: Upload source
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-source-snapshot-debug-0.11
+          path: source-snapshot-debug-0.11.zip
+          if-no-files-found: error
