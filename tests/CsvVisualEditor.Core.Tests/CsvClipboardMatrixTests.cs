@@ -25,12 +25,11 @@ public sealed class CsvClipboardMatrixTests
     }
 
     [Fact]
-    public void Parse_RaggedRows_PadsMissingCellsWithEmptyStrings()
+    public void Parse_RaggedRows_AreRejectedInsteadOfSilentlyPadded()
     {
-        var matrix = CsvClipboardMatrix.Parse("A\tB\nC");
-        Assert.Equal(2, matrix.ColumnCount);
-        Assert.Equal(string.Empty, matrix[1, 1]);
-        Assert.Equal("A\tB\r\nC\t", matrix.ToTabSeparatedText());
+        var exception = Assert.Throws<FormatException>(() =>
+            CsvClipboardMatrix.Parse("A\tB\nC"));
+        Assert.Contains("rectangular", exception.Message, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
@@ -39,6 +38,22 @@ public sealed class CsvClipboardMatrixTests
         var matrix = CsvClipboardMatrix.Parse(string.Empty);
         Assert.True(matrix.IsSingleCell);
         Assert.Equal(string.Empty, matrix[0, 0]);
+    }
+
+    [Theory]
+    [InlineData("A\0B")]
+    [InlineData("A\u0001B")]
+    [InlineData("A\u0007B")]
+    public void Parse_UnsupportedControlCharacter_IsRejected(string text)
+    {
+        Assert.Throws<FormatException>(() => CsvClipboardMatrix.Parse(text));
+    }
+
+    [Fact]
+    public void Parse_TooManyColumns_IsRejected()
+    {
+        var text = string.Join('\t', Enumerable.Repeat("x", 513));
+        Assert.Throws<FormatException>(() => CsvClipboardMatrix.Parse(text));
     }
 
     [Fact]
