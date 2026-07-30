@@ -1,0 +1,30 @@
+name: Bump package naming 0.11
+on:
+  push:
+    branches: [agent/multi-cell-clipboard]
+    paths: [.github/workflows/bump-package-0.11.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/multi-cell-clipboard
+          fetch-depth: 0
+      - shell: python
+        run: |
+          from pathlib import Path
+          p = Path('.github/workflows/ci.yml')
+          s = p.read_text(encoding='utf-8').replace('CsvVisualEditor-0.10.0-alpha-win-x64', 'CsvVisualEditor-0.11.0-alpha-win-x64')
+          p.write_text(s, encoding='utf-8')
+      - shell: bash
+        run: |
+          rm -f .github/workflows/bump-package-0.11.yml
+          git add --all
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: package milestone 0.11"
+          git push origin HEAD:agent/multi-cell-clipboard
