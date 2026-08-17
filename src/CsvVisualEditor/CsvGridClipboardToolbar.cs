@@ -4,16 +4,14 @@ using System.Runtime.CompilerServices;
 
 /// <summary>
 /// Adds explicit spreadsheet clipboard commands and reorganizes the visual editor's
-/// two command bars into a compact spreadsheet-style layout. Attachment is retried
-/// after the dock handle becomes visible because Notepad++ can complete parts of the
-/// WinForms docking hierarchy only after the form has been registered with the host.
+/// existing command bars without changing the grid's accepted selection semantics.
 /// </summary>
 internal static class CsvGridClipboardToolbar
 {
     private const string CopyButtonName = "CsvClipboardCopyButton";
     private const string CutButtonName = "CsvClipboardCutButton";
     private const string PasteButtonName = "CsvClipboardPasteButton";
-    private const int MaximumDeferredAttachAttempts = 3;
+    private const int MaximumDeferredAttachAttempts = 4;
 
     private static readonly ConditionalWeakTable<CsvGridForm, AttachmentState> States = new();
 
@@ -25,17 +23,12 @@ internal static class CsvGridClipboardToolbar
         if (!state.EventsAttached)
         {
             state.EventsAttached = true;
-            form.HandleCreated += (_, _) =>
-            {
-                state.DeferredAttachAttempts = 0;
-                QueueAttach(form, state);
-            };
+            form.HandleCreated += (_, _) => ResetAndQueueAttach(form, state);
             form.VisibleChanged += (_, _) =>
             {
                 if (form.Visible && !state.Attached)
                 {
-                    state.DeferredAttachAttempts = 0;
-                    QueueAttach(form, state);
+                    ResetAndQueueAttach(form, state);
                 }
             };
         }
@@ -62,9 +55,9 @@ internal static class CsvGridClipboardToolbar
         }
 
         var grid = FindTableGrid(form);
-        var mainToolStrip = FindMainToolStrip(form);
-        var viewToolStrip = FindViewToolStrip(form, mainToolStrip);
-        if (grid is null || mainToolStrip is null || viewToolStrip is null)
+        var commandStrip = FindCommandStrip(form);
+        var viewStrip = FindViewStrip(form, commandStrip);
+        if (grid is null || commandStrip is null || viewStrip is null)
         {
             return false;
         }
@@ -72,16 +65,17 @@ internal static class CsvGridClipboardToolbar
         if (!TryRebuildCommandBars(
                 form,
                 grid,
-                mainToolStrip,
-                viewToolStrip,
+                commandStrip,
+                viewStrip,
                 out var updateAvailability))
         {
             return false;
         }
 
-        ApplySpreadsheetGridPresentation(grid);
+        ApplySpreadsheetPresentation(grid);
         WireAvailabilityRefresh(form, grid, updateAvailability);
         updateAvailability();
+
         state.Attached = true;
         state.DeferredAttachAttempts = 0;
         return true;
@@ -90,23 +84,24 @@ internal static class CsvGridClipboardToolbar
     private static bool TryRebuildCommandBars(
         CsvGridForm form,
         DataGridView grid,
-        ToolStrip mainToolStrip,
-        ToolStrip viewToolStrip,
+        ToolStrip commandStrip,
+        ToolStrip viewStrip,
         out Action updateAvailability)
     {
         updateAvailability = static () => { };
 
-        var refreshButton = FindButton(mainToolStrip, static text => text == "Refresh");
+        var refreshButton = FindButton(commandStrip, static text => text == "Refresh");
         var editButton = FindButton(
-            mainToolStrip,
+            commandStrip,
             static text => text is "Edit" or "Exit Edit");
-        var addRowButton = FindButton(mainToolStrip, static text => text == "Add Row");
+        var addRowButton = FindButton(commandStrip, static text => text == "Add Row");
         var deleteRowButton = FindButton(
-            mainToolStrip,
+            commandStrip,
             static text => text.StartsWith("Delete Row", StringComparison.Ordinal));
-        var applyButton = FindButton(mainToolStrip, static text => text == "Apply");
-        var revertButton = FindButton(mainToolStrip, static text => text == "Revert All");
-        var dirtyLabel = mainToolStrip.Items
+        var applyButton = FindButton(commandStrip, static text => text == "Apply");
+        var revertButton = FindButton(commandStrip, static text => text == "Revert All");
+
+        var dirtyLabel = commandStrip.Items
             .OfType<ToolStripLabel>()
             .FirstOrDefault(static item =>
                 string.Equals(
@@ -114,19 +109,19 @@ internal static class CsvGridClipboardToolbar
                     "Pending cell and structural row changes",
                     StringComparison.Ordinal));
 
-        var delimiterLabel = FindLabel(mainToolStrip, "Delimiter:");
-        var headerLabel = FindLabel(mainToolStrip, "Header:");
-        var mainCombos = mainToolStrip.Items.OfType<ToolStripComboBox>().ToArray();
-        var delimiterCombo = mainCombos.ElementAtOrDefault(0);
-        var headerCombo = mainCombos.ElementAtOrDefault(1);
+        var delimiterLabel = FindLabel(commandStrip, "Delimiter:");
+        var headerLabel = FindLabel(commandStrip, "Header:");
+        var commandCombos = commandStrip.Items.OfType<ToolStripComboBox>().ToArray();
+        var delimiterCombo = commandCombos.ElementAtOrDefault(0);
+        var headerCombo = commandCombos.ElementAtOrDefault(1);
 
-        var searchLabel = FindLabel(viewToolStrip, "Search:");
-        var searchBox = viewToolStrip.Items.OfType<ToolStripTextBox>().FirstOrDefault();
-        var inLabel = FindLabel(viewToolStrip, "In:");
-        var searchCombo = viewToolStrip.Items.OfType<ToolStripComboBox>().FirstOrDefault();
-        var clearButton = FindButton(viewToolStrip, static text => text == "Clear");
+        var searchLabel = FindLabel(viewStrip, "Search:");
+        var searchBox = viewStrip.Items.OfType<ToolStripTextBox>().FirstOrDefault();
+        var inLabel = FindLabel(viewStrip, "In:");
+        var searchCombo = viewStrip.Items.OfType<ToolStripComboBox>().FirstOrDefault();
+        var clearButton = FindButton(viewStrip, static text => text == "Clear");
         var diagnosticsButton = FindButton(
-            viewToolStrip,
+            viewStrip,
             static text => text.StartsWith("Diagnostics", StringComparison.Ordinal));
 
         if (refreshButton is null ||
@@ -180,61 +175,65 @@ internal static class CsvGridClipboardToolbar
             grid.Focus();
         };
 
-        mainToolStrip.SuspendLayout();
-        viewToolStrip.SuspendLayout();
+        commandStrip.SuspendLayout();
+        viewStrip.SuspendLayout();
         try
         {
-            mainToolStrip.Items.Clear();
-            viewToolStrip.Items.Clear();
+            commandStrip.Items.Clear();
+            viewStrip.Items.Clear();
 
-            ConfigureStrip(mainToolStrip, verticalPadding: 2);
-            ConfigureStrip(viewToolStrip, verticalPadding: 1);
+            ConfigureStrip(commandStrip, verticalPadding: 2);
+            ConfigureStrip(viewStrip, verticalPadding: 1);
 
-            // Command row: stable spreadsheet actions first, then edit/apply groups.
-            mainToolStrip.Items.Add(pasteButton);
-            mainToolStrip.Items.Add(cutButton);
-            mainToolStrip.Items.Add(copyButton);
-            mainToolStrip.Items.Add(new ToolStripSeparator());
-            mainToolStrip.Items.Add(editButton);
-            mainToolStrip.Items.Add(addRowButton);
-            mainToolStrip.Items.Add(deleteRowButton);
-            mainToolStrip.Items.Add(new ToolStripSeparator());
-            mainToolStrip.Items.Add(applyButton);
-            mainToolStrip.Items.Add(revertButton);
+            // Spreadsheet command row. Clipboard operations stay at a fixed, visible
+            // position and editing/apply actions are separated into logical groups.
+            commandStrip.Items.Add(pasteButton);
+            commandStrip.Items.Add(cutButton);
+            commandStrip.Items.Add(copyButton);
+            commandStrip.Items.Add(CreateSeparator());
+            commandStrip.Items.Add(editButton);
+            commandStrip.Items.Add(addRowButton);
+            commandStrip.Items.Add(deleteRowButton);
+            commandStrip.Items.Add(CreateSeparator());
+            commandStrip.Items.Add(applyButton);
+            commandStrip.Items.Add(revertButton);
+
             if (dirtyLabel is not null)
             {
                 dirtyLabel.Alignment = ToolStripItemAlignment.Right;
-                mainToolStrip.Items.Add(dirtyLabel);
+                commandStrip.Items.Add(dirtyLabel);
             }
 
-            // Data/view row: refresh and interpretation options next to search tools.
-            viewToolStrip.Items.Add(refreshButton);
-            viewToolStrip.Items.Add(new ToolStripSeparator());
-            viewToolStrip.Items.Add(delimiterLabel);
-            viewToolStrip.Items.Add(delimiterCombo);
-            viewToolStrip.Items.Add(new ToolStripSeparator());
-            viewToolStrip.Items.Add(headerLabel);
-            viewToolStrip.Items.Add(headerCombo);
-            viewToolStrip.Items.Add(new ToolStripSeparator());
-            viewToolStrip.Items.Add(searchLabel);
-            viewToolStrip.Items.Add(searchBox);
-            viewToolStrip.Items.Add(inLabel);
-            viewToolStrip.Items.Add(searchCombo);
-            viewToolStrip.Items.Add(clearButton);
-            viewToolStrip.Items.Add(new ToolStripSeparator());
-            viewToolStrip.Items.Add(diagnosticsButton);
+            // Interpretation/search row. These controls affect the current visual view,
+            // not the pending edit transaction, so they live together on the second row.
+            viewStrip.Items.Add(refreshButton);
+            viewStrip.Items.Add(CreateSeparator());
+            viewStrip.Items.Add(delimiterLabel);
+            viewStrip.Items.Add(delimiterCombo);
+            viewStrip.Items.Add(CreateSeparator());
+            viewStrip.Items.Add(headerLabel);
+            viewStrip.Items.Add(headerCombo);
+            viewStrip.Items.Add(CreateSeparator());
+            viewStrip.Items.Add(searchLabel);
+            viewStrip.Items.Add(searchBox);
+            viewStrip.Items.Add(inLabel);
+            viewStrip.Items.Add(searchCombo);
+            viewStrip.Items.Add(clearButton);
+            viewStrip.Items.Add(CreateSeparator());
+            viewStrip.Items.Add(diagnosticsButton);
 
-            CompactItems(mainToolStrip);
-            CompactItems(viewToolStrip);
+            CompactItems(commandStrip);
+            CompactItems(viewStrip);
+
             if (dirtyLabel is not null)
             {
-                dirtyLabel.Margin = new Padding(8, 1, 4, 1);
+                dirtyLabel.Margin = new Padding(10, 1, 4, 1);
             }
         }
         finally
         {
-            viewToolStrip.ResumeLayout(performLayout: true);
-            mainToolStrip.ResumeLayout(performLayout: true);
+            viewStrip.ResumeLayout(performLayout: true);
+            commandStrip.ResumeLayout(performLayout: true);
         }
 
         updateAvailability = () =>
@@ -248,6 +247,7 @@ internal static class CsvGridClipboardToolbar
                 .Cast<DataGridViewColumn>()
                 .Any(static column => !CsvGridRowHeaderBehavior.IsPresentationColumn(column));
             var hasTarget = hasDataColumns && grid.Rows.Count > 0;
+
             copyButton.Enabled = hasTarget;
             cutButton.Enabled = hasTarget && form.IsEditMode;
             pasteButton.Enabled = hasTarget && form.IsEditMode;
@@ -275,19 +275,22 @@ internal static class CsvGridClipboardToolbar
         form.VisibleChanged += (_, _) => updateAvailability();
     }
 
-    private static void ApplySpreadsheetGridPresentation(DataGridView grid)
+    private static void ApplySpreadsheetPresentation(DataGridView grid)
     {
-        grid.SelectionMode = DataGridViewSelectionMode.CellSelect;
+        // Do not change SelectionMode here. CsvGridRowPresentation intentionally uses
+        // RowHeaderSelect so native row-header gestures and ordinary cell selection can
+        // coexist. UI polish must never override that accepted interaction contract.
         grid.RowTemplate.Height = Math.Max(grid.RowTemplate.Height, 24);
-        grid.DefaultCellStyle.Padding = new Padding(3, 0, 3, 0);
+        grid.DefaultCellStyle.Padding = new Padding(4, 1, 4, 1);
         grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+        grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(5, 2, 5, 2);
         grid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         grid.BorderStyle = BorderStyle.FixedSingle;
         grid.CellBorderStyle = DataGridViewCellBorderStyle.Single;
         grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.ShowCellToolTips = true;
+        grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
         foreach (DataGridViewColumn column in grid.Columns)
         {
@@ -319,17 +322,23 @@ internal static class CsvGridClipboardToolbar
         {
             item.Margin = item switch
             {
-                ToolStripSeparator => new Padding(3, 0, 3, 0),
+                ToolStripSeparator => new Padding(4, 1, 4, 1),
                 ToolStripLabel => new Padding(2, 1, 1, 1),
                 _ => new Padding(1, 1, 1, 1)
             };
 
             if (item is ToolStripButton button)
             {
-                button.Padding = new Padding(4, 0, 4, 0);
+                button.Padding = new Padding(5, 0, 5, 0);
             }
         }
     }
+
+    private static ToolStripSeparator CreateSeparator() =>
+        new()
+        {
+            AutoSize = true
+        };
 
     private static ToolStripButton CreateButton(
         string name,
@@ -340,7 +349,8 @@ internal static class CsvGridClipboardToolbar
             Name = name,
             AutoSize = true,
             DisplayStyle = ToolStripItemDisplayStyle.Text,
-            ToolTipText = toolTipText
+            ToolTipText = toolTipText,
+            Overflow = ToolStripItemOverflow.AsNeeded
         };
 
     private static ToolStripButton? FindButton(
@@ -358,23 +368,20 @@ internal static class CsvGridClipboardToolbar
     private static DataGridView? FindTableGrid(Control root) =>
         EnumerateControls(root)
             .OfType<DataGridView>()
-            .FirstOrDefault(static grid =>
-                grid.RowHeadersVisible &&
-                grid.SelectionMode == DataGridViewSelectionMode.CellSelect);
+            .FirstOrDefault(CsvDataGridView.IsPrimaryTableGridCandidate);
 
-    private static ToolStrip? FindMainToolStrip(Control root) =>
+    private static ToolStrip? FindCommandStrip(Control root) =>
         EnumerateControls(root)
             .OfType<ToolStrip>()
             .FirstOrDefault(static strip =>
                 strip.Items
                     .OfType<ToolStripButton>()
-                    .Any(static button =>
-                        button.Text is "Edit" or "Exit Edit"));
+                    .Any(static button => button.Text is "Edit" or "Exit Edit"));
 
-    private static ToolStrip? FindViewToolStrip(Control root, ToolStrip? mainToolStrip) =>
+    private static ToolStrip? FindViewStrip(Control root, ToolStrip? commandStrip) =>
         EnumerateControls(root)
             .OfType<ToolStrip>()
-            .Where(strip => strip != mainToolStrip)
+            .Where(strip => strip != commandStrip)
             .FirstOrDefault(static strip =>
                 strip.Items.OfType<ToolStripTextBox>().Any() ||
                 strip.Items.OfType<ToolStripLabel>().Any(static label => label.Text == "Search:"));
@@ -386,6 +393,7 @@ internal static class CsvGridClipboardToolbar
             .SelectMany(static strip => strip.Items.Cast<ToolStripItem>())
             .Select(static item => item.Name)
             .ToHashSet(StringComparer.Ordinal);
+
         return names.Contains(CopyButtonName) &&
                names.Contains(CutButtonName) &&
                names.Contains(PasteButtonName);
@@ -419,6 +427,12 @@ internal static class CsvGridClipboardToolbar
         }
     }
 
+    private static void ResetAndQueueAttach(CsvGridForm form, AttachmentState state)
+    {
+        state.DeferredAttachAttempts = 0;
+        QueueAttach(form, state);
+    }
+
     private static void QueueAttach(CsvGridForm form, AttachmentState state)
     {
         if (state.Attached ||
@@ -438,6 +452,7 @@ internal static class CsvGridClipboardToolbar
             {
                 state.AttachQueued = false;
                 state.DeferredAttachAttempts++;
+
                 if (TryAttachNow(form, state))
                 {
                     return;
