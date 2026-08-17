@@ -7,12 +7,12 @@ using System.Text;
 
 /// <summary>
 /// Spreadsheet clipboard service called directly by the CSV DataGridView command
-/// path and by the active cell editor's WM_PASTE hook. It deliberately does not
-/// depend on Application.AddMessageFilter because Notepad++ owns the native message loop.
+/// path, native clipboard messages, toolbar commands, and the active cell editor's
+/// paste hook. It deliberately does not depend on Application.AddMessageFilter
+/// because Notepad++ owns the native message loop.
 /// </summary>
 internal static class CsvGridClipboardController
 {
-
     internal static bool TryHandleGridCommand(
         DataGridView grid,
         CsvGridForm form,
@@ -26,7 +26,14 @@ internal static class CsvGridClipboardController
         {
             return grid.IsCurrentCellInEditMode
                 ? false
-                : TryCopy(grid, form);
+                : TryCopySelection(grid, form);
+        }
+
+        if (key == Keys.X)
+        {
+            return grid.IsCurrentCellInEditMode
+                ? false
+                : TryCutSelection(grid, form);
         }
 
         if (key != Keys.V)
@@ -72,6 +79,87 @@ internal static class CsvGridClipboardController
         return true;
     }
 
+    internal static bool TryCopySelection(
+        DataGridView grid,
+        CsvGridForm form)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(form);
+
+        if (CsvGridRowHeaderBehavior.CaptureManagedSelection(grid).SelectedIds.Count > 0)
+        {
+            ShowStatus(form, "Copy requires CSV cells, not complete-row deletion selection.");
+            return true;
+        }
+
+        if (grid.IsCurrentCellInEditMode && !form.CommitPendingEdit())
+        {
+            ShowStatus(form, "The active cell edit could not be committed before copying.");
+            return true;
+        }
+
+        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
+        if (rectangle is null)
+        {
+            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
+            return true;
+        }
+
+        TryCopyRectangle(grid, form, rectangle.Value, showSuccessStatus: true);
+        return true;
+    }
+
+    internal static bool TryCutSelection(
+        DataGridView grid,
+        CsvGridForm form)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(form);
+
+        if (!TryPrepareEditableTarget(
+                grid,
+                form,
+                "Cut",
+                out var model,
+                out var target))
+        {
+            return true;
+        }
+
+        if (!TryCopyRectangle(
+                grid,
+                form,
+                target,
+                showSuccessStatus: false))
+        {
+            return true;
+        }
+
+        var emptyCell = CsvClipboardMatrix.Parse(string.Empty);
+        return TryApplyMatrix(
+            grid,
+            form,
+            model,
+            target,
+            emptyCell,
+            ClipboardMutationKind.Cut);
+    }
+
+    internal static bool TryPasteFromClipboard(
+        DataGridView grid,
+        CsvGridForm form)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        ArgumentNullException.ThrowIfNull(form);
+
+        if (!TryReadClipboardText(form, out var clipboardText))
+        {
+            return true;
+        }
+
+        return TryPasteText(grid, form, clipboardText);
+    }
+
     internal static bool TryPasteText(
         DataGridView grid,
         CsvGridForm form,
@@ -81,28 +169,13 @@ internal static class CsvGridClipboardController
         ArgumentNullException.ThrowIfNull(form);
         ArgumentNullException.ThrowIfNull(clipboardText);
 
-        if (!form.IsEditMode)
+        if (!TryPrepareEditableTarget(
+                grid,
+                form,
+                "Paste",
+                out var model,
+                out var target))
         {
-            ShowStatus(form, "Paste is available only in Edit mode.");
-            return true;
-        }
-
-        var model = form.RowEditModel;
-        if (model is null)
-        {
-            ShowStatus(form, "Paste is unavailable for the current table.");
-            return true;
-        }
-
-        if (CsvGridRowHeaderBehavior.CaptureManagedSelection(grid).SelectedIds.Count > 0)
-        {
-            ShowStatus(form, "Paste requires a CSV-cell rectangle, not complete-row deletion selection.");
-            return true;
-        }
-
-        if (!form.CommitPendingEdit())
-        {
-            ShowStatus(form, "The active cell edit could not be committed. Correct the value before pasting.");
             return true;
         }
 
@@ -117,14 +190,6 @@ internal static class CsvGridClipboardController
             return true;
         }
 
-        var selectedRectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
-        if (selectedRectangle is null)
-        {
-            ShowStatus(form, "Paste requires one contiguous rectangular selection of CSV data cells.");
-            return true;
-        }
-
-        var target = selectedRectangle.Value;
         if (target.CellCount == 1 && !matrix.IsSingleCell)
         {
             target = new GridRectangle(
@@ -134,6 +199,77 @@ internal static class CsvGridClipboardController
                 matrix.ColumnCount);
         }
 
+        return TryApplyMatrix(
+            grid,
+            form,
+            model,
+            target,
+            matrix,
+            ClipboardMutationKind.Paste);
+    }
+
+    private static bool TryPrepareEditableTarget(
+        DataGridView grid,
+        CsvGridForm form,
+        string operation,
+        out CsvRowEditModel model,
+        out GridRectangle target)
+    {
+        model = null!;
+        target = default;
+
+        if (!form.IsEditMode)
+        {
+            ShowStatus(form, $"{operation} is available only in Edit mode.");
+            return false;
+        }
+
+        var currentModel = form.RowEditModel;
+        if (currentModel is null)
+        {
+            ShowStatus(form, $"{operation} is unavailable for the current table.");
+            return false;
+        }
+
+        if (CsvGridRowHeaderBehavior.CaptureManagedSelection(grid).SelectedIds.Count > 0)
+        {
+            ShowStatus(
+                form,
+                $"{operation} requires a CSV-cell rectangle, not complete-row deletion selection.");
+            return false;
+        }
+
+        if (!form.CommitPendingEdit())
+        {
+            ShowStatus(
+                form,
+                $"The active cell edit could not be committed. Correct the value before {operation.ToLowerInvariant()}." );
+            return false;
+        }
+
+        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
+        if (rectangle is null)
+        {
+            ShowStatus(
+                form,
+                $"{operation} requires one contiguous rectangular selection of CSV data cells.");
+            return false;
+        }
+
+        model = currentModel;
+        target = rectangle.Value;
+        return true;
+    }
+
+    private static bool TryApplyMatrix(
+        DataGridView grid,
+        CsvGridForm form,
+        CsvRowEditModel model,
+        GridRectangle target,
+        CsvClipboardMatrix matrix,
+        ClipboardMutationKind mutationKind)
+    {
+        var operation = mutationKind == ClipboardMutationKind.Cut ? "Cut" : "Paste";
         var orderedRowIds = grid.Rows
             .Cast<DataGridViewRow>()
             .Select(static row => row.Tag)
@@ -141,7 +277,9 @@ internal static class CsvGridClipboardController
             .ToArray();
         if (orderedRowIds.Length != grid.Rows.Count)
         {
-            ShowStatus(form, "Paste targets are unavailable outside the stable Edit-mode row model.");
+            ShowStatus(
+                form,
+                $"{operation} targets are unavailable outside the stable Edit-mode row model.");
             return true;
         }
 
@@ -158,10 +296,10 @@ internal static class CsvGridClipboardController
             ShowStatus(form, plan.Status switch
             {
                 CsvClipboardPasteStatus.ShapeMismatch =>
-                    "Paste blocked: clipboard and selected rectangles have different dimensions.",
+                    $"{operation} blocked: clipboard and selected rectangles have different dimensions.",
                 CsvClipboardPasteStatus.TargetOutsideSession =>
-                    "Paste blocked: the target rectangle extends beyond the CSV table.",
-                _ => "Paste blocked: there is no editable target rectangle."
+                    $"{operation} blocked: the target rectangle extends beyond the CSV table.",
+                _ => $"{operation} blocked: there is no editable target rectangle."
             });
             return true;
         }
@@ -173,40 +311,51 @@ internal static class CsvGridClipboardController
         }
         catch (InvalidOperationException)
         {
-            ShowStatus(form, "Paste blocked because the pending edit model changed. No partial paste was retained.");
+            ShowStatus(
+                form,
+                $"{operation} blocked because the pending edit model changed. No partial change was retained.");
             return true;
         }
 
         SynchronizeGridValues(grid, plan.Edits);
         RestoreSelection(grid, plan.Edits.Select(static edit => edit.Address).ToArray());
         form.RefreshClipboardEditState();
-        ShowStatus(
-            form,
-            changed == 0
-                ? "Paste completed; all target values were already identical."
-                : $"Pasted {changed.ToString(CultureInfo.CurrentCulture)} changed cells into the pending edit session. Apply writes them to Notepad++."
-        );
+
+        if (mutationKind == ClipboardMutationKind.Cut)
+        {
+            ShowStatus(
+                form,
+                changed == 0
+                    ? "Cut completed; the selected cells were already empty. The clipboard contains their original values."
+                    : $"Cut {changed.ToString(CultureInfo.CurrentCulture)} cells into the clipboard and cleared them in the pending edit session. Apply writes the clearing to Notepad++.");
+        }
+        else
+        {
+            ShowStatus(
+                form,
+                changed == 0
+                    ? "Paste completed; all target values were already identical."
+                    : $"Pasted {changed.ToString(CultureInfo.CurrentCulture)} changed cells into the pending edit session. Apply writes them to Notepad++." );
+        }
+
         return true;
     }
 
-    private static bool TryCopy(DataGridView grid, CsvGridForm form)
+    private static bool TryCopyRectangle(
+        DataGridView grid,
+        CsvGridForm form,
+        GridRectangle rectangle,
+        bool showSuccessStatus)
     {
-        var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
-        if (rectangle is null)
-        {
-            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
-            return true;
-        }
-
         var builder = new StringBuilder();
-        for (var rowOffset = 0; rowOffset < rectangle.Value.RowCount; rowOffset++)
+        for (var rowOffset = 0; rowOffset < rectangle.RowCount; rowOffset++)
         {
             if (rowOffset > 0)
             {
                 builder.Append("\r\n");
             }
 
-            for (var columnOffset = 0; columnOffset < rectangle.Value.ColumnCount; columnOffset++)
+            for (var columnOffset = 0; columnOffset < rectangle.ColumnCount; columnOffset++)
             {
                 if (columnOffset > 0)
                 {
@@ -214,15 +363,15 @@ internal static class CsvGridClipboardController
                 }
 
                 var value = Convert.ToString(
-                    grid.Rows[rectangle.Value.StartRow + rowOffset]
-                        .Cells[rectangle.Value.StartColumn + columnOffset].Value,
+                    grid.Rows[rectangle.StartRow + rowOffset]
+                        .Cells[rectangle.StartColumn + columnOffset].Value,
                     CultureInfo.InvariantCulture) ?? string.Empty;
                 if (ContainsClipboardDelimiter(value))
                 {
                     ShowStatus(
                         form,
-                        "Copy blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
-                    return true;
+                        "Copy/Cut blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
+                    return false;
                 }
 
                 builder.Append(value);
@@ -232,17 +381,21 @@ internal static class CsvGridClipboardController
         try
         {
             Clipboard.SetText(builder.ToString(), TextDataFormat.UnicodeText);
-            ShowStatus(
-                form,
-                $"Copied {rectangle.Value.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
-                $"{rectangle.Value.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
+            if (showSuccessStatus)
+            {
+                ShowStatus(
+                    form,
+                    $"Copied {rectangle.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
+                    $"{rectangle.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
+            }
+
+            return true;
         }
         catch (ExternalException)
         {
             ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+            return false;
         }
-
-        return true;
     }
 
     private static bool TryReadClipboardText(
@@ -408,6 +561,12 @@ internal static class CsvGridClipboardController
                 yield return descendant;
             }
         }
+    }
+
+    private enum ClipboardMutationKind
+    {
+        Paste,
+        Cut
     }
 
     private readonly record struct GridRectangle(
