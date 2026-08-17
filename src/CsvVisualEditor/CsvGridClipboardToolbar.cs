@@ -204,7 +204,6 @@ internal static class CsvGridClipboardToolbar
             if (dirtyLabel is not null)
             {
                 dirtyLabel.Alignment = ToolStripItemAlignment.Right;
-                dirtyLabel.Margin = new Padding(8, 1, 4, 1);
                 mainToolStrip.Items.Add(dirtyLabel);
             }
 
@@ -227,6 +226,10 @@ internal static class CsvGridClipboardToolbar
 
             CompactItems(mainToolStrip);
             CompactItems(viewToolStrip);
+            if (dirtyLabel is not null)
+            {
+                dirtyLabel.Margin = new Padding(8, 1, 4, 1);
+            }
         }
         finally
         {
@@ -263,7 +266,11 @@ internal static class CsvGridClipboardToolbar
         grid.ReadOnlyChanged += (_, _) => updateAvailability();
         grid.RowsAdded += (_, _) => updateAvailability();
         grid.RowsRemoved += (_, _) => updateAvailability();
-        grid.ColumnAdded += (_, _) => updateAvailability();
+        grid.ColumnAdded += (_, eventArgs) =>
+        {
+            ApplyColumnPresentation(eventArgs.Column);
+            updateAvailability();
+        };
         grid.ColumnRemoved += (_, _) => updateAvailability();
         form.VisibleChanged += (_, _) => updateAvailability();
     }
@@ -281,6 +288,19 @@ internal static class CsvGridClipboardToolbar
         grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.ShowCellToolTips = true;
+
+        foreach (DataGridViewColumn column in grid.Columns)
+        {
+            ApplyColumnPresentation(column);
+        }
+    }
+
+    private static void ApplyColumnPresentation(DataGridViewColumn column)
+    {
+        if (!CsvGridRowHeaderBehavior.IsPresentationColumn(column))
+        {
+            column.ToolTipText = column.HeaderText ?? string.Empty;
+        }
     }
 
     private static void ConfigureStrip(ToolStrip strip, int verticalPadding)
@@ -328,7 +348,7 @@ internal static class CsvGridClipboardToolbar
         Func<string, bool> predicate) =>
         strip.Items
             .OfType<ToolStripButton>()
-            .FirstOrDefault(button => predicate(button.Text));
+            .FirstOrDefault(button => predicate(button.Text ?? string.Empty));
 
     private static ToolStripLabel? FindLabel(ToolStrip strip, string text) =>
         strip.Items
