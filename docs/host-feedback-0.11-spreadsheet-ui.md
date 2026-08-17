@@ -1,22 +1,34 @@
 # 0.11 host feedback — clipboard accepted, spreadsheet UI follow-up
 
-## Owner-observed host result
+## Owner-observed host results
 
-The latest real Notepad++ host test confirms that Excel-to-plugin rectangular Ctrl+V now works correctly when a CSV data cell is selected with a single click. This closes the click-state-dependent keyboard paste discrepancy from the preceding packages.
+The real Notepad++ host confirms that Excel-to-plugin rectangular Ctrl+V works correctly when a CSV data cell is selected with a single click. The click-state-dependent keyboard paste discrepancy is accepted.
 
-The same host test exposed a separate presentation issue:
+A subsequent package intended to add explicit Copy/Cut/Paste commands and spreadsheet-style presentation produced no visible UI change in the real host. The owner supplied a screenshot only as layout evidence. No CSV values from that screenshot are stored in this repository.
 
-- the explicit Copy/Cut/Paste toolbar commands were not visible;
-- the existing top area was too dense and looked like a raw collection of controls rather than a spreadsheet command surface;
-- the owner requested a more Excel-like, compact GUI while preserving the accepted editing behavior.
+## Root cause of the invisible UI
 
-No source CSV values from the host test are recorded in this repository.
+The dynamic spreadsheet UI attachment searched for the primary table using both:
 
-## UI correction
+- `RowHeadersVisible == true`; and
+- `SelectionMode == DataGridViewSelectionMode.CellSelect`.
 
-The clipboard toolbar attachment is now resilient to delayed Notepad++ docking hierarchy creation. It tries the already-created WinForms tree immediately and performs a bounded deferred retry after handle/visibility transitions instead of relying on one construction-time traversal.
+That condition can never match the accepted table configuration because `CsvGridRowPresentation.ConfigureNativeRowHeaders` deliberately sets `SelectionMode = RowHeaderSelect` to preserve the complete-row selection behavior accepted in milestone 0.9.
 
-The two existing tool strips are reorganized rather than increasing the dock height:
+The same UI helper also attempted to change the table back to `CellSelect` after attaching. Had the discovery succeeded, that would have risked regressing the accepted row-header interaction contract.
+
+## Corrected UI attachment
+
+The primary table is now identified independently from selection mode:
+
+- it must be the plugin's `CsvDataGridView` type;
+- native row headers must be visible;
+- the diagnostics grid is excluded because its row headers are hidden;
+- ordinary unrelated `DataGridView` controls are excluded.
+
+Spreadsheet presentation no longer changes `SelectionMode`. The accepted `RowHeaderSelect` behavior remains authoritative.
+
+The two existing tool strips are reorganized as:
 
 ### Command row
 
@@ -30,30 +42,59 @@ Paste  Cut  Copy  |  Edit  Add Row  Delete Row  |  Apply  Revert All            
 Refresh  |  Delimiter  |  Header  |  Search  In  Clear  |  Diagnostics
 ```
 
-This keeps clipboard commands at a stable left-side location and separates mutating commands from parsing/search controls.
+Presentation-only refinements include compact padding, slightly taller rows, padded left-aligned headers, centered native row headers, explicit grid borders, and header/cell tooltips. No fixed color palette is introduced, preserving host theme compatibility.
 
-## Spreadsheet presentation adjustments
+## Regression guard
 
-The table keeps its existing stable row identity, dedicated row number column, selection model, virtualization, edit model, conflict checks, encoding safety, and Notepad++ Apply/Save ownership. Presentation-only refinements include:
+A Windows Native AOT smoke test now explicitly proves that spreadsheet UI discovery:
 
-- slightly taller spreadsheet rows;
-- compact cell padding;
-- left-aligned padded column headers;
-- centered native row headers;
-- explicit cell/header grid borders;
-- cell tooltips retained for truncated content;
-- no new file-writing path and no direct clipboard mutation of the Notepad++ buffer.
+- accepts the real `RowHeaderSelect` primary table;
+- does not depend on a particular selection mode;
+- rejects the diagnostics grid;
+- rejects an unrelated ordinary `DataGridView`.
+
+## Final automated evidence for the correction
+
+```text
+Public implementation head:
+eca1dc3c6a28393d9c54d62c42b2706af395886d
+
+CI run: 32045980659 — PASS
+CI job: 95433899510 — PASS
+Core xUnit: 228/228 PASS
+Errors: 0
+Failed: 0
+Skipped: 0
+Not Run: 0
+Time: 1.009s
+Native AOT runtime smoke: PASS
+win-x64 Native AOT plugin publish: PASS
+Installable ZIP creation/upload: PASS
+
+Artifact ID: 9292987832
+Artifact name: CsvVisualEditor-0.11.0-alpha-win-x64
+Outer artifact size: 7,778,356 bytes
+Outer artifact SHA-256:
+f9b69b6f351ac17e5097b61ddbbbbc18a0ff8e56594e4869cecfa7ae094ab9e6
+
+Inner install ZIP size: 7,797,179 bytes
+Inner install ZIP SHA-256:
+6a352e49d9ba121ad25b3e2e469f67d61fca5a54274393652af1f7fc4e3275c4
+
+CsvVisualEditor.dll size: 20,622,336 bytes
+DLL SHA-256:
+cc0109f8ad907343e5cdaf7bc34379e6e4e11ba721958738d6c9d7f4068dbed4
+```
 
 ## Acceptance boundary
 
-The keyboard Ctrl+V host discrepancy is accepted by owner observation. The reorganized toolbar and visual polish require a new host package check before PR #11 is merged. Verify at minimum:
+Single-click Excel Ctrl+V is owner-accepted. The corrected toolbar/GUI still requires a real-host check. Verify that:
 
-1. Paste/Cut/Copy are visible immediately after opening the dock.
-2. Copy remains available in read-only table mode; Cut/Paste become available in Edit mode.
-3. Excel rectangular Ctrl+V still works after one click.
-4. Toolbar Paste produces the same result as Ctrl+V.
-5. Toolbar Copy and Cut work for one cell and a rectangular selection.
-6. Revert All restores pending Cut/Paste changes.
-7. Existing row selection/Delete, Apply, undo/redo, UTF-8/Windows-1250, Save/reopen, search, sort, and large-table behavior do not regress.
+1. Paste/Cut/Copy are visibly present immediately after opening the dock.
+2. Copy is available in read-only mode; Cut/Paste become available in Edit mode.
+3. Toolbar Paste matches the already accepted one-click Ctrl+V behavior.
+4. Copy/Cut work for one cell and rectangular selections.
+5. Native row-header / `#` / Select complete-row selection remains unchanged.
+6. Revert All, Apply, one-step undo/redo, UTF-8/Windows-1250, Save/reopen, search/sort, and large-table behavior do not regress.
 
-Keep public and internal PR #11 draft and unmerged until this UI follow-up passes the real host check.
+Keep public and internal PR #11 draft and unmerged until this corrected UI package passes the real-host check.
