@@ -13,6 +13,7 @@ internal static class CsvGridClipboardToolbar
     private const string CopyButtonName = "CsvClipboardCopyButton";
     private const string CutButtonName = "CsvClipboardCutButton";
     private const string PasteButtonName = "CsvClipboardPasteButton";
+    private const int MaximumDeferredAttachAttempts = 3;
 
     private static readonly ConditionalWeakTable<CsvGridForm, AttachmentState> States = new();
 
@@ -24,11 +25,16 @@ internal static class CsvGridClipboardToolbar
         if (!state.EventsAttached)
         {
             state.EventsAttached = true;
-            form.HandleCreated += (_, _) => QueueAttach(form, state);
+            form.HandleCreated += (_, _) =>
+            {
+                state.DeferredAttachAttempts = 0;
+                QueueAttach(form, state);
+            };
             form.VisibleChanged += (_, _) =>
             {
-                if (form.Visible)
+                if (form.Visible && !state.Attached)
                 {
+                    state.DeferredAttachAttempts = 0;
                     QueueAttach(form, state);
                 }
             };
@@ -77,6 +83,7 @@ internal static class CsvGridClipboardToolbar
         WireAvailabilityRefresh(form, grid, updateAvailability);
         updateAvailability();
         state.Attached = true;
+        state.DeferredAttachAttempts = 0;
         return true;
     }
 
@@ -396,6 +403,7 @@ internal static class CsvGridClipboardToolbar
     {
         if (state.Attached ||
             state.AttachQueued ||
+            state.DeferredAttachAttempts >= MaximumDeferredAttachAttempts ||
             form.IsDisposed ||
             form.Disposing ||
             !form.IsHandleCreated)
@@ -409,10 +417,15 @@ internal static class CsvGridClipboardToolbar
             form.BeginInvoke((Action)(() =>
             {
                 state.AttachQueued = false;
-                if (!TryAttachNow(form, state) && form.Visible)
+                state.DeferredAttachAttempts++;
+                if (TryAttachNow(form, state))
                 {
-                    // One additional layout turn covers delayed Notepad++ docking
-                    // hierarchy creation without spinning or blocking the UI thread.
+                    return;
+                }
+
+                if (form.Visible &&
+                    state.DeferredAttachAttempts < MaximumDeferredAttachAttempts)
+                {
                     QueueAttach(form, state);
                 }
             }));
@@ -428,6 +441,8 @@ internal static class CsvGridClipboardToolbar
         internal bool Attached { get; set; }
 
         internal bool AttachQueued { get; set; }
+
+        internal int DeferredAttachAttempts { get; set; }
 
         internal bool EventsAttached { get; set; }
     }
