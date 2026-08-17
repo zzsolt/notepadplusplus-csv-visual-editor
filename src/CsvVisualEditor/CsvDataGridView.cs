@@ -19,6 +19,18 @@ internal sealed class CsvDataGridView : DataGridView
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal Func<Keys, bool>? ClipboardCommandHandler { get; set; }
 
+    /// <summary>
+    /// Identifies the primary CSV table independently from its current selection mode.
+    /// The accepted row-header behavior deliberately uses RowHeaderSelect, so UI
+    /// discovery must never require CellSelect or mutate selection semantics merely to
+    /// locate the table. The diagnostics grid has row headers disabled and is excluded.
+    /// </summary>
+    internal static bool IsPrimaryTableGridCandidate(DataGridView grid)
+    {
+        ArgumentNullException.ThrowIfNull(grid);
+        return grid is CsvDataGridView && grid.RowHeadersVisible;
+    }
+
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
     {
         if (IsClipboardCommand(keyData) &&
