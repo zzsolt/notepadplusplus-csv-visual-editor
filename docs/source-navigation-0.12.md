@@ -47,17 +47,38 @@ Conversion uses strict encoder fallbacks. Unsupported code pages, unrepresentabl
 
 Before a navigation plan is authorized, the strict encoded byte length of the complete current buffer must exactly equal the byte length reported by Scintilla. This prevents navigation with a code-page interpretation that does not describe the actual editor buffer.
 
+## Immutable rendered baseline
+
+A complete Ready table installs one source-navigation baseline containing the exact immutable `ActiveDocumentSnapshot` and matching `CsvParseResult` used to render that table.
+
+The previous baseline is cleared immediately when a new load/refresh starts. Empty, delimiter-selection-required, loading, error, cancelled, or stale-generation states do not retain navigation positions from an older table. A replacement baseline is installed only after the new Ready result is actually presented.
+
+The baseline is associated with the primary plugin `CsvDataGridView` through a weak table and is not serialized into grid cells or row labels.
+
 ## Fresh-buffer safety
 
-Source navigation is read-only, but stale offsets can still select the wrong source location. Therefore the implementation fails closed when source identity is not trustworthy.
+Source navigation is read-only, but stale offsets can still select the wrong source location. Every `Source` action therefore reads a fresh active Scintilla snapshot and compares it with the exact rendered baseline before any host position is exposed.
 
-In Edit mode the current active snapshot must still match the edit-session baseline for:
+Required equality:
 
-- document identity;
-- Scintilla code page;
-- complete content SHA-256.
+- same document identity;
+- same Scintilla code page;
+- same complete decoded-content SHA-256.
 
-In read-only mode the current buffer is parsed again using the active delimiter/header settings and the selected displayed row is compared against the fresh source record before navigation. A stale visual row is blocked and the user is told to Refresh.
+The retained parser result is also verified against its immutable source snapshot. Any mismatch fails closed and tells the user to return to/Refresh the displayed CSV.
+
+This same rendered baseline works in both read-only and Edit modes. Pending visual edits do not change the Notepad++ buffer, so source-backed Edit rows continue to navigate to their original raw source locations until Apply. An external editor change, document switch, or code-page change blocks navigation immediately.
+
+## Row versus cell intent
+
+The accepted row-header and `#` gestures intentionally leave a real data cell as `CurrentCell` while visually selecting the complete row. Navigation therefore does not infer intent from `CurrentCell.ColumnIndex` alone.
+
+- complete visual row selection means logical-record navigation;
+- ordinary cell-only focus means raw-field navigation;
+- a presentation column also means logical-record navigation;
+- inserted rows have no source identity until Apply.
+
+This preserves the milestone 0.9/0.11 row-selection contract instead of changing DataGridView selection semantics for navigation.
 
 ## Host action
 
@@ -79,10 +100,10 @@ The spreadsheet command row becomes:
 Paste  Cut  Copy  Source | Edit  Add Row  Delete Row | Apply  Revert All | changes
 ```
 
-`Source` is enabled only when the current visual row exposes a source identity.
+`Source` is enabled only when the current visual row exposes a source identity and the rendered table has a retained source baseline.
 
 - current real CSV cell: select that raw source field;
-- current `#`/presentation cell: select the complete logical record;
+- complete-row / presentation context: select the complete logical record;
 - inserted pending row: disabled / blocked until Apply creates real source text;
 - projected padded data cell: fall back to complete logical record;
 - stale/conflicting source: block with zero document changes.
@@ -102,7 +123,7 @@ Core tests cover:
 - whole-buffer byte-length mismatch;
 - UTF-16 surrogate-boundary failure.
 
-Native AOT smoke validates successful UTF-8 mapping and fail-closed byte-length mismatch after trimming/native compilation.
+Native AOT smoke validates successful UTF-8 mapping and fail-closed byte-length mismatch after trimming/native compilation. Production Native AOT plugin publish additionally compiles the rendered-baseline host wiring.
 
 ## Safety boundary
 
