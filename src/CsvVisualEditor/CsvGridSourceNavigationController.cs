@@ -168,8 +168,13 @@ internal static class CsvGridSourceNavigationController
             return false;
         }
 
+        // Row-header and # gestures deliberately leave a real data cell current so the
+        // accepted DataGridView interaction remains usable. Whole-row visual selection
+        // therefore carries the user's row-level navigation intent more reliably than
+        // CurrentCell.ColumnIndex alone.
         int? columnIndex = null;
-        if (currentCell.ColumnIndex >= 0 &&
+        if (!row.Selected &&
+            currentCell.ColumnIndex >= 0 &&
             currentCell.ColumnIndex < grid.Columns.Count &&
             !CsvGridRowHeaderBehavior.IsPresentationColumn(
                 grid.Columns[currentCell.ColumnIndex]))
