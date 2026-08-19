@@ -86,15 +86,19 @@ DLL SHA-256:
 cc0109f8ad907343e5cdaf7bc34379e6e4e11ba721958738d6c9d7f4068dbed4
 ```
 
-## Acceptance boundary
+## Final owner host acceptance
 
-Single-click Excel Ctrl+V is owner-accepted. The corrected toolbar/GUI still requires a real-host check. Verify that:
+On 2026-08-19 the owner supplied two fresh real-host screenshots of the corrected package and explicitly authorized moving to the next development phase.
 
-1. Paste/Cut/Copy are visibly present immediately after opening the dock.
-2. Copy is available in read-only mode; Cut/Paste become available in Edit mode.
-3. Toolbar Paste matches the already accepted one-click Ctrl+V behavior.
-4. Copy/Cut work for one cell and rectangular selections.
-5. Native row-header / `#` / Select complete-row selection remains unchanged.
-6. Revert All, Apply, one-step undo/redo, UTF-8/Windows-1250, Save/reopen, search/sort, and large-table behavior do not regress.
+The screenshots visibly establish the GUI acceptance points that can be proven from images:
 
-Keep public and internal PR #11 draft and unmerged until this corrected UI package passes the real-host check.
+- the spreadsheet command row is present in read-only mode with `Paste`, `Cut`, `Copy`, `Edit`, row commands, Apply/Revert, and the change counter;
+- the second command row contains Refresh, delimiter/header controls, Search/In/Clear, and Diagnostics;
+- entering Edit mode changes `Edit` to `Exit Edit` and exposes the edit-only row-selection column while retaining the reorganized command surface;
+- the table, dedicated `#` column, native row-header lane, and edit-state presentation coexist correctly in the real Notepad++ host.
+
+Evidence boundary: the screenshots do not individually prove every item in the larger regression matrix (for example Save/reopen, one-step undo/redo, Windows-1250, or a timed many-thousand-row load). Those are therefore not recorded as separate observed PASS results. The owner nevertheless accepted the visible corrected state and explicitly authorized advancing the milestone.
+
+## Milestone status
+
+Milestone 0.11 is owner-accepted for closure. The public PR may be merged, followed by the internal continuity PR after recording the actual public merge SHA. The next development phase starts from the accepted 0.11 main branch.
