@@ -3,14 +3,15 @@ namespace CsvVisualEditor;
 using System.Runtime.CompilerServices;
 
 /// <summary>
-/// Adds explicit spreadsheet clipboard commands and reorganizes the visual editor's
-/// existing command bars without changing the grid's accepted selection semantics.
+/// Adds explicit spreadsheet clipboard/navigation commands and reorganizes the visual
+/// editor's existing command bars without changing the grid's accepted selection semantics.
 /// </summary>
 internal static class CsvGridClipboardToolbar
 {
     private const string CopyButtonName = "CsvClipboardCopyButton";
     private const string CutButtonName = "CsvClipboardCutButton";
     private const string PasteButtonName = "CsvClipboardPasteButton";
+    private const string GoToSourceButtonName = "CsvGoToSourceButton";
     private const int MaximumDeferredAttachAttempts = 4;
 
     private static readonly ConditionalWeakTable<CsvGridForm, AttachmentState> States = new();
@@ -49,7 +50,7 @@ internal static class CsvGridClipboardToolbar
             return false;
         }
 
-        if (state.Attached && HasClipboardButtons(form))
+        if (state.Attached && HasCommandButtons(form))
         {
             return true;
         }
@@ -144,7 +145,7 @@ internal static class CsvGridClipboardToolbar
             return false;
         }
 
-        RemoveExistingClipboardButtons(form);
+        RemoveExistingCommandButtons(form);
 
         var pasteButton = CreateButton(
             PasteButtonName,
@@ -158,6 +159,10 @@ internal static class CsvGridClipboardToolbar
             CopyButtonName,
             "Copy",
             "Copy the selected CSV-cell rectangle to the Windows clipboard (Ctrl+C)");
+        var goToSourceButton = CreateButton(
+            GoToSourceButtonName,
+            "Source",
+            "Select the current CSV cell or row in the Notepad++ source buffer");
 
         pasteButton.Click += (_, _) =>
         {
@@ -174,6 +179,10 @@ internal static class CsvGridClipboardToolbar
             CsvGridClipboardController.TryCopySelection(grid, form);
             grid.Focus();
         };
+        goToSourceButton.Click += (_, _) =>
+        {
+            CsvGridSourceNavigationController.TryNavigate(grid, form);
+        };
 
         commandStrip.SuspendLayout();
         viewStrip.SuspendLayout();
@@ -185,11 +194,12 @@ internal static class CsvGridClipboardToolbar
             ConfigureStrip(commandStrip, verticalPadding: 2);
             ConfigureStrip(viewStrip, verticalPadding: 1);
 
-            // Spreadsheet command row. Clipboard operations stay at a fixed, visible
-            // position and editing/apply actions are separated into logical groups.
+            // Spreadsheet command row. Clipboard and source navigation stay at fixed,
+            // visible positions; editing/apply actions are separated into logical groups.
             commandStrip.Items.Add(pasteButton);
             commandStrip.Items.Add(cutButton);
             commandStrip.Items.Add(copyButton);
+            commandStrip.Items.Add(goToSourceButton);
             commandStrip.Items.Add(CreateSeparator());
             commandStrip.Items.Add(editButton);
             commandStrip.Items.Add(addRowButton);
@@ -251,6 +261,8 @@ internal static class CsvGridClipboardToolbar
             copyButton.Enabled = hasTarget;
             cutButton.Enabled = hasTarget && form.IsEditMode;
             pasteButton.Enabled = hasTarget && form.IsEditMode;
+            goToSourceButton.Enabled =
+                hasTarget && CsvGridSourceNavigationController.CanNavigate(grid);
         };
 
         return true;
@@ -386,7 +398,7 @@ internal static class CsvGridClipboardToolbar
                 strip.Items.OfType<ToolStripTextBox>().Any() ||
                 strip.Items.OfType<ToolStripLabel>().Any(static label => label.Text == "Search:"));
 
-    private static bool HasClipboardButtons(Control root)
+    private static bool HasCommandButtons(Control root)
     {
         var names = EnumerateControls(root)
             .OfType<ToolStrip>()
@@ -396,17 +408,21 @@ internal static class CsvGridClipboardToolbar
 
         return names.Contains(CopyButtonName) &&
                names.Contains(CutButtonName) &&
-               names.Contains(PasteButtonName);
+               names.Contains(PasteButtonName) &&
+               names.Contains(GoToSourceButtonName);
     }
 
-    private static void RemoveExistingClipboardButtons(Control root)
+    private static void RemoveExistingCommandButtons(Control root)
     {
         foreach (var strip in EnumerateControls(root).OfType<ToolStrip>())
         {
             for (var index = strip.Items.Count - 1; index >= 0; index--)
             {
                 var item = strip.Items[index];
-                if (item.Name is CopyButtonName or CutButtonName or PasteButtonName)
+                if (item.Name is CopyButtonName or
+                    CutButtonName or
+                    PasteButtonName or
+                    GoToSourceButtonName)
                 {
                     strip.Items.RemoveAt(index);
                     item.Dispose();
