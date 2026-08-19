@@ -288,6 +288,10 @@ partial class Main : IDotNetPlugin
         previousCancellation?.Cancel();
         previousCancellation?.Dispose();
 
+        // A loading/error/partial state must never retain source positions from the
+        // previously rendered table. A new baseline is installed only after a complete
+        // Ready result has actually been presented.
+        CsvGridSourceNavigationController.ClearBaseline(gridForm);
         gridForm.ShowLoadingDocument(snapshot);
         _ = BuildAndDisplayTableAsync(
             gridForm,
@@ -392,6 +396,10 @@ partial class Main : IDotNetPlugin
                     buildResult.Projection,
                     buildResult.DetectionResult,
                     buildResult.DelimiterWasAutomatic);
+                CsvGridSourceNavigationController.SetBaseline(
+                    gridForm,
+                    snapshot,
+                    buildResult.ParseResult);
                 return;
 
             default:
