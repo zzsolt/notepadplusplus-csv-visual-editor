@@ -3,18 +3,52 @@ namespace CsvVisualEditor;
 using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 /// Resolves the current grid row/cell to stable parser source identity and executes
-/// one read-only Scintilla selection. It never changes document text, modified state,
-/// the edit model, or disk content.
+/// one read-only Scintilla selection. The rendered immutable snapshot/parse result is
+/// retained as the navigation baseline, so stale document/content/code-page state can
+/// never be replaced by a fresh parse of an unrelated active document.
 /// </summary>
 internal static class CsvGridSourceNavigationController
 {
+    private static readonly ConditionalWeakTable<DataGridView, NavigationBaseline> Baselines = new();
+
+    internal static void SetBaseline(
+        Control root,
+        ActiveDocumentSnapshot snapshot,
+        CsvParseResult parseResult)
+    {
+        ArgumentNullException.ThrowIfNull(root);
+        ArgumentNullException.ThrowIfNull(snapshot);
+        ArgumentNullException.ThrowIfNull(parseResult);
+
+        var grid = FindPrimaryTableGrid(root);
+        if (grid is null)
+        {
+            return;
+        }
+
+        Baselines.Remove(grid);
+        Baselines.Add(grid, new NavigationBaseline(snapshot, parseResult));
+    }
+
+    internal static void ClearBaseline(Control root)
+    {
+        ArgumentNullException.ThrowIfNull(root);
+        var grid = FindPrimaryTableGrid(root);
+        if (grid is not null)
+        {
+            Baselines.Remove(grid);
+        }
+    }
+
     internal static bool CanNavigate(DataGridView grid)
     {
         ArgumentNullException.ThrowIfNull(grid);
-        return TryResolveAddress(grid, out _, out _);
+        return Baselines.TryGetValue(grid, out _) &&
+               TryResolveAddress(grid, out _, out _);
     }
 
     internal static bool TryNavigate(DataGridView grid, CsvGridForm form)
@@ -25,6 +59,14 @@ internal static class CsvGridSourceNavigationController
         if (!TryResolveAddress(grid, out var address, out var unavailableReason))
         {
             CsvGridClipboardController.ShowStatus(form, unavailableReason);
+            return true;
+        }
+
+        if (!Baselines.TryGetValue(grid, out var baseline))
+        {
+            CsvGridClipboardController.ShowStatus(
+                form,
+                "Go to source is unavailable until the current visual table has a complete source baseline. Refresh the table first.");
             return true;
         }
 
@@ -41,70 +83,35 @@ internal static class CsvGridSourceNavigationController
             return true;
         }
 
-        if (form.IsEditMode &&
-            form.EditSession is CsvEditSession editSession &&
-            !MatchesEditBaseline(editSession.Baseline, currentSnapshot, out var conflictMessage))
-        {
-            CsvGridClipboardController.ShowStatus(form, conflictMessage);
-            return true;
-        }
-
-        CsvTableBuildResult buildResult;
+        CsvSourceNavigationPlan plan;
         try
         {
-            buildResult = CsvTableBuilder.Build(
-                currentSnapshot.Text,
-                new CsvTableBuildOptions
-                {
-                    DelimiterOverride = form.SelectedDelimiterOverride,
-                    HeaderMode = form.SelectedHeaderMode
-                });
-        }
-        catch (Exception)
-        {
-            CsvGridClipboardController.ShowStatus(
-                form,
-                "Go to source failed: the current buffer could not be parsed with the active table options.");
-            return true;
-        }
-
-        if (buildResult.Status != CsvTableBuildStatus.Ready ||
-            buildResult.ParseResult is null)
-        {
-            CsvGridClipboardController.ShowStatus(
-                form,
-                "Go to source is unavailable until the current buffer has a complete parse result. Refresh or choose the delimiter explicitly.");
-            return true;
-        }
-
-        if (!form.IsEditMode &&
-            !CurrentGridRowMatchesFreshRecord(
-                grid,
-                address.SourceRecordIndex,
-                buildResult.ParseResult))
-        {
-            CsvGridClipboardController.ShowStatus(
-                form,
-                "Go to source blocked: the visual row no longer matches the active buffer. Refresh the table first.");
-            return true;
-        }
-
-        var plan = CsvSourceNavigationPlanner.Create(
-            currentSnapshot,
-            currentSnapshot,
-            buildResult.ParseResult,
-            address);
-
-        if (plan.Status == CsvSourceNavigationStatus.SourceColumnUnavailable &&
-            address.ColumnIndex is not null)
-        {
-            // A projected padded cell has no raw field span. Fall back to the complete
-            // source record rather than inventing a non-existent cell position.
             plan = CsvSourceNavigationPlanner.Create(
+                baseline.Snapshot,
                 currentSnapshot,
-                currentSnapshot,
-                buildResult.ParseResult,
-                new CsvSourceNavigationAddress(address.SourceRecordIndex, columnIndex: null));
+                baseline.ParseResult,
+                address);
+
+            if (plan.Status == CsvSourceNavigationStatus.SourceColumnUnavailable &&
+                address.ColumnIndex is not null)
+            {
+                // A projected padded cell has no raw field span. Fall back to the
+                // complete source record rather than inventing a field position.
+                plan = CsvSourceNavigationPlanner.Create(
+                    baseline.Snapshot,
+                    currentSnapshot,
+                    baseline.ParseResult,
+                    new CsvSourceNavigationAddress(
+                        address.SourceRecordIndex,
+                        columnIndex: null));
+            }
+        }
+        catch (InvalidOperationException)
+        {
+            CsvGridClipboardController.ShowStatus(
+                form,
+                "Go to source blocked because the retained parse result no longer matches its immutable source snapshot. Refresh the table first.");
+            return true;
         }
 
         if (!plan.IsReady)
@@ -117,8 +124,9 @@ internal static class CsvGridSourceNavigationController
 
         try
         {
-            // SCI_SETSEL is byte-oriented and scrolls the caret into view. The planner
-            // has already proven exact code-page byte positions and whole-buffer length.
+            // SCI_SETSEL is byte-oriented. The Core plan has already proven the
+            // document/code-page/content baseline, exact strict byte length, and both
+            // mapped source boundaries before this host call is permitted.
             PluginData.Editor.SetSel(
                 plan.AnchorBytePosition,
                 plan.CaretBytePosition);
@@ -170,8 +178,8 @@ internal static class CsvGridSourceNavigationController
 
         // Row-header and # gestures deliberately leave a real data cell current so the
         // accepted DataGridView interaction remains usable. Whole-row visual selection
-        // therefore carries the user's row-level navigation intent more reliably than
-        // CurrentCell.ColumnIndex alone.
+        // therefore carries row-level navigation intent more reliably than the current
+        // column alone.
         int? columnIndex = null;
         if (!row.Selected &&
             currentCell.ColumnIndex >= 0 &&
@@ -203,6 +211,10 @@ internal static class CsvGridSourceNavigationController
             return sourceRecordIndex;
         }
 
+        // Virtual read-only rows deliberately avoid materialized row Tags. Their # cell
+        // is generated from the already-stable CsvTableRow.SourceRecordIndex, so this
+        // bounded presentation fallback recovers that source identity without treating
+        // display row index as source identity.
         var indicatorColumn = grid.Columns[CsvGridRowPresentation.RowIndicatorColumnName];
         if (indicatorColumn is null ||
             row.Index < 0 ||
@@ -233,95 +245,35 @@ internal static class CsvGridSourceNavigationController
             : null;
     }
 
-    private static bool MatchesEditBaseline(
-        CsvEditSessionBaseline baseline,
-        ActiveDocumentSnapshot currentSnapshot,
-        out string conflictMessage)
+    private static DataGridView? FindPrimaryTableGrid(Control root)
     {
-        var sameDocument = baseline.DocumentPath.Length > 0 ||
-                           currentSnapshot.DocumentPath.Length > 0
-            ? string.Equals(
-                baseline.DocumentPath,
-                currentSnapshot.DocumentPath,
-                StringComparison.OrdinalIgnoreCase)
-            : string.Equals(
-                baseline.DisplayName,
-                currentSnapshot.DisplayName,
-                StringComparison.Ordinal);
-
-        if (!sameDocument)
+        foreach (Control child in root.Controls)
         {
-            conflictMessage =
-                "Go to source blocked: another Notepad++ document is active. Return to the edited CSV first.";
-            return false;
-        }
-
-        if (baseline.CodePage != currentSnapshot.CodePage)
-        {
-            conflictMessage =
-                "Go to source blocked: the editor code page changed after Edit mode started. Revert or refresh first.";
-            return false;
-        }
-
-        if (!string.Equals(
-                baseline.ContentSha256,
-                currentSnapshot.ContentSha256,
-                StringComparison.Ordinal))
-        {
-            conflictMessage =
-                "Go to source blocked: the editor buffer changed after Edit mode started. Revert or refresh first.";
-            return false;
-        }
-
-        conflictMessage = string.Empty;
-        return true;
-    }
-
-    private static bool CurrentGridRowMatchesFreshRecord(
-        DataGridView grid,
-        int sourceRecordIndex,
-        CsvParseResult parseResult)
-    {
-        var currentCell = grid.CurrentCell;
-        if (currentCell is null ||
-            sourceRecordIndex < 0 ||
-            sourceRecordIndex >= parseResult.Records.Count)
-        {
-            return false;
-        }
-
-        var record = parseResult.Records[sourceRecordIndex];
-        if (record.Index != sourceRecordIndex)
-        {
-            return false;
-        }
-
-        var row = grid.Rows[currentCell.RowIndex];
-        foreach (DataGridViewColumn column in grid.Columns)
-        {
-            if (CsvGridRowHeaderBehavior.IsPresentationColumn(column))
+            if (child is DataGridView grid &&
+                CsvDataGridView.IsPrimaryTableGridCandidate(grid))
             {
-                continue;
+                return grid;
             }
 
-            var expected = column.Index < record.Cells.Count
-                ? record.Cells[column.Index].Value
-                : string.Empty;
-            var displayed = Convert.ToString(
-                row.Cells[column.Index].Value,
-                CultureInfo.InvariantCulture) ?? string.Empty;
-            if (!string.Equals(displayed, expected, StringComparison.Ordinal))
+            var descendant = FindPrimaryTableGrid(child);
+            if (descendant is not null)
             {
-                return false;
+                return descendant;
             }
         }
 
-        return true;
+        return null;
     }
 
     private static string DescribeBlockedPlan(CsvSourceNavigationStatus status) =>
         status switch
         {
+            CsvSourceNavigationStatus.DocumentIdentityChanged =>
+                "Go to source blocked: another Notepad++ document is active. Return to the displayed CSV or Refresh the table.",
+            CsvSourceNavigationStatus.CodePageChanged =>
+                "Go to source blocked: the editor code page changed after this table was rendered. Refresh the table first.",
+            CsvSourceNavigationStatus.ContentChanged =>
+                "Go to source blocked: the active editor content changed after this table was rendered. Refresh the table first.",
             CsvSourceNavigationStatus.UnsupportedCodePage =>
                 "Go to source blocked: the current Scintilla code page has no explicit byte-position profile.",
             CsvSourceNavigationStatus.EditorByteLengthMismatch =>
@@ -329,15 +281,13 @@ internal static class CsvGridSourceNavigationController
             CsvSourceNavigationStatus.PositionEncodingFailed =>
                 "Go to source blocked: the source character span could not be mapped losslessly to Scintilla bytes.",
             CsvSourceNavigationStatus.SourceRecordUnavailable =>
-                "Go to source blocked: the source logical record is no longer available.",
+                "Go to source blocked: the source logical record is unavailable in the retained parse result.",
             CsvSourceNavigationStatus.SourceColumnUnavailable =>
                 "Go to source blocked: the selected projected cell has no raw source field.",
-            CsvSourceNavigationStatus.DocumentIdentityChanged =>
-                "Go to source blocked: another Notepad++ document is active.",
-            CsvSourceNavigationStatus.CodePageChanged =>
-                "Go to source blocked: the editor code page changed.",
-            CsvSourceNavigationStatus.ContentChanged =>
-                "Go to source blocked: the editor content changed. Refresh the table first.",
             _ => "Go to source was not completed. No document content was changed."
         };
+
+    private sealed record NavigationBaseline(
+        ActiveDocumentSnapshot Snapshot,
+        CsvParseResult ParseResult);
 }
