@@ -81,6 +81,22 @@ Recheck the accepted high-value paths:
 - search/sort;
 - large-table load/scroll remains usable.
 
+## Owner host evidence received — 2026-08-20
+
+The owner supplied real Notepad++ x64 screenshots for the verified 0.12 package. The screenshots are not committed to the repository and no CSV values are copied into this record.
+
+Observed PASS behavior:
+
+- `Source` is present on the spreadsheet command row;
+- read-only data-cell navigation selects the corresponding raw source field in Notepad++;
+- Edit-mode data-cell navigation selects the corresponding original source field;
+- Edit-mode complete-row selection followed by `Source` selects the complete logical source record;
+- read-only complete-row selection followed by `Source` selects the complete logical source record;
+- after sorting so display order differs from source order, `Source` still selects the correct original source location;
+- after applying a search filter, `Source` still selects the correct original source field rather than the displayed row position.
+
+Evidence boundary: these screenshots do not separately prove quoted/multiline raw-field boundaries, pending inserted-row blocking, stale/conflict blocking, Windows-1250 byte positions, or a fresh full 0.11 regression matrix. Do not mark those items PASS unless separately exercised.
+
 ## Acceptance record
 
 Record package hash and PASS/FAIL for the sections actually exercised. Do not infer unperformed checks from screenshots or automated CI. Merge PR #12 only after the owner explicitly accepts the package.
