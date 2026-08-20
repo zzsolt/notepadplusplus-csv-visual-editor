@@ -93,9 +93,13 @@ Observed PASS behavior:
 - Edit-mode complete-row selection followed by `Source` selects the complete logical source record;
 - read-only complete-row selection followed by `Source` selects the complete logical source record;
 - after sorting so display order differs from source order, `Source` still selects the correct original source location;
-- after applying a search filter, `Source` still selects the correct original source field rather than the displayed row position.
+- after applying a search filter, `Source` still selects the correct original source field rather than the displayed row position;
+- an ordinary quoted field is selected using its complete raw CSV field span, including the surrounding quote characters;
+- a quoted multiline field is selected as one raw source field across its physical line break;
+- a field containing escaped CSV quote characters is selected using its complete raw CSV representation, not only its decoded display value;
+- complete-row Source navigation over a multiline logical record selects the whole logical record across the physical line break, excluding the following record separator.
 
-Evidence boundary: these screenshots do not separately prove quoted/multiline raw-field boundaries, pending inserted-row blocking, stale/conflict blocking, Windows-1250 byte positions, or a fresh full 0.11 regression matrix. Do not mark those items PASS unless separately exercised.
+Evidence boundary: these screenshots do not separately prove pending inserted-row blocking, stale/conflict blocking, Windows-1250 byte positions, or a fresh full 0.11 regression matrix. Do not mark those items PASS unless separately exercised.
 
 ## Acceptance record
 
