@@ -61,6 +61,7 @@ jobs:
           name: CsvVisualEditor-restore-diagnostics
           path: artifacts/restore.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Build core library
         if: steps.restore.outcome == 'success'
@@ -81,6 +82,7 @@ jobs:
           name: CsvVisualEditor-core-build-diagnostics
           path: artifacts/core-build.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Run bootstrap smoke tests
         if: steps.core_build.outcome == 'success'
@@ -102,6 +104,7 @@ jobs:
           name: CsvVisualEditor-smoke-test-diagnostics
           path: artifacts/smoke-tests.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Run xUnit parser and table tests
         if: steps.core_build.outcome == 'success' && steps.smoke_tests.outcome == 'success'
@@ -123,6 +126,7 @@ jobs:
           name: CsvVisualEditor-core-test-diagnostics
           path: artifacts/core-tests.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Publish and run Native AOT table runtime smoke test
         if: >-
@@ -165,6 +169,7 @@ jobs:
             artifacts/native-aot-runtime-smoke.log
             artifacts/native-aot-runtime-smoke-execution.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Publish x64 Native AOT plugin
         if: >-
@@ -204,6 +209,7 @@ jobs:
           name: CsvVisualEditor-0.12.0-alpha-win-x64
           path: artifacts/CsvVisualEditor-0.12.0-alpha-win-x64.zip
           if-no-files-found: error
+          retention-days: 7
 
       - name: Upload publish diagnostics
         if: always() && steps.publish.outcome != 'skipped'
@@ -212,6 +218,7 @@ jobs:
           name: CsvVisualEditor-publish-diagnostics
           path: artifacts/publish.log
           if-no-files-found: error
+          retention-days: 3
 
       - name: Fail workflow when restore failed
         if: steps.restore.outcome != 'success'
