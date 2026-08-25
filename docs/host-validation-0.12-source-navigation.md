@@ -50,7 +50,8 @@ Use disposable test CSV data only. Do not record real/private CSV values in issu
 3. Make a pending cell edit in the visual model without Apply; navigation should still target the original source location because the Notepad++ buffer remains unchanged.
 4. Add a pending inserted row and make it current.
 5. Confirm `Source` is disabled or safely reports that the row has no source location until Apply.
-6. Revert All; confirm navigation for source rows remains available.
+6. Apply the pending inserted row, refresh the table, and confirm `Source` is then available for the newly source-backed row.
+7. Revert All from a separate pending-edit scenario; confirm navigation for source rows remains available.
 
 ## F. Stale/conflict blocking
 
@@ -81,9 +82,9 @@ Recheck the accepted high-value paths:
 - search/sort;
 - large-table load/scroll remains usable.
 
-## Owner host evidence received — 2026-08-20
+## Owner host evidence received — 2026-08-20 and 2026-08-25
 
-The owner supplied real Notepad++ x64 screenshots for the verified 0.12 package. The screenshots are not committed to the repository and no CSV values are copied into this record.
+The owner supplied real Notepad++ x64 screenshots and direct test results for the verified 0.12 package. Screenshots are not committed to the repository and no CSV values are copied into this record.
 
 Observed PASS behavior:
 
@@ -97,9 +98,11 @@ Observed PASS behavior:
 - an ordinary quoted field is selected using its complete raw CSV field span, including the surrounding quote characters;
 - a quoted multiline field is selected as one raw source field across its physical line break;
 - a field containing escaped CSV quote characters is selected using its complete raw CSV representation, not only its decoded display value;
-- complete-row Source navigation over a multiline logical record selects the whole logical record across the physical line break, excluding the following record separator.
+- complete-row Source navigation over a multiline logical record selects the whole logical record across the physical line break, excluding the following record separator;
+- a pending inserted row has no source location before Apply: when that inserted row is current, the `Source` command is disabled rather than guessing a location;
+- after Apply and Refresh create real source text for that row, Source navigation is available and works for the newly source-backed row.
 
-Evidence boundary: these screenshots do not separately prove pending inserted-row blocking, stale/conflict blocking, Windows-1250 byte positions, or a fresh full 0.11 regression matrix. Do not mark those items PASS unless separately exercised.
+Evidence boundary: these host results do not separately prove stale/conflict blocking, Windows-1250 byte positions, or a fresh full 0.11 regression matrix. Do not mark those items PASS unless separately exercised.
 
 ## Acceptance record
 
