@@ -2,6 +2,12 @@ name: CI
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_test_package:
+        description: Upload the installable test package artifact
+        required: false
+        default: false
+        type: boolean
   push:
     branches:
       - main
@@ -23,6 +29,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Determine test-package artifact policy
+        id: package_candidate
+        shell: pwsh
+        run: |
+          $commitMessage = git log -1 --pretty=%B
+          $requestedByCommit = $commitMessage -match '\[test-package\]'
+          $requestedByDispatch = ('${{ github.event_name }}' -eq 'workflow_dispatch') -and ('${{ inputs.publish_test_package }}' -eq 'true')
+          $publishPackage = $requestedByCommit -or $requestedByDispatch
+          "publish=$($publishPackage.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+          if ($publishPackage) {
+            Write-Host 'Installable test-package artifact: ENABLED'
+          }
+          else {
+            Write-Host 'Installable test-package artifact: DISABLED for this normal CI run'
+          }
 
       - name: Set up .NET 10
         uses: actions/setup-dotnet@v4
@@ -190,7 +213,7 @@ jobs:
           exit $LASTEXITCODE
 
       - name: Create installable test ZIP
-        if: steps.publish.outcome == 'success'
+        if: steps.publish.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         shell: pwsh
         run: |
           $pluginDirectory = 'artifacts/package/CsvVisualEditor'
@@ -203,7 +226,7 @@ jobs:
             -Force
 
       - name: Upload installable test package
-        if: steps.publish.outcome == 'success'
+        if: steps.publish.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-0.12.0-alpha-win-x64
