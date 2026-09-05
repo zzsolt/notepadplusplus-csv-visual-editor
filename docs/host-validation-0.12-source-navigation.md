@@ -55,19 +55,55 @@ Use disposable test CSV data only. Do not record real/private CSV values in issu
 
 ## F. Stale/conflict blocking
 
-1. In read-only mode, change the Notepad++ buffer directly after the table was rendered, without Refresh.
-2. Click `Source` on a stale visual row.
-3. Confirm navigation is blocked and the status instructs the user to Refresh; no text changes occur.
-4. Enter Edit mode from a fresh table, then modify the Notepad++ buffer externally.
-5. Confirm `Source` is blocked by the edit-session content conflict.
-6. Repeat by changing the active document and, where practical, the code page.
+Run each case independently from a freshly rendered disposable CSV. Keep the
+panel open; do not reopen it or Refresh between the mutation and Source.
+Before pressing Source, leave the editor caret at a visibly different position
+and note the editor selection and modified marker. Source must not move that
+selection, change text, or change the modified marker in a blocked case.
+
+| ID | Action after rendering | Expected result |
+|---|---|---|
+| F1 | Read-only: insert one character directly in the Notepad++ buffer, then Source from the stale table. | Content-changed block; status requests Refresh. |
+| F2 | Fresh table: enter Edit, make a pending grid edit and finish the in-cell edit; also change the Notepad++ buffer directly; then Source from a source-backed row. | Content-changed block; pending grid edit remains pending; no Apply. |
+| F3 | Render document A, keep its table, activate a distinct document B, then Source. Identical synthetic text in A and B helps isolate identity from content. | Another-document block; no old offset used in B. |
+| F4 | Render a UTF-8 ASCII-only CSV; change its actual editor encoding to Windows-1250 without refreshing the table; then Source. | Code-page-changed block, provided the host exposes a changed Scintilla code page. |
+
+For F4, a menu action that leaves the underlying Scintilla code page unchanged
+does not establish code-page-conflict coverage. Report the actual status and
+selected encoding; mark the isolated check NOT VERIFIED if the precondition
+cannot be established. Never treat UTF-8 versus UTF-8 BOM as proof of a code-page change.
+
+After F1, Refresh and confirm Source works again against the changed buffer.
+After F2, use Revert All to discard pending grid edits, leave Edit mode, then
+Refresh before continuing. After F3, return to unchanged A and check Source
+again. Record recovery separately from the blocking result.
 
 ## G. Windows-1250 navigation
 
-1. Open a Windows-1250 CSV containing representable Hungarian characters.
-2. Navigate to cells before and after accented characters.
-3. Confirm source selection boundaries are exact.
-4. Confirm this navigation does not imply or enable an Apply write beyond the existing production policy.
+Use this synthetic fixture, encoded as actual Windows-1250, with comma delimiter
+and the first record as header:
+
+```csv
+id,text,target
+1,áéíóöőúüűáéíóöőúüű,TARGET_1
+2,őűáé,TARGET_2
+```
+
+1. Confirm the host reports Windows-1250 and all accents are readable; an ANSI
+   label alone is insufficient to establish which Windows code page is in use.
+2. Refresh the Visual Editor, then select the first data row's accented cell and
+   press Source. Selection must include all 18 letters and neither adjacent comma.
+3. Select `TARGET_1`, then `TARGET_2`, pressing Source for each. The selection must
+   contain exactly the eight ASCII characters, without a comma or newline.
+4. Select each complete data row via `#` and press Source. Selection must start at
+   its ID, end after its target value, and exclude the following record separator.
+5. Repeat cell and whole-row checks in Edit mode on source-backed rows without Apply.
+6. Confirm Source itself leaves text and modified state unchanged.
+
+Record read-only cell/row and Edit cell/row results separately. A visually correct
+result from a UTF-8 buffer does not prove Windows-1250 byte positions. Windows-1250
+Apply was already host-validated in the accepted encoding milestone; this Source
+test does not withdraw that authorization or change strict lossless Apply preflight.
 
 ## H. Existing behavior regression
 
@@ -106,4 +142,13 @@ Evidence boundary: these host results do not separately prove stale/conflict blo
 
 ## Acceptance record
 
-Record package hash and PASS/FAIL for the sections actually exercised. Do not infer unperformed checks from screenshots or automated CI. Merge PR #12 only after the owner explicitly accepts the package.
+Record Windows version, Notepad++ version and x64 architecture, installed DLL
+SHA-256 (or the verified package identity), actual encoding, case ID and
+PASS/FAIL/NOT RUN. For failures, include only sanitized status text and whether
+selection, text or pending edits changed. Do not include real CSV values or paths.
+
+Previously recorded host PASS remains historical evidence for the tested package;
+it is not a new host run for every documentation/CI commit. Stale/conflict cases,
+Windows-1250 Source positions and a fresh 0.11 regression remain pending until
+reported. Do not infer unperformed checks from screenshots or automated CI.
+Merge PR #12 only after the owner explicitly accepts the package.

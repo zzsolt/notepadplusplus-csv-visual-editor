@@ -29,15 +29,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Keep the PR merge checkout and fetch both parents for head-message lookup.
+          fetch-depth: 2
+
+      - name: Test test-package artifact policy
+        shell: pwsh
+        run: .github/scripts/Test-TestPackagePolicy.ps1
 
       - name: Determine test-package artifact policy
         id: package_candidate
         shell: pwsh
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUBLISH_TEST_PACKAGE: ${{ inputs.publish_test_package }}
         run: |
-          $commitMessage = git log -1 --pretty=%B
-          $requestedByCommit = $commitMessage -match '\[test-package\]'
-          $requestedByDispatch = ('${{ github.event_name }}' -eq 'workflow_dispatch') -and ('${{ inputs.publish_test_package }}' -eq 'true')
-          $publishPackage = $requestedByCommit -or $requestedByDispatch
+          $publishPackage = & .github/scripts/Get-TestPackagePolicy.ps1 `
+            -EventName $env:GITHUB_EVENT_NAME `
+            -PullRequestHeadSha $env:PR_HEAD_SHA `
+            -PublishTestPackage $env:PUBLISH_TEST_PACKAGE
           "publish=$($publishPackage.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
 
           if ($publishPackage) {
