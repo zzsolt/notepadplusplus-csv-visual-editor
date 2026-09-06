@@ -4,6 +4,14 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.2 orange whitespace dots
+
+- Paint small orange space dots in the primary CSV table and Transform previews, including virtual rows and selected cells.
+- Preserve actual cell/clipboard/edit/source values; leave native in-cell editing and presentation columns alone.
+- Add Native AOT bitmap/virtual-grid checks and a targeted Hungarian host checklist.
+- Advance the base version to 0.12.2-alpha; retain unique CI run/attempt package names.
+
+
 ### 0.12.1 preview and package correction
 
 - Make preview whitespace visible with space markers, escaped controls/Unicode whitespace, explicit boundaries and complete UTF-16 lengths. Real values remain unchanged.

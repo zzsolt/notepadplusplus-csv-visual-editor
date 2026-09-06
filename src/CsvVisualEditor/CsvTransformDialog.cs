@@ -80,6 +80,10 @@ internal sealed class CsvTransformDialog : Form
         _samples.Columns.Add("After", "After");
         _samples.Columns[0].FillWeight = 35;
         _samples.Columns[1].FillWeight = 35;
+        _samples.CellPainting += (_, e) =>
+        {
+            if (e.ColumnIndex is 2 or 3) CsvWhitespaceCellPainter.Paint(_samples, e, '·');
+        };
         Controls.Add(layout);
         AcceptButton = _preview;
         CancelButton = cancel;
@@ -120,7 +124,7 @@ internal sealed class CsvTransformDialog : Form
             }
 
             _summary.Text = $"{_plan.TargetCellCount:N0} target cells; {_plan.Changes.Count:N0} changes in {_plan.ChangedRowCount:N0} rows. " +
-                "Showing the first 50 changes; long values are shortened, spaces = ·; other whitespace is escaped. Lengths count UTF-16 units.";
+                "Showing the first 50 changes; orange dots mark spaces. Other whitespace is escaped; lengths count UTF-16 units. Long values are shortened.";
             _accept.Enabled = _plan.Changes.Count > 0;
         }
         catch (Exception exception) when (exception is ArgumentException or InvalidOperationException)

@@ -15,6 +15,14 @@ internal sealed class CsvDataGridView : DataGridView
     private const int WmCopy = 0x0301;
     private const int WmPaste = 0x0302;
 
+    protected override void OnCellPainting(DataGridViewCellPaintingEventArgs e)
+    {
+        base.OnCellPainting(e);
+        if (!e.Handled && e.ColumnIndex >= 0 &&
+            Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal))
+            CsvWhitespaceCellPainter.Paint(this, e);
+    }
+
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal Func<Keys, bool>? ClipboardCommandHandler { get; set; }

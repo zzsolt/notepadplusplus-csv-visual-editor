@@ -94,3 +94,11 @@ Source navigation F2–F4 and exact Windows-1250 source offsets remain separate 
 ## Preview readability correction
 
 The owner reported that the earlier preview did not visually distinguish trimmed spaces. This is a presentation defect report, not complete host acceptance. The correction and uniquely numbered 0.12.1 test builds require a fresh T1 host check.
+
+## Orange space dots — 0.12.2
+
+The primary CSV grid and Transform Before/After cells share a paint-only orange-dot renderer. Source spaces occupy their original advance width, with a small DPI-scaled orange dot at the measured center. Foreground, selected foreground, background, borders, focus and row-selection semantics remain intact. Presentation columns and metadata are excluded. The main grid retains raw Value/FormattedValue, so editing, clipboard, Source and Apply do not receive marker characters. Native in-cell editing uses the ordinary text editor; dots return when editing ends.
+
+Transform retains its explicit boundaries, lengths and escaping but paints its synthetic space markers as orange dots. A literal middle dot remains escaped and distinguishable. Cell painting reads at most 1,024 UTF-16 units, without splitting a surrogate pair; long visual text is shortened and clipped, never model-truncated. Tabs/newlines in grid display are escaped for a single-line view. Both text and space positions use the same GDI+ layout; no host buffer or model mutation occurs.
+
+Native AOT bitmap checks cover actual orange pixels, leading/trailing/internal spaces, selection/dark backgrounds, literal markers, clipping, real grid routing, virtual cells and unchanged raw/formatted values. Real-host appearance/DPI/scrolling and clipboard acceptance remain pending.

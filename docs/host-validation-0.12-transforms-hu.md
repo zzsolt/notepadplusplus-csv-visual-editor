@@ -4,7 +4,7 @@ Ezek az új funkció valódi Notepad++-tesztjei. Állapotuk a felhasználó ered
 
 ## Telepítés és előkészítés
 
-1. A PR #12-ben megjelölt, teljesen zöld **0.12.1 Transform tesztjelölt** csomagot töltsd le. A ZIP neve most már buildenként változik: `CsvVisualEditor-0.12.1-alpha.<futásszám>.<próbálkozás>-win-x64.zip`. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
+1. A PR #12-ben megjelölt, teljesen zöld **0.12.2 Transform tesztjelölt** csomagot töltsd le. A ZIP neve most már buildenként változik: `CsvVisualEditor-0.12.2-alpha.<futásszám>.<próbálkozás>-win-x64.zip`. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
 2. Zárd be a Notepad++-t, majd a csomag `CsvVisualEditor/CsvVisualEditor.dll` fájljával cseréld le a plugin DLL-jét a Notepad++ `plugins/CsvVisualEditor` mappájában. Ha a GitHub-letöltés egy újabb ZIP-et tartalmaz, azt is bontsd ki.
 3. Indítsd el a Notepad++ x64-et. Írd fel a Windows és a Notepad++ verzióját. A telepített DLL SHA-256 értékét a PowerShell `Get-FileHash` parancsával kérheted le; a privát elérési utat nem kell elküldened.
 4. Nyiss új, nem mentett UTF-8 dokumentumot, és másold bele ezt a kizárólag tesztelésre kitalált CSV-t. Az idézőjeleken belüli szóközök fontosak:
@@ -91,3 +91,14 @@ Eltérés röviden, adatok nélkül:
 ```
 
 Ha csak egy teszten belül néhány lépést végeztél el, írd oda a lépésszámokat. A Source F2–F4 és a pontos Windows-1250 forráspozíció külön, továbbra is nyitott teszteset; ezeket a [Source tesztleírás](host-validation-0.12-source-navigation.md) tartalmazza.
+
+## Narancssárga szóközjelölés — új hostellenőrzés
+
+1. A friss 0.12.2 buildben nézd meg a szintetikus mintát read-only, majd Edit módban: a név és város előtti/utáni szóközök helyén apró narancssárga pöttyök legyenek. A belső dupla szóközöknél két pötty jelenjen meg.
+2. Jelölj ki egy cellát és egy teljes sort: a pöttyök kijelölve is maradjanak narancssárgák, a `#` és Select működése maradjon változatlan.
+3. Transform → Trim → Preview: a Before eredeti szóközeit ugyanilyen pöttyök mutassák; az After széleiről tűnjenek el. A hosszérték és a határolók megmaradnak.
+4. Cancel után ne keletkezzen változás. Accept changes után a fő táblában is tűnjenek el a levágott szóközök pöttyei; Revert All állítsa vissza őket.
+5. Másolj a táblából: a célban valódi szóközök legyenek, ne pontkarakterek. A cellán belüli gépelés továbbra is a normál WinForms szerkesztőt használja; a pöttyök a cellaszerkesztés befejezésekor jelennek meg újra.
+6. Ellenőrizd sötét témával, eltérő Windows nagyítással és egy virtualizált nagy táblán görgetve is. A jelölések ne lógjanak át a cellahatárokon.
+
+A képernyőkép alapján nem rögzítünk teljes host-PASS eredményt; ezeket az ellenőrzéseket az új builden kell jelenteni.
