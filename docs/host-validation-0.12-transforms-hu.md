@@ -4,7 +4,7 @@ Ezek az új funkció valódi Notepad++-tesztjei. Állapotuk a felhasználó ered
 
 ## Telepítés és előkészítés
 
-1. A PR #12-ben megjelölt, teljesen zöld **Transform tesztjelölt** csomagot töltsd le. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
+1. A PR #12-ben megjelölt, teljesen zöld **0.12.1 Transform tesztjelölt** csomagot töltsd le. A ZIP neve most már buildenként változik: `CsvVisualEditor-0.12.1-alpha.<futásszám>.<próbálkozás>-win-x64.zip`. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
 2. Zárd be a Notepad++-t, majd a csomag `CsvVisualEditor/CsvVisualEditor.dll` fájljával cseréld le a plugin DLL-jét a Notepad++ `plugins/CsvVisualEditor` mappájában. Ha a GitHub-letöltés egy újabb ZIP-et tartalmaz, azt is bontsd ki.
 3. Indítsd el a Notepad++ x64-et. Írd fel a Windows és a Notepad++ verzióját. A telepített DLL SHA-256 értékét a PowerShell `Get-FileHash` parancsával kérheted le; a privát elérési utat nem kell elküldened.
 4. Nyiss új, nem mentett UTF-8 dokumentumot, és másold bele ezt a kizárólag tesztelésre kitalált CSV-t. Az idézőjeleken belüli szóközök fontosak:
@@ -25,7 +25,7 @@ Ezek az új funkció valódi Notepad++-tesztjei. Állapotuk a felhasználó ered
 1. Read-only módban a Transform legyen letiltva. Kattints az Edit gombra.
 2. Kattints egyszer az első sor `anna` cellájába, majd Transform.
 3. Operation: **Trim outer whitespace**. Scope: **Selected cells / rows**. Kattints Preview-ra.
-4. Elvárt számlálók: **1 target cell, 1 change, 1 row**. A Before szóközös, az After `anna`. Eddig sem a táblának, sem a Notepad++ szövegének nem szabad átalakulnia.
+4. Elvárt számlálók: **1 target cell, 1 change, 1 row**. A Before `⟦··anna··⟧ (8)`, az After `⟦anna⟧ (4)`. A `·` szóközt jelöl; a zárójelben a teljes UTF-16-hossz látható. A jelölések kizárólag az előnézethez tartoznak, nem kerülnek az adatba. Eddig sem a táblának, sem a Notepad++ szövegének nem szabad átalakulnia.
 5. Cancel. Ne legyen új függő módosítás.
 6. Nyisd meg újra, állítsd be ugyanezt, Preview, majd Accept changes. Csak az első név körüli szóközök tűnjenek el; a városok és a többi név maradjanak szóközösek. A Notepad++ szövege még maradjon az eredeti.
 7. Revert All: a szóközök térjenek vissza, a függő módosítások száma legyen nulla.

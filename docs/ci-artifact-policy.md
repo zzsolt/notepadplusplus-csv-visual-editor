@@ -37,3 +37,8 @@ Diagnostic artifacts remain available for 3 days so failed CI runs can still be 
 Use ordinary commit messages during implementation. When a real Notepad++ host package is required, make the candidate commit with `[test-package]` in its commit message. The resulting workflow run must still pass every normal CI gate before its package is treated as a test candidate.
 
 Deleting an Actions artifact does not alter Git history, source code, CI status, or documented test evidence.
+
+## Unique test build names
+
+Every CI run now uses version `0.12.1-alpha.<run_number>.<run_attempt>` for the published DLL and both the inner ZIP and GitHub artifact name, for example `CsvVisualEditor-0.12.1-alpha.335.1-win-x64.zip`. The run number increases for each new workflow invocation; the attempt increases on reruns. Small fixes therefore cannot reuse a previous download name. Local builds use base version `0.12.1-alpha`. The DLL remains `CsvVisualEditor/CsvVisualEditor.dll` for Notepad++ compatibility. Candidate CI logs record inner ZIP and DLL SHA-256; retention and candidate-only upload policy are unchanged.
+

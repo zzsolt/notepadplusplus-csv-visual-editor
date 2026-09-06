@@ -17,7 +17,7 @@ The **Transform** toolbar command is available in Edit mode. It operates on pend
 
 When the first record is interpreted as the header, it is not part of the editable data scope. With no header, the first record is ordinary data. Edit mode already clears view sorting/filtering; transformations do not add a hidden filtered-only scope.
 
-**Preview** shows exact target, changed-cell and changed-row counts, plus the first 50 changes. Sample values are shortened after 240 characters and line breaks/tabs/backslashes are escaped for readability; the pending values are not shortened. Changing any option invalidates the preview. **Accept changes** is enabled only after a preview with changes. Cancel, Escape and the window close button discard the preview. Enter runs Preview, not acceptance.
+**Preview** shows exact target, changed-cell and changed-row counts, plus the first 50 changes. Sample values are enclosed in ⟦…⟧ with their complete UTF-16 length: for example ⟦··x··⟧ (5) becomes ⟦x⟧ (1). Spaces display as ·, tabs/newlines/backslashes are escaped, and other whitespace uses Unicode escapes. Literal marker characters are escaped to avoid ambiguity. Samples are shortened after at most 240 UTF-16 units without splitting a surrogate pair; the pending values are not shortened or modified by formatting. Changing any option invalidates the preview. **Accept changes** is enabled only after a preview with changes. Cancel, Escape and the window close button discard the preview. Enter runs Preview, not acceptance.
 
 The preview is bound to its original edit-model instance. Every target's original value and row presence/deletion state is checked before mutation, including target cells that did not match. A stale preview is rejected as a whole. Other pending edits outside the target set are preserved. Targets use stable row IDs and physical column indexes; `#` and `Select` remain presentation only. Accepted changes update the existing grid in place to retain selection and viewport.
 
@@ -90,3 +90,7 @@ Implementation commit `67ed59178559782de53133764f674b7eed4d1ce2` passed [CI 3401
 3. Confirm original source bytes/text and editor undo state are unchanged by the blocked Apply; pending edits remain available for correction or Revert All. Do not log the rejected content.
 
 Source navigation F2–F4 and exact Windows-1250 source offsets remain separate checks in [the Source host matrix](host-validation-0.12-source-navigation.md). The previously reported F1 success does not stand in for those checks or for these new Transform tests.
+
+## Preview readability correction
+
+The owner reported that the earlier preview did not visually distinguish trimmed spaces. This is a presentation defect report, not complete host acceptance. The correction and uniquely numbered 0.12.1 test builds require a fresh T1 host check.

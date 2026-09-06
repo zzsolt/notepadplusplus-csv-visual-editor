@@ -4,6 +4,13 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.1 preview and package correction
+
+- Make preview whitespace visible with space markers, escaped controls/Unicode whitespace, explicit boundaries and complete UTF-16 lengths. Real values remain unchanged.
+- Distinguish literal marker characters and avoid splitting surrogate pairs in shortened samples.
+- Give every CI package a unique `0.12.1-alpha.<run>.<attempt>` version/name, including reruns. Record ZIP/DLL checksums in candidate logs.
+- Add seven Native AOT formatting checks; real-host readability acceptance remains pending.
+
 ### Added
 
 - Edit-mode **Transform** command with literal replacement, outer-whitespace trimming and invariant uppercase/lowercase operations.

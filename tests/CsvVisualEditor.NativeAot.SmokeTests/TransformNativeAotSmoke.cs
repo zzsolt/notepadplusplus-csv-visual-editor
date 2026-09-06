@@ -9,6 +9,13 @@ internal static class TransformNativeAotSmoke
     [ModuleInitializer]
     internal static void Run()
     {
+        Require(CsvTransformDialog.Sample("  x  ") == "⟦··x··⟧ (5)", "Preview must expose outer spaces.");
+        Require(CsvTransformDialog.Sample("x") == "⟦x⟧ (1)", "Preview must expose trimmed boundaries.");
+        Require(CsvTransformDialog.Sample("") == "⟦⟧ (0)", "Preview must expose empty values.");
+        Require(CsvTransformDialog.Sample("\t\r\n") == "⟦\\t\\r\\n⟧ (3)", "Preview must escape line whitespace.");
+        Require(CsvTransformDialog.Sample("\u00a0·") == "⟦\\u00A0\\u00B7⟧ (2)", "Preview must distinguish markers and Unicode whitespace.");
+        Require(CsvTransformDialog.Sample(new string('x', 241)).EndsWith("…⟧ (241)", StringComparison.Ordinal), "Preview must preserve full length when shortened.");
+        Require(!CsvTransformDialog.Sample(new string('x', 239) + "\U0001F642").Contains('\ud83d'), "Preview must not split surrogate pairs.");
         const string source = "A,B\r\n  árvíz  , x \r\n";
         var snapshot = Snapshot(source);
         var parse = CsvParser.Parse(source, CsvDialect.Create(',', headerMode: CsvHeaderMode.FirstRecord));

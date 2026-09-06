@@ -120,7 +120,7 @@ internal sealed class CsvTransformDialog : Form
             }
 
             _summary.Text = $"{_plan.TargetCellCount:N0} target cells; {_plan.Changes.Count:N0} changes in {_plan.ChangedRowCount:N0} rows. " +
-                "Showing the first 50 changes; long values are shortened, and line breaks/tabs are escaped.";
+                "Showing the first 50 changes; long values are shortened, spaces = ·; other whitespace is escaped. Lengths count UTF-16 units.";
             _accept.Enabled = _plan.Changes.Count > 0;
         }
         catch (Exception exception) when (exception is ArgumentException or InvalidOperationException)
@@ -149,11 +149,31 @@ internal sealed class CsvTransformDialog : Form
         }
     }
 
-    private static string Sample(string value)
+    internal static string Sample(string value)
     {
-        var sample = value.Length > 240 ? value[..240] + "…" : value;
-        return sample.Replace("\\", "\\\\", StringComparison.Ordinal)
-            .Replace("\r", "\\r", StringComparison.Ordinal).Replace("\n", "\\n", StringComparison.Ordinal)
-            .Replace("\t", "\\t", StringComparison.Ordinal);
+        var length = Math.Min(value.Length, 240);
+        if (length < value.Length && length > 0 && char.IsHighSurrogate(value[length - 1])) length--;
+        var builder = new System.Text.StringBuilder();
+        builder.Append('⟦');
+        foreach (var character in value.AsSpan(0, length))
+        {
+            builder.Append(character switch
+            {
+                ' ' => "·",
+                '\t' => "\\t",
+                '\r' => "\\r",
+                '\n' => "\\n",
+                '\\' => "\\\\",
+                '·' => "\\u00B7",
+                '⟦' => "\\u27E6",
+                '⟧' => "\\u27E7",
+                _ when char.IsWhiteSpace(character) || char.IsControl(character) =>
+                    "\\u" + ((int)character).ToString("X4", System.Globalization.CultureInfo.InvariantCulture),
+                _ => character.ToString()
+            });
+        }
+        if (length < value.Length) builder.Append('…');
+        builder.Append("⟧ (").Append(value.Length).Append(')');
+        return builder.ToString();
     }
 }

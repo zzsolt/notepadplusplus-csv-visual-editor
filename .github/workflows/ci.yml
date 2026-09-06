@@ -25,6 +25,8 @@ permissions:
 jobs:
   build-test-publish:
     runs-on: windows-latest
+    env:
+      PACKAGE_VERSION: 0.12.1-alpha.${{ github.run_number }}.${{ github.run_attempt }}
 
     steps:
       - name: Checkout
@@ -218,6 +220,7 @@ jobs:
             -c Release `
             -f net10.0-windows `
             -r win-x64 `
+            -p:Version=$env:PACKAGE_VERSION `
             -o artifacts/publish *>&1 |
               Tee-Object -FilePath artifacts/publish.log
           exit $LASTEXITCODE
@@ -231,16 +234,22 @@ jobs:
           Copy-Item 'artifacts/publish/CsvVisualEditor.dll' $pluginDirectory
           Compress-Archive `
             -Path $pluginDirectory `
-            -DestinationPath 'artifacts/CsvVisualEditor-0.12.0-alpha-win-x64.zip' `
+            -DestinationPath "artifacts/CsvVisualEditor-$env:PACKAGE_VERSION-win-x64.zip" `
             -CompressionLevel Optimal `
             -Force
+
+      - name: Record candidate checksums
+        if: steps.publish.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
+        shell: pwsh
+        run: |
+          Get-FileHash "artifacts/CsvVisualEditor-$env:PACKAGE_VERSION-win-x64.zip", artifacts/publish/CsvVisualEditor.dll -Algorithm SHA256 | Format-List
 
       - name: Upload installable test package
         if: steps.publish.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: CsvVisualEditor-0.12.0-alpha-win-x64
-          path: artifacts/CsvVisualEditor-0.12.0-alpha-win-x64.zip
+          name: CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64
+          path: artifacts/CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64.zip
           if-no-files-found: error
           retention-days: 7
 
@@ -294,3 +303,4 @@ jobs:
           steps.publish.outcome != 'success'
         shell: pwsh
         run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
+
