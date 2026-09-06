@@ -286,18 +286,69 @@ public sealed class CsvCellTransformPlanTests
         Assert.Equal(preview, model.CreatePreview().Text);
     }
 
+    [Fact]
+    public void CellLimitRejectsWholePlan()
+    {
+        var values = Enumerable.Repeat(" x ", 501).ToArray();
+        var model = Model(string.Join(',', Enumerable.Repeat("H", 501)) + "\n" + string.Join(',', values));
+        for (var index = 1; index < 500; index++) model.AppendRow(values);
+        Assert.Throws<InvalidOperationException>(() => Plan(model, new(CsvCellTransformKind.Trim)));
+        Assert.Equal(0, model.ChangedCellCount);
+        Assert.All(model.GetVisibleRows(), row => Assert.Equal(" x ", row.Values[0]));
+    }
+
+    [Theory]
+    [InlineData("árvíztűrő", CsvEditorApplyStatus.Applied)]
+    [InlineData("\U0001F642", CsvEditorApplyStatus.TextNotRepresentable)]
+    public void TransformedWindows1250TextStillUsesStrictApplyPreflight(string replacement, CsvEditorApplyStatus expected)
+    {
+        const string source = "A,B\nx,y";
+        var model = Model(source, codePage: 1250);
+        Plan(model, new(CsvCellTransformKind.ReplaceText, "x", replacement)).Apply(model);
+        var snapshot = ActiveDocumentSnapshot.Create("synthetic-transform.csv", source,
+            source.Length, 1250, 0, 0, false, DateTimeOffset.UnixEpoch);
+        var factoryCalls = 0;
+        var target = new Target();
+        var result = CsvEditorApplyCoordinator.Execute(model, snapshot,
+            () => { factoryCalls++; return target; }, CsvEncodingApplyPolicy.Create([1250]));
+        Assert.Equal(expected, result.Status);
+        Assert.Equal(expected == CsvEditorApplyStatus.Applied ? 1 : 0, factoryCalls);
+        Assert.Equal(expected == CsvEditorApplyStatus.Applied ? 4 : 0, target.Calls);
+        Assert.Equal(replacement, model.GetVisibleRows()[0].Values[0]);
+    }
+
+    [Fact]
+    public void NoHeaderModeIncludesFirstRecord()
+    {
+        var model = Model(" x , y \n z , q ", headerMode: CsvHeaderMode.NoHeader);
+        var plan = Plan(model, new(CsvCellTransformKind.Trim));
+        Assert.Equal(4, plan.Changes.Count);
+        plan.Apply(model);
+        Assert.Equal("x,y\nz,q", model.CreatePreview().Text);
+    }
+
+    private sealed class Target : IEditorReplacementTarget
+    {
+        internal int Calls { get; private set; }
+        public void BeginUndoAction() => Calls++;
+        public long ReplaceWholeDocument(string text) { Calls++; return text.Length; }
+        public void SetSelection(long anchorPosition, long caretPosition) => Calls++;
+        public void EndUndoAction() => Calls++;
+    }
+
     private static CsvCellTransformPlan Plan(CsvRowEditModel model, CsvCellTransform transform) =>
         CsvCellTransformPlan.Create(model, model.GetVisibleRows().SelectMany(row =>
             Enumerable.Range(0, model.ColumnCount).Select(column => new CsvCellAddress(row.Id, column))), transform);
 
-    private static CsvRowEditModel Model(string source = "Name,Value\r\n  alpha  ,one\nbeta, two \r\n")
+    private static CsvRowEditModel Model(string source = "Name,Value\r\n  alpha  ,one\nbeta, two \r\n",
+        int codePage = 65001, CsvHeaderMode headerMode = CsvHeaderMode.FirstRecord)
     {
         var snapshot = ActiveDocumentSnapshot.Create("synthetic-transform.csv", source,
-            Encoding.UTF8.GetByteCount(source), 65001, 0, 0, false, DateTimeOffset.UnixEpoch);
-        var parse = CsvParser.Parse(source, CsvDialect.Create(',', headerMode: CsvHeaderMode.FirstRecord));
+            Encoding.UTF8.GetByteCount(source), codePage, 0, 0, false, DateTimeOffset.UnixEpoch);
+        var parse = CsvParser.Parse(source, CsvDialect.Create(',', headerMode: headerMode));
         var projection = CsvTableProjector.Create(parse, new CsvTableProjectionOptions
         {
-            HeaderMode = CsvHeaderMode.FirstRecord, MaximumRows = 10_000,
+            HeaderMode = headerMode, MaximumRows = 10_000,
             MaximumColumns = 512, MaximumCells = 250_000
         });
         return CsvRowEditModel.Create(snapshot, parse, CsvEditSession.Create(snapshot, parse, projection), projection);

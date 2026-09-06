@@ -1,5 +1,7 @@
 # Previewed bulk transformations — 0.12 development
 
+[Részletes magyar tesztlépések](host-validation-0.12-transforms-hu.md)
+
 The **Transform** toolbar command is available in Edit mode. It operates on pending CSV values. Preview and acceptance never write the Notepad++ buffer or files. The existing **Apply** command retains document/content/code-page checks, strict lossless encoding and one editor undo transaction.
 
 ## Operations and scopes
@@ -26,6 +28,8 @@ The operation is bounded to 250,000 unique target cells and 16 Mi UTF-16 result 
 Core tests cover literal/case-sensitive/case-insensitive replacement, invariant casing, whitespace/empty values, nonrecursive replacement, duplicate targets, pending originals, unchanged targets becoming stale, unknown/deleted/cancelled targets, cross-model rejection, inserted rows, serialization, exact Revert All and allocation limits. Native AOT smoke executes transformation, serialization, single-undo Apply, conflict zero calls, stale rejection, Revert All and construction of the actual dialog. Full CI and production publish are required before package delivery.
 
 Real Notepad++ tests below are **NOT RUN** until the owner reports them. Automated results do not establish host PASS.
+
+Implementation commit `67ed59178559782de53133764f674b7eed4d1ce2` passed [CI 34019138228](https://github.com/zzsolt/notepadplusplus-csv-visual-editor/actions/runs/34019138228), job `101448355524`, tested merge `d844a451143ad6fd2c99042ef29981af14dc82b5`: 272/272 Core tests, 0 errors/failures/skips/not-run, 1.384s; 9/9 package-policy checks, Native AOT runtime and production publish PASS. Its six diagnostic artifacts contain no install ZIP. The subsequent candidate adds cell-limit, no-header and Windows-1250 transform/Apply tests; its own final run and package hashes are recorded in PR #12 before delivery.
 
 ## Host test preparation
 
