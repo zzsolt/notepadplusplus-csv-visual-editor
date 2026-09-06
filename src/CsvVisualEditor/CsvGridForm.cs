@@ -6,7 +6,7 @@ using Npp.DotNet.Plugin.Winforms;
 using Npp.DotNet.Plugin.Winforms.Classes;
 using System.Globalization;
 
-internal sealed class CsvGridForm : DockingForm
+internal sealed partial class CsvGridForm : DockingForm
 {
     private const string FormTitle = "CSV Visual Editor";
     private const int DelimiterAutoIndex = 0;

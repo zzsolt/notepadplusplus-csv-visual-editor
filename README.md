@@ -2,7 +2,7 @@
 
 CSV Visual Editor is a 64-bit Notepad++ plugin for viewing and editing CSV data through a docked, spreadsheet-like table while keeping the active Notepad++ buffer authoritative.
 
-> **Development status:** milestone **0.11 is owner-accepted and merged**. Milestone **0.12 is under development** on source navigation and measured scale hardening. The 0.12 package is not accepted until automated gates and real Notepad++ host validation pass.
+> **Development status:** milestone **0.11 is owner-accepted and merged**. Milestone **0.12 is under development** on source navigation and previewed bulk text transformations. The 0.12 package is not accepted until automated gates and real Notepad++ host validation pass.
 
 ## Core principles
 
@@ -73,10 +73,12 @@ Current alpha safety limits remain:
 
 ## 0.12 source navigation — current development
 
+The same development branch adds **Transform** in Edit mode: literal replacement, whitespace trimming and invariant casing for selected cells/rows, one column or all data cells. Preview shows counts and before/after samples. Acceptance changes only pending edits; **Apply** retains the existing editor conflict/encoding/undo checks. See [operations, limits and step-by-step host tests](docs/bulk-transforms-0.12.md).
+
 The 0.12 branch adds a **Source** command to the spreadsheet command row:
 
 ```text
-Paste  Cut  Copy  Source | Edit  Add Row  Delete Row | Apply  Revert All | changes
+Paste  Cut  Copy  Source | Edit  Add Row  Delete Row  Transform | Apply  Revert All | changes
 ```
 
 The command navigates from the current visual CSV row/cell to the originating source selection in Notepad++ without modifying text.

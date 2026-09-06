@@ -2,6 +2,10 @@
 
 Target: real Notepad++ x64 host. Keep public/internal PR #12 draft and unmerged until owner acceptance.
 
+## Latest owner report — 2026-09-06
+
+The owner reported the supplied **F1 read-only stale-content blocking and Refresh recovery** protocol successful. This is a user-reported host PASS for that case. Exact Windows/Notepad++ version and installed DLL hash were not supplied with this report; do not infer new package provenance. F2–F4, exact Windows-1250 Source byte boundaries and fresh 0.11 regression remain unreported. The new Transform command has its own [host matrix](bulk-transforms-0.12.md), currently NOT RUN.
+
 ## Installation
 
 Install the x64 package as:

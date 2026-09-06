@@ -4,6 +4,19 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Edit-mode **Transform** command with literal replacement, outer-whitespace trimming and invariant uppercase/lowercase operations.
+- Selected cells/complete rows, current physical CSV column, or all data cells as explicit scopes.
+- Immutable before/after preview, exact affected-cell/row counts, bounded on-screen samples and explicit acceptance into pending edits.
+- Full prevalidation of previewed values (including unchanged targets), stable row identities, wrong-session rejection and bounded replacement growth before mutation.
+- Core regression and Native AOT transform/dialog coverage; step-by-step synthetic host checks in `docs/bulk-transforms-0.12.md`.
+
+### Validation boundary
+
+- Owner reported the previously supplied read-only stale Source F1/recovery test successful on 2026-09-06. Exact host version and installed DLL hash were not supplied with this report.
+- Transform host tests, Source F2–F4, exact Windows-1250 Source offsets and fresh 0.11 regressions remain pending. This development phase does not close milestone 0.12.
+
 ## [0.9.0-alpha] — 2026-07-29
 
 ### Fixed

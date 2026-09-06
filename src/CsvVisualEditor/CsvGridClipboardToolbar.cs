@@ -12,6 +12,7 @@ internal static class CsvGridClipboardToolbar
     private const string CutButtonName = "CsvClipboardCutButton";
     private const string PasteButtonName = "CsvClipboardPasteButton";
     private const string GoToSourceButtonName = "CsvGoToSourceButton";
+    private const string TransformButtonName = "CsvTransformButton";
     private const int MaximumDeferredAttachAttempts = 4;
 
     private static readonly ConditionalWeakTable<CsvGridForm, AttachmentState> States = new();
@@ -164,6 +165,10 @@ internal static class CsvGridClipboardToolbar
             "Source",
             "Select the current CSV cell or row in the Notepad++ source buffer");
 
+        var transformButton = CreateButton(TransformButtonName, "Transform",
+            "Preview text replacement, trimming or casing in pending CSV edits");
+        transformButton.Click += (_, _) => form.ShowTransforms();
+
         pasteButton.Click += (_, _) =>
         {
             CsvGridClipboardController.TryPasteFromClipboard(grid, form);
@@ -204,6 +209,7 @@ internal static class CsvGridClipboardToolbar
             commandStrip.Items.Add(editButton);
             commandStrip.Items.Add(addRowButton);
             commandStrip.Items.Add(deleteRowButton);
+            commandStrip.Items.Add(transformButton);
             commandStrip.Items.Add(CreateSeparator());
             commandStrip.Items.Add(applyButton);
             commandStrip.Items.Add(revertButton);
@@ -261,6 +267,7 @@ internal static class CsvGridClipboardToolbar
             copyButton.Enabled = hasTarget;
             cutButton.Enabled = hasTarget && form.IsEditMode;
             pasteButton.Enabled = hasTarget && form.IsEditMode;
+            transformButton.Enabled = hasTarget && form.IsEditMode;
             goToSourceButton.Enabled =
                 hasTarget && CsvGridSourceNavigationController.CanNavigate(grid);
         };
@@ -409,7 +416,8 @@ internal static class CsvGridClipboardToolbar
         return names.Contains(CopyButtonName) &&
                names.Contains(CutButtonName) &&
                names.Contains(PasteButtonName) &&
-               names.Contains(GoToSourceButtonName);
+               names.Contains(GoToSourceButtonName) &&
+               names.Contains(TransformButtonName);
     }
 
     private static void RemoveExistingCommandButtons(Control root)
@@ -422,7 +430,8 @@ internal static class CsvGridClipboardToolbar
                 if (item.Name is CopyButtonName or
                     CutButtonName or
                     PasteButtonName or
-                    GoToSourceButtonName)
+                    GoToSourceButtonName or
+                    TransformButtonName)
                 {
                     strip.Items.RemoveAt(index);
                     item.Dispose();
