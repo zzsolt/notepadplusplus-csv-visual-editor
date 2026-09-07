@@ -4,6 +4,15 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.4 search and whitespace refinement
+
+- Frame matching CSV cells in gold using the same effective query, column scope and ordinal-ignore-case semantics as the row filter. Keep native selection and raw values; clear cached matches on each render, sort, query change and Edit transition.
+- Bound the visible-cell match cache to 4,096 entries; do not retain cell values or allocate per-cell styles.
+- Use fixed DPI-dependent, pixel-snapped space-ring geometry independent of measured glyph widths. Reuse the pen and graphics state across each paint pass.
+- Give search its own toolbar row so delimiter/header controls no longer displace the input; retain the complete Search menu.
+- Owner reported missing cell search indication and inconsistent ring appearance in 0.12.3, with everything else good. New correction requires host retest; screenshots and source values were not committed.
+- Base version 0.12.4-alpha with unique run/attempt package names; additional Native AOT pixel and search-state regressions.
+
 ### 0.12.3 icon toolbar and complete menu
 
 - Compact original outline icons with command-name tooltips and accessible names; permanent Table/Edit/View/CSV/Search dropdown menus share the existing command handlers and enabled/checked state.

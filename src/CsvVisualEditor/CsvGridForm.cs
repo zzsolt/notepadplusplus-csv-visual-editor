@@ -1082,6 +1082,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
     private void ApplyCurrentView()
     {
+        if (_grid is CsvDataGridView clearGrid) clearGrid.SetSearchHighlight(string.Empty, null);
         if (_projection is null || _snapshot is null || _parseResult is null)
         {
             return;
@@ -1107,6 +1108,8 @@ internal sealed partial class CsvGridForm : DockingForm
                 SortDirection = _sortDirection
             });
         _lastViewResult = view;
+        if (_grid is CsvDataGridView searchGrid)
+            searchGrid.SetSearchHighlight(view.EffectiveSearchText, view.SearchColumnIndex);
         RenderViewRows(view.Rows);
         UpdateSortGlyphs();
         UpdateDirtyIndicators();

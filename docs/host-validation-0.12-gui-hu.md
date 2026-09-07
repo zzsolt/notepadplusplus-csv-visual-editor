@@ -1,3 +1,24 @@
+# 0.12.4 — keresési találatok és egységes szóközkarikák
+
+2026-09-07: a felhasználó a 0.12.3 GUI-nál két hibát jelentett: nem látszik, melyik cellában van keresési találat, és a szóközkarikák mérete eltérőnek látszik. Minden mást jónak jelentett. Ezt összesített felhasználói visszajelzésként rögzítjük, pontos hostverzió/DLL-hash és külön DPI-esetek nélkül. A javított 0.12.4 hosttesztje **NOT RUN**.
+
+## Rövid újrateszt
+
+Telepítsd a PR #12 teljesen zöld `CsvVisualEditor-0.12.4-alpha.<futás>.<próba>-win-x64.zip` csomagját, bezárt Notepad++ mellett DLL-cserével. Az alábbi korábbi szintetikus CSV használható.
+
+1. **Keresés:** `test` keresésnél a találati cella kapjon aranyszínű belső keretet; az ugyanabban a sorban található másik cella ne. Nagybetűs keresés ugyanazt találja. Kijelölt cellán is látszódjon a keret.
+2. **Oszlop és törlés:** a keresést korlátozd egy oszlopra. Csak annak találatai kapjanak keretet. Clear után minden találati keret tűnjön el. Rendezés után a keret a helyes értéknél maradjon. Edit módba lépve a keresésjelölés megszűnik a meglévő szűrés-visszaállítás részeként.
+3. **Karikák:** vezető, belső, záró és csak szóközös cellákban azonos méretű jelek legyenek, a Transformban is. Világos/sötét módban, és ha elérhető, 100/150/200% méretezésnél ellenőrizd. A méret DPI-nként változhat, egy adott DPI-n belül egyezzen.
+4. **Elrendezés:** a kereső külön sorban jelenjen meg. A képeken látott panelszélességnél a mező már legyen látható és használható. Nagyon keskeny panelnél a Search menü továbbra is teljes hozzáférést adjon. Keresés, görgetés és menünyitás maradjon folyamatos.
+
+A keret az egész találati cellát jelöli, nem az egyes szövegrészleteket. A teljes értéket vizsgálja akkor is, ha hosszú cellánál a kirajzolt szöveg rövidített. Jelölések nem kerülhetnek Copy/Apply útján az adatba.
+
+Küldd: csomagnév, Windows/Notepad++ x64 verzió, 1–4 PASS/FAIL/NOT RUN. Új Source F2–F4/G PASS ebből nem következik.
+
+---
+
+## Korábbi 0.12.3 protokoll és történeti állapot
+
 # 0.12.3 — ikonos GUI hostteszt
 
 Állapot: **NOT RUN** az új GUI-ra. A 2026-09-07-i felhasználói „minden teszt jó” jelentés az előző 0.12.2 szóközjelölési körre vonatkozik. Pontos Windows/Notepad++ verzió és DLL-hash nem érkezett. A screenshotokat és valódi adatokat nem rögzítjük. A 0.12 milestone nyitott, draft, unmerged marad.

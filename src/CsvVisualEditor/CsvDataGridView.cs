@@ -19,6 +19,31 @@ internal sealed class CsvDataGridView : DataGridView
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal bool ShowWhitespace { get; set; } = true;
 
+    private string _highlightQuery = string.Empty;
+    private int? _highlightColumn;
+    private readonly Dictionary<(int Row, int Column), bool> _matchCache = [];
+
+    internal void SetSearchHighlight(string effectiveQuery, int? column)
+    {
+        _highlightQuery = effectiveQuery;
+        _highlightColumn = column;
+        _matchCache.Clear(); // Rendered row indexes can change after sorting/filtering.
+        Invalidate();
+    }
+
+    internal bool IsSearchMatch(int row, int column, string value)
+    {
+        if (row < 0 || column < 0 || _highlightQuery.Length == 0 ||
+            (_highlightColumn.HasValue && _highlightColumn != column)) return false;
+        var key = (row, column);
+        if (_matchCache.TryGetValue(key, out var match)) return match;
+        match = value.Contains(_highlightQuery, StringComparison.OrdinalIgnoreCase);
+        // Cache only recently painted cells, including virtual rows; never retain data.
+        if (_matchCache.Count >= 4096) _matchCache.Clear();
+        _matchCache[key] = match;
+        return match;
+    }
+
     protected override void OnCellMouseEnter(DataGridViewCellEventArgs e)
     {
         // Unbound non-virtual grids do not request CellToolTipTextNeeded.
@@ -43,7 +68,24 @@ internal sealed class CsvDataGridView : DataGridView
         base.OnCellPainting(e);
         if (!e.Handled && e.ColumnIndex >= 0 &&
             Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal))
+        {
             CsvWhitespaceCellPainter.Paint(this, e, showSpaces: ShowWhitespace);
+            if (e.RowIndex >= 0 && e.FormattedValue is string value &&
+                IsSearchMatch(e.RowIndex, e.ColumnIndex, value) && e.Graphics is { } graphics)
+            {
+                // Keep native selection/focus colors; frame the matching cell instead.
+                var state = graphics.Save();
+                try
+                {
+                    graphics.SetClip(Rectangle.Intersect(e.ClipBounds, e.CellBounds));
+                    var dark = e.CellStyle?.BackColor.GetBrightness() < 0.5f;
+                    using var pen = new Pen(dark ? Color.Gold : Color.DarkGoldenrod, Math.Max(2, DeviceDpi / 96f));
+                    var bounds = Rectangle.Inflate(e.CellBounds, -3, -3);
+                    if (bounds.Width > 0 && bounds.Height > 0) graphics.DrawRectangle(pen, bounds);
+                }
+                finally { graphics.Restore(state); }
+            }
+        }
     }
 
     [Browsable(false)]

@@ -5,6 +5,11 @@ using CsvVisualEditor.Core;
 internal sealed partial class CsvGridForm
 {
     private CsvCommandSurface? _commandSurface;
+    private readonly ToolStrip _searchToolStrip = new()
+    {
+        Dock = DockStyle.Fill, GripStyle = ToolStripGripStyle.Hidden,
+        Padding = new Padding(4, 1, 4, 1), CanOverflow = true
+    };
     private readonly ToolStripButton _spacesButton = new("Show spaces")
     {
         Name = "CsvShowSpacesButton", CheckOnClick = true, Checked = true,
@@ -26,7 +31,17 @@ internal sealed partial class CsvGridForm
             DpiChangedAfterParent += (_, _) => RefreshCommandAppearance();
         }
         if (!_toolStrip.Items.Contains(_spacesButton)) _toolStrip.Items.Add(_spacesButton);
-        var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip);
+        // Give search its own row instead of overflowing behind CSV interpretation.
+        var searchLabel = _viewToolStrip.Items.OfType<ToolStripLabel>().FirstOrDefault(item => item.Text == "Search:");
+        if (searchLabel is not null)
+        {
+            var start = _viewToolStrip.Items.IndexOf(searchLabel);
+            var items = _viewToolStrip.Items.Cast<ToolStripItem>().Skip(start).ToArray();
+            foreach (var item in items) _searchToolStrip.Items.Add(item);
+        }
+        _searchBox.Overflow = ToolStripItemOverflow.Never;
+        _searchBox.Width = Math.Max(120, 180 * DeviceDpi / 96);
+        var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip, _searchToolStrip);
         _commandSurface = surface;
         surface.AddCombo(surface.Csv, "&Delimiter", _delimiterCombo);
         surface.AddCombo(surface.Csv, "&Header", _headerCombo);
@@ -65,12 +80,13 @@ internal sealed partial class CsvGridForm
         _topPanel.SuspendLayout();
         try
         {
-            _topPanel.RowCount = 3;
+            _topPanel.RowCount = 4;
             _topPanel.RowStyles.Clear();
-            for (var index = 0; index < 3; index++) _topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            for (var index = 0; index < 4; index++) _topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             _topPanel.SetCellPosition(_toolStrip, new TableLayoutPanelCellPosition(0, 1));
             _topPanel.SetCellPosition(_viewToolStrip, new TableLayoutPanelCellPosition(0, 2));
             _topPanel.Controls.Add(surface.Menu, 0, 0);
+            _topPanel.Controls.Add(_searchToolStrip, 0, 3);
             MainMenuStrip = surface.Menu;
             RefreshCommandAppearance();
         }

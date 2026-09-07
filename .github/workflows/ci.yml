@@ -26,7 +26,7 @@ jobs:
   build-test-publish:
     runs-on: windows-latest
     env:
-      PACKAGE_VERSION: 0.12.3-alpha.${{ github.run_number }}.${{ github.run_attempt }}
+      PACKAGE_VERSION: 0.12.4-alpha.${{ github.run_number }}.${{ github.run_attempt }}
 
     steps:
       - name: Checkout

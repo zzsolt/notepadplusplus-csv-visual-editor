@@ -108,7 +108,7 @@ internal sealed class CsvCommandSurface : IDisposable
         Menu.Renderer = renderer;
         Menu.BackColor = background;
         Menu.ForeColor = foreground;
-        foreach (var strip in _strips) { strip.Renderer = renderer; strip.ShowItemToolTips = true; }
+        foreach (var strip in _strips) { strip.Renderer = renderer; strip.BackColor = background; strip.ForeColor = foreground; strip.ShowItemToolTips = true; }
         foreach (var (button, item) in _bindings)
         {
             var old = button.Image;

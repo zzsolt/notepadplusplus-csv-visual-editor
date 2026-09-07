@@ -75,9 +75,10 @@ internal static class CsvWhitespaceCellPainter
             graphics.SetClip(clip, CombineMode.Intersect);
             graphics.SetClip(bounds, CombineMode.Intersect);
             using var textBrush = new SolidBrush(foreground);
-            using var dotPen = new Pen(DotColor, Math.Max(0.75f, graphics.DpiX / 96f));
             graphics.DrawString(text, font, textBrush, bounds, format);
-            var diameter = Math.Max(2.5f, 3f * graphics.DpiX / 96f);
+            using var dotPen = new Pen(DotColor, Math.Max(1, (int)Math.Round(graphics.DpiX / 96f)));
+            graphics.SmoothingMode = SmoothingMode.None;
+            graphics.PixelOffsetMode = PixelOffsetMode.None;
             var drawn = 0;
             // GDI+ supports at most 32 measurable character ranges per batch.
             // The same layout/font renders and measures, including trailing spaces.
@@ -94,8 +95,7 @@ internal static class CsvWhitespaceCellPainter
                         var x = area.Left + area.Width / 2;
                         var y = area.Top + area.Height / 2;
                         if (area.Width <= 0 || area.Height <= 0 || !bounds.Contains(x, y) || !clip.Contains((int)x, (int)y)) continue;
-                        var markSize = Math.Min(diameter, Math.Max(1f, area.Width - dotPen.Width));
-                        graphics.DrawEllipse(dotPen, x - markSize / 2, y - markSize / 2, markSize, markSize);
+                        DrawSpaceMarker(graphics, dotPen, x, y);
                         drawn++;
                     }
                 }
@@ -104,6 +104,15 @@ internal static class CsvWhitespaceCellPainter
             return drawn;
         }
         finally { graphics.Restore(state); }
+    }
+
+    internal static void DrawSpaceMarker(Graphics graphics, Pen pen, float centerX, float centerY)
+    {
+        // One fixed device-pixel shape per DPI, independent of glyph advance.
+        // Caller sets non-antialiased pixel geometry once for the whole paint pass.
+        var diameter = Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f));
+        graphics.DrawEllipse(pen, (int)Math.Round(centerX - diameter / 2f),
+            (int)Math.Round(centerY - diameter / 2f), diameter, diameter);
     }
 
     internal static string DescribeSpaces(string value)
