@@ -56,7 +56,8 @@ internal sealed partial class CsvGridForm
                 finally { _suppressGridChanges = false; }
                 UpdateDirtyIndicators();
                 _statusLabel.Text = $"Transformed {changed:N0} cells in the pending Edit session. Use Apply to update Notepad++, or Revert All to discard pending edits.";
-            });
+            }, _spacesButton.Checked);
+        dialog.ApplyTheme(BackColor, ForeColor);
         dialog.ShowDialog(this);
         _grid.Focus();
     }

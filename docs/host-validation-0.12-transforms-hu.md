@@ -1,10 +1,10 @@
 # Transform — részletes Notepad++ tesztelés
 
-Ezek az új funkció valódi Notepad++-tesztjei. Állapotuk a felhasználó eredményéig **NOT RUN**. A korábbi Source F1 sikerét külön rögzítettük; az nem helyettesíti ezeket.
+Állapotfrissítés, 2026-09-07: a felhasználó az előző 0.12.2 szóközjelölési ellenőrzés után minden tesztet sikeresnek jelentett. Ezt felhasználói jelentésként rögzítjük; pontos hostverzió és telepített DLL-hash nem érkezett. A jelentés nem igazolja automatikusan a korábban nem jelentett Source F2–F4/G eseteket. Az új 0.12.3 GUI külön, még **NOT RUN** ellenőrzése: [GUI tesztlépések](host-validation-0.12-gui-hu.md). A korábbi részletes Transform protokoll alább megmarad.
 
 ## Telepítés és előkészítés
 
-1. A PR #12-ben megjelölt, teljesen zöld **0.12.2 Transform tesztjelölt** csomagot töltsd le. A ZIP neve most már buildenként változik: `CsvVisualEditor-0.12.2-alpha.<futásszám>.<próbálkozás>-win-x64.zip`. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
+1. A PR #12-ben megjelölt, teljesen zöld **0.12.3 GUI/Transform tesztjelölt** csomagot töltsd le. A ZIP neve most már buildenként változik: `CsvVisualEditor-0.12.3-alpha.<futásszám>.<próbálkozás>-win-x64.zip`. A korábbi Source-csomag még nem tartalmazza a Transform gombot.
 2. Zárd be a Notepad++-t, majd a csomag `CsvVisualEditor/CsvVisualEditor.dll` fájljával cseréld le a plugin DLL-jét a Notepad++ `plugins/CsvVisualEditor` mappájában. Ha a GitHub-letöltés egy újabb ZIP-et tartalmaz, azt is bontsd ki.
 3. Indítsd el a Notepad++ x64-et. Írd fel a Windows és a Notepad++ verzióját. A telepített DLL SHA-256 értékét a PowerShell `Get-FileHash` parancsával kérheted le; a privát elérési utat nem kell elküldened.
 4. Nyiss új, nem mentett UTF-8 dokumentumot, és másold bele ezt a kizárólag tesztelésre kitalált CSV-t. Az idézőjeleken belüli szóközök fontosak:

@@ -252,6 +252,8 @@ internal static class CsvGridClipboardToolbar
             commandStrip.ResumeLayout(performLayout: true);
         }
 
+        form.InstallCommandSurface();
+
         updateAvailability = () =>
         {
             if (form.IsDisposed || form.Disposing || grid.IsDisposed || grid.Disposing)

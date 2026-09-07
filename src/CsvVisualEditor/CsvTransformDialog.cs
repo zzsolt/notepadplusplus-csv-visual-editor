@@ -25,11 +25,14 @@ internal sealed class CsvTransformDialog : Form
     private readonly Func<CsvTransformScope, CsvCellTransform, CsvCellTransformPlan> _create;
     private readonly Action<CsvCellTransformPlan> _apply;
     private CsvCellTransformPlan? _plan;
+    private readonly bool _showSpaces;
 
     internal CsvTransformDialog(
         Func<CsvTransformScope, CsvCellTransform, CsvCellTransformPlan> create,
-        Action<CsvCellTransformPlan> apply)
+        Action<CsvCellTransformPlan> apply,
+        bool showSpaces = true)
     {
+        _showSpaces = showSpaces;
         _create = create;
         _apply = apply;
         Text = "Transform CSV cells";
@@ -82,7 +85,7 @@ internal sealed class CsvTransformDialog : Form
         _samples.Columns[1].FillWeight = 35;
         _samples.CellPainting += (_, e) =>
         {
-            if (e.ColumnIndex is 2 or 3) CsvWhitespaceCellPainter.Paint(_samples, e, '·');
+            if (e.ColumnIndex is 2 or 3) CsvWhitespaceCellPainter.Paint(_samples, e, '·', showSpaces);
         };
         Controls.Add(layout);
         AcceptButton = _preview;
@@ -96,6 +99,25 @@ internal sealed class CsvTransformDialog : Form
         _preview.Click += (_, _) => BuildPreview();
         _accept.Click += (_, _) => AcceptChanges();
         InvalidatePreview();
+    }
+
+    internal void ApplyTheme(Color background, Color foreground)
+    {
+        void Style(Control control)
+        {
+            control.BackColor = background;
+            control.ForeColor = foreground;
+            if (control is Button button) { button.UseVisualStyleBackColor = false; button.FlatStyle = FlatStyle.Flat; }
+            foreach (Control child in control.Controls) Style(child);
+        }
+        Style(this);
+        _samples.EnableHeadersVisualStyles = false;
+        _samples.BackgroundColor = background;
+        _samples.DefaultCellStyle.BackColor = background;
+        _samples.DefaultCellStyle.ForeColor = foreground;
+        _samples.ColumnHeadersDefaultCellStyle.BackColor = background;
+        _samples.ColumnHeadersDefaultCellStyle.ForeColor = foreground;
+        _samples.GridColor = SystemColors.GrayText;
     }
 
     private void InvalidatePreview()
@@ -124,7 +146,8 @@ internal sealed class CsvTransformDialog : Form
             }
 
             _summary.Text = $"{_plan.TargetCellCount:N0} target cells; {_plan.Changes.Count:N0} changes in {_plan.ChangedRowCount:N0} rows. " +
-                "Showing the first 50 changes; orange dots mark spaces. Other whitespace is escaped; lengths count UTF-16 units. Long values are shortened.";
+                "Showing the first 50 changes; " + (_showSpaces ? "hollow orange dots mark empty spaces. " : "space indicators are hidden. ") +
+                "Other whitespace is escaped; lengths count UTF-16 units. Long values are shortened.";
             _accept.Enabled = _plan.Changes.Count > 0;
         }
         catch (Exception exception) when (exception is ArgumentException or InvalidOperationException)

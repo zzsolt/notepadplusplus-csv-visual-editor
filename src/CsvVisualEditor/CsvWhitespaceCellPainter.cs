@@ -8,7 +8,7 @@ internal static class CsvWhitespaceCellPainter
     internal static readonly Color DotColor = Color.DarkOrange;
     internal const int MaximumPaintCharacters = 1024;
 
-    internal static void Paint(DataGridView grid, DataGridViewCellPaintingEventArgs e, char marker = ' ')
+    internal static void Paint(DataGridView grid, DataGridViewCellPaintingEventArgs e, char marker = ' ', bool showSpaces = true)
     {
         if (e.RowIndex < 0 || e.ColumnIndex < 0 || e.FormattedValue is not string value ||
             e.CellStyle is not { } style || e.Graphics is not { } graphics ||
@@ -30,7 +30,7 @@ internal static class CsvWhitespaceCellPainter
                 Draw(graphics, bounds, Rectangle.Intersect(e.ClipBounds, e.CellBounds),
                     value, style.Font ?? grid.Font,
                     selected ? style.SelectionForeColor : style.ForeColor,
-                    style.Alignment, grid.RightToLeft == RightToLeft.Yes, marker);
+                    style.Alignment, grid.RightToLeft == RightToLeft.Yes, marker, showSpaces);
             }
         }
         e.Handled = true;
@@ -38,7 +38,7 @@ internal static class CsvWhitespaceCellPainter
 
     internal static int Draw(Graphics graphics, RectangleF bounds, Rectangle clip,
         string value, Font font, Color foreground, DataGridViewContentAlignment alignment,
-        bool rightToLeft = false, char marker = ' ')
+        bool rightToLeft = false, char marker = ' ', bool showSpaces = true)
     {
         var length = Math.Min(value.Length, MaximumPaintCharacters);
         if (length < value.Length && length > 0 && char.IsHighSurrogate(value[length - 1])) length--;
@@ -49,7 +49,7 @@ internal static class CsvWhitespaceCellPainter
         if (length < value.Length) text += "…";
         var positions = new List<int>();
         for (var index = 0; index < text.Length; index++)
-            if (text[index] == marker) positions.Add(index);
+            if (showSpaces && text[index] == marker) positions.Add(index);
         if (marker != ' ') text = text.Replace(marker, ' ');
 
         using var format = (StringFormat)StringFormat.GenericTypographic.Clone();
@@ -75,9 +75,9 @@ internal static class CsvWhitespaceCellPainter
             graphics.SetClip(clip, CombineMode.Intersect);
             graphics.SetClip(bounds, CombineMode.Intersect);
             using var textBrush = new SolidBrush(foreground);
-            using var dotBrush = new SolidBrush(DotColor);
+            using var dotPen = new Pen(DotColor, Math.Max(0.75f, graphics.DpiX / 96f));
             graphics.DrawString(text, font, textBrush, bounds, format);
-            var diameter = Math.Max(1.5f, 2f * graphics.DpiX / 96f);
+            var diameter = Math.Max(2.5f, 3f * graphics.DpiX / 96f);
             var drawn = 0;
             // GDI+ supports at most 32 measurable character ranges per batch.
             // The same layout/font renders and measures, including trailing spaces.
@@ -94,7 +94,8 @@ internal static class CsvWhitespaceCellPainter
                         var x = area.Left + area.Width / 2;
                         var y = area.Top + area.Height / 2;
                         if (area.Width <= 0 || area.Height <= 0 || !bounds.Contains(x, y) || !clip.Contains((int)x, (int)y)) continue;
-                        graphics.FillEllipse(dotBrush, x - diameter / 2, y - diameter / 2, diameter, diameter);
+                        var markSize = Math.Min(diameter, Math.Max(1f, area.Width - dotPen.Width));
+                        graphics.DrawEllipse(dotPen, x - markSize / 2, y - markSize / 2, markSize, markSize);
                         drawn++;
                     }
                 }
@@ -103,5 +104,16 @@ internal static class CsvWhitespaceCellPainter
             return drawn;
         }
         finally { graphics.Restore(state); }
+    }
+
+    internal static string DescribeSpaces(string value)
+    {
+        var count = 0;
+        foreach (var character in value) if (character == ' ') count++;
+        var leading = 0;
+        while (leading < value.Length && value[leading] == ' ') leading++;
+        var trailing = 0;
+        while (trailing < value.Length && value[value.Length - trailing - 1] == ' ') trailing++;
+        return $"Spaces: {count}; leading: {leading}; trailing: {trailing}. Length: {value.Length} UTF-16 units.\nOrange hollow dots mark empty spaces, not CSV characters. Leading/trailing counts overlap for an all-space cell.";
     }
 }

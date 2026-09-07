@@ -4,6 +4,16 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.3 icon toolbar and complete menu
+
+- Compact original outline icons with command-name tooltips and accessible names; permanent Table/Edit/View/CSV/Search dropdown menus share the existing command handlers and enabled/checked state.
+- Reach delimiter, header, search text/column, sort, table and diagnostics from menus, including when toolbar controls overflow.
+- Theme-aware menus, DPI-scaled icons and themed Transform dialog follow the plugin's current Notepad++ light/dark colors.
+- Refine space marks to small hollow orange dots; View > Show spaces toggles presentation in the table and subsequent Transform dialogs. Cell tooltips count real spaces, leading/trailing spaces and length.
+- Base version 0.12.3-alpha; unique build/run-attempt ZIP names remain enabled.
+- Owner reported the preceding 0.12.2 whitespace host checklist successful on 2026-09-07; host version and installed DLL hash were not supplied. This report does not establish a result for the new GUI or previously unreported Source cases.
+- GUI host validation is pending: see `docs/host-validation-0.12-gui-hu.md`.
+
 ### 0.12.2 orange whitespace dots
 
 - Paint small orange space dots in the primary CSV table and Transform previews, including virtual rows and selected cells.
@@ -30,7 +40,7 @@ All notable changes to CSV Visual Editor will be documented in this file.
 ### Validation boundary
 
 - Owner reported the previously supplied read-only stale Source F1/recovery test successful on 2026-09-06. Exact host version and installed DLL hash were not supplied with this report.
-- Transform host tests, Source F2–F4, exact Windows-1250 Source offsets and fresh 0.11 regressions remain pending. This development phase does not close milestone 0.12.
+- The detailed historical Transform/Source evidence is retained in the host documents; Source F2–F4 and exact Windows-1250 Source offsets are not established by the latest whitespace checklist report. This development phase does not close milestone 0.12.
 
 ## [0.9.0-alpha] — 2026-07-29
 

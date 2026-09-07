@@ -4,6 +4,14 @@ CSV Visual Editor is a 64-bit Notepad++ plugin for viewing and editing CSV data 
 
 > **Development status:** milestone **0.11 is owner-accepted and merged**. Milestone **0.12 is under development** on source navigation and previewed bulk text transformations. The 0.12 package is not accepted until automated gates and real Notepad++ host validation pass.
 
+## Current GUI candidate: 0.12.3
+
+The main toolbar uses compact graphical icons with command-name tooltips. A permanent **Table / Edit / View / CSV / Search** menu provides the same commands plus delimiter/header selection, search and sorting. Menus and icons share availability and Edit state; menu search remains usable when the dock is narrow. Icons scale with DPI and menus follow the current plugin light/dark palette.
+
+**View > Show spaces** toggles small hollow orange space marks in the table and subsequently opened Transform previews. These are display indicators; cell and clipboard values remain real spaces. Hover a data cell for exact space counts. The switch is session-local and defaults on; native in-cell typing remains standard. Transform retains value boundaries and lengths even with marks hidden.
+
+[Hungarian GUI host checklist](docs/host-validation-0.12-gui-hu.md). The owner reported the preceding 0.12.2 whitespace checks successful; the new GUI requires its own host validation. Milestone 0.12 remains draft and unmerged.
+
 ## Core principles
 
 - The active unsaved Scintilla buffer is the source of truth; the plugin does not reopen the file from disk to build the table.

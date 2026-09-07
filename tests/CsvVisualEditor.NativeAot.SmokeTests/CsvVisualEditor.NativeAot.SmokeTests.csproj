@@ -31,5 +31,7 @@
     <Compile Include="../../src/CsvVisualEditor/CsvGridSelectionSnapshot.cs" Link="CsvGridSelectionSnapshot.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvTransformDialog.cs" Link="CsvTransformDialog.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvWhitespaceCellPainter.cs" Link="CsvWhitespaceCellPainter.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvCommandIcons.cs" Link="CsvCommandIcons.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvCommandSurface.cs" Link="CsvCommandSurface.cs" />
   </ItemGroup>
 </Project>

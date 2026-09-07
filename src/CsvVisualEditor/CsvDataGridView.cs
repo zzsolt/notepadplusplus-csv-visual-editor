@@ -15,12 +15,35 @@ internal sealed class CsvDataGridView : DataGridView
     private const int WmCopy = 0x0301;
     private const int WmPaste = 0x0302;
 
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    internal bool ShowWhitespace { get; set; } = true;
+
+    protected override void OnCellMouseEnter(DataGridViewCellEventArgs e)
+    {
+        // Unbound non-virtual grids do not request CellToolTipTextNeeded.
+        if (!VirtualMode && e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
+            Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal) &&
+            Rows[e.RowIndex].Cells[e.ColumnIndex].Value is string value)
+            Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText = CsvWhitespaceCellPainter.DescribeSpaces(value);
+        base.OnCellMouseEnter(e);
+    }
+
+    protected override void OnCellToolTipTextNeeded(DataGridViewCellToolTipTextNeededEventArgs e)
+    {
+        base.OnCellToolTipTextNeeded(e);
+        if (e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
+            Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal) &&
+            Rows[e.RowIndex].Cells[e.ColumnIndex].Value is string value)
+            e.ToolTipText = CsvWhitespaceCellPainter.DescribeSpaces(value);
+    }
+
     protected override void OnCellPainting(DataGridViewCellPaintingEventArgs e)
     {
         base.OnCellPainting(e);
         if (!e.Handled && e.ColumnIndex >= 0 &&
             Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal))
-            CsvWhitespaceCellPainter.Paint(this, e);
+            CsvWhitespaceCellPainter.Paint(this, e, showSpaces: ShowWhitespace);
     }
 
     [Browsable(false)]

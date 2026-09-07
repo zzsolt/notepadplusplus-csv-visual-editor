@@ -411,7 +411,7 @@ partial class Main : IDotNetPlugin
     private static void ShowAboutDialog()
     {
         MessageBox.Show(
-            "CSV Visual Editor 0.12.2-alpha\n\n" +
+            "CSV Visual Editor 0.12.3-alpha\n\n" +
             "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
             "Edit mode supports deterministic cell editing, row operations, and spreadsheet-style rectangular copy/paste. " +
             "Source navigation selects the current CSV cell or logical row directly in the active Notepad++ buffer without modifying text. " +

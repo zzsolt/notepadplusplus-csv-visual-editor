@@ -524,6 +524,7 @@ internal sealed partial class CsvGridForm : DockingForm
         }
 
         CsvGridRowHeaderBehavior.RefreshPresentationLayout(_grid);
+        RefreshCommandAppearance();
         Invalidate(invalidateChildren: true);
     }
 
@@ -537,6 +538,8 @@ internal sealed partial class CsvGridForm : DockingForm
     {
         if (disposing)
         {
+            _commandSurface?.Dispose();
+            _commandSurface = null;
             _editingControlPasteHook.Dispose();
             _searchTimer.Stop();
             _searchTimer.Dispose();
