@@ -10,6 +10,7 @@ using System.Text;
 /// </summary>
 public sealed class CsvClipboardMatrix
 {
+    public const int MaximumTextCharacters = 16 * 1024 * 1024;
     private const int MaximumRows = 10_000;
     private const int MaximumColumns = 512;
     private const int MaximumCells = 250_000;
@@ -46,6 +47,8 @@ public sealed class CsvClipboardMatrix
     public static CsvClipboardMatrix Parse(string text)
     {
         ArgumentNullException.ThrowIfNull(text);
+        if (text.Length > MaximumTextCharacters)
+            throw new FormatException("The clipboard text exceeds the safe 16 Mi UTF-16-character limit.");
         ValidateControlCharacters(text);
 
         var physicalRows = SplitRows(text);
@@ -58,7 +61,7 @@ public sealed class CsvClipboardMatrix
         var expectedColumns = -1;
         for (var rowIndex = 0; rowIndex < physicalRows.Count; rowIndex++)
         {
-            var cells = physicalRows[rowIndex].Split('\t', StringSplitOptions.None);
+            var cells = physicalRows[rowIndex].Split('\t', MaximumColumns + 1, StringSplitOptions.None);
             if (cells.Length > MaximumColumns)
             {
                 throw new FormatException("The clipboard contains more columns than the editor can paste safely.");
@@ -117,6 +120,8 @@ public sealed class CsvClipboardMatrix
                 continue;
             }
 
+            if (rows.Count >= MaximumRows)
+                throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
             rows.Add(text[start..index]);
             if (text[index] == '\r' && index + 1 < text.Length && text[index + 1] == '\n')
             {
@@ -126,19 +131,15 @@ public sealed class CsvClipboardMatrix
             start = index + 1;
         }
 
-        rows.Add(text[start..]);
-
-        // Spreadsheet clipboard formats commonly terminate a copied rectangle with one
-        // newline. That terminator is not an extra empty data row.
-        if (rows.Count > 1 && rows[^1].Length == 0 && EndsWithLineBreak(text))
+        // One terminal line break terminates the rectangle; it is not a new row.
+        // Enforce the row limit before allocating the next substring, including tail.
+        if (start < text.Length)
         {
-            rows.RemoveAt(rows.Count - 1);
+            if (rows.Count >= MaximumRows)
+                throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
+            rows.Add(text[start..]);
         }
-
-        if (rows.Count == 0)
-        {
-            rows.Add(string.Empty);
-        }
+        else if (rows.Count == 0) rows.Add(string.Empty);
 
         return rows;
     }
@@ -158,9 +159,6 @@ public sealed class CsvClipboardMatrix
             }
         }
     }
-
-    private static bool EndsWithLineBreak(string text) =>
-        text.EndsWith('\r') || text.EndsWith('\n');
 
     private static void ValidateIndex(int value, int upperBound, string parameterName)
     {
