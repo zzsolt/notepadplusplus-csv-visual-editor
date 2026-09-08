@@ -157,8 +157,20 @@ internal static class CsvWhitespaceCellPainter
         if (diameter <= 0) diameter = Math.Max(3, (int)Math.Round(3 * graphics.DpiX / 96f));
         var x = (int)Math.Round(centerX - diameter / 2f, MidpointRounding.AwayFromZero);
         var y = (int)Math.Round(centerY - diameter / 2f, MidpointRounding.AwayFromZero);
-        if (diameter <= 2) graphics.FillRectangle(brush, x, y, diameter, diameter);
-        else graphics.FillEllipse(brush, x, y, diameter, diameter);
+        // GDI+ FillEllipse can shrink a 3px circle to four pixels. Use explicit
+        // device-pixel scanlines instead: the smallest dot has five pixels and
+        // every occurrence has exactly the same raster, including fractional
+        // text positions. This is bounded by the small DPI-scaled diameter.
+        var center = (diameter - 1) / 2d;
+        var radiusSquared = Math.Pow(Math.Max(0.5d, diameter / 2d - 0.2d), 2);
+        for (var row = 0; row < diameter; row++)
+        {
+            var dy = row - center;
+            var first = 0;
+            while (first < diameter && (first - center) * (first - center) + dy * dy > radiusSquared) first++;
+            if (first < diameter)
+                graphics.FillRectangle(brush, x + first, y + row, diameter - 2 * first, 1);
+        }
     }
 
     internal static string DescribeSpaces(string value)

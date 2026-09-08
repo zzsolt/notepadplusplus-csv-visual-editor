@@ -91,6 +91,7 @@ try {
     Send-Native $window 0x111 ([IntPtr]$command) ([IntPtr]::Zero) | Out-Null
     Start-Sleep -Milliseconds 2000
     $children=@([CsvHostWindows]::Children($window))
+    @($children | ForEach-Object { [ordered]@{ Class=[CsvHostWindows]::Class($_); Title=[CsvHostWindows]::Title($_); Visible=[CsvHostWindows]::IsWindowVisible($_); Bounds=[CsvHostWindows]::Bounds($_) } }) | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $output 'window-layout.json')
     $dock=@($children | Where-Object { [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.') -and [CsvHostWindows]::Title($_) -eq 'CSV Visual Editor' })
     if($dock.Count -ne 1) { Save-Window $window 'dock-error.png'; throw 'Cannot identify the production docking form' }
     $form=$dock[0]
@@ -107,13 +108,22 @@ try {
     # Verify the real dock, not merely the standalone search control, can shrink.
     $manager=@($children | Where-Object {[CsvHostWindows]::Class($_) -eq 'dockingManager'}) | Select-Object -First 1
     $container=[CsvHostWindows]::GetParent([CsvHostWindows]::GetParent($form))
+    if (!$manager) { throw 'Docking manager not found; resize verification cannot be skipped' }
+    $resizes=@()
     foreach($width in @(420,1000)) {
         $box=[CsvHostWindows]::Bounds($container)
         $splitter=@($children | Where-Object {[CsvHostWindows]::Class($_) -eq 'wedockspliter' -and [CsvHostWindows]::IsWindowVisible($_)} | Sort-Object { [Math]::Abs([CsvHostWindows]::Bounds($_).Right-$box.Left) }) | Select-Object -First 1
-        if($manager -and $splitter) { Send-Native $manager 0x500B ([IntPtr]($width-$box.Width)) $splitter | Out-Null; Start-Sleep -Milliseconds 500 }
+        if (!$splitter) { throw 'Visible dock splitter not found; resize verification cannot be skipped' }
+        Send-Native $manager 0x500B ([IntPtr]($width-$box.Width)) $splitter | Out-Null
+        Start-Sleep -Milliseconds 500
         Save-Window $form ("panel-width-$width.png")
+        $actual=[CsvHostWindows]::Bounds($container)
+        $panel=[CsvHostWindows]::Bounds($form)
+        $resizes += [ordered]@{ Requested=$width; ActualContainer=$actual.Width; ActualPanel=$panel.Width }
+        $resizes | ConvertTo-Json | Set-Content (Join-Path $output 'resize-evidence.json')
+        if ([Math]::Abs($actual.Width-$width) -gt 20 -or $panel.Width -gt $actual.Width) { throw 'Production dock did not honor the requested width' }
     }
-    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; Scope='Automated native-host load, render and search only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
+    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; DockWidths=$resizes; Scope='Automated native-host load, render and search only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
     Write-Host 'Real Notepad++ production-DLL load/render/search review completed.'
 } finally {
     if($process -and !$process.HasExited) { $process.Kill(); $process.WaitForExit() }

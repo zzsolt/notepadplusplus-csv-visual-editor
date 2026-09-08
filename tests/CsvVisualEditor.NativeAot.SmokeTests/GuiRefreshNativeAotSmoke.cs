@@ -34,9 +34,12 @@ internal static class GuiRefreshNativeAotSmoke
                 var drawn = CsvWhitespaceCellPainter.Draw(graphics, new RectangleF(12, 12, 970, 80),
                     new Rectangle(0, 0, 1000, 110), value, font, Color.Black, DataGridViewContentAlignment.MiddleLeft);
                 var components = OrangeComponents(bitmap);
+                var context = $"dpi={dpi}, family={family}, size={fontSize}, expected={expected}, drawn={drawn}, areas={string.Join(",", components)}";
+                if (drawn != expected || components.Count != expected || components.Any(area => area < 5))
+                    bitmap.Save("artifacts/ui-review/failed-space-raster.png");
                 Require(drawn == expected && components.Count == expected,
-                    $"Each space must remain a separate dot: dpi={dpi}, font={fontSize}, expected={expected}, drawn={drawn}, components={components.Count}.");
-                Require(components.All(area => area >= 5), "Markers must not regress to one/two-pixel specks.");
+                    $"Each space must remain a separate dot: {context}.");
+                Require(components.All(area => area >= 5), $"Markers must not regress to one/two-pixel specks: {context}.");
                 Require(components.All(area => area == components[0]), "All dots in a run must occupy the same pixel area.");
                 if (fontSize == 9 && value == "   " && family != "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-{dpi}.png");
                 if (fontSize == 10 && value == "   " && family == "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-consolas-{dpi}.png");
