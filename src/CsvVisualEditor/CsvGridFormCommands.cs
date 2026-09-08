@@ -15,6 +15,10 @@ internal sealed partial class CsvGridForm
     internal void InstallCommandSurface()
     {
         _commandSurface?.Dispose();
+        // Clipboard toolbar reconstruction clears the interpretation strip.
+        // Restore view tools before binding the permanent menu, without adding
+        // duplicate event handlers when the command surface is reinstalled.
+        InstallDataTools();
         if (!_spaceHandlerAttached)
         {
             _spaceHandlerAttached = true;

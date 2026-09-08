@@ -4,6 +4,8 @@ using CsvVisualEditor.Core;
 
 internal sealed partial class CsvGridForm
 {
+    private bool _dataToolHandlersAttached;
+    private readonly ToolStripSeparator _dataToolsSeparator = new();
     private CsvDataViewDefinition _dataView = CsvDataViewDefinition.Empty;
     private readonly ToolStripButton _dataViewButton = new("Filter and sort")
     {
@@ -16,9 +18,9 @@ internal sealed partial class CsvGridForm
 
     private void InstallDataTools()
     {
-        _viewToolStrip.Items.Add(new ToolStripSeparator());
-        _viewToolStrip.Items.Add(_dataViewButton);
-        _viewToolStrip.Items.Add(_profileButton);
+        CsvDataToolCommands.Attach(_viewToolStrip, _dataViewButton, _profileButton, _dataToolsSeparator);
+        if (_dataToolHandlersAttached) return;
+        _dataToolHandlersAttached = true;
         _dataViewButton.Click += (_, _) => ShowDataViewDialog();
         _profileButton.Click += (_, _) => ShowColumnSummary();
     }

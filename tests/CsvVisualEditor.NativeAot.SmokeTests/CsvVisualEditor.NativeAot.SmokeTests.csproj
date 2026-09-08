@@ -35,6 +35,7 @@
     <Compile Include="../../src/CsvVisualEditor/CsvCommandSurface.cs" Link="CsvCommandSurface.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvSearchBar.cs" Link="CsvSearchBar.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvAboutDialog.cs" Link="CsvAboutDialog.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvDataToolCommands.cs" Link="CsvDataToolCommands.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvDataToolStyle.cs" Link="CsvDataToolStyle.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvDataViewDialog.cs" Link="CsvDataViewDialog.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvColumnSummaryDialog.cs" Link="CsvColumnSummaryDialog.cs" />
