@@ -29,6 +29,7 @@ internal sealed partial class CsvGridForm
         _clearSearchButton.Text = "Reset view";
         _clearSearchButton.ToolTipText = "Reset view: clear search, column scope and sorting.";
         var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip);
+        surface.Menu.CanOverflow = true; // Keep About and trailing menus reachable in a narrow dock.
         _commandSurface = surface;
         surface.AddCombo(surface.Csv, "&Delimiter", _delimiterCombo);
         surface.AddCombo(surface.Csv, "&Header", _headerCombo);
