@@ -73,6 +73,10 @@ internal static class CsvWhitespaceCellPainter
             if (showSpaces && text[index] == marker) positions.Add(index);
 
         using var format = (StringFormat)StringFormat.GenericTypographic.Clone();
+        // GenericTypographic defaults to LineLimit, which can hide an entire
+        // single-line cell when its height is smaller than the scaled font.
+        // Let the existing cell clip bound trim glyphs instead of dropping them.
+        format.FormatFlags &= ~StringFormatFlags.LineLimit;
         format.FormatFlags |= StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces;
         if (rightToLeft) format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
         format.Trimming = StringTrimming.EllipsisCharacter;
