@@ -1,0 +1,68 @@
+name: Resume verified GUI repair
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/repair-final.yml']
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Verify and apply focused corrections
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/agent/source-navigation | cut -f1)" = "$EXPECTED_HEAD"
+          test "$(git rev-parse HEAD^)" = '7c230224ff1a4e45c759e4da5686f0473122f86d'
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/host-review/Invoke-HostReview.ps1')
+          s=p.read_text()
+          a=".StartsWith('WindowsForms10.EDIT.')"
+          b=".StartsWith('WindowsForms10.Edit.', [StringComparison]::OrdinalIgnoreCase)"
+          assert s.count(a)==1
+          p.write_text(s.replace(a,b))
+          p=Path('src/CsvVisualEditor/CsvWhitespaceCellPainter.cs')
+          s=p.read_text()
+          a='            var drawn = 0;\n'
+          b='''            // All markers on a single line share one vertical center. GDI+
+                      // can return different region heights for fallback whitespace glyphs.
+                      // Never let that move individual dots up/down within the same cell.
+                      var lineHeight = font.GetHeight(graphics);
+                      var markerY = format.LineAlignment switch
+                      {
+                          StringAlignment.Near => bounds.Top + lineHeight / 2f,
+                          StringAlignment.Far => bounds.Bottom - lineHeight / 2f,
+                          _ => bounds.Top + bounds.Height / 2f
+                      };
+                      var drawn = 0;
+          '''
+          assert s.count(a)==1
+          s=s.replace(a,b)
+          a='                        var y = area.Top + area.Height / 2;'
+          assert s.count(a)==1
+          p.write_text(s.replace(a,'                        var y = markerY;'))
+          PY
+          git add src/CsvVisualEditor/CsvWhitespaceCellPainter.cs tests/host-review/Invoke-HostReview.ps1
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Align every space marker to one line center and resolve native Edit class case'
+          git push origin HEAD:refs/heads/agent/source-navigation
+          mkdir -p /tmp/final-source
+          git rev-parse HEAD > /tmp/final-source/commit.txt
+          git ls-tree -r HEAD > /tmp/final-source/tree.txt
+          git archive --format=tar.gz -o /tmp/final-source/source.tar.gz HEAD
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-repair-source
+          path: /tmp/final-source/
+          if-no-files-found: error
+          retention-days: 3
