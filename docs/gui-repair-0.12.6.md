@@ -27,3 +27,20 @@ Host automation is a bounded load/render/search check, not manual acceptance or 
 4. Kereses, torles, rendezes, Edit/Transform, masolas es egy Apply/Undo kor maradjon helyes. A jelek nem kerulhetnek az adatba. Vilagos/sotet modot es a hasznalt DPI-t kulon kell ellenorizni.
 
 Record exact package and Windows/Notepad++ versions with each PASS/FAIL/NOT RUN result. Source F2-F4/G and prior unreported host cases remain pending. Both PR #12 remain draft/unmerged.
+
+## Final continuation fixes
+
+All markers in one text line now share a vertical center, instead of inheriting subtly
+different GDI+ fallback-glyph region heights. A separate Native AOT regression checks
+proportional and monospace text at five DPIs and odd/even line heights, including a
+literal Unicode space that must not become an ASCII-space marker.
+
+The first real-host attempt exposed a test-harness defect: the WinForms native class
+was `WindowsForms10.Edit`, not the case-sensitive `WindowsForms10.EDIT` comparison.
+The detector now uses ordinal-ignore-case matching and still requires exactly one
+visible query editor. The real-host check covers query clear, 420/750-pixel container
+widths, and the production About dialog with the exact package version.
+
+The 0.12.5 appearance remains rejected by the owner. Automated results are reported
+only for the exact successful final candidate; no source/Apply manual acceptance is
+inferred from this GUI-specific host check.

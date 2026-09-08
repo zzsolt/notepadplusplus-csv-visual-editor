@@ -38,6 +38,7 @@ public static class CsvHostWindows {
     [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr h, out Rect r);
     [DllImport("user32.dll")] public static extern IntPtr GetParent(IntPtr h);
     [DllImport("user32.dll")] public static extern bool MoveWindow(IntPtr h,int x,int y,int w,int t,bool repaint);
+    [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int command);
     [DllImport("user32.dll")] public static extern uint GetDpiForWindow(IntPtr h);
     [DllImport("user32.dll")] public static extern bool PrintWindow(IntPtr h, IntPtr dc, uint flags);
     [DllImport("user32.dll")] public static extern IntPtr GetMenu(IntPtr h);
@@ -53,6 +54,7 @@ public static class CsvHostWindows {
     public static Rect Bounds(IntPtr h) {Rect r;GetWindowRect(h,out r);return r;}
     public static IntPtr[] Children(IntPtr h) {var a=new List<IntPtr>();EnumChildWindows(h,(w,l)=>{a.Add(w);return true;},IntPtr.Zero);return a.ToArray();}
     public static IntPtr FindProcess(uint pid) {IntPtr found=IntPtr.Zero;EnumWindows((w,l)=>{uint p;GetWindowThreadProcessId(w,out p);if(p==pid && Class(w)=="Notepad++")found=w;return true;},IntPtr.Zero);return found;}
+    public static IntPtr FindNamedWindow(uint pid, string title) {IntPtr found=IntPtr.Zero;EnumWindows((w,l)=>{uint p;GetWindowThreadProcessId(w,out p);if(p==pid && Title(w)==title && IsWindowVisible(w))found=w;return true;},IntPtr.Zero);return found;}
     public static uint FindCommand(IntPtr menu,string name) {
         for(int i=0;i<GetMenuItemCount(menu);i++) { var b=new StringBuilder(512);GetMenuString(menu,(uint)i,b,b.Capacity,0x400);var s=b.ToString().Replace("&","");
             if(s.Split('\t')[0]==name)return GetMenuItemID(menu,i);
@@ -84,6 +86,7 @@ try {
     $window=[IntPtr]::Zero
     for($i=0;$i -lt 100 -and $window -eq [IntPtr]::Zero;$i++) { Start-Sleep -Milliseconds 100; $window=[CsvHostWindows]::FindProcess($process.Id) }
     if($window -eq [IntPtr]::Zero) {throw 'Notepad++ did not create its window'}
+    [CsvHostWindows]::ShowWindow($window,9) | Out-Null
     [CsvHostWindows]::MoveWindow($window,0,0,1420,880,$true) | Out-Null
     Start-Sleep -Milliseconds 1000
     $command=[CsvHostWindows]::FindCommand([CsvHostWindows]::GetMenu($window),'Open Visual Table')
@@ -110,7 +113,8 @@ try {
     $container=[CsvHostWindows]::GetParent([CsvHostWindows]::GetParent($form))
     if (!$manager) { throw 'Docking manager not found; resize verification cannot be skipped' }
     $resizes=@()
-    foreach($width in @(420,1000)) {
+    # Leave room for the editor even on a 1024px CI desktop; 750 tests the wide layout.
+    foreach($width in @(420,750)) {
         $box=[CsvHostWindows]::Bounds($container)
         $splitter=@($children | Where-Object {[CsvHostWindows]::Class($_) -eq 'wedockspliter' -and [CsvHostWindows]::IsWindowVisible($_)} | Sort-Object { [Math]::Abs([CsvHostWindows]::Bounds($_).Right-$box.Left) }) | Select-Object -First 1
         if (!$splitter) { throw 'Visible dock splitter not found; resize verification cannot be skipped' }
@@ -123,7 +127,24 @@ try {
         $resizes | ConvertTo-Json | Set-Content (Join-Path $output 'resize-evidence.json')
         if ([Math]::Abs($actual.Width-$width) -gt 20 -or $panel.Width -gt $actual.Width) { throw 'Production dock did not honor the requested width' }
     }
-    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; DockWidths=$resizes; Scope='Automated native-host load, render and search only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
+    # Clearing the actual query must restore the unfiltered table.
+    if([CsvHostWindows]::Text($query[0],0xC,[IntPtr]::Zero,'',2,5000,[ref]$result) -eq [IntPtr]::Zero){throw 'Clear search message timed out'}
+    Start-Sleep -Milliseconds 600
+    Save-Window $form 'panel-clear.png'
+    $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::Title($_) })
+    if($labels -match '1 / 1') {throw 'Clear left a stale result counter'}
+    # Open the real plugin About command without blocking on its modal dialog.
+    $aboutCommand=[CsvHostWindows]::FindCommand([CsvHostWindows]::GetMenu($window),'About')
+    if($aboutCommand -eq 0) {throw 'Plugin About command missing'}
+    [CsvHostWindows]::PostMessage($window,0x111,[IntPtr]$aboutCommand,[IntPtr]::Zero) | Out-Null
+    $about=[IntPtr]::Zero
+    for($i=0;$i -lt 50 -and $about -eq [IntPtr]::Zero;$i++) {Start-Sleep -Milliseconds 100; $about=[CsvHostWindows]::FindNamedWindow($process.Id,'About CSV Visual Editor')}
+    if($about -eq [IntPtr]::Zero) {throw 'Production About dialog did not open'}
+    Save-Window $about 'about-production.png'
+    $aboutText=@([CsvHostWindows]::Children($about) | ForEach-Object { [CsvHostWindows]::Title($_) }) -join "`n"
+    if(!$aboutText.Contains('Zolnai Zsolt') -or !$aboutText.Contains('zzsolt@gmail.com') -or !$aboutText.Contains($env:PACKAGE_VERSION)) {throw 'Production About content or package version mismatch'}
+    Send-Native $about 0x10 ([IntPtr]::Zero) ([IntPtr]::Zero) | Out-Null
+    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; Scope='Automated native-host load, render, search, clear, resize and About only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
     Write-Host 'Real Notepad++ production-DLL load/render/search review completed.'
 } finally {
     if($process -and !$process.HasExited) { $process.Kill(); $process.WaitForExit() }
