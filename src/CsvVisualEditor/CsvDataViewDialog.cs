@@ -235,7 +235,7 @@ internal sealed class CsvDataViewDialog : Form
         private readonly ComboBox _column;
         private readonly ComboBox _operator;
         private readonly TextBox _value = new() { Name = "CsvFilterValue", AccessibleName = "Filter value", Dock = DockStyle.Fill, Margin = new Padding(4, 5, 4, 5), MaxLength = CsvColumnFilter.MaximumValueLength };
-        private readonly CheckBox _case = new() { Name = "CsvFilterMatchCase", AccessibleName = "Match case", AutoSize = true, Anchor = AnchorStyles.None };
+        private readonly CheckBox _case = new() { Name = "CsvFilterMatchCase", AccessibleName = "Match case", AutoSize = true, MinimumSize = new Size(24, 24), Anchor = AnchorStyles.None };
         internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveFilter", AccessibleName = "Remove condition", Dock = DockStyle.Fill, Margin = new Padding(4) };
 
         internal FilterRow(CsvTableProjection projection, CsvColumnFilter? condition, Action changed, ToolTip tips)
