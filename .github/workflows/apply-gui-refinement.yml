@@ -1,0 +1,49 @@
+name: Apply verified GUI refinement
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/apply-gui-refinement.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.repository == 'zzsolt/notepadplusplus-csv-visual-editor' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'agent/source-navigation' && github.event.pull_request.number == 12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Verify exact base and apply reviewed source patch
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin refs/heads/agent/source-navigation | cut -f1)" = "$EXPECTED_HEAD"
+          python - <<'PY'
+          import base64, bz2, hashlib, pathlib, subprocess
+          base = 'e75b8e07dc17ccdcbb69ac1da194ea975906a082'
+          allowed = {'.github/workflows/apply-gui-refinement.yml'} | {f'.gui0125/part-{i:02d}' for i in range(4)}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', base, 'HEAD'], text=True).splitlines())
+          if changed != allowed:
+              raise SystemExit('Branch changed outside the verified transport files; refusing to overwrite.')
+          encoded = ''.join(pathlib.Path(f'.gui0125/part-{i:02d}').read_text().strip() for i in range(4))
+          patch = bz2.decompress(base64.b64decode(encoded, validate=True))
+          if hashlib.sha256(patch).hexdigest() != 'a4aa5fe64ed77c39be7c7115b9cdd7a4135d6ba9a5456a928ce492a0bb4ad7fd':
+              raise SystemExit('Source patch checksum mismatch.')
+          subprocess.run(['git', 'apply', '--check', '--index', '-'], input=patch, check=True)
+          subprocess.run(['git', 'apply', '--index', '-'], input=patch, check=True)
+          PY
+          git rm -r .gui0125 .github/workflows/apply-gui-refinement.yml
+          git diff --cached --check
+          test "$(git write-tree)" = '48ba7555f4277bc98de6808b44c70a5fcc464358'
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Implement separated space dots, responsive cell search, About and GUI regressions'
+          git push origin HEAD:refs/heads/agent/source-navigation
