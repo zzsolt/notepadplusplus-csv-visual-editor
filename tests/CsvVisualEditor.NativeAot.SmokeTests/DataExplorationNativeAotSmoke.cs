@@ -44,18 +44,28 @@ internal static class DataExplorationNativeAotSmoke
         Find<TextBox>(second, "CsvFilterValue").Text = "gamma";
         Button(dialog, "CsvPreviewView").PerformClick();
         Require(dialog.Preview?.VisibleRowCount == 3, "ANY conditions must combine the draft correctly.");
-        Save(dialog, $"data-filters-{mode}.png");
-        foreach (var width in new[] { 740, 1000 })
+                foreach (var width in new[] { 740, 1000 })
         {
             dialog.Width = width; Application.DoEvents();
             foreach (var filterRow in Descendants(dialog).Where(c => c.Name == "CsvFilterRow"))
             {
+                var panel = filterRow.Parent!;
+                var expected = panel.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 6;
+                Require(filterRow.Width == expected, "AutoSize rules must fill the available row width, not collapse to preferred content width.");
+                var headings = Find<TableLayoutPanel>(dialog, "CsvFilterHeadings");
+                var value = Find<TextBox>(filterRow, "CsvFilterValue");
+                var valueHeading = headings.GetControlFromPosition(2, 0)!;
+                Require(Math.Abs(value.PointToScreen(Point.Empty).X - valueHeading.PointToScreen(Point.Empty).X) <= 8,
+                    "The literal-value editor must align with its heading after resize.");
+                var check = Find<CheckBox>(filterRow, "CsvFilterMatchCase");
+                Require(check.Width >= check.PreferredSize.Width, "Match-case checkbox must not be clipped.");
                 var cols = filterRow.Controls.Cast<Control>().OrderBy(c => c.Left).ToArray();
                 Require(cols.All(c => c.Width > 20 && c.Right <= filterRow.ClientSize.Width), "Filter controls must remain inside the row.");
                 for (var i = 1; i < cols.Length; i++) Require(cols[i - 1].Right <= cols[i].Left, "Filter controls must not overlap.");
             }
             Require(Button(dialog, "CsvApplyView").Visible, "Apply must remain visible after resize.");
         }
+        Save(dialog, $"data-filters-{mode}.png");
         Find<TabControl>(dialog, "CsvViewRuleTabs").SelectedIndex = 1;
         Button(dialog, "CsvAddSort").PerformClick();
         var sort = Find<Control>(dialog, "CsvSortRow");
@@ -64,6 +74,8 @@ internal static class DataExplorationNativeAotSmoke
         Find<ComboBox>(sort, "CsvSortDirection").SelectedIndex = 1;
         Button(dialog, "CsvPreviewView").PerformClick();
         Require(dialog.Preview?.Rows[0].Values[1] == "10", "Number descending must place 10 above 3.");
+        Require(sort.Width == sort.Parent!.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 6,
+            "Sort levels must fill the available row width.");
         Save(dialog, $"data-sorting-{mode}.png");
         Button(dialog, "CsvApplyView").PerformClick();
         Require(dialog.DialogResult == DialogResult.OK && dialog.Result is { Filters.Count: 2, SortKeys.Count: 1 }, "Apply must publish the validated immutable definition.");

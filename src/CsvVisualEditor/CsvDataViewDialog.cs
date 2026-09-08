@@ -70,7 +70,7 @@ internal sealed class CsvDataViewDialog : Form
         _combination.Width = 210;
         modeRow.Controls.AddRange([_combination, _addFilter]);
         filterLayout.Controls.Add(modeRow, 0, 0);
-        var headings = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, ColumnCount = 5, Margin = Padding.Empty };
+        var headings = new TableLayoutPanel { Name = "CsvFilterHeadings", Dock = DockStyle.Fill, AutoSize = true, ColumnCount = 5, Margin = Padding.Empty };
         headings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27));
         headings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29));
         headings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 44));
@@ -140,7 +140,15 @@ internal sealed class CsvDataViewDialog : Form
     private static void FitRows(FlowLayoutPanel panel)
     {
         var width = Math.Max(100, panel.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 6);
-        foreach (Control row in panel.Controls) row.Width = width;
+        foreach (Control row in panel.Controls)
+        {
+            // FlowLayoutPanel otherwise replaces an AutoSize row's explicit
+            // Width with its preferred width, misaligning it with the headings.
+            // Constrain the horizontal dimension; keep height content-driven.
+            row.MinimumSize = new Size(width, 0);
+            row.MaximumSize = new Size(width, 0);
+            row.Width = width;
+        }
     }
 
     private void AddFilter(CsvColumnFilter? condition)
@@ -227,7 +235,7 @@ internal sealed class CsvDataViewDialog : Form
         private readonly ComboBox _column;
         private readonly ComboBox _operator;
         private readonly TextBox _value = new() { Name = "CsvFilterValue", AccessibleName = "Filter value", Dock = DockStyle.Fill, Margin = new Padding(4, 5, 4, 5), MaxLength = CsvColumnFilter.MaximumValueLength };
-        private readonly CheckBox _case = new() { Text = "Aa", AccessibleName = "Match case", AutoSize = true, Anchor = AnchorStyles.None };
+        private readonly CheckBox _case = new() { Name = "CsvFilterMatchCase", AccessibleName = "Match case", AutoSize = true, Anchor = AnchorStyles.None };
         internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveFilter", AccessibleName = "Remove condition", Dock = DockStyle.Fill, Margin = new Padding(4) };
 
         internal FilterRow(CsvTableProjection projection, CsvColumnFilter? condition, Action changed, ToolTip tips)

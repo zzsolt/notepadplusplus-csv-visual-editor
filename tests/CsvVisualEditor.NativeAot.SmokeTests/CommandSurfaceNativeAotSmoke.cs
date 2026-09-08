@@ -18,11 +18,30 @@ internal static class CommandSurfaceNativeAotSmoke
         combo.Items.AddRange(["All columns", "Name"]);
         combo.SelectedIndex = 0;
         options.Items.Add(combo);
+        var filters = new ToolStripButton("Filter and sort");
+        var summary = new ToolStripButton("Column summary");
+        options.Items.AddRange([filters, summary]);
         using var surface = new CsvCommandSurface(commands, options);
         var focusCalls = 0;
         surface.AddSearch(query, () => focusCalls++, _ => { }, () => true);
         surface.AddCombo(surface.Csv, "Column", combo);
         surface.ApplyAppearance(SystemColors.Control, Color.Black, 96);
+        foreach (var tool in new[] { filters, summary })
+        {
+            var menu = surface.View.DropDownItems.OfType<ToolStripMenuItem>().Single(item => item.Text == tool.Text);
+            var calls = 0;
+            tool.Click += (_, _) => calls++;
+            menu.PerformClick();
+            Require(calls == 1 && tool.Image is not null && tool.DisplayStyle == ToolStripItemDisplayStyle.Image,
+                "Data tools must have icons and share a single menu/toolbar command.");
+            tool.Enabled = false;
+            Require(!menu.Enabled, "Disabled data tools must remain disabled in the text menu.");
+            menu.PerformClick();
+            Require(calls == 1, "Disabled data-tool menus must not dispatch.");
+        }
+        filters.Checked = true;
+        Require(surface.View.DropDownItems.OfType<ToolStripMenuItem>().Single(item => item.Text == filters.Text).Checked,
+            "Active filter indicator must synchronize with its text-menu entry.");
         Require(surface.Menu.Items.Count == 6, "The full text menu must always exist.");
         Require(copy.DisplayStyle == ToolStripItemDisplayStyle.Image && copy.Image is not null,
             "The primary toolbar must use graphical icons.");
