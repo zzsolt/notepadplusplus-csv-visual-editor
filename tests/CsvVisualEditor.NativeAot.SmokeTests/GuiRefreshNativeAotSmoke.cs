@@ -36,6 +36,7 @@ internal static class GuiRefreshNativeAotSmoke
                 var components = OrangeComponents(bitmap);
                 Require(drawn == expected && components.Count == expected,
                     $"Each space must remain a separate dot: dpi={dpi}, font={fontSize}, expected={expected}, drawn={drawn}, components={components.Count}.");
+                Require(components.All(area => area >= 5), "Markers must not regress to one/two-pixel specks.");
                 Require(components.All(area => area == components[0]), "All dots in a run must occupy the same pixel area.");
                 if (fontSize == 9 && value == "   " && family != "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-{dpi}.png");
                 if (fontSize == 10 && value == "   " && family == "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-consolas-{dpi}.png");
@@ -49,7 +50,8 @@ internal static class GuiRefreshNativeAotSmoke
         var color = CsvWhitespaceCellPainter.DotColor.ToArgb();
         for (var y = 0; y < bitmap.Height; y++)
             for (var x = 0; x < bitmap.Width; x++)
-                if (bitmap.GetPixel(x, y).ToArgb() == color) pixels.Add(new Point(x, y));
+                if (bitmap.GetPixel(x, y).ToArgb() == color ||
+                    bitmap.GetPixel(x, y).ToArgb() == CsvWhitespaceCellPainter.DarkDotColor.ToArgb()) pixels.Add(new Point(x, y));
         var components = new List<int>();
         var queue = new Queue<Point>();
         while (pixels.Count > 0)
@@ -76,7 +78,7 @@ internal static class GuiRefreshNativeAotSmoke
 
     private static void TestSearchBar()
     {
-        foreach (var width in new[] { 260, 400, 750 })
+        foreach (var width in new[] { 260, 400, 599, 600, 750, 1200 })
         foreach (var dark in new[] { false, true })
         {
             using var form = new Form { ClientSize = new Size(width, 180), ShowInTaskbar = false };
@@ -102,6 +104,17 @@ internal static class GuiRefreshNativeAotSmoke
             using var bitmap = new Bitmap(width, Math.Max(1, bar.Height));
             bar.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
             bitmap.Save($"artifacts/ui-review/search-{width}-{(dark ? "dark" : "light")}.png");
+            var field = bar.Query.Parent!;
+            Require(field.Width <= (int)Math.Round(600 * bar.DeviceDpi / 96d),
+                "A wide dock must not stretch the query across the entire panel.");
+            Require(bar.Next.Right - field.Left <= (int)Math.Round(850 * bar.DeviceDpi / 96d),
+                "Search controls must form a compact group even at 1200px.");
+            foreach (Control child in field.Controls)
+                Require(child.Top > 0 && child.Bottom < field.Height && child.Left > 0 && child.Right < field.Width,
+                    "Native search children must not erase the field border.");
+            var border = bitmap.GetPixel(field.Left + 1, field.Top).ToArgb();
+            for (var x = field.Left + 1; x < field.Right - 1; x++)
+                Require(bitmap.GetPixel(x, field.Top).ToArgb() == border, "The search top border must be continuous.");
             Require(bar.Query.Width >= 90, "The query must remain usable at narrow dock widths.");
             Require(bar.Query.Right < bar.Clear.Left, "Query and clear button must not overlap.");
             Require(bar.Column.Right <= bar.ResultLabel.Left, "Scope and result count must not overlap.");
@@ -117,7 +130,9 @@ internal static class GuiRefreshNativeAotSmoke
             bar.Previous.PerformClick();
             Require(navigation == 0, "Next and previous must dispatch once each.");
             bar.Clear.PerformClick();
-            Require(bar.Query.TextLength == 0, "Clear must update the actual search input.");
+            Require(bar.Query.TextLength == 0 && !bar.Clear.Visible, "An empty search must hide its redundant clear icon.");
+            bar.SetResults(-1, 0, false);
+            Require(bar.ResultLabel.Text.Length == 0, "An idle search must not repeat the placeholder in another label.");
             bar.Query.Enabled = false;
             Require(!bar.Next.Enabled && !bar.Previous.Enabled && !bar.Clear.Enabled, "Unavailable search must disable commands.");
             form.Close();
@@ -134,7 +149,7 @@ internal static class GuiRefreshNativeAotSmoke
             var grid = new CsvDataGridView
             {
                 Dock = DockStyle.Fill, AllowUserToAddRows = false, BackgroundColor = background,
-                EnableHeadersVisualStyles = false, GridColor = Color.Gray, CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+                EnableHeadersVisualStyles = false, GridColor = Color.Gray, CellBorderStyle = DataGridViewCellBorderStyle.Single
             };
             grid.DefaultCellStyle.BackColor = background;
             grid.DefaultCellStyle.ForeColor = foreground;
@@ -155,6 +170,8 @@ internal static class GuiRefreshNativeAotSmoke
             grid.SetSearchResults(CsvCellSearchIndex.Create(view));
             form.Controls.Add(grid);
             form.Show();
+            Require(grid.Font.FontFamily.Name == form.Font.FontFamily.Name,
+                "Data cells must inherit normal UI typography, not a forced monospace font.");
             grid.ClearSelection();
             grid.CurrentCell = grid.Rows[1].Cells[0];
             Application.DoEvents();
@@ -163,9 +180,9 @@ internal static class GuiRefreshNativeAotSmoke
             using var cell = image.Clone(grid.GetCellDisplayRectangle(0, 0, false), image.PixelFormat);
             var components = OrangeComponents(cell);
             image.Save($"artifacts/ui-review/grid-{(dark ? "dark" : "light")}.png");
-            Require(components.Count == 3 && components.All(area => area >= 4),
+            Require(components.Count == 3 && components.All(area => area >= 5),
                 "Actual grid value font must expose three separated, visible solid dots, not one-pixel specks.");
-            Require((string?)grid.Rows[0].Cells[0].Value == "   ", "Monospaced value display must preserve real spaces.");
+            Require((string?)grid.Rows[0].Cells[0].Value == "   ", "Paint-only space slots must preserve real spaces.");
             form.Close();
         }
     }

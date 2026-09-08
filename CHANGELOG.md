@@ -4,6 +4,15 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.6 visual regression repair
+
+- Restore standard UI typography and vertical cell borders; remove the forced value font.
+- Render legible 3-DIP orange space dots, with higher contrast and separate display-only whitespace slots. Original CSV, clipboard and edit values remain unchanged. Native in-cell editing remains standard.
+- Repair the interrupted search-field border, keep scope/count/navigation grouped, cap query width and remove redundant idle text/clear icon. Narrow layouts no longer inherit a 620px form minimum.
+- Keep initial table focus on a data cell rather than the presentation-only record-number lane. Avoid redundant invalidations while a cleared search index is already null.
+- Add full production-DLL load/render/search review in an isolated, checksum-pinned portable Notepad++ 8.9.8, with captured panel images. This does not replace user acceptance, multi-monitor/DPI or Apply/Undo tests.
+
+
 ### Additional 0.12.5 audit corrections
 
 - Use monospaced value cells in the table and Transform for clearly separated solid space dots; keep normal UI header fonts and raw values.

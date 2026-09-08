@@ -7,7 +7,6 @@ internal enum CsvTransformScope { SelectedCells, CurrentColumn, AllDataCells }
 /// <summary>Preview/accept UI only; callbacks operate on the pending model.</summary>
 internal sealed class CsvTransformDialog : Form
 {
-    private readonly Font _valueFont = new("Consolas", 10f, FontStyle.Regular, GraphicsUnit.Point);
     private readonly ComboBox _operation = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 200 };
     private readonly ComboBox _scope = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 200 };
     private readonly TextBox _find = new() { Width = 230 };
@@ -33,8 +32,7 @@ internal sealed class CsvTransformDialog : Form
         Action<CsvCellTransformPlan> apply,
         bool showSpaces = true)
     {
-        _samples.ColumnHeadersDefaultCellStyle.Font = Font;
-        _samples.Font = _valueFont;
+        _samples.Font = Font;
         _showSpaces = showSpaces;
         _create = create;
         _apply = apply;
@@ -177,12 +175,6 @@ internal sealed class CsvTransformDialog : Form
             InvalidatePreview();
             _summary.Text = "The preview is no longer valid. Check the Edit session and create a new preview.";
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing) _valueFont?.Dispose();
     }
 
     internal static string Sample(string value)

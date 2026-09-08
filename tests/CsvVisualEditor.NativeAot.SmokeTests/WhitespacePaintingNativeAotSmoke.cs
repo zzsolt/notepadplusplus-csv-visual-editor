@@ -84,7 +84,8 @@ internal static class WhitespacePaintingNativeAotSmoke
             for (var x = 0; x < bitmap.Width; x++)
             {
                 var color = bitmap.GetPixel(x, y);
-                if (color.R > 200 && color.G > 70 && color.G < 190 && color.B < 80) count++;
+                if (color.ToArgb() == CsvWhitespaceCellPainter.DotColor.ToArgb() ||
+                    color.ToArgb() == CsvWhitespaceCellPainter.DarkDotColor.ToArgb()) count++;
             }
         return count;
     }

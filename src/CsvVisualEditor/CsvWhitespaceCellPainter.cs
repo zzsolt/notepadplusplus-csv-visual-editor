@@ -5,7 +5,10 @@ using System.Drawing.Drawing2D;
 /// <summary>Paint-only space dots. Never changes Value, FormattedValue or clipboard data.</summary>
 internal static class CsvWhitespaceCellPainter
 {
-    internal static readonly Color DotColor = Color.DarkOrange;
+    // Dark orange has sufficient contrast on a white cell; use a lighter
+    // variant on a dark/selected cell. Keep all geometry independent of color.
+    internal static readonly Color DotColor = Color.FromArgb(181, 82, 0);
+    internal static readonly Color DarkDotColor = Color.FromArgb(255, 190, 92);
     internal const int MaximumPaintCharacters = 1024;
 
     internal static void Paint(DataGridView grid, DataGridViewCellPaintingEventArgs e, char marker = ' ', bool showSpaces = true, bool searchMatch = false)
@@ -44,7 +47,9 @@ internal static class CsvWhitespaceCellPainter
                 Draw(graphics, bounds, Rectangle.Intersect(e.ClipBounds, e.CellBounds),
                     value, style.Font ?? grid.Font,
                     selected ? style.SelectionForeColor : style.ForeColor,
-                    style.Alignment, grid.RightToLeft == RightToLeft.Yes, marker, showSpaces);
+                    style.Alignment, grid.RightToLeft == RightToLeft.Yes, marker, showSpaces,
+                    (selected ? style.SelectionBackColor : style.BackColor).GetBrightness() < 0.5f
+                        ? DarkDotColor : DotColor, grid.DeviceDpi);
             }
         }
         e.Paint(e.ClipBounds, e.PaintParts & (DataGridViewPaintParts.Focus | DataGridViewPaintParts.ErrorIcon));
@@ -53,7 +58,8 @@ internal static class CsvWhitespaceCellPainter
 
     internal static int Draw(Graphics graphics, RectangleF bounds, Rectangle clip,
         string value, Font font, Color foreground, DataGridViewContentAlignment alignment,
-        bool rightToLeft = false, char marker = ' ', bool showSpaces = true)
+        bool rightToLeft = false, char marker = ' ', bool showSpaces = true,
+        Color? markerColor = null, float? deviceDpi = null)
     {
         var length = Math.Min(value.Length, MaximumPaintCharacters);
         if (length < value.Length && length > 0 && char.IsHighSurrogate(value[length - 1])) length--;
@@ -65,7 +71,6 @@ internal static class CsvWhitespaceCellPainter
         var positions = new List<int>();
         for (var index = 0; index < text.Length; index++)
             if (showSpaces && text[index] == marker) positions.Add(index);
-        if (marker != ' ') text = text.Replace(marker, ' ');
 
         using var format = (StringFormat)StringFormat.GenericTypographic.Clone();
         format.FormatFlags |= StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces;
@@ -84,20 +89,36 @@ internal static class CsvWhitespaceCellPainter
             _ => StringAlignment.Center
         };
 
+        var dpi = deviceDpi ?? graphics.DpiX;
+        var diameter = Math.Max(3, (int)Math.Round(3 * dpi / 96f, MidpointRounding.AwayFromZero));
+        if (positions.Count > 0)
+        {
+            // A visible 3-DIP dot cannot fit in a 2-DIP proportional-font space.
+            // Widen ONLY its paint-time slot, not the font, Value, edit model or
+            // clipboard. En/em spaces preserve the single-layout Unicode shaping.
+            // The original text still supplies positions; literal Unicode spaces
+            // never become ASCII-space markers.
+            var minimumAdvance = diameter + Math.Max(2, (int)Math.Ceiling(2 * dpi / 96f));
+            using var measure = (StringFormat)StringFormat.GenericTypographic.Clone();
+            measure.FormatFlags |= StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces;
+            var slot = ' ';
+            if (graphics.MeasureString(" ", font, int.MaxValue, measure).Width < minimumAdvance)
+                slot = graphics.MeasureString("\u2002", font, int.MaxValue, measure).Width >= minimumAdvance
+                    ? '\u2002' : '\u2003';
+            text = text.Replace(marker, slot);
+        }
+        else if (marker != ' ') text = text.Replace(marker, ' ');
+
         var state = graphics.Save();
         try
         {
             graphics.SetClip(clip, CombineMode.Intersect);
             graphics.SetClip(bounds, CombineMode.Intersect);
+            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             using var textBrush = new SolidBrush(foreground);
             graphics.DrawString(text, font, textBrush, bounds, format);
             if (positions.Count == 0) return 0;
-            using var dotBrush = new SolidBrush(DotColor);
-            // Reserve at least one background pixel between adjacent dots, even in
-            // narrow proportional fonts. Compute once per font/DPI, not per glyph.
-            var spaceAdvance = graphics.MeasureString(" ", font, int.MaxValue, format).Width;
-            var diameter = Math.Min(Math.Max(1, (int)Math.Floor(spaceAdvance) - 1),
-                Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f)));
+            using var dotBrush = new SolidBrush(markerColor ?? DotColor);
             graphics.SmoothingMode = SmoothingMode.None;
             graphics.PixelOffsetMode = PixelOffsetMode.None;
             var drawn = 0;
@@ -131,9 +152,9 @@ internal static class CsvWhitespaceCellPainter
 
     internal static void DrawSpaceMarker(Graphics graphics, Brush brush, float centerX, float centerY, int diameter = 0)
     {
-        // An outlined 2px ellipse occupies 3+ pixels and fuses adjacent spaces in
-        // proportional UI fonts. A filled, integer-aligned dot stays within its box.
-        if (diameter <= 0) diameter = Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f));
+        // A legible filled dot, never the former one/two-pixel speck. The caller
+        // reserves a distinct paint-only slot for each original ASCII space.
+        if (diameter <= 0) diameter = Math.Max(3, (int)Math.Round(3 * graphics.DpiX / 96f));
         var x = (int)Math.Round(centerX - diameter / 2f, MidpointRounding.AwayFromZero);
         var y = (int)Math.Round(centerY - diameter / 2f, MidpointRounding.AwayFromZero);
         if (diameter <= 2) graphics.FillRectangle(brush, x, y, diameter, diameter);
@@ -148,6 +169,6 @@ internal static class CsvWhitespaceCellPainter
         while (leading < value.Length && value[leading] == ' ') leading++;
         var trailing = 0;
         while (trailing < value.Length && value[value.Length - trailing - 1] == ' ') trailing++;
-        return $"Spaces: {count}; leading: {leading}; trailing: {trailing}. Length: {value.Length} UTF-16 units.\nOrange solid dots mark empty spaces, not CSV characters. Leading/trailing counts overlap for an all-space cell.";
+        return $"Spaces: {count}; leading: {leading}; trailing: {trailing}. Length: {value.Length} UTF-16 units.\nOrange dots mark real spaces. Their display spacing is expanded for readability; CSV characters are unchanged. Leading/trailing counts overlap for an all-space cell.";
     }
 }

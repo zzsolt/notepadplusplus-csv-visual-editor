@@ -20,8 +20,8 @@ internal sealed class CsvSearchBar : UserControl
     internal Button Clear { get; } = CreateButton("Clear search", 4);
     internal Label ResultLabel { get; } = new()
     {
-        Name = "CsvSearchResults", AutoEllipsis = true, TextAlign = ContentAlignment.MiddleRight,
-        AccessibleName = "Search results", Text = "Type to search", UseMnemonic = false
+        Name = "CsvSearchResults", AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft,
+        AccessibleName = "Search results", Text = string.Empty, UseMnemonic = false
     };
     private readonly Panel _field = new() { Name = "CsvSearchField" };
     private readonly PictureBox _magnifier = new() { SizeMode = PictureBoxSizeMode.CenterImage, TabStop = false };
@@ -47,13 +47,14 @@ internal sealed class CsvSearchBar : UserControl
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         Dock = DockStyle.Fill;
         Margin = Padding.Empty;
-        MinimumSize = new Size(0, 44);
+        MinimumSize = new Size(0, 36);
         _field.Controls.AddRange([_magnifier, Query, Clear]);
         Controls.AddRange([_field, Column, Previous, Next, ResultLabel]);
         _field.Paint += (_, e) =>
         {
-            using var pen = new Pen(Query.Focused ? _accent : _border, Query.Focused ? 2 : 1);
-            e.Graphics.DrawRectangle(pen, 1, 1, Math.Max(0, _field.Width - 3), Math.Max(0, _field.Height - 3));
+            // All child windows are inset: none may erase a segment of this border.
+            using var pen = new Pen(Query.Focused ? _accent : _border);
+            e.Graphics.DrawRectangle(pen, 0, 0, Math.Max(0, _field.Width - 1), Math.Max(0, _field.Height - 1));
         };
         _field.Click += (_, _) => Query.Focus();
         _magnifier.Click += (_, _) => FocusQuery();
@@ -107,7 +108,7 @@ internal sealed class CsvSearchBar : UserControl
     private void UpdateResultText()
     {
         var narrow = ClientSize.Width < Unit(340);
-        ResultLabel.Text = _pending ? "Searching..." : !_hasQuery ? (narrow ? "Search" : "Type to search") :
+        ResultLabel.Text = _pending ? "Searching..." : !_hasQuery ? string.Empty :
             _total == 0 ? "No matches" : _currentIndex >= 0 ?
                 $"{_currentIndex + 1:N0} / {_total:N0}" + (narrow ? "" : " cells") : $"{_total:N0} cells";
         _tips.SetToolTip(ResultLabel, ResultLabel.Text + ". Counts matching cells, not repeated occurrences within a cell.");
@@ -117,6 +118,7 @@ internal sealed class CsvSearchBar : UserControl
     {
         Previous.Enabled = Next.Enabled = Query.Enabled && !_pending && _total > 0;
         Clear.Enabled = Query.Enabled && Query.TextLength > 0;
+        Clear.Visible = Query.TextLength > 0;
     }
 
     internal void ApplyAppearance(Color background, Color foreground)
@@ -165,10 +167,14 @@ internal sealed class CsvSearchBar : UserControl
 
     private int Unit(int value) => Math.Max(1, (int)Math.Round(value * DeviceDpi / 96d));
 
+    private int RowHeight => Math.Max(Unit(28), Math.Max(Query.PreferredHeight + Unit(10), Column.PreferredHeight + Unit(4)));
+    private bool IsCompact(int width) => width < Unit(600);
+
     public override Size GetPreferredSize(Size proposedSize)
     {
         var width = proposedSize.Width > 0 ? proposedSize.Width : Width;
-        return new Size(0, Unit(width < Unit(610) ? 82 : 44));
+        var row = RowHeight;
+        return new Size(0, Unit(10) + row + (IsCompact(width) ? row + Unit(4) : 0));
     }
 
     protected override void OnLayout(LayoutEventArgs e)
@@ -178,28 +184,32 @@ internal sealed class CsvSearchBar : UserControl
         _layingOut = true;
         try
         {
-            var pad = Unit(8);
+            var pad = Unit(6);
             var gap = Unit(6);
-            var height = Unit(30);
-            var button = Unit(28);
+            var top = Unit(5);
+            var height = RowHeight;
+            var button = Unit(26);
             var width = Math.Max(1, ClientSize.Width - pad * 2);
-            var compact = ClientSize.Width < Unit(610);
-            var rowY = compact ? pad + height + gap : pad;
-            var desiredResults = Unit(ClientSize.Width < Unit(340) ? 64 : 110);
-            var scope = compact ? Math.Max(Unit(72), width - desiredResults - button * 2 - gap * 3) : Unit(156);
-            scope = Math.Min(scope, Math.Max(1, width - button * 2 - gap * 2));
-            var resultWidth = Math.Max(1, Math.Min(desiredResults, width - scope - button * 2 - gap * 3));
-            var fieldWidth = compact ? width : Math.Max(1, width - scope - resultWidth - button * 2 - gap * 4);
-            _field.SetBounds(pad, pad, fieldWidth, height);
+            var compact = IsCompact(ClientSize.Width);
+            var rowY = compact ? top + height + Unit(4) : top;
+            var resultWidth = Unit(ClientSize.Width < Unit(340) ? 64 : 100);
+            resultWidth = Math.Min(resultWidth, Math.Max(Unit(24), width - Unit(94) - 2 * button - 3 * gap));
+            var scope = Math.Min(Unit(156), Math.Max(Unit(60), width - resultWidth - 2 * button - 3 * gap));
+            // Pack the controls together instead of separating arrows/counter at
+            // the far edge of a wide dock. Do not turn a query into a 750px field.
+            var fieldWidth = compact ? width : Math.Min(Unit(420), Math.Max(1,
+                width - scope - resultWidth - button * 2 - gap * 4));
+            _field.SetBounds(pad, top, fieldWidth, height);
             var scopeX = compact ? pad : pad + fieldWidth + gap;
             Column.SetBounds(scopeX, rowY + Math.Max(0, (height - Column.PreferredHeight) / 2), scope, Column.PreferredHeight);
             ResultLabel.SetBounds(scopeX + scope + gap, rowY, resultWidth, height);
-            var navX = pad + width - button * 2 - gap;
+            var navX = ResultLabel.Right + gap;
             Previous.SetBounds(navX, rowY, button, height);
             Next.SetBounds(navX + button + gap, rowY, button, height);
-            _magnifier.SetBounds(Unit(6), 1, Unit(20), height - 2);
-            Clear.SetBounds(Math.Max(1, fieldWidth - button - Unit(3)), Unit(2), button, height - Unit(4));
-            Query.SetBounds(Unit(32), Math.Max(Unit(4), (height - Query.PreferredHeight) / 2),
+            var icon = Unit(16);
+            _magnifier.SetBounds(Unit(8), (height - icon) / 2, icon, icon);
+            Clear.SetBounds(Math.Max(1, fieldWidth - button - Unit(4)), Unit(4), button, height - Unit(8));
+            Query.SetBounds(Unit(30), Math.Max(Unit(4), (height - Query.PreferredHeight) / 2),
                 Math.Max(1, fieldWidth - Unit(38) - button), Query.PreferredHeight);
             UpdateResultText();
             if (_compact != compact)

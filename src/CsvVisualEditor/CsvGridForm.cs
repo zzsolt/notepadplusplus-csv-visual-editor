@@ -284,11 +284,13 @@ internal sealed partial class CsvGridForm : DockingForm
 
         SuspendLayout();
         AutoScaleMode = AutoScaleMode.Dpi;
-        ClientSize = new Size(980, 560);
+        ClientSize = new Size(740, 560);
         Controls.Add(_tabControl);
         Controls.Add(_statusStrip);
         Controls.Add(_topPanel);
-        MinimumSize = new Size(620, 340);
+        // The dock must be allowed to shrink; a 620px form minimum defeated
+        // the search bar's narrow layout and displaced the source editor.
+        MinimumSize = new Size(260, 240);
         Text = FormTitle;
         ResumeLayout(performLayout: true);
 
@@ -1126,6 +1128,21 @@ internal sealed partial class CsvGridForm : DockingForm
         _searchResults = CsvCellSearchIndex.Create(view);
         if (_grid is CsvDataGridView searchGrid) searchGrid.SetSearchResults(_searchResults);
         if (_searchResults.Count > 0) SelectSearchResult(0);
+        else if (_grid.RowCount > 0 && (_grid.CurrentCell?.OwningColumn is not { } currentColumn ||
+                 CsvGridRowHeaderBehavior.IsPresentationColumn(currentColumn)))
+        {
+            // DisplayIndex 0 is the # lane, not a CSV data cell. Keep initial
+            // keyboard focus/selection on data, without changing row gestures.
+            var first = _grid.Columns.Cast<DataGridViewColumn>()
+                .FirstOrDefault(column => !CsvGridRowHeaderBehavior.IsPresentationColumn(column));
+            if (first is not null)
+            {
+                _grid.ClearSelection();
+                var firstCell = _grid.Rows[0].Cells[first.Index];
+                _grid.CurrentCell = firstCell;
+                firstCell.Selected = true;
+            }
+        }
         UpdateSearchSummary();
         UpdateSortGlyphs();
         UpdateDirtyIndicators();

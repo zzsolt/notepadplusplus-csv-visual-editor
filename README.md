@@ -4,19 +4,13 @@ CSV Visual Editor is a 64-bit Notepad++ plugin for viewing and editing CSV data 
 
 > **Development status:** milestone **0.11 is owner-accepted and merged**. Milestone **0.12 is under development** on source navigation and previewed bulk text transformations. The 0.12 package is not accepted until automated gates and real Notepad++ host validation pass.
 
-## Current GUI candidate: 0.12.5
+## Current GUI candidate: 0.12.6
 
-Search is a single inline field with a clear affordance, column scope, previous/next matching-cell controls and a current/total cell counter. Narrow docks use two rows instead of nested text-entry menus. **Search > Find in table** focuses that same field. Ctrl+F, F3/Shift+F3 and Enter/Shift+Enter are scoped to the plugin; host keyboard routing still needs real Notepad++ validation. The existing case-insensitive row filter is preserved. Clear search keeps the sort and column scope; **View > Reset view** clears all view options.
+This correction restores the normal UI font and complete cell grid after the reported 0.12.5 visual regression. Space dots have a legible, DPI-scaled diameter and stronger contrast. When **Show spaces** is on, narrow whitespace slots expand in the display only so adjacent dots remain distinct. No spaces are inserted into CSV, pending edits or the clipboard.
 
-Matching data cells have a subtle amber indication; the current match has a stronger frame while retaining native selection. A value-free index replaces repeated string scans during painting. Scope, sort, reload and editing transitions invalidate old results. Counts refer to matching cells, not repeated occurrences inside one cell.
+The inline search keeps the field, column scope, matching-cell count and navigation together instead of spreading them across a wide dock. Narrow docks use two rows. Search > Find focuses the same input; About retains the developer/contact/version details. Search remains view-only and disabled in Edit.
 
-**View > Show spaces** displays solid orange dots, pixel-snapped and sized once per font/DPI to leave a background gap between consecutive markers. Actual space advances, cell values, clipboard and Apply remain unchanged. The main table and Transform use the same renderer; editing inside a cell remains native. Hover a cell for exact space counts.
-
-The permanent **Table / Edit / View / CSV / Search / About** menu and icon toolbar remain available. About includes build version, developer **Zolnai Zsolt**, **zzsolt@gmail.com**, and an invitation to support the project with a GitHub star, feedback or contributions. No donation address is assumed.
-
-[GUI behavior and Hungarian host checklist](docs/gui-refresh-0.12.5.md). Milestone 0.12 remains draft and unmerged pending real-host validation. CI screenshots use synthetic data only.
-
-Value cells now use a monospaced font for clearly separated spaces. The panel and Notepad++ Plugins menu share the same About dialog. The code audit also restores the previously accepted strict Windows-1250 host Apply configuration (UTF-8 remains supported), without authorizing other encodings, and prevents obsolete background results from resurfacing after a failed refresh. These paths are covered by additional automated checks; real-host acceptance remains pending.
+[0.12.6 behavior and Hungarian host checklist](docs/gui-repair-0.12.6.md). Automated tests and portable-host captures are recorded separately from owner acceptance. Milestone 0.12 remains draft and unmerged.
 
 ## Core principles
 

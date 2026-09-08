@@ -8,7 +8,7 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>CsvVisualEditor</AssemblyName>
     <RootNamespace>CsvVisualEditor</RootNamespace>
-    <Version>0.12.5-alpha</Version>
+    <Version>0.12.6-alpha</Version>
 
     <!--
       The Windows Forms runtime currently emits framework-owned IL3000/IL3053

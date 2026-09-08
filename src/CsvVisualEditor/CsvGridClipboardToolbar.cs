@@ -295,7 +295,7 @@ internal static class CsvGridClipboardToolbar
         grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(5, 2, 5, 2);
         grid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         grid.BorderStyle = BorderStyle.FixedSingle;
-        grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        grid.CellBorderStyle = DataGridViewCellBorderStyle.Single;
         grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.ShowCellToolTips = true;

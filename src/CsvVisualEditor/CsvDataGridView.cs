@@ -12,19 +12,11 @@ using CsvVisualEditor.Core;
 /// </summary>
 internal sealed class CsvDataGridView : DataGridView
 {
-    private readonly Font _valueFont = new("Consolas", 10f, FontStyle.Regular, GraphicsUnit.Point);
-
     internal CsvDataGridView()
     {
         DoubleBuffered = true;
-        ColumnHeadersDefaultCellStyle.Font = RowHeadersDefaultCellStyle.Font = Font;
-        Font = _valueFont;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing) _valueFont?.Dispose();
+        // Inherit the UI font. A forced value font also changed header metrics and
+        // made small tables look unrelated to the surrounding Notepad++ controls.
     }
 
     private const int WmKeyDown = 0x0100;
@@ -40,6 +32,7 @@ internal sealed class CsvDataGridView : DataGridView
 
     internal void SetSearchResults(CsvCellSearchIndex? results)
     {
+        if (ReferenceEquals(_searchResults, results)) return;
         _searchResults = results;
         Invalidate();
     }
