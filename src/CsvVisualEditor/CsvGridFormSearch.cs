@@ -51,11 +51,12 @@ internal sealed partial class CsvGridForm
 
     private void UpdateSearchSummary()
     {
-        var hasQuery = !_editMode && _lastViewResult?.IsFiltered == true;
+        var hasQuery = !_editMode && _lastViewResult?.EffectiveSearchText.Length > 0;
         var address = _grid.CurrentCellAddress;
         _searchBar.SetResults(_searchResults?.FindIndex(address.Y, address.X) ?? -1,
             _searchResults?.Count ?? 0, hasQuery, _searchTimer?.Enabled == true);
-        _noMatchesLabel.Visible = hasQuery && _projection is not null && _searchResults?.Count == 0;
+        _noMatchesLabel.Visible = !_editMode && _projection is not null && _lastViewResult?.IsFiltered == true && _lastViewResult.VisibleRowCount == 0;
+        _noMatchesLabel.Text = "No matching rows.\nAdjust the search or use View > Filter and sort / Reset view.";
         if (_noMatchesLabel.Visible) _noMatchesLabel.BringToFront();
     }
 

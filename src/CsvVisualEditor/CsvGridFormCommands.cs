@@ -27,7 +27,7 @@ internal sealed partial class CsvGridForm
         }
         if (!_toolStrip.Items.Contains(_spacesButton)) _toolStrip.Items.Add(_spacesButton);
         _clearSearchButton.Text = "Reset view";
-        _clearSearchButton.ToolTipText = "Reset view: clear search, column scope and sorting.";
+        _clearSearchButton.ToolTipText = "Reset view: clear search, column conditions and all sorting.";
         var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip);
         surface.Menu.CanOverflow = true; // Keep About and trailing menus reachable in a narrow dock.
         _commandSurface = surface;
@@ -51,7 +51,7 @@ internal sealed partial class CsvGridForm
         {
             foreach (ToolStripItem old in sort.DropDownItems.Cast<ToolStripItem>().ToArray()) old.Dispose();
             if (_projection is null) return;
-            var original = new ToolStripMenuItem("Original order") { Checked = _sortColumnIndex is null };
+            var original = new ToolStripMenuItem("Original order") { Checked = _sortColumnIndex is null && _dataView.SortKeys.Count == 0 };
             original.Click += (_, _) => SetMenuSort(null, CsvTableSortDirection.None);
             sort.DropDownItems.Add(original);
             foreach (var column in _projection.Columns)
@@ -90,6 +90,7 @@ internal sealed partial class CsvGridForm
     private void SetMenuSort(int? column, CsvTableSortDirection direction)
     {
         if (_editMode || _projection is null || column.HasValue && (column.Value < 0 || column.Value >= _projection.Columns.Count)) return;
+        _dataView = new CsvDataViewDefinition(_dataView.Filters, _dataView.Combination);
         _sortColumnIndex = column;
         _sortDirection = direction;
         ApplyCurrentView();

@@ -33,6 +33,8 @@ partial class Main : IDotNetPlugin
             ToggleDialog,
             new ShortcutKey(ctrl: false, alt: true, shift: false, Keys.F10));
         Utils.SetCommand("Refresh Table", RefreshTable);
+        Utils.SetCommand("Filter and Sort", () => OpenDataTool(summary: false));
+        Utils.SetCommand("Column Summary", () => OpenDataTool(summary: true));
         Utils.MakeSeparator();
         Utils.SetCommand("About", ShowAboutDialog);
     }
@@ -96,6 +98,14 @@ partial class Main : IDotNetPlugin
                 LoadActiveDocumentTable();
             }
         }
+    }
+
+    private void OpenDataTool(bool summary)
+    {
+        if (_gridForm is null) { ToggleDialog(); return; }
+        if (!_gridForm.Visible) _gridForm.ShowDockingForm();
+        if (summary) _gridForm.ShowColumnSummary();
+        else _gridForm.ShowDataViewDialog();
     }
 
     private void RefreshTable()

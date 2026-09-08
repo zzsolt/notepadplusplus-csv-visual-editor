@@ -197,6 +197,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _viewToolStrip.Items.Add(_clearSearchButton);
         _viewToolStrip.Items.Add(new ToolStripSeparator());
         _viewToolStrip.Items.Add(_diagnosticsButton);
+        InstallDataTools();
 
         _topPanel = new TableLayoutPanel
         {
@@ -412,6 +413,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _delimiterWasAutomatic = delimiterWasAutomatic;
         _sortColumnIndex = null;
         _sortDirection = CsvTableSortDirection.None;
+        _dataView = CsvDataViewDefinition.Empty;
 
         PrepareTableGrid();
         PopulateTableColumns(projection);
@@ -688,6 +690,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
         _sortColumnIndex = null;
         _sortDirection = CsvTableSortDirection.None;
+        _dataView = CsvDataViewDefinition.Empty;
         RefreshRequested?.Invoke(this, EventArgs.Empty);
     }
 
@@ -699,7 +702,7 @@ internal sealed partial class CsvGridForm : DockingForm
         }
 
         _clearSearchButton.Enabled =
-            _searchBox.Text.Length > 0 || _sortColumnIndex is not null || _searchColumnCombo.SelectedIndex > 0;
+            _searchBox.Text.Length > 0 || _sortColumnIndex is not null || _dataView.IsActive || _searchColumnCombo.SelectedIndex > 0;
         _searchBar.SetResults(-1, 0, _searchBox.TextLength > 0, pending: true);
         _searchTimer.Stop();
         _searchTimer.Start();
@@ -736,6 +739,9 @@ internal sealed partial class CsvGridForm : DockingForm
         {
             return;
         }
+
+        if (_dataView.SortKeys.Count > 0)
+            _dataView = new CsvDataViewDefinition(_dataView.Filters, _dataView.Combination);
 
         if (_sortColumnIndex != e.ColumnIndex)
         {
@@ -971,6 +977,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
         _sortColumnIndex = null;
         _sortDirection = CsvTableSortDirection.None;
+        _dataView = CsvDataViewDefinition.Empty;
         _clearSearchButton.Enabled = false;
     }
 
@@ -1121,7 +1128,8 @@ internal sealed partial class CsvGridForm : DockingForm
                 SearchText = _searchBox.Text,
                 SearchColumnIndex = searchColumnIndex,
                 SortColumnIndex = _sortColumnIndex,
-                SortDirection = _sortDirection
+                SortDirection = _sortDirection,
+                DataView = _dataView
             });
         _lastViewResult = view;
         RenderViewRows(view.Rows);
@@ -1423,6 +1431,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
     private void UpdateControlAvailability()
     {
+        UpdateDataToolAvailability();
         var hasTable = _projection is not null;
         var canEdit = CanStartEditMode();
         var isDirty = _rowEditModel?.IsDirty ?? false;
@@ -1440,6 +1449,7 @@ internal sealed partial class CsvGridForm : DockingForm
                                      !_editMode &&
                                      (_searchBox.Text.Length > 0 ||
                                       _sortColumnIndex is not null ||
+                                      _dataView.IsActive ||
                                       _searchColumnCombo.SelectedIndex > 0);
         _editButton.Enabled = canEdit;
         _editButton.Text = _editMode ? "Exit Edit" : "Edit";
@@ -1466,19 +1476,19 @@ internal sealed partial class CsvGridForm : DockingForm
         foreach (DataGridViewColumn column in _grid.Columns)
         {
             column.HeaderCell.SortGlyphDirection = SortOrder.None;
+            if (!CsvGridRowHeaderBehavior.IsPresentationColumn(column)) column.HeaderCell.ToolTipText = string.Empty;
         }
-
-        if (_editMode ||
-            _sortColumnIndex is null ||
-            _sortDirection == CsvTableSortDirection.None)
+        if (_editMode) return;
+        var keys = _dataView.SortKeys.Count > 0 ? _dataView.SortKeys.ToArray() :
+            _sortColumnIndex.HasValue && _sortDirection != CsvTableSortDirection.None
+                ? new[] { new CsvSortKey(_sortColumnIndex.Value, _sortDirection) } : Array.Empty<CsvSortKey>();
+        for (var i = 0; i < keys.Length; i++)
         {
-            return;
+            var key = keys[i];
+            _grid.Columns[key.ColumnIndex].HeaderCell.SortGlyphDirection =
+                key.Direction == CsvTableSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+            _grid.Columns[key.ColumnIndex].HeaderCell.ToolTipText = $"Sort level {i + 1}: {key.Kind}, {key.Direction}. View only.";
         }
-
-        _grid.Columns[_sortColumnIndex.Value].HeaderCell.SortGlyphDirection =
-            _sortDirection == CsvTableSortDirection.Ascending
-                ? SortOrder.Ascending
-                : SortOrder.Descending;
     }
 
     private void UpdateStatus()
@@ -1538,13 +1548,15 @@ internal sealed partial class CsvGridForm : DockingForm
               $"-{FormatNumber(_rowEditModel.DeletedRowCount)}"
             : string.Empty;
 
+        var dataViewDescription = !_editMode && _dataView.IsActive
+            ? $" - {_dataView.Filters.Count} column conditions ({_dataView.Combination}), {_dataView.SortKeys.Count} sort levels" : string.Empty;
         var detailedStatus =
             $"{_snapshot.DisplayName} — {rowDescription} × " +
             $"{FormatNumber(_projection.ColumnCount)} columns — " +
             $"{_parseResult.Dialect.DelimiterDisplayName}, {delimiterSource} — " +
-            $"{headerDescription} — {diagnosticDescription}{sortDescription}{editDescription}.";
+            $"{headerDescription} — {diagnosticDescription}{sortDescription}{dataViewDescription}{editDescription}.";
         _statusLabel.Text = $"{_snapshot.DisplayName} - {rowDescription} x {_projection.ColumnCount:N0} columns" +
-            (_editMode ? " - Edit mode" : $" - {diagnosticDescription}");
+            (_editMode ? " - Edit mode" : $" - {diagnosticDescription}{dataViewDescription}");
         _statusLabel.ToolTipText = detailedStatus;
     }
 
@@ -1671,6 +1683,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _delimiterWasAutomatic = false;
         _sortColumnIndex = null;
         _sortDirection = CsvTableSortDirection.None;
+        _dataView = CsvDataViewDefinition.Empty;
 
         _updatingViewControls = true;
         try

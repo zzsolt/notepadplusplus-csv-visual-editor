@@ -26,7 +26,7 @@ internal sealed class CsvCommandSurface : IDisposable
         {
             var text = button.Text ?? string.Empty;
             var parent = text.StartsWith("Refresh", StringComparison.Ordinal) || text == "Source" ? Table :
-                text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) || text == "Reset view" ? View :
+                text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) || (text is "Reset view" or "Filter and sort" or "Column summary") ? View :
                 text == "Clear" ? Search : Edit;
             Bind(parent, button);
         }

@@ -1,3 +1,14 @@
+# 0.13.0-alpha - Data exploration
+
+- Owner accepted 0.12.6-alpha.357.1 on 2026-09-08; milestone 0.12 merged.
+- Add bounded immutable ALL/ANY column filters with literal, empty, whitespace and exact-decimal predicates.
+- Add three stable text/numeric sort levels; invalid numbers remain last in either direction.
+- Add draft/Preview/Apply view/Cancel dialog and current-view column summary, integrated into icons and menus.
+- Preserve source identities, underlying CSV, approved whitespace renderer, Edit/Apply/encoding/undo contracts.
+- Extend Core, Native AOT and exact production-DLL Notepad++ checks. Final verification is recorded in the candidate PR and internal journal, not inferred from this changelog.
+
+## Historical releases
+
 # Changelog
 
 All notable changes to CSV Visual Editor will be documented in this file.

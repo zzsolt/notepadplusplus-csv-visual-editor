@@ -1,3 +1,11 @@
+# CSV Visual Editor - 0.13 data exploration
+
+The owner-accepted 0.12.6 GUI is preserved. The next candidate adds **View > Filter and sort** (up to eight ALL/ANY column conditions and three text/numeric sort levels) and **View > Column summary** (exact statistics for the current view). Both commands are also icons and native Notepad++ plugin-menu entries. These tools never change the CSV; Edit returns to the full source-order table.
+
+Numeric comparisons use lossless dot-decimal values, not guessed locale-dependent numbers. Empty and whitespace-only values are distinct. Search intersects with column rules. Reset view clears all rules. [Behavior, limits and usage](docs/data-exploration-0.13.md).
+
+## Previous documentation and history
+
 # CSV Visual Editor
 
 CSV Visual Editor is a 64-bit Notepad++ plugin for viewing and editing CSV data through a docked, spreadsheet-like table while keeping the active Notepad++ buffer authoritative.

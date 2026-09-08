@@ -19,7 +19,8 @@ New-Item -ItemType File (Join-Path $hostDir 'doLocalConf.xml') -Force | Out-Null
 New-Item -ItemType Directory (Join-Path $hostDir 'plugins/CsvVisualEditor') -Force | Out-Null
 Copy-Item $library (Join-Path $hostDir 'plugins/CsvVisualEditor/CsvVisualEditor.dll')
 $csv = Join-Path $homeDir 'visual-regression.csv'
-[IO.File]::WriteAllText($csv, "Value,Note`r`n`"  alpha  `",`"a b`"`r`n`"   `",`"x  y`"`r`n`"`",`"end`"", [Text.UTF8Encoding]::new($false))
+$fixture = "Value,Note`r`n`"  alpha  `",`"a b`"`r`n`"   `",`"x  y`"`r`n`"`",`"end`""
+[IO.File]::WriteAllText($csv, $fixture, [Text.UTF8Encoding]::new($false))
 Add-Type -AssemblyName System.Drawing
 Add-Type -TypeDefinition @'
 using System;
@@ -88,6 +89,31 @@ function Save-Window([IntPtr]$handle,[string]$name) {
         $bmp.Save((Join-Path $output $name), [Drawing.Imaging.ImageFormat]::Png)
     } finally { $g.Dispose(); $bmp.Dispose() }
 }
+function Open-DataDialog([string]$commandName, [string]$title) {
+    $id = [CsvHostWindows]::FindCommand([CsvHostWindows]::GetMenu($window), $commandName)
+    if ($id -eq 0) { throw "Missing native data command: $commandName" }
+    [CsvHostWindows]::PostMessage($window, 0x111, [IntPtr]$id, [IntPtr]::Zero) | Out-Null
+    $dialog = [IntPtr]::Zero
+    for ($j = 0; $j -lt 50 -and $dialog -eq [IntPtr]::Zero; $j++) {
+        Start-Sleep -Milliseconds 100
+        $dialog = [CsvHostWindows]::FindNamedWindow($process.Id, $title)
+    }
+    if ($dialog -eq [IntPtr]::Zero) { throw "Data dialog did not open: $title" }
+    return $dialog
+}
+function Click-DataButton([IntPtr]$dialog, [string]$caption) {
+    $buttons = @([CsvHostWindows]::Children($dialog) | Where-Object {
+        [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.BUTTON.', [StringComparison]::OrdinalIgnoreCase) -and
+        [CsvHostWindows]::IsWindowVisible($_) -and [CsvHostWindows]::ControlText($_) -eq $caption
+    })
+    if ($buttons.Count -ne 1) { throw "Cannot identify data button: $caption" }
+    Send-Native $buttons[0] 0xF5 ([IntPtr]::Zero) ([IntPtr]::Zero) | Out-Null
+    Start-Sleep -Milliseconds 150
+}
+function Require-DialogText([IntPtr]$dialog, [string]$expectedText) {
+    $text = @([CsvHostWindows]::Children($dialog) | ForEach-Object { [CsvHostWindows]::ControlText($_) }) -join "`n"
+    if (!$text.Contains($expectedText)) { throw "Missing expected data dialog result: $expectedText" }
+}
 $process=$null
 try {
     $process=Start-Process $exe -ArgumentList @('-multiInst','-nosession',('"'+$csv+'"')) -PassThru
@@ -106,6 +132,8 @@ try {
     $dock=@($children | Where-Object { [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.') -and [CsvHostWindows]::Title($_) -eq 'CSV Visual Editor' })
     if($dock.Count -ne 1) { Save-Window $window 'dock-error.png'; throw 'Cannot identify the production docking form' }
     $form=$dock[0]
+    $editors=@($children | Where-Object { [CsvHostWindows]::Class($_) -eq 'Scintilla' -and [CsvHostWindows]::IsWindowVisible($_) })
+    if ($editors.Count -ne 1 -or [CsvHostWindows]::ControlText($editors[0]) -cne $fixture) { throw 'Cannot establish exact original Scintilla buffer for view-only verification' }
     Save-Window $window 'host-full.png'
     Save-Window $form 'panel-initial.png'
     $query=@([CsvHostWindows]::Children($form) | Where-Object { [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.Edit.', [StringComparison]::OrdinalIgnoreCase) -and [CsvHostWindows]::IsWindowVisible($_) })
@@ -141,6 +169,42 @@ try {
     Save-Window $form 'panel-clear.png'
     $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::ControlText($_) })
     if($labels -match '1 / 1') {throw 'Clear left a stale result counter'}
+    # 0.13: drive the ACTUAL production dialogs, not a test-only implementation.
+    $rules = Open-DataDialog 'Filter and Sort' 'Filter and sort'
+    Click-DataButton $rules 'Add condition'
+    $values = @([CsvHostWindows]::Children($rules) | Where-Object {
+        [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.Edit.', [StringComparison]::OrdinalIgnoreCase) -and [CsvHostWindows]::IsWindowVisible($_)
+    })
+    if ($values.Count -ne 1) { throw 'Expected one literal filter value editor' }
+    if ([CsvHostWindows]::Text($values[0],0xC,[IntPtr]::Zero,'alpha',2,5000,[ref]$result) -eq [IntPtr]::Zero) { throw 'Filter value entry failed' }
+    Click-DataButton $rules 'Preview'
+    Require-DialogText $rules 'Preview: 1 of 3 displayed rows'
+    Save-Window $rules 'data-filter-preview.png'
+    Click-DataButton $rules 'Apply view'
+    Save-Window $form 'data-filtered-panel.png'
+    $summary = Open-DataDialog 'Column Summary' 'Column summary'
+    Require-DialogText $summary 'Current view: 1 of 3 displayed rows.'
+    Require-DialogText $summary 'Rows: 1'
+    Save-Window $summary 'data-column-summary.png'
+    Click-DataButton $summary 'Close'
+    # A local Reset + Preview followed by Cancel must not publish the reset.
+    $rules = Open-DataDialog 'Filter and Sort' 'Filter and sort'
+    Click-DataButton $rules 'Reset rules'
+    Click-DataButton $rules 'Preview'
+    Require-DialogText $rules 'Preview: 3 of 3 displayed rows'
+    Click-DataButton $rules 'Cancel'
+    $summary = Open-DataDialog 'Column Summary' 'Column summary'
+    Require-DialogText $summary 'Current view: 1 of 3 displayed rows.'
+    Click-DataButton $summary 'Close'
+    $rules = Open-DataDialog 'Filter and Sort' 'Filter and sort'
+    Click-DataButton $rules 'Reset rules'
+    Click-DataButton $rules 'Apply view'
+    $summary = Open-DataDialog 'Column Summary' 'Column summary'
+    Require-DialogText $summary 'Current view: 3 of 3 displayed rows.'
+    Save-Window $summary 'data-summary-reset.png'
+    Click-DataButton $summary 'Close'
+    Save-Window $form 'data-reset-panel.png'
+    if ([CsvHostWindows]::ControlText($editors[0]) -cne $fixture) { throw 'View-only data exploration changed the Scintilla buffer' }
     # Open the real plugin About command without blocking on its modal dialog.
     $aboutCommand=[CsvHostWindows]::FindCommand([CsvHostWindows]::GetMenu($window),'About')
     if($aboutCommand -eq 0) {throw 'Plugin About command missing'}
@@ -152,7 +216,7 @@ try {
     $aboutText=@([CsvHostWindows]::Children($about) | ForEach-Object { [CsvHostWindows]::ControlText($_) }) -join "`n"
     if(!$aboutText.Contains('Zolnai Zsolt') -or !$aboutText.Contains('zzsolt@gmail.com') -or !$aboutText.Contains($env:PACKAGE_VERSION)) {throw 'Production About content or package version mismatch'}
     Send-Native $about 0x10 ([IntPtr]::Zero) ([IntPtr]::Zero) | Out-Null
-    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; Scope='Automated native-host load, render, search, clear, resize and About only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
+    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; DataFilterPreviewObserved=$true; DataFilterApplied=$true; DataSummaryObserved=$true; DataCancelPreserved=$true; DataResetObserved=$true; SourceBufferUnchanged=$true; Scope='Automated production-host load/search/resize/About and data filter/preview/apply/cancel/reset/summary, exact source buffer preservation. Not manual acceptance or editing Apply/Undo coverage.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
     Write-Host 'Real Notepad++ production-DLL load/render/search review completed.'
 } finally {
     if($process -and !$process.HasExited) { $process.Kill(); $process.WaitForExit() }
