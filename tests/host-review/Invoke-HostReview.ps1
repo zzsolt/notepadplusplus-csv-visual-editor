@@ -49,6 +49,14 @@ public static class CsvHostWindows {
     [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr h,uint m,IntPtr w,IntPtr l);
     [DllImport("user32.dll", EntryPoint="SendMessageTimeoutW")] public static extern IntPtr Send(IntPtr h,uint m,IntPtr w,IntPtr l,uint f,uint timeout,out IntPtr result);
     [DllImport("user32.dll", EntryPoint="SendMessageTimeoutW", CharSet=CharSet.Unicode)] public static extern IntPtr Text(IntPtr h,uint m,IntPtr w,string l,uint f,uint timeout,out IntPtr result);
+    [DllImport("user32.dll", EntryPoint="SendMessageTimeoutW", CharSet=CharSet.Unicode)]
+    private static extern IntPtr ReadText(IntPtr h,uint m,IntPtr w,StringBuilder l,uint f,uint timeout,out IntPtr result);
+    public static string ControlText(IntPtr h) {
+        var b=new StringBuilder(2048); IntPtr result;
+        if(ReadText(h,0xD,(IntPtr)b.Capacity,b,2,5000,out result)==IntPtr.Zero)
+            throw new InvalidOperationException("Host control text timed out");
+        return b.ToString();
+    }
     public static string Title(IntPtr h) {var b=new StringBuilder(512);GetWindowText(h,b,b.Capacity);return b.ToString();}
     public static string Class(IntPtr h) {var b=new StringBuilder(512);GetClassName(h,b,b.Capacity);return b.ToString();}
     public static Rect Bounds(IntPtr h) {Rect r;GetWindowRect(h,out r);return r;}
@@ -106,7 +114,7 @@ try {
     if([CsvHostWindows]::Text($query[0],0xC,[IntPtr]::Zero,'alpha',2,5000,[ref]$result) -eq [IntPtr]::Zero){throw 'Search text message timed out'}
     Start-Sleep -Milliseconds 800
     Save-Window $form 'panel-search.png'
-    $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::Title($_) })
+    $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::ControlText($_) })
     if(!($labels -match '1 / 1')) {throw 'Production search did not expose its matching-cell count'}
     # Verify the real dock, not merely the standalone search control, can shrink.
     $manager=@($children | Where-Object {[CsvHostWindows]::Class($_) -eq 'dockingManager'}) | Select-Object -First 1
@@ -131,7 +139,7 @@ try {
     if([CsvHostWindows]::Text($query[0],0xC,[IntPtr]::Zero,'',2,5000,[ref]$result) -eq [IntPtr]::Zero){throw 'Clear search message timed out'}
     Start-Sleep -Milliseconds 600
     Save-Window $form 'panel-clear.png'
-    $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::Title($_) })
+    $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::ControlText($_) })
     if($labels -match '1 / 1') {throw 'Clear left a stale result counter'}
     # Open the real plugin About command without blocking on its modal dialog.
     $aboutCommand=[CsvHostWindows]::FindCommand([CsvHostWindows]::GetMenu($window),'About')
@@ -141,7 +149,7 @@ try {
     for($i=0;$i -lt 50 -and $about -eq [IntPtr]::Zero;$i++) {Start-Sleep -Milliseconds 100; $about=[CsvHostWindows]::FindNamedWindow($process.Id,'About CSV Visual Editor')}
     if($about -eq [IntPtr]::Zero) {throw 'Production About dialog did not open'}
     Save-Window $about 'about-production.png'
-    $aboutText=@([CsvHostWindows]::Children($about) | ForEach-Object { [CsvHostWindows]::Title($_) }) -join "`n"
+    $aboutText=@([CsvHostWindows]::Children($about) | ForEach-Object { [CsvHostWindows]::ControlText($_) }) -join "`n"
     if(!$aboutText.Contains('Zolnai Zsolt') -or !$aboutText.Contains('zzsolt@gmail.com') -or !$aboutText.Contains($env:PACKAGE_VERSION)) {throw 'Production About content or package version mismatch'}
     Send-Native $about 0x10 ([IntPtr]::Zero) ([IntPtr]::Zero) | Out-Null
     [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; Scope='Automated native-host load, render, search, clear, resize and About only; not a manual acceptance or Apply test.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
