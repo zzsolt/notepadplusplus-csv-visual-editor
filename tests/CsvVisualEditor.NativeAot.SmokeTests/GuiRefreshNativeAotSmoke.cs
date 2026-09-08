@@ -108,7 +108,11 @@ internal static class GuiRefreshNativeAotSmoke
             Require(bar.ResultLabel.Right <= bar.Previous.Left, "Results and navigation must not overlap.");
             Require(bar.Next.Right <= bar.ClientSize.Width, "Navigation must stay inside the search bar.");
             Require(bar.Next.Bottom <= bar.ClientSize.Height, "Narrow-dock second row must not be clipped.");
-            Require(bar.ResultLabel.Text == "2 / 7 cells", "Results must identify the current cell and total.");
+            var narrow = bar.ClientSize.Width < Math.Max(1, (int)Math.Round(340 * bar.DeviceDpi / 96d));
+            Require(bar.ResultLabel.Text == (narrow ? "2 / 7" : "2 / 7 cells"),
+                "Results must identify the current cell and total, using the compact caption only at narrow widths.");
+            Require(bar.Column.Width >= (int)Math.Round(90 * bar.DeviceDpi / 96d),
+                "The compact result caption must leave enough width for the column selector.");
             bar.Next.PerformClick();
             bar.Previous.PerformClick();
             Require(navigation == 0, "Next and previous must dispatch once each.");
@@ -158,10 +162,10 @@ internal static class GuiRefreshNativeAotSmoke
             grid.DrawToBitmap(image, new Rectangle(0, 0, image.Width, image.Height));
             using var cell = image.Clone(grid.GetCellDisplayRectangle(0, 0, false), image.PixelFormat);
             var components = OrangeComponents(cell);
+            image.Save($"artifacts/ui-review/grid-{(dark ? "dark" : "light")}.png");
             Require(components.Count == 3 && components.All(area => area >= 4),
                 "Actual grid value font must expose three separated, visible solid dots, not one-pixel specks.");
             Require((string?)grid.Rows[0].Cells[0].Value == "   ", "Monospaced value display must preserve real spaces.");
-            image.Save($"artifacts/ui-review/grid-{(dark ? "dark" : "light")}.png");
             form.Close();
         }
     }
@@ -179,10 +183,10 @@ internal static class GuiRefreshNativeAotSmoke
             Require(controls.Any(c => c.Text.Contains(CsvAboutDialog.ContactEmail, StringComparison.Ordinal)), "About must show the approved contact.");
             Require(controls.Any(c => c.Text == CsvAboutDialog.SupportText), "About must include the support invitation.");
             Require(CsvAboutDialog.DisplayVersion.Length > 0, "Version must be available in Native AOT.");
-            Require(about.CancelButton is Button close && close.Focused, "About must focus Close, not select version text.");
             using var image = new Bitmap(about.Width, about.Height);
             about.DrawToBitmap(image, new Rectangle(0, 0, image.Width, image.Height));
             image.Save($"artifacts/ui-review/about-{(dark ? "dark" : "light")}.png");
+            Require(about.CancelButton is Button close && close.Focused, "About must focus Close, not select version text.");
             about.Close();
         }
     }
