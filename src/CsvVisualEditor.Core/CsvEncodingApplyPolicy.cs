@@ -96,8 +96,8 @@ public sealed record CsvEncodingApplyPreflightResult
 
 /// <summary>
 /// Separates host-independent representability support from code pages actually
-/// authorized for host replacement. The production policy remains UTF-8-only in
-/// this increment.
+/// authorized for host replacement. Utf8Only is the conservative API default;
+/// a host must explicitly supply its independently validated write policy.
 /// </summary>
 public sealed class CsvEncodingApplyPolicy
 {

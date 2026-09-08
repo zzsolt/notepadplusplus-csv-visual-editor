@@ -35,5 +35,6 @@
     <Compile Include="../../src/CsvVisualEditor/CsvCommandSurface.cs" Link="CsvCommandSurface.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvSearchBar.cs" Link="CsvSearchBar.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvAboutDialog.cs" Link="CsvAboutDialog.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvHostApplyCoordinator.cs" Link="CsvHostApplyCoordinator.cs" />
   </ItemGroup>
 </Project>

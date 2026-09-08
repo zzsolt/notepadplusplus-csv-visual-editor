@@ -16,6 +16,8 @@ The permanent **Table / Edit / View / CSV / Search / About** menu and icon toolb
 
 [GUI behavior and Hungarian host checklist](docs/gui-refresh-0.12.5.md). Milestone 0.12 remains draft and unmerged pending real-host validation. CI screenshots use synthetic data only.
 
+Value cells now use a monospaced font for clearly separated spaces. The panel and Notepad++ Plugins menu share the same About dialog. The code audit also restores the previously accepted strict Windows-1250 host Apply configuration (UTF-8 remains supported), without authorizing other encodings, and prevents obsolete background results from resurfacing after a failed refresh. These paths are covered by additional automated checks; real-host acceptance remains pending.
+
 ## Core principles
 
 - The active unsaved Scintilla buffer is the source of truth; the plugin does not reopen the file from disk to build the table.

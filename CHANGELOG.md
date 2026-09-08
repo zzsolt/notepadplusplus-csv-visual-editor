@@ -4,6 +4,14 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### Additional 0.12.5 audit corrections
+
+- Use monospaced value cells in the table and Transform for clearly separated solid space dots; keep normal UI header fonts and raw values.
+- Improve narrow search scope width and dark About styling; share the new About dialog with the existing Notepad++ Plugins menu.
+- Restore the explicitly accepted Windows-1250 host Apply policy while preserving strict full-buffer lossless preflight, conflict checks and one undo. Do not authorize additional code pages.
+- Retire prior background builds before a fresh snapshot read, including failed-read paths, so old results cannot replace a newer error state.
+- Add actual-grid light/dark pixel tests and production-host-policy Native AOT regressions. Real Notepad++ host validation remains pending.
+
 ### 0.12.5 GUI refinement and search navigation
 
 - Replace narrow-font space rings with filled, pixel-aligned dots. Guarantee a gap by choosing one diameter per font/DPI rather than varying individual glyph shapes. Test actual consecutive runs, not just isolated markers.

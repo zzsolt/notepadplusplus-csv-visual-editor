@@ -1,6 +1,7 @@
 namespace CsvVisualEditor.NativeAot.SmokeTests;
 
 using System.Runtime.CompilerServices;
+using CsvVisualEditor.Core;
 
 internal static class GuiRefreshNativeAotSmoke
 {
@@ -10,6 +11,7 @@ internal static class GuiRefreshNativeAotSmoke
         Directory.CreateDirectory("artifacts/ui-review");
         TestConsecutiveSpaces();
         TestSearchBar();
+        TestGridValues();
         TestAbout();
         TestSurfaceLifetime();
         Console.WriteLine("GUI refresh: consecutive-space pixel separation, responsive search, About and command lifecycle PASS.");
@@ -17,13 +19,14 @@ internal static class GuiRefreshNativeAotSmoke
 
     private static void TestConsecutiveSpaces()
     {
+        foreach (var family in new[] { SystemFonts.MessageBoxFont!.FontFamily.Name, "Consolas" })
         foreach (var dpi in new[] { 96, 120, 144, 168, 192 })
         foreach (var fontSize in new[] { 9f, 10f, 12f })
         {
             using var bitmap = new Bitmap(1000, 110);
             bitmap.SetResolution(dpi, dpi);
             using var graphics = Graphics.FromImage(bitmap);
-            using var font = new Font(SystemFonts.MessageBoxFont!.FontFamily, fontSize);
+            using var font = new Font(family, fontSize);
             foreach (var value in new[] { "   ", "   alpha", "alpha   ", "a   b", new string(' ', 40) })
             {
                 graphics.Clear(Color.White);
@@ -34,7 +37,8 @@ internal static class GuiRefreshNativeAotSmoke
                 Require(drawn == expected && components.Count == expected,
                     $"Each space must remain a separate dot: dpi={dpi}, font={fontSize}, expected={expected}, drawn={drawn}, components={components.Count}.");
                 Require(components.All(area => area == components[0]), "All dots in a run must occupy the same pixel area.");
-                if (fontSize == 9 && value == "   ") bitmap.Save($"artifacts/ui-review/three-spaces-{dpi}.png");
+                if (fontSize == 9 && value == "   " && family != "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-{dpi}.png");
+                if (fontSize == 10 && value == "   " && family == "Consolas") bitmap.Save($"artifacts/ui-review/three-spaces-consolas-{dpi}.png");
             }
         }
     }
@@ -116,21 +120,71 @@ internal static class GuiRefreshNativeAotSmoke
         }
     }
 
+    private static void TestGridValues()
+    {
+        foreach (var dark in new[] { false, true })
+        {
+            using var form = new Form { ClientSize = new Size(720, 190), ShowInTaskbar = false };
+            var background = dark ? Color.FromArgb(32, 32, 32) : Color.White;
+            var foreground = dark ? Color.Gainsboro : Color.Black;
+            var grid = new CsvDataGridView
+            {
+                Dock = DockStyle.Fill, AllowUserToAddRows = false, BackgroundColor = background,
+                EnableHeadersVisualStyles = false, GridColor = Color.Gray, CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            };
+            grid.DefaultCellStyle.BackColor = background;
+            grid.DefaultCellStyle.ForeColor = foreground;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = background;
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = foreground;
+            grid.Columns.Add("CsvColumn0", "Value");
+            grid.Columns.Add("CsvColumn1", "Description");
+            grid.Columns[0].Width = 320;
+            grid.Columns[1].Width = 330;
+            grid.Rows.Add("   ", "Three empty spaces");
+            grid.Rows.Add(" sample ", "A matching value");
+            grid.Rows.Add("", "An empty value");
+            var view = new CsvTableViewResult(
+                [new CsvTableRow(0, ["   ", "Three empty spaces"], new CsvSourceSpan(0, 1)),
+                 new CsvTableRow(1, [" sample ", "A matching value"], new CsvSourceSpan(1, 1)),
+                 new CsvTableRow(2, ["", "An empty value"], new CsvSourceSpan(2, 1))],
+                3, "sample", null, null, CsvTableSortDirection.None);
+            grid.SetSearchResults(CsvCellSearchIndex.Create(view));
+            form.Controls.Add(grid);
+            form.Show();
+            grid.ClearSelection();
+            grid.CurrentCell = grid.Rows[1].Cells[0];
+            Application.DoEvents();
+            using var image = new Bitmap(grid.Width, grid.Height);
+            grid.DrawToBitmap(image, new Rectangle(0, 0, image.Width, image.Height));
+            using var cell = image.Clone(grid.GetCellDisplayRectangle(0, 0, false), image.PixelFormat);
+            var components = OrangeComponents(cell);
+            Require(components.Count == 3 && components.All(area => area >= 4),
+                "Actual grid value font must expose three separated, visible solid dots, not one-pixel specks.");
+            Require((string?)grid.Rows[0].Cells[0].Value == "   ", "Monospaced value display must preserve real spaces.");
+            image.Save($"artifacts/ui-review/grid-{(dark ? "dark" : "light")}.png");
+            form.Close();
+        }
+    }
+
     private static void TestAbout()
     {
-        using var about = new CsvAboutDialog(SystemColors.Control, SystemColors.ControlText);
-        about.Show();
-        Application.DoEvents();
-        var controls = Descendants(about).ToArray();
-        Require(controls.Any(c => c.Text.Contains(CsvAboutDialog.DeveloperName, StringComparison.Ordinal)), "About must show the developer.");
-        Require(controls.Any(c => c.Text.Contains(CsvAboutDialog.ContactEmail, StringComparison.Ordinal)), "About must show the approved contact.");
-        Require(controls.Any(c => c.Text == CsvAboutDialog.SupportText), "About must include the support invitation.");
-        Require(CsvAboutDialog.DisplayVersion.Length > 0, "Version must be available in Native AOT.");
-        Require(about.CancelButton is Button, "Escape must close About.");
-        using var image = new Bitmap(about.Width, about.Height);
-        about.DrawToBitmap(image, new Rectangle(0, 0, image.Width, image.Height));
-        image.Save("artifacts/ui-review/about.png");
-        about.Close();
+        foreach (var dark in new[] { false, true })
+        {
+            using var about = new CsvAboutDialog(dark ? Color.FromArgb(32, 32, 32) : SystemColors.Control,
+                dark ? Color.Gainsboro : SystemColors.ControlText);
+            about.Show();
+            Application.DoEvents();
+            var controls = Descendants(about).ToArray();
+            Require(controls.Any(c => c.Text.Contains(CsvAboutDialog.DeveloperName, StringComparison.Ordinal)), "About must show the developer.");
+            Require(controls.Any(c => c.Text.Contains(CsvAboutDialog.ContactEmail, StringComparison.Ordinal)), "About must show the approved contact.");
+            Require(controls.Any(c => c.Text == CsvAboutDialog.SupportText), "About must include the support invitation.");
+            Require(CsvAboutDialog.DisplayVersion.Length > 0, "Version must be available in Native AOT.");
+            Require(about.CancelButton is Button close && close.Focused, "About must focus Close, not select version text.");
+            using var image = new Bitmap(about.Width, about.Height);
+            about.DrawToBitmap(image, new Rectangle(0, 0, image.Width, image.Height));
+            image.Save($"artifacts/ui-review/about-{(dark ? "dark" : "light")}.png");
+            about.Close();
+        }
     }
 
     private static void TestSurfaceLifetime()

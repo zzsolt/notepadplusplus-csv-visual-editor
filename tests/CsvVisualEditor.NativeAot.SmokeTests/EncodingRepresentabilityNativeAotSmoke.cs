@@ -26,10 +26,10 @@ internal static class EncodingRepresentabilityNativeAotSmoke
             rejected.Status == CsvEncodingRepresentabilityStatus.TextNotRepresentable,
             "Native AOT Windows-1250 did not reject unrepresentable text.");
 
-        var productionPolicy = CsvEncodingApplyPolicy.Utf8Only.Evaluate(1250, hungarian);
+        var defaultPolicy = CsvEncodingApplyPolicy.Utf8Only.Evaluate(1250, hungarian);
         Require(
-            productionPolicy.Status == CsvEncodingApplyPreflightStatus.HostWriteNotEnabled,
-            "Native AOT production policy unexpectedly enabled a legacy host write.");
+            defaultPolicy.Status == CsvEncodingApplyPreflightStatus.HostWriteNotEnabled,
+            "Native AOT conservative default unexpectedly enabled a legacy host write.");
 
         var testPolicy = CsvEncodingApplyPolicy.Create([1250]).Evaluate(1250, hungarian);
         Require(

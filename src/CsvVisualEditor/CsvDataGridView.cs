@@ -12,7 +12,20 @@ using CsvVisualEditor.Core;
 /// </summary>
 internal sealed class CsvDataGridView : DataGridView
 {
-    internal CsvDataGridView() { DoubleBuffered = true; }
+    private readonly Font _valueFont = new("Consolas", 10f, FontStyle.Regular, GraphicsUnit.Point);
+
+    internal CsvDataGridView()
+    {
+        DoubleBuffered = true;
+        ColumnHeadersDefaultCellStyle.Font = RowHeadersDefaultCellStyle.Font = Font;
+        Font = _valueFont;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (disposing) _valueFont?.Dispose();
+    }
 
     private const int WmKeyDown = 0x0100;
     private const int WmCut = 0x0300;

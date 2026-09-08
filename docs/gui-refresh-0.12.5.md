@@ -34,24 +34,53 @@ consecutive space components and equal marker areas at 96/120/144/168/192 DPI us
 layouts, About content/version and repeated menu install/disposal. CI publishes
 synthetic review images for three days. These do not establish real-host acceptance.
 
-## Magyar hostellenorzes
+## Additional source-audit corrections
 
-Uj 0.12.5 hosteredmeny: **NOT RUN**. A korabbi kepek hibajelentesek; nem uj PASS.
+Value cells in the main grid and Transform use a monospaced font so adjacent spaces
+have readable, equal advances. Header/menu text retains the normal UI font. Raw CSV
+values, clipboard contents and source offsets do not change. Font ownership is local
+to the control/dialog and is disposed with it.
 
-1. Bezart Notepad++ mellett frissitsd a CsvVisualEditor.dll-t az uj, egyedi nevu ZIP-bol.
-   Az About menuben ellenorizd a verzioszamot, a fejleszto nevet, az e-mail-cimet es a tamogatasi szoveget.
-2. Harom egymas melletti szokoz mindenutt harom kulon, azonos meretu tomor pont legyen:
-   csak szokozos cellaban, szoveg elott/utan es belul, a Transform elonezeteben is.
-   Vizsgald meg kijelolesnel, vilagos/sotet modban es a hasznalt DPI-n.
-3. Gepelj a keresobe. A talalati cellak latszodjanak, a szamlalo cellakat szamoljon.
-   Enter/Shift+Enter es a nyilgombok lepjenek korbe a talalatokon. A gyors Enter
-   mindig a legutobb begepelt szoveget hasznalja. Clear utan a rendezes maradjon meg;
-   Reset view allitsa vissza a teljes nezetet. Oszlopvaltas/rendezes utan ne maradjon regi jeloles.
-4. Szukitsd, majd szelesitsd a panelt: a kereso ne tunjon el, szuk helyen ket sor legyen.
-   Search > Find kozvetlenul a keresobe vigyen; ne nyisson ujabb beviteli almenut.
-5. Ellenorizd a masolast, Edit/Transform/Apply/Revert es egy Undo/Redo kor mukodeset.
-   A jelolok nem kerulhetnek a CSV-be vagy a vagolapra. Nyisd/csukd ujra a panelt.
+The Notepad++ Plugins > About entry now opens the same version-aware dialog as the
+panel's About menu; the stale hard-coded 0.12.4 message was removed.
 
-A pontos Windows/Notepad++ x64 verzio es csomagazonosito mellett az egyes esetek
-PASS/FAIL/NOT RUN allapotat kell rogzeni. A fennmarado Source F2-F4/G esetek nem
-valnak elfogadotta a GUI vagy az automatizalt tesztek sikeretol. PR #12 marad draft.
+The production Apply call had still used Core's conservative UTF-8-only default,
+contrary to the previously accepted Windows-1250 host behavior. The explicit host
+policy now authorizes UTF-8 and Windows-1250 only. It retains complete strict
+encode/decode round-trip checks before native target construction and one undo action.
+Windows-1252, ASCII and unknown code pages are not newly authorized. Native AOT tests
+exercise the same host coordinator for successful writes, unrepresentable text,
+unapproved code pages and a source conflict; rejected operations preserve pending edits.
+This is automated target simulation, not a fresh Notepad++ acceptance result.
+
+A failed snapshot read now retires the preceding asynchronous build and source
+baseline before reading. Previously the old build could repopulate the error state
+when a newer refresh failed. The generation/token guard remains active at presentation.
+Actual host scheduling and failed-read recovery still require host regression testing.
+
+## Magyar hostellenőrzés
+
+Új 0.12.5 hosteredmény: **NOT RUN**. A korábbi képek hibajelentések, nem új PASS.
+
+1. Bezárt Notepad++ mellett frissítsd a DLL-t az új, egyedi nevű ZIP-ből.
+   A panel About és a Plugins > CSV Visual Editor > About ugyanazt a verziót,
+   fejlesztői nevet, e-mail-címet és támogatási szöveget mutassa.
+2. Három szóköz három külön, azonos méretű tömör pont legyen: csak szóközös
+   cellában, szöveg előtt/után és belül, valamint a Transform előnézetében.
+   Ellenőrizd kijelölésnél, világos/sötét módban és a használt DPI-n.
+3. Gépelj a keresőbe. A jelölés és a számláló a találati cellákat kövesse.
+   Enter/Shift+Enter és a nyílgombok lépjenek körbe. A gyors Enter mindig a legutóbb
+   begépelt szöveget használja. Clear őrizze meg a rendezést; Reset view állítsa
+   vissza a teljes nézetet. Oszlopváltás/rendezés után ne maradjon régi jelölés.
+4. Szűkítsd, majd szélesítsd a panelt: szűk helyen két sor legyen.
+   Search > Find közvetlenül a keresőbe vigyen, ne nyisson beviteli almenüt.
+5. Ellenőrizd a másolást, Edit/Transform/Apply/Revert és egy Undo/Redo kört.
+   A jelölők nem kerülhetnek a CSV-be vagy a vágólapra. Nyisd/csukd újra a panelt.
+6. Ismert Windows-1250 Scintilla-kódlapon a magyar ékezetes módosítás legyen
+   veszteségmentes és egy lépésben visszavonható. Nem ábrázolható karakter esetén
+   Apply blokkoljon, és a függő módosítás maradjon meg. A menüben látható fájlkódolás
+   önmagában nem bizonyítja a Scintilla kódlapját. Más kódlap nem kapott új engedélyt.
+
+A pontos Windows/Notepad++ x64 verzió és csomagazonosító mellett az esetek
+PASS/FAIL/NOT RUN állapotát kell rögzíteni. A fennmaradó Source F2–F4/G esetek
+nem válnak elfogadottá a GUI vagy az automatizált tesztek sikerétől. PR #12 marad draft.

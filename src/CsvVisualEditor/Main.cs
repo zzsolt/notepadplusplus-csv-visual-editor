@@ -8,8 +8,6 @@ partial class Main : IDotNetPlugin
 {
     private const string PluginDisplayName = "CSV Visual Editor";
     private const string PluginAssemblyName = "CsvVisualEditor";
-    private const string DeveloperName = "Zolnai Zsolt";
-    private const string DeveloperEmail = "zzsolt@gmail.com";
     private const int DialogCommandIndex = 0;
     private const int MaximumDisplayedRows = 10_000;
     private const int MaximumDisplayedColumns = 512;
@@ -165,7 +163,7 @@ partial class Main : IDotNetPlugin
         CsvEditorApplyResult result;
         try
         {
-            result = CsvEditorApplyCoordinator.Execute(
+            result = CsvHostApplyCoordinator.Execute(
                 _gridForm.RowEditModel,
                 currentSnapshot,
                 static () => new NotepadEditorReplacementTarget());
@@ -222,7 +220,7 @@ partial class Main : IDotNetPlugin
         {
             CsvEditorApplyStatus.EncodingWriteNotEnabled =>
                 $"Apply is not yet enabled for {codePageText}. No editor content was changed. " +
-                "The current production write policy remains UTF-8-only (code page 65001). " +
+                "Host writes are enabled only for UTF-8 (65001) and Windows-1250 (1250), after lossless validation. " +
                 "Use Revert All or convert the document to UTF-8 in Notepad++, then reopen Edit mode.",
             CsvEditorApplyStatus.UnsupportedCodePage =>
                 $"Apply is blocked because {codePageText} has no explicit supported encoding profile. " +
@@ -253,6 +251,15 @@ partial class Main : IDotNetPlugin
             return;
         }
 
+        // Retire the preceding build BEFORE attempting the fresh snapshot. A failed
+        // read must not let an older async build repopulate an error/another document.
+        var generation = Interlocked.Increment(ref _loadGeneration);
+        var cancellation = new CancellationTokenSource();
+        var previousCancellation = Interlocked.Exchange(ref _loadCancellation, cancellation);
+        previousCancellation?.Cancel();
+        previousCancellation?.Dispose();
+        CsvGridSourceNavigationController.ClearBaseline(_gridForm);
+
         ActiveDocumentSnapshot snapshot;
         try
         {
@@ -280,18 +287,6 @@ partial class Main : IDotNetPlugin
             MaximumColumns = MaximumDisplayedColumns,
             MaximumCells = MaximumDisplayedCells
         };
-        var generation = Interlocked.Increment(ref _loadGeneration);
-        var cancellation = new CancellationTokenSource();
-        var previousCancellation = Interlocked.Exchange(
-            ref _loadCancellation,
-            cancellation);
-        previousCancellation?.Cancel();
-        previousCancellation?.Dispose();
-
-        // A loading/error/partial state must never retain source positions from the
-        // previously rendered table. A new baseline is installed only after a complete
-        // Ready result has actually been presented.
-        CsvGridSourceNavigationController.ClearBaseline(gridForm);
         gridForm.ShowLoadingDocument(snapshot);
         _ = BuildAndDisplayTableAsync(
             gridForm,
@@ -410,18 +405,16 @@ partial class Main : IDotNetPlugin
 
     private static void ShowAboutDialog()
     {
-        MessageBox.Show(
-            "CSV Visual Editor 0.12.4-alpha\n\n" +
-            "A graphical, spreadsheet-like CSV editor for Notepad++.\n" +
-            "Edit mode supports deterministic cell editing, row operations, and spreadsheet-style rectangular copy/paste. " +
-            "Source navigation selects the current CSV cell or logical row directly in the active Notepad++ buffer without modifying text. " +
-            "Fresh-buffer conflict checks, strict encoding validation, and one Scintilla undo transaction protect Apply. " +
-            "The plugin modifies only the active Notepad++ editor buffer; saving to disk remains a normal Notepad++ action.\n\n" +
-            $"Developer: {DeveloperName}\n" +
-            $"Contact: {DeveloperEmail}",
-            $"About {PluginDisplayName}",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+        var dark = PluginData.Notepad.IsDarkModeEnabled();
+        using var dialog = new CsvAboutDialog(
+            dark ? Color.FromArgb(32, 32, 32) : SystemColors.Control,
+            dark ? Color.Gainsboro : SystemColors.ControlText);
+        dialog.ShowDialog(new NotepadWindow(PluginData.NppData.NppHandle));
+    }
+
+    private sealed class NotepadWindow(IntPtr handle) : IWin32Window
+    {
+        public IntPtr Handle { get; } = handle;
     }
 
     private void PluginCleanUp()

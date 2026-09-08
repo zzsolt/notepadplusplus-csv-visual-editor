@@ -29,6 +29,8 @@ internal sealed class CsvSearchBar : UserControl
     private bool _layingOut;
     private bool _compact;
     private int _total;
+    private int _currentIndex = -1;
+    private bool _hasQuery;
     private bool _pending;
     private Color _border = SystemColors.ControlDark;
     private Color _accent = Color.FromArgb(0, 120, 212);
@@ -96,10 +98,19 @@ internal sealed class CsvSearchBar : UserControl
     {
         _total = total;
         _pending = pending;
-        ResultLabel.Text = pending ? "Searching..." : !hasQuery ? "Type to search" :
-            total == 0 ? "No matches" : currentIndex >= 0 ? $"{currentIndex + 1:N0} / {total:N0} cells" : $"{total:N0} cells";
-        _tips.SetToolTip(ResultLabel, ResultLabel.Text + ". Counts matching cells, not repeated occurrences within a cell.");
+        _currentIndex = currentIndex;
+        _hasQuery = hasQuery;
+        UpdateResultText();
         UpdateButtons();
+    }
+
+    private void UpdateResultText()
+    {
+        var narrow = ClientSize.Width < Unit(340);
+        ResultLabel.Text = _pending ? "Searching..." : !_hasQuery ? (narrow ? "Search" : "Type to search") :
+            _total == 0 ? "No matches" : _currentIndex >= 0 ?
+                $"{_currentIndex + 1:N0} / {_total:N0}" + (narrow ? "" : " cells") : $"{_total:N0} cells";
+        _tips.SetToolTip(ResultLabel, ResultLabel.Text + ". Counts matching cells, not repeated occurrences within a cell.");
     }
 
     private void UpdateButtons()
@@ -174,9 +185,10 @@ internal sealed class CsvSearchBar : UserControl
             var width = Math.Max(1, ClientSize.Width - pad * 2);
             var compact = ClientSize.Width < Unit(610);
             var rowY = compact ? pad + height + gap : pad;
-            var scope = compact ? Math.Max(Unit(72), width - Unit(110) - button * 2 - gap * 3) : Unit(156);
+            var desiredResults = Unit(ClientSize.Width < Unit(340) ? 64 : 110);
+            var scope = compact ? Math.Max(Unit(72), width - desiredResults - button * 2 - gap * 3) : Unit(156);
             scope = Math.Min(scope, Math.Max(1, width - button * 2 - gap * 2));
-            var resultWidth = Math.Max(1, Math.Min(Unit(110), width - scope - button * 2 - gap * 3));
+            var resultWidth = Math.Max(1, Math.Min(desiredResults, width - scope - button * 2 - gap * 3));
             var fieldWidth = compact ? width : Math.Max(1, width - scope - resultWidth - button * 2 - gap * 4);
             _field.SetBounds(pad, pad, fieldWidth, height);
             var scopeX = compact ? pad : pad + fieldWidth + gap;
@@ -189,6 +201,7 @@ internal sealed class CsvSearchBar : UserControl
             Clear.SetBounds(Math.Max(1, fieldWidth - button - Unit(3)), Unit(2), button, height - Unit(4));
             Query.SetBounds(Unit(32), Math.Max(Unit(4), (height - Query.PreferredHeight) / 2),
                 Math.Max(1, fieldWidth - Unit(38) - button), Query.PreferredHeight);
+            UpdateResultText();
             if (_compact != compact)
             {
                 _compact = compact;

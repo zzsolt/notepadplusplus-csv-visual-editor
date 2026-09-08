@@ -55,7 +55,14 @@ internal sealed class CsvAboutDialog : Form
         Add(new Label { Text = SupportText, AutoSize = true, MaximumSize = new Size(460, 0), UseMnemonic = false });
         Add(Link("Project on GitHub", ProjectUrl, background));
         Add(_message);
-        var close = new Button { Text = "Close", AutoSize = true, DialogResult = DialogResult.OK, Padding = new Padding(14, 4, 14, 4) };
+        var close = new Button
+        {
+            Text = "Close", AutoSize = true, DialogResult = DialogResult.OK, Padding = new Padding(14, 4, 14, 4),
+            FlatStyle = FlatStyle.Flat, UseVisualStyleBackColor = false, BackColor = background, ForeColor = foreground
+        };
+        close.FlatAppearance.BorderColor = CsvSearchBar.Blend(background, foreground, 35);
+        close.FlatAppearance.MouseOverBackColor = CsvSearchBar.Blend(background, foreground, 10);
+        Shown += (_, _) => close.Select();
         var footer = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, FlowDirection = FlowDirection.RightToLeft };
         footer.Controls.Add(close);
         Add(footer);
