@@ -97,7 +97,7 @@ try {
     $form=$dock[0]
     Save-Window $window 'host-full.png'
     Save-Window $form 'panel-initial.png'
-    $query=@([CsvHostWindows]::Children($form) | Where-Object { [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.EDIT.') -and [CsvHostWindows]::IsWindowVisible($_) })
+    $query=@([CsvHostWindows]::Children($form) | Where-Object { [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.Edit.', [StringComparison]::OrdinalIgnoreCase) -and [CsvHostWindows]::IsWindowVisible($_) })
     if($query.Count -ne 1) {throw 'The panel must contain exactly one visible query editor'}
     $result=[IntPtr]::Zero
     if([CsvHostWindows]::Text($query[0],0xC,[IntPtr]::Zero,'alpha',2,5000,[ref]$result) -eq [IntPtr]::Zero){throw 'Search text message timed out'}

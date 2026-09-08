@@ -121,6 +121,16 @@ internal static class CsvWhitespaceCellPainter
             using var dotBrush = new SolidBrush(markerColor ?? DotColor);
             graphics.SmoothingMode = SmoothingMode.None;
             graphics.PixelOffsetMode = PixelOffsetMode.None;
+            // All markers on a single line share one vertical center. GDI+
+            // can return different region heights for fallback whitespace glyphs.
+            // Never let that move individual dots up/down within the same cell.
+            var lineHeight = font.GetHeight(graphics);
+            var markerY = format.LineAlignment switch
+            {
+                StringAlignment.Near => bounds.Top + lineHeight / 2f,
+                StringAlignment.Far => bounds.Bottom - lineHeight / 2f,
+                _ => bounds.Top + bounds.Height / 2f
+            };
             var drawn = 0;
             // GDI+ supports at most 32 measurable character ranges per batch.
             // The same layout/font renders and measures, including trailing spaces.
@@ -137,7 +147,7 @@ internal static class CsvWhitespaceCellPainter
                     {
                         var area = region.GetBounds(graphics);
                         var x = area.Left + area.Width / 2;
-                        var y = area.Top + area.Height / 2;
+                        var y = markerY;
                         if (area.Width <= 0 || area.Height <= 0 || !bounds.Contains(x, y) || !clip.Contains((int)x, (int)y)) continue;
                         DrawSpaceMarker(graphics, dotBrush, x, y, diameter);
                         drawn++;
