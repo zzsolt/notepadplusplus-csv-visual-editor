@@ -5,15 +5,10 @@ using CsvVisualEditor.Core;
 internal sealed partial class CsvGridForm
 {
     private CsvCommandSurface? _commandSurface;
-    private readonly ToolStrip _searchToolStrip = new()
-    {
-        Dock = DockStyle.Fill, GripStyle = ToolStripGripStyle.Hidden,
-        Padding = new Padding(4, 1, 4, 1), CanOverflow = true
-    };
     private readonly ToolStripButton _spacesButton = new("Show spaces")
     {
         Name = "CsvShowSpacesButton", CheckOnClick = true, Checked = true,
-        ToolTipText = "Show small hollow orange indicators for real spaces. Display only; CSV values do not change."
+        ToolTipText = "Show spaces: small solid orange dots. Display only; CSV values do not change."
     };
     private bool _spaceHandlerAttached;
 
@@ -31,22 +26,20 @@ internal sealed partial class CsvGridForm
             DpiChangedAfterParent += (_, _) => RefreshCommandAppearance();
         }
         if (!_toolStrip.Items.Contains(_spacesButton)) _toolStrip.Items.Add(_spacesButton);
-        // Give search its own row instead of overflowing behind CSV interpretation.
-        var searchLabel = _viewToolStrip.Items.OfType<ToolStripLabel>().FirstOrDefault(item => item.Text == "Search:");
-        if (searchLabel is not null)
-        {
-            var start = _viewToolStrip.Items.IndexOf(searchLabel);
-            var items = _viewToolStrip.Items.Cast<ToolStripItem>().Skip(start).ToArray();
-            foreach (var item in items) _searchToolStrip.Items.Add(item);
-        }
-        _searchBox.Overflow = ToolStripItemOverflow.Never;
-        _searchBox.Width = Math.Max(120, 180 * DeviceDpi / 96);
-        var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip, _searchToolStrip);
+        _clearSearchButton.Text = "Reset view";
+        _clearSearchButton.ToolTipText = "Reset view: clear search, column scope and sorting.";
+        var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip);
         _commandSurface = surface;
         surface.AddCombo(surface.Csv, "&Delimiter", _delimiterCombo);
         surface.AddCombo(surface.Csv, "&Header", _headerCombo);
         surface.AddCombo(surface.Search, "Search &column", _searchColumnCombo);
-        surface.AddSearch(_searchBox);
+        surface.AddSearch(_searchBox, FocusSearch, NavigateSearch,
+            () => !_editMode && _searchResults?.Count > 0);
+        surface.About.Click += (_, _) =>
+        {
+            using var dialog = new CsvAboutDialog(BackColor, ForeColor);
+            dialog.ShowDialog(this);
+        };
         var table = new ToolStripMenuItem("Show &table");
         table.Click += (_, _) => _tabControl.SelectedTab = _tablePage;
         surface.Table.DropDownItems.Add(table);
@@ -85,8 +78,8 @@ internal sealed partial class CsvGridForm
             for (var index = 0; index < 4; index++) _topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             _topPanel.SetCellPosition(_toolStrip, new TableLayoutPanelCellPosition(0, 1));
             _topPanel.SetCellPosition(_viewToolStrip, new TableLayoutPanelCellPosition(0, 2));
+            _topPanel.SetCellPosition(_searchBar, new TableLayoutPanelCellPosition(0, 3));
             _topPanel.Controls.Add(surface.Menu, 0, 0);
-            _topPanel.Controls.Add(_searchToolStrip, 0, 3);
             MainMenuStrip = surface.Menu;
             RefreshCommandAppearance();
         }
@@ -98,10 +91,18 @@ internal sealed partial class CsvGridForm
         if (_editMode || _projection is null || column.HasValue && (column.Value < 0 || column.Value >= _projection.Columns.Count)) return;
         _sortColumnIndex = column;
         _sortDirection = direction;
-        _clearSearchButton.Enabled = _searchBox.Text.Length > 0 || column.HasValue;
         ApplyCurrentView();
     }
 
-    private void RefreshCommandAppearance() => _commandSurface?.ApplyAppearance(BackColor, ForeColor, DeviceDpi);
-
+    private void RefreshCommandAppearance()
+    {
+        _commandSurface?.ApplyAppearance(BackColor, ForeColor, DeviceDpi);
+        _searchBar.ApplyAppearance(BackColor, ForeColor);
+        _noMatchesLabel.BackColor = _grid.BackgroundColor;
+        _noMatchesLabel.ForeColor = ForeColor;
+        _diagnosticsEmpty.BackColor = _diagnosticsGrid.BackgroundColor;
+        _diagnosticsEmpty.ForeColor = ForeColor;
+        _grid.GridColor = CsvSearchBar.Blend(_grid.BackgroundColor, ForeColor, 20);
+        _diagnosticsGrid.GridColor = _grid.GridColor;
+    }
 }

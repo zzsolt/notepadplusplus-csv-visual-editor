@@ -8,7 +8,7 @@ internal static class CsvWhitespaceCellPainter
     internal static readonly Color DotColor = Color.DarkOrange;
     internal const int MaximumPaintCharacters = 1024;
 
-    internal static void Paint(DataGridView grid, DataGridViewCellPaintingEventArgs e, char marker = ' ', bool showSpaces = true)
+    internal static void Paint(DataGridView grid, DataGridViewCellPaintingEventArgs e, char marker = ' ', bool showSpaces = true, bool searchMatch = false)
     {
         if (e.RowIndex < 0 || e.ColumnIndex < 0 || e.FormattedValue is not string value ||
             e.CellStyle is not { } style || e.Graphics is not { } graphics ||
@@ -16,7 +16,21 @@ internal static class CsvWhitespaceCellPainter
             return;
 
         // Let WinForms own background, borders, selection, focus and error glyphs.
-        e.Paint(e.ClipBounds, e.PaintParts & ~DataGridViewPaintParts.ContentForeground);
+        var deferred = DataGridViewPaintParts.ContentForeground | DataGridViewPaintParts.Focus | DataGridViewPaintParts.ErrorIcon;
+        e.Paint(e.ClipBounds, e.PaintParts & ~deferred);
+        if (searchMatch && (e.State & DataGridViewElementStates.Selected) == 0 &&
+            (e.PaintParts & DataGridViewPaintParts.Background) != 0)
+        {
+            var state = graphics.Save();
+            try
+            {
+                graphics.SetClip(e.ClipBounds, CombineMode.Intersect);
+                using var tint = new SolidBrush(Color.FromArgb(35, 235, 170, 35));
+                var interior = Rectangle.Inflate(e.CellBounds, -1, -1);
+                if (interior.Width > 0 && interior.Height > 0) graphics.FillRectangle(tint, interior);
+            }
+            finally { graphics.Restore(state); }
+        }
         if ((e.PaintParts & DataGridViewPaintParts.ContentForeground) != 0)
         {
             var padding = style.Padding;
@@ -33,6 +47,7 @@ internal static class CsvWhitespaceCellPainter
                     style.Alignment, grid.RightToLeft == RightToLeft.Yes, marker, showSpaces);
             }
         }
+        e.Paint(e.ClipBounds, e.PaintParts & (DataGridViewPaintParts.Focus | DataGridViewPaintParts.ErrorIcon));
         e.Handled = true;
     }
 
@@ -76,7 +91,13 @@ internal static class CsvWhitespaceCellPainter
             graphics.SetClip(bounds, CombineMode.Intersect);
             using var textBrush = new SolidBrush(foreground);
             graphics.DrawString(text, font, textBrush, bounds, format);
-            using var dotPen = new Pen(DotColor, Math.Max(1, (int)Math.Round(graphics.DpiX / 96f)));
+            if (positions.Count == 0) return 0;
+            using var dotBrush = new SolidBrush(DotColor);
+            // Reserve at least one background pixel between adjacent dots, even in
+            // narrow proportional fonts. Compute once per font/DPI, not per glyph.
+            var spaceAdvance = graphics.MeasureString(" ", font, int.MaxValue, format).Width;
+            var diameter = Math.Min(Math.Max(1, (int)Math.Floor(spaceAdvance) - 1),
+                Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f)));
             graphics.SmoothingMode = SmoothingMode.None;
             graphics.PixelOffsetMode = PixelOffsetMode.None;
             var drawn = 0;
@@ -84,7 +105,9 @@ internal static class CsvWhitespaceCellPainter
             // The same layout/font renders and measures, including trailing spaces.
             for (var start = 0; start < positions.Count; start += 32)
             {
-                var ranges = positions.Skip(start).Take(32).Select(static index => new CharacterRange(index, 1)).ToArray();
+                var ranges = new CharacterRange[Math.Min(32, positions.Count - start)];
+                for (var offset = 0; offset < ranges.Length; offset++)
+                    ranges[offset] = new CharacterRange(positions[start + offset], 1);
                 format.SetMeasurableCharacterRanges(ranges);
                 var regions = graphics.MeasureCharacterRanges(text, font, bounds, format);
                 try
@@ -95,7 +118,7 @@ internal static class CsvWhitespaceCellPainter
                         var x = area.Left + area.Width / 2;
                         var y = area.Top + area.Height / 2;
                         if (area.Width <= 0 || area.Height <= 0 || !bounds.Contains(x, y) || !clip.Contains((int)x, (int)y)) continue;
-                        DrawSpaceMarker(graphics, dotPen, x, y);
+                        DrawSpaceMarker(graphics, dotBrush, x, y, diameter);
                         drawn++;
                     }
                 }
@@ -106,13 +129,15 @@ internal static class CsvWhitespaceCellPainter
         finally { graphics.Restore(state); }
     }
 
-    internal static void DrawSpaceMarker(Graphics graphics, Pen pen, float centerX, float centerY)
+    internal static void DrawSpaceMarker(Graphics graphics, Brush brush, float centerX, float centerY, int diameter = 0)
     {
-        // One fixed device-pixel shape per DPI, independent of glyph advance.
-        // Caller sets non-antialiased pixel geometry once for the whole paint pass.
-        var diameter = Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f));
-        graphics.DrawEllipse(pen, (int)Math.Round(centerX - diameter / 2f),
-            (int)Math.Round(centerY - diameter / 2f), diameter, diameter);
+        // An outlined 2px ellipse occupies 3+ pixels and fuses adjacent spaces in
+        // proportional UI fonts. A filled, integer-aligned dot stays within its box.
+        if (diameter <= 0) diameter = Math.Max(2, (int)Math.Round(2 * graphics.DpiX / 96f));
+        var x = (int)Math.Round(centerX - diameter / 2f, MidpointRounding.AwayFromZero);
+        var y = (int)Math.Round(centerY - diameter / 2f, MidpointRounding.AwayFromZero);
+        if (diameter <= 2) graphics.FillRectangle(brush, x, y, diameter, diameter);
+        else graphics.FillEllipse(brush, x, y, diameter, diameter);
     }
 
     internal static string DescribeSpaces(string value)
@@ -123,6 +148,6 @@ internal static class CsvWhitespaceCellPainter
         while (leading < value.Length && value[leading] == ' ') leading++;
         var trailing = 0;
         while (trailing < value.Length && value[value.Length - trailing - 1] == ' ') trailing++;
-        return $"Spaces: {count}; leading: {leading}; trailing: {trailing}. Length: {value.Length} UTF-16 units.\nOrange hollow dots mark empty spaces, not CSV characters. Leading/trailing counts overlap for an all-space cell.";
+        return $"Spaces: {count}; leading: {leading}; trailing: {trailing}. Length: {value.Length} UTF-16 units.\nOrange solid dots mark empty spaces, not CSV characters. Leading/trailing counts overlap for an all-space cell.";
     }
 }

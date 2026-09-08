@@ -117,10 +117,6 @@ internal static class CsvGridClipboardToolbar
         var delimiterCombo = commandCombos.ElementAtOrDefault(0);
         var headerCombo = commandCombos.ElementAtOrDefault(1);
 
-        var searchLabel = FindLabel(viewStrip, "Search:");
-        var searchBox = viewStrip.Items.OfType<ToolStripTextBox>().FirstOrDefault();
-        var inLabel = FindLabel(viewStrip, "In:");
-        var searchCombo = viewStrip.Items.OfType<ToolStripComboBox>().FirstOrDefault();
         var clearButton = FindButton(viewStrip, static text => text == "Clear");
         var diagnosticsButton = FindButton(
             viewStrip,
@@ -136,10 +132,6 @@ internal static class CsvGridClipboardToolbar
             headerLabel is null ||
             delimiterCombo is null ||
             headerCombo is null ||
-            searchLabel is null ||
-            searchBox is null ||
-            inLabel is null ||
-            searchCombo is null ||
             clearButton is null ||
             diagnosticsButton is null)
         {
@@ -230,10 +222,6 @@ internal static class CsvGridClipboardToolbar
             viewStrip.Items.Add(headerLabel);
             viewStrip.Items.Add(headerCombo);
             viewStrip.Items.Add(CreateSeparator());
-            viewStrip.Items.Add(searchLabel);
-            viewStrip.Items.Add(searchBox);
-            viewStrip.Items.Add(inLabel);
-            viewStrip.Items.Add(searchCombo);
             viewStrip.Items.Add(clearButton);
             viewStrip.Items.Add(CreateSeparator());
             viewStrip.Items.Add(diagnosticsButton);
@@ -307,7 +295,7 @@ internal static class CsvGridClipboardToolbar
         grid.ColumnHeadersDefaultCellStyle.Padding = new Padding(5, 2, 5, 2);
         grid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         grid.BorderStyle = BorderStyle.FixedSingle;
-        grid.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+        grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
         grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         grid.ShowCellToolTips = true;
@@ -404,8 +392,8 @@ internal static class CsvGridClipboardToolbar
             .OfType<ToolStrip>()
             .Where(strip => strip != commandStrip)
             .FirstOrDefault(static strip =>
-                strip.Items.OfType<ToolStripTextBox>().Any() ||
-                strip.Items.OfType<ToolStripLabel>().Any(static label => label.Text == "Search:"));
+                strip.Items.OfType<ToolStripButton>().Any(static button =>
+                    button.Text?.StartsWith("Diagnostics", StringComparison.Ordinal) == true));
 
     private static bool HasCommandButtons(Control root)
     {

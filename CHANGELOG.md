@@ -4,6 +4,16 @@ All notable changes to CSV Visual Editor will be documented in this file.
 
 ## [Unreleased]
 
+### 0.12.5 GUI refinement and search navigation
+
+- Replace narrow-font space rings with filled, pixel-aligned dots. Guarantee a gap by choosing one diameter per font/DPI rather than varying individual glyph shapes. Test actual consecutive runs, not just isolated markers.
+- Replace the cascading search textbox with one responsive search bar, cell counts, previous/next navigation, direct menu focus and keyboard access. Preserve row-filter semantics and separate clearing text from resetting all view options.
+- Index matching visible cells once; do not cache potentially stale values by row number. Install results after row rebuilding and invalidate on mutations. Preserve clipping, native edit/selection, clipboard and Apply.
+- Add About with build information, developer Zolnai Zsolt, approved contact zzsolt@gmail.com and a support invitation. Links open only on an explicit click; no donation service is invented.
+- Soften grid separators, reduce status-line clutter with complete hover details, add useful no-results/diagnostics empty states and enable buffered grid painting.
+- Fix repeated command-surface tooltip prefixes, menu handling of literal ampersands, and invalid sort-enum values being treated as descending.
+- Add Core and Native AOT regression coverage, responsive-layout screenshots and repeat-install/disposal checks. New host validation remains pending.
+
 ### 0.12.4 search and whitespace refinement
 
 - Frame matching CSV cells in gold using the same effective query, column scope and ordinal-ignore-case semantics as the row filter. Keep native selection and raw values; clear cached matches on each render, sort, query change and Edit transition.

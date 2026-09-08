@@ -6,6 +6,7 @@ internal sealed class CsvCommandSurface : IDisposable
     private readonly ToolStrip[] _strips;
     private readonly List<Action> _detach = [];
     private readonly List<(ToolStripButton Button, ToolStripMenuItem Item)> _bindings = [];
+    private bool _disposed;
     private Color _background = SystemColors.Control;
     private Color _foreground = SystemColors.ControlText;
 
@@ -15,16 +16,17 @@ internal sealed class CsvCommandSurface : IDisposable
     internal ToolStripMenuItem View { get; } = new("&View");
     internal ToolStripMenuItem Csv { get; } = new("&CSV");
     internal ToolStripMenuItem Search { get; } = new("&Search");
+    internal ToolStripMenuItem About { get; } = new("&About");
 
     internal CsvCommandSurface(params ToolStrip[] strips)
     {
         _strips = strips;
-        Menu.Items.AddRange([Table, Edit, View, Csv, Search]);
+        Menu.Items.AddRange([Table, Edit, View, Csv, Search, About]);
         foreach (var button in strips.SelectMany(static strip => strip.Items.OfType<ToolStripButton>()))
         {
             var text = button.Text ?? string.Empty;
             var parent = text.StartsWith("Refresh", StringComparison.Ordinal) || text == "Source" ? Table :
-                text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) ? View :
+                text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) || text == "Reset view" ? View :
                 text == "Clear" ? Search : Edit;
             Bind(parent, button);
         }
@@ -33,14 +35,20 @@ internal sealed class CsvCommandSurface : IDisposable
     private void Bind(ToolStripMenuItem parent, ToolStripButton button)
     {
         var item = new ToolStripMenuItem();
-        var description = button.ToolTipText;
+        // Never capture a stale availability explanation or repeatedly prepend names
+        // every time the command surface is installed.
+        var caption = button.Text ?? string.Empty;
+        if (string.IsNullOrEmpty(button.ToolTipText)) button.ToolTipText = caption;
+        else if (!button.ToolTipText.StartsWith(caption, StringComparison.Ordinal))
+            button.ToolTipText = caption + ": " + button.ToolTipText;
         void Sync()
         {
             item.Text = button.Text;
             item.Enabled = button.Enabled;
             item.Checked = button.Checked;
             button.AccessibleName = button.Text;
-            button.ToolTipText = button.Text + "\n" + description;
+            item.ToolTipText = button.ToolTipText;
+            button.AccessibleDescription = button.ToolTipText;
         }
         EventHandler sync = (_, _) => Sync();
         button.EnabledChanged += sync;
@@ -53,7 +61,10 @@ internal sealed class CsvCommandSurface : IDisposable
         Sync();
     }
 
-    internal void AddCombo(ToolStripMenuItem parent, string text, ToolStripComboBox source)
+    internal void AddCombo(ToolStripMenuItem parent, string text, ToolStripComboBox source) =>
+        AddCombo(parent, text, source.ComboBox);
+
+    internal void AddCombo(ToolStripMenuItem parent, string text, ComboBox source)
     {
         var menu = new ToolStripMenuItem(text);
         parent.DropDownItems.Add(menu);
@@ -67,7 +78,9 @@ internal sealed class CsvCommandSurface : IDisposable
             for (var index = 0; index < source.Items.Count; index++)
             {
                 var selected = index;
-                var item = new ToolStripMenuItem(Convert.ToString(source.Items[index]))
+                // Column names are data, not menu mnemonics.
+                var caption = (Convert.ToString(source.Items[index]) ?? string.Empty).Replace("&", "&&", StringComparison.Ordinal);
+                var item = new ToolStripMenuItem(caption)
                 {
                     Checked = source.SelectedIndex == index, ForeColor = _foreground, BackColor = _background
                 };
@@ -78,33 +91,38 @@ internal sealed class CsvCommandSurface : IDisposable
         };
     }
 
-    internal void AddSearch(ToolStripTextBox source)
+    internal void AddSearch(TextBox source, Action focus, Action<bool> navigate, Func<bool> canNavigate)
     {
-        var menu = new ToolStripMenuItem("&Find in table");
-        var input = new ToolStripTextBox { Width = 220, AccessibleName = "Search text" };
-        menu.DropDownItems.Add(new ToolStripLabel("Search text:"));
-        menu.DropDownItems.Add(input);
-        Search.DropDownItems.Insert(0, menu);
-        EventHandler enabled = (_, _) => menu.Enabled = source.Enabled;
-        source.EnabledChanged += enabled;
-        _detach.Add(() => source.EnabledChanged -= enabled);
-        menu.Enabled = source.Enabled;
-        menu.DropDownOpening += (_, _) =>
+        var find = new ToolStripMenuItem("&Find in table") { ShortcutKeyDisplayString = "Ctrl+F" };
+        var next = new ToolStripMenuItem("&Next matching cell") { ShortcutKeyDisplayString = "F3" };
+        var previous = new ToolStripMenuItem("&Previous matching cell") { ShortcutKeyDisplayString = "Shift+F3" };
+        var clear = new ToolStripMenuItem("&Clear search") { ShortcutKeyDisplayString = "Esc in search" };
+        Search.DropDownItems.Insert(0, find);
+        Search.DropDownItems.Insert(1, next);
+        Search.DropDownItems.Insert(2, previous);
+        Search.DropDownItems.Insert(3, clear);
+        find.Click += (_, _) => { if (source.Enabled) focus(); };
+        next.Click += (_, _) => { if (source.Enabled && canNavigate()) navigate(false); };
+        previous.Click += (_, _) => { if (source.Enabled && canNavigate()) navigate(true); };
+        clear.Click += (_, _) => { if (source.Enabled) source.Clear(); };
+        void Sync()
         {
-            input.Enabled = source.Enabled;
-            input.Text = source.Text;
-            input.BackColor = _background;
-            input.ForeColor = _foreground;
-            input.Focus();
-        };
-        input.TextChanged += (_, _) => { if (source.Enabled) source.Text = input.Text; };
+            find.Enabled = source.Enabled;
+            next.Enabled = previous.Enabled = source.Enabled && canNavigate();
+            clear.Enabled = source.Enabled && source.TextLength > 0;
+        }
+        EventHandler enabled = (_, _) => Sync();
+        source.EnabledChanged += enabled;
+        Search.DropDownOpening += enabled;
+        _detach.Add(() => { source.EnabledChanged -= enabled; Search.DropDownOpening -= enabled; });
+        Sync();
     }
 
     internal void ApplyAppearance(Color background, Color foreground, int dpi)
     {
         _background = background;
         _foreground = foreground;
-        var renderer = new ToolStripProfessionalRenderer(new Palette(background, foreground));
+        var renderer = new ToolStripProfessionalRenderer(new Palette(background, foreground)) { RoundedEdges = false };
         Menu.Renderer = renderer;
         Menu.BackColor = background;
         Menu.ForeColor = foreground;
@@ -140,6 +158,8 @@ internal sealed class CsvCommandSurface : IDisposable
 
     public void Dispose()
     {
+        if (_disposed) return;
+        _disposed = true;
         foreach (var detach in _detach) detach();
         foreach (var (button, item) in _bindings)
         {
@@ -148,6 +168,8 @@ internal sealed class CsvCommandSurface : IDisposable
             button.Image = null;
             image?.Dispose();
         }
+        _detach.Clear();
+        _bindings.Clear();
         Menu.Dispose();
     }
 
@@ -157,6 +179,9 @@ internal sealed class CsvCommandSurface : IDisposable
             (background.R * 4 + foreground.R) / 5,
             (background.G * 4 + foreground.G) / 5,
             (background.B * 4 + foreground.B) / 5);
+        public override Color MenuBorder => _hover;
+        public override Color SeparatorDark => _hover;
+        public override Color SeparatorLight => background;
         public override Color ToolStripDropDownBackground => background;
         public override Color ImageMarginGradientBegin => background;
         public override Color ImageMarginGradientMiddle => background;

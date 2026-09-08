@@ -146,7 +146,7 @@ internal sealed class CsvTransformDialog : Form
             }
 
             _summary.Text = $"{_plan.TargetCellCount:N0} target cells; {_plan.Changes.Count:N0} changes in {_plan.ChangedRowCount:N0} rows. " +
-                "Showing the first 50 changes; " + (_showSpaces ? "hollow orange dots mark empty spaces. " : "space indicators are hidden. ") +
+                "Showing the first 50 changes; " + (_showSpaces ? "solid orange dots mark empty spaces. " : "space indicators are hidden. ") +
                 "Other whitespace is escaped; lengths count UTF-16 units. Long values are shortened.";
             _accept.Enabled = _plan.Changes.Count > 0;
         }

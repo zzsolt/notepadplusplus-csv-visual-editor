@@ -82,6 +82,10 @@ public static class CsvTableViewBuilder
     {
         ArgumentNullException.ThrowIfNull(projection);
         options ??= new CsvTableViewOptions();
+        ArgumentNullException.ThrowIfNull(options.SearchText);
+        if (options.SortDirection is not (CsvTableSortDirection.None or
+            CsvTableSortDirection.Ascending or CsvTableSortDirection.Descending))
+            throw new ArgumentOutOfRangeException(nameof(options.SortDirection));
 
         ValidateColumnIndex(
             options.SearchColumnIndex,

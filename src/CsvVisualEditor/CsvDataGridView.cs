@@ -1,6 +1,8 @@
 namespace CsvVisualEditor;
 
 using System.ComponentModel;
+using System.Drawing.Drawing2D;
+using CsvVisualEditor.Core;
 
 /// <summary>
 /// DataGridView clipboard-command seam that works inside the native Notepad++ host.
@@ -10,6 +12,8 @@ using System.ComponentModel;
 /// </summary>
 internal sealed class CsvDataGridView : DataGridView
 {
+    internal CsvDataGridView() { DoubleBuffered = true; }
+
     private const int WmKeyDown = 0x0100;
     private const int WmCut = 0x0300;
     private const int WmCopy = 0x0301;
@@ -19,29 +23,40 @@ internal sealed class CsvDataGridView : DataGridView
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal bool ShowWhitespace { get; set; } = true;
 
-    private string _highlightQuery = string.Empty;
-    private int? _highlightColumn;
-    private readonly Dictionary<(int Row, int Column), bool> _matchCache = [];
+    private CsvCellSearchIndex? _searchResults;
 
-    internal void SetSearchHighlight(string effectiveQuery, int? column)
+    internal void SetSearchResults(CsvCellSearchIndex? results)
     {
-        _highlightQuery = effectiveQuery;
-        _highlightColumn = column;
-        _matchCache.Clear(); // Rendered row indexes can change after sorting/filtering.
+        _searchResults = results;
         Invalidate();
     }
 
-    internal bool IsSearchMatch(int row, int column, string value)
+    internal bool IsSearchMatch(int row, int column) =>
+        row >= 0 && column >= 0 && _searchResults?.FindIndex(row, column) >= 0;
+
+    // A view index cannot survive in-place mutations, row removal or native sorting.
+    protected override void OnCellValueChanged(DataGridViewCellEventArgs e)
     {
-        if (row < 0 || column < 0 || _highlightQuery.Length == 0 ||
-            (_highlightColumn.HasValue && _highlightColumn != column)) return false;
-        var key = (row, column);
-        if (_matchCache.TryGetValue(key, out var match)) return match;
-        match = value.Contains(_highlightQuery, StringComparison.OrdinalIgnoreCase);
-        // Cache only recently painted cells, including virtual rows; never retain data.
-        if (_matchCache.Count >= 4096) _matchCache.Clear();
-        _matchCache[key] = match;
-        return match;
+        SetSearchResults(null);
+        base.OnCellValueChanged(e);
+    }
+
+    protected override void OnRowsRemoved(DataGridViewRowsRemovedEventArgs e)
+    {
+        SetSearchResults(null);
+        base.OnRowsRemoved(e);
+    }
+
+    protected override void OnRowsAdded(DataGridViewRowsAddedEventArgs e)
+    {
+        SetSearchResults(null);
+        base.OnRowsAdded(e);
+    }
+
+    protected override void OnSorted(EventArgs e)
+    {
+        SetSearchResults(null);
+        base.OnSorted(e);
     }
 
     protected override void OnCellMouseEnter(DataGridViewCellEventArgs e)
@@ -66,27 +81,34 @@ internal sealed class CsvDataGridView : DataGridView
     protected override void OnCellPainting(DataGridViewCellPaintingEventArgs e)
     {
         base.OnCellPainting(e);
-        if (!e.Handled && e.ColumnIndex >= 0 &&
-            Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal))
+        if (e.Handled || e.RowIndex < 0 || e.ColumnIndex < 0 ||
+            !Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal) ||
+            IsCurrentCellInEditMode && CurrentCellAddress == new Point(e.ColumnIndex, e.RowIndex)) return;
+        var match = IsSearchMatch(e.RowIndex, e.ColumnIndex);
+        CsvWhitespaceCellPainter.Paint(this, e, showSpaces: ShowWhitespace, searchMatch: match);
+        if (!match || (e.PaintParts & DataGridViewPaintParts.ContentForeground) == 0 ||
+            e.Graphics is not { } graphics) return;
+        var state = graphics.Save();
+        try
         {
-            CsvWhitespaceCellPainter.Paint(this, e, showSpaces: ShowWhitespace);
-            if (e.RowIndex >= 0 && e.FormattedValue is string value &&
-                IsSearchMatch(e.RowIndex, e.ColumnIndex, value) && e.Graphics is { } graphics)
-            {
-                // Keep native selection/focus colors; frame the matching cell instead.
-                var state = graphics.Save();
-                try
-                {
-                    graphics.SetClip(Rectangle.Intersect(e.ClipBounds, e.CellBounds));
-                    var dark = e.CellStyle?.BackColor.GetBrightness() < 0.5f;
-                    using var pen = new Pen(dark ? Color.Gold : Color.DarkGoldenrod, Math.Max(2, DeviceDpi / 96f));
-                    var bounds = Rectangle.Inflate(e.CellBounds, -3, -3);
-                    if (bounds.Width > 0 && bounds.Height > 0) graphics.DrawRectangle(pen, bounds);
-                }
-                finally { graphics.Restore(state); }
-            }
+            // Intersect, never replace the caller's clip (partial scrolling/repaints).
+            graphics.SetClip(Rectangle.Intersect(e.ClipBounds, e.CellBounds), CombineMode.Intersect);
+            var active = CurrentCellAddress == new Point(e.ColumnIndex, e.RowIndex);
+            var selected = (e.State & DataGridViewElementStates.Selected) != 0;
+            var dark = (selected ? e.CellStyle?.SelectionBackColor : e.CellStyle?.BackColor)?.GetBrightness() < 0.5f;
+            var color = active ? (dark || selected ? Color.Gold : Color.FromArgb(0, 120, 212)) :
+                (dark ? Color.Gold : Color.DarkGoldenrod);
+            using var pen = new Pen(color, Math.Max(1, (active ? 2f : 1f) * DeviceDpi / 96f));
+            var inset = Math.Max(3, (int)Math.Round(3 * DeviceDpi / 96f));
+            var bounds = Rectangle.Inflate(e.CellBounds, -inset, -inset);
+            if (bounds.Width > 0 && bounds.Height > 0) graphics.DrawRectangle(pen, bounds);
         }
+        finally { graphics.Restore(state); }
     }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    internal Func<Keys, bool>? SearchCommandHandler { get; set; }
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -106,6 +128,7 @@ internal sealed class CsvDataGridView : DataGridView
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
     {
+        if (SearchCommandHandler?.Invoke(keyData) == true) return true;
         if (IsClipboardCommand(keyData) &&
             ClipboardCommandHandler?.Invoke(keyData) == true)
         {
@@ -117,6 +140,8 @@ internal sealed class CsvDataGridView : DataGridView
 
     protected override void WndProc(ref Message message)
     {
+        if (message.Msg == WmKeyDown &&
+            SearchCommandHandler?.Invoke((Keys)message.WParam.ToInt32() | ModifierKeys) == true) return;
         if (TryResolveNativeClipboardCommand(
                 message.Msg,
                 message.WParam,

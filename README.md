@@ -4,15 +4,17 @@ CSV Visual Editor is a 64-bit Notepad++ plugin for viewing and editing CSV data 
 
 > **Development status:** milestone **0.11 is owner-accepted and merged**. Milestone **0.12 is under development** on source navigation and previewed bulk text transformations. The 0.12 package is not accepted until automated gates and real Notepad++ host validation pass.
 
-## Current GUI candidate: 0.12.4
+## Current GUI candidate: 0.12.5
 
-The main toolbar uses compact graphical icons with command-name tooltips. A permanent **Table / Edit / View / CSV / Search** menu provides the same commands plus delimiter/header selection, search and sorting. Menus and icons share availability and Edit state; menu search remains usable when the dock is narrow. Icons scale with DPI and menus follow the current plugin light/dark palette.
+Search is a single inline field with a clear affordance, column scope, previous/next matching-cell controls and a current/total cell counter. Narrow docks use two rows instead of nested text-entry menus. **Search > Find in table** focuses that same field. Ctrl+F, F3/Shift+F3 and Enter/Shift+Enter are scoped to the plugin; host keyboard routing still needs real Notepad++ validation. The existing case-insensitive row filter is preserved. Clear search keeps the sort and column scope; **View > Reset view** clears all view options.
 
-**View > Show spaces** toggles small hollow orange space marks in the table and subsequently opened Transform previews. These are display indicators; cell and clipboard values remain real spaces. Hover a data cell for exact space counts. The switch is session-local and defaults on; native in-cell typing remains standard. Transform retains value boundaries and lengths even with marks hidden.
+Matching data cells have a subtle amber indication; the current match has a stronger frame while retaining native selection. A value-free index replaces repeated string scans during painting. Scope, sort, reload and editing transitions invalidate old results. Counts refer to matching cells, not repeated occurrences inside one cell.
 
-[Hungarian GUI host checklist](docs/host-validation-0.12-gui-hu.md). The owner reported the preceding 0.12.2 whitespace checks successful; the new GUI requires its own host validation. Milestone 0.12 remains draft and unmerged.
+**View > Show spaces** displays solid orange dots, pixel-snapped and sized once per font/DPI to leave a background gap between consecutive markers. Actual space advances, cell values, clipboard and Apply remain unchanged. The main table and Transform use the same renderer; editing inside a cell remains native. Hover a cell for exact space counts.
 
-Search now has its own toolbar row. Matching data cells receive a gold inset frame, including selected cells; the full value and selected search column follow the row filter's existing case-insensitive rules. Clearing the query removes frames. Space rings use identical pixel geometry at each DPI in the table and Transform. The owner reported the other 0.12.3 GUI behavior good; these two corrections await a targeted host retest.
+The permanent **Table / Edit / View / CSV / Search / About** menu and icon toolbar remain available. About includes build version, developer **Zolnai Zsolt**, **zzsolt@gmail.com**, and an invitation to support the project with a GitHub star, feedback or contributions. No donation address is assumed.
+
+[GUI behavior and Hungarian host checklist](docs/gui-refresh-0.12.5.md). Milestone 0.12 remains draft and unmerged pending real-host validation. CI screenshots use synthetic data only.
 
 ## Core principles
 

@@ -26,7 +26,7 @@ jobs:
   build-test-publish:
     runs-on: windows-latest
     env:
-      PACKAGE_VERSION: 0.12.4-alpha.${{ github.run_number }}.${{ github.run_attempt }}
+      PACKAGE_VERSION: 0.12.5-alpha.${{ github.run_number }}.${{ github.run_attempt }}
 
     steps:
       - name: Checkout
@@ -204,6 +204,15 @@ jobs:
             artifacts/native-aot-runtime-smoke.log
             artifacts/native-aot-runtime-smoke-execution.log
           if-no-files-found: error
+          retention-days: 3
+
+      - name: Upload synthetic UI review images
+        if: always() && steps.native_aot_smoke.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-ui-review
+          path: artifacts/ui-review/
+          if-no-files-found: warn
           retention-days: 3
 
       - name: Publish x64 Native AOT plugin

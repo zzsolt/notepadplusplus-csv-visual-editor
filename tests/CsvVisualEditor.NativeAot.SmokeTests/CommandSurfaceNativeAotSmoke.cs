@@ -13,16 +13,17 @@ internal static class CommandSurfaceNativeAotSmoke
         var copy = new ToolStripButton("Copy");
         var apply = new ToolStripButton("Apply") { Enabled = false };
         commands.Items.AddRange([copy, edit, apply]);
-        var query = new ToolStripTextBox();
+        using var query = new TextBox();
         var combo = new ToolStripComboBox();
         combo.Items.AddRange(["All columns", "Name"]);
         combo.SelectedIndex = 0;
-        options.Items.AddRange([query, combo]);
+        options.Items.Add(combo);
         using var surface = new CsvCommandSurface(commands, options);
-        surface.AddSearch(query);
+        var focusCalls = 0;
+        surface.AddSearch(query, () => focusCalls++, _ => { }, () => true);
         surface.AddCombo(surface.Csv, "Column", combo);
         surface.ApplyAppearance(SystemColors.Control, Color.Black, 96);
-        Require(surface.Menu.Items.Count == 5, "The full text menu must always exist.");
+        Require(surface.Menu.Items.Count == 6, "The full text menu must always exist.");
         Require(copy.DisplayStyle == ToolStripItemDisplayStyle.Image && copy.Image is not null,
             "The primary toolbar must use graphical icons.");
         Require(copy.ToolTipText!.StartsWith("Copy", StringComparison.Ordinal) && copy.AccessibleName == "Copy",
@@ -41,12 +42,12 @@ internal static class CommandSurfaceNativeAotSmoke
         var menuEdit = surface.Edit.DropDownItems.OfType<ToolStripMenuItem>().Single(item => item.Text == "Exit Edit");
         Require(menuEdit.Checked, "Edit label and checked state must stay synchronized.");
         var find = (ToolStripMenuItem)surface.Search.DropDownItems[0];
-        var search = find.DropDownItems.OfType<ToolStripTextBox>().Single();
-        search.Text = "synthetic";
-        Require(query.Text == "synthetic", "Menu search must work without focusing an overflowing toolbar field.");
+        Require(find.DropDownItems.Count == 0, "Find must directly focus the search bar, not open a nested editor.");
+        find.PerformClick();
+        Require(focusCalls == 1, "Find must focus the one canonical search input.");
         query.Enabled = false;
-        search.Text = "blocked";
-        Require(query.Text == "synthetic" && !find.Enabled, "Disabled menu search must not mutate filter state.");
+        find.PerformClick();
+        Require(focusCalls == 1 && !find.Enabled, "Disabled search must not dispatch.");
         var width = copy.Image!.Width;
         surface.ApplyAppearance(Color.FromArgb(32, 32, 32), Color.Gainsboro, 192);
         Require(copy.Image!.Width > width && surface.Menu.BackColor.R == 32,
