@@ -1,12 +1,10 @@
 name: Source archive
 on:
-  workflow_dispatch:
   push:
     branches: [agent/localization]
     paths: [.github/workflows/source-archive.yml]
 permissions:
   contents: read
-  actions: read
 jobs:
   archive:
     runs-on: ubuntu-latest
@@ -20,22 +18,10 @@ jobs:
           git rev-parse HEAD > /tmp/archive/commit.txt
           git ls-tree -r HEAD > /tmp/archive/tree.txt
           sha256sum /tmp/archive/source.tar.gz > /tmp/archive/SHA256SUMS
-      - uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          run-id: 34321598514
-          pattern: translated-*
-          path: /tmp/archive/catalogs
-          merge-multiple: true
-      - name: Record generation status
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api --paginate repos/zzsolt/notepadplusplus-csv-visual-editor/actions/runs/34321598514/jobs?per_page=100 --jq '.jobs[] | {id,name,status,conclusion}' > /tmp/archive/jobs.jsonl
       - uses: actions/upload-artifact@v4
         with:
           name: source-archive
           path: /tmp/archive/
-          retention-days: 3
+          retention-days: 1
           if-no-files-found: error
 # Temporary recovery snapshot; this workflow is removed before the localization PR is finalized.
