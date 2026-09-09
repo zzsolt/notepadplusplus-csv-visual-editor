@@ -81,6 +81,7 @@ for name,entry in delta['files'].items():
         for start,end,replacement in reversed(entry['edits']): rows[start:end]=[replacement]
         text=''.join(rows)
     path.parent.mkdir(parents=True,exist_ok=True)
+    if name == 'tools/localization/csharp_strings.py': text = text.rstrip() + '\n'
     path.write_text(text,encoding='utf-8',newline='\n')
 for name in delta['delete']:
     assert name.startswith('docs/') and name.endswith('.md')
