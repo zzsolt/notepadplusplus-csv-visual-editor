@@ -1,0 +1,126 @@
+000	Amaẓrag amezraw n CSV i Notepad++
+001	Ɣef CSV Visual Editor
+002	Anermis: {0}
+003	Nermes aneflay {0}
+004	Aneflay: {0}
+005	Lqem n usnefli
+006	Iɛǧeb-ak CSV Visual Editor? Mudd afus i usenfar.\nRnu-as itri deg GitHub, bḍu tiktiwin-ik, neɣ nermes aneflay iwakken ad tettekkiḍ. Tanemmirt!
+007	Tutlayt n ugrudem: {0}
+008	Ulamek alday n usnas icudden. Anermis: {0}
+009	Asenfar deg GitHub
+010	Lqem: {0}
+011	Lqem d usileɣ
+012	{0} yettwasewḥel acku abeddel n tmudemt n teẓrigt yettraǧǧun. Ulac abeddel ameẓyan yettwaḥerzen.
+013	{0} yettwasewḥel: aɣerbaz n tecfawt d uferran sɛan tisekta yemgaraden.
+014	{0} yettwasewḥel: aɣerbaz n yiswi yezger tilisa n tfelwit CSV.
+015	{0} yettwasewḥel: ulac aɣerbaz n yiswi ara yettwaẓergen.
+016	{0} × {1} tebdert CSV ttwanɣlent.
+017	Nɣel/Gzem yettwasewḥel: yiwet n tebdert tefrant tesɛa tabulation neɣ angaz n ujerriḍ ur nezmir ara ad d-nesken s wudem amezwaru deg uḍris aḥerfi n tfelwit.
+018	Taneɣli teḥwaǧ tibdert CSV, mačči afran n yijerriḍen meṛṛa i tukksa.
+019	Taneɣli teḥwaǧ afran amesdukel amɣerbaz n tebdert CSV.
+020	{0} tebdert ttwagzment ɣer tecfawt, ttwasfḍent deg tɣimit yettraǧǧun. Snes ad yaru tukksa deg Notepad++.
+021	Agzam ifuk; tibdert tefranin llant d tilem. Tacfawt teḥrez azalen-nsent inasliyen.
+022	{0} yella kan deg uskar n teẓrigt.
+023	{0} ur yelli ara i tfelwit tamirant.
+024	Asenteḍ yettwasewḥel: {0} Isefka ur beddlen ara.
+025	Asenteḍ ifuk; azalen n yiswi llan d imegda.
+026	{0} tebdert ibeddlen ttwasenṭḍent deg tɣimit yettraǧǧun. Snes ad tent-yaru deg Notepad++.
+027	{0} yeḥwaǧ aɣerbaz n tebdert CSV, mačči afran n yijerriḍen meṛṛa i tukksa.
+028	{0} yeḥwaǧ afran amesdukel amɣerbaz n tebdert CSV.
+029	Iswiyen n {0} ur llin ara berra n tmudemt tusbiḍt n yijerriḍen deg uskar n teẓrigt.
+030	Ulamek asentem n teẓrigt n tebdert turmidt send taneɣli.
+031	Ulamek asentem n teẓrigt n tebdert turmidt. Seɣti azal send {0}.
+032	Tacfawt ur tesɛi ara tibdert n uḍris aḥerfi.
+033	Tacfawt n Windows ur telli ara akka tura. Isefka ur beddlen ara.
+034	Nɣel aɣerbaz afran n tebdert CSV ɣer tecfawt n Windows (Ctrl+C)
+035	Nɣel tibdert CSV tefranin yerna sfeḍ-itent deg tɣimit n teẓrigt yettraǧǧun (Ctrl+X)
+036	Senteḍ tibdert n tfelwit deg tebdert CSV neɣ aɣerbaz afran (Ctrl+V)
+037	Sken taskant n usemselsi n uḍris, tukksa n tallunin neɣ abeddel n usekkil deg teẓrigt CSV yettraǧǧun
+038	Fren tabdart neɣ ajerriḍ CSV amiran deg uḍris aɣbalu n Notepad++
+039	Aɣbalu
+040	Selket
+041	Ɣef
+042	Snes
+043	S umizzwer yettalin
+044	Sefsex
+045	Mdel
+046	Tigejdit
+047	Nɣel
+048	Gzem
+049	S umizzwer yettadren
+050	Ẓreg
+051	Ffeɣ seg teẓrigt
+052	Ḥader teɣzi n yisekkilen
+053	Amḍan
+054	Amizzwer anasli
+055	Senteḍ
+056	Taskant
+057	Smiren
+058	Ijerriḍen
+059	Tafelwit
+060	Aḍris
+061	Azal
+062	Agzul n tgejdit: amḍan, azalen yemgaraden, azilal n yimḍanen d wazalen yettuɣalen deg tmuɣli tamirant.
+063	Agzul n tgejdit yeḥwaǧ tafelwit iheggan n tɣuri kan. Ffeɣ seg uskar n teẓrigt d amezwaru.
+064	Sizdeg u sizwer: sdukel tiwtilin n tgejda d yiswiren n umizzwer aḍris/amḍan. Tam uɣli kan; CSV ur ibeddel ara.
+065	Sizdeg u sizwer: sdukel tiwtilin n tgejda d kraḍ n yiswiren n umizzwer aḍris/amḍan s umata. Tam uɣli kan.
+066	Sizdeg u sizwer: {0} n tewtilin, {1} n yiswiren n umizzwer. Err tamuɣli ad yekkes akk ilugan.
+067	Asizdeg d umizzwer ḥwaǧen tafelwit iheggan n tɣuri kan. Ffeɣ seg uskar n teẓrigt d amezwaru.
+068	Asenqed (0)
+069	0 ibeddilen
+070	Rnu tawtilt
+071	Rnu aswir n umizzwer
+072	Snes tamuɣli
+073	Aa
+074	Asnemhel n uḍris s teɣzi n yisekkilen. Tallunin deg wazalen ttwaḥerzent akken llant.
+075	Senqed ilugan: {0}
+076	Tawtilt
+077	{0} / 8 tiwtilin; {1} / 3 iswiren n umizzwer. Taskant ad d-tesken ijerriḍen yemṣadan.
+078	Yegber
+079	Ur yegbir ara
+080	Ur yegdi ara
+081	Ilem = ulac asekkil. Iskilen imellalen kan = azal ur nelli d ilem, yesɛan tallunin, tabulations neɣ ingazen n ujerriḍ.\nImḍanen s tneqqiḍt (-12.5), war asdukel neɣ azun; ilaq ad ilin d imegda s usentel.
+082	Ifuk s
+083	Yegdi d
+084	Azal n usizdeg
+085	Isizdigen
+086	D ilem
+087	Ur yelli d ilem
+088	Mačči iskilen imellalen kan
+089	Iskilen imellalen kan
+090	Aḍris amezwaru, ula d tallunin. Ilugan n yimḍanen ḥwaǧen amḍan amrawan s tneqqiḍt, war asuqqes.
+091	Akk tiwtilin ad mseḍant
+092	Yiwet seg tewtilin ad temṣad
+093	Amḍan =
+094	Amḍan >
+095	Amḍan >=
+096	Amḍan <
+097	Amḍan <=
+098	Amḍan (amrawan)
+099	Taskant: {0:N0} seg {1:N0} n yijerriḍen yettwaskanen. CSV ur ibeddel ara.
+100	Kkes tawtilt
+101	Kkes aswir n umizzwer
+102	Err ilugan
+103	Ilugan ttaṭṭafen daɣen anadi amiran. Sefsex ad yeḥrez tamuɣli turmidt.
+104	Amizzwer
+105	Yebda s
+106	Aḍris: amizzwer war teɣzi n yisekkilen. Amḍan: imrawanen imegda; azalen ur nelli d imeɣta neɣ d ilem ɣer taggara.\nTisura imegda ḥerzent amizzwer n uɣbalu. Kkes akk iswiren iwakken ad d-yuɣal umizzwer anasli.
+107	Tamuɣli tesɛa tilisa; ijerriḍen ur nettwaskan ara ur ttekkin ara. 
+108	Sizdeg u sizwer
+109	Aswir afellay d amezwaru; wiyaḍ ad frun imegda. Ugar n kraḍ ulac.
+110	Azal (amezwaru, s tallunin)
+111	Tamuɣli kan: azalen CSV d umizzwer n uɣbalu ur beddlen ara. {0:N0} n yijerriḍen yettwaskanen.\n
+112	Asnas yettwasewḥel: ulac amaɣnu yettwaqeblen i {0}. Agbur n umaẓrag ur ibeddel ara.
+113	Asnas yettwasewḥel: {0} ur yeṣliḥ ara deg usenqed n usettengel d tuɣalin. Amaẓrag ur ibeddel ara.
+114	Asnas yettwasewḥel: agbur ur yezmir ara ad yettwaru war aḍeggar deg {0}. Ulac iskilen n usemselsi yettwarun; amaẓrag ur ibeddel ara.
+115	Asnas ur yettwasireg ara i {0}. Amaẓrag ur ibeddel ara. Tira tettwasireg kan i UTF-8 (65001) d Windows-1250 (1250), s usenqed war aḍeggar. Err akk ibeddilen neɣ selket isemli ɣer UTF-8 deg Notepad++, syen ales alday n uskar n teẓrigt.
+116	Asmiren yensa deg uskar n teẓrigt. Snes neɣ err akk ibeddilen yettraǧǧun d amezwaru.
+117	Asebter n yikudan n Scintilla: {0}
+118	Isemli urmid yesɛa {0:N0} n yibayten. Talast n tugna taɣelsant d {1:N0} n yibayten.
+119	Ulamek taɣuri n yisemli urmid n Notepad++. Amaẓrag ur ibeddel ara.
+120	Agmuḍ n usnas mačči d addad yettwasewḥlen n usettengel.
+121	Aheggi n tfelwit deg ugilal ifuk war agmuḍ.
+122	Ibeddilen CSV ttwasensen, maca ulamek tiririt n teḥnaccaḍt neɣ uferran yezrin. Zemreḍ ad tesfesxeḍ akk abeddel s yiwet n tigawt.
+123	asebter n yikudan amiran n umaẓrag
+124	Ulamek asileɣ n tfelwit seg ugbur n umaẓrag. Fren anabraz neɣ seɣti isemli, syen smiren.
+125	Aheggi n tfelwit yerra-d agmuḍ ur nemmid ara.
