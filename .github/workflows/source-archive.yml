@@ -38,3 +38,4 @@ jobs:
           path: /tmp/archive/
           retention-days: 3
           if-no-files-found: error
+# Temporary recovery snapshot; this workflow is removed before the localization PR is finalized.
