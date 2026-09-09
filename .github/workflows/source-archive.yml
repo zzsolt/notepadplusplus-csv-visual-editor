@@ -1,0 +1,26 @@
+name: Source archive
+on:
+  workflow_dispatch:
+  push:
+    branches: [agent/localization]
+    paths: [.github/workflows/source-archive.yml]
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          mkdir -p /tmp/archive
+          git archive --format=tar.gz HEAD > /tmp/archive/source.tar.gz
+          git rev-parse HEAD > /tmp/archive/commit.txt
+          git ls-tree -r HEAD > /tmp/archive/tree.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-archive
+          path: /tmp/archive/
+          retention-days: 3
+          if-no-files-found: error
