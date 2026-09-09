@@ -1,4 +1,4 @@
-name: Build interface catalogs
+name: Complete interface catalogs
 on:
   push:
     branches: [agent/localization]
@@ -6,25 +6,14 @@ on:
 permissions:
   contents: read
 jobs:
-  plan:
-    runs-on: ubuntu-latest
-    outputs:
-      languages: ${{ steps.languages.outputs.value }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - id: languages
-        run: echo "value=$(python .github/localization/translate.py --list)" >> "$GITHUB_OUTPUT"
   translate:
-    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 16
+      max-parallel: 10
       matrix:
-        language: ${{ fromJSON(needs.plan.outputs.languages) }}
+        language: [sk, sl, sq, sr, sv, ta, te, tg, th, tr, tt, ug, uk, ur, uz, vec, vi, zh, zh_Hant, zu]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,20 +31,4 @@ jobs:
           name: translated-${{ matrix.language }}
           path: output/
           if-no-files-found: error
-          retention-days: 3
-  collect:
-    if: always()
-    needs: [plan, translate]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: translated-*
-          path: catalogs
-          merge-multiple: true
-      - uses: actions/upload-artifact@v4
-        with:
-          name: translated-catalogs
-          path: catalogs/
-          if-no-files-found: error
-          retention-days: 3
+          retention-days: 2
