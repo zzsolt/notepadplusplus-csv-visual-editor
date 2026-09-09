@@ -1,0 +1,24 @@
+name: Export localization inputs
+on:
+  push:
+    branches: [agent/localization]
+    paths: [.github/workflows/export-curated.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/upload-artifact@v4
+        with:
+          name: localization-inputs
+          path: |
+            .github/localization/curated/
+            src/CsvVisualEditor.Localization/Catalogs/en.json
+            src/CsvVisualEditor.Localization/languages.json
+            tools/localization/
+          retention-days: 1
+          if-no-files-found: error
