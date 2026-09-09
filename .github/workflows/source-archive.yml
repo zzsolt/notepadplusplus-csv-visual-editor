@@ -18,6 +18,7 @@ jobs:
           git archive --format=tar.gz HEAD > /tmp/archive/source.tar.gz
           git rev-parse HEAD > /tmp/archive/commit.txt
           git ls-tree -r HEAD > /tmp/archive/tree.txt
+          sha256sum /tmp/archive/source.tar.gz > /tmp/archive/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
           name: source-archive
