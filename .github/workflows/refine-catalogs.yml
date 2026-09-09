@@ -1,0 +1,87 @@
+name: Refine interface catalogs
+on:
+  push:
+    branches: [agent/localization]
+    paths: [.github/workflows/refine-catalogs.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    outputs:
+      languages: ${{ steps.languages.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Await source catalogs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 120); do
+            status=$(gh api repos/zzsolt/notepadplusplus-csv-visual-editor/actions/runs/34321598514 --jq .status)
+            if [ "$status" = completed ]; then exit 0; fi
+            sleep 30
+          done
+          exit 1
+      - id: languages
+        shell: python
+        run: |
+          import json, subprocess, os
+          langs=json.loads(subprocess.check_output(['python','.github/localization/translate.py','--list']))
+          langs=[code for code in langs if code != 'hu']
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('value='+json.dumps(langs)+'\n')
+  refine:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        language: ${{ fromJSON(needs.plan.outputs.languages) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          github-token: ${{ github.token }}
+          run-id: 34321598514
+          name: translated-${{ matrix.language }}
+          path: previous
+      - run: pip install ctranslate2==4.6.0 transformers==4.49.0 sentencepiece==0.2.0 huggingface-hub==0.34.4
+      - name: Refine catalog
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python .github/localization/refine_catalog.py --language '${{ matrix.language }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refined-${{ matrix.language }}
+          path: output/
+          if-no-files-found: error
+          retention-days: 3
+  collect:
+    if: always()
+    needs: [plan, refine]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: refined-*
+          path: catalogs
+          merge-multiple: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refined-catalogs
+          path: catalogs/
+          if-no-files-found: error
+          retention-days: 3
