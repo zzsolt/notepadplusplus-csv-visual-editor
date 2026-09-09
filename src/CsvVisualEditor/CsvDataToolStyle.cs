@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 /// <summary>Shared, dependency-free presentation for the two view-only dialogs.</summary>
 internal static class CsvDataToolStyle
 {
@@ -42,7 +44,7 @@ internal static class CsvDataToolStyle
     {
         var combo = new ComboBox
         {
-            Name = name, AccessibleName = name, DropDownStyle = ComboBoxStyle.DropDownList,
+            Name = name, AccessibleName = AccessibleComboName(name), DropDownStyle = ComboBoxStyle.DropDownList,
             Dock = DockStyle.Fill, Margin = new Padding(4, 5, 4, 5), IntegralHeight = false,
             DropDownHeight = 260
         };
@@ -50,6 +52,15 @@ internal static class CsvDataToolStyle
         if (items.Length > 0) combo.SelectedIndex = 0;
         return combo;
     }
+
+    private static string AccessibleComboName(string name) => L10n.Get(name switch
+    {
+        "CsvFilterCombination" => TextKey.Filter_Filters,
+        "CsvFilterOperator" => TextKey.Filter_Condition,
+        "CsvSortKind" => TextKey.Summary_Kind,
+        "CsvSortDirection" => TextKey.Filter_Sorting,
+        _ => TextKey.Common_Column
+    });
 
     internal static Label Label(string text) => new()
     {

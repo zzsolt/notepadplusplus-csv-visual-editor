@@ -7,6 +7,10 @@ using CsvVisualEditor.Core;
 /// <summary>Presentation of structured Core values; never translate document strings.</summary>
 internal static class CsvUiText
 {
+    internal static string ColumnName(CsvTableColumn column) => column.IsGeneratedName
+        ? L10n.Get(TextKey.Common_Column) + " " + (column.Index + 1).ToString(L10n.FormattingCulture)
+        : column.Name;
+
     internal static string Exception(Exception exception)
     {
         var details = CsvErrorDetails.From(exception);

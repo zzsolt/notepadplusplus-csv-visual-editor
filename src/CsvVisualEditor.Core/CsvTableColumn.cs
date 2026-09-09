@@ -5,7 +5,7 @@ namespace CsvVisualEditor.Core;
 /// </summary>
 public sealed record CsvTableColumn
 {
-    public CsvTableColumn(int index, string name)
+    public CsvTableColumn(int index, string name, bool isGeneratedName = false)
     {
         if (index < 0)
         {
@@ -16,9 +16,13 @@ public sealed record CsvTableColumn
 
         Index = index;
         Name = name;
+        IsGeneratedName = isGeneratedName;
     }
 
     public int Index { get; }
 
     public string Name { get; }
+
+    /// <summary>Only synthetic labels may be translated; actual header text remains data.</summary>
+    public bool IsGeneratedName { get; }
 }

@@ -41,9 +41,10 @@ def placeholders(text: str) -> list[str]:
 
 def literal_inventory() -> dict:
     found={}
-    for path in sorted((ROOT/'src/CsvVisualEditor').glob('*.cs')):
+    for path in sorted((ROOT/'src/CsvVisualEditor').rglob('*.cs')):
+        if any(part in ('obj','bin') for part in path.parts):continue
         values=sorted({token.text for token in tokens(path.read_text(encoding='utf-8')) if re.search('[A-Za-z]{2}',token.text)})
-        if values:found[path.name]=values
+        if values:found[path.relative_to(ROOT/'src/CsvVisualEditor').as_posix()]=values
     return found
 
 
@@ -79,6 +80,13 @@ def verify(check_upstream=False, english_only=False) -> None:
             try:
                 if placeholders(text)!=placeholders(source[key]['text']):errors.append(code+'/'+key+': changed placeholders')
             except ValueError as error:errors.append(code+'/'+key+': '+str(error))
+            if code != 'en' and len(source[key]['text']) > 80 and text == source[key]['text']:
+                errors.append(code+'/'+key+': untranslated prose')
+            if re.search(r'([^\W\d_]{2,32})\1{3,}',text,re.I) or re.search(r'(\b\w+(?:\s+\w+){0,6}\s+)\1{3,}',text,re.I):
+                errors.append(code+'/'+key+': repeated translation output')
+            if re.search(r'<0x[0-9A-Fa-f]+>',text):errors.append(code+'/'+key+': undecoded byte token')
+            if len(text) > max(250,5*len(source[key]['text'])):errors.append(code+'/'+key+': excessive translated length')
+            if '-12.5' in source[key]['text'] and '-12.5' not in text:errors.append(code+'/'+key+': altered numeric syntax example')
             if any(0xD800<=ord(char)<=0xDFFF or ord(char)<32 and char not in '\n\r\t' for char in text):errors.append(code+'/'+key+': invalid Unicode/control character')
         # Entire English copies are not accepted as translations. Shared technical
         # words are legitimate, but a non-English catalog must translate its prose.

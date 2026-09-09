@@ -42,7 +42,7 @@ internal sealed class CsvColumnSummaryDialog : Form
         var root = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(12), ColumnCount = 1, RowCount = 7 };
         root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         for (var i = 0; i < 7; i++) root.RowStyles.Add(new RowStyle(i == 4 ? SizeType.Percent : SizeType.AutoSize, i == 4 ? 100 : 0));
-        _column = CsvDataToolStyle.Combo("CsvProfileColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {c.Name}").ToArray());
+        _column = CsvDataToolStyle.Combo("CsvProfileColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {CsvUiText.ColumnName(c)}").ToArray());
         root.Controls.Add(_column, 0, 0);
         var scope = new Label
         {

@@ -69,16 +69,20 @@ public static class L10n
 
     public static string GetForLanguage(string code, TextKey key)
     {
-        var definition = LanguageInventory.All.FirstOrDefault(language => language.Code == code) ?? LanguageInventory.English;
-        var catalog = definition.Code == "en" ? EnglishCatalog() : Cache.GetOrAdd(code, _ => Load(definition));
-        return catalog.Values[(int)key];
+        var index = (int)key;
+        if ((uint)index >= (uint)EnglishText.Values.Length) throw new ArgumentOutOfRangeException(nameof(key));
+        var definition = LanguageInventory.All.FirstOrDefault(language =>
+            string.Equals(language.Code, code, StringComparison.OrdinalIgnoreCase)) ?? LanguageInventory.English;
+        var catalog = definition.Code == "en" ? EnglishCatalog() : Cache.GetOrAdd(definition.Code, _ => Load(definition));
+        return catalog.Values[index];
     }
 
     /// <summary>Useful for automated coverage: a known language may not rely on fallback.</summary>
     public static bool HasCompleteCatalog(string code)
     {
-        var definition = LanguageInventory.All.FirstOrDefault(language => language.Code == code);
-        return definition is not null && (code == "en" || Cache.GetOrAdd(code, _ => Load(definition)).Complete);
+        var definition = LanguageInventory.All.FirstOrDefault(language =>
+            string.Equals(language.Code, code, StringComparison.OrdinalIgnoreCase));
+        return definition is not null && (definition.Code == "en" || Cache.GetOrAdd(definition.Code, _ => Load(definition)).Complete);
     }
 
     private static Catalog EnglishCatalog() => new(LanguageInventory.English, EnglishText.Values,

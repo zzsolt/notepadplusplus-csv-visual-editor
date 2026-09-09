@@ -63,7 +63,7 @@ internal sealed partial class CsvGridForm
             foreach (var column in _projection.Columns)
             {
                 var index = column.Index;
-                var menu = new ToolStripMenuItem(column.Name.Replace("&", "&&", StringComparison.Ordinal));
+                var menu = new ToolStripMenuItem(CsvUiText.ColumnName(column).Replace("&", "&&", StringComparison.Ordinal));
                 foreach (var direction in new[] { CsvTableSortDirection.Ascending, CsvTableSortDirection.Descending })
                 {
                     var item = new ToolStripMenuItem(CsvUiText.SortDirection(direction))

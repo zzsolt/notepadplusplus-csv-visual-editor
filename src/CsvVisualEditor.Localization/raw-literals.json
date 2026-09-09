@@ -215,6 +215,12 @@
     "NotepadUiLanguage.cs": [
       "SendMessageW",
       "user32.dll"
+    ],
+    "CsvDataToolStyle.cs": [
+      "CsvFilterCombination",
+      "CsvFilterOperator",
+      "CsvSortDirection",
+      "CsvSortKind"
     ]
   }
 }

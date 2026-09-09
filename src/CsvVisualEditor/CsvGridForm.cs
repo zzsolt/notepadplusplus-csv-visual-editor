@@ -1003,7 +1003,7 @@ internal sealed partial class CsvGridForm : DockingForm
                 new DataGridViewTextBoxColumn
                 {
                     Name = $"CsvColumn{column.Index}",
-                    HeaderText = column.Name,
+                    HeaderText = CsvUiText.ColumnName(column),
                     AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                     FillWeight = fillWeights[column.Index],
                     MinimumWidth = TableColumnMinimumWidth,
@@ -1023,7 +1023,7 @@ internal sealed partial class CsvGridForm : DockingForm
             _searchColumnCombo.Items.Add(L10n.Get(TextKey.Search_AllColumns));
             foreach (var column in projection.Columns)
             {
-                _searchColumnCombo.Items.Add(column.Name);
+                _searchColumnCombo.Items.Add(CsvUiText.ColumnName(column));
             }
 
             _searchColumnCombo.SelectedIndex = 0;

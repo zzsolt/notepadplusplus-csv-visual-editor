@@ -253,7 +253,7 @@ internal sealed class CsvDataViewDialog : Form
             ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 44));
             ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42));
             ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36));
-            _column = CsvDataToolStyle.Combo("CsvFilterColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {c.Name}").ToArray());
+            _column = CsvDataToolStyle.Combo("CsvFilterColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {CsvUiText.ColumnName(c)}").ToArray());
             _operator = CsvDataToolStyle.Combo("CsvFilterOperator", Operators.Select(static entry => (object)entry.Text).ToArray());
             Controls.Add(_column, 0, 0); Controls.Add(_operator, 1, 0); Controls.Add(_value, 2, 0);
             Controls.Add(_case, 3, 0); Controls.Add(Remove, 4, 0);
@@ -294,7 +294,7 @@ internal sealed class CsvDataViewDialog : Form
             ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28));
             ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28));
             ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36));
-            _column = CsvDataToolStyle.Combo("CsvSortColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {c.Name}").ToArray());
+            _column = CsvDataToolStyle.Combo("CsvSortColumn", projection.Columns.Select(static c => (object)$"{c.Index + 1}: {CsvUiText.ColumnName(c)}").ToArray());
             Controls.Add(_column, 0, 0); Controls.Add(_kind, 1, 0); Controls.Add(_direction, 2, 0); Controls.Add(Remove, 3, 0);
             if (key is not null)
             {

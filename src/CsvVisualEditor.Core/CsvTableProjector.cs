@@ -43,7 +43,9 @@ public static class CsvTableProjector
 
         var columnNames = CreateColumnNames(headerRecord, columnCount);
         var columns = columnNames
-            .Select(static (name, index) => new CsvTableColumn(index, name))
+            .Select((name, index) => new CsvTableColumn(index, name,
+                headerRecord is null || index >= headerRecord.Cells.Count ||
+                string.IsNullOrWhiteSpace(headerRecord.Cells[index].Value)))
             .ToArray();
 
         var rowsAllowedByCellBudget = columnCount == 0

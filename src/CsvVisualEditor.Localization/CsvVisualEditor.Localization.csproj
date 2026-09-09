@@ -5,6 +5,12 @@
     <IsPackable>false</IsPackable>
     <RootNamespace>CsvVisualEditor.Localization</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <PythonExecutable Condition="'$(PythonExecutable)' == ''">python</PythonExecutable>
+  </PropertyGroup>
+  <Target Name="ValidateLocalizationCatalogs" BeforeTargets="BeforeBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Exec Command="&quot;$(PythonExecutable)&quot; &quot;$(MSBuildThisFileDirectory)../../tools/localization/verify.py&quot;" />
+  </Target>
   <ItemGroup>
     <EmbeddedResource Include="Catalogs/*.json" LogicalName="CsvVisualEditor.Localization.Catalogs.%(Filename).json" />
   </ItemGroup>
