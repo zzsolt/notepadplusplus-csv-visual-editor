@@ -1,0 +1,61 @@
+name: Build interface catalogs
+on:
+  push:
+    branches: [agent/localization]
+    paths: [.github/workflows/build-catalogs.yml]
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      languages: ${{ steps.languages.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: languages
+        run: echo "value=$(python .github/localization/translate.py --list)" >> "$GITHUB_OUTPUT"
+  translate:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        language: ${{ fromJSON(needs.plan.outputs.languages) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install ctranslate2==4.6.0 transformers==4.49.0 sentencepiece==0.2.0 huggingface-hub==0.34.4
+      - name: Generate catalog
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python .github/localization/translate.py --language '${{ matrix.language }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: translated-${{ matrix.language }}
+          path: output/
+          if-no-files-found: error
+          retention-days: 3
+  collect:
+    if: always()
+    needs: [plan, translate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: translated-*
+          path: catalogs
+          merge-multiple: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: translated-catalogs
+          path: catalogs/
+          if-no-files-found: error
+          retention-days: 3
