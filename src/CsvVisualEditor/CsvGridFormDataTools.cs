@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 
 internal sealed partial class CsvGridForm
@@ -7,13 +9,13 @@ internal sealed partial class CsvGridForm
     private bool _dataToolHandlersAttached;
     private readonly ToolStripSeparator _dataToolsSeparator = new();
     private CsvDataViewDefinition _dataView = CsvDataViewDefinition.Empty;
-    private readonly ToolStripButton _dataViewButton = new("Filter and sort")
+    private readonly ToolStripButton _dataViewButton = new(L10n.Get(TextKey.Filter_Title))
     {
-        Name = "CsvDataViewButton", ToolTipText = "Filter and sort: combine column rules and up to three text/numeric sort levels. View only."
+        Name = "CsvDataViewButton", ToolTipText = L10n.Get(TextKey.DataTools_FilterAndSortCombineColumnRulesAndUp)
     };
-    private readonly ToolStripButton _profileButton = new("Column summary")
+    private readonly ToolStripButton _profileButton = new(L10n.Get(TextKey.Summary_Title))
     {
-        Name = "CsvColumnSummaryButton", ToolTipText = "Column summary: counts, distinct values, numeric range and frequent values in the current view."
+        Name = "CsvColumnSummaryButton", ToolTipText = L10n.Get(TextKey.DataTools_ColumnSummaryCountsDistinctValuesNumericRangeAnd)
     };
 
     private void InstallDataTools()
@@ -29,7 +31,7 @@ internal sealed partial class CsvGridForm
     {
         if (_editMode || _projection is null)
         {
-            _statusLabel.Text = "Filter and sort requires a ready, read-only table. Exit Edit mode first.";
+            _statusLabel.Text = L10n.Get(TextKey.DataTools_FilterAndSortRequiresAReadyReadOnly);
             return;
         }
         // Flush a pending query before capturing its immutable dialog context.
@@ -51,7 +53,7 @@ internal sealed partial class CsvGridForm
     {
         if (_editMode || _projection is null || _projection.ColumnCount == 0)
         {
-            _statusLabel.Text = "Column summary requires a ready, read-only table. Exit Edit mode first.";
+            _statusLabel.Text = L10n.Get(TextKey.DataTools_ColumnSummaryRequiresAReadyReadOnlyTable);
             return;
         }
         if (_searchTimer.Enabled) ApplyCurrentView();
@@ -67,7 +69,7 @@ internal sealed partial class CsvGridForm
         _dataViewButton.Enabled = _profileButton.Enabled = !_editMode && _projection?.ColumnCount > 0;
         _dataViewButton.Checked = _dataView.IsActive;
         _dataViewButton.ToolTipText = _dataView.IsActive
-            ? $"Filter and sort: {_dataView.Filters.Count} conditions, {_dataView.SortKeys.Count} sort levels. Reset view clears all rules."
-            : "Filter and sort: combine column rules and text/numeric sort levels. View only; CSV unchanged.";
+            ? L10n.Format(TextKey.DataTools_FilterAndSortConditionsSortLevelsResetView, _dataView.Filters.Count, _dataView.SortKeys.Count)
+            : L10n.Get(TextKey.DataTools_FilterAndSortCombineColumnRulesAndText);
     }
 }

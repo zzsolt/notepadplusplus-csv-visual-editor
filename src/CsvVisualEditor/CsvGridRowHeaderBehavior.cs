@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
@@ -244,8 +246,8 @@ internal static class CsvGridRowHeaderBehavior
             new DataGridViewCheckBoxColumn
             {
                 Name = SelectorColumnName,
-                HeaderText = "Select",
-                ToolTipText = "Select complete rows for deletion",
+                HeaderText = L10n.Get(TextKey.Rows_Select),
+                ToolTipText = L10n.Get(TextKey.Rows_SelectCompleteRowsForDeletion),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 Width = SelectorColumnWidth,
                 MinimumWidth = SelectorColumnWidth,

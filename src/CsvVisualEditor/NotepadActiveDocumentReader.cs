@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 
@@ -20,8 +22,7 @@ internal sealed class NotepadActiveDocumentReader : IActiveDocumentReader
         if (editorByteLength > MaximumSnapshotBytes)
         {
             throw new InvalidOperationException(
-                $"The active document is {editorByteLength:N0} bytes. " +
-                $"The current safe snapshot limit is {MaximumSnapshotBytes:N0} bytes.");
+                L10n.Format(TextKey.Host_TheActiveDocumentIsBytesTheCurrentSafe, editorByteLength, MaximumSnapshotBytes));
         }
 
         var text = editor.GetText();

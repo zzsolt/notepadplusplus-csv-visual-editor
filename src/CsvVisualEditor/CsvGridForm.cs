@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using Npp.DotNet.Plugin.Winforms;
@@ -39,12 +41,12 @@ internal sealed partial class CsvGridForm : DockingForm
     private readonly Label _noMatchesLabel = new()
     {
         Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Visible = false,
-        Text = "No matching rows.\nTry another search text or column.", UseMnemonic = false
+        Text = L10n.Get(TextKey.Table_NoMatchingRowsTryAnotherSearchTextOr), UseMnemonic = false
     };
     private readonly Label _diagnosticsEmpty = new()
     {
         Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter,
-        Text = "No diagnostics to display.", UseMnemonic = false
+        Text = L10n.Get(TextKey.Table_NoDiagnosticsToDisplay), UseMnemonic = false
     };
     private readonly ToolStripButton _diagnosticsButton;
     private readonly TableLayoutPanel _topPanel;
@@ -78,22 +80,23 @@ internal sealed partial class CsvGridForm : DockingForm
         : base(dialogId, pluginModuleName, FormTitle, null, formIcon, InitialDockPosition)
     {
         _refreshButton = CreateTextButton(
-            "Refresh",
-            "Read and render the current active Notepad++ editor buffer");
+            L10n.Get(TextKey.Common_Refresh),
+            L10n.Get(TextKey.Table_ReadAndRenderTheCurrentActiveNotepadEditor));
+        _refreshButton.Name = "CsvRefreshButton";
         _refreshButton.Click += (_, _) => RefreshRequested?.Invoke(this, EventArgs.Empty);
 
         _delimiterCombo = new ToolStripComboBox
         {
             AutoSize = false,
             DropDownStyle = ComboBoxStyle.DropDownList,
-            ToolTipText = "Use reliable automatic detection or choose a delimiter explicitly",
+            ToolTipText = L10n.Get(TextKey.Table_UseReliableAutomaticDetectionOrChooseADelimiter),
             Width = 128
         };
         _delimiterCombo.Items.AddRange([
-            "Auto detect",
-            "Comma (,)",
-            "Semicolon (;)",
-            "Tab"
+            L10n.Get(TextKey.Table_AutoDetect),
+            L10n.Get(TextKey.Table_Comma),
+            L10n.Get(TextKey.Table_Semicolon),
+            L10n.Get(TextKey.Table_Tab)
         ]);
         _delimiterCombo.SelectedIndex = DelimiterAutoIndex;
         _delimiterCombo.SelectedIndexChanged += OnDisplayOptionChanged;
@@ -102,62 +105,69 @@ internal sealed partial class CsvGridForm : DockingForm
         {
             AutoSize = false,
             DropDownStyle = ComboBoxStyle.DropDownList,
-            ToolTipText = "Choose explicitly whether the first logical record is a header",
+            ToolTipText = L10n.Get(TextKey.Table_ChooseExplicitlyWhetherTheFirstLogicalRecordIs),
             Width = 150
         };
         _headerCombo.Items.AddRange([
-            "First row is header",
-            "No header row"
+            L10n.Get(TextKey.Table_FirstRowIsHeader),
+            L10n.Get(TextKey.Table_NoHeaderRow)
         ]);
         _headerCombo.SelectedIndex = HeaderFirstRecordIndex;
         _headerCombo.SelectedIndexChanged += OnDisplayOptionChanged;
 
         _editButton = CreateTextButton(
-            "Edit",
-            "Enter explicit cell and row editing mode");
+            L10n.Get(TextKey.Common_Edit),
+            L10n.Get(TextKey.Table_EnterExplicitCellAndRowEditingMode));
+        _editButton.Name = "CsvEditButton";
         _editButton.Enabled = false;
         _editButton.Click += (_, _) => ToggleEditMode();
 
         _addRowButton = CreateTextButton(
-            "Add Row",
-            "Insert a new row after the selected row, or append when no row is selected");
+            L10n.Get(TextKey.Table_AddRow),
+            L10n.Get(TextKey.Table_InsertANewRowAfterTheSelectedRow));
+        _addRowButton.Name = "CsvAddRowButton";
         _addRowButton.Enabled = false;
         _addRowButton.Click += (_, _) => AddRow();
 
         _deleteRowButton = CreateTextButton(
-            "Delete Row",
-            "Delete the selected stable data row or rows from the pending edit session");
+            L10n.Get(TextKey.Table_DeleteRow),
+            L10n.Get(TextKey.Table_DeleteTheSelectedStableDataRowOrRows));
+        _deleteRowButton.Name = "CsvDeleteRowButton";
         _deleteRowButton.Enabled = false;
         _deleteRowButton.Click += (_, _) => DeleteCurrentRow();
 
         _applyButton = CreateTextButton(
-            "Apply",
-            "Apply all cell and row edits to the active editor as one undoable action");
+            L10n.Get(TextKey.Common_Apply),
+            L10n.Get(TextKey.Table_ApplyAllCellAndRowEditsToThe));
+        _applyButton.Name = "CsvApplyButton";
         _applyButton.Enabled = false;
         _applyButton.Click += (_, _) => RequestApply();
 
         _revertAllButton = CreateTextButton(
-            "Revert All",
-            "Discard every pending cell insertion and deletion change");
+            L10n.Get(TextKey.Table_RevertAll),
+            L10n.Get(TextKey.Table_DiscardEveryPendingCellInsertionAndDeletionChange));
+        _revertAllButton.Name = "CsvRevertAllButton";
         _revertAllButton.Enabled = false;
         _revertAllButton.Click += (_, _) => RevertAllEdits();
 
-        _dirtyLabel = new ToolStripLabel("0 changes")
+        _dirtyLabel = new ToolStripLabel(L10n.Get(TextKey.Edit_NoChanges))
         {
-            ToolTipText = "Pending cell and structural row changes"
+            Name = "CsvDirtyLabel",
+            ToolTipText = L10n.Get(TextKey.Table_PendingCellAndStructuralRowChanges)
         };
 
         _toolStrip = new ToolStrip
         {
+            Name = "CsvCommandStrip",
             Dock = DockStyle.Fill,
             GripStyle = ToolStripGripStyle.Hidden
         };
         _toolStrip.Items.Add(_refreshButton);
         _toolStrip.Items.Add(new ToolStripSeparator());
-        _toolStrip.Items.Add(new ToolStripLabel("Delimiter:"));
+        _toolStrip.Items.Add(new ToolStripLabel(L10n.Get(TextKey.Table_Delimiter)) { Name = "CsvDelimiterLabel" });
         _toolStrip.Items.Add(_delimiterCombo);
         _toolStrip.Items.Add(new ToolStripSeparator());
-        _toolStrip.Items.Add(new ToolStripLabel("Header:"));
+        _toolStrip.Items.Add(new ToolStripLabel(L10n.Get(TextKey.Table_Header)) { Name = "CsvHeaderLabel" });
         _toolStrip.Items.Add(_headerCombo);
         _toolStrip.Items.Add(new ToolStripSeparator());
         _toolStrip.Items.Add(_editButton);
@@ -175,22 +185,25 @@ internal sealed partial class CsvGridForm : DockingForm
         _searchBar.NavigateRequested += NavigateSearch;
         _searchBar.ClearRequested += ClearSearch;
 
-        _searchColumnCombo.Items.Add("All columns");
+        _searchColumnCombo.Items.Add(L10n.Get(TextKey.Search_AllColumns));
         _searchColumnCombo.SelectedIndex = 0;
         _searchColumnCombo.SelectedIndexChanged += OnSearchColumnChanged;
 
         _clearSearchButton = CreateTextButton(
-            "Clear",
-            "Clear the current search filter and view-only sort");
+            L10n.Get(TextKey.Table_Clear),
+            L10n.Get(TextKey.Table_ClearTheCurrentSearchFilterAndViewOnly));
+        _clearSearchButton.Name = "CsvResetViewButton";
         _clearSearchButton.Enabled = false;
         _clearSearchButton.Click += (_, _) => ClearViewOptions();
 
         _diagnosticsButton = CreateTextButton(
-            "Diagnostics (0)",
-            "Show detailed parser and delimiter diagnostics");
+            L10n.Get(TextKey.Diagnostics_InitialCount),
+            L10n.Get(TextKey.Table_ShowDetailedParserAndDelimiterDiagnostics));
+        _diagnosticsButton.Name = "CsvDiagnosticsButton";
 
         _viewToolStrip = new ToolStrip
         {
+            Name = "CsvInterpretationStrip",
             Dock = DockStyle.Fill,
             GripStyle = ToolStripGripStyle.Hidden
         };
@@ -240,14 +253,14 @@ internal sealed partial class CsvGridForm : DockingForm
         _diagnosticsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         ConfigureDiagnosticsGrid();
 
-        _tablePage = new TabPage("Table")
+        _tablePage = new TabPage(L10n.Get(TextKey.Common_Table))
         {
             Padding = Padding.Empty
         };
         _tablePage.Controls.Add(_grid);
         _tablePage.Controls.Add(_noMatchesLabel);
 
-        _diagnosticsPage = new TabPage("Diagnostics (0)")
+        _diagnosticsPage = new TabPage(L10n.Get(TextKey.Diagnostics_InitialCount))
         {
             Padding = Padding.Empty
         };
@@ -297,6 +310,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
         AttachEventHandlers();
         ShowBootstrapState();
+        CsvLocalizationAppearance.Apply(this);
         ToggleDarkMode(PluginData.Notepad.IsDarkModeEnabled());
     }
 
@@ -334,8 +348,8 @@ internal sealed partial class CsvGridForm : DockingForm
     {
         ResetVisualTableContext();
         PrepareMetadataGrid();
-        AddMetadataRow("Status", "Waiting for the active Notepad++ document.");
-        _statusLabel.Text = "Plugin ready. Reading the active editor buffer...";
+        AddMetadataRow(L10n.Get(TextKey.Table_Status), L10n.Get(TextKey.Table_WaitingForTheActiveNotepadDocument));
+        _statusLabel.Text = L10n.Get(TextKey.Table_PluginReadyReadingTheActiveEditorBuffer);
     }
 
     public void ShowLoadingDocument(ActiveDocumentSnapshot snapshot)
@@ -344,14 +358,14 @@ internal sealed partial class CsvGridForm : DockingForm
 
         ResetVisualTableContext();
         PrepareMetadataGrid();
-        AddMetadataRow("Document", snapshot.DisplayName);
-        AddMetadataRow("Status", "Parsing and preparing a bounded visual table in the background…");
+        AddMetadataRow(L10n.Get(TextKey.Table_Document), snapshot.DisplayName);
+        AddMetadataRow(L10n.Get(TextKey.Table_Status), L10n.Get(TextKey.Table_ParsingAndPreparingABoundedVisualTableIn));
         AddMetadataRow(
-            "Snapshot",
-            $"{FormatNumber(snapshot.CharacterCount)} characters / {FormatNumber(snapshot.EditorByteLength)} editor bytes");
+            L10n.Get(TextKey.Table_Snapshot),
+            L10n.Format(TextKey.Table_CharactersEditorBytes, FormatNumber(snapshot.CharacterCount), FormatNumber(snapshot.EditorByteLength)));
         _tabControl.SelectedTab = _tablePage;
         _statusLabel.Text =
-            $"{snapshot.DisplayName} — loading CSV data in the background; Notepad++ remains responsive.";
+            L10n.Format(TextKey.Table_LoadingCSVDataInTheBackgroundNotepadRemains, snapshot.DisplayName);
     }
 
     public void ShowEmptyDocument(ActiveDocumentSnapshot snapshot)
@@ -362,7 +376,7 @@ internal sealed partial class CsvGridForm : DockingForm
         PrepareTableGrid();
         _tabControl.SelectedTab = _tablePage;
         _statusLabel.Text =
-            $"{snapshot.DisplayName} — empty editor buffer; no CSV records to display.";
+            L10n.Format(TextKey.Table_EmptyEditorBufferNoCSVRecordsToDisplay, snapshot.DisplayName);
     }
 
     public void ShowDelimiterSelectionRequired(
@@ -374,24 +388,23 @@ internal sealed partial class CsvGridForm : DockingForm
 
         ResetVisualTableContext();
         PrepareMetadataGrid();
-        AddMetadataRow("Document", snapshot.DisplayName);
-        AddMetadataRow("Automatic detection", "No reliable delimiter could be selected safely.");
-        AddMetadataRow("Confidence", detectionResult.Confidence.ToString());
+        AddMetadataRow(L10n.Get(TextKey.Table_Document), snapshot.DisplayName);
+        AddMetadataRow(L10n.Get(TextKey.Table_AutomaticDetection), L10n.Get(TextKey.Table_NoReliableDelimiterCouldBeSelectedSafely));
+        AddMetadataRow(L10n.Get(TextKey.Table_Confidence), CsvUiText.Confidence(detectionResult.Confidence));
         AddMetadataRow(
-            "Candidate scores",
+            L10n.Get(TextKey.Table_CandidateScores),
             string.Join(
                 ", ",
                 detectionResult.Candidates.Select(
                     static candidate =>
                         $"{DelimiterDisplayName(candidate.Delimiter)}={candidate.Score}")));
         AddMetadataRow(
-            "Action",
-            "Choose Comma, Semicolon, or Tab from the Delimiter list above.");
+            L10n.Get(TextKey.Table_Action),
+            L10n.Get(TextKey.Table_ChooseCommaSemicolonOrTabFromTheDelimiter));
         PopulateDiagnostics(detectionResult.Diagnostics);
         _tabControl.SelectedTab = _tablePage;
         _statusLabel.Text =
-            $"{snapshot.DisplayName} — automatic delimiter detection is not reliable; " +
-            "manual selection is required.";
+            L10n.Format(TextKey.Table_AutomaticDelimiterDetectionIsNotReliableManualSelection, snapshot.DisplayName);
     }
 
     public void ShowVisualTable(
@@ -429,16 +442,16 @@ internal sealed partial class CsvGridForm : DockingForm
     {
         ResetVisualTableContext();
         PrepareMetadataGrid();
-        AddMetadataRow("Snapshot error", message);
-        _statusLabel.Text = "Active-document snapshot failed. No editor content was changed.";
+        AddMetadataRow(L10n.Get(TextKey.Table_SnapshotError), message);
+        _statusLabel.Text = L10n.Get(TextKey.Table_ActiveDocumentSnapshotFailedNoEditorContentWas);
     }
 
     public void ShowTableError(string message)
     {
         ResetVisualTableContext();
         PrepareMetadataGrid();
-        AddMetadataRow("Table error", message);
-        _statusLabel.Text = "The visual table could not be produced. The editor content was not changed.";
+        AddMetadataRow(L10n.Get(TextKey.Table_TableError), message);
+        _statusLabel.Text = L10n.Get(TextKey.Table_TheVisualTableCouldNotBeProducedThe);
     }
 
     public void ShowApplyConflict(CsvEditorApplyStatus status)
@@ -446,21 +459,21 @@ internal sealed partial class CsvGridForm : DockingForm
         _statusLabel.Text = status switch
         {
             CsvEditorApplyStatus.DocumentIdentityChanged =>
-                "Apply blocked: another Notepad++ document is active. Return to the original document or Revert All.",
+                L10n.Get(TextKey.Table_ApplyBlockedAnotherNotepadDocumentIsActiveReturn),
             CsvEditorApplyStatus.CodePageChanged =>
-                "Apply blocked: the editor code page changed after Edit mode started. Revert and reopen Edit mode.",
+                L10n.Get(TextKey.Table_ApplyBlockedTheEditorCodePageChangedAfter),
             CsvEditorApplyStatus.ContentChanged =>
-                "Apply blocked: the editor buffer changed after Edit mode started. Revert and refresh before editing again.",
+                L10n.Get(TextKey.Table_ApplyBlockedTheEditorBufferChangedAfterEdit),
             CsvEditorApplyStatus.NoChanges =>
-                "Nothing to apply: the edit session contains no pending changes.",
-            _ => "Apply was not completed. No automatic overwrite was attempted."
+                L10n.Get(TextKey.Table_NothingToApplyTheEditSessionContainsNo),
+            _ => L10n.Get(TextKey.Table_ApplyWasNotCompletedNoAutomaticOverwriteWas)
         };
     }
 
     public void ShowApplyError()
     {
         _statusLabel.Text =
-            "Apply failed. The edit session remains open; verify the editor buffer before retrying or reverting.";
+            L10n.Get(TextKey.Table_ApplyFailedTheEditSessionRemainsOpenVerify);
     }
 
     public override void ToggleDarkMode(bool isDark)
@@ -635,7 +648,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
         var logicalRecordNumber = _virtualReadOnlyRows[e.RowIndex].SourceRecordIndex + 1;
         e.ToolTipText =
-            $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}";
+            L10n.Format(TextKey.Table_SourceLogicalRecord, logicalRecordNumber.ToString(CultureInfo.CurrentCulture));
     }
 
     private void OnGridEditingControlShowing(
@@ -799,7 +812,7 @@ internal sealed partial class CsvGridForm : DockingForm
             if (_rowEditModel?.IsDirty == true)
             {
                 _statusLabel.Text =
-                    "Edit mode contains pending changes. Use Apply or Revert All before leaving Edit mode.";
+                    L10n.Get(TextKey.Table_EditModeContainsPendingChangesUseApplyOr);
                 return;
             }
 
@@ -815,7 +828,7 @@ internal sealed partial class CsvGridForm : DockingForm
         if (_projection is null || !EnsureEditSession())
         {
             _statusLabel.Text =
-                "Edit mode is unavailable for the current table. Resolve parser errors or display limits first.";
+                L10n.Get(TextKey.Table_EditModeIsUnavailableForTheCurrentTable);
             return;
         }
 
@@ -843,7 +856,7 @@ internal sealed partial class CsvGridForm : DockingForm
         if (!CommitPendingEdit())
         {
             _statusLabel.Text =
-                "The active cell edit could not be committed. Correct the value before adding a row.";
+                L10n.Get(TextKey.Table_TheActiveCellEditCouldNotBeCommitted);
             return;
         }
 
@@ -860,7 +873,7 @@ internal sealed partial class CsvGridForm : DockingForm
         ApplyCurrentView();
         SelectRow(insertedId, beginEdit: true);
         _statusLabel.Text =
-            "A new row was added to the pending edit session. Apply writes it to the editor buffer; Revert All discards it.";
+            L10n.Get(TextKey.Table_ANewRowWasAddedToThePending);
     }
 
     private void DeleteCurrentRow()
@@ -873,7 +886,7 @@ internal sealed partial class CsvGridForm : DockingForm
         if (!CommitPendingEdit())
         {
             _statusLabel.Text =
-                "The active cell edit could not be committed. Correct the value before deleting rows.";
+                L10n.Get(TextKey.Table_TheActiveCellEditCouldNotBeCommitted2);
             return;
         }
 
@@ -893,14 +906,14 @@ internal sealed partial class CsvGridForm : DockingForm
         catch (ArgumentOutOfRangeException)
         {
             _statusLabel.Text =
-                "The selected row set is no longer valid for this edit session. No rows were deleted.";
+                L10n.Get(TextKey.Table_TheSelectedRowSetIsNoLongerValid);
             return;
         }
 
         if (!result.HasChanges)
         {
             UpdateDirtyIndicators();
-            _statusLabel.Text = "The selected rows were already deleted. No additional change was made.";
+            _statusLabel.Text = L10n.Get(TextKey.Table_TheSelectedRowsWereAlreadyDeletedNoAdditional);
             return;
         }
 
@@ -919,7 +932,7 @@ internal sealed partial class CsvGridForm : DockingForm
         if (!CommitPendingEdit())
         {
             _statusLabel.Text =
-                "The active cell edit could not be committed. Correct the value before applying.";
+                L10n.Get(TextKey.Table_TheActiveCellEditCouldNotBeCommitted3);
             return;
         }
 
@@ -944,7 +957,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _rowEditModel.RevertAll();
         ApplyCurrentView();
         _statusLabel.Text =
-            "All pending cell and row edits were reverted. The Notepad++ editor buffer was not changed.";
+            L10n.Get(TextKey.Table_AllPendingCellAndRowEditsWereReverted);
     }
 
     private void ClearViewOptions()
@@ -1007,7 +1020,7 @@ internal sealed partial class CsvGridForm : DockingForm
         try
         {
             _searchColumnCombo.Items.Clear();
-            _searchColumnCombo.Items.Add("All columns");
+            _searchColumnCombo.Items.Add(L10n.Get(TextKey.Search_AllColumns));
             foreach (var column in projection.Columns)
             {
                 _searchColumnCombo.Items.Add(column.Name);
@@ -1026,7 +1039,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _editSession = null;
         _rowEditModel = null;
         _editButton.ToolTipText = CanStartEditMode()
-            ? "Enter explicit cell and row editing mode. The full edit model is created only when requested."
+            ? L10n.Get(TextKey.Table_EnterExplicitCellAndRowEditingModeThe)
             : GetEditUnavailableReason();
     }
 
@@ -1045,17 +1058,17 @@ internal sealed partial class CsvGridForm : DockingForm
     {
         if (_parseResult?.HasErrors == true)
         {
-            return "Editing cannot start while the parsed CSV contains errors.";
+            return L10n.Get(TextKey.Table_EditingCannotStartWhileTheParsedCSVContains);
         }
 
         if (_projection?.IsRowLimited == true ||
             (_projection is not null &&
              _projection.DisplayedRowCount != _projection.TotalDataRecordCount))
         {
-            return "Editing cannot start from a row-limited visual projection.";
+            return L10n.Get(TextKey.Table_EditingCannotStartFromARowLimitedVisual);
         }
 
-        return "Editing is unavailable for the current table.";
+        return L10n.Get(TextKey.Table_EditingIsUnavailableForTheCurrentTable);
     }
 
     private bool EnsureEditSession()
@@ -1074,7 +1087,7 @@ internal sealed partial class CsvGridForm : DockingForm
             return false;
         }
 
-        _statusLabel.Text = "Preparing the complete edit session…";
+        _statusLabel.Text = L10n.Get(TextKey.Table_PreparingTheCompleteEditSession);
         try
         {
             _editSession = CsvEditSession.Create(
@@ -1087,15 +1100,15 @@ internal sealed partial class CsvGridForm : DockingForm
                 _editSession,
                 _projection);
             _editButton.ToolTipText =
-                "Enter explicit cell and row editing mode. Apply writes only to the editor buffer.";
+                L10n.Get(TextKey.Table_EnterExplicitCellAndRowEditingModeApply);
             return true;
         }
         catch (InvalidOperationException exception)
         {
             _editSession = null;
             _rowEditModel = null;
-            _editButton.ToolTipText = exception.Message;
-            _statusLabel.Text = exception.Message;
+            _editButton.ToolTipText = CsvUiText.Exception(exception);
+            _statusLabel.Text = CsvUiText.Exception(exception);
             return false;
         }
     }
@@ -1197,7 +1210,7 @@ internal sealed partial class CsvGridForm : DockingForm
                         gridRow,
                         indicatorColumnIndex,
                         logicalRecordNumber.ToString(CultureInfo.InvariantCulture),
-                        $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
+                        L10n.Format(TextKey.Table_SourceLogicalRecord, logicalRecordNumber.ToString(CultureInfo.CurrentCulture)));
                     gridRows[index] = gridRow;
                 }
 
@@ -1284,20 +1297,20 @@ internal sealed partial class CsvGridForm : DockingForm
         {
             var insertedNumber = Math.Abs(row.Id.Value);
             return (
-                $"new:{insertedNumber.ToString(CultureInfo.InvariantCulture)} *",
-                $"Pending inserted row {insertedNumber.ToString(CultureInfo.CurrentCulture)}; not yet applied");
+                L10n.Format(TextKey.Rows_NewPendingIdentifier, insertedNumber.ToString(CultureInfo.InvariantCulture)),
+                L10n.Format(TextKey.Table_PendingInsertedRowNotYetApplied, insertedNumber.ToString(CultureInfo.CurrentCulture)));
         }
 
         var sourceRecordIndex = row.SourceRecordIndex ??
-            throw new InvalidOperationException("A source row did not expose its source record index.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Table_ASourceRowDidNotExposeItsSource));
         var logicalRecordNumber = sourceRecordIndex + 1;
         var isDirty = IsSourceRecordDirty(sourceRecordIndex);
         return (
             logicalRecordNumber.ToString(CultureInfo.InvariantCulture) +
                 (isDirty ? " *" : string.Empty),
             isDirty
-                ? $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}; modified in the pending edit session"
-                : $"Source logical record {logicalRecordNumber.ToString(CultureInfo.CurrentCulture)}");
+                ? L10n.Format(TextKey.Table_SourceLogicalRecordModifiedInThePendingEdit, logicalRecordNumber.ToString(CultureInfo.CurrentCulture))
+                : L10n.Format(TextKey.Table_SourceLogicalRecord, logicalRecordNumber.ToString(CultureInfo.CurrentCulture)));
     }
 
     private void ResetRenderedRows(bool useVirtualRows)
@@ -1319,7 +1332,7 @@ internal sealed partial class CsvGridForm : DockingForm
     private int GetRowIndicatorColumnIndex()
     {
         var column = _grid.Columns[CsvGridRowPresentation.RowIndicatorColumnName] ??
-            throw new InvalidOperationException("The row-indicator column is not configured.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Table_TheRowIndicatorColumnIsNotConfigured));
         return column.Index;
     }
 
@@ -1407,9 +1420,8 @@ internal sealed partial class CsvGridForm : DockingForm
         var isDirty = _rowEditModel?.IsDirty ?? false;
 
         _dirtyLabel.Text = !isDirty
-            ? "0 changes"
-            : $"{FormatNumber(changedCells)} cells / {FormatNumber(changedRows)} rows " +
-              $"(+{FormatNumber(insertedRows)} / -{FormatNumber(deletedRows)})";
+            ? L10n.Get(TextKey.Edit_NoChanges)
+            : L10n.Format(TextKey.Table_CellsRows, FormatNumber(changedCells), FormatNumber(changedRows), FormatNumber(insertedRows), FormatNumber(deletedRows));
 
         if (_editMode && _rowEditModel is not null)
         {
@@ -1452,16 +1464,16 @@ internal sealed partial class CsvGridForm : DockingForm
                                       _dataView.IsActive ||
                                       _searchColumnCombo.SelectedIndex > 0);
         _editButton.Enabled = canEdit;
-        _editButton.Text = _editMode ? "Exit Edit" : "Edit";
+        _editButton.Text = _editMode ? L10n.Get(TextKey.Common_ExitEdit) : L10n.Get(TextKey.Common_Edit);
         _editButton.Checked = _editMode;
         _addRowButton.Enabled = _editMode && canEdit;
         _deleteRowButton.Enabled = deleteTargetCount > 0;
         _deleteRowButton.Text = deleteTargetCount > 1
-            ? $"Delete Rows ({FormatNumber(deleteTargetCount)})"
-            : "Delete Row";
+            ? L10n.Format(TextKey.Table_DeleteRows, FormatNumber(deleteTargetCount))
+            : L10n.Get(TextKey.Table_DeleteRow);
         _deleteRowButton.ToolTipText = deleteTargetCount > 1
-            ? "Delete every selected stable data row from the pending edit session"
-            : "Delete the selected stable data row from the pending edit session";
+            ? L10n.Get(TextKey.Table_DeleteEverySelectedStableDataRowFromThe)
+            : L10n.Get(TextKey.Table_DeleteTheSelectedStableDataRowFromThe);
         _applyButton.Enabled = _editMode && isDirty;
         _revertAllButton.Enabled = _editMode && isDirty;
         _grid.MultiSelect = hasTable;
@@ -1487,7 +1499,7 @@ internal sealed partial class CsvGridForm : DockingForm
             var key = keys[i];
             _grid.Columns[key.ColumnIndex].HeaderCell.SortGlyphDirection =
                 key.Direction == CsvTableSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-            _grid.Columns[key.ColumnIndex].HeaderCell.ToolTipText = $"Sort level {i + 1}: {key.Kind}, {key.Direction}. View only.";
+            _grid.Columns[key.ColumnIndex].HeaderCell.ToolTipText = L10n.Format(TextKey.Table_SortLevelViewOnly, i + 1, CsvUiText.SortKind(key.Kind), CsvUiText.SortDirection(key.Direction));
         }
     }
 
@@ -1507,56 +1519,47 @@ internal sealed partial class CsvGridForm : DockingForm
         string rowDescription;
         if (_editMode && _rowEditModel is not null)
         {
-            rowDescription = $"{FormatNumber(_rowEditModel.VisibleRowCount)} pending rows";
+            rowDescription = L10n.Format(TextKey.Table_PendingRows, FormatNumber(_rowEditModel.VisibleRowCount));
         }
         else if (_lastViewResult?.IsFiltered == true)
         {
             rowDescription =
-                $"{FormatNumber(_lastViewResult.VisibleRowCount)} matching of " +
-                $"{FormatNumber(_projection.DisplayedRowCount)} displayed rows";
+                L10n.Format(TextKey.Table_MatchingOfDisplayedRows, FormatNumber(_lastViewResult.VisibleRowCount), FormatNumber(_projection.DisplayedRowCount));
         }
         else if (_projection.IsRowLimited)
         {
             rowDescription =
-                $"showing {FormatNumber(_projection.DisplayedRowCount)} of " +
-                $"{FormatNumber(_projection.TotalDataRecordCount)} rows";
+                L10n.Format(TextKey.Table_ShowingOfRows, FormatNumber(_projection.DisplayedRowCount), FormatNumber(_projection.TotalDataRecordCount));
         }
         else
         {
-            rowDescription = $"{FormatNumber(_projection.DisplayedRowCount)} rows";
+            rowDescription = L10n.Format(TextKey.Table_Rows, FormatNumber(_projection.DisplayedRowCount));
         }
 
         var delimiterSource = _delimiterWasAutomatic
-            ? $"automatic {_detectionResult?.Confidence.ToString().ToLowerInvariant() ?? "unknown"} confidence"
-            : "manual selection";
+            ? L10n.Format(TextKey.Table_AutomaticConfidence, CsvUiText.Confidence(_detectionResult?.Confidence))
+            : L10n.Get(TextKey.Table_ManualSelection);
         var headerDescription = SelectedHeaderMode == CsvHeaderMode.FirstRecord
-            ? "first row as header"
-            : "no header row";
+            ? L10n.Get(TextKey.Table_FirstRowAsHeader)
+            : L10n.Get(TextKey.Table_NoHeaderRow2);
         var diagnosticDescription = errorCount == 0 && warningCount == 0
-            ? "no parser diagnostics"
-            : $"{errorCount} errors, {warningCount} warnings";
+            ? L10n.Get(TextKey.Table_NoParserDiagnostics)
+            : L10n.Format(TextKey.Table_ErrorsWarnings, errorCount, warningCount);
         var sortDescription = !_editMode &&
                               _lastViewResult?.IsSorted == true &&
                               _lastViewResult.SortColumnIndex is not null
-            ? $" — sorted by {_projection.Columns[_lastViewResult.SortColumnIndex.Value].Name} " +
-              _lastViewResult.SortDirection.ToString().ToLowerInvariant()
+            ? L10n.Format(TextKey.Table_SortedBy, _projection.Columns[_lastViewResult.SortColumnIndex.Value].Name, CsvUiText.SortDirection(_lastViewResult.SortDirection))
             : string.Empty;
         var editDescription = _editMode && _rowEditModel is not null
-            ? $" — EDIT MODE: {FormatNumber(_rowEditModel.ChangedCellCount)} cells, " +
-              $"{FormatNumber(_rowEditModel.ChangedRowCount)} rows, " +
-              $"+{FormatNumber(_rowEditModel.InsertedRowCount)} / " +
-              $"-{FormatNumber(_rowEditModel.DeletedRowCount)}"
+            ? L10n.Format(TextKey.Table_EDITMODECellsRows, FormatNumber(_rowEditModel.ChangedCellCount), FormatNumber(_rowEditModel.ChangedRowCount), FormatNumber(_rowEditModel.InsertedRowCount), FormatNumber(_rowEditModel.DeletedRowCount))
             : string.Empty;
 
         var dataViewDescription = !_editMode && _dataView.IsActive
-            ? $" - {_dataView.Filters.Count} column conditions ({_dataView.Combination}), {_dataView.SortKeys.Count} sort levels" : string.Empty;
+            ? L10n.Format(TextKey.Table_ColumnConditionsSortLevels, _dataView.Filters.Count, CsvUiText.Combination(_dataView.Combination), _dataView.SortKeys.Count) : string.Empty;
         var detailedStatus =
-            $"{_snapshot.DisplayName} — {rowDescription} × " +
-            $"{FormatNumber(_projection.ColumnCount)} columns — " +
-            $"{_parseResult.Dialect.DelimiterDisplayName}, {delimiterSource} — " +
-            $"{headerDescription} — {diagnosticDescription}{sortDescription}{dataViewDescription}{editDescription}.";
-        _statusLabel.Text = $"{_snapshot.DisplayName} - {rowDescription} x {_projection.ColumnCount:N0} columns" +
-            (_editMode ? " - Edit mode" : $" - {diagnosticDescription}{dataViewDescription}");
+            L10n.Format(TextKey.Table_Columns, _snapshot.DisplayName, rowDescription, FormatNumber(_projection.ColumnCount), CsvUiText.Delimiter(_parseResult.Dialect.Delimiter), delimiterSource, headerDescription, diagnosticDescription, sortDescription, dataViewDescription, editDescription);
+        _statusLabel.Text = L10n.Format(TextKey.Table_XColumns, _snapshot.DisplayName, rowDescription, _projection.ColumnCount) +
+            (_editMode ? L10n.Get(TextKey.Table_EditMode) : $" - {diagnosticDescription}{dataViewDescription}");
         _statusLabel.ToolTipText = detailedStatus;
     }
 
@@ -1569,16 +1572,16 @@ internal sealed partial class CsvGridForm : DockingForm
         foreach (var diagnostic in copiedDiagnostics)
         {
             _diagnosticsGrid.Rows.Add(
-                diagnostic.Severity.ToString(),
+                CsvUiText.Severity(diagnostic.Severity),
                 diagnostic.Code,
                 diagnostic.RecordIndex is null
                     ? string.Empty
                     : (diagnostic.RecordIndex.Value + 1).ToString(CultureInfo.InvariantCulture),
                 diagnostic.CharacterOffset.ToString(CultureInfo.InvariantCulture),
-                diagnostic.Message);
+                CsvUiText.Diagnostic(diagnostic));
         }
 
-        var label = $"Diagnostics ({FormatNumber(copiedDiagnostics.Length)})";
+        var label = L10n.Format(TextKey.Table_Diagnostics, FormatNumber(copiedDiagnostics.Length));
         _diagnosticsPage.Text = label;
         _diagnosticsButton.Text = label;
         _diagnosticsGrid.ClearSelection();
@@ -1589,23 +1592,23 @@ internal sealed partial class CsvGridForm : DockingForm
     private void ConfigureDiagnosticsGrid()
     {
         AddDiagnosticsColumn(
-            "Severity",
+            L10n.Get(TextKey.Table_Severity),
             DataGridViewAutoSizeColumnMode.AllCells,
             minimumWidth: 90);
         AddDiagnosticsColumn(
-            "Code",
+            L10n.Get(TextKey.Table_Code),
             DataGridViewAutoSizeColumnMode.AllCells,
             minimumWidth: 80);
         AddDiagnosticsColumn(
-            "Record",
+            L10n.Get(TextKey.Table_Record),
             DataGridViewAutoSizeColumnMode.AllCells,
             minimumWidth: 80);
         AddDiagnosticsColumn(
-            "Character",
+            L10n.Get(TextKey.Table_Character),
             DataGridViewAutoSizeColumnMode.AllCells,
             minimumWidth: 90);
         AddDiagnosticsColumn(
-            "Message",
+            L10n.Get(TextKey.Table_Message),
             DataGridViewAutoSizeColumnMode.Fill,
             minimumWidth: 260);
     }
@@ -1618,7 +1621,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _diagnosticsGrid.Columns.Add(
             new DataGridViewTextBoxColumn
             {
-                Name = name,
+                Name = "CsvDiagnostic" + _diagnosticsGrid.Columns.Count.ToString(CultureInfo.InvariantCulture),
                 HeaderText = name,
                 AutoSizeMode = autoSizeMode,
                 MinimumWidth = minimumWidth,
@@ -1640,7 +1643,7 @@ internal sealed partial class CsvGridForm : DockingForm
             new DataGridViewTextBoxColumn
             {
                 Name = "Property",
-                HeaderText = "Property",
+                HeaderText = L10n.Get(TextKey.Table_Property),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 MinimumWidth = 120,
                 SortMode = DataGridViewColumnSortMode.NotSortable
@@ -1649,7 +1652,7 @@ internal sealed partial class CsvGridForm : DockingForm
             new DataGridViewTextBoxColumn
             {
                 Name = "Value",
-                HeaderText = "Value",
+                HeaderText = L10n.Get(TextKey.Common_Value),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 MinimumWidth = 220,
                 SortMode = DataGridViewColumnSortMode.NotSortable
@@ -1690,7 +1693,7 @@ internal sealed partial class CsvGridForm : DockingForm
         {
             _searchBox.Clear();
             _searchColumnCombo.Items.Clear();
-            _searchColumnCombo.Items.Add("All columns");
+            _searchColumnCombo.Items.Add(L10n.Get(TextKey.Search_AllColumns));
             _searchColumnCombo.SelectedIndex = 0;
         }
         finally
@@ -1711,14 +1714,14 @@ internal sealed partial class CsvGridForm : DockingForm
             _rowEditModel = null;
         }
 
-        _dirtyLabel.Text = "0 changes";
+        _dirtyLabel.Text = L10n.Get(TextKey.Edit_NoChanges);
         _addRowButton.Enabled = false;
         _deleteRowButton.Enabled = false;
-        _deleteRowButton.Text = "Delete Row";
+        _deleteRowButton.Text = L10n.Get(TextKey.Table_DeleteRow);
         _applyButton.Enabled = false;
         _revertAllButton.Enabled = false;
         _editButton.Checked = false;
-        _editButton.Text = "Edit";
+        _editButton.Text = L10n.Get(TextKey.Common_Edit);
         _grid.ReadOnly = true;
         _grid.EditMode = DataGridViewEditMode.EditProgrammatically;
     }
@@ -1733,21 +1736,19 @@ internal sealed partial class CsvGridForm : DockingForm
         if (result.DeletedSourceRowCount > 0 &&
             result.CancelledInsertedRowCount > 0)
         {
-            return $"{FormatNumber(result.DeletedSourceRowCount)} source rows are marked for deletion and " +
-                   $"{FormatNumber(result.CancelledInsertedRowCount)} inserted rows were removed from the pending session.";
+            return L10n.Format(TextKey.Table_SourceRowsAreMarkedForDeletionAndInserted, FormatNumber(result.DeletedSourceRowCount), FormatNumber(result.CancelledInsertedRowCount));
         }
 
         if (result.DeletedSourceRowCount > 0)
         {
             return result.DeletedSourceRowCount == 1
-                ? "The source row is marked for deletion. Apply writes the deletion; Revert All restores it."
-                : $"{FormatNumber(result.DeletedSourceRowCount)} source rows are marked for deletion. " +
-                  "Apply writes the batch; Revert All restores every row.";
+                ? L10n.Get(TextKey.Table_TheSourceRowIsMarkedForDeletionApply)
+                : L10n.Format(TextKey.Table_SourceRowsAreMarkedForDeletionApplyWrites, FormatNumber(result.DeletedSourceRowCount));
         }
 
         return result.CancelledInsertedRowCount == 1
-            ? "The newly inserted row was removed from the pending session."
-            : $"{FormatNumber(result.CancelledInsertedRowCount)} newly inserted rows were removed from the pending session.";
+            ? L10n.Get(TextKey.Table_TheNewlyInsertedRowWasRemovedFromThe)
+            : L10n.Format(TextKey.Table_NewlyInsertedRowsWereRemovedFromThePending, FormatNumber(result.CancelledInsertedRowCount));
     }
 
     private static IReadOnlyList<CsvDiagnostic> GetAllDiagnostics(
@@ -1779,14 +1780,14 @@ internal sealed partial class CsvGridForm : DockingForm
 
     private static string FormatNumber(long value)
     {
-        return value.ToString("N0", CultureInfo.CurrentCulture);
+        return value.ToString("N0", L10n.FormattingCulture);
     }
 
     private static string DelimiterDisplayName(char delimiter) => delimiter switch
     {
-        ',' => "comma",
-        ';' => "semicolon",
-        '\t' => "tab",
+        ',' => L10n.Get(TextKey.Table_Comma2),
+        ';' => L10n.Get(TextKey.Table_Semicolon2),
+        '\t' => L10n.Get(TextKey.Table_Tab2),
         _ => $"U+{(int)delimiter:X4}"
     };
 }

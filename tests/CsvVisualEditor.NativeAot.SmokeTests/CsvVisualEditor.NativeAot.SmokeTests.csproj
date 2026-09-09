@@ -22,6 +22,11 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj" />
+    <ProjectReference Include="../../src/CsvVisualEditor.Localization/CsvVisualEditor.Localization.csproj" />
+    <Compile Include="../../src/CsvVisualEditor/CsvCommandIdentity.cs" Link="CsvCommandIdentity.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvUiText.cs" Link="CsvUiText.cs" />
+    <Compile Include="../../src/CsvVisualEditor/NotepadUiLanguage.cs" Link="NotepadUiLanguage.cs" />
+    <Compile Include="../../src/CsvVisualEditor/CsvLocalizationAppearance.cs" Link="CsvLocalizationAppearance.cs" />
     <Compile Include="../../src/CsvVisualEditor/NativeAotRoots.cs" Link="NativeAotRoots.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvDataGridView.cs" Link="CsvDataGridView.cs" />
     <Compile Include="../../src/CsvVisualEditor/CsvEditingControlPasteHook.cs" Link="CsvEditingControlPasteHook.cs" />

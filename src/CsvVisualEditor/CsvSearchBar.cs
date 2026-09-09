@@ -1,27 +1,29 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 /// <summary>A single, keyboard-accessible search surface. Narrow docks use two rows.</summary>
 internal sealed class CsvSearchBar : UserControl
 {
     internal TextBox Query { get; } = new()
     {
         Name = "CsvSearchText", BorderStyle = BorderStyle.None,
-        PlaceholderText = "Search in table...", AccessibleName = "Search in table",
-        AccessibleDescription = "Filters displayed rows. Enter: next matching cell. Shift+Enter: previous. Escape: clear.",
+        PlaceholderText = L10n.Get(TextKey.Search_SearchInTable), AccessibleName = L10n.Get(TextKey.Search_SearchInTable2),
+        AccessibleDescription = L10n.Get(TextKey.Search_FiltersDisplayedRowsEnterNextMatchingCellShift),
         TabIndex = 0
     };
     internal ComboBox Column { get; } = new()
     {
         Name = "CsvSearchColumn", DropDownStyle = ComboBoxStyle.DropDownList,
-        FlatStyle = FlatStyle.Flat, AccessibleName = "Search column", TabIndex = 1
+        FlatStyle = FlatStyle.Flat, AccessibleName = L10n.Get(TextKey.Search_SearchColumn), TabIndex = 1
     };
-    internal Button Previous { get; } = CreateButton("Previous matching cell", 2);
-    internal Button Next { get; } = CreateButton("Next matching cell", 3);
-    internal Button Clear { get; } = CreateButton("Clear search", 4);
+    internal Button Previous { get; } = CreateButton("CsvPreviousMatch", L10n.Get(TextKey.Search_PreviousMatchingCell), 2);
+    internal Button Next { get; } = CreateButton("CsvNextMatch", L10n.Get(TextKey.Search_NextMatchingCell), 3);
+    internal Button Clear { get; } = CreateButton("CsvClearSearch", L10n.Get(TextKey.Search_ClearSearch), 4);
     internal Label ResultLabel { get; } = new()
     {
         Name = "CsvSearchResults", AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft,
-        AccessibleName = "Search results", Text = string.Empty, UseMnemonic = false
+        AccessibleName = L10n.Get(TextKey.Search_SearchResults), Text = string.Empty, UseMnemonic = false
     };
     private readonly Panel _field = new() { Name = "CsvSearchField" };
     private readonly PictureBox _magnifier = new() { SizeMode = PictureBoxSizeMode.CenterImage, TabStop = false };
@@ -42,6 +44,7 @@ internal sealed class CsvSearchBar : UserControl
     internal CsvSearchBar()
     {
         Name = "CsvSearchBar";
+        RightToLeft = L10n.IsRightToLeft ? RightToLeft.Yes : RightToLeft.No;
         AutoScaleMode = AutoScaleMode.Dpi;
         AutoSize = true;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -79,11 +82,11 @@ internal sealed class CsvSearchBar : UserControl
         Previous.Click += (_, _) => NavigateRequested?.Invoke(true);
         Next.Click += (_, _) => NavigateRequested?.Invoke(false);
         Clear.Click += (_, _) => { ClearRequested?.Invoke(); Query.Focus(); };
-        _tips.SetToolTip(Query, "Search in displayed CSV rows (Ctrl+F). Values and source text are unchanged.");
-        _tips.SetToolTip(Column, "Search all data columns or choose one column.");
-        _tips.SetToolTip(Previous, "Previous matching cell (Shift+F3 / Shift+Enter)");
-        _tips.SetToolTip(Next, "Next matching cell (F3 / Enter)");
-        _tips.SetToolTip(Clear, "Clear search (Esc). Keep column scope and sorting.");
+        _tips.SetToolTip(Query, L10n.Get(TextKey.Search_SearchInDisplayedCSVRowsCtrlFValues));
+        _tips.SetToolTip(Column, L10n.Get(TextKey.Search_SearchAllDataColumnsOrChooseOneColumn));
+        _tips.SetToolTip(Previous, L10n.Get(TextKey.Search_PreviousMatchingCellShiftFShiftEnter));
+        _tips.SetToolTip(Next, L10n.Get(TextKey.Search_NextMatchingCellFEnter));
+        _tips.SetToolTip(Clear, L10n.Get(TextKey.Search_ClearSearchEscKeepColumnScopeAndSorting));
         ApplyAppearance(SystemColors.Control, SystemColors.ControlText);
         UpdateButtons();
     }
@@ -108,10 +111,10 @@ internal sealed class CsvSearchBar : UserControl
     private void UpdateResultText()
     {
         var narrow = ClientSize.Width < Unit(340);
-        ResultLabel.Text = _pending ? "Searching..." : !_hasQuery ? string.Empty :
-            _total == 0 ? "No matches" : _currentIndex >= 0 ?
-                $"{_currentIndex + 1:N0} / {_total:N0}" + (narrow ? "" : " cells") : $"{_total:N0} cells";
-        _tips.SetToolTip(ResultLabel, ResultLabel.Text + ". Counts matching cells, not repeated occurrences within a cell.");
+        ResultLabel.Text = _pending ? L10n.Get(TextKey.Search_Searching) : !_hasQuery ? string.Empty :
+            _total == 0 ? L10n.Get(TextKey.Search_NoMatches) : _currentIndex >= 0 ?
+                (narrow ? $"{_currentIndex + 1:N0} / {_total:N0}" : L10n.Format(TextKey.Search_Cells, _currentIndex + 1, _total)) : L10n.Format(TextKey.Search_Cells2, _total);
+        _tips.SetToolTip(ResultLabel, ResultLabel.Text);
     }
 
     private void UpdateButtons()
@@ -254,9 +257,9 @@ internal sealed class CsvSearchBar : UserControl
         base.Dispose(disposing);
     }
 
-    private static Button CreateButton(string name, int tabIndex) => new()
+    private static Button CreateButton(string id, string name, int tabIndex) => new()
     {
-        Name = "Csv" + name.Replace(" ", string.Empty, StringComparison.Ordinal),
+        Name = id,
         AccessibleName = name, FlatStyle = FlatStyle.Flat, TabIndex = tabIndex,
         FlatAppearance = { BorderSize = 0 }, UseVisualStyleBackColor = false
     };

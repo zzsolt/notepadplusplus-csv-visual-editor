@@ -245,7 +245,7 @@ public static class CsvParser
                     CsvDiagnosticCodes.InconsistentFieldCount,
                     $"Record has {record.FieldCount} fields; expected {expectedFieldCount.Value} based on the sampled mode.",
                     record.SourceSpan.Start,
-                    record.Index));
+                    record.Index, record.FieldCount, expectedFieldCount.Value));
             }
         }
 

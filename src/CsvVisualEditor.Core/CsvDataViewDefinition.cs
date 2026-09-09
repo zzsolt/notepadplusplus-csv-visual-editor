@@ -23,7 +23,7 @@ public sealed record CsvColumnFilter
         if (columnIndex < 0) throw new ArgumentOutOfRangeException(nameof(columnIndex));
         if (!Enum.IsDefined(operation)) throw new ArgumentOutOfRangeException(nameof(operation));
         if (value.Length > MaximumValueLength)
-            throw new ArgumentException("A filter value may contain at most 4,096 characters.", nameof(value));
+            throw CsvErrorDetails.With(new ArgumentException("A filter value may contain at most 4,096 characters.", nameof(value)), CsvUserError.FilterValueTooLong);
         ColumnIndex = columnIndex;
         Operation = operation;
         MatchCase = matchCase;
@@ -31,7 +31,7 @@ public sealed record CsvColumnFilter
         if (IsNumeric(operation))
         {
             if (!CsvNumericValue.TryParse(value, out var number))
-                throw new ArgumentException("Use an exact decimal number with a dot, such as -12.5. Grouping, exponents and rounded values are not supported.", nameof(value));
+                throw CsvErrorDetails.With(new ArgumentException("Use an exact decimal number with a dot, such as -12.5. Grouping, exponents and rounded values are not supported.", nameof(value)), CsvUserError.InvalidDecimal);
             NumericOperand = number;
         }
     }
@@ -113,11 +113,11 @@ public sealed class CsvDataViewDefinition
         var filterArray = filters?.Take(MaximumFilters + 1).ToArray() ?? [];
         var sortArray = sortKeys?.Take(MaximumSortKeys + 1).ToArray() ?? [];
         if (filterArray.Length > MaximumFilters || filterArray.Any(static item => item is null))
-            throw new ArgumentException("Use at most eight non-null filter conditions.", nameof(filters));
+            throw CsvErrorDetails.With(new ArgumentException("Use at most eight non-null filter conditions.", nameof(filters)), CsvUserError.TooManyFilters);
         if (sortArray.Length > MaximumSortKeys || sortArray.Any(static item => item is null))
-            throw new ArgumentException("Use at most three non-null sort levels.", nameof(sortKeys));
+            throw CsvErrorDetails.With(new ArgumentException("Use at most three non-null sort levels.", nameof(sortKeys)), CsvUserError.TooManySortLevels);
         if (sortArray.Select(static item => item.ColumnIndex).Distinct().Count() != sortArray.Length)
-            throw new ArgumentException("Each sort level must use a different column.", nameof(sortKeys));
+            throw CsvErrorDetails.With(new ArgumentException("Each sort level must use a different column.", nameof(sortKeys)), CsvUserError.DuplicateSortColumn);
         Filters = Array.AsReadOnly(filterArray);
         SortKeys = Array.AsReadOnly(sortArray);
         Combination = combination;
@@ -132,7 +132,7 @@ public sealed class CsvDataViewDefinition
     {
         if (Filters.Any(filter => filter.ColumnIndex >= columnCount) ||
             SortKeys.Any(key => key.ColumnIndex >= columnCount))
-            throw new ArgumentException("View rules refer to a column outside the current table.");
+            throw CsvErrorDetails.With(new ArgumentException("View rules refer to a column outside the current table."), CsvUserError.InvalidViewColumn);
     }
 
     internal bool Matches(CsvTableRow row)

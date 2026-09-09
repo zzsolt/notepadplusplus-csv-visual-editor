@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 internal sealed partial class CsvGridForm
 {
     private void FocusSearch()
@@ -56,7 +58,7 @@ internal sealed partial class CsvGridForm
         _searchBar.SetResults(_searchResults?.FindIndex(address.Y, address.X) ?? -1,
             _searchResults?.Count ?? 0, hasQuery, _searchTimer?.Enabled == true);
         _noMatchesLabel.Visible = !_editMode && _projection is not null && _lastViewResult?.IsFiltered == true && _lastViewResult.VisibleRowCount == 0;
-        _noMatchesLabel.Text = "No matching rows.\nAdjust the search or use View > Filter and sort / Reset view.";
+        _noMatchesLabel.Text = L10n.Get(TextKey.Search_NoMatchingRowsAdjustTheSearchOrUse);
         if (_noMatchesLabel.Visible) _noMatchesLabel.BringToFront();
     }
 

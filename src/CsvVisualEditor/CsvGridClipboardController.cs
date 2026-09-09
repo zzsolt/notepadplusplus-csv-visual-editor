@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using System.Globalization;
 using System.Runtime.InteropServices;
@@ -88,20 +90,20 @@ internal static class CsvGridClipboardController
 
         if (CsvGridRowHeaderBehavior.CaptureManagedSelection(grid).SelectedIds.Count > 0)
         {
-            ShowStatus(form, "Copy requires CSV cells, not complete-row deletion selection.");
+            ShowStatus(form, L10n.Get(TextKey.Clipboard_CopyRequiresCSVCellsNotCompleteRowDeletion));
             return true;
         }
 
         if (grid.IsCurrentCellInEditMode && !form.CommitPendingEdit())
         {
-            ShowStatus(form, "The active cell edit could not be committed before copying.");
+            ShowStatus(form, L10n.Get(TextKey.Clipboard_TheActiveCellEditCouldNotBeCommitted));
             return true;
         }
 
         var rectangle = CaptureRectangle(grid, useCurrentCellWhenEmpty: true);
         if (rectangle is null)
         {
-            ShowStatus(form, "Copy requires one contiguous rectangular selection of CSV data cells.");
+            ShowStatus(form, L10n.Get(TextKey.Clipboard_CopyRequiresOneContiguousRectangularSelectionOfCSV));
             return true;
         }
 
@@ -119,7 +121,7 @@ internal static class CsvGridClipboardController
         if (!TryPrepareEditableTarget(
                 grid,
                 form,
-                "Cut",
+                L10n.Get(TextKey.Common_Cut),
                 out var model,
                 out var target))
         {
@@ -172,7 +174,7 @@ internal static class CsvGridClipboardController
         if (!TryPrepareEditableTarget(
                 grid,
                 form,
-                "Paste",
+                L10n.Get(TextKey.Common_Paste),
                 out var model,
                 out var target))
         {
@@ -186,7 +188,7 @@ internal static class CsvGridClipboardController
         }
         catch (FormatException exception)
         {
-            ShowStatus(form, $"Paste blocked: {exception.Message} No data was changed.");
+            ShowStatus(form, L10n.Format(TextKey.Clipboard_PasteBlockedNoDataWasChanged, CsvUiText.Exception(exception)));
             return true;
         }
 
@@ -220,14 +222,14 @@ internal static class CsvGridClipboardController
 
         if (!form.IsEditMode)
         {
-            ShowStatus(form, $"{operation} is available only in Edit mode.");
+            ShowStatus(form, L10n.Format(TextKey.Clipboard_IsAvailableOnlyInEditMode, operation));
             return false;
         }
 
         var currentModel = form.RowEditModel;
         if (currentModel is null)
         {
-            ShowStatus(form, $"{operation} is unavailable for the current table.");
+            ShowStatus(form, L10n.Format(TextKey.Clipboard_IsUnavailableForTheCurrentTable, operation));
             return false;
         }
 
@@ -235,7 +237,7 @@ internal static class CsvGridClipboardController
         {
             ShowStatus(
                 form,
-                $"{operation} requires a CSV-cell rectangle, not complete-row deletion selection.");
+                L10n.Format(TextKey.Clipboard_RequiresACSVCellRectangleNotCompleteRow, operation));
             return false;
         }
 
@@ -243,7 +245,7 @@ internal static class CsvGridClipboardController
         {
             ShowStatus(
                 form,
-                $"The active cell edit could not be committed. Correct the value before {operation.ToLowerInvariant()}." );
+                L10n.Format(TextKey.Clipboard_TheActiveCellEditCouldNotBeCommitted2, operation.ToLowerInvariant()) );
             return false;
         }
 
@@ -252,7 +254,7 @@ internal static class CsvGridClipboardController
         {
             ShowStatus(
                 form,
-                $"{operation} requires one contiguous rectangular selection of CSV data cells.");
+                L10n.Format(TextKey.Clipboard_RequiresOneContiguousRectangularSelectionOfCSVData, operation));
             return false;
         }
 
@@ -269,7 +271,7 @@ internal static class CsvGridClipboardController
         CsvClipboardMatrix matrix,
         ClipboardMutationKind mutationKind)
     {
-        var operation = mutationKind == ClipboardMutationKind.Cut ? "Cut" : "Paste";
+        var operation = mutationKind == ClipboardMutationKind.Cut ? L10n.Get(TextKey.Common_Cut) : L10n.Get(TextKey.Common_Paste);
         var orderedRowIds = grid.Rows
             .Cast<DataGridViewRow>()
             .Select(static row => row.Tag)
@@ -279,7 +281,7 @@ internal static class CsvGridClipboardController
         {
             ShowStatus(
                 form,
-                $"{operation} targets are unavailable outside the stable Edit-mode row model.");
+                L10n.Format(TextKey.Clipboard_TargetsAreUnavailableOutsideTheStableEditMode, operation));
             return true;
         }
 
@@ -296,10 +298,10 @@ internal static class CsvGridClipboardController
             ShowStatus(form, plan.Status switch
             {
                 CsvClipboardPasteStatus.ShapeMismatch =>
-                    $"{operation} blocked: clipboard and selected rectangles have different dimensions.",
+                    L10n.Format(TextKey.Clipboard_BlockedClipboardAndSelectedRectanglesHaveDifferentDimensions, operation),
                 CsvClipboardPasteStatus.TargetOutsideSession =>
-                    $"{operation} blocked: the target rectangle extends beyond the CSV table.",
-                _ => $"{operation} blocked: there is no editable target rectangle."
+                    L10n.Format(TextKey.Clipboard_BlockedTheTargetRectangleExtendsBeyondTheCSV, operation),
+                _ => L10n.Format(TextKey.Clipboard_BlockedThereIsNoEditableTargetRectangle, operation)
             });
             return true;
         }
@@ -313,7 +315,7 @@ internal static class CsvGridClipboardController
         {
             ShowStatus(
                 form,
-                $"{operation} blocked because the pending edit model changed. No partial change was retained.");
+                L10n.Format(TextKey.Clipboard_BlockedBecauseThePendingEditModelChangedNo, operation));
             return true;
         }
 
@@ -326,16 +328,16 @@ internal static class CsvGridClipboardController
             ShowStatus(
                 form,
                 changed == 0
-                    ? "Cut completed; the selected cells were already empty. The clipboard contains their original values."
-                    : $"Cut {changed.ToString(CultureInfo.CurrentCulture)} cells into the clipboard and cleared them in the pending edit session. Apply writes the clearing to Notepad++.");
+                    ? L10n.Get(TextKey.Clipboard_CutCompletedTheSelectedCellsWereAlreadyEmpty)
+                    : L10n.Format(TextKey.Clipboard_CutCellsIntoTheClipboardAndClearedThem, changed.ToString(CultureInfo.CurrentCulture)));
         }
         else
         {
             ShowStatus(
                 form,
                 changed == 0
-                    ? "Paste completed; all target values were already identical."
-                    : $"Pasted {changed.ToString(CultureInfo.CurrentCulture)} changed cells into the pending edit session. Apply writes them to Notepad++." );
+                    ? L10n.Get(TextKey.Clipboard_PasteCompletedAllTargetValuesWereAlreadyIdentical)
+                    : L10n.Format(TextKey.Clipboard_PastedChangedCellsIntoThePendingEditSession, changed.ToString(CultureInfo.CurrentCulture)) );
         }
 
         return true;
@@ -370,7 +372,7 @@ internal static class CsvGridClipboardController
                 {
                     ShowStatus(
                         form,
-                        "Copy/Cut blocked: one selected cell contains a tab or line break that cannot be represented unambiguously as plain spreadsheet text.");
+                        L10n.Get(TextKey.Clipboard_CopyCutBlockedOneSelectedCellContainsA));
                     return false;
                 }
 
@@ -385,15 +387,14 @@ internal static class CsvGridClipboardController
             {
                 ShowStatus(
                     form,
-                    $"Copied {rectangle.RowCount.ToString(CultureInfo.CurrentCulture)} × " +
-                    $"{rectangle.ColumnCount.ToString(CultureInfo.CurrentCulture)} CSV cells.");
+                    L10n.Format(TextKey.Clipboard_CopiedCSVCells, rectangle.RowCount.ToString(CultureInfo.CurrentCulture), rectangle.ColumnCount.ToString(CultureInfo.CurrentCulture)));
             }
 
             return true;
         }
         catch (ExternalException)
         {
-            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+            ShowStatus(form, L10n.Get(TextKey.Clipboard_TheWindowsClipboardIsTemporarilyUnavailableNoData));
             return false;
         }
     }
@@ -407,7 +408,7 @@ internal static class CsvGridClipboardController
         {
             if (!Clipboard.ContainsText())
             {
-                ShowStatus(form, "The clipboard does not contain plain text cells.");
+                ShowStatus(form, L10n.Get(TextKey.Clipboard_TheClipboardDoesNotContainPlainTextCells));
                 return false;
             }
 
@@ -421,7 +422,7 @@ internal static class CsvGridClipboardController
         }
         catch (ExternalException)
         {
-            ShowStatus(form, "The Windows clipboard is temporarily unavailable. No data was changed.");
+            ShowStatus(form, L10n.Get(TextKey.Clipboard_TheWindowsClipboardIsTemporarilyUnavailableNoData));
             return false;
         }
     }

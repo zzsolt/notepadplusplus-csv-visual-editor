@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 /// <summary>One command source, two presentations: icons and a permanent text menu.</summary>
 internal sealed class CsvCommandSurface : IDisposable
 {
@@ -11,12 +13,12 @@ internal sealed class CsvCommandSurface : IDisposable
     private Color _foreground = SystemColors.ControlText;
 
     internal MenuStrip Menu { get; } = new() { Dock = DockStyle.Fill, GripStyle = ToolStripGripStyle.Hidden, ShowItemToolTips = true };
-    internal ToolStripMenuItem Table { get; } = new("&Table");
-    internal ToolStripMenuItem Edit { get; } = new("&Edit");
-    internal ToolStripMenuItem View { get; } = new("&View");
-    internal ToolStripMenuItem Csv { get; } = new("&CSV");
-    internal ToolStripMenuItem Search { get; } = new("&Search");
-    internal ToolStripMenuItem About { get; } = new("&About");
+    internal ToolStripMenuItem Table { get; } = new(L10n.Get(TextKey.Menu_Table));
+    internal ToolStripMenuItem Edit { get; } = new(L10n.Get(TextKey.Menu_Edit));
+    internal ToolStripMenuItem View { get; } = new(L10n.Get(TextKey.Menu_View));
+    internal ToolStripMenuItem Csv { get; } = new(L10n.Get(TextKey.Menu_Csv));
+    internal ToolStripMenuItem Search { get; } = new(L10n.Get(TextKey.Menu_Search));
+    internal ToolStripMenuItem About { get; } = new(L10n.Get(TextKey.Menu_About));
 
     internal CsvCommandSurface(params ToolStrip[] strips)
     {
@@ -24,7 +26,7 @@ internal sealed class CsvCommandSurface : IDisposable
         Menu.Items.AddRange([Table, Edit, View, Csv, Search, About]);
         foreach (var button in strips.SelectMany(static strip => strip.Items.OfType<ToolStripButton>()))
         {
-            var text = button.Text ?? string.Empty;
+            var text = CsvCommandIdentity.Of(button);
             var parent = text.StartsWith("Refresh", StringComparison.Ordinal) || text == "Source" ? Table :
                 text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) || (text is "Reset view" or "Filter and sort" or "Column summary") ? View :
                 text == "Clear" ? Search : Edit;
@@ -93,10 +95,10 @@ internal sealed class CsvCommandSurface : IDisposable
 
     internal void AddSearch(TextBox source, Action focus, Action<bool> navigate, Func<bool> canNavigate)
     {
-        var find = new ToolStripMenuItem("&Find in table") { ShortcutKeyDisplayString = "Ctrl+F" };
-        var next = new ToolStripMenuItem("&Next matching cell") { ShortcutKeyDisplayString = "F3" };
-        var previous = new ToolStripMenuItem("&Previous matching cell") { ShortcutKeyDisplayString = "Shift+F3" };
-        var clear = new ToolStripMenuItem("&Clear search") { ShortcutKeyDisplayString = "Esc in search" };
+        var find = new ToolStripMenuItem(L10n.Get(TextKey.Menu_FindInTable)) { ShortcutKeyDisplayString = "Ctrl+F" };
+        var next = new ToolStripMenuItem(L10n.Get(TextKey.Menu_NextMatchingCell)) { ShortcutKeyDisplayString = "F3" };
+        var previous = new ToolStripMenuItem(L10n.Get(TextKey.Menu_PreviousMatchingCell)) { ShortcutKeyDisplayString = "Shift+F3" };
+        var clear = new ToolStripMenuItem(L10n.Get(TextKey.Menu_ClearSearch)) { ShortcutKeyDisplayString = L10n.Get(TextKey.Menu_EscInSearch) };
         Search.DropDownItems.Insert(0, find);
         Search.DropDownItems.Insert(1, next);
         Search.DropDownItems.Insert(2, previous);
@@ -130,7 +132,7 @@ internal sealed class CsvCommandSurface : IDisposable
         foreach (var (button, item) in _bindings)
         {
             var old = button.Image;
-            button.Image = CsvCommandIcons.Create(button.Text ?? string.Empty, foreground, Math.Max(16, 18 * dpi / 96));
+            button.Image = CsvCommandIcons.Create(CsvCommandIdentity.Of(button), foreground, Math.Max(16, 18 * dpi / 96));
             item.Image = button.Image;
             button.DisplayStyle = ToolStripItemDisplayStyle.Image;
             button.ImageScaling = ToolStripItemImageScaling.None;

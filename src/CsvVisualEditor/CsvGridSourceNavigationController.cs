@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using System.Globalization;
@@ -66,7 +68,7 @@ internal static class CsvGridSourceNavigationController
         {
             CsvGridClipboardController.ShowStatus(
                 form,
-                "Go to source is unavailable until the current visual table has a complete source baseline. Refresh the table first.");
+                L10n.Get(TextKey.Source_GoToSourceIsUnavailableUntilTheCurrent));
             return true;
         }
 
@@ -79,7 +81,7 @@ internal static class CsvGridSourceNavigationController
         {
             CsvGridClipboardController.ShowStatus(
                 form,
-                "Go to source failed: the active Notepad++ buffer could not be read. No document content was changed.");
+                L10n.Get(TextKey.Source_GoToSourceFailedTheActiveNotepadBuffer));
             return true;
         }
 
@@ -110,7 +112,7 @@ internal static class CsvGridSourceNavigationController
         {
             CsvGridClipboardController.ShowStatus(
                 form,
-                "Go to source blocked because the retained parse result no longer matches its immutable source snapshot. Refresh the table first.");
+                L10n.Get(TextKey.Source_GoToSourceBlockedBecauseTheRetainedParse));
             return true;
         }
 
@@ -135,15 +137,15 @@ internal static class CsvGridSourceNavigationController
         {
             CsvGridClipboardController.ShowStatus(
                 form,
-                "Go to source failed while moving the Scintilla selection. No document content was changed.");
+                L10n.Get(TextKey.Source_GoToSourceFailedWhileMovingTheScintilla));
             return true;
         }
 
         CsvGridClipboardController.ShowStatus(
             form,
             plan.Address.ColumnIndex is int columnIndex
-                ? $"Selected source record {(plan.Address.SourceRecordIndex + 1).ToString(CultureInfo.CurrentCulture)}, column {(columnIndex + 1).ToString(CultureInfo.CurrentCulture)} in Notepad++."
-                : $"Selected source record {(plan.Address.SourceRecordIndex + 1).ToString(CultureInfo.CurrentCulture)} in Notepad++.");
+                ? L10n.Format(TextKey.Source_SelectedSourceRecordColumnInNotepad, (plan.Address.SourceRecordIndex + 1).ToString(CultureInfo.CurrentCulture), (columnIndex + 1).ToString(CultureInfo.CurrentCulture))
+                : L10n.Format(TextKey.Source_SelectedSourceRecordInNotepad, (plan.Address.SourceRecordIndex + 1).ToString(CultureInfo.CurrentCulture)));
         return true;
     }
 
@@ -156,7 +158,7 @@ internal static class CsvGridSourceNavigationController
 
         address = default;
         unavailableReason =
-            "Go to source requires a current CSV row or cell.";
+            L10n.Get(TextKey.Source_GoToSourceRequiresACurrentCSVRow);
 
         var currentCell = grid.CurrentCell;
         if (currentCell is null ||
@@ -171,8 +173,8 @@ internal static class CsvGridSourceNavigationController
         if (sourceRecordIndex is null)
         {
             unavailableReason = row.Tag is CsvEditRowId rowId && rowId.IsInserted
-                ? "This pending inserted row has no source location until Apply completes."
-                : "The current visual row does not expose a stable source record identity.";
+                ? L10n.Get(TextKey.Source_ThisPendingInsertedRowHasNoSourceLocation)
+                : L10n.Get(TextKey.Source_TheCurrentVisualRowDoesNotExposeA);
             return false;
         }
 
@@ -269,22 +271,22 @@ internal static class CsvGridSourceNavigationController
         status switch
         {
             CsvSourceNavigationStatus.DocumentIdentityChanged =>
-                "Go to source blocked: another Notepad++ document is active. Return to the displayed CSV or Refresh the table.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedAnotherNotepadDocumentIs),
             CsvSourceNavigationStatus.CodePageChanged =>
-                "Go to source blocked: the editor code page changed after this table was rendered. Refresh the table first.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheEditorCodePage),
             CsvSourceNavigationStatus.ContentChanged =>
-                "Go to source blocked: the active editor content changed after this table was rendered. Refresh the table first.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheActiveEditorContent),
             CsvSourceNavigationStatus.UnsupportedCodePage =>
-                "Go to source blocked: the current Scintilla code page has no explicit byte-position profile.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheCurrentScintillaCode),
             CsvSourceNavigationStatus.EditorByteLengthMismatch =>
-                "Go to source blocked: strict encoded length does not match Scintilla's reported document length.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedStrictEncodedLengthDoes),
             CsvSourceNavigationStatus.PositionEncodingFailed =>
-                "Go to source blocked: the source character span could not be mapped losslessly to Scintilla bytes.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheSourceCharacterSpan),
             CsvSourceNavigationStatus.SourceRecordUnavailable =>
-                "Go to source blocked: the source logical record is unavailable in the retained parse result.",
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheSourceLogicalRecord),
             CsvSourceNavigationStatus.SourceColumnUnavailable =>
-                "Go to source blocked: the selected projected cell has no raw source field.",
-            _ => "Go to source was not completed. No document content was changed."
+                L10n.Get(TextKey.Source_GoToSourceBlockedTheSelectedProjectedCell),
+            _ => L10n.Get(TextKey.Source_GoToSourceWasNotCompletedNoDocument)
         };
 
     private sealed record NavigationBaseline(

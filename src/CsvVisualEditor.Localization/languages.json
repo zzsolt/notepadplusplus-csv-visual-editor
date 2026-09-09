@@ -1,0 +1,571 @@
+{
+  "upstreamRepository": "notepad-plus-plus/notepad-plus-plus",
+  "upstreamCommit": "2f50e44ffe9aa607a0e50e1f2ab143e0daed1391",
+  "upstreamPath": "PowerEditor/src/localizationString.h",
+  "languages": [
+    {
+      "file": "english.xml",
+      "code": "en",
+      "name": "English",
+      "rtl": false
+    },
+    {
+      "file": "english_customizable.xml",
+      "code": "en",
+      "name": "English (customizable)",
+      "rtl": false
+    },
+    {
+      "file": "french.xml",
+      "code": "fr",
+      "name": "Français",
+      "rtl": false
+    },
+    {
+      "file": "taiwaneseMandarin.xml",
+      "code": "zh-TW",
+      "name": "台灣繁體",
+      "rtl": false
+    },
+    {
+      "file": "chineseSimplified.xml",
+      "code": "zh-CN",
+      "name": "中文简体",
+      "rtl": false
+    },
+    {
+      "file": "korean.xml",
+      "code": "ko",
+      "name": "한국어",
+      "rtl": false
+    },
+    {
+      "file": "japanese.xml",
+      "code": "ja",
+      "name": "日本語",
+      "rtl": false
+    },
+    {
+      "file": "german.xml",
+      "code": "de",
+      "name": "Deutsch",
+      "rtl": false
+    },
+    {
+      "file": "spanish.xml",
+      "code": "es",
+      "name": "Español",
+      "rtl": false
+    },
+    {
+      "file": "italian.xml",
+      "code": "it",
+      "name": "Italiano",
+      "rtl": false
+    },
+    {
+      "file": "portuguese.xml",
+      "code": "pt-PT",
+      "name": "Português",
+      "rtl": false
+    },
+    {
+      "file": "brazilian_portuguese.xml",
+      "code": "pt-BR",
+      "name": "Português (Brasil)",
+      "rtl": false
+    },
+    {
+      "file": "dutch.xml",
+      "code": "nl",
+      "name": "Nederlands",
+      "rtl": false
+    },
+    {
+      "file": "russian.xml",
+      "code": "ru",
+      "name": "Русский",
+      "rtl": false
+    },
+    {
+      "file": "polish.xml",
+      "code": "pl",
+      "name": "Polski",
+      "rtl": false
+    },
+    {
+      "file": "catalan.xml",
+      "code": "ca",
+      "name": "Català",
+      "rtl": false
+    },
+    {
+      "file": "czech.xml",
+      "code": "cs",
+      "name": "Česky",
+      "rtl": false
+    },
+    {
+      "file": "hungarian.xml",
+      "code": "hu",
+      "name": "Magyar",
+      "rtl": false
+    },
+    {
+      "file": "romanian.xml",
+      "code": "ro",
+      "name": "Română",
+      "rtl": false
+    },
+    {
+      "file": "turkish.xml",
+      "code": "tr",
+      "name": "Türkçe",
+      "rtl": false
+    },
+    {
+      "file": "farsi.xml",
+      "code": "fa",
+      "name": "فارسی",
+      "rtl": true
+    },
+    {
+      "file": "ukrainian.xml",
+      "code": "uk",
+      "name": "Українська",
+      "rtl": false
+    },
+    {
+      "file": "hebrew.xml",
+      "code": "he",
+      "name": "עברית",
+      "rtl": true
+    },
+    {
+      "file": "nynorsk.xml",
+      "code": "nn",
+      "name": "Nynorsk",
+      "rtl": false
+    },
+    {
+      "file": "norwegian.xml",
+      "code": "nb",
+      "name": "Norsk",
+      "rtl": false
+    },
+    {
+      "file": "occitan.xml",
+      "code": "oc",
+      "name": "Occitan",
+      "rtl": false
+    },
+    {
+      "file": "thai.xml",
+      "code": "th",
+      "name": "ไทย",
+      "rtl": false
+    },
+    {
+      "file": "friulian.xml",
+      "code": "fur",
+      "name": "Furlan",
+      "rtl": false
+    },
+    {
+      "file": "arabic.xml",
+      "code": "ar",
+      "name": "العربية",
+      "rtl": true
+    },
+    {
+      "file": "finnish.xml",
+      "code": "fi",
+      "name": "Suomi",
+      "rtl": false
+    },
+    {
+      "file": "lithuanian.xml",
+      "code": "lt",
+      "name": "Lietuvių",
+      "rtl": false
+    },
+    {
+      "file": "greek.xml",
+      "code": "el",
+      "name": "Ελληνικά",
+      "rtl": false
+    },
+    {
+      "file": "swedish.xml",
+      "code": "sv",
+      "name": "Svenska",
+      "rtl": false
+    },
+    {
+      "file": "galician.xml",
+      "code": "gl",
+      "name": "Galego",
+      "rtl": false
+    },
+    {
+      "file": "slovenian.xml",
+      "code": "sl",
+      "name": "Slovenščina",
+      "rtl": false
+    },
+    {
+      "file": "slovak.xml",
+      "code": "sk",
+      "name": "Slovenčina",
+      "rtl": false
+    },
+    {
+      "file": "danish.xml",
+      "code": "da",
+      "name": "Dansk",
+      "rtl": false
+    },
+    {
+      "file": "extremaduran.xml",
+      "code": "ext",
+      "name": "Estremeñu",
+      "rtl": false
+    },
+    {
+      "file": "samogitian.xml",
+      "code": "sgs",
+      "name": "Žemaitiu ruoda",
+      "rtl": false
+    },
+    {
+      "file": "bulgarian.xml",
+      "code": "bg",
+      "name": "Български",
+      "rtl": false
+    },
+    {
+      "file": "indonesian.xml",
+      "code": "id",
+      "name": "Bahasa Indonesia",
+      "rtl": false
+    },
+    {
+      "file": "albanian.xml",
+      "code": "sq",
+      "name": "Gjuha shqipe",
+      "rtl": false
+    },
+    {
+      "file": "croatian.xml",
+      "code": "hr",
+      "name": "Hrvatski",
+      "rtl": false
+    },
+    {
+      "file": "georgian.xml",
+      "code": "ka",
+      "name": "ქართული ენა",
+      "rtl": false
+    },
+    {
+      "file": "basque.xml",
+      "code": "eu",
+      "name": "Euskara",
+      "rtl": false
+    },
+    {
+      "file": "spanish_ar.xml",
+      "code": "es-AR",
+      "name": "Español (Argentina)",
+      "rtl": false
+    },
+    {
+      "file": "belarusian.xml",
+      "code": "be",
+      "name": "Беларуская мова",
+      "rtl": false
+    },
+    {
+      "file": "serbian.xml",
+      "code": "sr-Latn",
+      "name": "Srpski",
+      "rtl": false
+    },
+    {
+      "file": "serbianCyrillic.xml",
+      "code": "sr-Cyrl",
+      "name": "Cрпски",
+      "rtl": false
+    },
+    {
+      "file": "malay.xml",
+      "code": "ms",
+      "name": "Bahasa Melayu",
+      "rtl": false
+    },
+    {
+      "file": "luxembourgish.xml",
+      "code": "lb",
+      "name": "Lëtzebuergesch",
+      "rtl": false
+    },
+    {
+      "file": "tagalog.xml",
+      "code": "tl",
+      "name": "Tagalog",
+      "rtl": false
+    },
+    {
+      "file": "afrikaans.xml",
+      "code": "af",
+      "name": "Afrikaans",
+      "rtl": false
+    },
+    {
+      "file": "kazakh.xml",
+      "code": "kk",
+      "name": "Қазақша",
+      "rtl": false
+    },
+    {
+      "file": "uzbek.xml",
+      "code": "uz-Latn",
+      "name": "O‘zbekcha",
+      "rtl": false
+    },
+    {
+      "file": "uzbekCyrillic.xml",
+      "code": "uz-Cyrl",
+      "name": "Ўзбекча",
+      "rtl": false
+    },
+    {
+      "file": "kyrgyz.xml",
+      "code": "ky",
+      "name": "Кыргыз тили",
+      "rtl": false
+    },
+    {
+      "file": "macedonian.xml",
+      "code": "mk",
+      "name": "Македонски јазик",
+      "rtl": false
+    },
+    {
+      "file": "latvian.xml",
+      "code": "lv",
+      "name": "latviešu valoda",
+      "rtl": false
+    },
+    {
+      "file": "tamil.xml",
+      "code": "ta",
+      "name": "தமிழ்",
+      "rtl": false
+    },
+    {
+      "file": "azerbaijani.xml",
+      "code": "az",
+      "name": "Azərbaycan dili",
+      "rtl": false
+    },
+    {
+      "file": "bosnian.xml",
+      "code": "bs",
+      "name": "Bosanski",
+      "rtl": false
+    },
+    {
+      "file": "esperanto.xml",
+      "code": "eo",
+      "name": "Esperanto",
+      "rtl": false
+    },
+    {
+      "file": "ligurian.xml",
+      "code": "lij",
+      "name": "Zeneize",
+      "rtl": false
+    },
+    {
+      "file": "hindi.xml",
+      "code": "hi",
+      "name": "हिन्दी",
+      "rtl": false
+    },
+    {
+      "file": "sardinian.xml",
+      "code": "sc",
+      "name": "Sardu",
+      "rtl": false
+    },
+    {
+      "file": "uyghur.xml",
+      "code": "ug",
+      "name": "ئۇيغۇرچە",
+      "rtl": true
+    },
+    {
+      "file": "telugu.xml",
+      "code": "te",
+      "name": "తెలుగు",
+      "rtl": false
+    },
+    {
+      "file": "aragonese.xml",
+      "code": "an",
+      "name": "aragonés",
+      "rtl": false
+    },
+    {
+      "file": "bengali.xml",
+      "code": "bn",
+      "name": "বাংলা",
+      "rtl": false
+    },
+    {
+      "file": "sinhala.xml",
+      "code": "si",
+      "name": "සිංහල",
+      "rtl": false
+    },
+    {
+      "file": "kabyle.xml",
+      "code": "kab",
+      "name": "Taqbaylit",
+      "rtl": false
+    },
+    {
+      "file": "marathi.xml",
+      "code": "mr",
+      "name": "मराठी",
+      "rtl": false
+    },
+    {
+      "file": "vietnamese.xml",
+      "code": "vi",
+      "name": "tiếng Việt",
+      "rtl": false
+    },
+    {
+      "file": "aranese.xml",
+      "code": "oc-aran",
+      "name": "Aranés",
+      "rtl": false
+    },
+    {
+      "file": "gujarati.xml",
+      "code": "gu",
+      "name": "ગુજરાતી",
+      "rtl": false
+    },
+    {
+      "file": "mongolian.xml",
+      "code": "mn",
+      "name": "Монгол хэл",
+      "rtl": false
+    },
+    {
+      "file": "urdu.xml",
+      "code": "ur",
+      "name": "اُردُو‎",
+      "rtl": true
+    },
+    {
+      "file": "kannada.xml",
+      "code": "kn",
+      "name": "ಕನ್ನಡ‎",
+      "rtl": false
+    },
+    {
+      "file": "welsh.xml",
+      "code": "cy",
+      "name": "Cymraeg",
+      "rtl": false
+    },
+    {
+      "file": "estonian.xml",
+      "code": "et",
+      "name": "eesti keel",
+      "rtl": false
+    },
+    {
+      "file": "tajikCyrillic.xml",
+      "code": "tg",
+      "name": "Тоҷик",
+      "rtl": false
+    },
+    {
+      "file": "tatar.xml",
+      "code": "tt",
+      "name": "татарча",
+      "rtl": false
+    },
+    {
+      "file": "punjabi.xml",
+      "code": "pa",
+      "name": "ਪੰਜਾਬੀ",
+      "rtl": false
+    },
+    {
+      "file": "corsican.xml",
+      "code": "co",
+      "name": "Corsu",
+      "rtl": false
+    },
+    {
+      "file": "breton.xml",
+      "code": "br",
+      "name": "Brezhoneg",
+      "rtl": false
+    },
+    {
+      "file": "kurdish.xml",
+      "code": "ckb",
+      "name": "کوردی‬",
+      "rtl": true
+    },
+    {
+      "file": "piglatin.xml",
+      "code": "la-pig",
+      "name": "Pig Latin",
+      "rtl": false
+    },
+    {
+      "file": "zulu.xml",
+      "code": "zu",
+      "name": "Zulu",
+      "rtl": false
+    },
+    {
+      "file": "venetian.xml",
+      "code": "vec",
+      "name": "Vèneto",
+      "rtl": false
+    },
+    {
+      "file": "irish.xml",
+      "code": "ga",
+      "name": "Gaeilge",
+      "rtl": false
+    },
+    {
+      "file": "nepali.xml",
+      "code": "ne",
+      "name": "नेपाली",
+      "rtl": false
+    },
+    {
+      "file": "hongKongCantonese.xml",
+      "code": "yue-Hant",
+      "name": "香港繁體",
+      "rtl": false
+    },
+    {
+      "file": "abkhazian.xml",
+      "code": "ab",
+      "name": "Аԥсуа бызшәа",
+      "rtl": false
+    }
+  ]
+}

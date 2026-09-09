@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 
 internal sealed partial class CsvGridForm
@@ -19,9 +21,9 @@ internal sealed partial class CsvGridForm
         IEnumerable<CsvCellAddress> GetTargets(CsvTransformScope scope)
         {
             if (!_editMode || !ReferenceEquals(_rowEditModel, model))
-                throw new InvalidOperationException("The Edit session changed.");
+                throw new InvalidOperationException(L10n.Get(TextKey.Transform_TheEditSessionChanged));
             if (scope == CsvTransformScope.CurrentColumn && (currentColumn < 0 || currentColumn >= model.ColumnCount))
-                throw new InvalidOperationException("Select a CSV data column.");
+                throw new InvalidOperationException(L10n.Get(TextKey.Transform_SelectACSVDataColumn));
 
             // Stable model order and physical columns; presentation cells are never targets.
             foreach (var row in model.GetVisibleRows())
@@ -40,7 +42,7 @@ internal sealed partial class CsvGridForm
             plan =>
             {
                 if (!_editMode || !ReferenceEquals(_rowEditModel, model))
-                    throw new InvalidOperationException("The Edit session changed.");
+                    throw new InvalidOperationException(L10n.Get(TextKey.Transform_TheEditSessionChanged));
                 var changed = plan.Apply(model);
                 // Update in place to preserve cell/complete-row selection and the viewport.
                 var gridRows = _grid.Rows.Cast<DataGridViewRow>()
@@ -55,7 +57,7 @@ internal sealed partial class CsvGridForm
                 }
                 finally { _suppressGridChanges = false; }
                 UpdateDirtyIndicators();
-                _statusLabel.Text = $"Transformed {changed:N0} cells in the pending Edit session. Use Apply to update Notepad++, or Revert All to discard pending edits.";
+                _statusLabel.Text = L10n.Format(TextKey.Transform_TransformedCellsInThePendingEditSessionUse, changed);
             }, _spacesButton.Checked);
         dialog.ApplyTheme(BackColor, ForeColor);
         dialog.ShowDialog(this);

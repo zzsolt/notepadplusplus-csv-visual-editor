@@ -48,13 +48,13 @@ public sealed class CsvClipboardMatrix
     {
         ArgumentNullException.ThrowIfNull(text);
         if (text.Length > MaximumTextCharacters)
-            throw new FormatException("The clipboard text exceeds the safe 16 Mi UTF-16-character limit.");
+            throw CsvErrorDetails.With(new FormatException("The clipboard text exceeds the safe 16 Mi UTF-16-character limit."), CsvUserError.ClipboardTooLarge);
         ValidateControlCharacters(text);
 
         var physicalRows = SplitRows(text);
         if (physicalRows.Count > MaximumRows)
         {
-            throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
+            throw CsvErrorDetails.With(new FormatException("The clipboard contains more rows than the editor can paste safely."), CsvUserError.ClipboardTooManyRows);
         }
 
         var parsedRows = new string[physicalRows.Count][];
@@ -64,18 +64,18 @@ public sealed class CsvClipboardMatrix
             var cells = physicalRows[rowIndex].Split('\t', MaximumColumns + 1, StringSplitOptions.None);
             if (cells.Length > MaximumColumns)
             {
-                throw new FormatException("The clipboard contains more columns than the editor can paste safely.");
+                throw CsvErrorDetails.With(new FormatException("The clipboard contains more columns than the editor can paste safely."), CsvUserError.ClipboardTooManyColumns);
             }
 
             expectedColumns = expectedColumns < 0 ? cells.Length : expectedColumns;
             if (cells.Length != expectedColumns)
             {
-                throw new FormatException("Clipboard rows must form one rectangular cell matrix.");
+                throw CsvErrorDetails.With(new FormatException("Clipboard rows must form one rectangular cell matrix."), CsvUserError.ClipboardNotRectangular);
             }
 
             if ((long)(rowIndex + 1) * expectedColumns > MaximumCells)
             {
-                throw new FormatException("The clipboard cell matrix exceeds the safe paste limit.");
+                throw CsvErrorDetails.With(new FormatException("The clipboard cell matrix exceeds the safe paste limit."), CsvUserError.ClipboardTooManyCells);
             }
 
             parsedRows[rowIndex] = cells;
@@ -121,7 +121,7 @@ public sealed class CsvClipboardMatrix
             }
 
             if (rows.Count >= MaximumRows)
-                throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
+                throw CsvErrorDetails.With(new FormatException("The clipboard contains more rows than the editor can paste safely."), CsvUserError.ClipboardTooManyRows);
             rows.Add(text[start..index]);
             if (text[index] == '\r' && index + 1 < text.Length && text[index + 1] == '\n')
             {
@@ -136,7 +136,7 @@ public sealed class CsvClipboardMatrix
         if (start < text.Length)
         {
             if (rows.Count >= MaximumRows)
-                throw new FormatException("The clipboard contains more rows than the editor can paste safely.");
+                throw CsvErrorDetails.With(new FormatException("The clipboard contains more rows than the editor can paste safely."), CsvUserError.ClipboardTooManyRows);
             rows.Add(text[start..]);
         }
         else if (rows.Count == 0) rows.Add(string.Empty);
@@ -155,7 +155,7 @@ public sealed class CsvClipboardMatrix
 
             if (character == '\0' || char.IsControl(character))
             {
-                throw new FormatException("The clipboard contains an unsupported control character.");
+                throw CsvErrorDetails.With(new FormatException("The clipboard contains an unsupported control character."), CsvUserError.ClipboardControlCharacter);
             }
         }
     }

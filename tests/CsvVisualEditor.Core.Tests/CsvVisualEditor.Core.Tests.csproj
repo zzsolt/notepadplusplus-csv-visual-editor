@@ -12,5 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj" />
+    <ProjectReference Include="../../src/CsvVisualEditor.Localization/CsvVisualEditor.Localization.csproj" />
   </ItemGroup>
 </Project>

@@ -71,7 +71,7 @@ internal sealed class CsvDataGridView : DataGridView
         if (!VirtualMode && e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
             Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal) &&
             Rows[e.RowIndex].Cells[e.ColumnIndex].Value is string value)
-            Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText = CsvWhitespaceCellPainter.DescribeSpaces(value);
+            Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText = CsvUiText.DescribeSpaces(value);
         base.OnCellMouseEnter(e);
     }
 
@@ -81,7 +81,7 @@ internal sealed class CsvDataGridView : DataGridView
         if (e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
             Columns[e.ColumnIndex].Name.StartsWith("CsvColumn", StringComparison.Ordinal) &&
             Rows[e.RowIndex].Cells[e.ColumnIndex].Value is string value)
-            e.ToolTipText = CsvWhitespaceCellPainter.DescribeSpaces(value);
+            e.ToolTipText = CsvUiText.DescribeSpaces(value);
     }
 
     protected override void OnCellPainting(DataGridViewCellPaintingEventArgs e)

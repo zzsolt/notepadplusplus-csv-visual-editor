@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using System.Windows.Forms;
 
 /// <summary>
@@ -42,7 +44,7 @@ internal static class CsvGridRowPresentation
         if (grid.Columns.Contains(RowIndicatorColumnName))
         {
             column = grid.Columns[RowIndicatorColumnName] ??
-                throw new InvalidOperationException("The row-indicator column could not be resolved.");
+                throw new InvalidOperationException(L10n.Get(TextKey.Rows_TheRowIndicatorColumnCouldNotBeResolved));
         }
         else
         {
@@ -50,7 +52,7 @@ internal static class CsvGridRowPresentation
             {
                 Name = RowIndicatorColumnName,
                 HeaderText = "#",
-                ToolTipText = "Source logical record or pending structural row",
+                ToolTipText = L10n.Get(TextKey.Rows_SourceLogicalRecordOrPendingStructuralRow),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 ReadOnly = true,
                 Resizable = DataGridViewTriState.False,
@@ -102,7 +104,7 @@ internal static class CsvGridRowPresentation
         }
 
         var column = grid.Columns[RowIndicatorColumnName] ??
-            throw new InvalidOperationException("The row-indicator column could not be resolved.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Rows_TheRowIndicatorColumnCouldNotBeResolved));
         if (column.Tag is not string current || label.Length > current.Length)
         {
             column.Tag = label;
@@ -117,7 +119,7 @@ internal static class CsvGridRowPresentation
         if (HasRowIndicatorColumn(grid))
         {
             var column = grid.Columns[RowIndicatorColumnName] ??
-                throw new InvalidOperationException("The row-indicator column could not be resolved.");
+                throw new InvalidOperationException(L10n.Get(TextKey.Rows_TheRowIndicatorColumnCouldNotBeResolved));
             column.Tag = label;
         }
     }
@@ -132,9 +134,9 @@ internal static class CsvGridRowPresentation
         ArgumentNullException.ThrowIfNull(toolTipText);
 
         var grid = row.DataGridView ??
-            throw new InvalidOperationException("The row must belong to a DataGridView.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Rows_TheRowMustBelongToADataGridView));
         var column = grid.Columns[RowIndicatorColumnName] ??
-            throw new InvalidOperationException("The row-indicator column is not configured.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Table_TheRowIndicatorColumnIsNotConfigured));
 
         SetDetachedRowIndicator(row, column.Index, label, toolTipText);
         SetSizingLabel(grid, label);
@@ -171,7 +173,7 @@ internal static class CsvGridRowPresentation
         }
 
         var column = grid.Columns[RowIndicatorColumnName] ??
-            throw new InvalidOperationException("The row-indicator column could not be resolved.");
+            throw new InvalidOperationException(L10n.Get(TextKey.Rows_TheRowIndicatorColumnCouldNotBeResolved));
         column.DisplayIndex = 0;
         column.MinimumWidth = ScaleLogicalPixels(grid, MinimumIndicatorWidthLogicalPixels);
         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;

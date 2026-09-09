@@ -1,14 +1,16 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 
 internal sealed partial class CsvGridForm
 {
     private CsvCommandSurface? _commandSurface;
-    private readonly ToolStripButton _spacesButton = new("Show spaces")
+    private readonly ToolStripButton _spacesButton = new(L10n.Get(TextKey.View_ShowSpaces))
     {
         Name = "CsvShowSpacesButton", CheckOnClick = true, Checked = true,
-        ToolTipText = "Show spaces: small solid orange dots. Display only; CSV values do not change."
+        ToolTipText = L10n.Get(TextKey.Menu_ShowSpacesSmallSolidOrangeDotsDisplayOnly)
     };
     private bool _spaceHandlerAttached;
 
@@ -30,14 +32,14 @@ internal sealed partial class CsvGridForm
             DpiChangedAfterParent += (_, _) => RefreshCommandAppearance();
         }
         if (!_toolStrip.Items.Contains(_spacesButton)) _toolStrip.Items.Add(_spacesButton);
-        _clearSearchButton.Text = "Reset view";
-        _clearSearchButton.ToolTipText = "Reset view: clear search, column conditions and all sorting.";
+        _clearSearchButton.Text = L10n.Get(TextKey.View_Reset);
+        _clearSearchButton.ToolTipText = L10n.Get(TextKey.Menu_ResetViewClearSearchColumnConditionsAndAll);
         var surface = new CsvCommandSurface(_toolStrip, _viewToolStrip);
         surface.Menu.CanOverflow = true; // Keep About and trailing menus reachable in a narrow dock.
         _commandSurface = surface;
-        surface.AddCombo(surface.Csv, "&Delimiter", _delimiterCombo);
-        surface.AddCombo(surface.Csv, "&Header", _headerCombo);
-        surface.AddCombo(surface.Search, "Search &column", _searchColumnCombo);
+        surface.AddCombo(surface.Csv, L10n.Get(TextKey.Menu_Delimiter), _delimiterCombo);
+        surface.AddCombo(surface.Csv, L10n.Get(TextKey.Menu_Header), _headerCombo);
+        surface.AddCombo(surface.Search, L10n.Get(TextKey.Menu_SearchColumn), _searchColumnCombo);
         surface.AddSearch(_searchBox, FocusSearch, NavigateSearch,
             () => !_editMode && _searchResults?.Count > 0);
         surface.About.Click += (_, _) =>
@@ -45,17 +47,17 @@ internal sealed partial class CsvGridForm
             using var dialog = new CsvAboutDialog(BackColor, ForeColor);
             dialog.ShowDialog(this);
         };
-        var table = new ToolStripMenuItem("Show &table");
+        var table = new ToolStripMenuItem(L10n.Get(TextKey.Menu_ShowTable));
         table.Click += (_, _) => _tabControl.SelectedTab = _tablePage;
         surface.Table.DropDownItems.Add(table);
-        var sort = new ToolStripMenuItem("&Sort by");
+        var sort = new ToolStripMenuItem(L10n.Get(TextKey.Menu_SortBy));
         surface.View.DropDownItems.Add(sort);
         surface.View.DropDownOpening += (_, _) => sort.Enabled = !_editMode && _projection is not null;
         sort.DropDownOpening += (_, _) =>
         {
             foreach (ToolStripItem old in sort.DropDownItems.Cast<ToolStripItem>().ToArray()) old.Dispose();
             if (_projection is null) return;
-            var original = new ToolStripMenuItem("Original order") { Checked = _sortColumnIndex is null && _dataView.SortKeys.Count == 0 };
+            var original = new ToolStripMenuItem(L10n.Get(TextKey.Common_OriginalOrder)) { Checked = _sortColumnIndex is null && _dataView.SortKeys.Count == 0 };
             original.Click += (_, _) => SetMenuSort(null, CsvTableSortDirection.None);
             sort.DropDownItems.Add(original);
             foreach (var column in _projection.Columns)
@@ -64,7 +66,7 @@ internal sealed partial class CsvGridForm
                 var menu = new ToolStripMenuItem(column.Name.Replace("&", "&&", StringComparison.Ordinal));
                 foreach (var direction in new[] { CsvTableSortDirection.Ascending, CsvTableSortDirection.Descending })
                 {
-                    var item = new ToolStripMenuItem(direction.ToString())
+                    var item = new ToolStripMenuItem(CsvUiText.SortDirection(direction))
                     {
                         Checked = _sortColumnIndex == index && _sortDirection == direction
                     };

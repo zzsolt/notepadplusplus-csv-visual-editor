@@ -25,3 +25,7 @@ coverage/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Python maintenance caches
+__pycache__/
+*.pyc

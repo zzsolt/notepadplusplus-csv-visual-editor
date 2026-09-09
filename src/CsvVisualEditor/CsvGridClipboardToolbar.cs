@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using System.Runtime.CompilerServices;
 
 /// <summary>
@@ -92,35 +94,20 @@ internal static class CsvGridClipboardToolbar
     {
         updateAvailability = static () => { };
 
-        var refreshButton = FindButton(commandStrip, static text => text == "Refresh");
-        var editButton = FindButton(
-            commandStrip,
-            static text => text is "Edit" or "Exit Edit");
-        var addRowButton = FindButton(commandStrip, static text => text == "Add Row");
-        var deleteRowButton = FindButton(
-            commandStrip,
-            static text => text.StartsWith("Delete Row", StringComparison.Ordinal));
-        var applyButton = FindButton(commandStrip, static text => text == "Apply");
-        var revertButton = FindButton(commandStrip, static text => text == "Revert All");
-
-        var dirtyLabel = commandStrip.Items
-            .OfType<ToolStripLabel>()
-            .FirstOrDefault(static item =>
-                string.Equals(
-                    item.ToolTipText,
-                    "Pending cell and structural row changes",
-                    StringComparison.Ordinal));
-
-        var delimiterLabel = FindLabel(commandStrip, "Delimiter:");
-        var headerLabel = FindLabel(commandStrip, "Header:");
+        var refreshButton = FindNamedButton(commandStrip, "CsvRefreshButton");
+        var editButton = FindNamedButton(commandStrip, "CsvEditButton");
+        var addRowButton = FindNamedButton(commandStrip, "CsvAddRowButton");
+        var deleteRowButton = FindNamedButton(commandStrip, "CsvDeleteRowButton");
+        var applyButton = FindNamedButton(commandStrip, "CsvApplyButton");
+        var revertButton = FindNamedButton(commandStrip, "CsvRevertAllButton");
+        var dirtyLabel = commandStrip.Items.OfType<ToolStripLabel>().FirstOrDefault(static item => item.Name == "CsvDirtyLabel");
+        var delimiterLabel = commandStrip.Items.OfType<ToolStripLabel>().FirstOrDefault(static item => item.Name == "CsvDelimiterLabel");
+        var headerLabel = commandStrip.Items.OfType<ToolStripLabel>().FirstOrDefault(static item => item.Name == "CsvHeaderLabel");
         var commandCombos = commandStrip.Items.OfType<ToolStripComboBox>().ToArray();
         var delimiterCombo = commandCombos.ElementAtOrDefault(0);
         var headerCombo = commandCombos.ElementAtOrDefault(1);
-
-        var clearButton = FindButton(viewStrip, static text => text == "Clear");
-        var diagnosticsButton = FindButton(
-            viewStrip,
-            static text => text.StartsWith("Diagnostics", StringComparison.Ordinal));
+        var clearButton = FindNamedButton(viewStrip, "CsvResetViewButton");
+        var diagnosticsButton = FindNamedButton(viewStrip, "CsvDiagnosticsButton");
 
         if (refreshButton is null ||
             editButton is null ||
@@ -142,23 +129,23 @@ internal static class CsvGridClipboardToolbar
 
         var pasteButton = CreateButton(
             PasteButtonName,
-            "Paste",
-            "Paste spreadsheet cells into the selected CSV cell or rectangle (Ctrl+V)");
+            L10n.Get(TextKey.Common_Paste),
+            L10n.Get(TextKey.Commands_PasteSpreadsheetCellsIntoTheSelectedCSVCell));
         var cutButton = CreateButton(
             CutButtonName,
-            "Cut",
-            "Copy the selected CSV cells and clear them in the pending Edit session (Ctrl+X)");
+            L10n.Get(TextKey.Common_Cut),
+            L10n.Get(TextKey.Commands_CopyTheSelectedCSVCellsAndClearThem));
         var copyButton = CreateButton(
             CopyButtonName,
-            "Copy",
-            "Copy the selected CSV-cell rectangle to the Windows clipboard (Ctrl+C)");
+            L10n.Get(TextKey.Common_Copy),
+            L10n.Get(TextKey.Commands_CopyTheSelectedCSVCellRectangleToThe));
         var goToSourceButton = CreateButton(
             GoToSourceButtonName,
-            "Source",
-            "Select the current CSV cell or row in the Notepad++ source buffer");
+            L10n.Get(TextKey.Commands_Source),
+            L10n.Get(TextKey.Commands_SelectTheCurrentCSVCellOrRowIn));
 
-        var transformButton = CreateButton(TransformButtonName, "Transform",
-            "Preview text replacement, trimming or casing in pending CSV edits");
+        var transformButton = CreateButton(TransformButtonName, L10n.Get(TextKey.Commands_Transform),
+            L10n.Get(TextKey.Commands_PreviewTextReplacementTrimmingOrCasingInPending));
         transformButton.Click += (_, _) => form.ShowTransforms();
 
         pasteButton.Click += (_, _) =>
@@ -380,20 +367,13 @@ internal static class CsvGridClipboardToolbar
             .FirstOrDefault(CsvDataGridView.IsPrimaryTableGridCandidate);
 
     private static ToolStrip? FindCommandStrip(Control root) =>
-        EnumerateControls(root)
-            .OfType<ToolStrip>()
-            .FirstOrDefault(static strip =>
-                strip.Items
-                    .OfType<ToolStripButton>()
-                    .Any(static button => button.Text is "Edit" or "Exit Edit"));
+        EnumerateControls(root).OfType<ToolStrip>().FirstOrDefault(static strip => strip.Name == "CsvCommandStrip");
 
     private static ToolStrip? FindViewStrip(Control root, ToolStrip? commandStrip) =>
-        EnumerateControls(root)
-            .OfType<ToolStrip>()
-            .Where(strip => strip != commandStrip)
-            .FirstOrDefault(static strip =>
-                strip.Items.OfType<ToolStripButton>().Any(static button =>
-                    button.Text?.StartsWith("Diagnostics", StringComparison.Ordinal) == true));
+        EnumerateControls(root).OfType<ToolStrip>().FirstOrDefault(static strip => strip.Name == "CsvInterpretationStrip");
+
+    private static ToolStripButton? FindNamedButton(ToolStrip strip, string name) =>
+        strip.Items.OfType<ToolStripButton>().FirstOrDefault(item => item.Name == name);
 
     private static bool HasCommandButtons(Control root)
     {

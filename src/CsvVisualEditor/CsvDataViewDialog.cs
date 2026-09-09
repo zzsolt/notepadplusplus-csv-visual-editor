@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 
 /// <summary>A modal draft: only Apply view publishes a validated immutable definition.</summary>
@@ -12,10 +14,10 @@ internal sealed class CsvDataViewDialog : Form
     private readonly Color _foreground;
     private readonly FlowLayoutPanel _filters = RowsPanel("CsvFilterRows");
     private readonly FlowLayoutPanel _sorts = RowsPanel("CsvSortRows");
-    private readonly ComboBox _combination = CsvDataToolStyle.Combo("CsvFilterCombination", "Match ALL conditions", "Match ANY condition");
+    private readonly ComboBox _combination = CsvDataToolStyle.Combo("CsvFilterCombination", L10n.Get(TextKey.Filter_MatchALLConditions), L10n.Get(TextKey.Filter_MatchANYCondition));
     private readonly Label _result = new() { Name = "CsvViewPreview", AutoSize = true, UseMnemonic = false, Dock = DockStyle.Fill, Padding = new Padding(4) };
-    private readonly Button _addFilter = CsvDataToolStyle.Button("Add condition", "CsvAddFilter");
-    private readonly Button _addSort = CsvDataToolStyle.Button("Add sort level", "CsvAddSort");
+    private readonly Button _addFilter = CsvDataToolStyle.Button(L10n.Get(TextKey.Filter_AddCondition), "CsvAddFilter");
+    private readonly Button _addSort = CsvDataToolStyle.Button(L10n.Get(TextKey.Filter_AddSortLevel), "CsvAddSort");
     private readonly List<FilterRow> _filterRows = [];
     private readonly List<SortRow> _sortRows = [];
     private readonly ToolTip _tips = new();
@@ -32,7 +34,7 @@ internal sealed class CsvDataViewDialog : Form
         _searchColumn = searchColumn;
         _background = background;
         _foreground = foreground;
-        Text = "Filter and sort";
+        Text = L10n.Get(TextKey.Filter_Title);
         Name = "CsvDataViewDialog";
         AutoScaleMode = AutoScaleMode.Dpi;
         StartPosition = FormStartPosition.CenterParent;
@@ -49,15 +51,15 @@ internal sealed class CsvDataViewDialog : Form
         var intro = new Label
         {
             AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4, 0, 4, 10),
-            Text = $"View only - CSV values and source order are unchanged. {_projection.DisplayedRowCount:N0} displayed rows.\n" +
-                (projection.IsRowLimited ? "The projection is limited; undisplayed rows are not included. " : "") +
-                "Rules also respect the current search. Cancel keeps the active view."
+            Text = L10n.Format(TextKey.Filter_ViewOnlyCSVValuesAndSourceOrderAre, _projection.DisplayedRowCount) +
+                (projection.IsRowLimited ? L10n.Get(TextKey.Filter_TheProjectionIsLimitedUndisplayedRowsAreNot) : "") +
+                L10n.Get(TextKey.Filter_RulesAlsoRespectTheCurrentSearchCancelKeeps)
         };
         root.Controls.Add(intro, 0, 0);
         root.Controls.Add(_tabs, 0, 1);
         root.Controls.Add(_result, 0, 2);
-        var filterPage = new TabPage("Filters") { Padding = new Padding(8) };
-        var sortPage = new TabPage("Sorting") { Padding = new Padding(8) };
+        var filterPage = new TabPage(L10n.Get(TextKey.Filter_Filters)) { Padding = new Padding(8) };
+        var sortPage = new TabPage(L10n.Get(TextKey.Filter_Sorting)) { Padding = new Padding(8) };
         _tabs.TabPages.AddRange([filterPage, sortPage]);
         var filterLayout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 4 };
         filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
@@ -77,13 +79,13 @@ internal sealed class CsvDataViewDialog : Form
         headings.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 42));
         headings.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 36));
         headings.Padding = new Padding(0, 0, SystemInformation.VerticalScrollBarWidth + 6, 0);
-        headings.Controls.Add(CsvDataToolStyle.Label("Column"), 0, 0);
-        headings.Controls.Add(CsvDataToolStyle.Label("Condition"), 1, 0);
-        headings.Controls.Add(CsvDataToolStyle.Label("Value (literal, including spaces)"), 2, 0);
-        headings.Controls.Add(CsvDataToolStyle.Label("Case"), 3, 0);
+        headings.Controls.Add(CsvDataToolStyle.Label(L10n.Get(TextKey.Common_Column)), 0, 0);
+        headings.Controls.Add(CsvDataToolStyle.Label(L10n.Get(TextKey.Filter_Condition)), 1, 0);
+        headings.Controls.Add(CsvDataToolStyle.Label(L10n.Get(TextKey.Filter_ValueLiteralIncludingSpaces)), 2, 0);
+        headings.Controls.Add(CsvDataToolStyle.Label(L10n.Get(TextKey.Filter_Case)), 3, 0);
         filterLayout.Controls.Add(headings, 0, 1);
         filterLayout.Controls.Add(_filters, 0, 2);
-        var hint = new Label { AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4), Text = "Empty = zero characters. Whitespace only = non-empty spaces/tabs/line breaks.\nNumbers use a decimal dot (-12.5), without grouping or exponents; precision must be exact." };
+        var hint = new Label { AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4), Text = L10n.Get(TextKey.Filter_EmptyZeroCharactersWhitespaceOnlyNonEmptySpaces) };
         filterLayout.Controls.Add(hint, 0, 3);
         filterPage.Controls.Add(filterLayout);
         var sortLayout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3 };
@@ -92,17 +94,17 @@ internal sealed class CsvDataViewDialog : Form
         sortLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         sortLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         var sortHeading = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, WrapContents = false };
-        sortHeading.Controls.AddRange([_addSort, CsvDataToolStyle.Label("Top level wins; later levels break ties. Maximum 3.")]);
+        sortHeading.Controls.AddRange([_addSort, CsvDataToolStyle.Label(L10n.Get(TextKey.Filter_TopLevelWinsLaterLevelsBreakTiesMaximum))]);
         sortLayout.Controls.Add(sortHeading, 0, 0);
         sortLayout.Controls.Add(_sorts, 0, 1);
-        sortLayout.Controls.Add(new Label { AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4), Text = "Text: case-insensitive ordinal order. Number: exact decimals; invalid/empty values last.\nEqual keys retain source order. Remove all levels to restore source order." }, 0, 2);
+        sortLayout.Controls.Add(new Label { AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4), Text = L10n.Get(TextKey.Filter_TextCaseInsensitiveOrdinalOrderNumberExactDecimals) }, 0, 2);
         sortPage.Controls.Add(sortLayout);
         var buttons = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, FlowDirection = FlowDirection.RightToLeft };
-        var cancel = CsvDataToolStyle.Button("Cancel", "CsvCancelView");
+        var cancel = CsvDataToolStyle.Button(L10n.Get(TextKey.Common_Cancel), "CsvCancelView");
         cancel.DialogResult = DialogResult.Cancel;
-        var apply = CsvDataToolStyle.Button("Apply view", "CsvApplyView");
-        var preview = CsvDataToolStyle.Button("Preview", "CsvPreviewView");
-        var reset = CsvDataToolStyle.Button("Reset rules", "CsvResetRules");
+        var apply = CsvDataToolStyle.Button(L10n.Get(TextKey.Filter_ApplyView), "CsvApplyView");
+        var preview = CsvDataToolStyle.Button(L10n.Get(TextKey.Common_Preview), "CsvPreviewView");
+        var reset = CsvDataToolStyle.Button(L10n.Get(TextKey.Filter_ResetRules), "CsvResetRules");
         buttons.Controls.AddRange([cancel, apply, preview, reset]);
         root.Controls.Add(buttons, 0, 3);
         Controls.Add(root);
@@ -129,6 +131,7 @@ internal sealed class CsvDataViewDialog : Form
         _sorts.SizeChanged += (_, _) => FitRows(_sorts);
         CsvDataToolStyle.Apply(this, background, foreground);
         DraftChanged();
+        CsvLocalizationAppearance.Apply(this);
     }
 
     private static FlowLayoutPanel RowsPanel(string name) => new()
@@ -180,7 +183,7 @@ internal sealed class CsvDataViewDialog : Form
         Preview = null;
         Result = null;
         _result.ForeColor = _foreground;
-        _result.Text = $"{_filterRows.Count} / 8 conditions; {_sortRows.Count} / 3 sort levels. Preview to check matching rows.";
+        _result.Text = L10n.Format(TextKey.Filter_ConditionsSortLevelsPreviewToCheckMatchingRows, _filterRows.Count, _sortRows.Count);
         _addFilter.Enabled = _projection.ColumnCount > 0 && _filterRows.Count < CsvDataViewDefinition.MaximumFilters;
         _addSort.Enabled = _projection.ColumnCount > 0 && _sortRows.Count < CsvDataViewDefinition.MaximumSortKeys;
     }
@@ -198,7 +201,7 @@ internal sealed class CsvDataViewDialog : Form
             });
             Preview = view;
             _result.ForeColor = _foreground;
-            _result.Text = $"Preview: {view.VisibleRowCount:N0} of {view.TotalRowCount:N0} displayed rows. CSV unchanged.";
+            _result.Text = L10n.Format(TextKey.Filter_PreviewOfDisplayedRowsCSVUnchanged, view.VisibleRowCount, view.TotalRowCount);
             if (!close) return;
             Result = definition;
             DialogResult = DialogResult.OK;
@@ -209,7 +212,7 @@ internal sealed class CsvDataViewDialog : Form
             Preview = null;
             Result = null;
             _result.ForeColor = _background.GetBrightness() < .5f ? Color.LightSalmon : Color.DarkRed;
-            _result.Text = "Check the rules: " + exception.Message.Split('\n')[0];
+            _result.Text = L10n.Format(TextKey.Filter_CheckTheRules, CsvUiText.Exception(exception));
         }
     }
 
@@ -221,22 +224,22 @@ internal sealed class CsvDataViewDialog : Form
 
     private sealed class FilterRow : TableLayoutPanel
     {
-        private static readonly (CsvFilterOperator Op, string Text)[] Operators =
+        private readonly (CsvFilterOperator Op, string Text)[] Operators =
         [
-            (CsvFilterOperator.Contains, "Contains"), (CsvFilterOperator.DoesNotContain, "Does not contain"),
-            (CsvFilterOperator.Equals, "Equals"), (CsvFilterOperator.DoesNotEqual, "Does not equal"),
-            (CsvFilterOperator.StartsWith, "Starts with"), (CsvFilterOperator.EndsWith, "Ends with"),
-            (CsvFilterOperator.IsEmpty, "Is empty"), (CsvFilterOperator.IsNotEmpty, "Is not empty"),
-            (CsvFilterOperator.IsWhitespace, "Is whitespace only"), (CsvFilterOperator.IsNotWhitespace, "Is not whitespace only"),
-            (CsvFilterOperator.NumberEquals, "Number ="), (CsvFilterOperator.GreaterThan, "Number >"),
-            (CsvFilterOperator.GreaterThanOrEqual, "Number >="), (CsvFilterOperator.LessThan, "Number <"),
-            (CsvFilterOperator.LessThanOrEqual, "Number <=")
+            (CsvFilterOperator.Contains, L10n.Get(TextKey.Filter_Contains)), (CsvFilterOperator.DoesNotContain, L10n.Get(TextKey.Filter_DoesNotContain)),
+            (CsvFilterOperator.Equals, L10n.Get(TextKey.Filter_Equals)), (CsvFilterOperator.DoesNotEqual, L10n.Get(TextKey.Filter_DoesNotEqual)),
+            (CsvFilterOperator.StartsWith, L10n.Get(TextKey.Filter_StartsWith)), (CsvFilterOperator.EndsWith, L10n.Get(TextKey.Filter_EndsWith)),
+            (CsvFilterOperator.IsEmpty, L10n.Get(TextKey.Filter_IsEmpty)), (CsvFilterOperator.IsNotEmpty, L10n.Get(TextKey.Filter_IsNotEmpty)),
+            (CsvFilterOperator.IsWhitespace, L10n.Get(TextKey.Filter_IsWhitespaceOnly)), (CsvFilterOperator.IsNotWhitespace, L10n.Get(TextKey.Filter_IsNotWhitespaceOnly)),
+            (CsvFilterOperator.NumberEquals, L10n.Get(TextKey.Filter_Number)), (CsvFilterOperator.GreaterThan, L10n.Get(TextKey.Filter_Number2)),
+            (CsvFilterOperator.GreaterThanOrEqual, L10n.Get(TextKey.Filter_Number3)), (CsvFilterOperator.LessThan, L10n.Get(TextKey.Filter_Number4)),
+            (CsvFilterOperator.LessThanOrEqual, L10n.Get(TextKey.Filter_Number5))
         ];
         private readonly ComboBox _column;
         private readonly ComboBox _operator;
-        private readonly TextBox _value = new() { Name = "CsvFilterValue", AccessibleName = "Filter value", Dock = DockStyle.Fill, Margin = new Padding(4, 5, 4, 5), MaxLength = CsvColumnFilter.MaximumValueLength };
-        private readonly CheckBox _case = new() { Name = "CsvFilterMatchCase", AccessibleName = "Match case", AutoSize = true, MinimumSize = new Size(24, 24), Anchor = AnchorStyles.None };
-        internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveFilter", AccessibleName = "Remove condition", Dock = DockStyle.Fill, Margin = new Padding(4) };
+        private readonly TextBox _value = new() { Name = "CsvFilterValue", AccessibleName = L10n.Get(TextKey.Filter_FilterValue), Dock = DockStyle.Fill, Margin = new Padding(4, 5, 4, 5), MaxLength = CsvColumnFilter.MaximumValueLength };
+        private readonly CheckBox _case = new() { Name = "CsvFilterMatchCase", AccessibleName = L10n.Get(TextKey.Common_MatchCase), AutoSize = true, MinimumSize = new Size(24, 24), Anchor = AnchorStyles.None };
+        internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveFilter", AccessibleName = L10n.Get(TextKey.Filter_RemoveCondition), Dock = DockStyle.Fill, Margin = new Padding(4) };
 
         internal FilterRow(CsvTableProjection projection, CsvColumnFilter? condition, Action changed, ToolTip tips)
         {
@@ -271,8 +274,8 @@ internal sealed class CsvDataViewDialog : Form
             _column.SelectedIndexChanged += (_, _) => changed();
             _value.TextChanged += (_, _) => changed();
             _case.CheckedChanged += (_, _) => changed();
-            tips.SetToolTip(_case, "Case-sensitive text comparison. Spaces in values are literal.");
-            tips.SetToolTip(_value, "Literal text, including spaces. Numeric rules require an exact decimal with a dot.");
+            tips.SetToolTip(_case, L10n.Get(TextKey.Filter_CaseSensitiveTextComparisonSpacesInValuesAre));
+            tips.SetToolTip(_value, L10n.Get(TextKey.Filter_LiteralTextIncludingSpacesNumericRulesRequireAn));
             Sync();
         }
         internal CsvColumnFilter Read() => new(_column.SelectedIndex, Operators[_operator.SelectedIndex].Op, _value.Text, _case.Checked);
@@ -281,9 +284,9 @@ internal sealed class CsvDataViewDialog : Form
     private sealed class SortRow : TableLayoutPanel
     {
         private readonly ComboBox _column;
-        private readonly ComboBox _kind = CsvDataToolStyle.Combo("CsvSortKind", "Text", "Number (decimal)");
-        private readonly ComboBox _direction = CsvDataToolStyle.Combo("CsvSortDirection", "Ascending", "Descending");
-        internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveSort", AccessibleName = "Remove sort level", Dock = DockStyle.Fill, Margin = new Padding(4) };
+        private readonly ComboBox _kind = CsvDataToolStyle.Combo("CsvSortKind", L10n.Get(TextKey.Common_Text), L10n.Get(TextKey.Filter_NumberDecimal));
+        private readonly ComboBox _direction = CsvDataToolStyle.Combo("CsvSortDirection", L10n.Get(TextKey.Common_Ascending), L10n.Get(TextKey.Common_Descending));
+        internal Button Remove { get; } = new() { Text = "X", Name = "CsvRemoveSort", AccessibleName = L10n.Get(TextKey.Filter_RemoveSortLevel), Dock = DockStyle.Fill, Margin = new Padding(4) };
         internal SortRow(CsvTableProjection projection, CsvSortKey? key, Action changed)
         {
             Name = "CsvSortRow"; AutoSize = true; ColumnCount = 4; RowCount = 1; Margin = new Padding(0, 2, 0, 2);

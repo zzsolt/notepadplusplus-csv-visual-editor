@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using System.Globalization;
 
@@ -29,7 +31,7 @@ internal sealed class CsvColumnSummaryDialog : Form
     {
         _projection = projection;
         _view = view;
-        Text = "Column summary";
+        Text = L10n.Get(TextKey.Summary_Title);
         Name = "CsvColumnSummaryDialog";
         AutoScaleMode = AutoScaleMode.Dpi;
         StartPosition = FormStartPosition.CenterParent;
@@ -46,15 +48,15 @@ internal sealed class CsvColumnSummaryDialog : Form
         {
             Name = "CsvProfileScope", AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false,
             Padding = new Padding(4, 6, 4, 0),
-            Text = $"Current view: {view.VisibleRowCount:N0} of {projection.DisplayedRowCount:N0} displayed rows." +
-                (projection.IsRowLimited ? " Projection limited; this is NOT the whole file." : "")
+            Text = L10n.Format(TextKey.Summary_CurrentViewOfDisplayedRows, view.VisibleRowCount, projection.DisplayedRowCount) +
+                (projection.IsRowLimited ? L10n.Get(TextKey.Summary_ProjectionLimitedThisIsNOTTheWholeFile) : "")
         };
         root.Controls.Add(scope, 0, 1);
         root.Controls.Add(_counts, 0, 2);
         root.Controls.Add(_range, 0, 3);
-        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Value", HeaderText = "Most frequent values (up to 20)", FillWeight = 70, MinimumWidth = 160 });
-        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Count", HeaderText = "Rows", FillWeight = 15, MinimumWidth = 70 });
-        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Kind", HeaderText = "Kind", FillWeight = 20, MinimumWidth = 90 });
+        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Value", HeaderText = L10n.Get(TextKey.Summary_MostFrequentValuesUpTo), FillWeight = 70, MinimumWidth = 160 });
+        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Count", HeaderText = L10n.Get(TextKey.Common_Rows), FillWeight = 15, MinimumWidth = 70 });
+        _frequent.Columns.Add(new DataGridViewTextBoxColumn { Name = "Kind", HeaderText = L10n.Get(TextKey.Summary_Kind), FillWeight = 20, MinimumWidth = 90 });
         foreach (DataGridViewColumn c in _frequent.Columns) c.SortMode = DataGridViewColumnSortMode.NotSortable;
         _frequent.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
         _frequent.RowTemplate.Height = Math.Max(26, Font.Height + 10);
@@ -63,15 +65,15 @@ internal sealed class CsvColumnSummaryDialog : Form
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0 || Profile is null || e.RowIndex >= Profile.MostFrequent.Count) return;
             var raw = Profile.MostFrequent[e.RowIndex].Value;
-            e.ToolTipText = CsvWhitespaceCellPainter.DescribeSpaces(raw);
+            e.ToolTipText = CsvUiText.DescribeSpaces(raw);
         };
         root.Controls.Add(_frequent, 0, 4);
         root.Controls.Add(new Label
         {
             AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false, Padding = new Padding(4, 8, 4, 8),
-            Text = "Distinct values use exact, case-sensitive text, including empty values.\nRepeated rows = rows minus distinct values. Numeric range uses exact dot-decimal values."
+            Text = L10n.Get(TextKey.Summary_DistinctValuesUseExactCaseSensitiveTextIncluding)
         }, 0, 5);
-        var close = CsvDataToolStyle.Button("Close", "CsvCloseSummary");
+        var close = CsvDataToolStyle.Button(L10n.Get(TextKey.Common_Close), "CsvCloseSummary");
         close.DialogResult = DialogResult.OK;
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, FlowDirection = FlowDirection.RightToLeft };
         buttons.Controls.Add(close);
@@ -81,6 +83,7 @@ internal sealed class CsvColumnSummaryDialog : Form
         _column.SelectedIndexChanged += (_, _) => RefreshProfile();
         if (projection.ColumnCount > 0) _column.SelectedIndex = Math.Clamp(columnIndex, 0, projection.ColumnCount - 1);
         CsvDataToolStyle.Apply(this, background, foreground);
+        CsvLocalizationAppearance.Apply(this);
         RefreshProfile();
     }
 
@@ -88,15 +91,13 @@ internal sealed class CsvColumnSummaryDialog : Form
     {
         if (_column.SelectedIndex < 0) return;
         Profile = CsvColumnProfile.Build(_view, _column.SelectedIndex, _projection.ColumnCount);
-        _counts.Text = $"Rows: {Profile.RowCount:N0}     Empty: {Profile.EmptyCount:N0}     Whitespace only: {Profile.WhitespaceOnlyCount:N0}\n" +
-            $"Distinct: {Profile.DistinctCount:N0}     Repeated rows: {Profile.DuplicateOccurrenceCount:N0}     Numeric: {Profile.NumericCount:N0}";
-        _range.Text = "Numeric minimum: " + Format(Profile.Minimum) + "     Maximum: " + Format(Profile.Maximum) +
-            $"\nLongest value: {Profile.MaximumLength:N0} UTF-16 units. {Profile.RepeatedValueCount:N0} values appear more than once.";
+        _counts.Text = L10n.Format(TextKey.Summary_RowsEmptyWhitespaceOnlyDistinctRepeatedRowsNumeric, Profile.RowCount, Profile.EmptyCount, Profile.WhitespaceOnlyCount, Profile.DistinctCount, Profile.DuplicateOccurrenceCount, Profile.NumericCount);
+        _range.Text = L10n.Format(TextKey.Summary_NumericMinimumMaximumLongestValueUTFUnitsValues, Format(Profile.Minimum), Format(Profile.Maximum), Profile.MaximumLength, Profile.RepeatedValueCount);
         _frequent.Rows.Clear();
         foreach (var item in Profile.MostFrequent)
-            _frequent.Rows.Add(item.Value, item.Count.ToString("N0", CultureInfo.CurrentCulture),
-                item.Value.Length == 0 ? "Empty" : string.IsNullOrWhiteSpace(item.Value) ? "Whitespace" : "Value");
+            _frequent.Rows.Add(item.Value, item.Count.ToString("N0", L10n.FormattingCulture),
+                item.Value.Length == 0 ? L10n.Get(TextKey.Summary_Empty) : string.IsNullOrWhiteSpace(item.Value) ? L10n.Get(TextKey.Summary_Whitespace) : L10n.Get(TextKey.Common_Value));
         _frequent.ClearSelection();
     }
-    private static string Format(decimal? value) => value?.ToString(CultureInfo.InvariantCulture) ?? "Not available";
+    private static string Format(decimal? value) => value?.ToString(CultureInfo.InvariantCulture) ?? L10n.Get(TextKey.Summary_NotAvailable);
 }

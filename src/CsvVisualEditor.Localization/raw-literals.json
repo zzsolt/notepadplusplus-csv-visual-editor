@@ -1,0 +1,220 @@
+{
+  "purpose": "Reviewed non-translatable literals: stable IDs, native API names, resource paths, formatting syntax, invariant product names, and the unchanged accepted painter. Never regenerate this allowlist to approve a new UI string; add that string to the keyed catalog instead.",
+  "files": {
+    "CsvAboutDialog.cs": [
+      "CSV Visual Editor",
+      "CsvAboutDialog",
+      "Zolnai Zsolt",
+      "https://github.com/zzsolt/notepadplusplus-csv-visual-editor",
+      "mailto:",
+      "zzsolt@gmail.com"
+    ],
+    "CsvColumnSummaryDialog.cs": [
+      "Count",
+      "CsvCloseSummary",
+      "CsvColumnCounts",
+      "CsvColumnRange",
+      "CsvColumnSummaryDialog",
+      "CsvFrequentValues",
+      "CsvProfileColumn",
+      "CsvProfileScope",
+      "Kind",
+      "Value"
+    ],
+    "CsvCommandIcons.cs": [
+      "Add",
+      "Add Row",
+      "Apply",
+      "Column summary",
+      "Copy",
+      "Cut",
+      "Delete Row",
+      "Diagnostics",
+      "Edit",
+      "Exit Edit",
+      "Filter and sort",
+      "Next match",
+      "Paste",
+      "Previous match",
+      "Refresh",
+      "Revert",
+      "Search",
+      "Show spaces",
+      "Source",
+      "Transform"
+    ],
+    "CsvCommandIdentity.cs": [
+      "Add Row",
+      "Apply",
+      "Column summary",
+      "Copy",
+      "CsvAddRowButton",
+      "CsvApplyButton",
+      "CsvClipboardCopyButton",
+      "CsvClipboardCutButton",
+      "CsvClipboardPasteButton",
+      "CsvColumnSummaryButton",
+      "CsvDataViewButton",
+      "CsvDeleteRowButton",
+      "CsvDiagnosticsButton",
+      "CsvEditButton",
+      "CsvGoToSourceButton",
+      "CsvRefreshButton",
+      "CsvResetViewButton",
+      "CsvRevertAllButton",
+      "CsvShowSpacesButton",
+      "CsvTransformButton",
+      "Cut",
+      "Delete Row",
+      "Diagnostics",
+      "Edit",
+      "Filter and sort",
+      "Paste",
+      "Refresh",
+      "Reset view",
+      "Revert",
+      "Show spaces",
+      "Source",
+      "Transform"
+    ],
+    "CsvCommandSurface.cs": [
+      "Clear",
+      "Column summary",
+      "Ctrl+F",
+      "Diagnostics",
+      "Filter and sort",
+      "Refresh",
+      "Reset view",
+      "Shift+F3",
+      "Show spaces",
+      "Source"
+    ],
+    "CsvDataGridView.cs": [
+      "CsvColumn"
+    ],
+    "CsvDataViewDialog.cs": [
+      "CsvAddFilter",
+      "CsvAddSort",
+      "CsvApplyView",
+      "CsvCancelView",
+      "CsvDataViewDialog",
+      "CsvFilterColumn",
+      "CsvFilterCombination",
+      "CsvFilterHeadings",
+      "CsvFilterMatchCase",
+      "CsvFilterOperator",
+      "CsvFilterRow",
+      "CsvFilterRows",
+      "CsvFilterValue",
+      "CsvPreviewView",
+      "CsvRemoveFilter",
+      "CsvRemoveSort",
+      "CsvResetRules",
+      "CsvSortColumn",
+      "CsvSortDirection",
+      "CsvSortKind",
+      "CsvSortRow",
+      "CsvSortRows",
+      "CsvViewPreview",
+      "CsvViewRuleTabs"
+    ],
+    "CsvGridClipboardToolbar.cs": [
+      "CsvAddRowButton",
+      "CsvApplyButton",
+      "CsvClipboardCopyButton",
+      "CsvClipboardCutButton",
+      "CsvClipboardPasteButton",
+      "CsvCommandStrip",
+      "CsvDeleteRowButton",
+      "CsvDelimiterLabel",
+      "CsvDiagnosticsButton",
+      "CsvDirtyLabel",
+      "CsvEditButton",
+      "CsvGoToSourceButton",
+      "CsvHeaderLabel",
+      "CsvInterpretationStrip",
+      "CsvRefreshButton",
+      "CsvResetViewButton",
+      "CsvRevertAllButton",
+      "CsvTransformButton"
+    ],
+    "CsvGridForm.cs": [
+      "CSV Visual Editor",
+      "CsvAddRowButton",
+      "CsvApplyButton",
+      "CsvColumn{0}",
+      "CsvCommandStrip",
+      "CsvDeleteRowButton",
+      "CsvDelimiterLabel",
+      "CsvDiagnostic",
+      "CsvDiagnosticsButton",
+      "CsvDirtyLabel",
+      "CsvEditButton",
+      "CsvHeaderLabel",
+      "CsvInterpretationStrip",
+      "CsvRefreshButton",
+      "CsvResetViewButton",
+      "CsvRevertAllButton",
+      "Property",
+      "Value"
+    ],
+    "CsvGridFormCommands.cs": [
+      "CsvShowSpacesButton"
+    ],
+    "CsvGridFormDataTools.cs": [
+      "CsvColumnSummaryButton",
+      "CsvDataViewButton"
+    ],
+    "CsvGridRowHeaderBehavior.cs": [
+      "CsvRowSelector"
+    ],
+    "CsvGridRowPresentation.cs": [
+      "CsvRowIndicator"
+    ],
+    "CsvSearchBar.cs": [
+      "Clear",
+      "CsvClearSearch",
+      "CsvNextMatch",
+      "CsvPreviousMatch",
+      "CsvSearchBar",
+      "CsvSearchColumn",
+      "CsvSearchField",
+      "CsvSearchResults",
+      "CsvSearchText",
+      "Next match",
+      "Previous match",
+      "Search"
+    ],
+    "CsvTransformDialog.cs": [
+      "After",
+      "Before",
+      "Column",
+      "Record"
+    ],
+    "CsvWhitespaceCellPainter.cs": [
+      "Spaces: {0}; leading: {1}; trailing: {2}. Length: {3} UTF-16 units.\nOrange dots mark real spaces. Their display spacing is expanded for readability; CSV characters are unchanged. Leading/trailing counts overlap for an all-space cell."
+    ],
+    "Main.Bridge.cs": [
+      "beNotified",
+      "getFuncsArray",
+      "getName",
+      "isUnicode",
+      "messageProc",
+      "setInfo"
+    ],
+    "Main.cs": [
+      "CSV Visual Editor",
+      "CsvVisualEditor",
+      "{0}.dll"
+    ],
+    "NotepadDockWidthAdjuster.cs": [
+      "dockingManager",
+      "user32.dll",
+      "wedockspliter"
+    ],
+    "NotepadUiLanguage.cs": [
+      "SendMessageW",
+      "user32.dll"
+    ]
+  }
+}

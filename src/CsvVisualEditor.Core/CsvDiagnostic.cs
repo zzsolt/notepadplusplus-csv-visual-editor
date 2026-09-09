@@ -10,7 +10,8 @@ public sealed record CsvDiagnostic
         string code,
         string message,
         int characterOffset,
-        int? recordIndex = null)
+        int? recordIndex = null,
+        int? actualFieldCount = null, int? expectedFieldCount = null)
     {
         if (string.IsNullOrWhiteSpace(code))
         {
@@ -43,6 +44,8 @@ public sealed record CsvDiagnostic
         Message = message;
         CharacterOffset = characterOffset;
         RecordIndex = recordIndex;
+        ActualFieldCount = actualFieldCount;
+        ExpectedFieldCount = expectedFieldCount;
     }
 
     public CsvDiagnosticSeverity Severity { get; }
@@ -50,6 +53,10 @@ public sealed record CsvDiagnostic
     public string Code { get; }
 
     public string Message { get; }
+
+    public int? ActualFieldCount { get; }
+
+    public int? ExpectedFieldCount { get; }
 
     public int CharacterOffset { get; }
 

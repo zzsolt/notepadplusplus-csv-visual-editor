@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using CsvVisualEditor.Localization;
+
 using CsvVisualEditor.Core;
 using Npp.DotNet.Plugin;
 using System.Runtime.InteropServices;
@@ -29,14 +31,14 @@ partial class Main : IDotNetPlugin
     public void OnSetInfo()
     {
         Utils.SetCommand(
-            "Open Visual Table",
+            L10n.Get(TextKey.Native_OpenTable),
             ToggleDialog,
             new ShortcutKey(ctrl: false, alt: true, shift: false, Keys.F10));
-        Utils.SetCommand("Refresh Table", RefreshTable);
-        Utils.SetCommand("Filter and Sort", () => OpenDataTool(summary: false));
-        Utils.SetCommand("Column Summary", () => OpenDataTool(summary: true));
+        Utils.SetCommand(L10n.Get(TextKey.Native_RefreshTable), RefreshTable);
+        Utils.SetCommand(L10n.Get(TextKey.Native_FilterSort), () => OpenDataTool(summary: false));
+        Utils.SetCommand(L10n.Get(TextKey.Native_ColumnSummary), () => OpenDataTool(summary: true));
         Utils.MakeSeparator();
-        Utils.SetCommand("About", ShowAboutDialog);
+        Utils.SetCommand(L10n.Get(TextKey.Common_About), ShowAboutDialog);
     }
 
     public void OnBeNotified(ScNotification notification)
@@ -48,6 +50,14 @@ partial class Main : IDotNetPlugin
 
         switch ((NppMsg)notification.Header.Code)
         {
+            case NppMsg.NPPN_READY:
+                InitializeInterfaceLanguage();
+                break;
+
+            case (NppMsg)1031: // NPPN_NATIVELANGCHANGED; apply the new language at next startup.
+                if (_languageReady) LocalizeNativeCommands();
+                break;
+
             case NppMsg.NPPN_TBMODIFICATION:
                 PluginData.FuncItems.RefreshItems();
                 break;
@@ -119,8 +129,7 @@ partial class Main : IDotNetPlugin
         if (_gridForm.IsEditMode)
         {
             MessageBox.Show(
-                "Refresh is disabled while Edit mode is active. " +
-                "Apply or Revert All pending changes first.",
+                L10n.Get(TextKey.Host_RefreshIsDisabledWhileEditModeIsActive),
                 PluginDisplayName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -191,9 +200,7 @@ partial class Main : IDotNetPlugin
             if (!selectionRestored)
             {
                 MessageBox.Show(
-                    "The CSV changes were applied successfully, but the previous " +
-                    "caret or selection could not be restored. The document remains " +
-                    "fully undoable as one action.",
+                    L10n.Get(TextKey.Host_TheCSVChangesWereAppliedSuccessfullyButThe),
                     PluginDisplayName,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -224,27 +231,22 @@ partial class Main : IDotNetPlugin
     {
         var codePage = result.EncodingPreflight?.CodePage;
         var codePageText = codePage is null
-            ? "the current editor code page"
-            : $"Scintilla code page {codePage.Value}";
+            ? L10n.Get(TextKey.Host_TheCurrentEditorCodePage)
+            : L10n.Format(TextKey.Host_ScintillaCodePage, codePage.Value);
         var message = result.Status switch
         {
             CsvEditorApplyStatus.EncodingWriteNotEnabled =>
-                $"Apply is not yet enabled for {codePageText}. No editor content was changed. " +
-                "Host writes are enabled only for UTF-8 (65001) and Windows-1250 (1250), after lossless validation. " +
-                "Use Revert All or convert the document to UTF-8 in Notepad++, then reopen Edit mode.",
+                L10n.Format(TextKey.Host_ApplyIsNotYetEnabledForNoEditor, codePageText),
             CsvEditorApplyStatus.UnsupportedCodePage =>
-                $"Apply is blocked because {codePageText} has no explicit supported encoding profile. " +
-                "No editor content was changed.",
+                L10n.Format(TextKey.Host_ApplyIsBlockedBecauseHasNoExplicitSupported, codePageText),
             CsvEditorApplyStatus.TextNotRepresentable =>
-                $"Apply is blocked because the pending replacement cannot be represented exactly in {codePageText}. " +
-                "No replacement character was used and no editor content was changed.",
+                L10n.Format(TextKey.Host_ApplyIsBlockedBecauseThePendingReplacementCannot, codePageText),
             CsvEditorApplyStatus.EncodingRoundTripMismatch =>
-                $"Apply is blocked because strict encoding validation for {codePageText} did not round-trip exactly. " +
-                "No editor content was changed.",
+                L10n.Format(TextKey.Host_ApplyIsBlockedBecauseStrictEncodingValidationFor, codePageText),
             _ => throw new ArgumentOutOfRangeException(
                 nameof(result),
                 result.Status,
-                "The Apply result is not an encoding-blocked status.")
+                L10n.Get(TextKey.Host_TheApplyResultIsNotAnEncodingBlocked))
         };
 
         MessageBox.Show(
@@ -277,14 +279,13 @@ partial class Main : IDotNetPlugin
         }
         catch (InvalidOperationException exception)
         {
-            _gridForm.ShowSnapshotError(exception.Message);
+            _gridForm.ShowSnapshotError(CsvUiText.Exception(exception));
             return;
         }
         catch (Exception)
         {
             _gridForm.ShowSnapshotError(
-                "The active Notepad++ document could not be read. " +
-                "No editor content was changed.");
+                L10n.Get(TextKey.Host_TheActiveNotepadDocumentCouldNotBeRead));
             return;
         }
 
@@ -327,13 +328,12 @@ partial class Main : IDotNetPlugin
         }
         catch (InvalidOperationException exception)
         {
-            errorMessage = exception.Message;
+            errorMessage = CsvUiText.Exception(exception);
         }
         catch (Exception)
         {
             errorMessage =
-                "The editor buffer could not be converted into a visual table. " +
-                "Choose an explicit delimiter or refresh after correcting the document.";
+                L10n.Get(TextKey.Host_TheEditorBufferCouldNotBeConvertedInto);
         }
 
         if (cancellationToken.IsCancellationRequested)
@@ -365,7 +365,7 @@ partial class Main : IDotNetPlugin
                     snapshot,
                     buildResult ??
                     throw new InvalidOperationException(
-                        "The background table build completed without a result."));
+                        L10n.Get(TextKey.Host_TheBackgroundTableBuildCompletedWithoutAResult)));
             }));
         }
         catch (InvalidOperationException)
@@ -409,7 +409,7 @@ partial class Main : IDotNetPlugin
 
             default:
                 throw new InvalidOperationException(
-                    "The table builder returned an incomplete result.");
+                    L10n.Get(TextKey.Host_TheTableBuilderReturnedAnIncompleteResult));
         }
     }
 
