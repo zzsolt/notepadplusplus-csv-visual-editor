@@ -1,0 +1,124 @@
+126	&Aple
+127	&Išvalītė paieška
+128	&CSV
+129	&Skīrėklis
+130	&Redagoutė
+131	Esc paieškas lauke
+132	&Eškoutė lentelie
+133	&Antraštė
+134	&Kėts sutomponts lōngielis
+135	&Ankstesnis sutomponts lōngielis
+136	Atstatītė vaizda: išvalītė paieška, stolpeliū sālīgas ė vėsa rėkiavėma.
+137	&Paieška
+138	Paieškas &stolpelis
+139	Ruodītė tarpus mažās pėlnās oranžinėmės taškās. Tėk vaizds; CSV reikšmės nesėkeič.
+140	&Ruodītė lentelė
+141	&Rėkioutė pagal
+142	&Lentelė
+143	&Vaizds
+144	Filtra reikšmė gal turietė daugiausē 4096 simbolius.
+145	VĖSOS
+146	Baitų tvarkas žīmė pėrma lauka pradžiuo praleista.
+147	BENT VĖINA
+148	Lauke be kabučių rasta kabutė.
+149	Iškarpėnės eilotės tor sodārītė vėina stačiakampė lōngieliū matrica.
+150	Patėkras kuods: {0}.
+151	Kuožnam rėkiavėma līgiou pasėrinkėt skėrtinga stolpeli.
+152	Klaida
+153	dėdelis
+154	Enformacėjė
+155	mažos
+156	vėdotėnis
+157	Nie vėins palaikuoms skīrėklis nesodārė pakonkamā patėkėmas kėlių laukų struktūras.
+158	nier
+159	Vėinā eiluotē reiktom {0:N0} lōngieliū, bet dabartėnė bendra rėba īr {1:N0}. Stolpelē nepaslieptė.
+160	Įraše īr {0} laukų; pagal dažniausi mėgėnė laukų kieki laukta {1}.
+161	Tarpā: {0}; pradžiuo: {1}; pabaiguo: {2}. Ėlgis: {3} UTF-16 vėinetā.\nOranžėnē taškā žīm tikrus tarpus. Ruodont anėi išplečiamė, ka būtō aiškiau; CSV simbolē nesėkeič. Lōngielie tėk so tarpās pradžias ė pabaigas kiekē persėdeng.
+162	Iškarpėnės lōngieliū matrica viršėj saugią įklėjavėma rėba.
+163	Iškarpėnie īr nepalaikuoms val dīma simbolis.
+164	Iškarpėnie daugiau stolpeliū, negō redaktuoklis gal saugē įklėjoutė.
+165	Iškarpėnie daugiau eiluotiu, negō redaktuoklis gal saugē įklėjoutė.
+166	Iškarpėnės teksts viršėj saugia 16 Mi UTF-16 simbolių rėba.
+167	Paskotėnis lauks so kabutėmės neužbaigts lig teksta pabaigas.
+168	Laukų kiekis skėrās nū kėtų įrašų.
+169	Veiksma baigtė nepavīka. Patėkrinkėt dokumenta, pažīmietas reikšmės ė dīduma rėbas.
+170	Išanalizoutam dokumente īr {0:N0} stolpeliū; dabartėnė vaizda rėba īr {1:N0}. Stolpelē nepaslieptė.
+171	Siūluoma skīrėklė patėkėmoms mažos. Patėkrinkėt skīrėklė nuostata.
+172	Dō galėmė skīrėklē tur panašius įvertėnėmus. Patėkrinkėt skīrėklė nuostata.
+173	Po uždarontiuos kabutės īr nelauktų simbolių.
+174	nežėnuoms
+175	Naudoukėt tėkslu dešimtaini skaičio so taško, pavīzdžiou -12.5. Grupavėms, laipsnē ė apvalėntas reikšmės nepalaikuomė.
+176	Naudoukėt lig aštuonių netuštėm nuoruodom aprašītu filtra sālīgų.
+177	Naudoukėt lig trėjų aprašītu rėkiavėma līgių.
+178	Vaizda taisīklės nuoruoda stolpeli, katra nier dabartėnie lentelie.
+179	Įspiejėms
+180	Stolpelė santrauka
+181	Filtroutė ė rėkioutė
+182	Atvertė vaizdėnė lentelė
+183	Atnaujintė lentelė
+184	naujs:{0}
+185	naujs:{0} *
+186	Pažīmietė
+187	Pažīmietė cielas eiluotės trīnėmou
+188	Šaltėnė luogėnis įrašs arba laukontė struktūrėnė eilotė
+189	Eiluotiu žīmų stolpelė nustatītė nepavīka.
+190	Eilotė tor priklausītė DataGridView.
+191	Vėsė stolpelē
+192	{0:N0} / {1:N0} lōngieliū
+193	{0:N0} lōngieliū
+194	Išvalītė paieška
+195	Išvalītė paieška (Esc). Stolpelis ė rėkiavėms palėik.
+196	Filtroutė ruodomas eiluotės. Enter: kėts sutomponts lōngielis. Shift+Enter: ankstesnis. Escape: išvalītė.
+197	Kėts sutomponts lōngielis
+198	Kėts sutomponts lōngielis (F3 / Enter)
+199	Sutapėmų nier
+200	Sutompontiu eiluotiu nier.\nPakeiskėt paieška arba naudoukėt Vaizds > Filtroutė ė rėkioutė / Atstatītė vaizda.
+201	Ankstesnis sutomponts lōngielis
+202	Ankstesnis sutomponts lōngielis (Shift+F3 / Shift+Enter)
+203	Eškoutė vėsuos dōmenų stolpeliuos arba pasėrinktė vėina stolpeli.
+204	Paieškas stolpelis
+205	Eškoutė ruodomuos CSV eiluotiuos (Ctrl+F). Reikšmės ė šaltėnė teksts nesėkeič.
+206	Eškoutė lentelie...
+207	Eškoutė lentelie
+208	Paieškas rezoltatā
+209	Eškuoma...
+210	Ėjėms į šaltėni ožbluokouts: aktīvos kėts Notepad++ dokumentos. Grīžkėt į ruodoma CSV arba atnaujinkėt lentelė.
+211	Ėjėms į šaltėni ožbluokouts: išsauguots analizės rezoltats neatėtink nekėntomas pirmīnikės nuotraukas. Pėrma atnaujinkėt lentelė.
+212	Ėjėms į šaltėni ožbluokouts: griežtā kuodoutas ėlgis neatėtink Scintilla pranešta dokumenta ėlgė.
+213	Ėjėms į šaltėni ožbluokouts: turėnīs pasėkeitė nū lentelės paruo dėma. Pėrma atnaujinkėt lentelė.
+214	Ėjėms į šaltėni ožbluokouts: Scintilla kuodų poslaps netur aiškaus baitų puozicėjų pruofili.
+215	Ėjėms į šaltėni ožbluokouts: kuodų poslaps pasėkeitė nū lentelės paruodėma. Pėrma atnaujinkėt lentelė.
+216	Ėjėms į šaltėni ožbluokouts: pažīmiets lōngielis netur pirmīnikė šaltėnė lauka.
+217	Ėjėms į šaltėni ožbluokouts: simbolių rėžas negal tikslē atėtėktė Scintilla baitų.
+218	Ėjėms į šaltėni ožbluokouts: luogėnė šaltėnė įraša nier išsauguotam analizės rezoltate.
+219	Ėjėms į šaltėni nepavīka: aktīvaus Notepad++ turėnė nuskaitytė nepavīka. Dokumentos nepakeists.
+220	Ėjėms į šaltėni nepavīka perkeliant Scintilla atranka. Dokumentos nepakeists.
+221	Ėjėms į šaltėni galėms tėk to ront ciela lentelės nuotrauka ė analizės rezoltata. Pėrma atnaujinkėt lentelė.
+222	Ėjėmou į šaltėni reiki dabartėnės CSV eiluotės arba lōngielė.
+223	Ėjėms į šaltėni nebaigts. Dokumentos nepakeists.
+224	Notepad++ pažīmiets šaltėnė įraša {0} stolpelis {1}.
+225	Notepad++ pažīmiets šaltėnė įrašs {0}.
+226	Dabartėnė eilotė netur stabilaus šaltėnė įraša atpažėnėma.
+227	Nauja laukontė eilotė netur šaltėnė puozicėjės, kol nebus pritaikīta.
+228	Dabartėnis vaizds: {0:N0} iš {1:N0} ruodomų eiluotiu.
+229	Skėrtingas reikšmės palīgėnamos tikslē, skėrānt raidžių dīduma ė įtraukiant tuštės reikšmės.\nPasėkartuojontės eilotės = eilotės be skėrtingų reikšmių kiekė. Skaičių rėbas apėma tėkslius skaičius so dešimtainiu taško.
+230	Tuščias
+231	Rūšis
+232	Dažniausės reikšmės (lig 20)
+233	Nier
+234	Mažiausis skaičios: {0}     Dėdžiausis: {1}\nĖlgiausi reikšmė: {2:N0} UTF-16 vėinetų. {3:N0} reikšmių pasėkartuoj daugiau negō karta.
+235	 Aprėbuots vaizds; NI CIELS fails.
+236	Eilotės: {0:N0}     Tuštės: {1:N0}     Tėk tuštė simbolē: {2:N0}\nSkėrtingas: {3:N0}     Pasėkartuojontės eilotės: {4:N0}     Skaitėnės: {5:N0}
+237	Stolpelė santrauka
+238	Tuštė simbolē
+239	Nauja eilotė pridieta prie laukontių pakeitėmų. Taikītė įrašīs į redaktuokli; Atšauktė vėska atmes pakeitėma.
+240	Šaltėnė eilotė netur šaltėnė įraša indeksa.
+241	Veiksms
+242	Aktīvaus dokumenta nuotraukas paimtė nepavīka. Redaktuoklė turėnīs nepakeists.
+243	Pridietė eiluotė
+244	Vėsė laukontė lōngieliū ė eiluotiu pakeitėmā atšauktė. Notepad++ turėnīs nepakeists.
+245	Taikītė vėsus lōngieliū ė eiluotiu pakeitėmus aktīvam redaktuokliou vėinu atšaukiamo veiksmo
+246	Taikīms ožbluokouts: aktīvos kėts Notepad++ dokumentos. Grīžkėt į pirmīnė dokumenta arba atšaukėt vėska.
+247	Taikīms ožbluokouts: turėnīs pasėkeitė nū redagavėma pradžias. Atšaukėt pakeitėmus ė atnaujinkėt prieš vėl redagoujant.
+248	Taikīms ožbluokouts: kuodų poslaps pasėkeitė nū redagavėma pradžias. Atšaukėt vėska ė iš nauja pradiekėt redagavėma.
+249	Taikītė nepavīka. Redagavėma sesėjė palėik atverta; prieš bandoudami iš nauja arba atšaukdamė patėkrinkėt turėni.
