@@ -1,0 +1,126 @@
+250	Az alkalmazás nem fejeződött be. Automatikus felülírást nem kíséreltünk meg.
+251	Automatikus felismerés
+252	automatikus, {0} megbízhatóság
+253	{0} — az elválasztó automatikus felismerése bizonytalan; kézi választás szükséges.
+254	Automatikus felismerés
+255	Lehetséges elválasztók pontszámai
+256	{0} cella / {1} sor (+{2} / -{3})
+257	Karakter
+258	{0} karakter / {1} bájt a szerkesztőben
+259	Válassz vesszőt, pontosvesszőt vagy tabulátort a fenti Elválasztó listából.
+260	Add meg, hogy az első logikai rekord fejléc-e
+261	Törlés
+262	Az aktuális keresési szűrő és a nézeti rendezés törlése
+263	Kód
+264	 - {0} oszlopfeltétel ({1}), {2} rendezési szint
+265	{0} — {1} × {2} oszlop — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Vessző (,)
+267	vessző
+268	Megbízhatóság
+269	Minden kijelölt, stabil azonosítójú adatsor törlése a függőben lévő szerkesztésekből
+270	Sor törlése
+271	Sorok törlése ({0})
+272	A kijelölt, stabil azonosítójú adatsor törlése a függőben lévő szerkesztésekből
+273	A kijelölt, stabil azonosítójú adatsorok törlése a függőben lévő szerkesztésekből
+274	Elválasztó:
+275	Diagnosztika ({0})
+276	Minden függőben lévő cellamódosítás, sorbeszúrás és sortörlés elvetése
+277	Dokumentum
+278	 — SZERKESZTÉS: {0} cella, {1} sor, +{2} / -{3}
+279	 - Szerkesztési mód
+280	A szerkesztési módban függőben lévő módosítások vannak. Kilépés előtt alkalmazd vagy vond vissza mindet.
+281	A jelenlegi táblázat nem szerkeszthető. Előbb javítsd a feldolgozási hibákat vagy a megjelenítési korlátok túllépését.
+282	Korlátozott sorszámú táblázatnézetből nem indítható szerkesztés.
+283	A CSV feldolgozási hibáinak javításáig nem indítható szerkesztés.
+284	A jelenlegi táblázat nem szerkeszthető.
+285	{0} — a szerkesztő üres; nincs megjeleníthető CSV-rekord.
+286	Belépés a cellák és sorok szerkesztési módjába
+287	Belépés a cellák és sorok szerkesztési módjába. Az Alkalmazás csak a szerkesztő tartalmát írja át.
+288	Belépés a cellák és sorok szerkesztési módjába. A teljes szerkesztési modell csak igény esetén készül el.
+289	{0} hiba, {1} figyelmeztetés
+290	az első sor fejléc
+291	Az első sor fejléc
+292	Fejléc:
+293	Új sor beszúrása a kijelölt sor után, kijelölés nélkül a táblázat végére
+294	{0} — a CSV-adatok betöltése a háttérben; a Notepad++ tovább használható.
+295	kézi választás
+296	{0} megfelelő a(z) {1} megjelenített sorból
+297	Üzenet
+298	{0} újonnan beszúrt sor eltávolítva a függőben lévő munkamenetből.
+299	Nincs megjeleníthető diagnosztika.
+300	Nincs fejlécsor
+301	nincs fejlécsor
+302	Nincs megfelelő sor.\nPróbálj másik keresőszöveget vagy oszlopot.
+303	nincs feldolgozási diagnosztika
+304	Nem választható biztonságosan megbízható elválasztó.
+305	Nincs mit alkalmazni: a munkamenet nem tartalmaz függőben lévő módosítást.
+306	Feldolgozás és korlátozott méretű táblázat előkészítése a háttérben…
+307	Függőben lévő cella- és sorszerkezeti módosítások
+308	Függőben lévő új sor: {0}; még nincs alkalmazva
+309	{0} függőben lévő sor
+310	A bővítmény készen áll. Az aktív szerkesztő tartalmának olvasása...
+311	A teljes szerkesztési munkamenet előkészítése…
+312	Tulajdonság
+313	Az aktív Notepad++-szerkesztő tartalmának beolvasása és megjelenítése
+314	Rekord
+315	Összes visszavonása
+316	{0} sor
+317	Pontosvessző (;)
+318	pontosvessző
+319	Súlyosság
+320	Részletes feldolgozási és elválasztó-diagnosztika megjelenítése
+321	{0} / {1} sor megjelenítve
+322	Pillanatkép
+323	Pillanatképhiba
+324	Rendezési szint {0}: {1}, {2}. Csak a nézet változik.
+325	 — rendezés: {0} {1}
+326	Logikai forrásrekord: {0}
+327	Logikai forrásrekord: {0}; módosítva a függőben lévő szerkesztésekben
+328	{0} forrássor törlésre jelölve, és {1} beszúrt sor eltávolítva a függőben lévő munkamenetből.
+329	{0} forrássor törlésre jelölve. Az Alkalmazás végrehajtja a kötegelt törlést, az Összes visszavonása helyreállít minden sort.
+330	Állapot
+331	Tabulátor
+332	tabulátor
+333	Táblázathiba
+334	Az aktív cella szerkesztése nem zárható le. Sor hozzáadása előtt javítsd az értéket.
+335	Az aktív cella szerkesztése nem zárható le. Sorok törlése előtt javítsd az értéket.
+336	Az aktív cella szerkesztése nem zárható le. Alkalmazás előtt javítsd az értéket.
+337	Az újonnan beszúrt sor eltávolítva a függőben lévő munkamenetből.
+338	A sorjelző oszlop nincs beállítva.
+339	A kijelölt sorok halmaza már nem érvényes ebben a munkamenetben. Sor nem lett törölve.
+340	A kijelölt sorok már törölve voltak. További módosítás nem történt.
+341	A forrássor törlésre jelölve. Az Alkalmazás végrehajtja a törlést, az Összes visszavonása helyreállítja a sort.
+342	A vizuális táblázat nem készíthető el. A szerkesztő tartalma nem változott.
+343	Használj megbízható automatikus felismerést, vagy válassz elválasztót kézzel
+344	Várakozás az aktív Notepad++-dokumentumra.
+345	{0} - {1} x {2:N0} oszlop
+346	Módosítások elfogadása
+347	Utána
+348	Minden adatcella
+349	Előtte
+350	CSV-oszlop
+351	Válassz műveletet és hatókört, majd kattints az Előnézetre.
+352	Aktuális oszlop
+353	Keresendő:
+354	kisbetűs
+355	Művelet:
+356	A többi üres karakter külön jelölést kap; a hossz UTF-16-egységekben értendő. A hosszú értékek rövidítve jelennek meg.
+357	Az előnézet nem készíthető el. Ellenőrizd a hatókört és a keresendő szöveget, vagy válassz kisebb hatókört (legfeljebb 250,000 cella / 16 Mi karakter).
+358	Előbb készíts előnézetet. A Módosítások elfogadása a függőben lévő szerkesztéseket frissíti; az eszköztár Alkalmazás gombja ír a Notepad++-ba.\nHa az első rekord fejléc, az átalakítás nem érinti. A kis-/nagybetű-váltás nyelvfüggetlen.
+359	Rekordazonosító
+360	Szövegcsere (pontos)
+361	Csere erre:
+362	Hatókör:
+363	Válassz egy CSV-adatoszlopot.
+364	Kijelölt cellák / sorok
+365	tömör narancssárga pontok jelölik a szóközöket. 
+366	a szóközjelölők rejtve vannak. 
+367	{0:N0} célcella; {1:N0} módosítás {2:N0} sorban. Az első 50 módosítás látható; 
+368	A szerkesztési munkamenet megváltozott.
+369	Az előnézet már nem érvényes. Ellenőrizd a munkamenetet, és készíts új előnézetet.
+370	CSV-cellák átalakítása
+371	{0:N0} cella átalakítva a függőben lévő szerkesztésekben. Az Alkalmazás frissíti a Notepad++-t, az Összes visszavonása elveti a módosításokat.
+372	Környező üres karakterek törlése
+373	NAGYBETŰS
+374	Nézet visszaállítása
+375	Szóközök megjelenítése
