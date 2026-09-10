@@ -1,0 +1,14 @@
+{
+  "ar": {
+    "Table.AutomaticDelimiterDetectionIsNotReliableManualSelection": {
+      "text": "{0} — الكشف التلقائي عن الفاصل غير موثوق؛ يجب اختياره يدويًا.",
+      "sourceHash": "6f7660946313d283e3d47cd1822d536511579df717cbceb153899d32e6009243"
+    }
+  },
+  "ko": {
+    "Summary.DistinctValuesUseExactCaseSensitiveTextIncluding": {
+      "text": "고유 값은 빈 값을 포함하여 대소문자를 구분하는 정확한 텍스트를 기준으로 계산합니다.\n반복 행 수 = 전체 행 수 - 고유 값 수. 숫자 범위는 소수점으로 점을 사용하는 정확한 십진수 값을 기준으로 계산합니다.",
+      "sourceHash": "bf076f49a20d623380993212dc5a2c41911a02a2f8364ba72064db760ab1483d"
+    }
+  }
+}

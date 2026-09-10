@@ -111,6 +111,14 @@ class CatalogGateTests(TestCase):
         with patch.object(verify.urllib.request, 'urlopen', return_value=response):
             with self.assertRaisesRegex(SystemExit, 'Official language inventory changed'): verify.verify(check_upstream=True)
 
+    def test_abkhaz_catalog_rejects_unexpected_han_text(self):
+        self.inventory['languages'].append({'file': 'abkhazian.xml', 'code': 'ab'})
+        self.save()
+        self.write('Catalogs/ab.json', {'language': 'ab', 'messages': {
+            'Test.Rows': {'text': '\u0410\u8054\u7cfb {0:N0}',
+                          'sourceHash': self.source['Test.Rows']['sourceHash']}}})
+        self.fails('unexpected Han text in Abkhaz catalog')
+
     def test_generated_code_failure_is_not_ignored(self):
         with patch.object(verify.subprocess, 'run', side_effect=subprocess.CalledProcessError(1, 'generate')):
             with self.assertRaises(subprocess.CalledProcessError): verify.verify()

@@ -24,3 +24,5 @@ python tools/localization/verify.py --check-upstream
 ```
 
 Build validation rejects missing/stale catalogs, invalid placeholders and unreviewed new UI literals. CI also checks the current official Notepad++ language inventory and representative localized startup, menus and dialogs in the published DLL. Unknown host languages use English; document encoding and CSV numeric semantics do not select the display language.
+
+Use `tools/localization/import_catalogs.py` to validate external keyed catalogs before promotion. Its default mode rejects incomplete sets; `--stage` writes drafts only outside shipped catalogs and returns a nonzero status while coverage is incomplete. Legacy indexed input requires an exact source-order fingerprint; related languages and script variants are never silently substituted. Run the full validation above after reviewing and promoting any imported catalogs.
