@@ -26,7 +26,7 @@ jobs:
   build-test-publish:
     runs-on: windows-latest
     env:
-      PACKAGE_VERSION: 0.13.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
+      PACKAGE_VERSION: 0.14.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
 
     steps:
       - name: Checkout
@@ -67,6 +67,31 @@ jobs:
       - name: Create diagnostics directory
         shell: pwsh
         run: New-Item -ItemType Directory -Path artifacts -Force | Out-Null
+
+      - name: Set up Python for catalog validation
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate all interface catalogs
+        id: localization
+        shell: pwsh
+        run: |
+          python -m unittest discover -s tests/localization -p 'test_*.py' *>&1 |
+            Tee-Object -FilePath artifacts/localization.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/localization/verify.py --check-upstream *>&1 |
+            Tee-Object -FilePath artifacts/localization.log -Append
+          exit $LASTEXITCODE
+
+      - name: Upload localization diagnostics
+        if: always() && steps.localization.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-localization-diagnostics
+          path: artifacts/localization.log
+          if-no-files-found: error
+          retention-days: 3
 
       - name: Restore
         id: restore
@@ -255,8 +280,29 @@ jobs:
           if-no-files-found: error
           retention-days: 3
 
+      - name: Review localized production DLL in Notepad++
+        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success'
+        id: localized_host_review
+        continue-on-error: true
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          & tests/host-review/Invoke-LocalizedHostReview.ps1 -LibraryPath artifacts/publish/CsvVisualEditor.dll *>&1 |
+            Tee-Object -FilePath artifacts/localized-host-review.log
+
+      - name: Upload localized production host review
+        if: always() && steps.localized_host_review.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CsvVisualEditor-localized-host-review
+          path: |
+            artifacts/localized-host-review/
+            artifacts/localized-host-review.log
+          if-no-files-found: error
+          retention-days: 3
+
       - name: Create installable test ZIP
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
+        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         shell: pwsh
         run: |
           $pluginDirectory = 'artifacts/package/CsvVisualEditor'
@@ -269,13 +315,13 @@ jobs:
             -Force
 
       - name: Record candidate checksums
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
+        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         shell: pwsh
         run: |
           Get-FileHash "artifacts/CsvVisualEditor-$env:PACKAGE_VERSION-win-x64.zip", artifacts/publish/CsvVisualEditor.dll -Algorithm SHA256 | Format-List
 
       - name: Upload installable test package
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
+        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64
@@ -339,3 +385,8 @@ jobs:
         if: steps.publish.outcome == 'success' && steps.host_review.outcome != 'success'
         shell: pwsh
         run: throw 'Production Notepad++ host review failed. Inspect the host-review artifact.'
+
+      - name: Fail workflow when localized host review failed
+        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome != 'success'
+        shell: pwsh
+        run: throw 'Localized Notepad++ host review failed. Inspect the localized-host-review artifact.'
