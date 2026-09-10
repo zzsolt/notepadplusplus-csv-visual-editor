@@ -21,3 +21,5 @@ English source messages and translated catalogs live in `src/CsvVisualEditor.Loc
 Validation rejects missing or stale catalogs, malformed placeholders and unreviewed new UI literals. CI checks the official Notepad++ language inventory and representative localized startup, menus and dialogs. Unknown host languages use English; document encoding and CSV numeric semantics do not select the display language.
 
 All commands above must succeed before publishing a build. English-only bootstrap checks and staged translation drafts do not establish a complete localized release. Do not bypass a failed catalog check to generate a distributable package.
+
+Use `tools/localization/import_catalogs.py` to validate external keyed catalogs before promotion. Its default mode rejects incomplete sets; `--stage` writes drafts only outside shipped catalogs and returns a nonzero status while coverage is incomplete. Legacy indexed input requires an exact source-order fingerprint; related languages and script variants are never silently substituted. Run the full validation above after reviewing and promoting imported catalogs.

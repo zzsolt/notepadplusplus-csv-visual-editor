@@ -85,6 +85,7 @@ def verify(check_upstream=False, english_only=False) -> None:
             if re.search(r'([^\W\d_]{2,32})\1{3,}',text,re.I) or re.search(r'(\b\w+(?:\s+\w+){0,6}\s+)\1{3,}',text,re.I):
                 errors.append(code+'/'+key+': repeated translation output')
             if re.search(r'<0x[0-9A-Fa-f]+>',text):errors.append(code+'/'+key+': undecoded byte token')
+            if code == 'ab' and re.search(r'[\u3400-\u9fff]',text):errors.append(code+'/'+key+': unexpected Han text in Abkhaz catalog')
             if len(text) > max(250,5*len(source[key]['text'])):errors.append(code+'/'+key+': excessive translated length')
             if '-12.5' in source[key]['text'] and '-12.5' not in text:errors.append(code+'/'+key+': altered numeric syntax example')
             if any(0xD800<=ord(char)<=0xDFFF or ord(char)<32 and char not in '\n\r\t' for char in text):errors.append(code+'/'+key+': invalid Unicode/control character')
