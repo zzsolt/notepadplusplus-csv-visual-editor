@@ -1,0 +1,378 @@
+# language: da
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	En visuel CSV-editor til Notepad++
+001	Om CSV Visual Editor
+002	Kontakt: {0}
+003	Kontakt udvikleren {0}
+004	Udvikler: {0}
+005	Udviklingsversion
+006	Kan du lide CSV Visual Editor? Støt projektet.\nGiv det en stjerne på GitHub, del din feedback, eller kontakt udvikleren for at bidrage. Tak!
+007	Grænsefladesprog: {0}
+008	Ingen tilknyttet app kunne åbnes. Kontakt: {0}
+009	Projektet på GitHub
+010	Version: {0}
+011	Version og build
+012	{0} blev blokeret, fordi modellen for afventende ændringer blev ændret. Ingen delvis ændring blev bevaret.
+013	{0} blev blokeret: rektanglerne i udklipsholderen og markeringen har forskellige mål.
+014	{0} blev blokeret: målrektanglet går ud over CSV-tabellen.
+015	{0} blev blokeret: der er intet redigerbart målrektangel.
+016	Kopierede {0} × {1} CSV-celler.
+017	Kopiering/klipning blev blokeret: en markeret celle indeholder en tabulator eller et linjeskift, der ikke entydigt kan repræsenteres som almindelig regnearkstekst.
+018	Kopiering kræver CSV-celler, ikke en markering af hele rækker til sletning.
+019	Kopiering kræver én sammenhængende rektangulær markering af CSV-dataceller.
+020	Klippede {0} celler til udklipsholderen og tømte dem i den afventende redigeringssession. Anvend skriver tømningen til Notepad++.
+021	Klipningen er færdig; de markerede celler var allerede tomme. Udklipsholderen indeholder deres oprindelige værdier.
+022	{0} er kun tilgængelig i redigeringstilstand.
+023	{0} er ikke tilgængelig for den aktuelle tabel.
+024	Indsættelse blev blokeret: {0} Ingen data blev ændret.
+025	Indsættelsen er færdig; alle målværdier var allerede identiske.
+026	Indsatte {0} ændrede celler i den afventende redigeringssession. Anvend skriver dem til Notepad++.
+027	{0} kræver et rektangel af CSV-celler, ikke en markering af hele rækker til sletning.
+028	{0} kræver én sammenhængende rektangulær markering af CSV-dataceller.
+029	Mål for {0} er ikke tilgængelige uden for redigeringstilstandens stabile rækkemodel.
+030	Redigeringen af den aktive celle kunne ikke bekræftes før kopiering.
+031	Redigeringen af den aktive celle kunne ikke bekræftes. Ret værdien før {0}.
+032	Udklipsholderen indeholder ikke celler som almindelig tekst.
+033	Windows-udklipsholderen er midlertidigt utilgængelig. Ingen data blev ændret.
+034	Kopiér det markerede rektangel af CSV-celler til Windows-udklipsholderen (Ctrl+C)
+035	Kopiér de markerede CSV-celler og tøm dem i den afventende redigeringssession (Ctrl+X)
+036	Indsæt regnearksceller i den markerede CSV-celle eller det markerede rektangel (Ctrl+V)
+037	Forhåndsvis teksterstatning, fjernelse af ydre blanktegn eller ændring af store/små bogstaver i afventende CSV-redigeringer
+038	Markér den aktuelle CSV-celle eller række i Notepad++-kildebufferen
+039	Kilde
+040	Omdan
+041	Om
+042	Anvend
+043	Stigende
+044	Annuller
+045	Luk
+046	Kolonne
+047	Kopiér
+048	Klip
+049	Faldende
+050	Rediger
+051	Afslut redigering
+052	Forskel på store/små bogstaver
+053	Tal
+054	Oprindelig rækkefølge
+055	Indsæt
+056	Forhåndsvisning
+057	Opdater
+058	Rækker
+059	Tabel
+060	Tekst
+061	Værdi
+062	Kolonneoversigt: antal, forskellige værdier, numerisk interval og hyppige værdier i den aktuelle visning.
+063	Kolonneoversigten kræver en klar, skrivebeskyttet tabel. Afslut først redigeringstilstanden.
+064	Filtrer og sorter: kombinér kolonneregler og tekst-/talsorteringsniveauer. Kun visningen; CSV er uændret.
+065	Filtrer og sorter: kombinér kolonneregler og op til tre tekst-/talsorteringsniveauer. Kun visningen.
+066	Filtrer og sorter: {0} betingelser, {1} sorteringsniveauer. Nulstil visning fjerner alle regler.
+067	Filtrering og sortering kræver en klar, skrivebeskyttet tabel. Afslut først redigeringstilstanden.
+068	Diagnostik (0)
+069	0 ændringer
+070	Tilføj betingelse
+071	Tilføj sorteringsniveau
+072	Anvend visning
+073	Store/små bogstaver
+074	Tekstsammenligning med forskel på store og små bogstaver. Mellemrum i værdier behandles bogstaveligt.
+075	Kontrollér reglerne: {0}
+076	Betingelse
+077	{0} / 8 betingelser; {1} / 3 sorteringsniveauer. Brug forhåndsvisningen til at kontrollere matchende rækker.
+078	Indeholder
+079	Indeholder ikke
+080	Er ikke lig med
+081	Tom = ingen tegn. Kun blanktegn = en ikke-tom følge af mellemrum/tabulatorer/linjeskift.\nTal bruger decimalpunktum (-12.5), uden gruppering eller eksponenter; præcisionen skal være nøjagtig.
+082	Slutter med
+083	Er lig med
+084	Filterværdi
+085	Filtre
+086	Er tom
+087	Er ikke tom
+088	Er ikke kun blanktegn
+089	Er kun blanktegn
+090	Bogstavelig tekst, inklusive mellemrum. Talregler kræver et nøjagtigt decimaltal med punktum.
+091	Opfyld ALLE betingelser
+092	Opfyld EN VILKÅRLIG betingelse
+093	Tal =
+094	Tal >
+095	Tal >=
+096	Tal <
+097	Tal <=
+098	Tal (decimal)
+099	Forhåndsvisning: {0:N0} af {1:N0} viste rækker. CSV uændret.
+100	Fjern betingelse
+101	Fjern sorteringsniveau
+102	Nulstil regler
+103	Reglerne respekterer også den aktuelle søgning. Annuller bevarer den aktive visning.
+104	Sortering
+105	Starter med
+106	Tekst: ordinal rækkefølge uden forskel på store og små bogstaver. Tal: nøjagtige decimaltal; ugyldige/tomme værdier til sidst.\nEns nøgler bevarer kilderækkefølgen. Fjern alle niveauer for at gendanne kilderækkefølgen.
+107	Projektionen er begrænset; rækker, der ikke vises, er ikke medtaget. 
+108	Filtrer og sorter
+109	Øverste niveau har forrang; senere niveauer afgør lighed. Højst 3.
+110	Værdi (bogstavelig, inklusive mellemrum)
+111	Kun visningen — CSV-værdier og kilderækkefølge forbliver uændrede. {0:N0} viste rækker.\n
+112	Anvendelse er blokeret, fordi {0} ikke har en udtrykkeligt understøttet kodningsprofil. Editorens indhold blev ikke ændret.
+113	Anvendelse er blokeret, fordi streng kodningsvalidering for {0} ikke gav en nøjagtig konvertering frem og tilbage. Editorens indhold blev ikke ændret.
+114	Anvendelse er blokeret, fordi den afventende erstatning ikke kan repræsenteres nøjagtigt i {0}. Der blev ikke brugt erstatningstegn, og editorens indhold blev ikke ændret.
+115	Anvendelse er endnu ikke aktiveret for {0}. Editorens indhold blev ikke ændret. Skrivning er kun aktiveret for UTF-8 (65001) og Windows-1250 (1250) efter tabsfri validering. Brug Fortryd alt, eller konvertér dokumentet til UTF-8 i Notepad++, og åbn redigeringstilstanden igen.
+116	Opdatering er deaktiveret i redigeringstilstand. Anvend eller fortryd først alle afventende ændringer.
+117	Scintilla-kodetabel {0}
+118	Det aktive dokument fylder {0:N0} byte. Den aktuelle sikre grænse for øjebliksbilledet er {1:N0} byte.
+119	Det aktive Notepad++-dokument kunne ikke læses. Editorens indhold blev ikke ændret.
+120	Anvendelsesresultatet er ikke en status for blokering på grund af kodning.
+121	Tabelopbygningen i baggrunden sluttede uden et resultat.
+122	CSV-ændringerne blev anvendt, men den tidligere markørposition eller markering kunne ikke gendannes. Hele dokumentændringen kan stadig fortrydes i én handling.
+123	editorens aktuelle kodetabel
+124	Editorbufferen kunne ikke omdannes til en visuel tabel. Vælg en udtrykkelig separator, eller opdater efter at have rettet dokumentet.
+125	Tabelopbygningen returnerede et ufuldstændigt resultat.
+126	&Om
+127	&Ryd søgning
+128	&CSV
+129	&Separator
+130	&Rediger
+131	Esc i søgningen
+132	&Find i tabel
+133	&Overskrift
+134	&Næste matchende celle
+135	&Forrige matchende celle
+136	Nulstil visning: ryd søgning, kolonnebetingelser og al sortering.
+137	&Søgning
+138	Søge&kolonne
+139	Vis mellemrum: små udfyldte orange prikker. Kun visning; CSV-værdier ændres ikke.
+140	Vis &tabel
+141	&Sorter efter
+142	&Tabel
+143	&Vis
+144	En filterværdi må højst indeholde 4,096 tegn.
+145	ALLE
+146	En indledende byteordensmarkering blev udeladt fra det første felt.
+147	EN VILKÅRLIG
+148	Et anførselstegn optrådte i et felt uden omgivende anførselstegn.
+149	Rækkerne i udklipsholderen skal danne én rektangulær cellematrix.
+150	Diagnostikkode: {0}.
+151	Hvert sorteringsniveau skal bruge en anden kolonne.
+152	Fejl
+153	høj
+154	Information
+155	lav
+156	middel
+157	Ingen understøttet separator gav en tilstrækkeligt pålidelig struktur med flere felter.
+158	ingen
+159	En visuel række ville kræve {0:N0} celler, hvilket overskrider den aktuelle samlede grænse på {1:N0}. Ingen kolonner blev skjult.
+160	Posten har {0} felter; der var forventet {1} ud fra det hyppigste antal i stikprøven.
+161	Mellemrum: {0}; indledende: {1}; afsluttende: {2}. Længde: {3} UTF-16-enheder.\nOrange prikker markerer faktiske mellemrum. Afstanden i visningen er øget for læsbarhed; CSV-tegn ændres ikke. Antallene af indledende og afsluttende mellemrum overlapper i en celle med kun mellemrum.
+162	Cellematrixen i udklipsholderen overskrider den sikre indsættelsesgrænse.
+163	Udklipsholderen indeholder et kontroltegn, der ikke understøttes.
+164	Udklipsholderen indeholder flere kolonner, end editoren sikkert kan indsætte.
+165	Udklipsholderen indeholder flere rækker, end editoren sikkert kan indsætte.
+166	Teksten i udklipsholderen overskrider den sikre grænse på 16 Mi UTF-16-tegnenheder.
+167	Det sidste felt i anførselstegn blev ikke afsluttet før tekstens slutning.
+168	Antallet af felter adskiller sig fra de andre poster.
+169	Handlingen kunne ikke fuldføres. Kontrollér dokumentet, de markerede værdier og størrelsesgrænserne.
+170	Det fortolkede dokument indeholder {0:N0} kolonner, hvilket overskrider den visuelle tabels aktuelle grænse på {1:N0}. Ingen kolonner blev skjult.
+171	Den foreslåede separator har lav sikkerhed. Kontrollér separatorindstillingen.
+172	To separatorkandidater har lignende pointtal. Kontrollér separatorindstillingen.
+173	Uventede tegn følger efter et afsluttende anførselstegn.
+174	ukendt
+175	Brug et nøjagtigt decimaltal med punktum, f.eks. -12.5. Gruppering, eksponenter og afrundede værdier understøttes ikke.
+176	Brug højst otte filterbetingelser, der ikke er null.
+177	Brug højst tre sorteringsniveauer, der ikke er null.
+178	Visningsreglerne henviser til en kolonne uden for den aktuelle tabel.
+179	Advarsel
+180	Kolonneoversigt
+181	Filtrer og sorter
+182	Åbn visuel tabel
+183	Opdater tabel
+184	ny:{0}
+185	ny:{0} *
+186	Markér
+187	Markér hele rækker til sletning
+188	Logisk kildepost eller afventende strukturel række
+189	Kolonnen med rækkeindikatorer kunne ikke identificeres.
+190	Rækken skal tilhøre en DataGridView.
+191	Alle kolonner
+192	{0:N0} / {1:N0} celler
+193	{0:N0} celler
+194	Ryd søgning
+195	Ryd søgning (Esc). Bevar søgekolonnen og sorteringen.
+196	Filtrerer viste rækker. Enter: næste matchende celle. Shift+Enter: forrige. Escape: ryd.
+197	Næste matchende celle
+198	Næste matchende celle (F3 / Enter)
+199	Ingen resultater
+200	Ingen matchende rækker.\nTilpas søgningen, eller brug Vis > Filtrer og sorter / Nulstil visning.
+201	Forrige matchende celle
+202	Forrige matchende celle (Shift+F3 / Shift+Enter)
+203	Søg i alle datakolonner, eller vælg én kolonne.
+204	Søgekolonne
+205	Søg i viste CSV-rækker (Ctrl+F). Værdier og kildetekst ændres ikke.
+206	Søg i tabel...
+207	Søg i tabel
+208	Søgeresultater
+209	Søger...
+210	Gå til kilde blev blokeret: et andet Notepad++-dokument er aktivt. Vend tilbage til den viste CSV, eller opdater tabellen.
+211	Gå til kilde blev blokeret, fordi det gemte fortolkningsresultat ikke længere svarer til sit uforanderlige kildeøjebliksbillede. Opdater tabellen først.
+212	Gå til kilde blev blokeret: den strengt kodede længde svarer ikke til dokumentlængden, som Scintilla rapporterer.
+213	Gå til kilde blev blokeret: den aktive editors indhold blev ændret efter visningen af tabellen. Opdater tabellen først.
+214	Gå til kilde blev blokeret: den aktuelle Scintilla-kodetabel mangler en udtrykkelig bytepositionsprofil.
+215	Gå til kilde blev blokeret: editorens kodetabel blev ændret efter visningen af tabellen. Opdater tabellen først.
+216	Gå til kilde blev blokeret: den markerede projicerede celle har intet råt kildefelt.
+217	Gå til kilde blev blokeret: kildens tegninterval kunne ikke kortlægges tabsfrit til Scintilla-byte.
+218	Gå til kilde blev blokeret: den logiske kildepost er ikke tilgængelig i det gemte fortolkningsresultat.
+219	Gå til kilde mislykkedes: den aktive Notepad++-buffer kunne ikke læses. Dokumentindholdet blev ikke ændret.
+220	Gå til kilde mislykkedes under flytning af Scintilla-markeringen. Dokumentindholdet blev ikke ændret.
+221	Gå til kilde er utilgængelig, indtil den aktuelle visuelle tabel har et komplet kildegrundlag. Opdater tabellen først.
+222	Gå til kilde kræver en aktuel CSV-række eller celle.
+223	Gå til kilde blev ikke fuldført. Dokumentindholdet blev ikke ændret.
+224	Markerede kildepost {0}, kolonne {1} i Notepad++.
+225	Markerede kildepost {0} i Notepad++.
+226	Den aktuelle visuelle række giver ikke en stabil identitet for kildeposten.
+227	Denne afventende indsatte række har ingen kildeposition, før anvendelsen er fuldført.
+228	Aktuel visning: {0:N0} af {1:N0} viste rækker.
+229	Forskellige værdier bestemmes af den nøjagtige tekst med forskel på store og små bogstaver, inklusive tomme værdier.\nGentagne rækker = rækker minus forskellige værdier. Det numeriske interval bruger nøjagtige decimaltal med punktum.
+230	Tom
+231	Type
+232	Hyppigste værdier (op til 20)
+233	Ikke tilgængelig
+234	Numerisk minimum: {0}     Maksimum: {1}\nLængste værdi: {2:N0} UTF-16-enheder. {3:N0} værdier forekommer mere end én gang.
+235	 Begrænset projektion; dette er IKKE hele filen.
+236	Rækker: {0:N0}     Tomme: {1:N0}     Kun blanktegn: {2:N0}\nForskellige: {3:N0}     Gentagne rækker: {4:N0}     Numeriske: {5:N0}
+237	Kolonneoversigt
+238	Blanktegn
+239	En ny række blev føjet til den afventende redigeringssession. Anvend skriver den til editorbufferen; Fortryd alt kasserer den.
+240	En kilderække angav ikke sit kildepostindeks.
+241	Handling
+242	Øjebliksbilledet af det aktive dokument mislykkedes. Editorens indhold blev ikke ændret.
+243	Tilføj række
+244	Alle afventende celle- og rækkeredigeringer blev fortrudt. Notepad++-editorbufferen blev ikke ændret.
+245	Anvend alle celle- og rækkeredigeringer på den aktive editor som én handling, der kan fortrydes
+246	Anvendelse blev blokeret: et andet Notepad++-dokument er aktivt. Vend tilbage til det oprindelige dokument, eller brug Fortryd alt.
+247	Anvendelse blev blokeret: editorbufferen blev ændret efter starten af redigeringstilstanden. Fortryd og opdater, før du redigerer igen.
+248	Anvendelse blev blokeret: editorens kodetabel blev ændret efter starten af redigeringstilstanden. Fortryd og åbn redigeringstilstanden igen.
+249	Anvendelse mislykkedes. Redigeringssessionen forbliver åben; kontrollér editorbufferen, før du prøver igen eller fortryder.
+250	Anvendelse blev ikke fuldført. Ingen automatisk overskrivning blev forsøgt.
+251	Registrer automatisk
+252	automatisk sikkerhed: {0}
+253	{0} — automatisk separatorregistrering er ikke pålidelig; manuelt valg kræves.
+254	Automatisk registrering
+255	Kandidatpoint
+256	{0} celler / {1} rækker (+{2} / -{3})
+257	Tegn
+258	{0} tegn / {1} editorbyte
+259	Vælg Komma, Semikolon eller Tabulator på separatorlisten ovenfor.
+260	Vælg udtrykkeligt, om den første logiske post er en overskrift
+261	Ryd
+262	Ryd det aktuelle søgefilter og sorteringen af kun visningen
+263	Kode
+264	 - {0} kolonnebetingelser ({1}), {2} sorteringsniveauer
+265	{0} — {1} × {2} kolonner — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	komma
+268	Sikkerhed
+269	Slet alle markerede stabile datarækker fra den afventende redigeringssession
+270	Slet række
+271	Slet rækker ({0})
+272	Slet den markerede stabile datarække fra den afventende redigeringssession
+273	Slet den markerede stabile datarække eller de markerede rækker fra den afventende redigeringssession
+274	Separator:
+275	Diagnostik ({0})
+276	Kassér alle afventende celleændringer, indsættelser og sletninger
+277	Dokument
+278	 — REDIGERINGSTILSTAND: {0} celler, {1} rækker, +{2} / -{3}
+279	 - Redigeringstilstand
+280	Redigeringstilstanden indeholder afventende ændringer. Brug Anvend eller Fortryd alt, før du forlader den.
+281	Redigeringstilstand er utilgængelig for den aktuelle tabel. Løs først fortolkningsfejl eller visningsbegrænsninger.
+282	Redigering kan ikke starte fra en visuel projektion med begrænset antal rækker.
+283	Redigering kan ikke starte, mens den fortolkede CSV indeholder fejl.
+284	Redigering er utilgængelig for den aktuelle tabel.
+285	{0} — tom editorbuffer; ingen CSV-poster at vise.
+286	Åbn udtrykkelig redigeringstilstand for celler og rækker
+287	Åbn udtrykkelig redigeringstilstand for celler og rækker. Anvend skriver kun til editorbufferen.
+288	Åbn udtrykkelig redigeringstilstand for celler og rækker. Den komplette redigeringsmodel oprettes kun efter anmodning.
+289	{0} fejl, {1} advarsler
+290	første række som overskrift
+291	Første række er overskrift
+292	Overskrift:
+293	Indsæt en ny række efter den markerede række, eller tilføj sidst, hvis ingen række er markeret
+294	{0} — indlæser CSV-data i baggrunden; Notepad++ reagerer fortsat.
+295	manuelt valg
+296	{0} matchende af {1} viste rækker
+297	Meddelelse
+298	{0} nyligt indsatte rækker blev fjernet fra den afventende session.
+299	Ingen diagnostik at vise.
+300	Ingen overskriftsrække
+301	ingen overskriftsrække
+302	Ingen matchende rækker.\nPrøv en anden søgetekst eller kolonne.
+303	ingen fortolkningsdiagnostik
+304	Ingen pålidelig separator kunne vælges sikkert.
+305	Intet at anvende: redigeringssessionen har ingen afventende ændringer.
+306	Fortolker og forbereder en begrænset visuel tabel i baggrunden…
+307	Afventende celleændringer og strukturelle rækkeændringer
+308	Afventende indsat række {0}; endnu ikke anvendt
+309	{0} afventende rækker
+310	Plugin er klar. Læser den aktive editorbuffer...
+311	Forbereder den komplette redigeringssession…
+312	Egenskab
+313	Læs og vis den aktuelt aktive Notepad++-editorbuffer
+314	Post
+315	Fortryd alt
+316	{0} rækker
+317	Semikolon (;)
+318	semikolon
+319	Alvorlighed
+320	Vis detaljeret fortolknings- og separatordiagnostik
+321	viser {0} af {1} rækker
+322	Øjebliksbillede
+323	Fejl i øjebliksbillede
+324	Sorteringsniveau {0}: {1}, {2}. Kun visningen.
+325	 — sorteret efter {0} {1}
+326	Logisk kildepost {0}
+327	Logisk kildepost {0}; ændret i den afventende redigeringssession
+328	{0} kilderækker er markeret til sletning, og {1} indsatte rækker er fjernet fra den afventende session.
+329	{0} kilderækker er markeret til sletning. Anvend skriver hele gruppen; Fortryd alt gendanner hver række.
+330	Status
+331	Tabulator
+332	tabulator
+333	Tabelfejl
+334	Redigeringen af den aktive celle kunne ikke bekræftes. Ret værdien, før du tilføjer en række.
+335	Redigeringen af den aktive celle kunne ikke bekræftes. Ret værdien, før du sletter rækker.
+336	Redigeringen af den aktive celle kunne ikke bekræftes. Ret værdien, før du anvender.
+337	Den nyligt indsatte række blev fjernet fra den afventende session.
+338	Kolonnen med rækkeindikatorer er ikke konfigureret.
+339	Det markerede sæt rækker er ikke længere gyldigt for denne redigeringssession. Ingen rækker blev slettet.
+340	De markerede rækker var allerede slettet. Ingen yderligere ændring blev foretaget.
+341	Kilderækken er markeret til sletning. Anvend skriver sletningen; Fortryd alt gendanner rækken.
+342	Den visuelle tabel kunne ikke oprettes. Editorens indhold blev ikke ændret.
+343	Brug pålidelig automatisk registrering, eller vælg en separator udtrykkeligt
+344	Venter på det aktive Notepad++-dokument.
+345	{0} - {1} x {2:N0} kolonner
+346	Acceptér ændringer
+347	Efter
+348	Alle dataceller
+349	Før
+350	CSV-kolonne
+351	Vælg en handling og et område, og klik derefter på Forhåndsvisning.
+352	Aktuel kolonne
+353	Find:
+354	små bogstaver
+355	Handling:
+356	Andre blanktegn vises med escape-sekvenser; længder tæller UTF-16-enheder. Lange værdier forkortes.
+357	Forhåndsvisningen kunne ikke oprettes. Kontrollér området og søgeteksten, eller vælg et mindre område (højst 250,000 celler / 16 Mi tegn).
+358	Opret først forhåndsvisningen. Acceptér ændringer opdaterer afventende redigeringer; Anvend på værktøjslinjen skriver til Notepad++.\nOverskrifter udelades, når Overskrift = første post. Ændring af store/små bogstaver er uafhængig af sprogindstillinger.
+359	Post-id
+360	Erstat tekst (bogstaveligt)
+361	Erstat med:
+362	Område:
+363	Vælg en CSV-datakolonne.
+364	Markerede celler / rækker
+365	udfyldte orange prikker markerer mellemrum. 
+366	mellemrumsindikatorer er skjulte. 
+367	{0:N0} målceller; {1:N0} ændringer i {2:N0} rækker. Viser de første 50 ændringer; 
+368	Redigeringssessionen er ændret.
+369	Forhåndsvisningen er ikke længere gyldig. Kontrollér redigeringssessionen, og opret en ny forhåndsvisning.
+370	Omdan CSV-celler
+371	Omdannede {0:N0} celler i den afventende redigeringssession. Brug Anvend til at opdatere Notepad++ eller Fortryd alt til at kassere afventende redigeringer.
+372	Fjern ydre blanktegn
+373	STORE BOGSTAVER
+374	Nulstil visning
+375	Vis mellemrum

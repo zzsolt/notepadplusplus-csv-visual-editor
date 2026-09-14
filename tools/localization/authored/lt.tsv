@@ -1,0 +1,378 @@
+# language: lt
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vaizdinis CSV redaktorius, skirtas Notepad++
+001	Apie CSV Visual Editor
+002	Kontaktai: {0}
+003	Susisiekti su kūrėju {0}
+004	Kūrėjas: {0}
+005	Kuriama versija
+006	Patinka CSV Visual Editor? Paremkite projektą.\nPažymėkite jį žvaigždute GitHub, pasidalykite atsiliepimais arba susisiekite su kūrėju, jei norite prisidėti. Ačiū!
+007	Sąsajos kalba: {0}
+008	Nepavyko atverti susietos programos. Kontaktai: {0}
+009	Projektas GitHub
+010	Versija: {0}
+011	Versija ir komponavimo numeris
+012	Veiksmas {0} užblokuotas, nes pasikeitė laukiančių pakeitimų modelis. Daliniai pakeitimai nebuvo išsaugoti.
+013	Veiksmas {0} užblokuotas: iškarpinės ir pažymėtos srities stačiakampių matmenys skiriasi.
+014	Veiksmas {0} užblokuotas: paskirties stačiakampis peržengia CSV lentelės ribas.
+015	Veiksmas {0} užblokuotas: nėra redaguojamo paskirties stačiakampio.
+016	Nukopijuota {0} × {1} CSV langelių.
+017	Kopijavimas/iškirpimas užblokuotas: pažymėtame langelyje yra tabuliacijos arba eilutės lūžio ženklas, kurio negalima vienareikšmiškai pateikti kaip paprasto skaičiuoklės teksto.
+018	Kopijuoti reikia CSV langelius, o ne trinti pažymėtas ištisas eilutes.
+019	Kopijuojant reikia vienos vientisos stačiakampės CSV duomenų langelių srities.
+020	Į iškarpinę iškirpta {0} langelių ir jie ištuštinti laukiančioje redagavimo sesijoje. „Taikyti“ įrašo ištuštinimą į Notepad++.
+021	Iškirpimas baigtas; pažymėti langeliai jau buvo tušti. Iškarpinėje yra jų pradinės reikšmės.
+022	Veiksmas {0} galimas tik redagavimo režimu.
+023	Veiksmas {0} negalimas dabartinei lentelei.
+024	Įdėjimas užblokuotas: {0} Duomenys nepakeisti.
+025	Įdėjimas baigtas; visos paskirties reikšmės jau buvo vienodos.
+026	Į laukiančią redagavimo sesiją įdėta {0} pakeistų langelių. „Taikyti“ įrašo juos į Notepad++.
+027	Veiksmui {0} reikia CSV langelių stačiakampio, o ne trinti pažymėtų ištisų eilučių.
+028	Veiksmui {0} reikia vienos vientisos stačiakampės CSV duomenų langelių srities.
+029	Veiksmo {0} paskirtys negalimos už stabilaus redagavimo režimo eilučių modelio ribų.
+030	Prieš kopijuojant nepavyko patvirtinti aktyvaus langelio pakeitimo.
+031	Nepavyko patvirtinti aktyvaus langelio pakeitimo. Pataisykite reikšmę prieš veiksmą {0}.
+032	Iškarpinėje nėra langelių paprasto teksto pavidalu.
+033	Windows iškarpinė laikinai nepasiekiama. Duomenys nepakeisti.
+034	Kopijuoti pažymėtą CSV langelių stačiakampį į Windows iškarpinę (Ctrl+C)
+035	Kopijuoti pažymėtus CSV langelius ir ištuštinti juos laukiančioje redagavimo sesijoje (Ctrl+X)
+036	Įdėti skaičiuoklės langelius į pažymėtą CSV langelį arba stačiakampį (Ctrl+V)
+037	Peržiūrėti teksto keitimą, kraštinių tarpų ženklų šalinimą arba raidžių registro keitimą laukiančiuose CSV pakeitimuose
+038	Pažymėti dabartinį CSV langelį arba eilutę Notepad++ šaltinio buferyje
+039	Šaltinis
+040	Transformuoti
+041	Apie
+042	Taikyti
+043	Didėjančiai
+044	Atsisakyti
+045	Užverti
+046	Stulpelis
+047	Kopijuoti
+048	Iškirpti
+049	Mažėjančiai
+050	Redaguoti
+051	Baigti redagavimą
+052	Skirti didžiąsias ir mažąsias raides
+053	Skaičius
+054	Pradinė tvarka
+055	Įdėti
+056	Peržiūra
+057	Atnaujinti
+058	Eilutės
+059	Lentelė
+060	Tekstas
+061	Reikšmė
+062	Stulpelio suvestinė: kiekiai, skirtingos reikšmės, skaičių diapazonas ir dažnos reikšmės dabartiniame rodinyje.
+063	Stulpelio suvestinei reikia paruoštos tik skaitymui skirtos lentelės. Pirmiausia baikite redagavimo režimą.
+064	Filtruoti ir rikiuoti: derinti stulpelių taisykles ir teksto/skaičių rikiavimo lygius. Keičiasi tik rodinys; CSV nepakinta.
+065	Filtruoti ir rikiuoti: derinti stulpelių taisykles ir iki trijų teksto/skaičių rikiavimo lygių. Keičiasi tik rodinys.
+066	Filtruoti ir rikiuoti: {0} sąlygų, {1} rikiavimo lygių. Rodinio atkūrimas pašalina visas taisykles.
+067	Filtravimui ir rikiavimui reikia paruoštos tik skaitymui skirtos lentelės. Pirmiausia baikite redagavimo režimą.
+068	Diagnostika (0)
+069	0 pakeitimų
+070	Pridėti sąlygą
+071	Pridėti rikiavimo lygį
+072	Taikyti rodinį
+073	Raidžių registras
+074	Teksto palyginimas, skiriant didžiąsias ir mažąsias raides. Tarpai reikšmėse vertinami pažodžiui.
+075	Patikrinkite taisykles: {0}
+076	Sąlyga
+077	{0} / 8 sąlygų; {1} / 3 rikiavimo lygių. Atitinkančias eilutes patikrinkite peržiūroje.
+078	Turi
+079	Neturi
+080	Nelygu
+081	Tuščia = nulis ženklų. Tik tarpų ženklai = netuščia tarpų/tabuliacijų/eilučių lūžių seka.\nSkaičiuose naudojamas dešimtainis taškas (-12.5), be grupavimo ar eksponentų; tikslumas turi būti išsaugotas.
+082	Baigiasi
+083	Lygu
+084	Filtro reikšmė
+085	Filtrai
+086	Tuščia
+087	Netuščia
+088	Ne vien tarpų ženklai
+089	Vien tarpų ženklai
+090	Pažodinis tekstas, įskaitant tarpus. Skaitinės taisyklės reikalauja tikslaus dešimtainio skaičiaus su tašku.
+091	Tenkinti VISAS sąlygas
+092	Tenkinti BENT VIENĄ sąlygą
+093	Skaičius =
+094	Skaičius >
+095	Skaičius >=
+096	Skaičius <
+097	Skaičius <=
+098	Skaičius (dešimtainis)
+099	Peržiūra: {0:N0} iš {1:N0} rodomų eilučių. CSV nepakeistas.
+100	Pašalinti sąlygą
+101	Pašalinti rikiavimo lygį
+102	Atkurti taisykles
+103	Taisyklės atsižvelgia ir į dabartinę paiešką. Atsisakius išlieka aktyvus rodinys.
+104	Rikiavimas
+105	Prasideda
+106	Tekstas: ženklų kodų tvarka, neskiriant didžiųjų ir mažųjų raidžių. Skaičius: tikslūs dešimtainiai skaičiai; netinkamos/tuščios reikšmės gale.\nVienodi raktai išlaiko šaltinio tvarką. Pašalinkite visus lygius, kad ją atkurtumėte.
+107	Projekcija apribota; nerodomos eilutės neįtraukiamos. 
+108	Filtruoti ir rikiuoti
+109	Pirmas lygis turi pirmenybę; paskesni sprendžia lygių reikšmių atvejus. Daugiausia 3.
+110	Reikšmė (pažodinė, įskaitant tarpus)
+111	Tik rodinys — CSV reikšmės ir šaltinio tvarka lieka nepakitusios. {0:N0} rodomų eilučių.\n
+112	Taikymas užblokuotas, nes koduotė {0} neturi aiškiai palaikomo kodavimo profilio. Redaktoriaus turinys nepakeistas.
+113	Taikymas užblokuotas, nes griežta koduotės {0} patikra neužtikrino tikslaus keitimo pirmyn ir atgal. Redaktoriaus turinys nepakeistas.
+114	Taikymas užblokuotas, nes laukiančio pakeitimo negalima tiksliai pateikti koduote {0}. Pakaitos ženklai nenaudoti, redaktoriaus turinys nepakeistas.
+115	Taikymas koduotei {0} dar neįjungtas. Redaktoriaus turinys nepakeistas. Rašyti galima tik UTF-8 (65001) ir Windows-1250 (1250), patikrinus, kad nėra praradimų. Pasirinkite „Atšaukti viską“ arba Notepad++ konvertuokite dokumentą į UTF-8 ir iš naujo atverkite redagavimo režimą.
+116	Atnaujinimas redagavimo režimu išjungtas. Pirmiausia taikykite arba atšaukite visus laukiančius pakeitimus.
+117	Scintilla kodų lentelė {0}
+118	Aktyvus dokumentas užima {0:N0} baitų. Dabartinė saugi momentinės kopijos riba yra {1:N0} baitų.
+119	Nepavyko perskaityti aktyvaus Notepad++ dokumento. Redaktoriaus turinys nepakeistas.
+120	Taikymo rezultatas nėra dėl koduotės užblokuota būsena.
+121	Lentelės kūrimas fone baigėsi be rezultato.
+122	CSV pakeitimai pritaikyti, tačiau nepavyko atkurti ankstesnės žymeklio vietos ar pažymėjimo. Visą dokumento pakeitimą vis dar galima atšaukti vienu veiksmu.
+123	dabartinė redaktoriaus kodų lentelė
+124	Nepavyko paversti redaktoriaus buferio vaizdine lentele. Aiškiai pasirinkite skirtuką arba atnaujinkite pataisę dokumentą.
+125	Lentelės kūrimas grąžino nepilną rezultatą.
+126	&Apie
+127	&Išvalyti paiešką
+128	&CSV
+129	&Skirtukas
+130	&Redaguoti
+131	Esc paieškos lauke
+132	&Rasti lentelėje
+133	&Antraštė
+134	&Kitas atitinkantis langelis
+135	&Ankstesnis atitinkantis langelis
+136	Atkurti rodinį: išvalyti paiešką, stulpelių sąlygas ir visą rikiavimą.
+137	&Paieška
+138	Paieškos &stulpelis
+139	Rodyti tarpus: maži užpildyti oranžiniai taškai. Tik vaizdavimas; CSV reikšmės nesikeičia.
+140	Rodyti &lentelę
+141	&Rikiuoti pagal
+142	&Lentelė
+143	&Rodinys
+144	Filtro reikšmėje gali būti ne daugiau kaip 4,096 ženklų.
+145	VISOS
+146	Pradinė baitų tvarkos žymė praleista pirmajame lauke.
+147	BENT VIENA
+148	Kabutė aptikta lauke, neapgaubtame kabutėmis.
+149	Iškarpinės eilutės turi sudaryti vieną stačiakampę langelių matricą.
+150	Diagnostikos kodas: {0}.
+151	Kiekvienas rikiavimo lygis turi naudoti skirtingą stulpelį.
+152	Klaida
+153	aukštas
+154	Informacija
+155	žemas
+156	vidutinis
+157	Nė vienas palaikomas skirtukas nesudarė pakankamai patikimos kelių laukų struktūros.
+158	nėra
+159	Vienai vaizdinei eilutei reikėtų {0:N0} langelių, o tai viršija dabartinę bendrą {1:N0} ribą. Stulpeliai nepaslėpti.
+160	Įraše yra {0} laukų; pagal dažniausią kiekį imtyje tikėtasi {1}.
+161	Tarpų: {0}; pradžioje: {1}; pabaigoje: {2}. Ilgis: {3} UTF-16 vienetų.\nOranžiniai taškai žymi tikrus tarpus. Vaizdavimo atstumas padidintas dėl skaitomumo; CSV ženklai nesikeičia. Tik tarpus turinčiame langelyje pradžios ir pabaigos skaičiavimai persidengia.
+162	Iškarpinės langelių matrica viršija saugią įdėjimo ribą.
+163	Iškarpinėje yra nepalaikomas valdymo ženklas.
+164	Iškarpinėje yra daugiau stulpelių, nei redaktorius gali saugiai įdėti.
+165	Iškarpinėje yra daugiau eilučių, nei redaktorius gali saugiai įdėti.
+166	Iškarpinės tekstas viršija saugią 16 Mi UTF-16 ženklų vienetų ribą.
+167	Paskutinis kabutėmis apgaubtas laukas nebuvo užvertas iki teksto pabaigos.
+168	Laukų skaičius skiriasi nuo kitų įrašų.
+169	Veiksmo nepavyko užbaigti. Patikrinkite dokumentą, pažymėtas reikšmes ir dydžio ribas.
+170	Išanalizuotame dokumente yra {0:N0} stulpelių, o tai viršija dabartinę vaizdinės lentelės {1:N0} ribą. Stulpeliai nepaslėpti.
+171	Siūlomo skirtuko patikimumas žemas. Patikrinkite skirtuko nuostatą.
+172	Dviejų skirtukų kandidatų įverčiai panašūs. Patikrinkite skirtuko nuostatą.
+173	Po užveriančios kabutės yra netikėtų ženklų.
+174	nežinomas
+175	Naudokite tikslų dešimtainį skaičių su tašku, pvz., -12.5. Grupavimas, eksponentai ir suapvalintos reikšmės nepalaikomi.
+176	Naudokite ne daugiau kaip aštuonias filtro sąlygas, kurios nėra null.
+177	Naudokite ne daugiau kaip tris rikiavimo lygius, kurie nėra null.
+178	Rodinio taisyklės nurodo stulpelį už dabartinės lentelės ribų.
+179	Įspėjimas
+180	Stulpelio suvestinė
+181	Filtruoti ir rikiuoti
+182	Atverti vaizdinę lentelę
+183	Atnaujinti lentelę
+184	nauja:{0}
+185	nauja:{0} *
+186	Pažymėti
+187	Pažymėti ištisas eilutes trynimui
+188	Šaltinio loginis įrašas arba laukianti struktūrinė eilutė
+189	Nepavyko nustatyti eilučių indikatoriaus stulpelio.
+190	Eilutė turi priklausyti DataGridView.
+191	Visi stulpeliai
+192	{0:N0} / {1:N0} langelių
+193	{0:N0} langelių
+194	Išvalyti paiešką
+195	Išvalyti paiešką (Esc). Išlaikyti paieškos stulpelį ir rikiavimą.
+196	Filtruoja rodomas eilutes. Enter: kitas atitinkantis langelis. Shift+Enter: ankstesnis. Escape: išvalyti.
+197	Kitas atitinkantis langelis
+198	Kitas atitinkantis langelis (F3 / Enter)
+199	Atitikmenų nėra
+200	Atitinkančių eilučių nėra.\nPakeiskite paiešką arba naudokite Rodinys > Filtruoti ir rikiuoti / Atkurti rodinį.
+201	Ankstesnis atitinkantis langelis
+202	Ankstesnis atitinkantis langelis (Shift+F3 / Shift+Enter)
+203	Ieškoti visuose duomenų stulpeliuose arba pasirinkti vieną stulpelį.
+204	Paieškos stulpelis
+205	Ieškoti rodomose CSV eilutėse (Ctrl+F). Reikšmės ir šaltinio tekstas nesikeičia.
+206	Ieškoti lentelėje...
+207	Ieškoti lentelėje
+208	Paieškos rezultatai
+209	Ieškoma...
+210	Perėjimas į šaltinį užblokuotas: aktyvus kitas Notepad++ dokumentas. Grįžkite prie rodomo CSV arba atnaujinkite lentelę.
+211	Perėjimas į šaltinį užblokuotas, nes išsaugotas analizės rezultatas nebeatitinka nekintamos šaltinio momentinės kopijos. Pirmiausia atnaujinkite lentelę.
+212	Perėjimas į šaltinį užblokuotas: griežtai užkoduotas ilgis neatitinka Scintilla nurodyto dokumento ilgio.
+213	Perėjimas į šaltinį užblokuotas: aktyvaus redaktoriaus turinys pasikeitė po lentelės parodymo. Pirmiausia atnaujinkite lentelę.
+214	Perėjimas į šaltinį užblokuotas: dabartinė Scintilla kodų lentelė neturi aiškaus baitų pozicijų profilio.
+215	Perėjimas į šaltinį užblokuotas: redaktoriaus kodų lentelė pasikeitė po lentelės parodymo. Pirmiausia atnaujinkite lentelę.
+216	Perėjimas į šaltinį užblokuotas: pažymėtas projektuotas langelis neturi neapdoroto šaltinio lauko.
+217	Perėjimas į šaltinį užblokuotas: šaltinio ženklų intervalo nepavyko be praradimų susieti su Scintilla baitais.
+218	Perėjimas į šaltinį užblokuotas: šaltinio loginio įrašo nėra išsaugotame analizės rezultate.
+219	Perėjimas į šaltinį nepavyko: aktyvaus Notepad++ buferio nepavyko perskaityti. Dokumento turinys nepakeistas.
+220	Perėjimas į šaltinį nepavyko perkeliant Scintilla pažymėjimą. Dokumento turinys nepakeistas.
+221	Perėjimas į šaltinį negalimas, kol dabartinė vaizdinė lentelė neturi pilno šaltinio pagrindo. Pirmiausia atnaujinkite lentelę.
+222	Perėjimui į šaltinį reikia dabartinės CSV eilutės arba langelio.
+223	Perėjimas į šaltinį neužbaigtas. Dokumento turinys nepakeistas.
+224	Notepad++ pažymėtas šaltinio įrašas {0}, stulpelis {1}.
+225	Notepad++ pažymėtas šaltinio įrašas {0}.
+226	Dabartinė vaizdinė eilutė nesuteikia stabilaus šaltinio įrašo tapatumo.
+227	Ši laukianti įterpta eilutė neturi šaltinio vietos, kol nebaigtas taikymas.
+228	Dabartinis rodinys: {0:N0} iš {1:N0} rodomų eilučių.
+229	Skirtingos reikšmės nustatomos pagal tikslų tekstą, skiriant didžiąsias ir mažąsias raides, įskaitant tuščias reikšmes.\nPasikartojančios eilutės = eilutės minus skirtingos reikšmės. Skaičių diapazonas naudoja tikslias dešimtaines reikšmes su tašku.
+230	Tuščia
+231	Tipas
+232	Dažniausios reikšmės (iki 20)
+233	Nepasiekiama
+234	Skaitinis minimumas: {0}     Maksimumas: {1}\nIlgiausia reikšmė: {2:N0} UTF-16 vienetų. {3:N0} reikšmių pasitaiko daugiau nei kartą.
+235	 Apribota projekcija; tai NĖRA visas failas.
+236	Eilučių: {0:N0}     Tuščių: {1:N0}     Tik tarpų ženklai: {2:N0}\nSkirtingų: {3:N0}     Pasikartojančių eilučių: {4:N0}     Skaitinių: {5:N0}
+237	Stulpelio suvestinė
+238	Tarpų ženklai
+239	Į laukiančią redagavimo sesiją pridėta nauja eilutė. „Taikyti“ įrašo ją į redaktoriaus buferį; „Atšaukti viską“ ją atmeta.
+240	Šaltinio eilutė nepateikė savo šaltinio įrašo indekso.
+241	Veiksmas
+242	Aktyvaus dokumento momentinės kopijos sukurti nepavyko. Redaktoriaus turinys nepakeistas.
+243	Pridėti eilutę
+244	Visi laukiantys langelių ir eilučių pakeitimai atšaukti. Notepad++ redaktoriaus buferis nepakeistas.
+245	Taikyti visus langelių ir eilučių pakeitimus aktyviame redaktoriuje kaip vieną atšaukiamą veiksmą
+246	Taikymas užblokuotas: aktyvus kitas Notepad++ dokumentas. Grįžkite prie pradinio dokumento arba naudokite „Atšaukti viską“.
+247	Taikymas užblokuotas: redaktoriaus buferis pasikeitė pradėjus redagavimo režimą. Prieš vėl redaguodami atšaukite pakeitimus ir atnaujinkite.
+248	Taikymas užblokuotas: redaktoriaus kodų lentelė pasikeitė pradėjus redagavimo režimą. Atšaukite pakeitimus ir iš naujo atverkite redagavimo režimą.
+249	Taikymas nepavyko. Redagavimo sesija lieka atverta; prieš bandydami dar kartą ar atšaukdami patikrinkite redaktoriaus buferį.
+250	Taikymas nebaigtas. Nebandyta automatiškai perrašyti.
+251	Aptikti automatiškai
+252	automatinis patikimumas {0}
+253	{0} — automatinis skirtuko aptikimas nepatikimas; reikia pasirinkti rankiniu būdu.
+254	Automatinis aptikimas
+255	Kandidatų įverčiai
+256	{0} langelių / {1} eilučių (+{2} / -{3})
+257	Ženklas
+258	{0} ženklų / {1} redaktoriaus baitų
+259	Aukščiau esančiame skirtukų sąraše pasirinkite Kablelis, Kabliataškis arba Tabuliacija.
+260	Aiškiai pasirinkti, ar pirmas loginis įrašas yra antraštė
+261	Išvalyti
+262	Išvalyti dabartinį paieškos filtrą ir tik rodinio rikiavimą
+263	Kodas
+264	 - {0} stulpelių sąlygų ({1}), {2} rikiavimo lygių
+265	{0} — {1} × {2} stulpelių — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Kablelis (,)
+267	kablelis
+268	Patikimumas
+269	Ištrinti visas pažymėtas stabilias duomenų eilutes iš laukiančios redagavimo sesijos
+270	Ištrinti eilutę
+271	Ištrinti eilutes ({0})
+272	Ištrinti pažymėtą stabilią duomenų eilutę iš laukiančios redagavimo sesijos
+273	Ištrinti pažymėtą stabilią duomenų eilutę arba eilutes iš laukiančios redagavimo sesijos
+274	Skirtukas:
+275	Diagnostika ({0})
+276	Atmesti visus laukiančius langelių pakeitimus, įterpimus ir trynimus
+277	Dokumentas
+278	 — REDAGAVIMO REŽIMAS: {0} langelių, {1} eilučių, +{2} / -{3}
+279	 - Redagavimo režimas
+280	Redagavimo režime yra laukiančių pakeitimų. Prieš išeidami naudokite „Taikyti“ arba „Atšaukti viską“.
+281	Redagavimo režimas dabartinei lentelei negalimas. Pirmiausia išspręskite analizės klaidas arba rodymo apribojimus.
+282	Redaguoti negalima pradėti iš vaizdinės projekcijos su ribotu eilučių skaičiumi.
+283	Redaguoti negalima pradėti, kol išanalizuotame CSV yra klaidų.
+284	Redagavimas dabartinei lentelei negalimas.
+285	{0} — tuščias redaktoriaus buferis; nėra rodytinų CSV įrašų.
+286	Aiškiai įjungti langelių ir eilučių redagavimo režimą
+287	Aiškiai įjungti langelių ir eilučių redagavimo režimą. „Taikyti“ rašo tik į redaktoriaus buferį.
+288	Aiškiai įjungti langelių ir eilučių redagavimo režimą. Pilnas redagavimo modelis sukuriamas tik paprašius.
+289	{0} klaidų, {1} įspėjimų
+290	pirma eilutė kaip antraštė
+291	Pirma eilutė yra antraštė
+292	Antraštė:
+293	Įterpti naują eilutę po pažymėtos arba pridėti gale, jei nepažymėta jokia eilutė
+294	{0} — CSV duomenys įkeliami fone; Notepad++ ir toliau reaguoja.
+295	rankinis pasirinkimas
+296	{0} atitinkančių iš {1} rodomų eilučių
+297	Pranešimas
+298	Iš laukiančios sesijos pašalinta {0} naujai įterptų eilučių.
+299	Nėra rodytinų diagnostikos pranešimų.
+300	Nėra antraštės eilutės
+301	nėra antraštės eilutės
+302	Atitinkančių eilučių nėra.\nPabandykite kitą paieškos tekstą arba stulpelį.
+303	nėra analizės diagnostikos
+304	Nepavyko saugiai pasirinkti patikimo skirtuko.
+305	Nėra ką taikyti: redagavimo sesijoje nėra laukiančių pakeitimų.
+306	Apribota vaizdinė lentelė analizuojama ir ruošiama fone…
+307	Laukiantys langelių ir eilučių struktūros pakeitimai
+308	Laukianti įterpta eilutė {0}; dar nepritaikyta
+309	{0} laukiančių eilučių
+310	Papildinys paruoštas. Skaitomas aktyvus redaktoriaus buferis...
+311	Ruošiama pilna redagavimo sesija…
+312	Savybė
+313	Perskaityti ir parodyti šiuo metu aktyvų Notepad++ redaktoriaus buferį
+314	Įrašas
+315	Atšaukti viską
+316	{0} eilučių
+317	Kabliataškis (;)
+318	kabliataškis
+319	Svarba
+320	Rodyti išsamią analizės ir skirtukų diagnostiką
+321	rodoma {0} iš {1} eilučių
+322	Momentinė kopija
+323	Momentinės kopijos klaida
+324	Rikiavimo lygis {0}: {1}, {2}. Tik rodinys.
+325	 — surikiuota pagal {0} {1}
+326	Šaltinio loginis įrašas {0}
+327	Šaltinio loginis įrašas {0}; pakeistas laukiančioje redagavimo sesijoje
+328	{0} šaltinio eilučių pažymėta trynimui ir {1} įterptų eilučių pašalinta iš laukiančios sesijos.
+329	{0} šaltinio eilučių pažymėta trynimui. „Taikyti“ įrašo visą grupę; „Atšaukti viską“ atkuria kiekvieną eilutę.
+330	Būsena
+331	Tabuliacija
+332	tabuliacija
+333	Lentelės klaida
+334	Nepavyko patvirtinti aktyvaus langelio pakeitimo. Pataisykite reikšmę prieš pridėdami eilutę.
+335	Nepavyko patvirtinti aktyvaus langelio pakeitimo. Pataisykite reikšmę prieš trindami eilutes.
+336	Nepavyko patvirtinti aktyvaus langelio pakeitimo. Pataisykite reikšmę prieš taikydami.
+337	Naujai įterpta eilutė pašalinta iš laukiančios sesijos.
+338	Eilučių indikatoriaus stulpelis nesukonfigūruotas.
+339	Pažymėtas eilučių rinkinys šiai redagavimo sesijai nebegalioja. Eilutės neištrintos.
+340	Pažymėtos eilutės jau buvo ištrintos. Papildomų pakeitimų neatlikta.
+341	Šaltinio eilutė pažymėta trynimui. „Taikyti“ įrašo trynimą; „Atšaukti viską“ atkuria eilutę.
+342	Nepavyko sukurti vaizdinės lentelės. Redaktoriaus turinys nepakeistas.
+343	Naudoti patikimą automatinį aptikimą arba aiškiai pasirinkti skirtuką
+344	Laukiama aktyvaus Notepad++ dokumento.
+345	{0} - {1} x {2:N0} stulpelių
+346	Priimti pakeitimus
+347	Po
+348	Visi duomenų langeliai
+349	Prieš
+350	CSV stulpelis
+351	Pasirinkite veiksmą ir sritį, tada spustelėkite „Peržiūra“.
+352	Dabartinis stulpelis
+353	Rasti:
+354	mažosios raidės
+355	Veiksmas:
+356	Kiti tarpų ženklai rodomi kaitos sekomis; ilgiai skaičiuojami UTF-16 vienetais. Ilgos reikšmės sutrumpinamos.
+357	Nepavyko sukurti peržiūros. Patikrinkite sritį ir ieškomą tekstą arba pasirinkite mažesnę sritį (ne daugiau kaip 250,000 langelių / 16 Mi ženklų).
+358	Pirmiausia sukurkite peržiūrą. „Priimti pakeitimus“ atnaujina laukiančius pakeitimus; įrankių juostos „Taikyti“ rašo į Notepad++.\nAntraštės praleidžiamos, kai Antraštė = pirmas įrašas. Raidžių registro keitimas nepriklauso nuo regioninių nuostatų.
+359	Įrašo ID
+360	Pakeisti tekstą (pažodžiui)
+361	Pakeisti į:
+362	Sritis:
+363	Pažymėkite CSV duomenų stulpelį.
+364	Pažymėti langeliai / eilutės
+365	užpildyti oranžiniai taškai žymi tarpus. 
+366	tarpų indikatoriai paslėpti. 
+367	{0:N0} paskirties langelių; {1:N0} pakeitimų {2:N0} eilučių. Rodomi pirmi 50 pakeitimų; 
+368	Redagavimo sesija pasikeitė.
+369	Peržiūra nebegalioja. Patikrinkite redagavimo sesiją ir sukurkite naują peržiūrą.
+370	Transformuoti CSV langelius
+371	Laukiančioje redagavimo sesijoje transformuota {0:N0} langelių. Naudokite „Taikyti“ Notepad++ atnaujinti arba „Atšaukti viską“ laukiantiems pakeitimams atmesti.
+372	Pašalinti kraštinius tarpų ženklus
+373	DIDŽIOSIOS RAIDĖS
+374	Atkurti rodinį
+375	Rodyti tarpus

@@ -1,0 +1,378 @@
+# language: fi
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Visuaalinen CSV-muokkain Notepad++:lle
+001	Tietoja CSV Visual Editorista
+002	Yhteystieto: {0}
+003	Ota yhteyttä kehittäjään {0}
+004	Kehittäjä: {0}
+005	Kehitysversio
+006	Pidätkö CSV Visual Editorista? Tue projektia.\nAnna sille tähti GitHubissa, lähetä palautetta tai ota yhteyttä kehittäjään osallistuaksesi. Kiitos!
+007	Käyttöliittymän kieli: {0}
+008	Liitettyä sovellusta ei voitu avata. Yhteystieto: {0}
+009	Projekti GitHubissa
+010	Versio: {0}
+011	Versio ja koonti
+012	{0} estettiin, koska odottavien muokkausten malli muuttui. Osittaisia muutoksia ei säilytetty.
+013	{0} estettiin: leikepöydän ja valinnan suorakulmioiden mitat eroavat.
+014	{0} estettiin: kohdesuorakulmio ulottuu CSV-taulukon ulkopuolelle.
+015	{0} estettiin: muokattavaa kohdesuorakulmiota ei ole.
+016	Kopioitiin {0} × {1} CSV-solua.
+017	Kopiointi/leikkaus estettiin: valittu solu sisältää sarkaimen tai rivinvaihdon, jota ei voida esittää yksiselitteisesti tavallisena laskentataulukkotekstinä.
+018	Kopiointi vaatii CSV-soluja, ei poistettaviksi valittuja kokonaisia rivejä.
+019	Kopiointi vaatii yhden yhtenäisen suorakulmaisen CSV-datasoluvalinnan.
+020	Leikattiin {0} solua leikepöydälle ja tyhjennettiin ne odottavassa muokkausistunnossa. Toteuta kirjoittaa tyhjennyksen Notepad++:aan.
+021	Leikkaus valmis; valitut solut olivat jo tyhjiä. Leikepöytä sisältää niiden alkuperäiset arvot.
+022	{0} on käytettävissä vain muokkaustilassa.
+023	{0} ei ole käytettävissä nykyisessä taulukossa.
+024	Liittäminen estettiin: {0} Tietoja ei muutettu.
+025	Liittäminen valmis; kaikki kohdearvot olivat jo samoja.
+026	Liitettiin {0} muuttunutta solua odottavaan muokkausistuntoon. Toteuta kirjoittaa ne Notepad++:aan.
+027	{0} vaatii CSV-solujen suorakulmion, ei poistettaviksi valittuja kokonaisia rivejä.
+028	{0} vaatii yhden yhtenäisen suorakulmaisen CSV-datasoluvalinnan.
+029	Toiminnon {0} kohteet eivät ole käytettävissä muokkaustilan vakaan rivimallin ulkopuolella.
+030	Aktiivisen solun muokkausta ei voitu vahvistaa ennen kopiointia.
+031	Aktiivisen solun muokkausta ei voitu vahvistaa. Korjaa arvo ennen toimintoa {0}.
+032	Leikepöytä ei sisällä soluja pelkkänä tekstinä.
+033	Windowsin leikepöytä ei ole tilapäisesti käytettävissä. Tietoja ei muutettu.
+034	Kopioi valittu CSV-solusuorakulmio Windowsin leikepöydälle (Ctrl+C)
+035	Kopioi valitut CSV-solut ja tyhjennä ne odottavassa muokkausistunnossa (Ctrl+X)
+036	Liitä laskentataulukon solut valittuun CSV-soluun tai suorakulmioon (Ctrl+V)
+037	Esikatsele tekstin korvaamista, reunojen tyhjämerkkien poistoa tai kirjainkoon muuttamista odottavissa CSV-muokkauksissa
+038	Valitse nykyinen CSV-solu tai rivi Notepad++:n lähdepuskurista
+039	Lähde
+040	Muunna
+041	Tietoja
+042	Toteuta
+043	Nouseva
+044	Peruuta
+045	Sulje
+046	Sarake
+047	Kopioi
+048	Leikkaa
+049	Laskeva
+050	Muokkaa
+051	Lopeta muokkaus
+052	Erota kirjainkoko
+053	Luku
+054	Alkuperäinen järjestys
+055	Liitä
+056	Esikatsele
+057	Päivitä
+058	Rivit
+059	Taulukko
+060	Teksti
+061	Arvo
+062	Sarakkeen yhteenveto: lukumäärät, erilliset arvot, numeerinen alue ja yleiset arvot nykyisessä näkymässä.
+063	Sarakkeen yhteenveto vaatii valmiin vain luku -taulukon. Lopeta ensin muokkaustila.
+064	Suodata ja lajittele: yhdistä sarakesääntöjä ja teksti-/lukulajittelun tasoja. Vain näkymä muuttuu; CSV säilyy ennallaan.
+065	Suodata ja lajittele: yhdistä sarakesääntöjä ja enintään kolme teksti-/lukulajittelun tasoa. Vain näkymä muuttuu.
+066	Suodata ja lajittele: {0} ehtoa, {1} lajittelutasoa. Palauta näkymä poistaa kaikki säännöt.
+067	Suodatus ja lajittelu vaativat valmiin vain luku -taulukon. Lopeta ensin muokkaustila.
+068	Diagnostiikka (0)
+069	0 muutosta
+070	Lisää ehto
+071	Lisää lajittelutaso
+072	Ota näkymä käyttöön
+073	Kirjainkoko
+074	Kirjainkoon erottava tekstivertailu. Arvojen välilyönnit käsitellään kirjaimellisesti.
+075	Tarkista säännöt: {0}
+076	Ehto
+077	{0} / 8 ehtoa; {1} / 3 lajittelutasoa. Tarkista vastaavat rivit esikatselulla.
+078	Sisältää
+079	Ei sisällä
+080	Ei ole yhtä suuri kuin
+081	Tyhjä = nolla merkkiä. Vain tyhjämerkkejä = ei-tyhjä jono välilyöntejä/sarkaimia/rivinvaihtoja.\nLuvuissa käytetään desimaalipistettä (-12.5), ei ryhmittelyä tai eksponentteja; tarkkuuden on säilyttävä täsmällisenä.
+082	Päättyy tekstiin
+083	On yhtä suuri kuin
+084	Suodattimen arvo
+085	Suodattimet
+086	On tyhjä
+087	Ei ole tyhjä
+088	Ei koostu vain tyhjämerkeistä
+089	Koostuu vain tyhjämerkeistä
+090	Kirjaimellinen teksti, välilyönnit mukaan lukien. Numeeriset säännöt vaativat täsmällisen desimaaliluvun pisteellä.
+091	Täytä KAIKKI ehdot
+092	Täytä VÄHINTÄÄN YKSI ehto
+093	Luku =
+094	Luku >
+095	Luku >=
+096	Luku <
+097	Luku <=
+098	Luku (desimaalinen)
+099	Esikatselu: {0:N0} / {1:N0} näytettävää riviä. CSV ei muutu.
+100	Poista ehto
+101	Poista lajittelutaso
+102	Palauta säännöt
+103	Säännöt huomioivat myös nykyisen haun. Peruuttaminen säilyttää aktiivisen näkymän.
+104	Lajittelu
+105	Alkaa tekstillä
+106	Teksti: merkkikoodijärjestys kirjainkokoa erottelematta. Luku: täsmälliset desimaaliluvut; virheelliset/tyhjät arvot viimeisinä.\nSamat avaimet säilyttävät lähdejärjestyksen. Poista kaikki tasot palauttaaksesi lähdejärjestyksen.
+107	Projektio on rajattu; näyttämättömät rivit eivät ole mukana. 
+108	Suodata ja lajittele
+109	Ylin taso on ensisijainen; seuraavat ratkaisevat tasatilanteet. Enintään 3.
+110	Arvo (kirjaimellinen, välilyönnit mukaan lukien)
+111	Vain näkymä — CSV-arvot ja lähdejärjestys eivät muutu. {0:N0} näytettävää riviä.\n
+112	Toteutus estettiin, koska koodauksella {0} ei ole nimenomaisesti tuettua koodausprofiilia. Muokkaimen sisältöä ei muutettu.
+113	Toteutus estettiin, koska koodauksen {0} tiukka tarkistus ei tuottanut täsmällistä edestakaista muunnosta. Muokkaimen sisältöä ei muutettu.
+114	Toteutus estettiin, koska odottavaa korvausta ei voi esittää täsmällisesti koodauksessa {0}. Korvaavia merkkejä ei käytetty eikä muokkaimen sisältöä muutettu.
+115	Toteutus ei ole vielä käytössä koodaukselle {0}. Muokkaimen sisältöä ei muutettu. Kirjoitus on käytössä vain koodauksille UTF-8 (65001) ja Windows-1250 (1250) häviöttömän tarkistuksen jälkeen. Valitse Peru kaikki tai muunna asiakirja UTF-8-muotoon Notepad++:ssa ja avaa muokkaustila uudelleen.
+116	Päivitys on pois käytöstä muokkaustilassa. Toteuta tai peru ensin kaikki odottavat muutokset.
+117	Scintillan koodisivu {0}
+118	Aktiivinen asiakirja on {0:N0} tavua. Tilannevedoksen nykyinen turvallinen raja on {1:N0} tavua.
+119	Aktiivista Notepad++-asiakirjaa ei voitu lukea. Muokkaimen sisältöä ei muutettu.
+120	Toteutuksen tulos ei ole koodauksen estämä tila.
+121	Taulukon muodostaminen taustalla päättyi ilman tulosta.
+122	CSV-muutokset toteutettiin, mutta aiempaa kohdistimen sijaintia tai valintaa ei voitu palauttaa. Koko asiakirjamuutoksen voi edelleen kumota yhdellä toiminnolla.
+123	muokkaimen nykyinen koodisivu
+124	Muokkaimen puskuria ei voitu muuntaa visuaaliseksi taulukoksi. Valitse erotin nimenomaisesti tai päivitä asiakirjan korjaamisen jälkeen.
+125	Taulukon muodostaminen palautti puutteellisen tuloksen.
+126	&Tietoja
+127	&Tyhjennä haku
+128	&CSV
+129	&Erotin
+130	&Muokkaa
+131	Esc hakukentässä
+132	&Etsi taulukosta
+133	&Otsikko
+134	&Seuraava vastaava solu
+135	&Edellinen vastaava solu
+136	Palauta näkymä: tyhjennä haku, sarake-ehdot ja kaikki lajittelut.
+137	&Haku
+138	&Hakusarake
+139	Näytä välilyönnit: pienet täytetyt oranssit pisteet. Vain esitystapa; CSV-arvot eivät muutu.
+140	Näytä &taulukko
+141	&Lajitteluperuste
+142	&Taulukko
+143	&Näytä
+144	Suodattimen arvo saa sisältää enintään 4,096 merkkiä.
+145	KAIKKI
+146	Alussa oleva tavujärjestysmerkki jätettiin pois ensimmäisestä kentästä.
+147	VÄHINTÄÄN YKSI
+148	Lainausmerkki esiintyi kentässä, jota ei ole ympäröity lainausmerkeillä.
+149	Leikepöydän rivien on muodostettava yksi suorakulmainen solumatriisi.
+150	Diagnostiikkakoodi: {0}.
+151	Kunkin lajittelutason on käytettävä eri saraketta.
+152	Virhe
+153	korkea
+154	Tieto
+155	matala
+156	keskitaso
+157	Mikään tuettu erotin ei tuottanut riittävän luotettavaa usean kentän rakennetta.
+158	ei mikään
+159	Yksi visuaalinen rivi vaatisi {0:N0} solua, mikä ylittää nykyisen {1:N0} solun kokonaisrajan. Sarakkeita ei piilotettu.
+160	Tietueessa on {0} kenttää; otoksen yleisimmän kenttämäärän perusteella odotettiin {1} kenttää.
+161	Välilyönnit: {0}; alussa: {1}; lopussa: {2}. Pituus: {3} UTF-16-yksikköä.\nOranssit pisteet osoittavat todelliset välilyönnit. Näyttöväliä suurennetaan luettavuuden vuoksi; CSV-merkit eivät muutu. Alun ja lopun lukumäärät menevät päällekkäin solussa, joka sisältää vain välilyöntejä.
+162	Leikepöydän solumatriisi ylittää turvallisen liittämisrajan.
+163	Leikepöytä sisältää ohjausmerkin, jota ei tueta.
+164	Leikepöytä sisältää enemmän sarakkeita kuin muokkain voi turvallisesti liittää.
+165	Leikepöytä sisältää enemmän rivejä kuin muokkain voi turvallisesti liittää.
+166	Leikepöydän teksti ylittää turvallisen 16 Mi UTF-16-merkkiyksikön rajan.
+167	Viimeistä lainausmerkeillä ympäröityä kenttää ei suljettu ennen tekstin loppua.
+168	Kenttien määrä poikkeaa muista tietueista.
+169	Toimintoa ei voitu suorittaa loppuun. Tarkista asiakirja, valitut arvot ja kokorajat.
+170	Jäsennetty asiakirja sisältää {0:N0} saraketta, mikä ylittää visuaalisen taulukon nykyisen {1:N0} sarakkeen rajan. Sarakkeita ei piilotettu.
+171	Ehdotetun erottimen luotettavuus on matala. Tarkista erotinasetus.
+172	Kahdella erotinehdokkaalla on samankaltaiset pisteet. Tarkista erotinasetus.
+173	Sulkevan lainausmerkin jälkeen on odottamattomia merkkejä.
+174	tuntematon
+175	Käytä täsmällistä desimaalilukua pisteellä, esimerkiksi -12.5. Ryhmittelyä, eksponentteja ja pyöristettyjä arvoja ei tueta.
+176	Käytä enintään kahdeksaa suodatusehtoa, jotka eivät ole null.
+177	Käytä enintään kolmea lajittelutasoa, jotka eivät ole null.
+178	Näkymäsäännöt viittaavat nykyisen taulukon ulkopuoliseen sarakkeeseen.
+179	Varoitus
+180	Sarakkeen yhteenveto
+181	Suodata ja lajittele
+182	Avaa visuaalinen taulukko
+183	Päivitä taulukko
+184	uusi:{0}
+185	uusi:{0} *
+186	Valitse
+187	Valitse kokonaiset poistettavat rivit
+188	Lähteen looginen tietue tai odottava rakenteellinen rivi
+189	Rivi-ilmaisinsaraketta ei voitu määrittää.
+190	Rivin on kuuluttava DataGridView-taulukkoon.
+191	Kaikki sarakkeet
+192	{0:N0} / {1:N0} solua
+193	{0:N0} solua
+194	Tyhjennä haku
+195	Tyhjennä haku (Esc). Säilytä hakusarake ja lajittelu.
+196	Suodattaa näytettävät rivit. Enter: seuraava vastaava solu. Shift+Enter: edellinen. Escape: tyhjennä.
+197	Seuraava vastaava solu
+198	Seuraava vastaava solu (F3 / Enter)
+199	Ei osumia
+200	Ei vastaavia rivejä.\nMuuta hakua tai valitse Näytä > Suodata ja lajittele / Palauta näkymä.
+201	Edellinen vastaava solu
+202	Edellinen vastaava solu (Shift+F3 / Shift+Enter)
+203	Hae kaikista datasarakkeista tai valitse yksi sarake.
+204	Hakusarake
+205	Hae näytettävistä CSV-riveistä (Ctrl+F). Arvot ja lähdeteksti eivät muutu.
+206	Hae taulukosta...
+207	Hae taulukosta
+208	Hakutulokset
+209	Haetaan...
+210	Lähteeseen siirtyminen estettiin: toinen Notepad++-asiakirja on aktiivinen. Palaa näytettävään CSV-asiakirjaan tai päivitä taulukko.
+211	Lähteeseen siirtyminen estettiin, koska säilytetty jäsennystulos ei enää vastaa muuttumatonta lähdetilannevedosta. Päivitä ensin taulukko.
+212	Lähteeseen siirtyminen estettiin: tiukasti koodattu pituus ei vastaa Scintillan ilmoittamaa asiakirjapituutta.
+213	Lähteeseen siirtyminen estettiin: aktiivisen muokkaimen sisältö on muuttunut taulukon näyttämisen jälkeen. Päivitä ensin taulukko.
+214	Lähteeseen siirtyminen estettiin: nykyisellä Scintillan koodisivulla ei ole nimenomaista tavusijaintiprofiilia.
+215	Lähteeseen siirtyminen estettiin: muokkaimen koodisivu on muuttunut taulukon näyttämisen jälkeen. Päivitä ensin taulukko.
+216	Lähteeseen siirtyminen estettiin: valitulla projisoidulla solulla ei ole alkuperäistä raakaa lähdekenttää.
+217	Lähteeseen siirtyminen estettiin: lähteen merkkialuetta ei voitu kuvata häviöttömästi Scintillan tavuiksi.
+218	Lähteeseen siirtyminen estettiin: lähteen looginen tietue puuttuu säilytetystä jäsennystuloksesta.
+219	Lähteeseen siirtyminen epäonnistui: aktiivista Notepad++-puskuria ei voitu lukea. Asiakirjan sisältöä ei muutettu.
+220	Lähteeseen siirtyminen epäonnistui Scintillan valintaa siirrettäessä. Asiakirjan sisältöä ei muutettu.
+221	Lähteeseen siirtyminen ei ole käytettävissä ennen kuin nykyisellä visuaalisella taulukolla on täydellinen lähdeperusta. Päivitä ensin taulukko.
+222	Lähteeseen siirtyminen vaatii nykyisen CSV-rivin tai solun.
+223	Lähteeseen siirtymistä ei suoritettu loppuun. Asiakirjan sisältöä ei muutettu.
+224	Valittiin lähdetietue {0}, sarake {1}, Notepad++:ssa.
+225	Valittiin lähdetietue {0} Notepad++:ssa.
+226	Nykyinen visuaalinen rivi ei tarjoa vakaata lähdetietueen tunnistetta.
+227	Tällä odottavalla lisätyllä rivillä ei ole lähdesijaintia ennen toteutuksen valmistumista.
+228	Nykyinen näkymä: {0:N0} / {1:N0} näytettävää riviä.
+229	Erilliset arvot määräytyvät tarkan kirjainkoon erottavan tekstin perusteella, myös tyhjille arvoille.\nToistuvat rivit = rivit miinus erilliset arvot. Numeerinen alue käyttää täsmällisiä desimaaliarvoja pisteellä.
+230	Tyhjä
+231	Laji
+232	Yleisimmät arvot (enintään 20)
+233	Ei käytettävissä
+234	Numeerinen minimi: {0}     Maksimi: {1}\nPisin arvo: {2:N0} UTF-16-yksikköä. {3:N0} arvoa esiintyy useammin kuin kerran.
+235	 Rajattu projektio; tämä EI ole koko tiedosto.
+236	Rivejä: {0:N0}     Tyhjiä: {1:N0}     Vain tyhjämerkkejä: {2:N0}\nErillisiä: {3:N0}     Toistuvia rivejä: {4:N0}     Numeerisia: {5:N0}
+237	Sarakkeen yhteenveto
+238	Tyhjämerkit
+239	Uusi rivi lisättiin odottavaan muokkausistuntoon. Toteuta kirjoittaa sen muokkaimen puskuriin; Peru kaikki hylkää sen.
+240	Lähderivi ei tarjonnut lähdetietueensa indeksiä.
+241	Toiminto
+242	Aktiivisen asiakirjan tilannevedos epäonnistui. Muokkaimen sisältöä ei muutettu.
+243	Lisää rivi
+244	Kaikki odottavat solu- ja rivimuokkaukset peruttiin. Notepad++:n muokkauspuskuria ei muutettu.
+245	Toteuta kaikki solu- ja rivimuokkaukset aktiiviseen muokkaimeen yhtenä kumottavana toimintona
+246	Toteutus estettiin: toinen Notepad++-asiakirja on aktiivinen. Palaa alkuperäiseen asiakirjaan tai valitse Peru kaikki.
+247	Toteutus estettiin: muokkaimen puskuri on muuttunut muokkaustilan aloittamisen jälkeen. Peru ja päivitä ennen uutta muokkausta.
+248	Toteutus estettiin: muokkaimen koodisivu on muuttunut muokkaustilan aloittamisen jälkeen. Peru ja avaa muokkaustila uudelleen.
+249	Toteutus epäonnistui. Muokkausistunto jää auki; tarkista muokkaimen puskuri ennen uutta yritystä tai perumista.
+250	Toteutusta ei suoritettu loppuun. Automaattista päällekirjoitusta ei yritetty.
+251	Tunnista automaattisesti
+252	automaattinen luotettavuus {0}
+253	{0} — erottimen automaattinen tunnistus ei ole luotettava; manuaalinen valinta vaaditaan.
+254	Automaattinen tunnistus
+255	Ehdokkaiden pisteet
+256	{0} solua / {1} riviä (+{2} / -{3})
+257	Merkki
+258	{0} merkkiä / {1} muokkaimen tavua
+259	Valitse yllä olevasta erotinluettelosta Pilkku, Puolipiste tai Sarkain.
+260	Valitse nimenomaisesti, onko ensimmäinen looginen tietue otsikko
+261	Tyhjennä
+262	Tyhjennä nykyinen hakusuodatin ja vain näkymään vaikuttava lajittelu
+263	Koodi
+264	 - {0} sarake-ehtoa ({1}), {2} lajittelutasoa
+265	{0} — {1} × {2} saraketta — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Pilkku (,)
+267	pilkku
+268	Luotettavuus
+269	Poista kaikki valitut vakaat datarivit odottavasta muokkausistunnosta
+270	Poista rivi
+271	Poista rivit ({0})
+272	Poista valittu vakaa datarivi odottavasta muokkausistunnosta
+273	Poista valittu vakaa datarivi tai rivit odottavasta muokkausistunnosta
+274	Erotin:
+275	Diagnostiikka ({0})
+276	Hylkää kaikki odottavat solumuutokset, lisäykset ja poistot
+277	Asiakirja
+278	 — MUOKKAUSTILA: {0} solua, {1} riviä, +{2} / -{3}
+279	 - Muokkaustila
+280	Muokkaustilassa on odottavia muutoksia. Valitse Toteuta tai Peru kaikki ennen poistumista.
+281	Muokkaustila ei ole käytettävissä nykyisessä taulukossa. Ratkaise ensin jäsennysvirheet tai näyttörajoitukset.
+282	Muokkausta ei voi aloittaa rivimäärältään rajatusta visuaalisesta projektiosta.
+283	Muokkausta ei voi aloittaa, kun jäsennetty CSV sisältää virheitä.
+284	Muokkaus ei ole käytettävissä nykyisessä taulukossa.
+285	{0} — tyhjä muokkauspuskuri; ei näytettäviä CSV-tietueita.
+286	Siirry nimenomaiseen solujen ja rivien muokkaustilaan
+287	Siirry nimenomaiseen solujen ja rivien muokkaustilaan. Toteuta kirjoittaa vain muokkaimen puskuriin.
+288	Siirry nimenomaiseen solujen ja rivien muokkaustilaan. Täydellinen muokkausmalli luodaan vain pyydettäessä.
+289	{0} virhettä, {1} varoitusta
+290	ensimmäinen rivi otsikkona
+291	Ensimmäinen rivi on otsikko
+292	Otsikko:
+293	Lisää uusi rivi valitun rivin jälkeen tai loppuun, jos riviä ei ole valittu
+294	{0} — CSV-tietoja ladataan taustalla; Notepad++ vastaa edelleen.
+295	manuaalinen valinta
+296	{0} vastaavaa / {1} näytettävää riviä
+297	Viesti
+298	Odottavasta istunnosta poistettiin {0} juuri lisättyä riviä.
+299	Ei näytettävää diagnostiikkaa.
+300	Ei otsikkoriviä
+301	ei otsikkoriviä
+302	Ei vastaavia rivejä.\nKokeile toista hakutekstiä tai saraketta.
+303	ei jäsennysdiagnostiikkaa
+304	Luotettavaa erotinta ei voitu valita turvallisesti.
+305	Ei toteutettavaa: muokkausistunnossa ei ole odottavia muutoksia.
+306	Jäsennetään ja valmistellaan rajattua visuaalista taulukkoa taustalla…
+307	Odottavat solu- ja rivirakenteen muutokset
+308	Odottava lisätty rivi {0}; ei vielä toteutettu
+309	{0} odottavaa riviä
+310	Liitännäinen valmis. Luetaan aktiivista muokkauspuskuria...
+311	Valmistellaan täydellistä muokkausistuntoa…
+312	Ominaisuus
+313	Lue ja näytä tällä hetkellä aktiivinen Notepad++:n muokkauspuskuri
+314	Tietue
+315	Peru kaikki
+316	{0} riviä
+317	Puolipiste (;)
+318	puolipiste
+319	Vakavuus
+320	Näytä yksityiskohtainen jäsennys- ja erotindiagnostiikka
+321	näytetään {0} / {1} riviä
+322	Tilannevedos
+323	Tilannevedoksen virhe
+324	Lajittelutaso {0}: {1}, {2}. Vain näkymä.
+325	 — lajiteltu: {0} {1}
+326	Lähteen looginen tietue {0}
+327	Lähteen looginen tietue {0}; muutettu odottavassa muokkausistunnossa
+328	{0} lähderiviä merkitty poistettavaksi ja {1} lisättyä riviä poistettu odottavasta istunnosta.
+329	{0} lähderiviä merkitty poistettavaksi. Toteuta kirjoittaa koko erän; Peru kaikki palauttaa jokaisen rivin.
+330	Tila
+331	Sarkain
+332	sarkain
+333	Taulukkovirhe
+334	Aktiivisen solun muokkausta ei voitu vahvistaa. Korjaa arvo ennen rivin lisäämistä.
+335	Aktiivisen solun muokkausta ei voitu vahvistaa. Korjaa arvo ennen rivien poistamista.
+336	Aktiivisen solun muokkausta ei voitu vahvistaa. Korjaa arvo ennen toteutusta.
+337	Juuri lisätty rivi poistettiin odottavasta istunnosta.
+338	Rivi-ilmaisinsaraketta ei ole määritetty.
+339	Valittu rivijoukko ei ole enää kelvollinen tässä muokkausistunnossa. Rivejä ei poistettu.
+340	Valitut rivit oli jo poistettu. Lisämuutoksia ei tehty.
+341	Lähderivi on merkitty poistettavaksi. Toteuta kirjoittaa poiston; Peru kaikki palauttaa rivin.
+342	Visuaalista taulukkoa ei voitu muodostaa. Muokkaimen sisältöä ei muutettu.
+343	Käytä luotettavaa automaattista tunnistusta tai valitse erotin nimenomaisesti
+344	Odotetaan aktiivista Notepad++-asiakirjaa.
+345	{0} - {1} x {2:N0} saraketta
+346	Hyväksy muutokset
+347	Jälkeen
+348	Kaikki datasolut
+349	Ennen
+350	CSV-sarake
+351	Valitse toiminto ja alue ja napsauta Esikatsele.
+352	Nykyinen sarake
+353	Etsi:
+354	pienet kirjaimet
+355	Toiminto:
+356	Muut tyhjämerkit esitetään ohjausjaksoina; pituudet lasketaan UTF-16-yksikköinä. Pitkiä arvoja lyhennetään.
+357	Esikatselua ei voitu luoda. Tarkista alue ja hakuteksti tai valitse pienempi alue (enintään 250,000 solua / 16 Mi merkkiä).
+358	Esikatsele ensin. Hyväksy muutokset päivittää odottavat muokkaukset; työkalurivin Toteuta kirjoittaa Notepad++:aan.\nOtsikot jätetään pois, kun Otsikko = ensimmäinen tietue. Kirjainkoon muutos on alueasetuksista riippumaton.
+359	Tietueen tunnus
+360	Korvaa teksti (kirjaimellinen)
+361	Korvaa tekstillä:
+362	Alue:
+363	Valitse CSV-datasarake.
+364	Valitut solut / rivit
+365	täytetyt oranssit pisteet osoittavat välilyönnit. 
+366	välilyöntien ilmaisimet on piilotettu. 
+367	{0:N0} kohdesolua; {1:N0} muutosta {2:N0} rivillä. Näytetään ensimmäiset 50 muutosta; 
+368	Muokkausistunto on muuttunut.
+369	Esikatselu ei ole enää kelvollinen. Tarkista muokkausistunto ja luo uusi esikatselu.
+370	Muunna CSV-solut
+371	Muunnettiin {0:N0} solua odottavassa muokkausistunnossa. Päivitä Notepad++ valitsemalla Toteuta tai hylkää odottavat muokkaukset valitsemalla Peru kaikki.
+372	Poista reunojen tyhjämerkit
+373	ISOT KIRJAIMET
+374	Palauta näkymä
+375	Näytä välilyönnit

@@ -1,0 +1,378 @@
+# language: nn
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Eit visuelt CSV-redigeringsprogram for Notepad++
+001	Om CSV Visual Editor
+002	Kontakt: {0}
+003	Kontakt utviklaren {0}
+004	Utviklar: {0}
+005	Utviklingsversjon
+006	Likar du CSV Visual Editor? Støtt prosjektet.\nGje det ei stjerne på GitHub, del tilbakemeldingar eller kontakt utviklaren for å bidra. Takk!
+007	Grensesnittspråk: {0}
+008	Ingen tilknytt app kunne opnast. Kontakt: {0}
+009	Prosjektet på GitHub
+010	Versjon: {0}
+011	Versjon og bygg
+012	{0} vart blokkert fordi modellen for ventande endringar vart endra. Inga delvis endring vart teken vare på.
+013	{0} vart blokkert: rektangla i utklippstavla og utvalet har ulike mål.
+014	{0} vart blokkert: målrektangelet går utanfor CSV-tabellen.
+015	{0} vart blokkert: det finst ikkje noko redigerbart målrektangel.
+016	Kopierte {0} × {1} CSV-celler.
+017	Kopiering/utklipping vart blokkert: ei vald celle inneheld ein tabulator eller eit linjeskift som ikkje eintydig kan uttrykkjast som rein reknearktekst.
+018	Kopiering krev CSV-celler, ikkje eit utval av heile rader for sletting.
+019	Kopiering krev eitt samanhengande rektangulært utval av CSV-dataceller.
+020	Klipte {0} celler til utklippstavla og tømde dei i den ventande redigeringsøkta. Bruk skriv tømminga til Notepad++.
+021	Utklippinga er fullført; dei valde cellene var allereie tomme. Utklippstavla inneheld dei opphavlege verdiane.
+022	{0} er berre tilgjengeleg i redigeringsmodus.
+023	{0} er ikkje tilgjengeleg for den gjeldande tabellen.
+024	Innliming vart blokkert: {0} Ingen data vart endra.
+025	Innliminga er fullført; alle målverdiane var allereie identiske.
+026	Limte inn {0} endra celler i den ventande redigeringsøkta. Bruk skriv dei til Notepad++.
+027	{0} krev eit rektangel av CSV-celler, ikkje eit utval av heile rader for sletting.
+028	{0} krev eitt samanhengande rektangulært utval av CSV-dataceller.
+029	Mål for {0} er ikkje tilgjengelege utanfor den stabile radmodellen i redigeringsmodus.
+030	Redigeringa av den aktive cella kunne ikkje stadfestast før kopiering.
+031	Redigeringa av den aktive cella kunne ikkje stadfestast. Rett verdien før {0}.
+032	Utklippstavla inneheld ikkje celler som rein tekst.
+033	Windows-utklippstavla er mellombels utilgjengeleg. Ingen data vart endra.
+034	Kopier det valde rektangelet av CSV-celler til Windows-utklippstavla (Ctrl+C)
+035	Kopier dei valde CSV-cellene og tøm dei i den ventande redigeringsøkta (Ctrl+X)
+036	Lim inn reknearkceller i den valde CSV-cella eller det valde rektangelet (Ctrl+V)
+037	Førehandsvis teksterstatning, fjerning av ytre blankteikn eller endring av store/små bokstavar i ventande CSV-redigeringar
+038	Vel den gjeldande CSV-cella eller rada i kjeldebufferen i Notepad++
+039	Kjelde
+040	Omform
+041	Om
+042	Bruk
+043	Stigande
+044	Avbryt
+045	Lukk
+046	Kolonne
+047	Kopier
+048	Klipp ut
+049	Fallande
+050	Rediger
+051	Avslutt redigering
+052	Skil mellom store/små bokstavar
+053	Tal
+054	Opphavleg rekkjefølgje
+055	Lim inn
+056	Førehandsvising
+057	Oppdater
+058	Rader
+059	Tabell
+060	Tekst
+061	Verdi
+062	Kolonnesamandrag: tal, ulike verdiar, numerisk område og vanlege verdiar i den gjeldande visinga.
+063	Kolonnesamandrag krev ein klar, skriveverna tabell. Avslutt redigeringsmodus først.
+064	Filtrer og sorter: kombiner kolonnereglar og tekst-/talsorteringsnivå. Berre visinga; CSV vert ikkje endra.
+065	Filtrer og sorter: kombiner kolonnereglar og opptil tre tekst-/talsorteringsnivå. Berre visinga.
+066	Filtrer og sorter: {0} vilkår, {1} sorteringsnivå. Nullstill vising fjernar alle reglane.
+067	Filtrering og sortering krev ein klar, skriveverna tabell. Avslutt redigeringsmodus først.
+068	Diagnostikk (0)
+069	0 endringar
+070	Legg til vilkår
+071	Legg til sorteringsnivå
+072	Bruk vising
+073	Store/små bokstavar
+074	Tekstsamanlikning som skil mellom store og små bokstavar. Mellomrom i verdiar vert tolka bokstavleg.
+075	Kontroller reglane: {0}
+076	Vilkår
+077	{0} / 8 vilkår; {1} / 3 sorteringsnivå. Førehandsvis for å kontrollere samsvarande rader.
+078	Inneheld
+079	Inneheld ikkje
+080	Er ikkje lik
+081	Tom = ingen teikn. Berre blankteikn = ei ikkje-tom følgje av mellomrom/tabulatorar/linjeskift.\nTal brukar desimalpunktum (-12.5), utan gruppering eller eksponentar; presisjonen må vere nøyaktig.
+082	Sluttar med
+083	Er lik
+084	Filterverdi
+085	Filter
+086	Er tom
+087	Er ikkje tom
+088	Er ikkje berre blankteikn
+089	Er berre blankteikn
+090	Bokstavleg tekst, inkludert mellomrom. Talreglar krev eit nøyaktig desimaltal med punktum.
+091	Oppfyll ALLE vilkåra
+092	Oppfyll EITT AV vilkåra
+093	Tal =
+094	Tal >
+095	Tal >=
+096	Tal <
+097	Tal <=
+098	Tal (desimaltal)
+099	Førehandsvising: {0:N0} av {1:N0} viste rader. CSV er uendra.
+100	Fjern vilkår
+101	Fjern sorteringsnivå
+102	Nullstill reglar
+103	Reglane tek òg omsyn til det gjeldande søket. Avbryt tek vare på den aktive visinga.
+104	Sortering
+105	Startar med
+106	Tekst: ordinal rekkjefølgje utan skilje mellom store og små bokstavar. Tal: nøyaktige desimaltal; ugyldige/tomme verdiar sist.\nLike nøklar held på kjelderekkjefølgja. Fjern alle nivåa for å gjenopprette kjelderekkjefølgja.
+107	Projeksjonen er avgrensa; rader som ikkje vert viste, er ikkje tekne med. 
+108	Filtrer og sorter
+109	Øvste nivå har prioritet; seinare nivå avgjer når verdiar er like. Høgst 3.
+110	Verdi (bokstavleg, inkludert mellomrom)
+111	Berre visinga — CSV-verdiar og kjelderekkjefølgja vert ikkje endra. {0:N0} viste rader.\n
+112	Bruk er blokkert fordi {0} ikkje har ein uttrykkjeleg støtta kodingsprofil. Innhaldet i redigeringsprogrammet vart ikkje endra.
+113	Bruk er blokkert fordi streng kodingsvalidering for {0} ikkje gav ei nøyaktig omforming fram og tilbake. Innhaldet i redigeringsprogrammet vart ikkje endra.
+114	Bruk er blokkert fordi den ventande erstatninga ikkje kan uttrykkjast nøyaktig i {0}. Ingen erstatningsteikn vart brukte, og innhaldet i redigeringsprogrammet vart ikkje endra.
+115	Bruk er enno ikkje aktivert for {0}. Innhaldet i redigeringsprogrammet vart ikkje endra. Skriving er berre aktivert for UTF-8 (65001) og Windows-1250 (1250) etter tapsfri validering. Vel Angre alt, eller konverter dokumentet til UTF-8 i Notepad++ og opne redigeringsmodus på nytt.
+116	Oppdatering er slått av i redigeringsmodus. Bruk eller angre alle ventande endringar først.
+117	Scintilla-kodetabell {0}
+118	Det aktive dokumentet er {0:N0} byte. Den gjeldande trygge grensa for augneblinksbiletet er {1:N0} byte.
+119	Det aktive Notepad++-dokumentet kunne ikkje lesast. Innhaldet i redigeringsprogrammet vart ikkje endra.
+120	Resultatet frå Bruk er ikkje ein status for blokkering på grunn av koding.
+121	Tabellbygginga i bakgrunnen vart avslutta utan eit resultat.
+122	CSV-endringane vart brukte, men den førre markørplasseringa eller utvalet kunne ikkje gjenopprettast. Heile dokumentendringa kan framleis angrast i éi handling.
+123	den gjeldande kodetabellen i redigeringsprogrammet
+124	Redigeringsbufferen kunne ikkje omformast til ein visuell tabell. Vel eit uttrykkjeleg skiljeteikn, eller oppdater etter at dokumentet er retta.
+125	Tabellbygginga returnerte eit ufullstendig resultat.
+126	&Om
+127	&Tøm søk
+128	&CSV
+129	&Skiljeteikn
+130	&Rediger
+131	Esc i søket
+132	&Finn i tabell
+133	&Overskrift
+134	&Neste samsvarande celle
+135	&Førre samsvarande celle
+136	Nullstill vising: tøm søk, kolonnevilkår og all sortering.
+137	&Søk
+138	Søkje&kolonne
+139	Vis mellomrom: små fylte oransje prikkar. Berre vising; CSV-verdiar vert ikkje endra.
+140	Vis &tabell
+141	&Sorter etter
+142	&Tabell
+143	&Vis
+144	Ein filterverdi kan innehalde høgst 4,096 teikn.
+145	ALLE
+146	Eit innleiande byteordensmerke vart utelate frå det første feltet.
+147	EITT AV
+148	Eit hermeteikn fanst i eit felt utan omsluttande hermeteikn.
+149	Radene i utklippstavla må danne éi rektangulær cellematrise.
+150	Diagnostikkode: {0}.
+151	Kvart sorteringsnivå må bruke ein annan kolonne.
+152	Feil
+153	høg
+154	Informasjon
+155	låg
+156	middels
+157	Ingen støtta skiljeteikn gav ein påliteleg nok struktur med fleire felt.
+158	ingen
+159	Ei visuell rad ville krevje {0:N0} celler, noko som overstig den gjeldande totalgrensa på {1:N0}. Ingen kolonnar vart skjulte.
+160	Posten har {0} felt; {1} var venta ut frå det vanlegaste talet i utvalet.
+161	Mellomrom: {0}; innleiande: {1}; avsluttande: {2}. Lengd: {3} UTF-16-einingar.\nOransje prikkar markerer faktiske mellomrom. Visingsavstanden er auka for å gjere teksten lettare å lese; CSV-teikn vert ikkje endra. Talet på innleiande og avsluttande mellomrom overlappar i ei celle med berre mellomrom.
+162	Cellematrisa i utklippstavla overstig den trygge innlimingsgrensa.
+163	Utklippstavla inneheld eit kontrollteikn som ikkje er støtta.
+164	Utklippstavla inneheld fleire kolonnar enn redigeringsprogrammet trygt kan lime inn.
+165	Utklippstavla inneheld fleire rader enn redigeringsprogrammet trygt kan lime inn.
+166	Teksten i utklippstavla overstig den trygge grensa på 16 Mi UTF-16-teikneiningar.
+167	Det siste feltet i hermeteikn vart ikkje avslutta før slutten av teksten.
+168	Talet på felt skil seg frå dei andre postane.
+169	Handlinga kunne ikkje fullførast. Kontroller dokumentet, dei valde verdiane og storleiksgrensene.
+170	Det tolka dokumentet inneheld {0:N0} kolonnar, noko som overstig den gjeldande grensa på {1:N0} i den visuelle tabellen. Ingen kolonnar vart skjulte.
+171	Det føreslegne skiljeteiknet har låg pålitelegheit. Kontroller innstillinga for skiljeteikn.
+172	To kandidatar til skiljeteikn har liknande poengsummar. Kontroller innstillinga for skiljeteikn.
+173	Uventa teikn følgjer etter eit avsluttande hermeteikn.
+174	ukjend
+175	Bruk eit nøyaktig desimaltal med punktum, til dømes -12.5. Gruppering, eksponentar og avrunda verdiar er ikkje støtta.
+176	Bruk høgst åtte filtervilkår som ikkje er null.
+177	Bruk høgst tre sorteringsnivå som ikkje er null.
+178	Visingsreglane viser til ein kolonne utanfor den gjeldande tabellen.
+179	Åtvaring
+180	Kolonnesamandrag
+181	Filtrer og sorter
+182	Opne visuell tabell
+183	Oppdater tabell
+184	ny:{0}
+185	ny:{0} *
+186	Vel
+187	Vel heile rader for sletting
+188	Logisk kjeldepost eller ventande strukturell rad
+189	Kolonnen med radindikatorar kunne ikkje identifiserast.
+190	Rada må høyre til ein DataGridView.
+191	Alle kolonnar
+192	{0:N0} / {1:N0} celler
+193	{0:N0} celler
+194	Tøm søk
+195	Tøm søk (Esc). Ta vare på søkjekolonnen og sorteringa.
+196	Filtrerer viste rader. Enter: neste samsvarande celle. Shift+Enter: førre. Escape: tøm.
+197	Neste samsvarande celle
+198	Neste samsvarande celle (F3 / Enter)
+199	Ingen treff
+200	Ingen samsvarande rader.\nTilpass søket, eller bruk Vis > Filtrer og sorter / Nullstill vising.
+201	Førre samsvarande celle
+202	Førre samsvarande celle (Shift+F3 / Shift+Enter)
+203	Søk i alle datakolonnar, eller vel éin kolonne.
+204	Søkjekolonne
+205	Søk i viste CSV-rader (Ctrl+F). Verdiar og kjeldetekst vert ikkje endra.
+206	Søk i tabell...
+207	Søk i tabell
+208	Søkjeresultat
+209	Søkjer...
+210	Gå til kjelde vart blokkert: eit anna Notepad++-dokument er aktivt. Gå tilbake til den viste CSV-fila, eller oppdater tabellen.
+211	Gå til kjelde vart blokkert fordi det lagra tolkingsresultatet ikkje lenger samsvarar med sitt uforanderlege kjeldeaugneblinksbilete. Oppdater tabellen først.
+212	Gå til kjelde vart blokkert: den strengt koda lengda samsvarar ikkje med dokumentlengda som Scintilla rapporterer.
+213	Gå til kjelde vart blokkert: det aktive redigeringsinnhaldet vart endra etter at tabellen vart vist. Oppdater tabellen først.
+214	Gå til kjelde vart blokkert: den gjeldande Scintilla-kodetabellen manglar ein uttrykkjeleg byteposisjonsprofil.
+215	Gå til kjelde vart blokkert: kodetabellen til redigeringsprogrammet vart endra etter at tabellen vart vist. Oppdater tabellen først.
+216	Gå til kjelde vart blokkert: den valde projiserte cella har ikkje noko rått kjeldefelt.
+217	Gå til kjelde vart blokkert: teiknområdet i kjelda kunne ikkje tilordnast tapsfritt til Scintilla-byte.
+218	Gå til kjelde vart blokkert: den logiske kjeldeposten er ikkje tilgjengeleg i det lagra tolkingsresultatet.
+219	Gå til kjelde mislukkast: den aktive Notepad++-bufferen kunne ikkje lesast. Dokumentinnhaldet vart ikkje endra.
+220	Gå til kjelde mislukkast under flytting av Scintilla-utvalet. Dokumentinnhaldet vart ikkje endra.
+221	Gå til kjelde er utilgjengeleg til den gjeldande visuelle tabellen har eit fullstendig kjeldegrunnlag. Oppdater tabellen først.
+222	Gå til kjelde krev ei gjeldande CSV-rad eller celle.
+223	Gå til kjelde vart ikkje fullført. Dokumentinnhaldet vart ikkje endra.
+224	Valde kjeldepost {0}, kolonne {1} i Notepad++.
+225	Valde kjeldepost {0} i Notepad++.
+226	Den gjeldande visuelle rada gjev ikkje ein stabil identitet for kjeldeposten.
+227	Denne ventande innsette rada har ingen kjeldeposisjon før Bruk er fullført.
+228	Gjeldande vising: {0:N0} av {1:N0} viste rader.
+229	Ulike verdiar vert bestemte av nøyaktig tekst med skilje mellom store og små bokstavar, inkludert tomme verdiar.\nGjentekne rader = rader minus ulike verdiar. Det numeriske området brukar nøyaktige desimaltal med punktum.
+230	Tom
+231	Type
+232	Vanlegaste verdiar (opptil 20)
+233	Ikkje tilgjengeleg
+234	Numerisk minimum: {0}     Maksimum: {1}\nLengste verdi: {2:N0} UTF-16-einingar. {3:N0} verdiar finst meir enn éin gong.
+235	 Avgrensa projeksjon; dette er IKKJE heile fila.
+236	Rader: {0:N0}     Tomme: {1:N0}     Berre blankteikn: {2:N0}\nUlike: {3:N0}     Gjentekne rader: {4:N0}     Numeriske: {5:N0}
+237	Kolonnesamandrag
+238	Blankteikn
+239	Ei ny rad vart lagd til i den ventande redigeringsøkta. Bruk skriv henne til redigeringsbufferen; Angre alt forkastar henne.
+240	Ei kjelderad gav ikkje indeksen for kjeldeposten sin.
+241	Handling
+242	Augneblinksbiletet av det aktive dokumentet mislukkast. Innhaldet i redigeringsprogrammet vart ikkje endra.
+243	Legg til rad
+244	Alle ventande celle- og radredigeringar vart angra. Notepad++-redigeringsbufferen vart ikkje endra.
+245	Bruk alle celle- og radredigeringar i det aktive redigeringsprogrammet som éi handling som kan angrast
+246	Bruk vart blokkert: eit anna Notepad++-dokument er aktivt. Gå tilbake til det opphavlege dokumentet, eller vel Angre alt.
+247	Bruk vart blokkert: redigeringsbufferen vart endra etter at redigeringsmodus starta. Angre og oppdater før du redigerer på nytt.
+248	Bruk vart blokkert: kodetabellen til redigeringsprogrammet vart endra etter at redigeringsmodus starta. Angre og opne redigeringsmodus på nytt.
+249	Bruk mislukkast. Redigeringsøkta held fram med å vere open; kontroller redigeringsbufferen før du prøver på nytt eller angrar.
+250	Bruk vart ikkje fullført. Ingen automatisk overskriving vart prøvd.
+251	Oppdag automatisk
+252	automatisk pålitelegheit: {0}
+253	{0} — automatisk oppdaging av skiljeteikn er ikkje påliteleg; manuelt val er nødvendig.
+254	Automatisk oppdaging
+255	Kandidatpoeng
+256	{0} celler / {1} rader (+{2} / -{3})
+257	Teikn
+258	{0} teikn / {1} redigeringsbyte
+259	Vel Komma, Semikolon eller Tabulator i lista over skiljeteikn ovanfor.
+260	Vel uttrykkjeleg om den første logiske posten er ei overskrift
+261	Tøm
+262	Tøm det gjeldande søkjefilteret og sorteringa av berre visinga
+263	Kode
+264	 - {0} kolonnevilkår ({1}), {2} sorteringsnivå
+265	{0} — {1} × {2} kolonnar — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	komma
+268	Pålitelegheit
+269	Slett alle valde stabile datarader frå den ventande redigeringsøkta
+270	Slett rad
+271	Slett rader ({0})
+272	Slett den valde stabile datarada frå den ventande redigeringsøkta
+273	Slett den valde stabile datarada eller dei valde radene frå den ventande redigeringsøkta
+274	Skiljeteikn:
+275	Diagnostikk ({0})
+276	Forkast alle ventande celleendringar, innsetjingar og slettingar
+277	Dokument
+278	 — REDIGERINGSMODUS: {0} celler, {1} rader, +{2} / -{3}
+279	 - Redigeringsmodus
+280	Redigeringsmodus inneheld ventande endringar. Vel Bruk eller Angre alt før du avsluttar.
+281	Redigeringsmodus er ikkje tilgjengeleg for den gjeldande tabellen. Løys tolkingsfeil eller visingsavgrensingar først.
+282	Redigering kan ikkje starte frå ein visuell projeksjon med avgrensa tal på rader.
+283	Redigering kan ikkje starte medan den tolka CSV-fila inneheld feil.
+284	Redigering er ikkje tilgjengeleg for den gjeldande tabellen.
+285	{0} — tom redigeringsbuffer; ingen CSV-postar å vise.
+286	Opne uttrykkjeleg redigeringsmodus for celler og rader
+287	Opne uttrykkjeleg redigeringsmodus for celler og rader. Bruk skriv berre til redigeringsbufferen.
+288	Opne uttrykkjeleg redigeringsmodus for celler og rader. Den fullstendige redigeringsmodellen vert berre laga når det vert bede om det.
+289	{0} feil, {1} åtvaringar
+290	første rad som overskrift
+291	Første rad er overskrift
+292	Overskrift:
+293	Set inn ei ny rad etter den valde rada, eller legg til sist viss inga rad er vald
+294	{0} — lastar CSV-data i bakgrunnen; Notepad++ held fram med å svare.
+295	manuelt val
+296	{0} samsvarande av {1} viste rader
+297	Melding
+298	{0} nyleg innsette rader vart fjerna frå den ventande økta.
+299	Ingen diagnostikk å vise.
+300	Inga overskriftsrad
+301	inga overskriftsrad
+302	Ingen samsvarande rader.\nPrøv ein annan søkjetekst eller kolonne.
+303	ingen tolkingsdiagnostikk
+304	Ingen pålitelege skiljeteikn kunne veljast trygt.
+305	Ingenting å bruke: redigeringsøkta har ingen ventande endringar.
+306	Tolkar og førebur ein avgrensa visuell tabell i bakgrunnen…
+307	Ventande celleendringar og strukturelle radendringar
+308	Ventande innsett rad {0}; enno ikkje brukt
+309	{0} ventande rader
+310	Tillegget er klart. Les den aktive redigeringsbufferen...
+311	Førebur den fullstendige redigeringsøkta…
+312	Eigenskap
+313	Les og vis den Notepad++-redigeringsbufferen som er aktiv no
+314	Post
+315	Angre alt
+316	{0} rader
+317	Semikolon (;)
+318	semikolon
+319	Alvorsgrad
+320	Vis detaljert diagnostikk for tolking og skiljeteikn
+321	viser {0} av {1} rader
+322	Augneblinksbilete
+323	Feil i augneblinksbilete
+324	Sorteringsnivå {0}: {1}, {2}. Berre visinga.
+325	 — sortert etter {0} {1}
+326	Logisk kjeldepost {0}
+327	Logisk kjeldepost {0}; endra i den ventande redigeringsøkta
+328	{0} kjelderader er merkte for sletting, og {1} innsette rader er fjerna frå den ventande økta.
+329	{0} kjelderader er merkte for sletting. Bruk skriv heile gruppa; Angre alt gjenopprettar kvar rad.
+330	Status
+331	Tabulator
+332	tabulator
+333	Tabellfeil
+334	Redigeringa av den aktive cella kunne ikkje stadfestast. Rett verdien før du legg til ei rad.
+335	Redigeringa av den aktive cella kunne ikkje stadfestast. Rett verdien før du slettar rader.
+336	Redigeringa av den aktive cella kunne ikkje stadfestast. Rett verdien før du brukar endringane.
+337	Den nyleg innsette rada vart fjerna frå den ventande økta.
+338	Kolonnen med radindikatorar er ikkje sett opp.
+339	Det valde settet med rader er ikkje lenger gyldig for denne redigeringsøkta. Ingen rader vart sletta.
+340	Dei valde radene var allereie sletta. Inga vidare endring vart gjord.
+341	Kjelderada er merkt for sletting. Bruk skriv slettinga; Angre alt gjenopprettar rada.
+342	Den visuelle tabellen kunne ikkje lagast. Innhaldet i redigeringsprogrammet vart ikkje endra.
+343	Bruk påliteleg automatisk oppdaging eller vel eit skiljeteikn uttrykkjeleg
+344	Ventar på det aktive Notepad++-dokumentet.
+345	{0} - {1} x {2:N0} kolonnar
+346	Godta endringar
+347	Etter
+348	Alle dataceller
+349	Før
+350	CSV-kolonne
+351	Vel ei handling og eit område, og klikk deretter på Førehandsvising.
+352	Gjeldande kolonne
+353	Finn:
+354	små bokstavar
+355	Handling:
+356	Andre blankteikn vert viste med escape-sekvensar; lengder tel UTF-16-einingar. Lange verdiar vert forkorta.
+357	Førehandsvisinga kunne ikkje lagast. Kontroller området og søkjeteksten, eller vel eit mindre område (høgst 250,000 celler / 16 Mi teikn).
+358	Lag ei førehandsvising først. Godta endringar oppdaterer ventande redigeringar; Bruk på verktøylinja skriv til Notepad++.\nOverskrifter vert utelatne når Overskrift = første post. Endring av store/små bokstavar er uavhengig av språkinnstillingar.
+359	Post-ID
+360	Erstatt tekst (bokstavleg)
+361	Erstatt med:
+362	Område:
+363	Vel ein CSV-datakolonne.
+364	Valde celler / rader
+365	fylte oransje prikkar markerer mellomrom. 
+366	mellomromsindikatorar er skjulte. 
+367	{0:N0} målceller; {1:N0} endringar i {2:N0} rader. Viser dei første 50 endringane; 
+368	Redigeringsøkta er endra.
+369	Førehandsvisinga er ikkje lenger gyldig. Kontroller redigeringsøkta og lag ei ny førehandsvising.
+370	Omform CSV-celler
+371	Omforma {0:N0} celler i den ventande redigeringsøkta. Vel Bruk for å oppdatere Notepad++ eller Angre alt for å forkaste ventande redigeringar.
+372	Fjern ytre blankteikn
+373	STORE BOKSTAVAR
+374	Nullstill vising
+375	Vis mellomrom

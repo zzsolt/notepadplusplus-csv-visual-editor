@@ -1,0 +1,378 @@
+# language: et
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Visuaalne CSV-redaktor Notepad++ jaoks
+001	Teave CSV Visual Editori kohta
+002	Kontakt: {0}
+003	Võta ühendust arendajaga {0}
+004	Arendaja: {0}
+005	Arendusversioon
+006	Kas CSV Visual Editor meeldib sulle? Toeta projekti.\nLisa GitHubis tärn, jaga tagasisidet või võta arendajaga ühendust, et kaasa aidata. Aitäh!
+007	Kasutajaliidese keel: {0}
+008	Seotud rakendust ei saanud avada. Kontakt: {0}
+009	Projekt GitHubis
+010	Versioon: {0}
+011	Versioon ja järk
+012	Toiming {0} blokeeriti, sest ootel muudatuste mudel muutus. Ühtegi osalist muudatust ei säilitatud.
+013	Toiming {0} blokeeriti: lõikelaua ja valiku ristkülikute mõõtmed erinevad.
+014	Toiming {0} blokeeriti: sihtristkülik ulatub CSV-tabelist välja.
+015	Toiming {0} blokeeriti: muudetavat sihtristkülikut pole.
+016	Kopeeriti {0} × {1} CSV-lahtrit.
+017	Kopeerimine/lõikamine blokeeriti: valitud lahter sisaldab tabeldusmärki või reavahetust, mida ei saa üheselt esitada lihtsa arvutustabelitekstina.
+018	Kopeerimiseks tuleb valida CSV-lahtrid, mitte kustutamiseks mõeldud terved read.
+019	Kopeerimine nõuab üht pidevat ristkülikukujulist CSV-andmelahtrite valikut.
+020	Lõikelauale lõigati {0} lahtrit ja need tühjendati ootel muutmisseansis. Rakenda kirjutab tühjenduse Notepad++-i.
+021	Lõikamine lõpetati; valitud lahtrid olid juba tühjad. Lõikelaud sisaldab nende algseid väärtusi.
+022	Toiming {0} on saadaval ainult muutmisrežiimis.
+023	Toiming {0} pole praeguse tabeli jaoks saadaval.
+024	Kleepimine blokeeriti: {0} Andmeid ei muudetud.
+025	Kleepimine lõpetati; kõik sihtväärtused olid juba identsed.
+026	Ootel muutmisseanssi kleebiti {0} muudetud lahtrit. Rakenda kirjutab need Notepad++-i.
+027	Toiming {0} nõuab CSV-lahtrite ristkülikut, mitte kustutamiseks mõeldud tervete ridade valikut.
+028	Toiming {0} nõuab üht pidevat ristkülikukujulist CSV-andmelahtrite valikut.
+029	Toimingu {0} sihid pole väljaspool muutmisrežiimi püsivat reamudelit saadaval.
+030	Aktiivse lahtri muudatust ei saanud enne kopeerimist kinnitada.
+031	Aktiivse lahtri muudatust ei saanud kinnitada. Paranda väärtus enne toimingut {0}.
+032	Lõikelaud ei sisalda lihttekstina esitatud lahtreid.
+033	Windowsi lõikelaud pole ajutiselt saadaval. Andmeid ei muudetud.
+034	Kopeeri valitud CSV-lahtrite ristkülik Windowsi lõikelauale (Ctrl+C)
+035	Kopeeri valitud CSV-lahtrid ja tühjenda need ootel muutmisseansis (Ctrl+X)
+036	Kleebi arvutustabeli lahtrid valitud CSV-lahtrisse või ristkülikusse (Ctrl+V)
+037	Vaata teksti asendamise, äärmiste tühimärkide eemaldamise või tõstu muutmise eelvaadet ootel CSV-muudatustes
+038	Vali praegune CSV-lahter või rida Notepad++-i lähtepuhvris
+039	Lähtetekst
+040	Teisenda
+041	Teave
+042	Rakenda
+043	Kasvav
+044	Loobu
+045	Sulge
+046	Veerg
+047	Kopeeri
+048	Lõika
+049	Kahanev
+050	Muuda
+051	Lõpeta muutmine
+052	Erista suur- ja väiketähti
+053	Arv
+054	Algne järjestus
+055	Kleebi
+056	Eelvaade
+057	Värskenda
+058	Read
+059	Tabel
+060	Tekst
+061	Väärtus
+062	Veeru kokkuvõte: loendused, erinevad väärtused, arvuline vahemik ja sagedased väärtused praeguses vaates.
+063	Veeru kokkuvõte nõuab valmis kirjutuskaitstud tabelit. Välju esmalt muutmisrežiimist.
+064	Filtreeri ja sordi: kombineeri veerureegleid ning teksti-/arvusortimise tasemeid. Muutub ainult vaade; CSV jääb muutmata.
+065	Filtreeri ja sordi: kombineeri veerureegleid ning kuni kolme teksti-/arvusortimise taset. Muutub ainult vaade.
+066	Filtreeri ja sordi: {0} tingimust, {1} sortimistaset. Lähtesta vaade eemaldab kõik reeglid.
+067	Filtrimine ja sortimine nõuavad valmis kirjutuskaitstud tabelit. Välju esmalt muutmisrežiimist.
+068	Diagnostika (0)
+069	0 muudatust
+070	Lisa tingimus
+071	Lisa sortimistase
+072	Rakenda vaade
+073	Tõst
+074	Tõstutundlik tekstivõrdlus. Väärtustes olevaid tühikuid käsitletakse sõnasõnaliselt.
+075	Kontrolli reegleid: {0}
+076	Tingimus
+077	{0} / 8 tingimust; {1} / 3 sortimistaset. Kontrolli sobivaid ridu eelvaates.
+078	Sisaldab
+079	Ei sisalda
+080	Ei võrdu
+081	Tühi = null märki. Ainult tühimärgid = mittetühi tühikute/tabeldusmärkide/reavahetuste jada.\nArvudes kasutatakse kümnendpunkti (-12.5), ilma rühmitamise ja astendajateta; täpsus peab säilima.
+082	Lõpeb tekstiga
+083	Võrdub
+084	Filtri väärtus
+085	Filtrid
+086	On tühi
+087	Ei ole tühi
+088	Ei koosne ainult tühimärkidest
+089	Koosneb ainult tühimärkidest
+090	Sõnasõnaline tekst koos tühikutega. Arvulised reeglid nõuavad täpset kümnendarvu punktiga.
+091	Täida KÕIK tingimused
+092	Täida VÄHEMALT ÜKS tingimus
+093	Arv =
+094	Arv >
+095	Arv >=
+096	Arv <
+097	Arv <=
+098	Arv (kümnendarv)
+099	Eelvaade: {0:N0} / {1:N0} kuvatavat rida. CSV jääb muutmata.
+100	Eemalda tingimus
+101	Eemalda sortimistase
+102	Lähtesta reeglid
+103	Reeglid arvestavad ka praegust otsingut. Loobumine säilitab aktiivse vaate.
+104	Sortimine
+105	Algab tekstiga
+106	Tekst: märgikoodipõhine järjestus tõstu eristamata. Arv: täpsed kümnendarvud; vigased/tühjad väärtused lõpus.\nVõrdsed võtmed säilitavad lähtejärjestuse. Selle taastamiseks eemalda kõik tasemed.
+107	Projektsioon on piiratud; kuvamata ridu ei kaasata. 
+108	Filtreeri ja sordi
+109	Esimene tase on eelistatud; järgmised lahendavad võrdsed väärtused. Kuni 3.
+110	Väärtus (sõnasõnaline, koos tühikutega)
+111	Ainult vaade — CSV-väärtused ja lähtejärjestus jäävad muutmata. {0:N0} kuvatavat rida.\n
+112	Rakendamine blokeeriti, sest kodeeringul {0} puudub sõnaselgelt toetatud kodeerimisprofiil. Redaktori sisu ei muudetud.
+113	Rakendamine blokeeriti, sest kodeeringu {0} range kontroll ei andnud täpset edasi-tagasi teisendust. Redaktori sisu ei muudetud.
+114	Rakendamine blokeeriti, sest ootel asendust ei saa kodeeringus {0} täpselt esitada. Asendusmärke ei kasutatud ja redaktori sisu ei muudetud.
+115	Rakendamine pole kodeeringu {0} jaoks veel lubatud. Redaktori sisu ei muudetud. Kirjutamine on lubatud ainult UTF-8 (65001) ja Windows-1250 (1250) korral pärast kadudeta kontrolli. Vali Võta kõik tagasi või teisenda dokument Notepad++-is UTF-8-ks ja ava muutmisrežiim uuesti.
+116	Värskendamine on muutmisrežiimis keelatud. Rakenda või võta esmalt kõik ootel muudatused tagasi.
+117	Scintilla koodileht {0}
+118	Aktiivse dokumendi suurus on {0:N0} baiti. Hetktõmmise praegune ohutu piir on {1:N0} baiti.
+119	Aktiivset Notepad++-i dokumenti ei saanud lugeda. Redaktori sisu ei muudetud.
+120	Rakendamise tulemus ei ole kodeeringu tõttu blokeeritud olek.
+121	Tabeli taustal koostamine lõppes tulemuseta.
+122	CSV-muudatused rakendati, kuid kursori eelmist asukohta või valikut ei saanud taastada. Kogu dokumendimuudatuse saab endiselt ühe toiminguga tagasi võtta.
+123	redaktori praegune koodileht
+124	Redaktori puhvrit ei saanud visuaalseks tabeliks teisendada. Vali eraldaja sõnaselgelt või värskenda pärast dokumendi parandamist.
+125	Tabeli koostamine tagastas puuduliku tulemuse.
+126	&Teave
+127	&Tühjenda otsing
+128	&CSV
+129	&Eraldaja
+130	&Muuda
+131	Esc otsingus
+132	&Otsi tabelist
+133	&Päis
+134	&Järgmine sobiv lahter
+135	&Eelmine sobiv lahter
+136	Lähtesta vaade: tühjenda otsing, veerutingimused ja kogu sortimine.
+137	&Otsing
+138	Otsingu&veerg
+139	Näita tühikuid: väikesed täidetud oranžid punktid. Ainult kuvamine; CSV-väärtused ei muutu.
+140	Näita &tabelit
+141	&Sordi aluse järgi
+142	&Tabel
+143	&Vaade
+144	Filtri väärtus võib sisaldada kuni 4,096 märki.
+145	KÕIK
+146	Algne baidijärjestuse märk jäeti esimesest väljast välja.
+147	VÄHEMALT ÜKS
+148	Jutumärk ilmus jutumärkidega ümbritsemata väljas.
+149	Lõikelaua read peavad moodustama ühe ristkülikukujulise lahtrimaatriksi.
+150	Diagnostikakood: {0}.
+151	Iga sortimistase peab kasutama eri veergu.
+152	Viga
+153	kõrge
+154	Teave
+155	madal
+156	keskmine
+157	Ükski toetatud eraldaja ei andnud piisavalt usaldusväärset mitme väljaga struktuuri.
+158	puudub
+159	Üks visuaalne rida vajaks {0:N0} lahtrit, mis ületab praeguse {1:N0} lahtri kogupiiri. Ühtegi veergu ei peidetud.
+160	Kirjes on {0} välja; valimi levinuima väljade arvu järgi oodati {1} välja.
+161	Tühikud: {0}; alguses: {1}; lõpus: {2}. Pikkus: {3} UTF-16 ühikut.\nOranžid punktid tähistavad tegelikke tühikuid. Kuvamisvahet suurendatakse loetavuse huvides; CSV-märgid jäävad muutmata. Ainult tühikuid sisaldavas lahtris kattuvad alguse ja lõpu loendused.
+162	Lõikelaua lahtrimaatriks ületab ohutu kleepimispiiri.
+163	Lõikelaud sisaldab toetamata juhtmärki.
+164	Lõikelaud sisaldab rohkem veerge, kui redaktor saab ohutult kleepida.
+165	Lõikelaud sisaldab rohkem ridu, kui redaktor saab ohutult kleepida.
+166	Lõikelaua tekst ületab ohutu 16 Mi UTF-16 märgiühiku piiri.
+167	Viimast jutumärkidega välja ei suletud enne teksti lõppu.
+168	Väljade arv erineb teiste kirjete omast.
+169	Toimingut ei saanud lõpetada. Kontrolli dokumenti, valitud väärtusi ja suurusepiiranguid.
+170	Parsitud dokument sisaldab {0:N0} veergu, mis ületab visuaalse tabeli praeguse {1:N0} veeru piiri. Ühtegi veergu ei peidetud.
+171	Soovitatud eraldaja usaldusväärsus on madal. Kontrolli eraldaja sätet.
+172	Kahel eraldajakandidaadil on sarnased hinded. Kontrolli eraldaja sätet.
+173	Sulgevale jutumärgile järgnevad ootamatud märgid.
+174	teadmata
+175	Kasuta täpset kümnendarvu punktiga, näiteks -12.5. Rühmitamist, astendajaid ega ümardatud väärtusi ei toetata.
+176	Kasuta kuni kaheksat filtritingimust, mis pole null.
+177	Kasuta kuni kolme sortimistaset, mis pole null.
+178	Vaate reeglid viitavad praeguse tabeli välisele veerule.
+179	Hoiatus
+180	Veeru kokkuvõte
+181	Filtreeri ja sordi
+182	Ava visuaalne tabel
+183	Värskenda tabelit
+184	uus:{0}
+185	uus:{0} *
+186	Vali
+187	Vali kustutamiseks terved read
+188	Lähte loogiline kirje või ootel struktuuririda
+189	Reanäidiku veergu ei saanud määrata.
+190	Rida peab kuuluma DataGridView-sse.
+191	Kõik veerud
+192	{0:N0} / {1:N0} lahtrit
+193	{0:N0} lahtrit
+194	Tühjenda otsing
+195	Tühjenda otsing (Esc). Säilita otsinguveerg ja sortimine.
+196	Filtreerib kuvatavaid ridu. Enter: järgmine sobiv lahter. Shift+Enter: eelmine. Escape: tühjenda.
+197	Järgmine sobiv lahter
+198	Järgmine sobiv lahter (F3 / Enter)
+199	Vasteid pole
+200	Sobivaid ridu pole.\nMuuda otsingut või vali Vaade > Filtreeri ja sordi / Lähtesta vaade.
+201	Eelmine sobiv lahter
+202	Eelmine sobiv lahter (Shift+F3 / Shift+Enter)
+203	Otsi kõigist andmeveergudest või vali üks veerg.
+204	Otsinguveerg
+205	Otsi kuvatavatest CSV-ridadest (Ctrl+F). Väärtused ja lähtetekst jäävad muutmata.
+206	Otsi tabelist...
+207	Otsi tabelist
+208	Otsingutulemused
+209	Otsimine...
+210	Lähteteksti minek blokeeriti: aktiivne on teine Notepad++-i dokument. Naase kuvatava CSV juurde või värskenda tabelit.
+211	Lähteteksti minek blokeeriti, sest säilitatud parsimistulemus ei vasta enam muutumatule lähtehetktõmmisele. Värskenda esmalt tabelit.
+212	Lähteteksti minek blokeeriti: range kodeeritud pikkus ei vasta Scintilla teatatud dokumendipikkusele.
+213	Lähteteksti minek blokeeriti: aktiivse redaktori sisu on pärast tabeli kuvamist muutunud. Värskenda esmalt tabelit.
+214	Lähteteksti minek blokeeriti: praegusel Scintilla koodilehel puudub selge baidiasukohtade profiil.
+215	Lähteteksti minek blokeeriti: redaktori koodileht on pärast tabeli kuvamist muutunud. Värskenda esmalt tabelit.
+216	Lähteteksti minek blokeeriti: valitud projitseeritud lahtril puudub töötlemata lähteväli.
+217	Lähteteksti minek blokeeriti: lähte märgivahemikku ei saanud kadudeta Scintilla baitidele vastendada.
+218	Lähteteksti minek blokeeriti: lähte loogiline kirje pole säilitatud parsimistulemuses saadaval.
+219	Lähteteksti minek nurjus: aktiivset Notepad++-i puhvrit ei saanud lugeda. Dokumendi sisu ei muudetud.
+220	Lähteteksti minek nurjus Scintilla valiku liigutamisel. Dokumendi sisu ei muudetud.
+221	Lähteteksti minek pole saadaval enne, kui praegusel visuaalsel tabelil on täielik lähtealus. Värskenda esmalt tabelit.
+222	Lähteteksti minek nõuab praegust CSV-rida või lahtrit.
+223	Lähteteksti minekut ei lõpetatud. Dokumendi sisu ei muudetud.
+224	Notepad++-is valiti lähtekirje {0}, veerg {1}.
+225	Notepad++-is valiti lähtekirje {0}.
+226	Praegune visuaalne rida ei paku püsivat lähtekirje identiteeti.
+227	Sellel ootel lisatud real pole lähteasukohta enne rakendamise lõppu.
+228	Praegune vaade: {0:N0} / {1:N0} kuvatavat rida.
+229	Erinevad väärtused määratakse täpse tõstutundliku teksti järgi, sealhulgas tühjad väärtused.\nKorduvad read = read miinus erinevad väärtused. Arvuline vahemik kasutab täpseid kümnendarve punktiga.
+230	Tühi
+231	Liik
+232	Sagedasemad väärtused (kuni 20)
+233	Pole saadaval
+234	Arvuline miinimum: {0}     Maksimum: {1}\nPikim väärtus: {2:N0} UTF-16 ühikut. {3:N0} väärtust esineb rohkem kui üks kord.
+235	 Piiratud projektsioon; see EI OLE kogu fail.
+236	Read: {0:N0}     Tühjad: {1:N0}     Ainult tühimärgid: {2:N0}\nErinevad: {3:N0}     Korduvad read: {4:N0}     Arvulised: {5:N0}
+237	Veeru kokkuvõte
+238	Tühimärgid
+239	Ootel muutmisseanssi lisati uus rida. Rakenda kirjutab selle redaktori puhvrisse; Võta kõik tagasi eemaldab selle.
+240	Lähterida ei pakkunud oma lähtekirje indeksit.
+241	Toiming
+242	Aktiivse dokumendi hetktõmmis nurjus. Redaktori sisu ei muudetud.
+243	Lisa rida
+244	Kõik ootel lahtri- ja reamuudatused võeti tagasi. Notepad++-i redaktoripuhvrit ei muudetud.
+245	Rakenda kõik lahtri- ja reamuudatused aktiivses redaktoris ühe tagasivõetava toiminguna
+246	Rakendamine blokeeriti: aktiivne on teine Notepad++-i dokument. Naase algse dokumendi juurde või vali Võta kõik tagasi.
+247	Rakendamine blokeeriti: redaktori puhver muutus pärast muutmisrežiimi alustamist. Enne uuesti muutmist võta muudatused tagasi ja värskenda.
+248	Rakendamine blokeeriti: redaktori koodileht muutus pärast muutmisrežiimi alustamist. Võta muudatused tagasi ja ava muutmisrežiim uuesti.
+249	Rakendamine nurjus. Muutmisseanss jääb avatuks; kontrolli enne uuesti proovimist või tagasivõtmist redaktori puhvrit.
+250	Rakendamist ei lõpetatud. Automaatset ülekirjutamist ei proovitud.
+251	Tuvasta automaatselt
+252	automaatne usaldusväärsus {0}
+253	{0} — eraldaja automaattuvastus pole usaldusväärne; vajalik on käsitsi valimine.
+254	Automaattuvastus
+255	Kandidaatide hinded
+256	{0} lahtrit / {1} rida (+{2} / -{3})
+257	Märk
+258	{0} märki / {1} redaktoribaiti
+259	Vali ülal olevast eraldajaloendist Koma, Semikoolon või Tabeldusmärk.
+260	Vali sõnaselgelt, kas esimene loogiline kirje on päis
+261	Tühjenda
+262	Tühjenda praegune otsingufilter ja ainult vaadet mõjutav sortimine
+263	Kood
+264	 - {0} veerutingimust ({1}), {2} sortimistaset
+265	{0} — {1} × {2} veergu — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Koma (,)
+267	koma
+268	Usaldusväärsus
+269	Kustuta kõik valitud püsivad andmeread ootel muutmisseansist
+270	Kustuta rida
+271	Kustuta read ({0})
+272	Kustuta valitud püsiv andmerida ootel muutmisseansist
+273	Kustuta valitud püsiv andmerida või read ootel muutmisseansist
+274	Eraldaja:
+275	Diagnostika ({0})
+276	Hülga kõik ootel lahtrimuudatused, lisamised ja kustutamised
+277	Dokument
+278	 — MUUTMISREŽIIM: {0} lahtrit, {1} rida, +{2} / -{3}
+279	 - Muutmisrežiim
+280	Muutmisrežiimis on ootel muudatusi. Enne väljumist vali Rakenda või Võta kõik tagasi.
+281	Muutmisrežiim pole praeguse tabeli jaoks saadaval. Lahenda esmalt parsimisvead või kuvamispiirangud.
+282	Muutmist ei saa alustada piiratud ridade arvuga visuaalsest projektsioonist.
+283	Muutmist ei saa alustada, kui parsitud CSV sisaldab vigu.
+284	Muutmine pole praeguse tabeli jaoks saadaval.
+285	{0} — tühi redaktoripuhver; kuvatavaid CSV-kirjeid pole.
+286	Sisene selgesse lahtrite ja ridade muutmisrežiimi
+287	Sisene selgesse lahtrite ja ridade muutmisrežiimi. Rakenda kirjutab ainult redaktori puhvrisse.
+288	Sisene selgesse lahtrite ja ridade muutmisrežiimi. Täielik muutmismudel luuakse ainult nõudmisel.
+289	{0} viga, {1} hoiatust
+290	esimene rida päisena
+291	Esimene rida on päis
+292	Päis:
+293	Lisa uus rida valitud rea järele või tabeli lõppu, kui ühtegi rida pole valitud
+294	{0} — CSV-andmeid laaditakse taustal; Notepad++ jääb reageerivaks.
+295	käsitsi valik
+296	{0} sobivat / {1} kuvatavat rida
+297	Teade
+298	Ootel seansist eemaldati {0} äsja lisatud rida.
+299	Kuvatavaid diagnostikateateid pole.
+300	Päiserea puudumine
+301	päiserida puudub
+302	Sobivaid ridu pole.\nProovi teist otsinguteksti või veergu.
+303	parsimisdiagnostika puudub
+304	Usaldusväärset eraldajat ei saanud ohutult valida.
+305	Pole midagi rakendada: muutmisseansis pole ootel muudatusi.
+306	Piiratud visuaalse tabeli parsimine ja ettevalmistamine taustal…
+307	Ootel lahtri- ja reastruktuurimuudatused
+308	Ootel lisatud rida {0}; veel rakendamata
+309	{0} ootel rida
+310	Plugin on valmis. Aktiivse redaktoripuhvri lugemine...
+311	Täieliku muutmisseansi ettevalmistamine…
+312	Omadus
+313	Loe ja kuva hetkel aktiivne Notepad++-i redaktoripuhver
+314	Kirje
+315	Võta kõik tagasi
+316	{0} rida
+317	Semikoolon (;)
+318	semikoolon
+319	Tõsidus
+320	Näita üksikasjalikku parsimis- ja eraldajadiagnostikat
+321	kuvatakse {0} / {1} rida
+322	Hetktõmmis
+323	Hetktõmmise viga
+324	Sortimistase {0}: {1}, {2}. Ainult vaade.
+325	 — sorditud: {0} {1}
+326	Lähte loogiline kirje {0}
+327	Lähte loogiline kirje {0}; muudetud ootel muutmisseansis
+328	{0} lähterida on märgitud kustutamiseks ja {1} lisatud rida on ootel seansist eemaldatud.
+329	{0} lähterida on märgitud kustutamiseks. Rakenda kirjutab kogu hulga; Võta kõik tagasi taastab iga rea.
+330	Olek
+331	Tabeldusmärk
+332	tabeldusmärk
+333	Tabeli viga
+334	Aktiivse lahtri muudatust ei saanud kinnitada. Paranda väärtus enne rea lisamist.
+335	Aktiivse lahtri muudatust ei saanud kinnitada. Paranda väärtus enne ridade kustutamist.
+336	Aktiivse lahtri muudatust ei saanud kinnitada. Paranda väärtus enne rakendamist.
+337	Äsja lisatud rida eemaldati ootel seansist.
+338	Reanäidiku veerg pole seadistatud.
+339	Valitud ridade hulk pole selle muutmisseansi jaoks enam kehtiv. Ühtegi rida ei kustutatud.
+340	Valitud read olid juba kustutatud. Lisamuudatust ei tehtud.
+341	Lähterida on märgitud kustutamiseks. Rakenda kirjutab kustutuse; Võta kõik tagasi taastab rea.
+342	Visuaalset tabelit ei saanud luua. Redaktori sisu ei muudetud.
+343	Kasuta usaldusväärset automaattuvastust või vali eraldaja sõnaselgelt
+344	Aktiivse Notepad++-i dokumendi ootamine.
+345	{0} - {1} x {2:N0} veergu
+346	Nõustu muudatustega
+347	Pärast
+348	Kõik andmelahtrid
+349	Enne
+350	CSV-veerg
+351	Vali toiming ja ulatus ning klõpsa Eelvaade.
+352	Praegune veerg
+353	Otsi:
+354	väiketähed
+355	Toiming:
+356	Muud tühimärgid kuvatakse paojadadena; pikkusi loendatakse UTF-16 ühikutes. Pikki väärtusi lühendatakse.
+357	Eelvaadet ei saanud luua. Kontrolli ulatust ja otsinguteksti või vali väiksem ulatus (kuni 250,000 lahtrit / 16 Mi märki).
+358	Loo esmalt eelvaade. Nõustu muudatustega uuendab ootel muudatusi; tööriistariba Rakenda kirjutab Notepad++-i.\nPäised jäetakse välja, kui Päis = esimene kirje. Tõstu muutmine ei sõltu piirkonnasätetest.
+359	Kirje ID
+360	Asenda tekst (sõnasõnaline)
+361	Asenda tekstiga:
+362	Ulatus:
+363	Vali CSV-andmeveerg.
+364	Valitud lahtrid / read
+365	täidetud oranžid punktid tähistavad tühikuid. 
+366	tühikunäidikud on peidetud. 
+367	{0:N0} sihtlahtrit; {1:N0} muudatust {2:N0} real. Kuvatakse esimesed 50 muudatust; 
+368	Muutmisseanss on muutunud.
+369	Eelvaade pole enam kehtiv. Kontrolli muutmisseanssi ja loo uus eelvaade.
+370	Teisenda CSV-lahtrid
+371	Ootel muutmisseansis teisendati {0:N0} lahtrit. Notepad++-i uuendamiseks vali Rakenda või ootel muudatuste hülgamiseks Võta kõik tagasi.
+372	Eemalda äärmised tühimärgid
+373	SUURTÄHED
+374	Lähtesta vaade
+375	Näita tühikuid

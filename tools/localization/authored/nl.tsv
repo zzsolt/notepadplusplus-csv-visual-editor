@@ -1,0 +1,378 @@
+# language: nl
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Een visuele CSV-editor voor Notepad++
+001	Over CSV Visual Editor
+002	Contact: {0}
+003	Neem contact op met ontwikkelaar {0}
+004	Ontwikkelaar: {0}
+005	Ontwikkelversie
+006	Bevalt CSV Visual Editor? Steun het project.\nGeef het een ster op GitHub, deel je feedback of neem contact op met de ontwikkelaar om bij te dragen. Bedankt!
+007	Interfacetaal: {0}
+008	Er kon geen gekoppelde toepassing worden geopend. Contact: {0}
+009	Project op GitHub
+010	Versie: {0}
+011	Versie en build
+012	{0} geblokkeerd omdat het model met openstaande bewerkingen is gewijzigd. Er is geen gedeeltelijke wijziging behouden.
+013	{0} geblokkeerd: de rechthoeken op het klembord en in de selectie hebben verschillende afmetingen.
+014	{0} geblokkeerd: de doelrechthoek valt buiten de CSV-tabel.
+015	{0} geblokkeerd: er is geen bewerkbare doelrechthoek.
+016	{0} × {1} CSV-cellen gekopieerd.
+017	Kopiëren/Knippen geblokkeerd: een geselecteerde cel bevat een tab of regeleinde dat niet ondubbelzinnig als gewone spreadsheettekst kan worden weergegeven.
+018	Kopiëren vereist CSV-cellen, niet een selectie van volledige rijen voor verwijdering.
+019	Kopiëren vereist één aaneengesloten rechthoekige selectie van CSV-gegevenscellen.
+020	{0} cellen naar het klembord geknipt en leeggemaakt in de openstaande bewerkingssessie. Toepassen schrijft het leegmaken naar Notepad++.
+021	Knippen voltooid; de geselecteerde cellen waren al leeg. Het klembord bevat hun oorspronkelijke waarden.
+022	{0} is alleen beschikbaar in de bewerkingsmodus.
+023	{0} is niet beschikbaar voor de huidige tabel.
+024	Plakken geblokkeerd: {0} Er zijn geen gegevens gewijzigd.
+025	Plakken voltooid; alle doelwaarden waren al identiek.
+026	{0} gewijzigde cellen in de openstaande bewerkingssessie geplakt. Toepassen schrijft ze naar Notepad++.
+027	{0} vereist een rechthoek van CSV-cellen, niet een selectie van volledige rijen voor verwijdering.
+028	{0} vereist één aaneengesloten rechthoekige selectie van CSV-gegevenscellen.
+029	Doelen voor {0} zijn buiten het stabiele rijmodel van de bewerkingsmodus niet beschikbaar.
+030	De bewerking van de actieve cel kon vóór het kopiëren niet worden bevestigd.
+031	De bewerking van de actieve cel kon niet worden bevestigd. Corrigeer de waarde vóór {0}.
+032	Het klembord bevat geen cellen als gewone tekst.
+033	Het Windows-klembord is tijdelijk niet beschikbaar. Er zijn geen gegevens gewijzigd.
+034	Kopieer de geselecteerde rechthoek van CSV-cellen naar het Windows-klembord (Ctrl+C)
+035	Kopieer de geselecteerde CSV-cellen en maak ze leeg in de openstaande bewerkingssessie (Ctrl+X)
+036	Plak spreadsheetcellen in de geselecteerde CSV-cel of rechthoek (Ctrl+V)
+037	Bekijk een voorbeeld van tekst vervangen, witruimte aan de randen verwijderen of hoofdletters/kleine letters wijzigen in openstaande CSV-bewerkingen
+038	Selecteer de huidige CSV-cel of rij in de bronbuffer van Notepad++
+039	Bron
+040	Omzetten
+041	Over
+042	Toepassen
+043	Oplopend
+044	Annuleren
+045	Sluiten
+046	Kolom
+047	Kopiëren
+048	Knippen
+049	Aflopend
+050	Bewerken
+051	Bewerken afsluiten
+052	Hoofdlettergevoelig
+053	Getal
+054	Oorspronkelijke volgorde
+055	Plakken
+056	Voorbeeld
+057	Vernieuwen
+058	Rijen
+059	Tabel
+060	Tekst
+061	Waarde
+062	Kolomoverzicht: aantallen, verschillende waarden, numeriek bereik en veelvoorkomende waarden in de huidige weergave.
+063	Het kolomoverzicht vereist een gereedstaande alleen-lezen-tabel. Sluit eerst de bewerkingsmodus af.
+064	Filteren en sorteren: combineer kolomregels en tekst-/numerieke sorteerniveaus. Alleen de weergave; CSV blijft ongewijzigd.
+065	Filteren en sorteren: combineer kolomregels en maximaal drie tekst-/numerieke sorteerniveaus. Alleen de weergave.
+066	Filteren en sorteren: {0} voorwaarden, {1} sorteerniveaus. Weergave herstellen verwijdert alle regels.
+067	Filteren en sorteren vereist een gereedstaande alleen-lezen-tabel. Sluit eerst de bewerkingsmodus af.
+068	Diagnostiek (0)
+069	0 wijzigingen
+070	Voorwaarde toevoegen
+071	Sorteerniveau toevoegen
+072	Weergave toepassen
+073	Hoofdletters
+074	Hoofdlettergevoelige tekstvergelijking. Spaties in waarden worden letterlijk behandeld.
+075	Controleer de regels: {0}
+076	Voorwaarde
+077	{0} / 8 voorwaarden; {1} / 3 sorteerniveaus. Gebruik het voorbeeld om overeenkomende rijen te controleren.
+078	Bevat
+079	Bevat niet
+080	Is niet gelijk aan
+081	Leeg = nul tekens. Alleen witruimte = een niet-lege reeks spaties/tabs/regeleinden.\nGetallen gebruiken een decimale punt (-12.5), zonder groepering of exponenten; de precisie moet exact zijn.
+082	Eindigt op
+083	Is gelijk aan
+084	Filterwaarde
+085	Filters
+086	Is leeg
+087	Is niet leeg
+088	Is niet alleen witruimte
+089	Is alleen witruimte
+090	Letterlijke tekst, inclusief spaties. Numerieke regels vereisen een exact decimaal getal met een punt.
+091	Voldoen aan ALLE voorwaarden
+092	Voldoen aan MINSTENS ÉÉN voorwaarde
+093	Getal =
+094	Getal >
+095	Getal >=
+096	Getal <
+097	Getal <=
+098	Getal (decimaal)
+099	Voorbeeld: {0:N0} van {1:N0} weergegeven rijen. CSV ongewijzigd.
+100	Voorwaarde verwijderen
+101	Sorteerniveau verwijderen
+102	Regels herstellen
+103	De regels houden ook rekening met de huidige zoekopdracht. Annuleren behoudt de actieve weergave.
+104	Sortering
+105	Begint met
+106	Tekst: ordinale volgorde zonder onderscheid tussen hoofdletters en kleine letters. Getal: exacte decimalen; ongeldige/lege waarden als laatste.\nGelijke sleutels behouden de bronvolgorde. Verwijder alle niveaus om die volgorde te herstellen.
+107	De projectie is begrensd; niet-weergegeven rijen zijn niet opgenomen. 
+108	Filteren en sorteren
+109	Het bovenste niveau heeft voorrang; volgende niveaus beslissen bij gelijke waarden. Maximaal 3.
+110	Waarde (letterlijk, inclusief spaties)
+111	Alleen de weergave — CSV-waarden en bronvolgorde blijven ongewijzigd. {0:N0} weergegeven rijen.\n
+112	Toepassen is geblokkeerd omdat {0} geen expliciet ondersteund coderingsprofiel heeft. De editorinhoud is niet gewijzigd.
+113	Toepassen is geblokkeerd omdat strikte coderingsvalidatie voor {0} geen exacte heen-en-terugconversie opleverde. De editorinhoud is niet gewijzigd.
+114	Toepassen is geblokkeerd omdat de openstaande vervanging niet exact in {0} kan worden weergegeven. Er zijn geen vervangingstekens gebruikt en de editorinhoud is niet gewijzigd.
+115	Toepassen is nog niet ingeschakeld voor {0}. De editorinhoud is niet gewijzigd. Schrijven is alleen ingeschakeld voor UTF-8 (65001) en Windows-1250 (1250), na verliesvrije validatie. Gebruik Alles terugdraaien of converteer het document in Notepad++ naar UTF-8 en open de bewerkingsmodus opnieuw.
+116	Vernieuwen is uitgeschakeld in de bewerkingsmodus. Pas eerst alle openstaande wijzigingen toe of draai ze terug.
+117	Scintilla-codepagina {0}
+118	Het actieve document is {0:N0} bytes groot. De huidige veilige limiet voor de momentopname is {1:N0} bytes.
+119	Het actieve Notepad++-document kon niet worden gelezen. De editorinhoud is niet gewijzigd.
+120	Het resultaat van Toepassen is geen status voor coderingsblokkering.
+121	Het opbouwen van de tabel op de achtergrond is zonder resultaat geëindigd.
+122	De CSV-wijzigingen zijn toegepast, maar de vorige cursorpositie of selectie kon niet worden hersteld. De gehele documentwijziging kan nog steeds in één stap ongedaan worden gemaakt.
+123	de huidige codepagina van de editor
+124	De editorbuffer kon niet in een visuele tabel worden omgezet. Kies een expliciet scheidingsteken of vernieuw nadat het document is gecorrigeerd.
+125	Het opbouwen van de tabel heeft een onvolledig resultaat opgeleverd.
+126	&Over
+127	&Zoekopdracht wissen
+128	&CSV
+129	&Scheidingsteken
+130	&Bewerken
+131	Esc in zoekvak
+132	&Zoeken in tabel
+133	&Kop
+134	&Volgende overeenkomende cel
+135	&Vorige overeenkomende cel
+136	Weergave herstellen: zoekopdracht, kolomvoorwaarden en alle sorteringen wissen.
+137	&Zoeken
+138	Zoek&kolom
+139	Spaties tonen: kleine gevulde oranje stippen. Alleen weergave; CSV-waarden veranderen niet.
+140	&Tabel tonen
+141	&Sorteren op
+142	&Tabel
+143	&Weergave
+144	Een filterwaarde mag maximaal 4,096 tekens bevatten.
+145	ALLE
+146	Een bytevolgordemarkering aan het begin is uit het eerste veld weggelaten.
+147	MINSTENS ÉÉN
+148	Er staat een aanhalingsteken in een veld dat niet tussen aanhalingstekens staat.
+149	De rijen op het klembord moeten één rechthoekige celmatrix vormen.
+150	Diagnostische code: {0}.
+151	Elk sorteerniveau moet een andere kolom gebruiken.
+152	Fout
+153	hoog
+154	Informatie
+155	laag
+156	gemiddeld
+157	Geen ondersteund scheidingsteken leverde een voldoende betrouwbare structuur met meerdere velden op.
+158	geen
+159	Eén visuele rij zou {0:N0} cellen vereisen, meer dan de huidige totale limiet van {1:N0}. Er zijn geen kolommen verborgen.
+160	De record heeft {0} velden; {1} werd verwacht op basis van het meest voorkomende aantal in de steekproef.
+161	Spaties: {0}; aan het begin: {1}; aan het einde: {2}. Lengte: {3} UTF-16-eenheden.\nOranje stippen markeren echte spaties. De weergaveafstand is vergroot voor de leesbaarheid; CSV-tekens veranderen niet. Bij een cel met uitsluitend spaties overlappen de begin- en eindtellingen.
+162	De celmatrix op het klembord overschrijdt de veilige plaklimiet.
+163	Het klembord bevat een niet-ondersteund besturingsteken.
+164	Het klembord bevat meer kolommen dan de editor veilig kan plakken.
+165	Het klembord bevat meer rijen dan de editor veilig kan plakken.
+166	De klembordtekst overschrijdt de veilige limiet van 16 Mi UTF-16-tekeneenheden.
+167	Het laatste veld tussen aanhalingstekens is niet afgesloten vóór het einde van de tekst.
+168	Het aantal velden verschilt van de andere records.
+169	De bewerking kon niet worden voltooid. Controleer het document, de geselecteerde waarden en de groottelimieten.
+170	Het verwerkte document bevat {0:N0} kolommen, meer dan de huidige limiet van {1:N0} voor de visuele tabel. Er zijn geen kolommen verborgen.
+171	Het voorgestelde scheidingsteken heeft een lage betrouwbaarheid. Controleer de instelling voor het scheidingsteken.
+172	Twee kandidaat-scheidingstekens hebben vergelijkbare scores. Controleer de instelling voor het scheidingsteken.
+173	Er volgen onverwachte tekens na een afsluitend aanhalingsteken.
+174	onbekend
+175	Gebruik een exact decimaal getal met een punt, zoals -12.5. Groepering, exponenten en afgeronde waarden worden niet ondersteund.
+176	Gebruik maximaal acht filtervoorwaarden die niet null zijn.
+177	Gebruik maximaal drie sorteerniveaus die niet null zijn.
+178	De weergaveregels verwijzen naar een kolom buiten de huidige tabel.
+179	Waarschuwing
+180	Kolomoverzicht
+181	Filteren en sorteren
+182	Visuele tabel openen
+183	Tabel vernieuwen
+184	nieuw:{0}
+185	nieuw:{0} *
+186	Selecteren
+187	Volledige rijen selecteren voor verwijdering
+188	Logische bronrecord of openstaande structurele rij
+189	De rijindicatorkolom kon niet worden bepaald.
+190	De rij moet bij een DataGridView horen.
+191	Alle kolommen
+192	{0:N0} / {1:N0} cellen
+193	{0:N0} cellen
+194	Zoekopdracht wissen
+195	Zoekopdracht wissen (Esc). Zoekkolom en sortering behouden.
+196	Filtert de weergegeven rijen. Enter: volgende overeenkomende cel. Shift+Enter: vorige. Escape: wissen.
+197	Volgende overeenkomende cel
+198	Volgende overeenkomende cel (F3 / Enter)
+199	Geen overeenkomsten
+200	Geen overeenkomende rijen.\nPas de zoekopdracht aan of gebruik Weergave > Filteren en sorteren / Weergave herstellen.
+201	Vorige overeenkomende cel
+202	Vorige overeenkomende cel (Shift+F3 / Shift+Enter)
+203	Zoek in alle gegevenskolommen of kies één kolom.
+204	Zoekkolom
+205	Zoek in weergegeven CSV-rijen (Ctrl+F). Waarden en brontekst blijven ongewijzigd.
+206	Zoeken in tabel...
+207	Zoeken in tabel
+208	Zoekresultaten
+209	Bezig met zoeken...
+210	Ga naar bron geblokkeerd: er is een ander Notepad++-document actief. Ga terug naar de weergegeven CSV of vernieuw de tabel.
+211	Ga naar bron geblokkeerd omdat het bewaarde verwerkingsresultaat niet meer overeenkomt met de onveranderlijke bronmomentopname. Vernieuw eerst de tabel.
+212	Ga naar bron geblokkeerd: de strikt gecodeerde lengte komt niet overeen met de door Scintilla gemelde documentlengte.
+213	Ga naar bron geblokkeerd: de actieve editorinhoud is gewijzigd nadat de tabel werd weergegeven. Vernieuw eerst de tabel.
+214	Ga naar bron geblokkeerd: de huidige Scintilla-codepagina heeft geen expliciet bytepositieprofiel.
+215	Ga naar bron geblokkeerd: de codepagina van de editor is gewijzigd nadat de tabel werd weergegeven. Vernieuw eerst de tabel.
+216	Ga naar bron geblokkeerd: de geselecteerde geprojecteerde cel heeft geen onbewerkt bronveld.
+217	Ga naar bron geblokkeerd: het brontekenbereik kon niet verliesvrij aan Scintilla-bytes worden gekoppeld.
+218	Ga naar bron geblokkeerd: de logische bronrecord is niet beschikbaar in het bewaarde verwerkingsresultaat.
+219	Ga naar bron mislukt: de actieve Notepad++-buffer kon niet worden gelezen. De documentinhoud is niet gewijzigd.
+220	Ga naar bron mislukt tijdens het verplaatsen van de Scintilla-selectie. De documentinhoud is niet gewijzigd.
+221	Ga naar bron is niet beschikbaar totdat de huidige visuele tabel een volledige bronbasis heeft. Vernieuw eerst de tabel.
+222	Ga naar bron vereist een huidige CSV-rij of cel.
+223	Ga naar bron is niet voltooid. De documentinhoud is niet gewijzigd.
+224	Bronrecord {0}, kolom {1} geselecteerd in Notepad++.
+225	Bronrecord {0} geselecteerd in Notepad++.
+226	De huidige visuele rij levert geen stabiele identiteit voor de bronrecord.
+227	Deze openstaande ingevoegde rij heeft pas een bronlocatie nadat Toepassen is voltooid.
+228	Huidige weergave: {0:N0} van {1:N0} weergegeven rijen.
+229	Verschillende waarden worden bepaald op basis van exacte hoofdlettergevoelige tekst, inclusief lege waarden.\nHerhaalde rijen = rijen min verschillende waarden. Het numerieke bereik gebruikt exacte decimale waarden met een punt.
+230	Leeg
+231	Soort
+232	Meest voorkomende waarden (maximaal 20)
+233	Niet beschikbaar
+234	Numeriek minimum: {0}     Maximum: {1}\nLangste waarde: {2:N0} UTF-16-eenheden. {3:N0} waarden komen meer dan één keer voor.
+235	 Begrensde projectie; dit is NIET het gehele bestand.
+236	Rijen: {0:N0}     Leeg: {1:N0}     Alleen witruimte: {2:N0}\nVerschillend: {3:N0}     Herhaalde rijen: {4:N0}     Numeriek: {5:N0}
+237	Kolomoverzicht
+238	Witruimte
+239	Er is een nieuwe rij toegevoegd aan de openstaande bewerkingssessie. Toepassen schrijft deze naar de editorbuffer; Alles terugdraaien verwijdert deze.
+240	Een bronrij leverde de index van de bronrecord niet.
+241	Actie
+242	Momentopname van het actieve document mislukt. De editorinhoud is niet gewijzigd.
+243	Rij toevoegen
+244	Alle openstaande cel- en rijbewerkingen zijn teruggedraaid. De Notepad++-editorbuffer is niet gewijzigd.
+245	Pas alle cel- en rijbewerkingen toe op de actieve editor als één ongedaan te maken actie
+246	Toepassen geblokkeerd: er is een ander Notepad++-document actief. Ga terug naar het oorspronkelijke document of gebruik Alles terugdraaien.
+247	Toepassen geblokkeerd: de editorbuffer is gewijzigd nadat de bewerkingsmodus begon. Draai terug en vernieuw voordat je opnieuw bewerkt.
+248	Toepassen geblokkeerd: de codepagina van de editor is gewijzigd nadat de bewerkingsmodus begon. Draai terug en open de bewerkingsmodus opnieuw.
+249	Toepassen mislukt. De bewerkingssessie blijft open; controleer de editorbuffer voordat je opnieuw probeert of terugdraait.
+250	Toepassen is niet voltooid. Er is geen automatische overschrijving geprobeerd.
+251	Automatisch detecteren
+252	automatische betrouwbaarheid {0}
+253	{0} — automatische detectie van het scheidingsteken is niet betrouwbaar; handmatige selectie is vereist.
+254	Automatische detectie
+255	Kandidaatscores
+256	{0} cellen / {1} rijen (+{2} / -{3})
+257	Teken
+258	{0} tekens / {1} editorbytes
+259	Kies Komma, Puntkomma of Tab in de lijst met scheidingstekens hierboven.
+260	Kies expliciet of de eerste logische record een kop is
+261	Wissen
+262	Wis het huidige zoekfilter en de sortering die alleen de weergave beïnvloedt
+263	Code
+264	 - {0} kolomvoorwaarden ({1}), {2} sorteerniveaus
+265	{0} — {1} × {2} kolommen — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	komma
+268	Betrouwbaarheid
+269	Verwijder alle geselecteerde stabiele gegevensrijen uit de openstaande bewerkingssessie
+270	Rij verwijderen
+271	Rijen verwijderen ({0})
+272	Verwijder de geselecteerde stabiele gegevensrij uit de openstaande bewerkingssessie
+273	Verwijder de geselecteerde stabiele gegevensrij of rijen uit de openstaande bewerkingssessie
+274	Scheidingsteken:
+275	Diagnostiek ({0})
+276	Verwerp alle openstaande celwijzigingen, invoegingen en verwijderingen
+277	Document
+278	 — BEWERKINGSMODUS: {0} cellen, {1} rijen, +{2} / -{3}
+279	 - Bewerkingsmodus
+280	De bewerkingsmodus bevat openstaande wijzigingen. Gebruik Toepassen of Alles terugdraaien voordat je afsluit.
+281	De bewerkingsmodus is niet beschikbaar voor de huidige tabel. Los eerst verwerkingsfouten of weergavelimieten op.
+282	Bewerken kan niet beginnen vanuit een visuele projectie met een beperkt aantal rijen.
+283	Bewerken kan niet beginnen zolang de verwerkte CSV fouten bevat.
+284	Bewerken is niet beschikbaar voor de huidige tabel.
+285	{0} — lege editorbuffer; geen CSV-records om weer te geven.
+286	Open de expliciete bewerkingsmodus voor cellen en rijen
+287	Open de expliciete bewerkingsmodus voor cellen en rijen. Toepassen schrijft alleen naar de editorbuffer.
+288	Open de expliciete bewerkingsmodus voor cellen en rijen. Het volledige bewerkingsmodel wordt alleen op verzoek aangemaakt.
+289	{0} fouten, {1} waarschuwingen
+290	eerste rij als kop
+291	Eerste rij is kop
+292	Kop:
+293	Voeg een nieuwe rij in na de geselecteerde rij, of achteraan als geen rij is geselecteerd
+294	{0} — CSV-gegevens worden op de achtergrond geladen; Notepad++ blijft reageren.
+295	handmatige selectie
+296	{0} overeenkomende van {1} weergegeven rijen
+297	Bericht
+298	{0} nieuw ingevoegde rijen zijn uit de openstaande sessie verwijderd.
+299	Geen diagnostiek om weer te geven.
+300	Geen koprij
+301	geen koprij
+302	Geen overeenkomende rijen.\nProbeer een andere zoektekst of kolom.
+303	geen verwerkingsdiagnostiek
+304	Er kon niet veilig een betrouwbaar scheidingsteken worden gekozen.
+305	Niets om toe te passen: de bewerkingssessie bevat geen openstaande wijzigingen.
+306	Een begrensde visuele tabel wordt op de achtergrond verwerkt en voorbereid…
+307	Openstaande celwijzigingen en structurele rijwijzigingen
+308	Openstaande ingevoegde rij {0}; nog niet toegepast
+309	{0} openstaande rijen
+310	Plug-in gereed. De actieve editorbuffer wordt gelezen...
+311	De volledige bewerkingssessie wordt voorbereid…
+312	Eigenschap
+313	Lees en toon de momenteel actieve Notepad++-editorbuffer
+314	Record
+315	Alles terugdraaien
+316	{0} rijen
+317	Puntkomma (;)
+318	puntkomma
+319	Ernst
+320	Toon gedetailleerde diagnostiek voor verwerking en scheidingstekens
+321	{0} van {1} rijen weergegeven
+322	Momentopname
+323	Fout bij momentopname
+324	Sorteerniveau {0}: {1}, {2}. Alleen de weergave.
+325	 — gesorteerd op {0} {1}
+326	Logische bronrecord {0}
+327	Logische bronrecord {0}; gewijzigd in de openstaande bewerkingssessie
+328	{0} bronrijen zijn gemarkeerd voor verwijdering en {1} ingevoegde rijen zijn uit de openstaande sessie verwijderd.
+329	{0} bronrijen zijn gemarkeerd voor verwijdering. Toepassen schrijft de hele groep; Alles terugdraaien herstelt elke rij.
+330	Status
+331	Tab
+332	tab
+333	Tabelfout
+334	De bewerking van de actieve cel kon niet worden bevestigd. Corrigeer de waarde voordat je een rij toevoegt.
+335	De bewerking van de actieve cel kon niet worden bevestigd. Corrigeer de waarde voordat je rijen verwijdert.
+336	De bewerking van de actieve cel kon niet worden bevestigd. Corrigeer de waarde voordat je toepast.
+337	De nieuw ingevoegde rij is uit de openstaande sessie verwijderd.
+338	De rijindicatorkolom is niet ingesteld.
+339	De geselecteerde verzameling rijen is niet meer geldig voor deze bewerkingssessie. Er zijn geen rijen verwijderd.
+340	De geselecteerde rijen waren al verwijderd. Er is geen extra wijziging uitgevoerd.
+341	De bronrij is gemarkeerd voor verwijdering. Toepassen schrijft de verwijdering; Alles terugdraaien herstelt de rij.
+342	De visuele tabel kon niet worden gemaakt. De editorinhoud is niet gewijzigd.
+343	Gebruik betrouwbare automatische detectie of kies expliciet een scheidingsteken
+344	Wachten op het actieve Notepad++-document.
+345	{0} - {1} x {2:N0} kolommen
+346	Wijzigingen accepteren
+347	Na
+348	Alle gegevenscellen
+349	Voor
+350	CSV-kolom
+351	Kies een bewerking en een bereik en klik vervolgens op Voorbeeld.
+352	Huidige kolom
+353	Zoeken:
+354	kleine letters
+355	Bewerking:
+356	Overige witruimte wordt als escapereeks weergegeven; lengtes tellen UTF-16-eenheden. Lange waarden worden ingekort.
+357	Het voorbeeld kon niet worden gemaakt. Controleer het bereik en de zoektekst of kies een kleiner bereik (maximaal 250,000 cellen / 16 Mi tekens).
+358	Maak eerst een voorbeeld. Wijzigingen accepteren werkt de openstaande bewerkingen bij; Toepassen op de werkbalk schrijft naar Notepad++.\nKoppen worden uitgesloten wanneer Kop = eerste record. Het wijzigen van hoofdletters en kleine letters is onafhankelijk van de landinstellingen.
+359	Record-ID
+360	Tekst vervangen (letterlijk)
+361	Vervangen door:
+362	Bereik:
+363	Selecteer een CSV-gegevenskolom.
+364	Geselecteerde cellen / rijen
+365	gevulde oranje stippen markeren spaties. 
+366	spatie-indicatoren zijn verborgen. 
+367	{0:N0} doelcellen; {1:N0} wijzigingen in {2:N0} rijen. De eerste 50 wijzigingen worden getoond; 
+368	De bewerkingssessie is gewijzigd.
+369	Het voorbeeld is niet meer geldig. Controleer de bewerkingssessie en maak een nieuw voorbeeld.
+370	CSV-cellen omzetten
+371	{0:N0} cellen omgezet in de openstaande bewerkingssessie. Gebruik Toepassen om Notepad++ bij te werken of Alles terugdraaien om de openstaande bewerkingen te verwerpen.
+372	Witruimte aan de randen verwijderen
+373	HOOFDLETTERS
+374	Weergave herstellen
+375	Spaties tonen

@@ -1,0 +1,378 @@
+# language: ro
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Un editor CSV vizual pentru Notepad++
+001	Despre CSV Visual Editor
+002	Contact: {0}
+003	Contactează dezvoltatorul {0}
+004	Dezvoltator: {0}
+005	Versiune de dezvoltare
+006	Îți place CSV Visual Editor? Sprijină proiectul.\nAcordă-i o stea pe GitHub, trimite-ne părerea ta sau contactează dezvoltatorul pentru a contribui. Mulțumim!
+007	Limba interfeței: {0}
+008	Nu s-a putut deschide nicio aplicație asociată. Contact: {0}
+009	Proiectul pe GitHub
+010	Versiune: {0}
+011	Versiune și compilare
+012	Operația {0} a fost blocată deoarece modelul modificărilor în așteptare s-a schimbat. Nu a fost păstrată nicio modificare parțială.
+013	Operația {0} a fost blocată: dreptunghiurile din clipboard și din selecție au dimensiuni diferite.
+014	Operația {0} a fost blocată: dreptunghiul destinație depășește tabelul CSV.
+015	Operația {0} a fost blocată: nu există un dreptunghi destinație editabil.
+016	Au fost copiate {0} × {1} celule CSV.
+017	Copierea/decuparea a fost blocată: o celulă selectată conține un tabulator sau o întrerupere de linie care nu poate fi reprezentată fără ambiguitate ca text simplu pentru foi de calcul.
+018	Copierea necesită celule CSV, nu o selecție de rânduri întregi pentru ștergere.
+019	Copierea necesită o singură selecție dreptunghiulară continuă de celule de date CSV.
+020	Au fost decupate {0} celule în clipboard și golite în sesiunea de editare în așteptare. „Aplică” scrie golirea în Notepad++.
+021	Decuparea s-a încheiat; celulele selectate erau deja goale. Clipboardul conține valorile lor inițiale.
+022	Operația {0} este disponibilă doar în modul de editare.
+023	Operația {0} nu este disponibilă pentru tabelul curent.
+024	Lipire blocată: {0} Nu au fost modificate date.
+025	Lipirea s-a încheiat; toate valorile destinație erau deja identice.
+026	Au fost lipite {0} celule modificate în sesiunea de editare în așteptare. „Aplică” le scrie în Notepad++.
+027	Operația {0} necesită un dreptunghi de celule CSV, nu o selecție de rânduri întregi pentru ștergere.
+028	Operația {0} necesită o singură selecție dreptunghiulară continuă de celule de date CSV.
+029	Destinațiile operației {0} nu sunt disponibile în afara modelului stabil de rânduri al modului de editare.
+030	Editarea celulei active nu a putut fi confirmată înainte de copiere.
+031	Editarea celulei active nu a putut fi confirmată. Corectează valoarea înainte de {0}.
+032	Clipboardul nu conține celule în format text simplu.
+033	Clipboardul Windows este temporar indisponibil. Nu au fost modificate date.
+034	Copiază dreptunghiul de celule CSV selectat în clipboardul Windows (Ctrl+C)
+035	Copiază celulele CSV selectate și golește-le în sesiunea de editare în așteptare (Ctrl+X)
+036	Lipește celule de foaie de calcul în celula sau dreptunghiul CSV selectat (Ctrl+V)
+037	Previzualizează înlocuirea textului, eliminarea spațiilor albe exterioare sau schimbarea literelor mari/mici în editările CSV în așteptare
+038	Selectează celula sau rândul CSV curent în memoria tampon sursă din Notepad++
+039	Sursă
+040	Transformă
+041	Despre
+042	Aplică
+043	Crescător
+044	Anulează
+045	Închide
+046	Coloană
+047	Copiază
+048	Decupează
+049	Descrescător
+050	Editează
+051	Ieși din editare
+052	Distinge litere mari/mici
+053	Număr
+054	Ordinea inițială
+055	Lipește
+056	Previzualizare
+057	Reîmprospătează
+058	Rânduri
+059	Tabel
+060	Text
+061	Valoare
+062	Rezumatul coloanei: numărări, valori distincte, interval numeric și valori frecvente în vizualizarea curentă.
+063	Rezumatul coloanei necesită un tabel pregătit, doar în citire. Ieși mai întâi din modul de editare.
+064	Filtrează și sortează: combină reguli pentru coloane și niveluri de sortare text/numerică. Doar vizualizarea; CSV-ul nu se schimbă.
+065	Filtrează și sortează: combină reguli pentru coloane și până la trei niveluri de sortare text/numerică. Doar vizualizarea.
+066	Filtrează și sortează: {0} condiții, {1} niveluri de sortare. Resetarea vizualizării șterge toate regulile.
+067	Filtrarea și sortarea necesită un tabel pregătit, doar în citire. Ieși mai întâi din modul de editare.
+068	Diagnosticare (0)
+069	0 modificări
+070	Adaugă condiție
+071	Adaugă nivel de sortare
+072	Aplică vizualizarea
+073	Litere mari/mici
+074	Comparare de text cu diferențierea literelor mari și mici. Spațiile din valori sunt tratate literal.
+075	Verifică regulile: {0}
+076	Condiție
+077	{0} / 8 condiții; {1} / 3 niveluri de sortare. Previzualizează pentru a verifica rândurile corespunzătoare.
+078	Conține
+079	Nu conține
+080	Nu este egal cu
+081	Gol = zero caractere. Doar spații albe = secvență nevidă de spații/tabulatori/întreruperi de linie.\nNumerele folosesc punctul zecimal (-12.5), fără grupare sau exponenți; precizia trebuie să fie exactă.
+082	Se termină cu
+083	Este egal cu
+084	Valoarea filtrului
+085	Filtre
+086	Este gol
+087	Nu este gol
+088	Nu conține doar spații albe
+089	Conține doar spații albe
+090	Text literal, inclusiv spații. Regulile numerice necesită un număr zecimal exact cu punct.
+091	Îndeplinește TOATE condițiile
+092	Îndeplinește ORICARE condiție
+093	Număr =
+094	Număr >
+095	Număr >=
+096	Număr <
+097	Număr <=
+098	Număr (zecimal)
+099	Previzualizare: {0:N0} din {1:N0} rânduri afișate. CSV neschimbat.
+100	Elimină condiția
+101	Elimină nivelul de sortare
+102	Resetează regulile
+103	Regulile respectă și căutarea curentă. Anularea păstrează vizualizarea activă.
+104	Sortare
+105	Începe cu
+106	Text: ordine ordinală fără diferențierea literelor mari și mici. Număr: zecimale exacte; valorile nevalide/goale la sfârșit.\nCheile egale păstrează ordinea sursă. Elimină toate nivelurile pentru a restabili ordinea sursă.
+107	Proiecția este limitată; rândurile neafișate nu sunt incluse. 
+108	Filtrează și sortează
+109	Primul nivel are prioritate; următoarele rezolvă egalitățile. Maximum 3.
+110	Valoare (literală, inclusiv spații)
+111	Doar vizualizarea — valorile CSV și ordinea sursă rămân neschimbate. {0:N0} rânduri afișate.\n
+112	Aplicarea este blocată deoarece {0} nu are un profil de codificare acceptat explicit. Conținutul editorului nu a fost modificat.
+113	Aplicarea este blocată deoarece validarea strictă a codificării {0} nu a permis o conversie exactă în ambele sensuri. Conținutul editorului nu a fost modificat.
+114	Aplicarea este blocată deoarece înlocuirea în așteptare nu poate fi reprezentată exact în {0}. Nu s-au folosit caractere de substituție și conținutul editorului nu a fost modificat.
+115	Aplicarea nu este încă activată pentru {0}. Conținutul editorului nu a fost modificat. Scrierea este activată doar pentru UTF-8 (65001) și Windows-1250 (1250), după validare fără pierderi. Folosește „Anulează tot” sau convertește documentul la UTF-8 în Notepad++ și redeschide modul de editare.
+116	Reîmprospătarea este dezactivată în modul de editare. Aplică sau anulează mai întâi toate modificările în așteptare.
+117	Pagina de cod Scintilla {0}
+118	Documentul activ are {0:N0} octeți. Limita sigură curentă a instantaneului este de {1:N0} octeți.
+119	Documentul activ din Notepad++ nu a putut fi citit. Conținutul editorului nu a fost modificat.
+120	Rezultatul aplicării nu este o stare de blocare din cauza codificării.
+121	Construirea tabelului în fundal s-a încheiat fără rezultat.
+122	Modificările CSV au fost aplicate, dar poziția anterioară a cursorului sau selecția nu a putut fi restabilită. Toate modificările documentului pot fi încă anulate printr-o singură operație.
+123	pagina de cod curentă a editorului
+124	Memoria tampon a editorului nu a putut fi convertită într-un tabel vizual. Alege explicit un delimitator sau reîmprospătează după corectarea documentului.
+125	Construirea tabelului a returnat un rezultat incomplet.
+126	&Despre
+127	&Șterge căutarea
+128	&CSV
+129	&Delimitator
+130	&Editează
+131	Esc în căutare
+132	&Caută în tabel
+133	&Antet
+134	&Următoarea celulă corespunzătoare
+135	&Celula corespunzătoare anterioară
+136	Resetează vizualizarea: șterge căutarea, condițiile coloanelor și toate sortările.
+137	&Căutare
+138	&Coloana de căutare
+139	Afișează spațiile: puncte portocalii mici și pline. Doar afișarea; valorile CSV nu se schimbă.
+140	Afișează &tabelul
+141	&Sortează după
+142	&Tabel
+143	&Vizualizare
+144	O valoare de filtru poate conține cel mult 4,096 caractere.
+145	TOATE
+146	Un marcaj inițial al ordinii octeților a fost exclus din primul câmp.
+147	ORICARE
+148	Un semn de ghilimele a apărut într-un câmp care nu este încadrat între ghilimele.
+149	Rândurile din clipboard trebuie să formeze o singură matrice dreptunghiulară de celule.
+150	Cod de diagnosticare: {0}.
+151	Fiecare nivel de sortare trebuie să folosească o coloană diferită.
+152	Eroare
+153	ridicată
+154	Informație
+155	scăzută
+156	medie
+157	Niciun delimitator acceptat nu a produs o structură cu mai multe câmpuri suficient de sigură.
+158	niciuna
+159	Un rând vizual ar necesita {0:N0} celule, depășind limita totală curentă de {1:N0}. Nu a fost ascunsă nicio coloană.
+160	Înregistrarea are {0} câmpuri; erau așteptate {1} pe baza numărului cel mai frecvent din eșantion.
+161	Spații: {0}; inițiale: {1}; finale: {2}. Lungime: {3} unități UTF-16.\nPunctele portocalii indică spații reale. Distanța de afișare este mărită pentru lizibilitate; caracterele CSV nu se schimbă. Numărătorile inițială și finală se suprapun într-o celulă care conține doar spații.
+162	Matricea de celule din clipboard depășește limita sigură de lipire.
+163	Clipboardul conține un caracter de control neacceptat.
+164	Clipboardul conține mai multe coloane decât poate lipi editorul în siguranță.
+165	Clipboardul conține mai multe rânduri decât poate lipi editorul în siguranță.
+166	Textul din clipboard depășește limita sigură de 16 Mi unități de caractere UTF-16.
+167	Ultimul câmp între ghilimele nu a fost închis înainte de sfârșitul textului.
+168	Numărul câmpurilor diferă față de celelalte înregistrări.
+169	Operația nu a putut fi încheiată. Verifică documentul, valorile selectate și limitele de dimensiune.
+170	Documentul analizat conține {0:N0} coloane, depășind limita curentă a tabelului vizual de {1:N0}. Nu a fost ascunsă nicio coloană.
+171	Delimitatorul sugerat are un grad de încredere scăzut. Verifică setarea delimitatorului.
+172	Doi delimitatori candidați au scoruri similare. Verifică setarea delimitatorului.
+173	După un semn de ghilimele de închidere urmează caractere neașteptate.
+174	necunoscută
+175	Folosește un număr zecimal exact cu punct, precum -12.5. Gruparea, exponenții și valorile rotunjite nu sunt acceptate.
+176	Folosește cel mult opt condiții de filtrare care nu sunt null.
+177	Folosește cel mult trei niveluri de sortare care nu sunt null.
+178	Regulile vizualizării indică o coloană din afara tabelului curent.
+179	Avertisment
+180	Rezumatul coloanei
+181	Filtrează și sortează
+182	Deschide tabelul vizual
+183	Reîmprospătează tabelul
+184	nou:{0}
+185	nou:{0} *
+186	Selectează
+187	Selectează rânduri întregi pentru ștergere
+188	Înregistrare logică sursă sau rând structural în așteptare
+189	Coloana indicatoare a rândurilor nu a putut fi identificată.
+190	Rândul trebuie să aparțină unui DataGridView.
+191	Toate coloanele
+192	{0:N0} / {1:N0} celule
+193	{0:N0} celule
+194	Șterge căutarea
+195	Șterge căutarea (Esc). Păstrează coloana de căutare și sortarea.
+196	Filtrează rândurile afișate. Enter: următoarea celulă corespunzătoare. Shift+Enter: anterioara. Escape: șterge.
+197	Următoarea celulă corespunzătoare
+198	Următoarea celulă corespunzătoare (F3 / Enter)
+199	Nicio potrivire
+200	Niciun rând corespunzător.\nAjustează căutarea sau folosește Vizualizare > Filtrează și sortează / Resetează vizualizarea.
+201	Celula corespunzătoare anterioară
+202	Celula corespunzătoare anterioară (Shift+F3 / Shift+Enter)
+203	Caută în toate coloanele de date sau alege o coloană.
+204	Coloana de căutare
+205	Caută în rândurile CSV afișate (Ctrl+F). Valorile și textul sursă nu se schimbă.
+206	Caută în tabel...
+207	Caută în tabel
+208	Rezultatele căutării
+209	Se caută...
+210	Saltul la sursă este blocat: un alt document Notepad++ este activ. Revino la CSV-ul afișat sau reîmprospătează tabelul.
+211	Saltul la sursă este blocat deoarece rezultatul de analiză păstrat nu mai corespunde instantaneului sursă imuabil. Reîmprospătează mai întâi tabelul.
+212	Saltul la sursă este blocat: lungimea codificată strict nu corespunde lungimii documentului raportate de Scintilla.
+213	Saltul la sursă este blocat: conținutul activ al editorului s-a schimbat după afișarea tabelului. Reîmprospătează mai întâi tabelul.
+214	Saltul la sursă este blocat: pagina de cod Scintilla curentă nu are un profil explicit de poziții în octeți.
+215	Saltul la sursă este blocat: pagina de cod a editorului s-a schimbat după afișarea tabelului. Reîmprospătează mai întâi tabelul.
+216	Saltul la sursă este blocat: celula proiectată selectată nu are un câmp sursă brut.
+217	Saltul la sursă este blocat: intervalul de caractere sursă nu a putut fi mapat fără pierderi la octeții Scintilla.
+218	Saltul la sursă este blocat: înregistrarea logică sursă nu este disponibilă în rezultatul de analiză păstrat.
+219	Saltul la sursă a eșuat: memoria tampon activă Notepad++ nu a putut fi citită. Conținutul documentului nu a fost modificat.
+220	Saltul la sursă a eșuat la mutarea selecției Scintilla. Conținutul documentului nu a fost modificat.
+221	Saltul la sursă este indisponibil până când tabelul vizual curent are o bază sursă completă. Reîmprospătează mai întâi tabelul.
+222	Saltul la sursă necesită un rând sau o celulă CSV curentă.
+223	Saltul la sursă nu a fost încheiat. Conținutul documentului nu a fost modificat.
+224	Au fost selectate înregistrarea sursă {0}, coloana {1}, în Notepad++.
+225	A fost selectată înregistrarea sursă {0} în Notepad++.
+226	Rândul vizual curent nu oferă o identitate stabilă a înregistrării sursă.
+227	Acest rând inserat în așteptare nu are o poziție sursă până când aplicarea nu se încheie.
+228	Vizualizarea curentă: {0:N0} din {1:N0} rânduri afișate.
+229	Valorile distincte folosesc textul exact, cu diferențierea literelor mari și mici, inclusiv valorile goale.\nRânduri repetate = rânduri minus valori distincte. Intervalul numeric folosește valori zecimale exacte cu punct.
+230	Gol
+231	Tip
+232	Cele mai frecvente valori (până la 20)
+233	Indisponibil
+234	Minim numeric: {0}     Maxim: {1}\nCea mai lungă valoare: {2:N0} unități UTF-16. {3:N0} valori apar de mai multe ori.
+235	 Proiecție limitată; acesta NU este întregul fișier.
+236	Rânduri: {0:N0}     Goale: {1:N0}     Doar spații albe: {2:N0}\nDistincte: {3:N0}     Rânduri repetate: {4:N0}     Numerice: {5:N0}
+237	Rezumatul coloanei
+238	Spații albe
+239	A fost adăugat un rând nou în sesiunea de editare în așteptare. „Aplică” îl scrie în memoria tampon a editorului; „Anulează tot” îl elimină.
+240	Un rând sursă nu a oferit indicele înregistrării sale sursă.
+241	Acțiune
+242	Instantaneul documentului activ a eșuat. Conținutul editorului nu a fost modificat.
+243	Adaugă rând
+244	Toate editările în așteptare ale celulelor și rândurilor au fost anulate. Memoria tampon a editorului Notepad++ nu a fost modificată.
+245	Aplică toate editările celulelor și rândurilor în editorul activ ca o singură operație anulabilă
+246	Aplicare blocată: un alt document Notepad++ este activ. Revino la documentul original sau folosește „Anulează tot”.
+247	Aplicare blocată: memoria tampon a editorului s-a schimbat după pornirea modului de editare. Anulează și reîmprospătează înainte de a edita din nou.
+248	Aplicare blocată: pagina de cod a editorului s-a schimbat după pornirea modului de editare. Anulează și redeschide modul de editare.
+249	Aplicarea a eșuat. Sesiunea de editare rămâne deschisă; verifică memoria tampon a editorului înainte de a reîncerca sau anula.
+250	Aplicarea nu a fost încheiată. Nu s-a încercat nicio suprascriere automată.
+251	Detectează automat
+252	încredere automată {0}
+253	{0} — detectarea automată a delimitatorului nu este sigură; este necesară o selecție manuală.
+254	Detectare automată
+255	Scorurile candidaților
+256	{0} celule / {1} rânduri (+{2} / -{3})
+257	Caracter
+258	{0} caractere / {1} octeți în editor
+259	Alege Virgulă, Punct și virgulă sau Tabulator din lista Delimitator de mai sus.
+260	Alege explicit dacă prima înregistrare logică este un antet
+261	Șterge
+262	Șterge filtrul de căutare curent și sortarea doar a vizualizării
+263	Cod
+264	 - {0} condiții de coloane ({1}), {2} niveluri de sortare
+265	{0} — {1} × {2} coloane — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Virgulă (,)
+267	virgulă
+268	Încredere
+269	Șterge toate rândurile de date stabile selectate din sesiunea de editare în așteptare
+270	Șterge rândul
+271	Șterge rândurile ({0})
+272	Șterge rândul de date stabil selectat din sesiunea de editare în așteptare
+273	Șterge rândul sau rândurile de date stabile selectate din sesiunea de editare în așteptare
+274	Delimitator:
+275	Diagnosticare ({0})
+276	Elimină toate modificările celulelor, inserările și ștergerile în așteptare
+277	Document
+278	 — MOD DE EDITARE: {0} celule, {1} rânduri, +{2} / -{3}
+279	 - Mod de editare
+280	Modul de editare conține modificări în așteptare. Folosește „Aplică” sau „Anulează tot” înainte de a ieși.
+281	Modul de editare nu este disponibil pentru tabelul curent. Rezolvă mai întâi erorile de analiză sau limitele de afișare.
+282	Editarea nu poate începe dintr-o proiecție vizuală cu număr limitat de rânduri.
+283	Editarea nu poate începe cât timp CSV-ul analizat conține erori.
+284	Editarea nu este disponibilă pentru tabelul curent.
+285	{0} — memoria tampon a editorului este goală; nu sunt înregistrări CSV de afișat.
+286	Intră explicit în modul de editare a celulelor și rândurilor
+287	Intră explicit în modul de editare a celulelor și rândurilor. „Aplică” scrie doar în memoria tampon a editorului.
+288	Intră explicit în modul de editare a celulelor și rândurilor. Modelul complet de editare este creat doar la cerere.
+289	{0} erori, {1} avertismente
+290	primul rând ca antet
+291	Primul rând este antet
+292	Antet:
+293	Inserează un rând nou după rândul selectat sau adaugă-l la sfârșit dacă nu este selectat niciun rând
+294	{0} — se încarcă datele CSV în fundal; Notepad++ continuă să răspundă.
+295	selecție manuală
+296	{0} corespunzătoare din {1} rânduri afișate
+297	Mesaj
+298	Au fost eliminate {0} rânduri nou inserate din sesiunea în așteptare.
+299	Nu sunt mesaje de diagnosticare de afișat.
+300	Fără rând de antet
+301	fără rând de antet
+302	Niciun rând corespunzător.\nÎncearcă alt text de căutare sau altă coloană.
+303	fără mesaje de diagnosticare a analizei
+304	Nu s-a putut selecta în siguranță un delimitator fiabil.
+305	Nimic de aplicat: sesiunea de editare nu conține modificări în așteptare.
+306	Se analizează și se pregătește un tabel vizual limitat în fundal…
+307	Modificări în așteptare ale celulelor și structurii rândurilor
+308	Rând inserat în așteptare {0}; încă neaplicat
+309	{0} rânduri în așteptare
+310	Modulul este pregătit. Se citește memoria tampon activă a editorului...
+311	Se pregătește sesiunea completă de editare…
+312	Proprietate
+313	Citește și afișează memoria tampon activă în acest moment a editorului Notepad++
+314	Înregistrare
+315	Anulează tot
+316	{0} rânduri
+317	Punct și virgulă (;)
+318	punct și virgulă
+319	Gravitate
+320	Afișează diagnosticarea detaliată a analizei și a delimitatorului
+321	se afișează {0} din {1} rânduri
+322	Instantaneu
+323	Eroare de instantaneu
+324	Nivel de sortare {0}: {1}, {2}. Doar vizualizarea.
+325	 — sortat după {0} {1}
+326	Înregistrare logică sursă {0}
+327	Înregistrare logică sursă {0}; modificată în sesiunea de editare în așteptare
+328	{0} rânduri sursă sunt marcate pentru ștergere și {1} rânduri inserate au fost eliminate din sesiunea în așteptare.
+329	{0} rânduri sursă sunt marcate pentru ștergere. „Aplică” scrie întregul lot; „Anulează tot” restabilește fiecare rând.
+330	Stare
+331	Tabulator
+332	tabulator
+333	Eroare de tabel
+334	Editarea celulei active nu a putut fi confirmată. Corectează valoarea înainte de a adăuga un rând.
+335	Editarea celulei active nu a putut fi confirmată. Corectează valoarea înainte de a șterge rânduri.
+336	Editarea celulei active nu a putut fi confirmată. Corectează valoarea înainte de a aplica.
+337	Rândul nou inserat a fost eliminat din sesiunea în așteptare.
+338	Coloana indicatoare a rândurilor nu este configurată.
+339	Setul de rânduri selectat nu mai este valid pentru această sesiune de editare. Nu a fost șters niciun rând.
+340	Rândurile selectate erau deja șterse. Nu s-a făcut nicio modificare suplimentară.
+341	Rândul sursă este marcat pentru ștergere. „Aplică” scrie ștergerea; „Anulează tot” îl restabilește.
+342	Tabelul vizual nu a putut fi creat. Conținutul editorului nu a fost modificat.
+343	Folosește o detectare automată sigură sau alege explicit un delimitator
+344	Se așteaptă documentul activ Notepad++.
+345	{0} - {1} x {2:N0} coloane
+346	Acceptă modificările
+347	După
+348	Toate celulele de date
+349	Înainte
+350	Coloană CSV
+351	Alege o operație și un domeniu, apoi apasă „Previzualizare”.
+352	Coloana curentă
+353	Caută:
+354	litere mici
+355	Operație:
+356	Celelalte spații albe sunt afișate ca secvențe escape; lungimile numără unități UTF-16. Valorile lungi sunt scurtate.
+357	Nu s-a putut crea previzualizarea. Verifică domeniul și textul căutat sau alege un domeniu mai mic (maximum 250,000 celule / 16 Mi caractere).
+358	Creează mai întâi previzualizarea. „Acceptă modificările” actualizează editările în așteptare; „Aplică” din bara de instrumente scrie în Notepad++.\nAntetele sunt excluse când Antet = prima înregistrare. Conversia literelor mari/mici este independentă de setările regionale.
+359	ID înregistrare
+360	Înlocuiește textul (literal)
+361	Înlocuiește cu:
+362	Domeniu:
+363	Selectează o coloană de date CSV.
+364	Celule / rânduri selectate
+365	punctele portocalii pline marchează spațiile. 
+366	indicatoarele de spații sunt ascunse. 
+367	{0:N0} celule destinație; {1:N0} modificări în {2:N0} rânduri. Se afișează primele 50 de modificări; 
+368	Sesiunea de editare s-a schimbat.
+369	Previzualizarea nu mai este validă. Verifică sesiunea de editare și creează o previzualizare nouă.
+370	Transformă celulele CSV
+371	Au fost transformate {0:N0} celule în sesiunea de editare în așteptare. Folosește „Aplică” pentru a actualiza Notepad++ sau „Anulează tot” pentru a elimina editările în așteptare.
+372	Elimină spațiile albe exterioare
+373	LITERE MARI
+374	Resetează vizualizarea
+375	Afișează spațiile

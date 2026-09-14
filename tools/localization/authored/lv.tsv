@@ -1,0 +1,378 @@
+# language: lv
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vizuāls CSV redaktors Notepad++ videi
+001	Par CSV Visual Editor
+002	Kontaktinformācija: {0}
+003	Sazināties ar izstrādātāju {0}
+004	Izstrādātājs: {0}
+005	Izstrādes versija
+006	Patīk CSV Visual Editor? Atbalstiet projektu.\nPiešķiriet tam zvaigznīti GitHub, dalieties atsauksmēs vai sazinieties ar izstrādātāju, lai iesaistītos. Paldies!
+007	Saskarnes valoda: {0}
+008	Neizdevās atvērt saistītu lietotni. Kontaktinformācija: {0}
+009	Projekts vietnē GitHub
+010	Versija: {0}
+011	Versija un būvējums
+012	Darbība {0} bloķēta, jo gaidošo labojumu modelis ir mainījies. Daļējas izmaiņas netika saglabātas.
+013	Darbība {0} bloķēta: starpliktuves un atlases taisnstūriem ir atšķirīgi izmēri.
+014	Darbība {0} bloķēta: mērķa taisnstūris pārsniedz CSV tabulas robežas.
+015	Darbība {0} bloķēta: nav rediģējama mērķa taisnstūra.
+016	Nokopētas {0} × {1} CSV šūnas.
+017	Kopēšana/izgriešana bloķēta: atlasītā šūnā ir tabulācijas vai rindas pārtraukuma rakstzīme, ko nevar nepārprotami attēlot kā vienkāršu izklājlapas tekstu.
+018	Kopēšanai jāatlasa CSV šūnas, nevis veselas rindas dzēšanai.
+019	Kopēšanai nepieciešama viena nepārtraukta taisnstūrveida CSV datu šūnu atlase.
+020	Starpliktuvē izgrieztas {0} šūnas, un tās iztukšotas gaidošajā rediģēšanas sesijā. „Lietot” ieraksta iztukšošanu Notepad++.
+021	Izgriešana pabeigta; atlasītās šūnas jau bija tukšas. Starpliktuvē ir to sākotnējās vērtības.
+022	Darbība {0} pieejama tikai rediģēšanas režīmā.
+023	Darbība {0} pašreizējai tabulai nav pieejama.
+024	Ielīmēšana bloķēta: {0} Dati netika mainīti.
+025	Ielīmēšana pabeigta; visas mērķa vērtības jau bija identiskas.
+026	Gaidošajā rediģēšanas sesijā ielīmētas {0} mainītas šūnas. „Lietot” tās ieraksta Notepad++.
+027	Darbībai {0} nepieciešams CSV šūnu taisnstūris, nevis veselu rindu atlase dzēšanai.
+028	Darbībai {0} nepieciešama viena nepārtraukta taisnstūrveida CSV datu šūnu atlase.
+029	Darbības {0} mērķi nav pieejami ārpus rediģēšanas režīma stabilā rindu modeļa.
+030	Pirms kopēšanas neizdevās apstiprināt aktīvās šūnas labojumu.
+031	Neizdevās apstiprināt aktīvās šūnas labojumu. Pirms darbības {0} izlabojiet vērtību.
+032	Starpliktuvē nav šūnu vienkārša teksta formā.
+033	Windows starpliktuve īslaicīgi nav pieejama. Dati netika mainīti.
+034	Kopēt atlasīto CSV šūnu taisnstūri Windows starpliktuvē (Ctrl+C)
+035	Kopēt atlasītās CSV šūnas un iztukšot tās gaidošajā rediģēšanas sesijā (Ctrl+X)
+036	Ielīmēt izklājlapas šūnas atlasītajā CSV šūnā vai taisnstūrī (Ctrl+V)
+037	Priekšskatīt teksta aizstāšanu, ārējo baltstarpu noņemšanu vai burtu reģistra maiņu gaidošajos CSV labojumos
+038	Atlasīt pašreizējo CSV šūnu vai rindu Notepad++ avota buferī
+039	Avots
+040	Pārveidot
+041	Par
+042	Lietot
+043	Augošā secībā
+044	Atcelt
+045	Aizvērt
+046	Kolonna
+047	Kopēt
+048	Izgriezt
+049	Dilstošā secībā
+050	Rediģēt
+051	Beigt rediģēšanu
+052	Reģistrjutīgs
+053	Skaitlis
+054	Sākotnējā secība
+055	Ielīmēt
+056	Priekšskatījums
+057	Atsvaidzināt
+058	Rindas
+059	Tabula
+060	Teksts
+061	Vērtība
+062	Kolonnas kopsavilkums: skaits, atšķirīgās vērtības, skaitliskais diapazons un biežās vērtības pašreizējā skatā.
+063	Kolonnas kopsavilkumam nepieciešama gatava tikai lasāma tabula. Vispirms izejiet no rediģēšanas režīma.
+064	Filtrēt un kārtot: apvienot kolonnu noteikumus un teksta/skaitļu kārtošanas līmeņus. Tikai skats; CSV nemainās.
+065	Filtrēt un kārtot: apvienot kolonnu noteikumus un līdz trim teksta/skaitļu kārtošanas līmeņiem. Tikai skats.
+066	Filtrēt un kārtot: {0} nosacījumi, {1} kārtošanas līmeņi. Skata atiestatīšana notīra visus noteikumus.
+067	Filtrēšanai un kārtošanai nepieciešama gatava tikai lasāma tabula. Vispirms izejiet no rediģēšanas režīma.
+068	Diagnostika (0)
+069	0 izmaiņu
+070	Pievienot nosacījumu
+071	Pievienot kārtošanas līmeni
+072	Lietot skatu
+073	Burtu reģistrs
+074	Reģistrjutīga teksta salīdzināšana. Atstarpes vērtībās tiek uztvertas burtiski.
+075	Pārbaudiet noteikumus: {0}
+076	Nosacījums
+077	{0} / 8 nosacījumi; {1} / 3 kārtošanas līmeņi. Pārbaudiet atbilstošās rindas priekšskatījumā.
+078	Satur
+079	Nesatur
+080	Nav vienāds ar
+081	Tukšs = nulle rakstzīmju. Tikai baltstarpas = netukša atstarpju/tabulāciju/rindu pārtraukumu virkne.\nSkaitļi izmanto decimālpunktu (-12.5), bez grupēšanas vai kāpinātājiem; precizitātei jābūt pilnīgai.
+082	Beidzas ar
+083	Vienāds ar
+084	Filtra vērtība
+085	Filtri
+086	Ir tukšs
+087	Nav tukšs
+088	Nav tikai baltstarpas
+089	Ir tikai baltstarpas
+090	Burtisks teksts, ieskaitot atstarpes. Skaitliskajiem noteikumiem nepieciešams precīzs decimālskaitlis ar punktu.
+091	Izpildīt VISUS nosacījumus
+092	Izpildīt JEBKURU nosacījumu
+093	Skaitlis =
+094	Skaitlis >
+095	Skaitlis >=
+096	Skaitlis <
+097	Skaitlis <=
+098	Skaitlis (decimāls)
+099	Priekšskatījums: {0:N0} no {1:N0} parādītajām rindām. CSV nav mainīts.
+100	Noņemt nosacījumu
+101	Noņemt kārtošanas līmeni
+102	Atiestatīt noteikumus
+103	Noteikumi ņem vērā arī pašreizējo meklējumu. Atcelšana saglabā aktīvo skatu.
+104	Kārtošana
+105	Sākas ar
+106	Teksts: rakstzīmju kodu secība, nešķirojot lielos un mazos burtus. Skaitlis: precīzi decimālskaitļi; nederīgas/tukšas vērtības beigās.\nVienādas atslēgas saglabā avota secību. Noņemiet visus līmeņus, lai atjaunotu avota secību.
+107	Projekcija ir ierobežota; neparādītās rindas nav iekļautas. 
+108	Filtrēt un kārtot
+109	Augšējam līmenim ir prioritāte; nākamie atrisina vienādības. Ne vairāk kā 3.
+110	Vērtība (burtiska, ieskaitot atstarpes)
+111	Tikai skats — CSV vērtības un avota secība nemainās. {0:N0} parādītas rindas.\n
+112	Lietošana bloķēta, jo kodējumam {0} nav skaidri atbalstīta kodēšanas profila. Redaktora saturs netika mainīts.
+113	Lietošana bloķēta, jo stingra kodējuma {0} pārbaude nedeva precīzu pārveidi abos virzienos. Redaktora saturs netika mainīts.
+114	Lietošana bloķēta, jo gaidošo aizstāšanu nevar precīzi attēlot kodējumā {0}. Aizstājējrakstzīmes netika izmantotas un redaktora saturs netika mainīts.
+115	Lietošana kodējumam {0} vēl nav iespējota. Redaktora saturs netika mainīts. Rakstīšana iespējota tikai UTF-8 (65001) un Windows-1250 (1250) pēc bezzudumu pārbaudes. Izmantojiet „Atcelt visu” vai pārveidojiet dokumentu uz UTF-8 Notepad++ un atveriet rediģēšanas režīmu no jauna.
+116	Rediģēšanas režīmā atsvaidzināšana ir atspējota. Vispirms lietojiet vai atceliet visas gaidošās izmaiņas.
+117	Scintilla kodu lapa {0}
+118	Aktīvais dokuments aizņem {0:N0} baitus. Pašreizējais drošais momentuzņēmuma ierobežojums ir {1:N0} baiti.
+119	Neizdevās nolasīt aktīvo Notepad++ dokumentu. Redaktora saturs netika mainīts.
+120	Lietošanas rezultāts nav kodējuma bloķēts stāvoklis.
+121	Tabulas veidošana fonā beidzās bez rezultāta.
+122	CSV izmaiņas tika lietotas, bet neizdevās atjaunot iepriekšējo kursora pozīciju vai atlasi. Visas dokumenta izmaiņas joprojām var atsaukt ar vienu darbību.
+123	redaktora pašreizējā kodu lapa
+124	Redaktora buferi neizdevās pārveidot vizuālā tabulā. Izvēlieties atdalītāju tieši vai atsvaidziniet pēc dokumenta izlabošanas.
+125	Tabulas veidošana atgrieza nepilnīgu rezultātu.
+126	&Par
+127	&Notīrīt meklējumu
+128	&CSV
+129	&Atdalītājs
+130	&Rediģēt
+131	Esc meklēšanas laukā
+132	&Atrast tabulā
+133	&Galvene
+134	&Nākamā atbilstošā šūna
+135	&Iepriekšējā atbilstošā šūna
+136	Atiestatīt skatu: notīrīt meklējumu, kolonnu nosacījumus un visu kārtošanu.
+137	&Meklēšana
+138	Meklēšanas &kolonna
+139	Rādīt atstarpes: mazi aizpildīti oranži punkti. Tikai attēlojums; CSV vērtības nemainās.
+140	Rādīt &tabulu
+141	&Kārtot pēc
+142	&Tabula
+143	&Skats
+144	Filtra vērtība var saturēt ne vairāk kā 4,096 rakstzīmes.
+145	VISI
+146	Sākuma baitu secības marķieris tika izlaists no pirmā lauka.
+147	JEBKURŠ
+148	Pēdiņu rakstzīme parādījās laukā, kas nav ietverts pēdiņās.
+149	Starpliktuves rindām jāveido viena taisnstūrveida šūnu matrica.
+150	Diagnostikas kods: {0}.
+151	Katram kārtošanas līmenim jāizmanto cita kolonna.
+152	Kļūda
+153	augsta
+154	Informācija
+155	zema
+156	vidēja
+157	Neviens atbalstīts atdalītājs neradīja pietiekami uzticamu vairāku lauku struktūru.
+158	nav
+159	Vienai vizuālai rindai būtu vajadzīgas {0:N0} šūnas, pārsniedzot pašreizējo kopējo {1:N0} šūnu ierobežojumu. Neviena kolonna netika paslēpta.
+160	Ierakstā ir {0} lauki; pēc biežākā lauku skaita izlasē bija gaidīti {1}.
+161	Atstarpes: {0}; sākumā: {1}; beigās: {2}. Garums: {3} UTF-16 vienības.\nOranžie punkti apzīmē īstas atstarpes. Attēlojuma attālums ir palielināts lasāmībai; CSV rakstzīmes nemainās. Šūnā ar tikai atstarpēm sākuma un beigu skaits pārklājas.
+162	Starpliktuves šūnu matrica pārsniedz drošo ielīmēšanas ierobežojumu.
+163	Starpliktuvē ir neatbalstīta vadības rakstzīme.
+164	Starpliktuvē ir vairāk kolonnu, nekā redaktors var droši ielīmēt.
+165	Starpliktuvē ir vairāk rindu, nekā redaktors var droši ielīmēt.
+166	Starpliktuves teksts pārsniedz drošo 16 Mi UTF-16 rakstzīmju vienību ierobežojumu.
+167	Pēdējais pēdiņās ietvertais lauks netika aizvērts pirms teksta beigām.
+168	Lauku skaits atšķiras no citiem ierakstiem.
+169	Darbību neizdevās pabeigt. Pārbaudiet dokumentu, atlasītās vērtības un izmēra ierobežojumus.
+170	Parsētajā dokumentā ir {0:N0} kolonnas, kas pārsniedz vizuālās tabulas pašreizējo {1:N0} kolonnu ierobežojumu. Neviena kolonna netika paslēpta.
+171	Ieteiktā atdalītāja uzticamība ir zema. Pārbaudiet atdalītāja iestatījumu.
+172	Diviem atdalītāju kandidātiem ir līdzīgi vērtējumi. Pārbaudiet atdalītāja iestatījumu.
+173	Pēc noslēdzošās pēdiņas seko negaidītas rakstzīmes.
+174	nezināma
+175	Izmantojiet precīzu decimālskaitli ar punktu, piemēram, -12.5. Grupēšana, kāpinātāji un noapaļotas vērtības netiek atbalstītas.
+176	Izmantojiet ne vairāk kā astoņus filtra nosacījumus, kas nav null.
+177	Izmantojiet ne vairāk kā trīs kārtošanas līmeņus, kas nav null.
+178	Skata noteikumi atsaucas uz kolonnu ārpus pašreizējās tabulas.
+179	Brīdinājums
+180	Kolonnas kopsavilkums
+181	Filtrēt un kārtot
+182	Atvērt vizuālo tabulu
+183	Atsvaidzināt tabulu
+184	jauna:{0}
+185	jauna:{0} *
+186	Atlasīt
+187	Atlasīt veselas rindas dzēšanai
+188	Avota loģiskais ieraksts vai gaidoša strukturāla rinda
+189	Neizdevās noteikt rindu indikatora kolonnu.
+190	Rindai jāpieder DataGridView.
+191	Visas kolonnas
+192	{0:N0} / {1:N0} šūnas
+193	{0:N0} šūnas
+194	Notīrīt meklējumu
+195	Notīrīt meklējumu (Esc). Saglabāt meklēšanas kolonnu un kārtošanu.
+196	Filtrē parādītās rindas. Enter: nākamā atbilstošā šūna. Shift+Enter: iepriekšējā. Escape: notīrīt.
+197	Nākamā atbilstošā šūna
+198	Nākamā atbilstošā šūna (F3 / Enter)
+199	Nav atbilstību
+200	Nav atbilstošu rindu.\nMainiet meklējumu vai izmantojiet Skats > Filtrēt un kārtot / Atiestatīt skatu.
+201	Iepriekšējā atbilstošā šūna
+202	Iepriekšējā atbilstošā šūna (Shift+F3 / Shift+Enter)
+203	Meklēt visās datu kolonnās vai izvēlēties vienu kolonnu.
+204	Meklēšanas kolonna
+205	Meklēt parādītajās CSV rindās (Ctrl+F). Vērtības un avota teksts nemainās.
+206	Meklēt tabulā...
+207	Meklēt tabulā
+208	Meklēšanas rezultāti
+209	Notiek meklēšana...
+210	Pāriešana uz avotu bloķēta: aktīvs ir cits Notepad++ dokuments. Atgriezieties pie parādītā CSV vai atsvaidziniet tabulu.
+211	Pāriešana uz avotu bloķēta, jo saglabātais parsēšanas rezultāts vairs neatbilst nemainīgajam avota momentuzņēmumam. Vispirms atsvaidziniet tabulu.
+212	Pāriešana uz avotu bloķēta: stingri kodētais garums neatbilst Scintilla ziņotajam dokumenta garumam.
+213	Pāriešana uz avotu bloķēta: aktīvā redaktora saturs ir mainījies pēc tabulas parādīšanas. Vispirms atsvaidziniet tabulu.
+214	Pāriešana uz avotu bloķēta: pašreizējai Scintilla kodu lapai nav skaidra baitu pozīciju profila.
+215	Pāriešana uz avotu bloķēta: redaktora kodu lapa ir mainījusies pēc tabulas parādīšanas. Vispirms atsvaidziniet tabulu.
+216	Pāriešana uz avotu bloķēta: atlasītajai projicētajai šūnai nav neapstrādāta avota lauka.
+217	Pāriešana uz avotu bloķēta: avota rakstzīmju diapazonu neizdevās bez zudumiem attēlot Scintilla baitos.
+218	Pāriešana uz avotu bloķēta: avota loģiskais ieraksts nav pieejams saglabātajā parsēšanas rezultātā.
+219	Pāriešana uz avotu neizdevās: aktīvo Notepad++ buferi nevarēja nolasīt. Dokumenta saturs netika mainīts.
+220	Pāriešana uz avotu neizdevās, pārvietojot Scintilla atlasi. Dokumenta saturs netika mainīts.
+221	Pāriešana uz avotu nav pieejama, kamēr pašreizējai vizuālajai tabulai nav pilnīga avota pamata. Vispirms atsvaidziniet tabulu.
+222	Pāriešanai uz avotu nepieciešama pašreizējā CSV rinda vai šūna.
+223	Pāriešana uz avotu netika pabeigta. Dokumenta saturs netika mainīts.
+224	Notepad++ atlasīts avota ieraksts {0}, kolonna {1}.
+225	Notepad++ atlasīts avota ieraksts {0}.
+226	Pašreizējā vizuālā rinda nenodrošina stabilu avota ieraksta identitāti.
+227	Šai gaidošajai ievietotajai rindai nav avota pozīcijas, kamēr lietošana nav pabeigta.
+228	Pašreizējais skats: {0:N0} no {1:N0} parādītajām rindām.
+229	Atšķirīgās vērtības nosaka pēc precīza reģistrjutīga teksta, ieskaitot tukšas vērtības.\nAtkārtotas rindas = rindas mīnus atšķirīgās vērtības. Skaitliskais diapazons izmanto precīzas decimālvērtības ar punktu.
+230	Tukšs
+231	Veids
+232	Biežākās vērtības (līdz 20)
+233	Nav pieejams
+234	Skaitliskais minimums: {0}     Maksimums: {1}\nGarākā vērtība: {2:N0} UTF-16 vienības. {3:N0} vērtības sastopamas vairāk nekā vienu reizi.
+235	 Ierobežota projekcija; tas NAV viss fails.
+236	Rindas: {0:N0}     Tukšas: {1:N0}     Tikai baltstarpas: {2:N0}\nAtšķirīgas: {3:N0}     Atkārtotas rindas: {4:N0}     Skaitliskas: {5:N0}
+237	Kolonnas kopsavilkums
+238	Baltstarpas
+239	Gaidošajai rediģēšanas sesijai pievienota jauna rinda. „Lietot” to ieraksta redaktora buferī; „Atcelt visu” to atmet.
+240	Avota rinda nenodrošināja sava avota ieraksta indeksu.
+241	Darbība
+242	Aktīvā dokumenta momentuzņēmums neizdevās. Redaktora saturs netika mainīts.
+243	Pievienot rindu
+244	Visi gaidošie šūnu un rindu labojumi atcelti. Notepad++ redaktora buferis netika mainīts.
+245	Lietot visus šūnu un rindu labojumus aktīvajā redaktorā kā vienu atsaucamu darbību
+246	Lietošana bloķēta: aktīvs ir cits Notepad++ dokuments. Atgriezieties pie sākotnējā dokumenta vai izmantojiet „Atcelt visu”.
+247	Lietošana bloķēta: redaktora buferis ir mainījies pēc rediģēšanas režīma sākuma. Pirms atkārtotas rediģēšanas atceliet izmaiņas un atsvaidziniet.
+248	Lietošana bloķēta: redaktora kodu lapa ir mainījusies pēc rediģēšanas režīma sākuma. Atceliet izmaiņas un atveriet rediģēšanas režīmu no jauna.
+249	Lietošana neizdevās. Rediģēšanas sesija paliek atvērta; pirms atkārtota mēģinājuma vai atcelšanas pārbaudiet redaktora buferi.
+250	Lietošana netika pabeigta. Automātiska pārrakstīšana netika mēģināta.
+251	Noteikt automātiski
+252	automātiskā uzticamība {0}
+253	{0} — automātiska atdalītāja noteikšana nav uzticama; nepieciešama manuāla izvēle.
+254	Automātiska noteikšana
+255	Kandidātu vērtējumi
+256	{0} šūnas / {1} rindas (+{2} / -{3})
+257	Rakstzīme
+258	{0} rakstzīmes / {1} redaktora baiti
+259	Iepriekšējā atdalītāju sarakstā izvēlieties Komats, Semikols vai Tabulācija.
+260	Tieši izvēlēties, vai pirmais loģiskais ieraksts ir galvene
+261	Notīrīt
+262	Notīrīt pašreizējo meklēšanas filtru un tikai skata kārtošanu
+263	Kods
+264	 - {0} kolonnu nosacījumi ({1}), {2} kārtošanas līmeņi
+265	{0} — {1} × {2} kolonnas — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komats (,)
+267	komats
+268	Uzticamība
+269	Dzēst visas atlasītās stabilās datu rindas no gaidošās rediģēšanas sesijas
+270	Dzēst rindu
+271	Dzēst rindas ({0})
+272	Dzēst atlasīto stabilo datu rindu no gaidošās rediģēšanas sesijas
+273	Dzēst atlasīto stabilo datu rindu vai rindas no gaidošās rediģēšanas sesijas
+274	Atdalītājs:
+275	Diagnostika ({0})
+276	Atmest visas gaidošās šūnu izmaiņas, ievietošanas un dzēšanas
+277	Dokuments
+278	 — REDIĢĒŠANAS REŽĪMS: {0} šūnas, {1} rindas, +{2} / -{3}
+279	 - Rediģēšanas režīms
+280	Rediģēšanas režīmā ir gaidošas izmaiņas. Pirms iziešanas izmantojiet „Lietot” vai „Atcelt visu”.
+281	Rediģēšanas režīms pašreizējai tabulai nav pieejams. Vispirms novērsiet parsēšanas kļūdas vai attēlojuma ierobežojumus.
+282	Rediģēšanu nevar sākt no vizuālas projekcijas ar ierobežotu rindu skaitu.
+283	Rediģēšanu nevar sākt, kamēr parsētais CSV satur kļūdas.
+284	Rediģēšana pašreizējai tabulai nav pieejama.
+285	{0} — tukšs redaktora buferis; nav parādāmu CSV ierakstu.
+286	Atvērt skaidri norādītu šūnu un rindu rediģēšanas režīmu
+287	Atvērt skaidri norādītu šūnu un rindu rediģēšanas režīmu. „Lietot” raksta tikai redaktora buferī.
+288	Atvērt skaidri norādītu šūnu un rindu rediģēšanas režīmu. Pilnais rediģēšanas modelis tiek izveidots tikai pēc pieprasījuma.
+289	{0} kļūdas, {1} brīdinājumi
+290	pirmā rinda kā galvene
+291	Pirmā rinda ir galvene
+292	Galvene:
+293	Ievietot jaunu rindu aiz atlasītās vai beigās, ja nav atlasīta neviena rinda
+294	{0} — CSV dati tiek ielādēti fonā; Notepad++ turpina reaģēt.
+295	manuāla izvēle
+296	{0} atbilstošas no {1} parādītajām rindām
+297	Ziņojums
+298	No gaidošās sesijas noņemtas {0} tikko ievietotas rindas.
+299	Nav parādāmu diagnostikas ziņojumu.
+300	Nav galvenes rindas
+301	nav galvenes rindas
+302	Nav atbilstošu rindu.\nIzmēģiniet citu meklējamo tekstu vai kolonnu.
+303	nav parsēšanas diagnostikas
+304	Neizdevās droši izvēlēties uzticamu atdalītāju.
+305	Nav ko lietot: rediģēšanas sesijā nav gaidošu izmaiņu.
+306	Ierobežotas vizuālas tabulas parsēšana un sagatavošana fonā…
+307	Gaidošas šūnu un rindu struktūras izmaiņas
+308	Gaidoša ievietota rinda {0}; vēl nav lietota
+309	{0} gaidošas rindas
+310	Spraudnis gatavs. Tiek lasīts aktīvais redaktora buferis...
+311	Tiek sagatavota pilnā rediģēšanas sesija…
+312	Īpašība
+313	Nolasīt un parādīt pašlaik aktīvo Notepad++ redaktora buferi
+314	Ieraksts
+315	Atcelt visu
+316	{0} rindas
+317	Semikols (;)
+318	semikols
+319	Nopietnība
+320	Rādīt detalizētu parsēšanas un atdalītāju diagnostiku
+321	tiek rādītas {0} no {1} rindām
+322	Momentuzņēmums
+323	Momentuzņēmuma kļūda
+324	Kārtošanas līmenis {0}: {1}, {2}. Tikai skats.
+325	 — kārtots pēc {0} {1}
+326	Avota loģiskais ieraksts {0}
+327	Avota loģiskais ieraksts {0}; mainīts gaidošajā rediģēšanas sesijā
+328	{0} avota rindas atzīmētas dzēšanai un {1} ievietotas rindas noņemtas no gaidošās sesijas.
+329	{0} avota rindas atzīmētas dzēšanai. „Lietot” ieraksta visu kopu; „Atcelt visu” atjauno katru rindu.
+330	Statuss
+331	Tabulācija
+332	tabulācija
+333	Tabulas kļūda
+334	Neizdevās apstiprināt aktīvās šūnas labojumu. Pirms rindas pievienošanas izlabojiet vērtību.
+335	Neizdevās apstiprināt aktīvās šūnas labojumu. Pirms rindu dzēšanas izlabojiet vērtību.
+336	Neizdevās apstiprināt aktīvās šūnas labojumu. Pirms lietošanas izlabojiet vērtību.
+337	Tikko ievietotā rinda noņemta no gaidošās sesijas.
+338	Rindu indikatora kolonna nav konfigurēta.
+339	Atlasītā rindu kopa vairs nav derīga šai rediģēšanas sesijai. Neviena rinda netika dzēsta.
+340	Atlasītās rindas jau bija dzēstas. Papildu izmaiņas netika veiktas.
+341	Avota rinda atzīmēta dzēšanai. „Lietot” ieraksta dzēšanu; „Atcelt visu” atjauno rindu.
+342	Neizdevās izveidot vizuālo tabulu. Redaktora saturs netika mainīts.
+343	Izmantot uzticamu automātisko noteikšanu vai tieši izvēlēties atdalītāju
+344	Tiek gaidīts aktīvais Notepad++ dokuments.
+345	{0} - {1} x {2:N0} kolonnas
+346	Pieņemt izmaiņas
+347	Pēc
+348	Visas datu šūnas
+349	Pirms
+350	CSV kolonna
+351	Izvēlieties darbību un tvērumu, pēc tam noklikšķiniet uz „Priekšskatījums”.
+352	Pašreizējā kolonna
+353	Atrast:
+354	mazie burti
+355	Darbība:
+356	Pārējās baltstarpas attēlotas ar atsoļa sekvencēm; garumi skaita UTF-16 vienības. Garas vērtības ir saīsinātas.
+357	Neizdevās izveidot priekšskatījumu. Pārbaudiet tvērumu un meklējamo tekstu vai izvēlieties mazāku tvērumu (ne vairāk kā 250,000 šūnas / 16 Mi rakstzīmes).
+358	Vispirms izveidojiet priekšskatījumu. „Pieņemt izmaiņas” atjaunina gaidošos labojumus; rīkjoslas „Lietot” raksta Notepad++.\nGalvenes tiek izlaistas, ja Galvene = pirmais ieraksts. Burtu reģistra maiņa nav atkarīga no reģionālajiem iestatījumiem.
+359	Ieraksta ID
+360	Aizstāt tekstu (burtiski)
+361	Aizstāt ar:
+362	Tvērums:
+363	Atlasiet CSV datu kolonnu.
+364	Atlasītās šūnas / rindas
+365	aizpildīti oranži punkti apzīmē atstarpes. 
+366	atstarpju indikatori ir paslēpti. 
+367	{0:N0} mērķa šūnas; {1:N0} izmaiņas {2:N0} rindās. Tiek rādītas pirmās 50 izmaiņas; 
+368	Rediģēšanas sesija ir mainījusies.
+369	Priekšskatījums vairs nav derīgs. Pārbaudiet rediģēšanas sesiju un izveidojiet jaunu priekšskatījumu.
+370	Pārveidot CSV šūnas
+371	Gaidošajā rediģēšanas sesijā pārveidotas {0:N0} šūnas. Izmantojiet „Lietot”, lai atjauninātu Notepad++, vai „Atcelt visu”, lai atmestu gaidošos labojumus.
+372	Noņemt ārējās baltstarpas
+373	LIELIE BURTI
+374	Atiestatīt skatu
+375	Rādīt atstarpes
