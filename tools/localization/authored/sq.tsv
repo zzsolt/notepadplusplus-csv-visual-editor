@@ -1,0 +1,378 @@
+# language: sq
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Një redaktues vizual CSV për Notepad++
+001	Rreth CSV Visual Editor
+002	Kontakt: {0}
+003	Kontakto zhvilluesin {0}
+004	Zhvilluesi: {0}
+005	Version zhvillimi
+006	Të pëlqen CSV Visual Editor? Mbështet projektin.\nJepi një yll në GitHub, ndaj përshtypjet ose kontakto zhvilluesin për të kontribuar. Faleminderit!
+007	Gjuha e ndërfaqes: {0}
+008	Nuk u hap dot asnjë aplikacion i lidhur. Kontakt: {0}
+009	Projekti në GitHub
+010	Versioni: {0}
+011	Versioni dhe ndërtimi
+012	{0} u bllokua sepse modeli i ndryshimeve në pritje ndryshoi. Nuk u ruajt asnjë ndryshim i pjesshëm.
+013	{0} u bllokua: drejtkëndëshat e kujtesës së përkohshme dhe përzgjedhjes kanë përmasa të ndryshme.
+014	{0} u bllokua: drejtkëndëshi i synuar del jashtë tabelës CSV.
+015	{0} u bllokua: nuk ka drejtkëndësh të synuar të redaktueshëm.
+016	U kopjuan {0} × {1} qeliza CSV.
+017	Kopjimi/Prerja u bllokua: një qelizë e zgjedhur përmban tab ose ndërprerje rreshti që nuk mund të paraqitet pa paqartësi si tekst i thjeshtë fletëllogaritëse.
+018	Kopjimi kërkon qeliza CSV, jo përzgjedhje të rreshtave të plotë për fshirje.
+019	Kopjimi kërkon një përzgjedhje të vetme drejtkëndore të vazhdueshme të qelizave të të dhënave CSV.
+020	U prenë {0} qeliza në kujtesën e përkohshme dhe u zbrazën në sesionin e redaktimit në pritje. Zbato i shkruan zbrazjet në Notepad++.
+021	Prerja përfundoi; qelizat e zgjedhura ishin tashmë bosh. Kujtesa e përkohshme përmban vlerat e tyre fillestare.
+022	{0} është i disponueshëm vetëm në modalitetin Redaktim.
+023	{0} nuk është i disponueshëm për tabelën aktuale.
+024	Ngjitja u bllokua: {0} Asnjë e dhënë nuk u ndryshua.
+025	Ngjitja përfundoi; të gjitha vlerat e synuara ishin tashmë identike.
+026	U ngjitën {0} qeliza të ndryshuara në sesionin e redaktimit në pritje. Zbato i shkruan në Notepad++.
+027	{0} kërkon një drejtkëndësh qelizash CSV, jo përzgjedhje të rreshtave të plotë për fshirje.
+028	{0} kërkon një përzgjedhje të vetme drejtkëndore të vazhdueshme të qelizave të të dhënave CSV.
+029	Objektivat e {0} nuk janë të disponueshme jashtë modelit të qëndrueshëm të rreshtave në modalitetin Redaktim.
+030	Redaktimi i qelizës aktive nuk u konfirmua para kopjimit.
+031	Redaktimi i qelizës aktive nuk u konfirmua. Korrigjo vlerën para {0}.
+032	Kujtesa e përkohshme nuk përmban qeliza si tekst të thjeshtë.
+033	Kujtesa e përkohshme e Windows nuk është përkohësisht e disponueshme. Asnjë e dhënë nuk u ndryshua.
+034	Kopjo drejtkëndëshin e zgjedhur të qelizave CSV në kujtesën e përkohshme të Windows (Ctrl+C)
+035	Kopjo qelizat CSV të zgjedhura dhe zbraz ato në sesionin e redaktimit në pritje (Ctrl+X)
+036	Ngjit qelizat e fletëllogaritëses në qelizën ose drejtkëndëshin CSV të zgjedhur (Ctrl+V)
+037	Shiko paraprakisht zëvendësimin e tekstit, heqjen e hapësirave të jashtme ose ndryshimin e shkronjave të mëdha/vogla në redaktimet CSV në pritje
+038	Zgjidh qelizën ose rreshtin CSV aktual në tamponin burim të Notepad++
+039	Burimi
+040	Transformo
+041	Rreth
+042	Zbato
+043	Në rritje
+044	Anulo
+045	Mbyll
+046	Kolona
+047	Kopjo
+048	Prit
+049	Në zbritje
+050	Redakto
+051	Dil nga redaktimi
+052	Dallo shkronjat e mëdha/vogla
+053	Numër
+054	Renditja fillestare
+055	Ngjit
+056	Parapamje
+057	Rifresko
+058	Rreshta
+059	Tabela
+060	Tekst
+061	Vlera
+062	Përmbledhje kolone: numërime, vlera të dallueshme, interval numerik dhe vlera të shpeshta në pamjen aktuale.
+063	Përmbledhja e kolonës kërkon një tabelë gati, vetëm për lexim. Dil fillimisht nga modaliteti Redaktim.
+064	Filtro dhe rendit: kombino rregullat e kolonave dhe nivelet e renditjes tekst/numerike. Vetëm pamja; CSV mbetet i pandryshuar.
+065	Filtro dhe rendit: kombino rregullat e kolonave dhe deri në tre nivele renditjeje tekst/numerike. Vetëm pamja.
+066	Filtro dhe rendit: {0} kushte, {1} nivele renditjeje. Rivendos Pamjen pastron të gjitha rregullat.
+067	Filtrimi dhe renditja kërkojnë një tabelë gati, vetëm për lexim. Dil fillimisht nga modaliteti Redaktim.
+068	Diagnostikime (0)
+069	0 ndryshime
+070	Shto kusht
+071	Shto nivel renditjeje
+072	Zbato pamjen
+073	Shkronjat e mëdha/vogla
+074	Krahasim teksti që dallon shkronjat e mëdha/vogla. Hapësirat brenda vlerave trajtohen fjalë për fjalë.
+075	Kontrollo rregullat: {0}
+076	Kushti
+077	{0} / 8 kushte; {1} / 3 nivele renditjeje. Përdor parapamjen për të kontrolluar rreshtat që përputhen.
+078	Përmban
+079	Nuk përmban
+080	Nuk është e barabartë me
+081	Bosh = zero karaktere. Vetëm hapësira = varg jo bosh me hapësira/tab/ndërprerje rreshti.\nNumrat përdorin pikë dhjetore (-12.5), pa grupim ose eksponentë; saktësia duhet të jetë e plotë.
+082	Mbaron me
+083	Është e barabartë me
+084	Vlera e filtrit
+085	Filtrat
+086	Është bosh
+087	Nuk është bosh
+088	Nuk është vetëm hapësirë
+089	Është vetëm hapësirë
+090	Tekst fjalë për fjalë, duke përfshirë hapësirat. Rregullat numerike kërkojnë një numër dhjetor të saktë me pikë.
+091	Përputh TË GJITHA kushtet
+092	Përputh CILINDO kusht
+093	Numër =
+094	Numër >
+095	Numër >=
+096	Numër <
+097	Numër <=
+098	Numër (dhjetor)
+099	Parapamje: {0:N0} nga {1:N0} rreshta të shfaqur. CSV i pandryshuar.
+100	Hiq kushtin
+101	Hiq nivelin e renditjes
+102	Rivendos rregullat
+103	Rregullat respektojnë edhe kërkimin aktual. Anulo ruan pamjen aktive.
+104	Renditja
+105	Fillon me
+106	Tekst: rend ordinal pa dallim të shkronjave të mëdha/vogla. Numër: dhjetore të sakta; vlerat e pavlefshme/bosh në fund.\nÇelësat e barabartë ruajnë rendin burim. Hiq të gjitha nivelet për të rikthyer rendin burim.
+107	Projeksioni është i kufizuar; rreshtat që nuk shfaqen nuk përfshihen. 
+108	Filtro dhe rendit
+109	Niveli i sipërm ka përparësi; nivelet e mëvonshme zgjidhin barazitë. Maksimumi 3.
+110	Vlera (fjalë për fjalë, përfshirë hapësirat)
+111	Vetëm pamja — vlerat CSV dhe rendi burim mbeten të pandryshuara. {0:N0} rreshta të shfaqur.\n
+112	Zbato është bllokuar sepse {0} nuk ka një profil kodimi të mbështetur shprehimisht. Përmbajtja e redaktuesit nuk u ndryshua.
+113	Zbato është bllokuar sepse vërtetimi strikt i kodimit për {0} nuk kreu një konvertim të saktë vajtje-ardhje. Përmbajtja e redaktuesit nuk u ndryshua.
+114	Zbato është bllokuar sepse zëvendësimi në pritje nuk mund të përfaqësohet saktësisht në {0}. Nuk u përdorën karaktere zëvendësuese dhe përmbajtja e redaktuesit nuk u ndryshua.
+115	Zbato ende nuk është aktivizuar për {0}. Përmbajtja e redaktuesit nuk u ndryshua. Shkrimet në host janë aktivizuar vetëm për UTF-8 (65001) dhe Windows-1250 (1250), pas vërtetimit pa humbje. Përdor Rikthe të gjitha ose konverto dokumentin në UTF-8 në Notepad++ dhe rihap modalitetin Redaktim.
+116	Rifresko është çaktivizuar ndërsa modaliteti Redaktim është aktiv. Zbato ose rikthe të gjitha ndryshimet në pritje fillimisht.
+117	Faqja e kodit Scintilla {0}
+118	Dokumenti aktiv është {0:N0} bajte. Kufiri aktual i sigurt i fotografisë është {1:N0} bajte.
+119	Dokumenti aktiv Notepad++ nuk u lexua dot. Përmbajtja e redaktuesit nuk u ndryshua.
+120	Rezultati i Zbato nuk është gjendje e bllokuar nga kodimi.
+121	Ndërtimi i tabelës në sfond përfundoi pa rezultat.
+122	Ndryshimet CSV u zbatuan me sukses, por pozicioni i mëparshëm i kursorit ose përzgjedhja nuk u rikthye dot. Ndryshimi i plotë i dokumentit mund të zhbëhet ende si një veprim i vetëm.
+123	faqja aktuale e kodit të redaktuesit
+124	Tamponi i redaktuesit nuk u shndërrua dot në tabelë vizuale. Zgjidh shprehimisht një ndarës ose rifresko pasi të korrigjosh dokumentin.
+125	Ndërtimi i tabelës ktheu një rezultat të paplotë.
+126	&Rreth
+127	&Pastro kërkimin
+128	&CSV
+129	&Ndarësi
+130	&Redakto
+131	Esc në kërkim
+132	&Gjej në tabelë
+133	&Titulli
+134	&Qeliza tjetër që përputhet
+135	&Qeliza e mëparshme që përputhet
+136	Rivendos Pamjen: pastro kërkimin, kushtet e kolonave dhe të gjitha renditjet.
+137	&Kërkimi
+138	&Kolona e kërkimit
+139	Shfaq hapësirat: pika të vogla portokalli të mbushura. Vetëm shfaqje; vlerat CSV nuk ndryshojnë.
+140	Shfaq &tabelën
+141	&Rendit sipas
+142	&Tabela
+143	&Pamja
+144	Një vlerë filtri mund të përmbajë maksimumi 4,096 karaktere.
+145	TË GJITHA
+146	Një shenjë fillestare e rendit të bajteve u përjashtua nga fusha e parë.
+147	CILINDO
+148	Një thonjëz u shfaq në një fushë që nuk ishte e rrethuar me thonjëza.
+149	Rreshtat e kujtesës së përkohshme duhet të formojnë një matricë të vetme drejtkëndore qelizash.
+150	Kodi i diagnostikimit: {0}.
+151	Çdo nivel renditjeje duhet të përdorë një kolonë të ndryshme.
+152	Gabim
+153	i lartë
+154	Informacion
+155	i ulët
+156	mesatar
+157	Asnjë ndarës i mbështetur nuk prodhoi një strukturë me shumë fusha me besueshmëri të mjaftueshme.
+158	asnjë
+159	Një rresht i vetëm vizual do të kërkonte {0:N0} qeliza, duke tejkaluar kufirin total aktual prej {1:N0}. Asnjë kolonë nuk u fsheh.
+160	Regjistri ka {0} fusha; priteshin {1} bazuar në numrin më të zakonshëm në mostrë.
+161	Hapësira: {0}; në fillim: {1}; në fund: {2}. Gjatësia: {3} njësi UTF-16.\nPikat portokalli shënojnë hapësira reale. Hapësira e shfaqjes rritet për lexueshmëri; karakteret CSV nuk ndryshojnë. Numërimet në fillim dhe në fund mbivendosen në një qelizë që ka vetëm hapësira.
+162	Matrica e qelizave të kujtesës së përkohshme tejkalon kufirin e sigurt të ngjitjes.
+163	Kujtesa e përkohshme përmban një karakter kontrolli të pambështetur.
+164	Kujtesa e përkohshme përmban më shumë kolona nga sa redaktuesi mund të ngjitë në mënyrë të sigurt.
+165	Kujtesa e përkohshme përmban më shumë rreshta nga sa redaktuesi mund të ngjitë në mënyrë të sigurt.
+166	Teksti i kujtesës së përkohshme tejkalon kufirin e sigurt prej 16 Mi njësish karakteri UTF-16.
+167	Fusha e fundit e cituar nuk u mbyll para fundit të tekstit.
+168	Numri i fushave ndryshon nga regjistrat e tjerë.
+169	Veprimi nuk u përfundua. Kontrollo dokumentin, vlerat e zgjedhura dhe kufijtë e madhësisë.
+170	Dokumenti i analizuar përmban {0:N0} kolona, duke tejkaluar kufirin aktual të tabelës vizuale prej {1:N0}. Asnjë kolonë nuk u fsheh.
+171	Ndarësi i sugjeruar ka besueshmëri të ulët. Kontrollo cilësimin e ndarësit.
+172	Dy kandidatë për ndarës kanë rezultate të ngjashme. Kontrollo cilësimin e ndarësit.
+173	Karaktere të papritura ndjekin një thonjëz mbyllëse.
+174	e panjohur
+175	Përdor një numër dhjetor të saktë me pikë, si -12.5. Grupimi, eksponentët dhe vlerat e rrumbullakosura nuk mbështeten.
+176	Përdor maksimumi tetë kushte filtri jo-null.
+177	Përdor maksimumi tre nivele renditjeje jo-null.
+178	Rregullat e pamjes i referohen një kolone jashtë tabelës aktuale.
+179	Paralajmërim
+180	Përmbledhje kolone
+181	Filtro dhe rendit
+182	Hap tabelën vizuale
+183	Rifresko tabelën
+184	i ri:{0}
+185	i ri:{0} *
+186	Zgjidh
+187	Zgjidh rreshta të plotë për fshirje
+188	Regjistër logjik burim ose rresht strukturor në pritje
+189	Kolona e treguesit të rreshtit nuk u identifikua dot.
+190	Rreshti duhet t'i përkasë një DataGridView.
+191	Të gjitha kolonat
+192	{0:N0} / {1:N0} qeliza
+193	{0:N0} qeliza
+194	Pastro kërkimin
+195	Pastro kërkimin (Esc). Ruaj kolonën e kërkimit dhe renditjen.
+196	Filtron rreshtat e shfaqur. Enter: qeliza tjetër që përputhet. Shift+Enter: e mëparshmja. Escape: pastro.
+197	Qeliza tjetër që përputhet
+198	Qeliza tjetër që përputhet (F3 / Enter)
+199	Asnjë përputhje
+200	Nuk ka rreshta që përputhen.\nRregullo kërkimin ose përdor Pamja > Filtro dhe rendit / Rivendos Pamjen.
+201	Qeliza e mëparshme që përputhet
+202	Qeliza e mëparshme që përputhet (Shift+F3 / Shift+Enter)
+203	Kërko në të gjitha kolonat e të dhënave ose zgjidh një kolonë.
+204	Kolona e kërkimit
+205	Kërko në rreshtat CSV të shfaqur (Ctrl+F). Vlerat dhe teksti burim nuk ndryshojnë.
+206	Kërko në tabelë...
+207	Kërko në tabelë
+208	Rezultatet e kërkimit
+209	Duke kërkuar...
+210	Shko te Burimi u bllokua: një dokument tjetër Notepad++ është aktiv. Kthehu te CSV i shfaqur ose rifresko tabelën.
+211	Shko te Burimi u bllokua sepse rezultati i analizës i ruajtur nuk përputhet më me fotografinë e tij të pandryshueshme të burimit. Rifresko tabelën fillimisht.
+212	Shko te Burimi u bllokua: gjatësia e koduar strikt nuk përputhet me gjatësinë e dokumentit të raportuar nga Scintilla.
+213	Shko te Burimi u bllokua: përmbajtja aktive e redaktuesit ndryshoi që kur u shfaq tabela. Rifresko tabelën fillimisht.
+214	Shko te Burimi u bllokua: faqja aktuale e kodit Scintilla nuk ka profil të qartë të pozicionit të bajteve.
+215	Shko te Burimi u bllokua: faqja e kodit të redaktuesit ndryshoi që kur u shfaq tabela. Rifresko tabelën fillimisht.
+216	Shko te Burimi u bllokua: qeliza e zgjedhur e projektuar nuk ka fushë burim të papërpunuar.
+217	Shko te Burimi u bllokua: diapazoni i karaktereve burim nuk u hartëzua dot pa humbje te bajtet Scintilla.
+218	Shko te Burimi u bllokua: regjistri logjik burim nuk është i disponueshëm në rezultatin e analizës të ruajtur.
+219	Shko te Burimi dështoi: tamponi aktiv i Notepad++ nuk u lexua dot. Përmbajtja e dokumentit nuk u ndryshua.
+220	Shko te Burimi dështoi gjatë lëvizjes së përzgjedhjes Scintilla. Përmbajtja e dokumentit nuk u ndryshua.
+221	Shko te Burimi nuk është i disponueshëm derisa tabela vizuale aktuale të ketë një bazë të plotë burimi. Rifresko tabelën fillimisht.
+222	Shko te Burimi kërkon një rresht ose qelizë CSV aktuale.
+223	Shko te Burimi nuk u përfundua. Përmbajtja e dokumentit nuk u ndryshua.
+224	U zgjodh regjistri burim {0}, kolona {1}, në Notepad++.
+225	U zgjodh regjistri burim {0} në Notepad++.
+226	Rreshti vizual aktual nuk siguron një identitet të qëndrueshëm të regjistrit burim.
+227	Ky rresht i futur në pritje nuk ka vendndodhje burimi derisa të përfundojë Zbato.
+228	Pamja aktuale: {0:N0} nga {1:N0} rreshta të shfaqur.
+229	Vlerat e dallueshme numërohen duke përdorur tekstin e saktë që dallon shkronjat e mëdha/vogla, përfshirë vlerat bosh.\nRreshta të përsëritur = rreshta minus vlerat e dallueshme. Intervali numerik përdor vlera dhjetore të sakta me pikë.
+230	Bosh
+231	Lloji
+232	Vlerat më të shpeshta (deri në 20)
+233	Nuk disponohet
+234	Minimumi numerik: {0}     Maksimumi: {1}\nVlera më e gjatë: {2:N0} njësi UTF-16. {3:N0} vlera shfaqen më shumë se një herë.
+235	 Projeksion i kufizuar; ky NUK është i gjithë skedari.
+236	Rreshta: {0:N0}     Bosh: {1:N0}     Vetëm hapësira: {2:N0}\nTë dallueshme: {3:N0}     Rreshta të përsëritur: {4:N0}     Numerike: {5:N0}
+237	Përmbledhje kolone
+238	Hapësirë e bardhë
+239	U shtua një rresht i ri në sesionin e Redaktimit në pritje. Zbato e shkruan në tamponin e redaktuesit; Rikthe të gjitha e hedh poshtë.
+240	Një rresht burim nuk dha indeksin e regjistrit të tij burim.
+241	Veprimi
+242	Fotografia e dokumentit aktiv dështoi. Përmbajtja e redaktuesit nuk u ndryshua.
+243	Shto rresht
+244	Të gjitha redaktimet e qelizave dhe rreshtave në pritje u rikthyen. Tamponi i redaktuesit Notepad++ nuk u ndryshua.
+245	Zbato të gjitha redaktimet e qelizave dhe rreshtave në redaktuesin aktiv si një veprim i vetëm që mund të zhbëhet
+246	Zbato u bllokua: një dokument tjetër Notepad++ është aktiv. Kthehu te dokumenti origjinal ose përdor Rikthe të gjitha.
+247	Zbato u bllokua: tamponi i redaktuesit ndryshoi që kur nisi modaliteti Redaktim. Rikthe dhe rifresko para se të redaktosh përsëri.
+248	Zbato u bllokua: faqja e kodit të redaktuesit ndryshoi që kur nisi modaliteti Redaktim. Rikthe dhe rihap modalitetin Redaktim.
+249	Zbato dështoi. Sesioni i redaktimit mbetet i hapur; kontrollo tamponin e redaktuesit para se të provosh përsëri ose të rikthesh.
+250	Zbato nuk u përfundua. Nuk u provua asnjë mbishkrim automatik.
+251	Zbulo automatikisht
+252	besimi automatik {0}
+253	{0} — zbulimi automatik i ndarësit nuk është i besueshëm; kërkohet zgjedhje manuale.
+254	Zbulim automatik
+255	Pikët e kandidatëve
+256	{0} qeliza / {1} rreshta (+{2} / -{3})
+257	Karakteri
+258	{0} karaktere / {1} bajte redaktuesi
+259	Zgjidh Presje, Pikëpresje ose Tab nga lista Ndarësi më sipër.
+260	Zgjidh shprehimisht nëse regjistri i parë logjik është titull
+261	Pastro
+262	Pastro filtrin aktual të kërkimit dhe renditjen vetëm të pamjes
+263	Kodi
+264	 - {0} kushte kolone ({1}), {2} nivele renditjeje
+265	{0} — {1} × {2} kolona — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Presje (,)
+267	presje
+268	Besimi
+269	Fshi të gjithë rreshtat e qëndrueshëm të të dhënave të zgjedhur nga sesioni i Redaktimit në pritje
+270	Fshi rreshtin
+271	Fshi rreshtat ({0})
+272	Fshi rreshtin e qëndrueshëm të të dhënave të zgjedhur nga sesioni i Redaktimit në pritje
+273	Fshi rreshtin ose rreshtat e qëndrueshëm të të dhënave të zgjedhur nga sesioni i Redaktimit në pritje
+274	Ndarësi:
+275	Diagnostikime ({0})
+276	Hidh poshtë të gjitha ndryshimet e qelizave, futjet dhe fshirjet në pritje
+277	Dokumenti
+278	 — MODI REDAKTIM: {0} qeliza, {1} rreshta, +{2} / -{3}
+279	 - Modaliteti Redaktim
+280	Modaliteti Redaktim përmban ndryshime në pritje. Përdor Zbato ose Rikthe të gjitha para se të dalësh.
+281	Modaliteti Redaktim nuk është i disponueshëm për tabelën aktuale. Zgjidh fillimisht gabimet e analizimit ose kufijtë e shfaqjes.
+282	Redaktimi nuk mund të fillojë nga një projeksion vizual me numër të kufizuar rreshtash.
+283	Redaktimi nuk mund të fillojë ndërsa CSV i analizuar përmban gabime.
+284	Redaktimi nuk është i disponueshëm për tabelën aktuale.
+285	{0} — tampon redaktuesi bosh; nuk ka regjistra CSV për t'u shfaqur.
+286	Hyr shprehimisht në modalitetin e redaktimit të qelizave dhe rreshtave
+287	Hyr shprehimisht në modalitetin e redaktimit të qelizave dhe rreshtave. Zbato shkruan vetëm në tamponin e redaktuesit.
+288	Hyr shprehimisht në modalitetin e redaktimit të qelizave dhe rreshtave. Modeli i plotë i redaktimit ndërtohet vetëm kur kërkohet.
+289	{0} gabime, {1} paralajmërime
+290	rreshti i parë si titull
+291	Rreshti i parë është titull
+292	Titulli:
+293	Fut një rresht të ri pas rreshtit të zgjedhur ose shto në fund nëse nuk është zgjedhur asnjë rresht
+294	{0} — po ngarkohen të dhëna CSV në sfond; Notepad++ mbetet i përgjegjshëm.
+295	zgjedhje manuale
+296	{0} përputhen nga {1} rreshta të shfaqur
+297	Mesazh
+298	U hoqën {0} rreshta të sapofutur nga sesioni në pritje.
+299	Nuk ka diagnostikime për t'u shfaqur.
+300	Pa rresht titulli
+301	pa rresht titulli
+302	Nuk ka rreshta që përputhen.\nProvo një tekst kërkimi ose kolonë tjetër.
+303	pa diagnostikime analizimi
+304	Nuk u zgjodh dot në mënyrë të sigurt asnjë ndarës i besueshëm.
+305	Asgjë për të zbatuar: sesioni i redaktimit nuk ka ndryshime në pritje.
+306	Duke analizuar dhe përgatitur një tabelë vizuale të kufizuar në sfond…
+307	Ndryshime të qelizave dhe strukturës së rreshtave në pritje
+308	Rresht i futur në pritje {0}; ende i pazbatuar
+309	{0} rreshta në pritje
+310	Shtojca është gati. Duke lexuar tamponin e redaktuesit aktiv...
+311	Duke përgatitur sesionin e plotë të redaktimit…
+312	Veti
+313	Lexo dhe shfaq tamponin e redaktuesit Notepad++ aktualisht aktiv
+314	Regjistër
+315	Rikthe të gjitha
+316	{0} rreshta
+317	Pikëpresje (;)
+318	pikëpresje
+319	Ashpërsia
+320	Shfaq diagnostikime të hollësishme të analizimit dhe ndarësit
+321	duke shfaqur {0} nga {1} rreshta
+322	Fotografi
+323	Gabim fotografie
+324	Niveli i renditjes {0}: {1}, {2}. Vetëm pamja.
+325	 — renditur sipas {0} {1}
+326	Regjistri logjik burim {0}
+327	Regjistri logjik burim {0}; i modifikuar në sesionin e Redaktimit në pritje
+328	{0} rreshta burim janë shënuar për fshirje dhe {1} rreshta të futur janë hequr nga sesioni në pritje.
+329	{0} rreshta burim janë shënuar për fshirje. Zbato shkruan të gjithë grupin; Rikthe të gjitha rikthen çdo rresht.
+330	Gjendja
+331	Tab
+332	tab
+333	Gabim tabele
+334	Redaktimi i qelizës aktive nuk u konfirmua. Korrigjo vlerën para se të shtosh rresht.
+335	Redaktimi i qelizës aktive nuk u konfirmua. Korrigjo vlerën para se të fshish rreshta.
+336	Redaktimi i qelizës aktive nuk u konfirmua. Korrigjo vlerën para se të zbatosh.
+337	Rreshti i sapofutur u hoq nga sesioni në pritje.
+338	Kolona e treguesit të rreshtit nuk është konfiguruar.
+339	Bashkësia e rreshtave të zgjedhur nuk është më e vlefshme për këtë sesion redaktimi. Nuk u fshi asnjë rresht.
+340	Rreshtat e zgjedhur ishin fshirë tashmë. Nuk u bë asnjë ndryshim shtesë.
+341	Rreshti burim është shënuar për fshirje. Zbato shkruan fshirjen; Rikthe të gjitha rikthen rreshtin.
+342	Tabela vizuale nuk u gjenerua dot. Përmbajtja e redaktuesit nuk u ndryshua.
+343	Përdor zbulim automatik të besueshëm ose zgjidh shprehimisht një ndarës
+344	Duke pritur dokumentin aktiv Notepad++.
+345	{0} - {1} x {2:N0} kolona
+346	Prano ndryshimet
+347	Pas
+348	Të gjitha qelizat e të dhënave
+349	Para
+350	Kolona CSV
+351	Zgjidh një veprim dhe fushëveprim, pastaj kliko Parapamje.
+352	Kolona aktuale
+353	Gjej:
+354	shkronja të vogla
+355	Veprimi:
+356	Hapësirat e tjera shfaqen si sekuenca escape; gjatësitë numërohen në njësi UTF-16. Vlerat e gjata shkurtohen.
+357	Parapamja nuk u krijua dot. Kontrollo fushëveprimin dhe tekstin e kërkimit, ose zgjidh një fushëveprim më të vogël (maksimumi 250,000 qeliza / 16 Mi karaktere).
+358	Bëj parapamjen fillimisht. Prano ndryshimet përditëson redaktimet në pritje; Zbato në shiritin e veglave shkruan në Notepad++.\nTitujt përjashtohen kur Titulli = Regjistri i parë. Konvertimi i shkronjave të mëdha/vogla është i pavarur nga kultura.
+359	ID e regjistrit
+360	Zëvendëso tekstin (literal)
+361	Zëvendëso me:
+362	Fushëveprimi:
+363	Zgjidh një kolonë të dhënash CSV.
+364	Qeliza / rreshta të zgjedhur
+365	pikat portokalli të mbushura shënojnë hapësirat. 
+366	treguesit e hapësirave janë të fshehur. 
+367	{0:N0} qeliza të synuara; {1:N0} ndryshime në {2:N0} rreshta. Shfaqen 50 ndryshimet e para; 
+368	Sesioni i redaktimit ndryshoi.
+369	Parapamja nuk është më e vlefshme. Kontrollo sesionin e redaktimit dhe krijo një parapamje të re.
+370	Transformo qelizat CSV
+371	U transformuan {0:N0} qeliza në sesionin e Redaktimit në pritje. Përdor Zbato për të përditësuar Notepad++ ose Rikthe të gjitha për të hedhur poshtë redaktimet në pritje.
+372	Hiq hapësirat e jashtme
+373	SHKRONJA TË MËDHA
+374	Rivendos Pamjen
+375	Shfaq hapësirat
