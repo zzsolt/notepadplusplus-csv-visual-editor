@@ -1,0 +1,378 @@
+# language: tr
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Notepad++ için görsel bir CSV düzenleyici
+001	CSV Visual Editor hakkında
+002	İletişim: {0}
+003	Geliştiriciyle iletişim kur {0}
+004	Geliştirici: {0}
+005	Geliştirme sürümü
+006	CSV Visual Editor hoşunuza gidiyor mu? Projeyi destekleyin.\nGitHub'da yıldız verin, geri bildiriminizi paylaşın veya katkıda bulunmak için geliştiriciyle iletişime geçin. Teşekkürler!
+007	Arayüz dili: {0}
+008	İlişkili bir uygulama açılamadı. İletişim: {0}
+009	GitHub'daki proje
+010	Sürüm: {0}
+011	Sürüm ve derleme
+012	Bekleyen düzenleme modeli değiştiği için {0} engellendi. Kısmi değişiklik korunmadı.
+013	{0} engellendi: pano ve seçili dikdörtgenlerin boyutları farklı.
+014	{0} engellendi: hedef dikdörtgen CSV tablosunun dışına taşıyor.
+015	{0} engellendi: düzenlenebilir hedef dikdörtgen yok.
+016	{0} × {1} CSV hücresi kopyalandı.
+017	Kopyalama/Kesme engellendi: seçili bir hücre, düz elektronik tablo metni olarak belirsizlik olmadan gösterilemeyen bir sekme veya satır sonu içeriyor.
+018	Kopyalama için CSV hücreleri gerekir; tüm satır silme seçimi kullanılamaz.
+019	Kopyalama için tek bir bitişik dikdörtgen CSV veri hücresi seçimi gerekir.
+020	{0} hücre panoya kesildi ve bekleyen düzenleme oturumunda temizlendi. Uygula, temizlemeyi Notepad++'a yazar.
+021	Kesme tamamlandı; seçili hücreler zaten boştu. Pano özgün değerlerini içeriyor.
+022	{0} yalnızca Düzenleme modunda kullanılabilir.
+023	{0} geçerli tablo için kullanılamıyor.
+024	Yapıştırma engellendi: {0} Hiçbir veri değiştirilmedi.
+025	Yapıştırma tamamlandı; tüm hedef değerler zaten aynıydı.
+026	Bekleyen düzenleme oturumuna {0} değiştirilmiş hücre yapıştırıldı. Uygula bunları Notepad++'a yazar.
+027	{0} için CSV hücrelerinden oluşan bir dikdörtgen gerekir; tüm satır silme seçimi kullanılamaz.
+028	{0} için tek bir bitişik dikdörtgen CSV veri hücresi seçimi gerekir.
+029	{0} hedefleri, kararlı Düzenleme modu satır modelinin dışında kullanılamaz.
+030	Etkin hücre düzenlemesi kopyalamadan önce kaydedilemedi.
+031	Etkin hücre düzenlemesi kaydedilemedi. {0} işleminden önce değeri düzeltin.
+032	Pano düz metin hücreleri içermiyor.
+033	Windows panosu geçici olarak kullanılamıyor. Hiçbir veri değiştirilmedi.
+034	Seçili CSV hücre dikdörtgenini Windows panosuna kopyala (Ctrl+C)
+035	Seçili CSV hücrelerini kopyala ve bekleyen Düzenleme oturumunda temizle (Ctrl+X)
+036	Elektronik tablo hücrelerini seçili CSV hücresine veya dikdörtgene yapıştır (Ctrl+V)
+037	Bekleyen CSV düzenlemelerinde metin değiştirme, dış boşlukları kırpma veya büyük/küçük harf dönüşümünü önizle
+038	Geçerli CSV hücresini veya satırını Notepad++ kaynak arabelleğinde seç
+039	Kaynak
+040	Dönüştür
+041	Hakkında
+042	Uygula
+043	Artan
+044	İptal
+045	Kapat
+046	Sütun
+047	Kopyala
+048	Kes
+049	Azalan
+050	Düzenle
+051	Düzenlemeden çık
+052	Büyük/küçük harf eşleştir
+053	Sayı
+054	Özgün sıra
+055	Yapıştır
+056	Önizleme
+057	Yenile
+058	Satırlar
+059	Tablo
+060	Metin
+061	Değer
+062	Sütun özeti: geçerli görünümde sayımlar, farklı değerler, sayısal aralık ve sık değerler.
+063	Sütun özeti hazır, salt okunur bir tablo gerektirir. Önce Düzenleme modundan çıkın.
+064	Filtrele ve sırala: sütun kurallarını ve metin/sayısal sıralama düzeylerini birleştirin. Yalnızca görünüm; CSV değişmez.
+065	Filtrele ve sırala: sütun kurallarını ve en fazla üç metin/sayısal sıralama düzeyini birleştirin. Yalnızca görünüm.
+066	Filtrele ve sırala: {0} koşul, {1} sıralama düzeyi. Görünümü sıfırla tüm kuralları temizler.
+067	Filtreleme ve sıralama hazır, salt okunur bir tablo gerektirir. Önce Düzenleme modundan çıkın.
+068	Tanılama (0)
+069	0 değişiklik
+070	Koşul ekle
+071	Sıralama düzeyi ekle
+072	Görünümü uygula
+073	Harf durumu
+074	Büyük/küçük harfe duyarlı metin karşılaştırması. Değerlerdeki boşluklar olduğu gibi değerlendirilir.
+075	Kuralları denetleyin: {0}
+076	Koşul
+077	{0} / 8 koşul; {1} / 3 sıralama düzeyi. Eşleşen satırları denetlemek için önizleyin.
+078	İçerir
+079	İçermez
+080	Eşit değildir
+081	Boş = sıfır karakter. Yalnızca boşluk = boş olmayan boşluk/sekme/satır sonu dizisi.\nSayılar ondalık nokta (-12.5) kullanır; gruplama veya üs yoktur ve kesinlik tam olmalıdır.
+082	Şununla biter
+083	Eşittir
+084	Filtre değeri
+085	Filtreler
+086	Boş
+087	Boş değil
+088	Yalnızca boşluk değil
+089	Yalnızca boşluk
+090	Boşluklar dahil düz metin. Sayısal kurallar noktalı kesin bir ondalık sayı gerektirir.
+091	TÜM koşulları eşleştir
+092	HERHANGİ bir koşulu eşleştir
+093	Sayı =
+094	Sayı >
+095	Sayı >=
+096	Sayı <
+097	Sayı <=
+098	Sayı (ondalık)
+099	Önizleme: görüntülenen {1:N0} satırın {0:N0} tanesi. CSV değişmedi.
+100	Koşulu kaldır
+101	Sıralama düzeyini kaldır
+102	Kuralları sıfırla
+103	Kurallar geçerli aramayı da dikkate alır. İptal, etkin görünümü korur.
+104	Sıralama
+105	Şununla başlar
+106	Metin: büyük/küçük harfe duyarsız sırasal düzen. Sayı: kesin ondalıklar; geçersiz/boş değerler sonda.\nEşit anahtarlar kaynak sırasını korur. Kaynak sırasını geri yüklemek için tüm düzeyleri kaldırın.
+107	Gösterim sınırlıdır; görüntülenmeyen satırlar dahil değildir. 
+108	Filtrele ve sırala
+109	Üst düzey önceliklidir; sonraki düzeyler eşitlikleri çözer. En fazla 3.
+110	Değer (boşluklar dahil düz)
+111	Yalnızca görünüm — CSV değerleri ve kaynak sırası değişmez. {0:N0} satır görüntüleniyor.\n
+112	{0} için açıkça desteklenen bir kodlama profili olmadığı için Uygula engellendi. Düzenleyici içeriği değiştirilmedi.
+113	{0} için katı kodlama doğrulaması tam olarak gidiş-dönüş yapmadığı için Uygula engellendi. Düzenleyici içeriği değiştirilmedi.
+114	Bekleyen değiştirme {0} içinde tam olarak gösterilemediği için Uygula engellendi. Yerine koyma karakteri kullanılmadı ve düzenleyici içeriği değiştirilmedi.
+115	Uygula henüz {0} için etkin değil. Düzenleyici içeriği değiştirilmedi. Ana makine yazmaları yalnızca kayıpsız doğrulamadan sonra UTF-8 (65001) ve Windows-1250 (1250) için etkindir. Tümünü Geri Al'ı kullanın veya belgeyi Notepad++'ta UTF-8'e dönüştürüp Düzenleme modunu yeniden açın.
+116	Düzenleme modu etkin olduğunda Yenile devre dışıdır. Önce bekleyen değişiklikleri Uygula veya Tümünü Geri Al ile temizleyin.
+117	Scintilla kod sayfası {0}
+118	Etkin belge {0:N0} bayt. Geçerli güvenli anlık görüntü sınırı {1:N0} bayt.
+119	Etkin Notepad++ belgesi okunamadı. Düzenleyici içeriği değiştirilmedi.
+120	Uygula sonucu kodlama nedeniyle engellenmiş bir durum değil.
+121	Arka plan tablo oluşturma işlemi sonuç vermeden tamamlandı.
+122	CSV değişiklikleri başarıyla uygulandı ancak önceki imleç veya seçim geri yüklenemedi. Belgenin tamamındaki değişiklik tek işlem olarak geri alınabilir.
+123	geçerli düzenleyici kod sayfası
+124	Düzenleyici arabelleği görsel tabloya dönüştürülemedi. Bir sınırlayıcıyı açıkça seçin veya belgeyi düzelttikten sonra yenileyin.
+125	Tablo oluşturma eksik sonuç döndürdü.
+126	&Hakkında
+127	&Aramayı temizle
+128	&CSV
+129	&Ayırıcı
+130	&Düzenle
+131	Aramada Esc
+132	&Tabloda bul
+133	&Başlık
+134	&Sonraki eşleşen hücre
+135	&Önceki eşleşen hücre
+136	Görünümü sıfırla: aramayı, sütun koşullarını ve tüm sıralamayı temizler.
+137	&Arama
+138	Arama &sütunu
+139	Boşlukları göster: küçük dolu turuncu noktalar. Yalnızca görüntü; CSV değerleri değişmez.
+140	&Tabloyu göster
+141	&Şuna göre sırala
+142	&Tablo
+143	&Görünüm
+144	Bir filtre değeri en fazla 4,096 karakter içerebilir.
+145	TÜMÜ
+146	Baştaki bayt sırası işareti ilk alandan çıkarıldı.
+147	HERHANGİ BİRİ
+148	Tırnak içine alınmamış bir alanda tırnak işareti bulundu.
+149	Pano satırları tek bir dikdörtgen hücre matrisi oluşturmalıdır.
+150	Tanılama kodu: {0}.
+151	Her sıralama düzeyi farklı bir sütun kullanmalıdır.
+152	Hata
+153	yüksek
+154	Bilgi
+155	düşük
+156	orta
+157	Desteklenen hiçbir ayırıcı yeterince güvenilir çok alanlı bir yapı üretmedi.
+158	yok
+159	Tek bir görsel satır {0:N0} hücre gerektirirdi; bu, geçerli toplam {1:N0} sınırını aşıyor. Hiçbir sütun gizlenmedi.
+160	Kayıtta {0} alan var; örnekteki en yaygın sayıya göre {1} bekleniyordu.
+161	Boşluklar: {0}; başta: {1}; sonda: {2}. Uzunluk: {3} UTF-16 birimi.\nTuruncu noktalar gerçek boşlukları işaretler. Okunabilirlik için görüntü aralığı artırılır; CSV karakterleri değişmez. Yalnızca boşluk içeren bir hücrede baş ve son sayımları çakışır.
+162	Pano hücre matrisi güvenli yapıştırma sınırını aşıyor.
+163	Pano desteklenmeyen bir denetim karakteri içeriyor.
+164	Pano, düzenleyicinin güvenle yapıştırabileceğinden fazla sütun içeriyor.
+165	Pano, düzenleyicinin güvenle yapıştırabileceğinden fazla satır içeriyor.
+166	Pano metni güvenli 16 Mi UTF-16 karakter birimi sınırını aşıyor.
+167	Son tırnaklı alan metnin sonundan önce kapatılmadı.
+168	Alan sayısı diğer kayıtlardan farklı.
+169	İşlem tamamlanamadı. Belgeyi, seçili değerleri ve boyut sınırlarını denetleyin.
+170	Ayrıştırılan belge {0:N0} sütun içeriyor; bu, görsel tablonun geçerli {1:N0} sınırını aşıyor. Hiçbir sütun gizlenmedi.
+171	Önerilen ayırıcının güven düzeyi düşük. Ayırıcı ayarını denetleyin.
+172	İki ayırıcı adayının puanları benzer. Ayırıcı ayarını denetleyin.
+173	Kapanış tırnağından sonra beklenmeyen karakterler var.
+174	bilinmiyor
+175	-12.5 gibi noktalı kesin bir ondalık sayı kullanın. Gruplama, üsler ve yuvarlanmış değerler desteklenmez.
+176	Null olmayan en fazla sekiz filtre koşulu kullanın.
+177	Null olmayan en fazla üç sıralama düzeyi kullanın.
+178	Görünüm kuralları geçerli tablonun dışındaki bir sütuna başvuruyor.
+179	Uyarı
+180	Sütun özeti
+181	Filtrele ve sırala
+182	Görsel tabloyu aç
+183	Tabloyu yenile
+184	yeni:{0}
+185	yeni:{0} *
+186	Seç
+187	Silmek için tüm satırları seç
+188	Kaynak mantıksal kayıt veya bekleyen yapısal satır
+189	Satır göstergesi sütunu belirlenemedi.
+190	Satır bir DataGridView'a ait olmalıdır.
+191	Tüm sütunlar
+192	{0:N0} / {1:N0} hücre
+193	{0:N0} hücre
+194	Aramayı temizle
+195	Aramayı temizle (Esc). Arama sütununu ve sıralamayı korur.
+196	Görüntülenen satırları filtreler. Enter: sonraki eşleşen hücre. Shift+Enter: önceki. Escape: temizle.
+197	Sonraki eşleşen hücre
+198	Sonraki eşleşen hücre (F3 / Enter)
+199	Eşleşme yok
+200	Eşleşen satır yok.\nAramayı ayarlayın veya Görünüm > Filtrele ve sırala / Görünümü sıfırla'yı kullanın.
+201	Önceki eşleşen hücre
+202	Önceki eşleşen hücre (Shift+F3 / Shift+Enter)
+203	Tüm veri sütunlarında arayın veya bir sütun seçin.
+204	Arama sütunu
+205	Görüntülenen CSV satırlarında ara (Ctrl+F). Değerler ve kaynak metin değişmez.
+206	Tabloda ara...
+207	Tabloda ara
+208	Arama sonuçları
+209	Aranıyor...
+210	Kaynağa git engellendi: başka bir Notepad++ belgesi etkin. Görüntülenen CSV'ye dönün veya tabloyu yenileyin.
+211	Korunan ayrıştırma sonucu artık değişmez kaynak anlık görüntüsüyle eşleşmediği için kaynağa git engellendi. Önce tabloyu yenileyin.
+212	Katı kodlanmış uzunluk Scintilla'nın bildirdiği belge uzunluğuyla eşleşmediği için kaynağa git engellendi.
+213	Tablo görüntülendikten sonra etkin düzenleyici içeriği değiştiği için kaynağa git engellendi. Önce tabloyu yenileyin.
+214	Geçerli Scintilla kod sayfasının açık bir bayt konumu profili olmadığı için kaynağa git engellendi.
+215	Tablo görüntülendikten sonra düzenleyicinin kod sayfası değiştiği için kaynağa git engellendi. Önce tabloyu yenileyin.
+216	Seçili yansıtılmış hücrenin ham kaynak alanı olmadığı için kaynağa git engellendi.
+217	Kaynak karakter aralığı Scintilla baytlarına kayıpsız eşlenemediği için kaynağa git engellendi.
+218	Kaynak mantıksal kayıt korunan ayrıştırma sonucunda bulunmadığı için kaynağa git engellendi.
+219	Kaynağa git başarısız: etkin Notepad++ arabelleği okunamadı. Belge içeriği değiştirilmedi.
+220	Scintilla seçimi taşınırken kaynağa git başarısız oldu. Belge içeriği değiştirilmedi.
+221	Geçerli görsel tablo tam bir kaynak temeline sahip olana kadar kaynağa git kullanılamaz. Önce tabloyu yenileyin.
+222	Kaynağa git için geçerli bir CSV satırı veya hücresi gerekir.
+223	Kaynağa git tamamlanmadı. Belge içeriği değiştirilmedi.
+224	Notepad++'ta kaynak kayıt {0}, sütun {1} seçildi.
+225	Notepad++'ta kaynak kayıt {0} seçildi.
+226	Geçerli görsel satır kararlı bir kaynak kayıt kimliği sağlamıyor.
+227	Bu bekleyen eklenmiş satır, uygulama tamamlanana kadar kaynak konumuna sahip değildir.
+228	Geçerli görünüm: görüntülenen {1:N0} satırın {0:N0} tanesi.
+229	Farklı değerler, boş değerler dahil olmak üzere büyük/küçük harfe duyarlı tam metne göre hesaplanır.\nYinelenen satırlar = satırlar eksi farklı değerler. Sayısal aralık noktalı kesin ondalık değerleri kullanır.
+230	Boş
+231	Tür
+232	En sık değerler (en fazla 20)
+233	Kullanılamıyor
+234	Sayısal minimum: {0}     Maksimum: {1}\nEn uzun değer: {2:N0} UTF-16 birimi. {3:N0} değer birden fazla kez görülüyor.
+235	 Sınırlı yansıtma; bu dosyanın TAMAMI DEĞİLDİR.
+236	Satırlar: {0:N0}     Boş: {1:N0}     Yalnızca boşluk: {2:N0}\nFarklı: {3:N0}     Yinelenen satırlar: {4:N0}     Sayısal: {5:N0}
+237	Sütun özeti
+238	Boşluk karakterleri
+239	Bekleyen düzenleme oturumuna yeni bir satır eklendi. Uygula bunu düzenleyici arabelleğine yazar; Tümünü Geri Al atar.
+240	Bir kaynak satır kaynak kayıt dizinini sağlamadı.
+241	Eylem
+242	Etkin belgenin anlık görüntüsü alınamadı. Düzenleyici içeriği değiştirilmedi.
+243	Satır ekle
+244	Bekleyen tüm hücre ve satır düzenlemeleri geri alındı. Notepad++ düzenleyici arabelleği değiştirilmedi.
+245	Tüm hücre ve satır düzenlemelerini etkin düzenleyiciye tek bir geri alınabilir işlem olarak uygula
+246	Uygula engellendi: başka bir Notepad++ belgesi etkin. Özgün belgeye dönün veya Tümünü Geri Al'ı kullanın.
+247	Uygula engellendi: Düzenleme modu başladıktan sonra düzenleyici arabelleği değişti. Yeniden düzenlemeden önce geri alın ve yenileyin.
+248	Uygula engellendi: Düzenleme modu başladıktan sonra düzenleyicinin kod sayfası değişti. Geri alın ve Düzenleme modunu yeniden açın.
+249	Uygula başarısız oldu. Düzenleme oturumu açık kalır; yeniden denemeden veya geri almadan önce düzenleyici arabelleğini doğrulayın.
+250	Uygula tamamlanmadı. Otomatik üzerine yazma denenmedi.
+251	Otomatik algıla
+252	otomatik {0} güveni
+253	{0} — otomatik ayırıcı algılama güvenilir değil; elle seçim gerekir.
+254	Otomatik algılama
+255	Aday puanları
+256	{0} hücre / {1} satır (+{2} / -{3})
+257	Karakter
+258	{0} karakter / {1} düzenleyici baytı
+259	Yukarıdaki Ayırıcı listesinden Virgül, Noktalı Virgül veya Sekme'yi seçin.
+260	İlk mantıksal kaydın başlık olup olmadığını açıkça seçin
+261	Temizle
+262	Geçerli arama filtresini ve yalnızca görünüm sıralamasını temizle
+263	Kod
+264	 - {0} sütun koşulu ({1}), {2} sıralama düzeyi
+265	{0} — {1} × {2} sütun — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Virgül (,)
+267	virgül
+268	Güven
+269	Seçili tüm kararlı veri satırlarını bekleyen düzenleme oturumundan sil
+270	Satırı Sil
+271	Satırları Sil ({0})
+272	Seçili kararlı veri satırını bekleyen düzenleme oturumundan sil
+273	Seçili kararlı veri satırını veya satırlarını bekleyen düzenleme oturumundan sil
+274	Ayırıcı:
+275	Tanılama ({0})
+276	Bekleyen tüm hücre değişikliklerini, eklemeleri ve silmeleri at
+277	Belge
+278	 — DÜZENLEME MODU: {0} hücre, {1} satır, +{2} / -{3}
+279	 - Düzenleme modu
+280	Düzenleme modu bekleyen değişiklikler içeriyor. Ayrılmadan önce Uygula veya Tümünü Geri Al'ı kullanın.
+281	Düzenleme modu geçerli tablo için kullanılamıyor. Önce ayrıştırıcı hatalarını veya görüntü sınırlarını çözün.
+282	Düzenleme, satır sayısı sınırlı görsel yansıtmadan başlatılamaz.
+283	Ayrıştırılan CSV hata içerirken düzenleme başlatılamaz.
+284	Düzenleme geçerli tablo için kullanılamıyor.
+285	{0} — boş düzenleyici arabelleği; görüntülenecek CSV kaydı yok.
+286	Açık hücre ve satır düzenleme moduna gir
+287	Açık hücre ve satır düzenleme moduna gir. Uygula yalnızca düzenleyici arabelleğine yazar.
+288	Açık hücre ve satır düzenleme moduna gir. Tam düzenleme modeli yalnızca istendiğinde oluşturulur.
+289	{0} hata, {1} uyarı
+290	ilk satır başlık
+291	İlk satır başlık
+292	Başlık:
+293	Seçili satırdan sonra yeni satır ekle veya satır seçilmemişse sona ekle
+294	{0} — CSV verileri arka planda yükleniyor; Notepad++ yanıt vermeye devam ediyor.
+295	elle seçim
+296	görüntülenen {1} satırın {0} tanesi eşleşiyor
+297	İleti
+298	Yeni eklenen {0} satır bekleyen oturumdan kaldırıldı.
+299	Görüntülenecek tanılama yok.
+300	Başlık satırı yok
+301	başlık satırı yok
+302	Eşleşen satır yok.\nBaşka bir arama metni veya sütunu deneyin.
+303	ayrıştırıcı tanılaması yok
+304	Güvenilir bir ayırıcı güvenle seçilemedi.
+305	Uygulanacak bir şey yok: düzenleme oturumu bekleyen değişiklik içermiyor.
+306	Sınırlı görsel tablo arka planda ayrıştırılıyor ve hazırlanıyor…
+307	Bekleyen hücre ve yapısal satır değişiklikleri
+308	Bekleyen eklenmiş satır {0}; henüz uygulanmadı
+309	{0} bekleyen satır
+310	Eklenti hazır. Etkin düzenleyici arabelleği okunuyor...
+311	Tam düzenleme oturumu hazırlanıyor…
+312	Özellik
+313	Geçerli etkin Notepad++ düzenleyici arabelleğini oku ve görüntüle
+314	Kayıt
+315	Tümünü Geri Al
+316	{0} satır
+317	Noktalı Virgül (;)
+318	noktalı virgül
+319	Önem derecesi
+320	Ayrıntılı ayrıştırıcı ve ayırıcı tanılamasını göster
+321	{1} satırın {0} tanesi gösteriliyor
+322	Anlık görüntü
+323	Anlık görüntü hatası
+324	Sıralama düzeyi {0}: {1}, {2}. Yalnızca görünüm.
+325	 — {0} {1} ile sıralandı
+326	Kaynak mantıksal kayıt {0}
+327	Kaynak mantıksal kayıt {0}; bekleyen düzenleme oturumunda değiştirildi
+328	{0} kaynak satır silinmek üzere işaretlendi ve eklenen {1} satır bekleyen oturumdan kaldırıldı.
+329	{0} kaynak satır silinmek üzere işaretlendi. Uygula tüm grubu yazar; Tümünü Geri Al her satırı geri yükler.
+330	Durum
+331	Sekme
+332	sekme
+333	Tablo hatası
+334	Etkin hücre düzenlemesi kaydedilemedi. Satır eklemeden önce değeri düzeltin.
+335	Etkin hücre düzenlemesi kaydedilemedi. Satırları silmeden önce değeri düzeltin.
+336	Etkin hücre düzenlemesi kaydedilemedi. Uygulamadan önce değeri düzeltin.
+337	Yeni eklenen satır bekleyen oturumdan kaldırıldı.
+338	Satır göstergesi sütunu yapılandırılmamış.
+339	Seçili satır kümesi bu düzenleme oturumu için artık geçerli değil. Hiçbir satır silinmedi.
+340	Seçili satırlar zaten silinmişti. Ek değişiklik yapılmadı.
+341	Kaynak satır silinmek üzere işaretlendi. Uygula silmeyi yazar; Tümünü Geri Al satırı geri yükler.
+342	Görsel tablo üretilemedi. Düzenleyici içeriği değiştirilmedi.
+343	Güvenilir otomatik algılama kullanın veya bir ayırıcıyı açıkça seçin
+344	Etkin Notepad++ belgesi bekleniyor.
+345	{0} - {1} x {2:N0} sütun
+346	Değişiklikleri kabul et
+347	Sonra
+348	Tüm veri hücreleri
+349	Önce
+350	CSV sütunu
+351	Bir işlem ve kapsam seçin, ardından Önizleme'ye tıklayın.
+352	Geçerli sütun
+353	Bul:
+354	küçük harf
+355	İşlem:
+356	Diğer boşluk karakterleri kaçış dizileriyle gösterilir; uzunluklar UTF-16 birimlerini sayar. Uzun değerler kısaltılır.
+357	Önizleme oluşturulamadı. Kapsamı ve aranacak metni denetleyin veya daha küçük bir kapsam seçin (en fazla 250,000 hücre / 16 Mi karakter).
+358	Önce önizleyin. Değişiklikleri kabul et bekleyen düzenlemeleri günceller; araç çubuğundaki Uygula Notepad++'a yazar.\nBaşlık = İlk kayıt olduğunda başlıklar hariç tutulur. Harf durumu dönüşümü kültürden bağımsızdır.
+359	Kayıt kimliği
+360	Metni değiştir (düz)
+361	Şununla değiştir:
+362	Kapsam:
+363	Bir CSV veri sütunu seçin.
+364	Seçili hücreler / satırlar
+365	dolu turuncu noktalar boşlukları işaretler. 
+366	boşluk göstergeleri gizli. 
+367	{0:N0} hedef hücre; {2:N0} satırda {1:N0} değişiklik. İlk 50 değişiklik gösteriliyor; 
+368	Düzenleme oturumu değişti.
+369	Önizleme artık geçerli değil. Düzenleme oturumunu denetleyin ve yeni bir önizleme oluşturun.
+370	CSV hücrelerini dönüştür
+371	Bekleyen Düzenleme oturumunda {0:N0} hücre dönüştürüldü. Notepad++'ı güncellemek için Uygula'yı, bekleyen düzenlemeleri atmak için Tümünü Geri Al'ı kullanın.
+372	Dış boşlukları kırp
+373	BÜYÜK HARF
+374	Görünümü sıfırla
+375	Boşlukları göster
