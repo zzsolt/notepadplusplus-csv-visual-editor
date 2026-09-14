@@ -85,6 +85,16 @@ def read_legacy(folder: Path, code: str, source: dict[str, Any],
         return None
     if expected_fingerprint != fingerprint(source):
         raise ValueError('Legacy English key-order fingerprint is missing or stale')
+    manifest_path = folder / 'manifest.json'
+    if manifest_path.exists():
+        manifest = read(manifest_path)
+        if (manifest.get('format') != 1 or manifest.get('sourceFingerprint') != fingerprint(source)
+                or manifest.get('keyCount') != len(source)):
+            raise ValueError('Curated manifest does not match the English source revision')
+        for path in paths:
+            actual = hashlib.sha256(path.read_bytes()).hexdigest()
+            if manifest.get('files', {}).get(path.name) != actual:
+                raise ValueError('Curated input changed without a reviewed manifest: ' + path.name)
     rows: dict[int, str] = {}
     for path in paths:
         for line_number, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):

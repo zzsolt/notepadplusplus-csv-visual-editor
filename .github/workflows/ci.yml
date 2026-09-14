@@ -1,5 +1,4 @@
 name: CI
-
 on:
   workflow_dispatch:
     inputs:
@@ -9,384 +8,104 @@ on:
         default: false
         type: boolean
   push:
-    branches:
-      - main
+    branches: [main]
+    paths: ['src/**', 'tests/**', 'tools/**', '.github/**', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
+    paths: ['src/**', 'tests/**', 'tools/**', '.github/**', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-
 permissions:
   contents: read
-
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      validate: ${{ steps.plan.outputs.validate }}
+      full: ${{ steps.plan.outputs.full }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: plan
+        run: python3 tools/ci/plan.py
+  validate:
+    needs: plan
+    if: needs.plan.outputs.validate == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate CI policy and localization
+        run: |
+          python -m unittest discover -s tests/ci -p 'test_*.py'
+          python -m unittest discover -s tests/localization -p 'test_*.py'
+          python tools/localization/verify.py --check-upstream
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Test host-independent code
+        run: |
+          dotnet build src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj -c Release
+          dotnet run --project tests/CsvVisualEditor.Core.SmokeTests -c Release
+          dotnet run --project tests/CsvVisualEditor.Core.Tests -c Release
   build-test-publish:
+    needs: [plan, validate]
+    if: needs.plan.outputs.full == 'true'
     runs-on: windows-latest
+    timeout-minutes: 30
     env:
       PACKAGE_VERSION: 0.14.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          # Keep the PR merge checkout and fetch both parents for head-message lookup.
           fetch-depth: 2
-
-      - name: Test test-package artifact policy
-        shell: pwsh
-        run: .github/scripts/Test-TestPackagePolicy.ps1
-
-      - name: Determine test-package artifact policy
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Determine package upload policy
         id: package_candidate
         shell: pwsh
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PUBLISH_TEST_PACKAGE: ${{ inputs.publish_test_package }}
         run: |
-          $publishPackage = & .github/scripts/Get-TestPackagePolicy.ps1 `
-            -EventName $env:GITHUB_EVENT_NAME `
-            -PullRequestHeadSha $env:PR_HEAD_SHA `
-            -PublishTestPackage $env:PUBLISH_TEST_PACKAGE
-          "publish=$($publishPackage.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
-
-          if ($publishPackage) {
-            Write-Host 'Installable test-package artifact: ENABLED'
-          }
-          else {
-            Write-Host 'Installable test-package artifact: DISABLED for this normal CI run'
-          }
-
-      - name: Set up .NET 10
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 10.0.x
-
-      - name: Create diagnostics directory
+          $publish = & .github/scripts/Get-TestPackagePolicy.ps1 -EventName $env:GITHUB_EVENT_NAME -PullRequestHeadSha $env:PR_HEAD_SHA -PublishTestPackage $env:PUBLISH_TEST_PACKAGE
+          "publish=$($publish.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+      - name: Run the complete local candidate gate
+        id: candidate
         shell: pwsh
-        run: New-Item -ItemType Directory -Path artifacts -Force | Out-Null
-
-      - name: Set up Python for catalog validation
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Validate all interface catalogs
-        id: localization
-        shell: pwsh
-        run: |
-          python -m unittest discover -s tests/localization -p 'test_*.py' *>&1 |
-            Tee-Object -FilePath artifacts/localization.log
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          python tools/localization/verify.py --check-upstream *>&1 |
-            Tee-Object -FilePath artifacts/localization.log -Append
-          exit $LASTEXITCODE
-
-      - name: Upload localization diagnostics
-        if: always() && steps.localization.outcome != 'skipped'
+        run: pwsh -NoProfile -File tools/build-local.ps1 -PackageVersion $env:PACKAGE_VERSION
+      - name: Upload candidate diagnostics
+        if: always() && steps.candidate.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
-          name: CsvVisualEditor-localization-diagnostics
-          path: artifacts/localization.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Restore
-        id: restore
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          $logPath = 'artifacts/restore.log'
-          $restoreCommands = @(
-            @('src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj'),
-            @('tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj'),
-            @('tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj'),
-            @('tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj', '-r', 'win-x64'),
-            @('src/CsvVisualEditor/CsvVisualEditor.csproj', '-r', 'win-x64')
-          )
-          foreach ($arguments in $restoreCommands) {
-            dotnet restore @arguments *>&1 |
-              Tee-Object -FilePath $logPath -Append
-            if ($LASTEXITCODE -ne 0) {
-              exit $LASTEXITCODE
-            }
-          }
-
-      - name: Upload restore diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-restore-diagnostics
-          path: artifacts/restore.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Build core library
-        if: steps.restore.outcome == 'success'
-        id: core_build
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          dotnet build src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj `
-            -c Release `
-            --no-restore *>&1 |
-              Tee-Object -FilePath artifacts/core-build.log
-          exit $LASTEXITCODE
-
-      - name: Upload core build diagnostics
-        if: always() && steps.core_build.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-core-build-diagnostics
-          path: artifacts/core-build.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Run bootstrap smoke tests
-        if: steps.core_build.outcome == 'success'
-        id: smoke_tests
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          dotnet run `
-            --project tests/CsvVisualEditor.Core.SmokeTests/CsvVisualEditor.Core.SmokeTests.csproj `
-            -c Release `
-            --no-restore *>&1 |
-              Tee-Object -FilePath artifacts/smoke-tests.log
-          exit $LASTEXITCODE
-
-      - name: Upload smoke test diagnostics
-        if: always() && steps.smoke_tests.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-smoke-test-diagnostics
-          path: artifacts/smoke-tests.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Run xUnit parser and table tests
-        if: steps.core_build.outcome == 'success' && steps.smoke_tests.outcome == 'success'
-        id: core_tests
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          dotnet run `
-            --project tests/CsvVisualEditor.Core.Tests/CsvVisualEditor.Core.Tests.csproj `
-            -c Release `
-            --no-restore *>&1 |
-              Tee-Object -FilePath artifacts/core-tests.log
-          exit $LASTEXITCODE
-
-      - name: Upload core test diagnostics
-        if: always() && steps.core_tests.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-core-test-diagnostics
-          path: artifacts/core-tests.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Publish and run Native AOT table runtime smoke test
-        if: >-
-          steps.core_build.outcome == 'success' &&
-          steps.smoke_tests.outcome == 'success' &&
-          steps.core_tests.outcome == 'success'
-        id: native_aot_smoke
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          $logPath = 'artifacts/native-aot-runtime-smoke.log'
-          dotnet publish tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj `
-            -c Release `
-            -f net10.0-windows `
-            -r win-x64 `
-            --no-restore `
-            -o artifacts/native-aot-smoke *>&1 |
-              Tee-Object -FilePath $logPath
-          if ($LASTEXITCODE -ne 0) {
-            exit $LASTEXITCODE
-          }
-
-          try {
-            & tests/CsvVisualEditor.NativeAot.SmokeTests/Invoke-Smoke.ps1 `
-              -LibraryPath artifacts/native-aot-smoke/CsvVisualEditor.NativeAot.SmokeTests.dll `
-              -LogPath artifacts/native-aot-runtime-smoke-execution.log *>&1 |
-                Tee-Object -FilePath $logPath -Append
-          }
-          catch {
-            $_ | Out-String | Tee-Object -FilePath $logPath -Append
-            exit 1
-          }
-
-      - name: Upload Native AOT runtime smoke diagnostics
-        if: always() && steps.native_aot_smoke.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-native-aot-runtime-smoke-diagnostics
+          name: CsvVisualEditor-candidate-diagnostics
           path: |
-            artifacts/native-aot-runtime-smoke.log
-            artifacts/native-aot-runtime-smoke-execution.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Upload synthetic UI review images
-        if: always() && steps.native_aot_smoke.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-ui-review
-          path: artifacts/ui-review/
+            artifacts/local/${{ env.PACKAGE_VERSION }}/*.log
+            artifacts/local/${{ env.PACKAGE_VERSION }}/SHA256.txt
+            artifacts/local/${{ env.PACKAGE_VERSION }}/artifacts/ui-review/
+            artifacts/local/${{ env.PACKAGE_VERSION }}/host-review/
+            artifacts/local/${{ env.PACKAGE_VERSION }}/localized-host-review/
           if-no-files-found: warn
-          retention-days: 3
-
-      - name: Publish x64 Native AOT plugin
-        if: >-
-          steps.core_build.outcome == 'success' &&
-          steps.smoke_tests.outcome == 'success' &&
-          steps.core_tests.outcome == 'success' &&
-          steps.native_aot_smoke.outcome == 'success'
-        id: publish
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj `
-            -c Release `
-            -f net10.0-windows `
-            -r win-x64 `
-            -p:Version=$env:PACKAGE_VERSION `
-            -o artifacts/publish *>&1 |
-              Tee-Object -FilePath artifacts/publish.log
-          exit $LASTEXITCODE
-
-      - name: Review production DLL in portable Notepad++
-        if: steps.publish.outcome == 'success'
-        id: host_review
-        continue-on-error: true
-        timeout-minutes: 4
-        shell: pwsh
-        run: |
-          & tests/host-review/Invoke-HostReview.ps1 -LibraryPath artifacts/publish/CsvVisualEditor.dll *>&1 |
-            Tee-Object -FilePath artifacts/host-review.log
-
-      - name: Upload production host review
-        if: always() && steps.host_review.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-host-review
-          path: |
-            artifacts/host-review/
-            artifacts/host-review.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Review localized production DLL in Notepad++
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success'
-        id: localized_host_review
-        continue-on-error: true
-        timeout-minutes: 8
-        shell: pwsh
-        run: |
-          & tests/host-review/Invoke-LocalizedHostReview.ps1 -LibraryPath artifacts/publish/CsvVisualEditor.dll *>&1 |
-            Tee-Object -FilePath artifacts/localized-host-review.log
-
-      - name: Upload localized production host review
-        if: always() && steps.localized_host_review.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-localized-host-review
-          path: |
-            artifacts/localized-host-review/
-            artifacts/localized-host-review.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Create installable test ZIP
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
-        shell: pwsh
-        run: |
-          $pluginDirectory = 'artifacts/package/CsvVisualEditor'
-          New-Item -ItemType Directory -Path $pluginDirectory -Force | Out-Null
-          Copy-Item 'artifacts/publish/CsvVisualEditor.dll' $pluginDirectory
-          Compress-Archive `
-            -Path $pluginDirectory `
-            -DestinationPath "artifacts/CsvVisualEditor-$env:PACKAGE_VERSION-win-x64.zip" `
-            -CompressionLevel Optimal `
-            -Force
-
-      - name: Record candidate checksums
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
-        shell: pwsh
-        run: |
-          Get-FileHash "artifacts/CsvVisualEditor-$env:PACKAGE_VERSION-win-x64.zip", artifacts/publish/CsvVisualEditor.dll -Algorithm SHA256 | Format-List
-
+          retention-days: 7
       - name: Upload installable test package
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
+        if: success() && steps.candidate.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64
-          path: artifacts/CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64.zip
+          path: artifacts/local/${{ env.PACKAGE_VERSION }}/CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64.zip
           if-no-files-found: error
           retention-days: 7
-
-      - name: Upload publish diagnostics
-        if: always() && steps.publish.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
-        with:
-          name: CsvVisualEditor-publish-diagnostics
-          path: artifacts/publish.log
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Fail workflow when restore failed
-        if: steps.restore.outcome != 'success'
-        shell: pwsh
-        run: throw 'Restore failed. Inspect restore.log in the workflow artifact.'
-
-      - name: Fail workflow when core build failed
-        if: steps.restore.outcome == 'success' && steps.core_build.outcome != 'success'
-        shell: pwsh
-        run: throw 'Core build failed. Inspect core-build.log in the workflow artifact.'
-
-      - name: Fail workflow when smoke tests failed
-        if: steps.core_build.outcome == 'success' && steps.smoke_tests.outcome != 'success'
-        shell: pwsh
-        run: throw 'Bootstrap smoke tests failed. Inspect smoke-tests.log in the workflow artifact.'
-
-      - name: Fail workflow when core tests failed
-        if: >-
-          steps.core_build.outcome == 'success' &&
-          steps.smoke_tests.outcome == 'success' &&
-          steps.core_tests.outcome != 'success'
-        shell: pwsh
-        run: throw 'Core parser/table tests failed. Inspect core-tests.log in the workflow artifact.'
-
-      - name: Fail workflow when Native AOT runtime smoke failed
-        if: >-
-          steps.core_build.outcome == 'success' &&
-          steps.smoke_tests.outcome == 'success' &&
-          steps.core_tests.outcome == 'success' &&
-          steps.native_aot_smoke.outcome != 'success'
-        shell: pwsh
-        run: throw 'Native AOT table runtime smoke failed. Inspect native-aot-runtime-smoke.log.'
-
-      - name: Fail workflow when publish failed
-        if: >-
-          steps.core_build.outcome == 'success' &&
-          steps.smoke_tests.outcome == 'success' &&
-          steps.core_tests.outcome == 'success' &&
-          steps.native_aot_smoke.outcome == 'success' &&
-          steps.publish.outcome != 'success'
-        shell: pwsh
-        run: throw 'Native AOT publish failed. Inspect publish.log in the workflow artifact.'
-
-
-      - name: Fail workflow when production host review failed
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome != 'success'
-        shell: pwsh
-        run: throw 'Production Notepad++ host review failed. Inspect the host-review artifact.'
-
-      - name: Fail workflow when localized host review failed
-        if: steps.publish.outcome == 'success' && steps.host_review.outcome == 'success' && steps.localized_host_review.outcome != 'success'
-        shell: pwsh
-        run: throw 'Localized Notepad++ host review failed. Inspect the localized-host-review artifact.'
