@@ -1,0 +1,378 @@
+# language: it
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Un editor CSV visuale per Notepad++
+001	Informazioni su CSV Visual Editor
+002	Contatto: {0}
+003	Contatta lo sviluppatore {0}
+004	Sviluppatore: {0}
+005	Versione di sviluppo
+006	Ti piace CSV Visual Editor? Sostieni il progetto.\nAggiungi una stella su GitHub, condividi un commento o contatta lo sviluppatore per contribuire. Grazie!
+007	Lingua dell’interfaccia: {0}
+008	Impossibile aprire un’applicazione associata. Contatto: {0}
+009	Progetto su GitHub
+010	Versione: {0}
+011	Versione e compilazione
+012	{0} bloccato perché il modello delle modifiche in sospeso è cambiato. Non è stata conservata alcuna modifica parziale.
+013	{0} bloccato: i rettangoli negli appunti e nella selezione hanno dimensioni diverse.
+014	{0} bloccato: il rettangolo di destinazione supera i limiti della tabella CSV.
+015	{0} bloccato: non esiste un rettangolo di destinazione modificabile.
+016	Copiate {0} × {1} celle CSV.
+017	Copia/Taglia bloccato: una cella selezionata contiene una tabulazione o un’interruzione di riga non rappresentabile senza ambiguità come testo semplice per fogli di calcolo.
+018	La copia richiede celle CSV, non una selezione di righe intere da eliminare.
+019	La copia richiede una selezione rettangolare contigua di celle di dati CSV.
+020	Tagliate {0} celle negli appunti e svuotate nella sessione di modifica in sospeso. «Applica» trasferisce lo svuotamento a Notepad++.
+021	Taglio completato; le celle selezionate erano già vuote. Gli appunti contengono i valori originali.
+022	{0} è disponibile solo in modalità modifica.
+023	{0} non è disponibile per la tabella corrente.
+024	Incolla bloccato: {0} Nessun dato è stato modificato.
+025	Incolla completato; tutti i valori di destinazione erano già identici.
+026	Incollate {0} celle modificate nella sessione di modifica in sospeso. «Applica» le scrive in Notepad++.
+027	{0} richiede un rettangolo di celle CSV, non una selezione di righe intere da eliminare.
+028	{0} richiede una selezione rettangolare contigua di celle di dati CSV.
+029	Le destinazioni di {0} non sono disponibili al di fuori del modello stabile delle righe in modalità modifica.
+030	Impossibile confermare la modifica della cella attiva prima della copia.
+031	Impossibile confermare la modifica della cella attiva. Correggi il valore prima di {0}.
+032	Gli appunti non contengono celle in formato testo semplice.
+033	Gli appunti di Windows sono temporaneamente indisponibili. Nessun dato è stato modificato.
+034	Copia il rettangolo di celle CSV selezionato negli appunti di Windows (Ctrl+C)
+035	Copia le celle CSV selezionate e svuotale nella sessione di modifica in sospeso (Ctrl+X)
+036	Incolla celle di un foglio di calcolo nella cella o nel rettangolo CSV selezionato (Ctrl+V)
+037	Visualizza l’anteprima della sostituzione del testo, della rimozione dei caratteri bianchi esterni o del cambio di maiuscole/minuscole nelle modifiche CSV in sospeso
+038	Seleziona la cella o la riga CSV corrente nel buffer sorgente di Notepad++
+039	Sorgente
+040	Trasforma
+041	Informazioni
+042	Applica
+043	Crescente
+044	Annulla
+045	Chiudi
+046	Colonna
+047	Copia
+048	Taglia
+049	Decrescente
+050	Modifica
+051	Esci dalla modifica
+052	Distingui maiuscole
+053	Numero
+054	Ordine originale
+055	Incolla
+056	Anteprima
+057	Aggiorna
+058	Righe
+059	Tabella
+060	Testo
+061	Valore
+062	Riepilogo colonna: conteggi, valori distinti, intervallo numerico e valori frequenti nella vista corrente.
+063	Il riepilogo colonna richiede una tabella pronta e di sola lettura. Esci prima dalla modalità modifica.
+064	Filtra e ordina: combina regole delle colonne e livelli di ordinamento testuale/numerico. Solo la vista; CSV invariato.
+065	Filtra e ordina: combina regole delle colonne e fino a tre livelli di ordinamento testuale/numerico. Solo la vista.
+066	Filtra e ordina: {0} condizioni, {1} livelli di ordinamento. Ripristina vista elimina tutte le regole.
+067	Filtro e ordinamento richiedono una tabella pronta e di sola lettura. Esci prima dalla modalità modifica.
+068	Diagnostica (0)
+069	0 modifiche
+070	Aggiungi condizione
+071	Aggiungi livello di ordinamento
+072	Applica vista
+073	Maiuscole/minuscole
+074	Confronto del testo con distinzione tra maiuscole e minuscole. Gli spazi nei valori sono letterali.
+075	Controlla le regole: {0}
+076	Condizione
+077	{0} / 8 condizioni; {1} / 3 livelli di ordinamento. Usa l’anteprima per verificare le righe corrispondenti.
+078	Contiene
+079	Non contiene
+080	Non è uguale a
+081	Vuoto = zero caratteri. Solo caratteri bianchi = sequenza non vuota di spazi/tabulazioni/interruzioni di riga.\nI numeri usano il punto decimale (-12.5), senza raggruppamenti o esponenti; la precisione deve essere esatta.
+082	Termina con
+083	È uguale a
+084	Valore del filtro
+085	Filtri
+086	È vuoto
+087	Non è vuoto
+088	Non contiene solo caratteri bianchi
+089	Contiene solo caratteri bianchi
+090	Testo letterale, spazi inclusi. Le regole numeriche richiedono un decimale esatto con il punto.
+091	Soddisfa TUTTE le condizioni
+092	Soddisfa ALMENO UNA condizione
+093	Numero =
+094	Numero >
+095	Numero >=
+096	Numero <
+097	Numero <=
+098	Numero (decimale)
+099	Anteprima: {0:N0} di {1:N0} righe visualizzate. CSV invariato.
+100	Rimuovi condizione
+101	Rimuovi livello di ordinamento
+102	Ripristina regole
+103	Le regole rispettano anche la ricerca corrente. Annulla mantiene la vista attiva.
+104	Ordinamento
+105	Inizia con
+106	Testo: ordine ordinale senza distinzione tra maiuscole e minuscole. Numero: decimali esatti; valori non validi/vuoti alla fine.\nLe chiavi uguali mantengono l’ordine sorgente. Rimuovi tutti i livelli per ripristinarlo.
+107	La proiezione è limitata; le righe non visualizzate non sono incluse. 
+108	Filtra e ordina
+109	Il primo livello ha la precedenza; i successivi risolvono le parità. Massimo 3.
+110	Valore (letterale, spazi inclusi)
+111	Solo la vista: valori CSV e ordine sorgente restano invariati. {0:N0} righe visualizzate.\n
+112	Applica è bloccato perché {0} non ha un profilo di codifica esplicitamente supportato. Il contenuto dell’editor non è stato modificato.
+113	Applica è bloccato perché la verifica rigorosa della codifica {0} non ha prodotto una conversione di andata e ritorno esatta. Il contenuto dell’editor non è stato modificato.
+114	Applica è bloccato perché la sostituzione in sospeso non è rappresentabile esattamente in {0}. Non sono stati usati caratteri sostitutivi e il contenuto dell’editor non è stato modificato.
+115	Applica non è ancora abilitato per {0}. Il contenuto dell’editor non è stato modificato. La scrittura è abilitata solo per UTF-8 (65001) e Windows-1250 (1250), dopo una verifica senza perdita. Usa «Annulla tutto» oppure converti il documento in UTF-8 in Notepad++, quindi riapri la modalità modifica.
+116	Aggiorna è disabilitato mentre è attiva la modalità modifica. Applica o annulla prima tutte le modifiche in sospeso.
+117	Pagina codici Scintilla {0}
+118	Il documento attivo occupa {0:N0} byte. Il limite di sicurezza attuale dell’istantanea è {1:N0} byte.
+119	Impossibile leggere il documento attivo di Notepad++. Il contenuto dell’editor non è stato modificato.
+120	Il risultato di Applica non è uno stato di blocco dovuto alla codifica.
+121	La costruzione della tabella in background è terminata senza un risultato.
+122	Le modifiche CSV sono state applicate, ma non è stato possibile ripristinare la posizione precedente del cursore o la selezione. L’intera modifica al documento resta annullabile in un’unica operazione.
+123	la pagina codici corrente dell’editor
+124	Impossibile convertire il buffer dell’editor in una tabella visuale. Scegli un delimitatore esplicito oppure aggiorna dopo aver corretto il documento.
+125	La costruzione della tabella ha restituito un risultato incompleto.
+126	&Informazioni
+127	&Cancella ricerca
+128	&CSV
+129	&Delimitatore
+130	&Modifica
+131	Esc nella ricerca
+132	&Trova nella tabella
+133	&Intestazione
+134	Cella corrispondente &successiva
+135	Cella corrispondente &precedente
+136	Ripristina vista: cancella ricerca, condizioni delle colonne e tutti gli ordinamenti.
+137	&Ricerca
+138	&Colonna di ricerca
+139	Mostra spazi: piccoli punti arancioni pieni. Solo visualizzazione; i valori CSV non cambiano.
+140	Mostra &tabella
+141	&Ordina per
+142	&Tabella
+143	&Visualizza
+144	Un valore di filtro può contenere al massimo 4,096 caratteri.
+145	TUTTE
+146	Un indicatore iniziale dell’ordine dei byte è stato escluso dal primo campo.
+147	ALMENO UNA
+148	Una virgoletta è apparsa all’interno di un campo non racchiuso tra virgolette.
+149	Le righe degli appunti devono formare una matrice rettangolare di celle.
+150	Codice diagnostico: {0}.
+151	Ogni livello di ordinamento deve usare una colonna diversa.
+152	Errore
+153	alta
+154	Informazione
+155	bassa
+156	media
+157	Nessun delimitatore supportato ha prodotto una struttura a più campi sufficientemente affidabile.
+158	nessuna
+159	Una riga visuale richiederebbe {0:N0} celle, superando il limite complessivo attuale di {1:N0}. Nessuna colonna è stata nascosta.
+160	Il record contiene {0} campi; ne erano attesi {1} in base al valore più frequente nel campione.
+161	Spazi: {0}; iniziali: {1}; finali: {2}. Lunghezza: {3} unità UTF-16.\nI punti arancioni indicano spazi reali. La loro distanza visiva è aumentata per facilitarne la lettura; i caratteri CSV restano invariati. I conteggi iniziale e finale si sovrappongono per una cella composta solo da spazi.
+162	La matrice di celle negli appunti supera il limite sicuro per l’incollaggio.
+163	Gli appunti contengono un carattere di controllo non supportato.
+164	Gli appunti contengono più colonne di quante l’editor possa incollare in sicurezza.
+165	Gli appunti contengono più righe di quante l’editor possa incollare in sicurezza.
+166	Il testo negli appunti supera il limite sicuro di 16 Mi unità di caratteri UTF-16.
+167	L’ultimo campo tra virgolette non è stato chiuso prima della fine del testo.
+168	Il numero di campi differisce da quello degli altri record.
+169	Impossibile completare l’operazione. Controlla il documento, i valori selezionati e i limiti di dimensione.
+170	Il documento analizzato contiene {0:N0} colonne e supera il limite attuale della tabella visuale di {1:N0}. Nessuna colonna è stata nascosta.
+171	Il delimitatore suggerito ha un’affidabilità bassa. Controlla l’impostazione del delimitatore.
+172	Due delimitatori candidati hanno punteggi simili. Controlla l’impostazione del delimitatore.
+173	Dopo una virgoletta di chiusura sono comparsi caratteri inattesi.
+174	sconosciuta
+175	Usa un numero decimale esatto con il punto, per esempio -12.5. Raggruppamenti, esponenti e valori arrotondati non sono supportati.
+176	Usa al massimo otto condizioni di filtro non nulle.
+177	Usa al massimo tre livelli di ordinamento non nulli.
+178	Le regole della vista fanno riferimento a una colonna esterna alla tabella corrente.
+179	Avviso
+180	Riepilogo colonna
+181	Filtra e ordina
+182	Apri tabella visuale
+183	Aggiorna tabella
+184	nuova:{0}
+185	nuova:{0} *
+186	Seleziona
+187	Seleziona righe intere da eliminare
+188	Record logico sorgente o riga strutturale in sospeso
+189	Impossibile individuare la colonna indicatrice delle righe.
+190	La riga deve appartenere a una DataGridView.
+191	Tutte le colonne
+192	{0:N0} / {1:N0} celle
+193	{0:N0} celle
+194	Cancella ricerca
+195	Cancella ricerca (Esc). Mantiene la colonna di ricerca e l’ordinamento.
+196	Filtra le righe visualizzate. Enter: cella corrispondente successiva. Shift+Enter: precedente. Escape: cancella.
+197	Cella corrispondente successiva
+198	Cella corrispondente successiva (F3 / Enter)
+199	Nessuna corrispondenza
+200	Nessuna riga corrispondente.\nModifica la ricerca oppure usa Visualizza > Filtra e ordina / Ripristina vista.
+201	Cella corrispondente precedente
+202	Cella corrispondente precedente (Shift+F3 / Shift+Enter)
+203	Cerca in tutte le colonne di dati o scegli una colonna.
+204	Colonna di ricerca
+205	Cerca nelle righe CSV visualizzate (Ctrl+F). Valori e testo sorgente restano invariati.
+206	Cerca nella tabella...
+207	Cerca nella tabella
+208	Risultati della ricerca
+209	Ricerca in corso...
+210	Vai alla sorgente bloccato: è attivo un altro documento Notepad++. Torna al CSV visualizzato oppure aggiorna la tabella.
+211	Vai alla sorgente bloccato perché il risultato di analisi conservato non corrisponde più alla sua istantanea sorgente immutabile. Aggiorna prima la tabella.
+212	Vai alla sorgente bloccato: la lunghezza codificata con verifica rigorosa non corrisponde alla lunghezza del documento riportata da Scintilla.
+213	Vai alla sorgente bloccato: il contenuto attivo dell’editor è cambiato dopo la visualizzazione della tabella. Aggiorna prima la tabella.
+214	Vai alla sorgente bloccato: la pagina codici Scintilla corrente non dispone di un profilo esplicito delle posizioni in byte.
+215	Vai alla sorgente bloccato: la pagina codici dell’editor è cambiata dopo la visualizzazione della tabella. Aggiorna prima la tabella.
+216	Vai alla sorgente bloccato: la cella proiettata selezionata non ha un campo sorgente grezzo.
+217	Vai alla sorgente bloccato: l’intervallo di caratteri sorgente non è stato mappato senza perdita sui byte di Scintilla.
+218	Vai alla sorgente bloccato: il record logico sorgente non è disponibile nel risultato di analisi conservato.
+219	Vai alla sorgente non riuscito: impossibile leggere il buffer attivo di Notepad++. Il contenuto del documento non è stato modificato.
+220	Vai alla sorgente non riuscito durante lo spostamento della selezione di Scintilla. Il contenuto del documento non è stato modificato.
+221	Vai alla sorgente non è disponibile finché la tabella visuale corrente non dispone di una base sorgente completa. Aggiorna prima la tabella.
+222	Vai alla sorgente richiede una riga o cella CSV corrente.
+223	Vai alla sorgente non è stato completato. Il contenuto del documento non è stato modificato.
+224	Selezionato il record sorgente {0}, colonna {1}, in Notepad++.
+225	Selezionato il record sorgente {0} in Notepad++.
+226	La riga visuale corrente non espone un’identità stabile del record sorgente.
+227	Questa riga inserita in sospeso non ha una posizione sorgente finché Applica non termina.
+228	Vista corrente: {0:N0} di {1:N0} righe visualizzate.
+229	I valori distinti usano il testo esatto con distinzione tra maiuscole e minuscole, inclusi i valori vuoti.\nRighe ripetute = righe meno valori distinti. L’intervallo numerico usa decimali esatti con il punto.
+230	Vuoto
+231	Tipo
+232	Valori più frequenti (fino a 20)
+233	Non disponibile
+234	Minimo numerico: {0}     Massimo: {1}\nValore più lungo: {2:N0} unità UTF-16. {3:N0} valori compaiono più volte.
+235	 Proiezione limitata; NON è l’intero file.
+236	Righe: {0:N0}     Vuote: {1:N0}     Solo caratteri bianchi: {2:N0}\nDistinti: {3:N0}     Righe ripetute: {4:N0}     Numerici: {5:N0}
+237	Riepilogo colonna
+238	Caratteri bianchi
+239	È stata aggiunta una nuova riga alla sessione di modifica in sospeso. «Applica» la scrive nel buffer dell’editor; «Annulla tutto» la scarta.
+240	Una riga sorgente non ha esposto il proprio indice del record sorgente.
+241	Azione
+242	Istantanea del documento attivo non riuscita. Il contenuto dell’editor non è stato modificato.
+243	Aggiungi riga
+244	Tutte le modifiche in sospeso a celle e righe sono state annullate. Il buffer dell’editor Notepad++ non è stato modificato.
+245	Applica tutte le modifiche a celle e righe all’editor attivo come un’unica operazione annullabile
+246	Applica bloccato: è attivo un altro documento Notepad++. Torna al documento originale oppure usa «Annulla tutto».
+247	Applica bloccato: il buffer dell’editor è cambiato dopo l’avvio della modalità modifica. Annulla e aggiorna prima di modificare nuovamente.
+248	Applica bloccato: la pagina codici dell’editor è cambiata dopo l’avvio della modalità modifica. Annulla e riapri la modalità modifica.
+249	Applica non riuscito. La sessione di modifica rimane aperta; verifica il buffer dell’editor prima di riprovare o annullare.
+250	Applica non è stato completato. Non è stata tentata alcuna sovrascrittura automatica.
+251	Rileva automaticamente
+252	affidabilità automatica {0}
+253	{0} — il rilevamento automatico del delimitatore non è affidabile; è necessaria una selezione manuale.
+254	Rilevamento automatico
+255	Punteggi dei candidati
+256	{0} celle / {1} righe (+{2} / -{3})
+257	Carattere
+258	{0} caratteri / {1} byte nell’editor
+259	Scegli Virgola, Punto e virgola o Tabulazione dall’elenco Delimitatore in alto.
+260	Scegli esplicitamente se il primo record logico è un’intestazione
+261	Cancella
+262	Cancella il filtro di ricerca corrente e l’ordinamento della sola vista
+263	Codice
+264	 - {0} condizioni di colonna ({1}), {2} livelli di ordinamento
+265	{0} — {1} × {2} colonne — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Virgola (,)
+267	virgola
+268	Affidabilità
+269	Elimina ogni riga di dati stabile selezionata dalla sessione di modifica in sospeso
+270	Elimina riga
+271	Elimina righe ({0})
+272	Elimina la riga di dati stabile selezionata dalla sessione di modifica in sospeso
+273	Elimina la riga o le righe di dati stabili selezionate dalla sessione di modifica in sospeso
+274	Delimitatore:
+275	Diagnostica ({0})
+276	Scarta tutte le modifiche alle celle, gli inserimenti e le eliminazioni in sospeso
+277	Documento
+278	 — MODALITÀ MODIFICA: {0} celle, {1} righe, +{2} / -{3}
+279	 - Modalità modifica
+280	La modalità modifica contiene cambiamenti in sospeso. Usa «Applica» o «Annulla tutto» prima di uscire.
+281	La modalità modifica non è disponibile per la tabella corrente. Risolvi prima gli errori di analisi o i limiti di visualizzazione.
+282	La modifica non può iniziare da una proiezione visuale limitata nel numero di righe.
+283	La modifica non può iniziare mentre il CSV analizzato contiene errori.
+284	La modifica non è disponibile per la tabella corrente.
+285	{0} — buffer dell’editor vuoto; nessun record CSV da visualizzare.
+286	Entra nella modalità esplicita di modifica di celle e righe
+287	Entra nella modalità esplicita di modifica di celle e righe. «Applica» scrive solo nel buffer dell’editor.
+288	Entra nella modalità esplicita di modifica di celle e righe. Il modello di modifica completo viene creato solo su richiesta.
+289	{0} errori, {1} avvisi
+290	prima riga come intestazione
+291	La prima riga è l’intestazione
+292	Intestazione:
+293	Inserisci una nuova riga dopo quella selezionata, oppure aggiungila alla fine se non è selezionata alcuna riga
+294	{0} — caricamento dei dati CSV in background; Notepad++ rimane reattivo.
+295	selezione manuale
+296	{0} corrispondenti su {1} righe visualizzate
+297	Messaggio
+298	{0} righe appena inserite sono state rimosse dalla sessione in sospeso.
+299	Nessun messaggio diagnostico da visualizzare.
+300	Nessuna riga di intestazione
+301	nessuna riga di intestazione
+302	Nessuna riga corrispondente.\nProva un altro testo di ricerca o un’altra colonna.
+303	nessun messaggio diagnostico di analisi
+304	Impossibile scegliere in sicurezza un delimitatore affidabile.
+305	Nulla da applicare: la sessione di modifica non contiene cambiamenti in sospeso.
+306	Analisi e preparazione in background di una tabella visuale limitata…
+307	Modifiche alle celle e modifiche strutturali alle righe in sospeso
+308	Riga inserita in sospeso {0}; non ancora applicata
+309	{0} righe in sospeso
+310	Plugin pronto. Lettura del buffer attivo dell’editor...
+311	Preparazione della sessione di modifica completa…
+312	Proprietà
+313	Leggi e visualizza il buffer attualmente attivo dell’editor Notepad++
+314	Record
+315	Annulla tutto
+316	{0} righe
+317	Punto e virgola (;)
+318	punto e virgola
+319	Gravità
+320	Mostra la diagnostica dettagliata dell’analisi e del delimitatore
+321	visualizzate {0} di {1} righe
+322	Istantanea
+323	Errore di istantanea
+324	Livello di ordinamento {0}: {1}, {2}. Solo la vista.
+325	 — ordinato per {0} {1}
+326	Record logico sorgente {0}
+327	Record logico sorgente {0}; modificato nella sessione di modifica in sospeso
+328	{0} righe sorgente sono contrassegnate per l’eliminazione e {1} righe inserite sono state rimosse dalla sessione in sospeso.
+329	{0} righe sorgente sono contrassegnate per l’eliminazione. «Applica» scrive l’intero gruppo; «Annulla tutto» ripristina ogni riga.
+330	Stato
+331	Tabulazione
+332	tabulazione
+333	Errore di tabella
+334	Impossibile confermare la modifica della cella attiva. Correggi il valore prima di aggiungere una riga.
+335	Impossibile confermare la modifica della cella attiva. Correggi il valore prima di eliminare righe.
+336	Impossibile confermare la modifica della cella attiva. Correggi il valore prima di applicare.
+337	La riga appena inserita è stata rimossa dalla sessione in sospeso.
+338	La colonna indicatrice delle righe non è configurata.
+339	L’insieme di righe selezionato non è più valido per questa sessione di modifica. Nessuna riga è stata eliminata.
+340	Le righe selezionate erano già eliminate. Non è stata apportata alcuna modifica aggiuntiva.
+341	La riga sorgente è contrassegnata per l’eliminazione. «Applica» scrive l’eliminazione; «Annulla tutto» la ripristina.
+342	Impossibile produrre la tabella visuale. Il contenuto dell’editor non è stato modificato.
+343	Usa un rilevamento automatico affidabile oppure scegli esplicitamente un delimitatore
+344	In attesa del documento attivo di Notepad++.
+345	{0} - {1} x {2:N0} colonne
+346	Accetta modifiche
+347	Dopo
+348	Tutte le celle di dati
+349	Prima
+350	Colonna CSV
+351	Scegli un’operazione e un ambito, quindi fai clic su «Anteprima».
+352	Colonna corrente
+353	Trova:
+354	minuscolo
+355	Operazione:
+356	Gli altri caratteri bianchi sono rappresentati con sequenze di escape; le lunghezze contano unità UTF-16. I valori lunghi vengono abbreviati.
+357	Impossibile creare l’anteprima. Controlla l’ambito e il testo da cercare, oppure seleziona un ambito più piccolo (massimo 250,000 celle / 16 Mi caratteri).
+358	Crea prima l’anteprima. «Accetta modifiche» aggiorna le modifiche in sospeso; «Applica» nella barra degli strumenti scrive in Notepad++.\nLe intestazioni sono escluse quando Intestazione = primo record. Il cambio di maiuscole/minuscole è indipendente dalle impostazioni locali.
+359	ID record
+360	Sostituisci testo (letterale)
+361	Sostituisci con:
+362	Ambito:
+363	Seleziona una colonna di dati CSV.
+364	Celle / righe selezionate
+365	i punti arancioni pieni indicano gli spazi. 
+366	gli indicatori degli spazi sono nascosti. 
+367	{0:N0} celle di destinazione; {1:N0} modifiche in {2:N0} righe. Vengono mostrate le prime 50 modifiche; 
+368	La sessione di modifica è cambiata.
+369	L’anteprima non è più valida. Controlla la sessione di modifica e crea una nuova anteprima.
+370	Trasforma celle CSV
+371	Trasformate {0:N0} celle nella sessione di modifica in sospeso. Usa «Applica» per aggiornare Notepad++ oppure «Annulla tutto» per scartare le modifiche in sospeso.
+372	Rimuovi i caratteri bianchi esterni
+373	MAIUSCOLO
+374	Ripristina vista
+375	Mostra spazi

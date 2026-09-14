@@ -1,0 +1,378 @@
+# language: de
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Ein visueller CSV-Editor für Notepad++
+001	Über CSV Visual Editor
+002	Kontakt: {0}
+003	Entwickler {0} kontaktieren
+004	Entwickler: {0}
+005	Entwicklungsversion
+006	Gefällt Ihnen CSV Visual Editor? Unterstützen Sie das Projekt.\nVergeben Sie einen Stern auf GitHub, teilen Sie Ihr Feedback oder kontaktieren Sie den Entwickler, um mitzuarbeiten. Vielen Dank!
+007	Oberflächensprache: {0}
+008	Keine zugeordnete Anwendung konnte geöffnet werden. Kontakt: {0}
+009	Projekt auf GitHub
+010	Version: {0}
+011	Version und Build
+012	{0} wurde blockiert, weil sich das Modell der ausstehenden Änderungen geändert hat. Es wurden keine Teiländerungen beibehalten.
+013	{0} blockiert: Zwischenablage und ausgewählte Rechtecke haben unterschiedliche Abmessungen.
+014	{0} blockiert: Das Zielrechteck reicht über die CSV-Tabelle hinaus.
+015	{0} blockiert: Es gibt kein bearbeitbares Zielrechteck.
+016	{0} × {1} CSV-Zellen kopiert.
+017	Kopieren/Ausschneiden blockiert: Eine ausgewählte Zelle enthält einen Tabulator oder Zeilenumbruch, der als einfacher Tabellenkalkulationstext nicht eindeutig dargestellt werden kann.
+018	Zum Kopieren müssen CSV-Zellen ausgewählt sein, nicht ganze Zeilen zum Löschen.
+019	Zum Kopieren muss ein zusammenhängendes Rechteck aus CSV-Datenzellen ausgewählt sein.
+020	{0} Zellen in die Zwischenablage ausgeschnitten und in der ausstehenden Bearbeitung geleert. „Anwenden“ überträgt die Leerung nach Notepad++.
+021	Ausschneiden abgeschlossen; die ausgewählten Zellen waren bereits leer. Die Zwischenablage enthält ihre ursprünglichen Werte.
+022	{0} ist nur im Bearbeitungsmodus verfügbar.
+023	{0} ist für die aktuelle Tabelle nicht verfügbar.
+024	Einfügen blockiert: {0} Es wurden keine Daten geändert.
+025	Einfügen abgeschlossen; alle Zielwerte waren bereits identisch.
+026	{0} geänderte Zellen in die ausstehende Bearbeitung eingefügt. „Anwenden“ überträgt sie nach Notepad++.
+027	Für {0} ist ein Rechteck aus CSV-Zellen erforderlich, keine Auswahl ganzer Zeilen zum Löschen.
+028	Für {0} muss ein zusammenhängendes Rechteck aus CSV-Datenzellen ausgewählt sein.
+029	Die Ziele für {0} sind außerhalb des stabilen Zeilenmodells im Bearbeitungsmodus nicht verfügbar.
+030	Die Bearbeitung der aktiven Zelle konnte vor dem Kopieren nicht übernommen werden.
+031	Die Bearbeitung der aktiven Zelle konnte nicht übernommen werden. Korrigieren Sie den Wert vor {0}.
+032	Die Zwischenablage enthält keine Zellen als einfachen Text.
+033	Die Windows-Zwischenablage ist vorübergehend nicht verfügbar. Es wurden keine Daten geändert.
+034	Das ausgewählte Rechteck aus CSV-Zellen in die Windows-Zwischenablage kopieren (Ctrl+C)
+035	Die ausgewählten CSV-Zellen kopieren und in der ausstehenden Bearbeitung leeren (Ctrl+X)
+036	Tabellenkalkulationszellen in die ausgewählte CSV-Zelle oder das Rechteck einfügen (Ctrl+V)
+037	Ersetzen, Entfernen äußerer Leerzeichen oder Ändern der Groß-/Kleinschreibung in ausstehenden CSV-Änderungen voranzeigen
+038	Die aktuelle CSV-Zelle oder -Zeile im Quelltextpuffer von Notepad++ auswählen
+039	Quelle
+040	Umwandeln
+041	Über
+042	Anwenden
+043	Aufsteigend
+044	Abbrechen
+045	Schließen
+046	Spalte
+047	Kopieren
+048	Ausschneiden
+049	Absteigend
+050	Bearbeiten
+051	Bearbeiten beenden
+052	Groß-/Kleinschreibung beachten
+053	Zahl
+054	Ursprüngliche Reihenfolge
+055	Einfügen
+056	Vorschau
+057	Aktualisieren
+058	Zeilen
+059	Tabelle
+060	Text
+061	Wert
+062	Spaltenübersicht: Anzahlen, unterschiedliche Werte, Zahlenbereich und häufige Werte in der aktuellen Ansicht.
+063	Die Spaltenübersicht erfordert eine bereitstehende, schreibgeschützte Tabelle. Beenden Sie zuerst den Bearbeitungsmodus.
+064	Filtern und sortieren: Spaltenregeln und Text-/Zahlensortierstufen kombinieren. Nur die Ansicht; CSV bleibt unverändert.
+065	Filtern und sortieren: Spaltenregeln und bis zu drei Text-/Zahlensortierstufen kombinieren. Nur die Ansicht.
+066	Filtern und sortieren: {0} Bedingungen, {1} Sortierstufen. „Ansicht zurücksetzen“ entfernt alle Regeln.
+067	Filtern und Sortieren erfordert eine bereitstehende, schreibgeschützte Tabelle. Beenden Sie zuerst den Bearbeitungsmodus.
+068	Diagnose (0)
+069	0 Änderungen
+070	Bedingung hinzufügen
+071	Sortierstufe hinzufügen
+072	Ansicht anwenden
+073	Groß-/Kleinschreibung
+074	Textvergleich mit Beachtung der Groß-/Kleinschreibung. Leerzeichen in Werten werden wörtlich behandelt.
+075	Überprüfen Sie die Regeln: {0}
+076	Bedingung
+077	{0} / 8 Bedingungen; {1} / 3 Sortierstufen. Prüfen Sie passende Zeilen in der Vorschau.
+078	Enthält
+079	Enthält nicht
+080	Ist ungleich
+081	Leer = keine Zeichen. Nur Leerraum = nicht leere Folge aus Leerzeichen/Tabulatoren/Zeilenumbrüchen.\nZahlen verwenden einen Dezimalpunkt (-12.5), ohne Gruppierung oder Exponenten; die Genauigkeit muss exakt sein.
+082	Endet mit
+083	Ist gleich
+084	Filterwert
+085	Filter
+086	Ist leer
+087	Ist nicht leer
+088	Besteht nicht nur aus Leerraum
+089	Besteht nur aus Leerraum
+090	Wörtlicher Text einschließlich Leerzeichen. Zahlenregeln erfordern eine exakt darstellbare Dezimalzahl mit Punkt.
+091	ALLE Bedingungen erfüllen
+092	MINDESTENS EINE Bedingung erfüllen
+093	Zahl =
+094	Zahl >
+095	Zahl >=
+096	Zahl <
+097	Zahl <=
+098	Zahl (dezimal)
+099	Vorschau: {0:N0} von {1:N0} angezeigten Zeilen. CSV unverändert.
+100	Bedingung entfernen
+101	Sortierstufe entfernen
+102	Regeln zurücksetzen
+103	Die Regeln berücksichtigen auch die aktuelle Suche. „Abbrechen“ behält die aktive Ansicht bei.
+104	Sortierung
+105	Beginnt mit
+106	Text: ordinale Reihenfolge ohne Beachtung der Groß-/Kleinschreibung. Zahl: exakte Dezimalzahlen; ungültige/leere Werte zuletzt.\nGleiche Schlüssel behalten die Quellreihenfolge. Entfernen Sie alle Stufen, um die Quellreihenfolge wiederherzustellen.
+107	Die Projektion ist begrenzt; nicht angezeigte Zeilen sind nicht enthalten. 
+108	Filtern und sortieren
+109	Die oberste Stufe hat Vorrang; weitere Stufen lösen Gleichstände auf. Höchstens 3.
+110	Wert (wörtlich, einschließlich Leerzeichen)
+111	Nur die Ansicht – CSV-Werte und Quellreihenfolge bleiben unverändert. {0:N0} angezeigte Zeilen.\n
+112	Anwenden ist blockiert, weil für {0} kein ausdrücklich unterstütztes Codierungsprofil vorhanden ist. Der Editorinhalt wurde nicht geändert.
+113	Anwenden ist blockiert, weil die strenge Codierungsprüfung für {0} keine exakte Hin- und Rückumwandlung ergab. Der Editorinhalt wurde nicht geändert.
+114	Anwenden ist blockiert, weil die ausstehende Ersetzung in {0} nicht exakt dargestellt werden kann. Es wurde kein Ersatzzeichen verwendet und kein Editorinhalt geändert.
+115	Anwenden ist für {0} noch nicht aktiviert. Der Editorinhalt wurde nicht geändert. Schreibzugriffe sind nach verlustfreier Prüfung nur für UTF-8 (65001) und Windows-1250 (1250) aktiviert. Verwenden Sie „Alles verwerfen“ oder konvertieren Sie das Dokument in Notepad++ nach UTF-8 und öffnen Sie den Bearbeitungsmodus erneut.
+116	Aktualisieren ist im Bearbeitungsmodus deaktiviert. Wenden Sie zuerst alle ausstehenden Änderungen an oder verwerfen Sie sie.
+117	Scintilla-Codepage {0}
+118	Das aktive Dokument umfasst {0:N0} Bytes. Die aktuelle sichere Grenze für Momentaufnahmen beträgt {1:N0} Bytes.
+119	Das aktive Notepad++-Dokument konnte nicht gelesen werden. Der Editorinhalt wurde nicht geändert.
+120	Das Ergebnis von „Anwenden“ ist kein durch die Codierung blockierter Status.
+121	Der Tabellenaufbau im Hintergrund wurde ohne Ergebnis beendet.
+122	Die CSV-Änderungen wurden erfolgreich angewendet, aber die vorherige Cursorposition oder Auswahl konnte nicht wiederhergestellt werden. Das Dokument lässt sich weiterhin mit einem einzigen Schritt zurücksetzen.
+123	die aktuelle Editor-Codepage
+124	Der Editorpuffer konnte nicht in eine visuelle Tabelle umgewandelt werden. Wählen Sie ausdrücklich ein Trennzeichen oder aktualisieren Sie nach Korrektur des Dokuments.
+125	Der Tabellenaufbau lieferte ein unvollständiges Ergebnis.
+126	&Über
+127	Suche &löschen
+128	&CSV
+129	&Trennzeichen
+130	&Bearbeiten
+131	Esc im Suchfeld
+132	In Tabelle &suchen
+133	&Kopfzeile
+134	&Nächste passende Zelle
+135	&Vorherige passende Zelle
+136	Ansicht zurücksetzen: Suche, Spaltenbedingungen und sämtliche Sortierungen löschen.
+137	&Suche
+138	Such&spalte
+139	Leerzeichen anzeigen: kleine ausgefüllte orange Punkte. Nur die Darstellung; CSV-Werte bleiben unverändert.
+140	&Tabelle anzeigen
+141	Sortieren &nach
+142	&Tabelle
+143	&Ansicht
+144	Ein Filterwert darf höchstens 4,096 Zeichen enthalten.
+145	ALLE
+146	Eine führende Byte-Reihenfolge-Markierung wurde aus dem ersten Feld ausgeschlossen.
+147	EINE BELIEBIGE
+148	In einem nicht in Anführungszeichen eingeschlossenen Feld erschien ein Anführungszeichen.
+149	Die Zeilen der Zwischenablage müssen eine rechteckige Zellenmatrix bilden.
+150	Diagnosecode: {0}.
+151	Jede Sortierstufe muss eine andere Spalte verwenden.
+152	Fehler
+153	hoch
+154	Information
+155	niedrig
+156	mittel
+157	Kein unterstütztes Trennzeichen ergab eine ausreichend zuverlässige Struktur mit mehreren Feldern.
+158	keine
+159	Eine visuelle Zeile würde {0:N0} Zellen erfordern und damit die aktuelle Gesamtgrenze von {1:N0} Zellen überschreiten. Es wurden keine Spalten ausgeblendet.
+160	Der Datensatz hat {0} Felder; anhand des häufigsten Werts in der Stichprobe wurden {1} erwartet.
+161	Leerzeichen: {0}; führend: {1}; nachfolgend: {2}. Länge: {3} UTF-16-Einheiten.\nOrange Punkte markieren echte Leerzeichen. Zur besseren Lesbarkeit werden ihre Abstände vergrößert; CSV-Zeichen bleiben unverändert. Bei einer Zelle nur aus Leerzeichen überschneiden sich die Anzahlen führender und nachfolgender Leerzeichen.
+162	Die Zellenmatrix der Zwischenablage überschreitet die sichere Einfügegrenze.
+163	Die Zwischenablage enthält ein nicht unterstütztes Steuerzeichen.
+164	Die Zwischenablage enthält mehr Spalten, als der Editor sicher einfügen kann.
+165	Die Zwischenablage enthält mehr Zeilen, als der Editor sicher einfügen kann.
+166	Der Zwischenablagetext überschreitet die sichere Grenze von 16 Mi UTF-16-Zeicheneinheiten.
+167	Das letzte Feld in Anführungszeichen wurde vor dem Textende nicht abgeschlossen.
+168	Die Feldanzahl unterscheidet sich von den anderen Datensätzen.
+169	Der Vorgang konnte nicht abgeschlossen werden. Überprüfen Sie Dokument, ausgewählte Werte und Größenbegrenzungen.
+170	Das eingelesene Dokument enthält {0:N0} Spalten und überschreitet damit die aktuelle Grenze der visuellen Tabelle von {1:N0}. Es wurden keine Spalten ausgeblendet.
+171	Das vorgeschlagene Trennzeichen hat eine geringe Zuverlässigkeit. Überprüfen Sie die Trennzeicheneinstellung.
+172	Zwei Trennzeichenkandidaten haben ähnliche Bewertungen. Überprüfen Sie die Trennzeicheneinstellung.
+173	Auf ein schließendes Anführungszeichen folgten unerwartete Zeichen.
+174	unbekannt
+175	Verwenden Sie eine exakt darstellbare Dezimalzahl mit Punkt, etwa -12.5. Gruppierung, Exponenten und gerundete Werte werden nicht unterstützt.
+176	Verwenden Sie höchstens acht nicht leere Filterbedingungen.
+177	Verwenden Sie höchstens drei nicht leere Sortierstufen.
+178	Die Ansichtsregeln verweisen auf eine Spalte außerhalb der aktuellen Tabelle.
+179	Warnung
+180	Spaltenübersicht
+181	Filtern und sortieren
+182	Visuelle Tabelle öffnen
+183	Tabelle aktualisieren
+184	neu:{0}
+185	neu:{0} *
+186	Auswählen
+187	Ganze Zeilen zum Löschen auswählen
+188	Logischer Quelldatensatz oder ausstehende strukturelle Zeile
+189	Die Zeilenanzeigespalte konnte nicht ermittelt werden.
+190	Die Zeile muss zu einer DataGridView gehören.
+191	Alle Spalten
+192	{0:N0} / {1:N0} Zellen
+193	{0:N0} Zellen
+194	Suche löschen
+195	Suche löschen (Esc). Spaltenauswahl und Sortierung beibehalten.
+196	Filtert angezeigte Zeilen. Enter: nächste passende Zelle. Shift+Enter: vorherige. Escape: löschen.
+197	Nächste passende Zelle
+198	Nächste passende Zelle (F3 / Enter)
+199	Keine Treffer
+200	Keine passenden Zeilen.\nPassen Sie die Suche an oder verwenden Sie Ansicht > Filtern und sortieren / Ansicht zurücksetzen.
+201	Vorherige passende Zelle
+202	Vorherige passende Zelle (Shift+F3 / Shift+Enter)
+203	Alle Datenspalten durchsuchen oder eine Spalte auswählen.
+204	Suchspalte
+205	In angezeigten CSV-Zeilen suchen (Ctrl+F). Werte und Quelltext bleiben unverändert.
+206	In Tabelle suchen...
+207	In Tabelle suchen
+208	Suchergebnisse
+209	Suche läuft...
+210	Zur Quelle wechseln blockiert: Ein anderes Notepad++-Dokument ist aktiv. Kehren Sie zur angezeigten CSV zurück oder aktualisieren Sie die Tabelle.
+211	Zur Quelle wechseln blockiert: Das gespeicherte Analyseergebnis passt nicht mehr zu seiner unveränderlichen Quellmomentaufnahme. Aktualisieren Sie zuerst die Tabelle.
+212	Zur Quelle wechseln blockiert: Die streng ermittelte codierte Länge stimmt nicht mit der von Scintilla gemeldeten Dokumentlänge überein.
+213	Zur Quelle wechseln blockiert: Der aktive Editorinhalt wurde nach Darstellung dieser Tabelle geändert. Aktualisieren Sie zuerst die Tabelle.
+214	Zur Quelle wechseln blockiert: Für die aktuelle Scintilla-Codepage gibt es kein ausdrückliches Bytepositionsprofil.
+215	Zur Quelle wechseln blockiert: Die Editor-Codepage wurde nach Darstellung dieser Tabelle geändert. Aktualisieren Sie zuerst die Tabelle.
+216	Zur Quelle wechseln blockiert: Die ausgewählte projizierte Zelle hat kein ursprüngliches Quellfeld.
+217	Zur Quelle wechseln blockiert: Der Quellzeichenbereich konnte nicht verlustfrei auf Scintilla-Bytes abgebildet werden.
+218	Zur Quelle wechseln blockiert: Der logische Quelldatensatz ist im gespeicherten Analyseergebnis nicht verfügbar.
+219	Zur Quelle wechseln fehlgeschlagen: Der aktive Notepad++-Puffer konnte nicht gelesen werden. Der Dokumentinhalt wurde nicht geändert.
+220	Zur Quelle wechseln scheiterte beim Verschieben der Scintilla-Auswahl. Der Dokumentinhalt wurde nicht geändert.
+221	Zur Quelle wechseln ist erst verfügbar, wenn die aktuelle visuelle Tabelle eine vollständige Quellbasis hat. Aktualisieren Sie zuerst die Tabelle.
+222	Zum Wechseln zur Quelle ist eine aktuelle CSV-Zeile oder -Zelle erforderlich.
+223	Zur Quelle wechseln wurde nicht abgeschlossen. Der Dokumentinhalt wurde nicht geändert.
+224	Quelldatensatz {0}, Spalte {1} in Notepad++ ausgewählt.
+225	Quelldatensatz {0} in Notepad++ ausgewählt.
+226	Die aktuelle visuelle Zeile stellt keine stabile Quelldatensatzidentität bereit.
+227	Diese ausstehende eingefügte Zeile hat erst nach dem Anwenden eine Quellposition.
+228	Aktuelle Ansicht: {0:N0} von {1:N0} angezeigten Zeilen.
+229	Unterschiedliche Werte werden anhand des exakten Texts mit Beachtung der Groß-/Kleinschreibung ermittelt, einschließlich leerer Werte.\nWiederholte Zeilen = Zeilen minus unterschiedliche Werte. Der Zahlenbereich verwendet exakt darstellbare Dezimalwerte mit Punkt.
+230	Leer
+231	Art
+232	Häufigste Werte (bis zu 20)
+233	Nicht verfügbar
+234	Numerisches Minimum: {0}     Maximum: {1}\nLängster Wert: {2:N0} UTF-16-Einheiten. {3:N0} Werte kommen mehrmals vor.
+235	 Projektion begrenzt; dies ist NICHT die gesamte Datei.
+236	Zeilen: {0:N0}     Leer: {1:N0}     Nur Leerraum: {2:N0}\nUnterschiedlich: {3:N0}     Wiederholte Zeilen: {4:N0}     Numerisch: {5:N0}
+237	Spaltenübersicht
+238	Leerraum
+239	Eine neue Zeile wurde zur ausstehenden Bearbeitung hinzugefügt. „Anwenden“ schreibt sie in den Editorpuffer; „Alles verwerfen“ verwirft sie.
+240	Eine Quellzeile stellte ihren Quelldatensatzindex nicht bereit.
+241	Aktion
+242	Die Momentaufnahme des aktiven Dokuments ist fehlgeschlagen. Der Editorinhalt wurde nicht geändert.
+243	Zeile hinzufügen
+244	Alle ausstehenden Zellen- und Zeilenänderungen wurden verworfen. Der Notepad++-Editorpuffer wurde nicht geändert.
+245	Alle Zellen- und Zeilenänderungen als einen rückgängig machbaren Vorgang auf den aktiven Editor anwenden
+246	Anwenden blockiert: Ein anderes Notepad++-Dokument ist aktiv. Kehren Sie zum ursprünglichen Dokument zurück oder wählen Sie „Alles verwerfen“.
+247	Anwenden blockiert: Der Editorpuffer wurde nach Beginn des Bearbeitungsmodus geändert. Verwerfen und aktualisieren Sie vor einer erneuten Bearbeitung.
+248	Anwenden blockiert: Die Editor-Codepage wurde nach Beginn des Bearbeitungsmodus geändert. Verwerfen Sie die Änderungen und öffnen Sie den Bearbeitungsmodus erneut.
+249	Anwenden fehlgeschlagen. Die Bearbeitung bleibt geöffnet; überprüfen Sie den Editorpuffer, bevor Sie es erneut versuchen oder die Änderungen verwerfen.
+250	Anwenden wurde nicht abgeschlossen. Es wurde kein automatisches Überschreiben versucht.
+251	Automatisch erkennen
+252	automatische Zuverlässigkeit: {0}
+253	{0} — die automatische Trennzeichenerkennung ist nicht zuverlässig; eine manuelle Auswahl ist erforderlich.
+254	Automatische Erkennung
+255	Kandidatenbewertungen
+256	{0} Zellen / {1} Zeilen (+{2} / -{3})
+257	Zeichen
+258	{0} Zeichen / {1} Editor-Bytes
+259	Wählen Sie Komma, Semikolon oder Tabulator in der Trennzeichenliste oben.
+260	Legen Sie ausdrücklich fest, ob der erste logische Datensatz eine Kopfzeile ist
+261	Löschen
+262	Aktuellen Suchfilter und reine Ansichtssortierung löschen
+263	Code
+264	 - {0} Spaltenbedingungen ({1}), {2} Sortierstufen
+265	{0} — {1} × {2} Spalten — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	Komma
+268	Zuverlässigkeit
+269	Jede ausgewählte stabile Datenzeile aus der ausstehenden Bearbeitung löschen
+270	Zeile löschen
+271	Zeilen löschen ({0})
+272	Die ausgewählte stabile Datenzeile aus der ausstehenden Bearbeitung löschen
+273	Die ausgewählte stabile Datenzeile oder die ausgewählten stabilen Datenzeilen aus der ausstehenden Bearbeitung löschen
+274	Trennzeichen:
+275	Diagnose ({0})
+276	Alle ausstehenden Zellenänderungen, Einfügungen und Löschungen verwerfen
+277	Dokument
+278	 — BEARBEITUNGSMODUS: {0} Zellen, {1} Zeilen, +{2} / -{3}
+279	 - Bearbeitungsmodus
+280	Der Bearbeitungsmodus enthält ausstehende Änderungen. Verwenden Sie vor dem Beenden „Anwenden“ oder „Alles verwerfen“.
+281	Der Bearbeitungsmodus ist für die aktuelle Tabelle nicht verfügbar. Beheben Sie zuerst Analysefehler oder Anzeigebegrenzungen.
+282	Die Bearbeitung kann nicht aus einer zeilenbegrenzten visuellen Projektion gestartet werden.
+283	Die Bearbeitung kann nicht gestartet werden, solange die eingelesene CSV Fehler enthält.
+284	Die Bearbeitung ist für die aktuelle Tabelle nicht verfügbar.
+285	{0} — leerer Editorpuffer; keine CSV-Datensätze zum Anzeigen.
+286	Expliziten Bearbeitungsmodus für Zellen und Zeilen aktivieren
+287	Expliziten Bearbeitungsmodus für Zellen und Zeilen aktivieren. „Anwenden“ schreibt nur in den Editorpuffer.
+288	Expliziten Bearbeitungsmodus für Zellen und Zeilen aktivieren. Das vollständige Bearbeitungsmodell wird erst bei Bedarf erstellt.
+289	{0} Fehler, {1} Warnungen
+290	erste Zeile als Kopfzeile
+291	Erste Zeile ist Kopfzeile
+292	Kopfzeile:
+293	Eine neue Zeile hinter der ausgewählten Zeile einfügen oder anhängen, wenn keine Zeile ausgewählt ist
+294	{0} — CSV-Daten werden im Hintergrund geladen; Notepad++ bleibt bedienbar.
+295	manuelle Auswahl
+296	{0} passende von {1} angezeigten Zeilen
+297	Meldung
+298	{0} neu eingefügte Zeilen wurden aus der ausstehenden Bearbeitung entfernt.
+299	Keine Diagnosemeldungen anzuzeigen.
+300	Keine Kopfzeile
+301	keine Kopfzeile
+302	Keine passenden Zeilen.\nVersuchen Sie einen anderen Suchtext oder eine andere Spalte.
+303	keine Analyse-Diagnosemeldungen
+304	Es konnte kein zuverlässiges Trennzeichen sicher ausgewählt werden.
+305	Nichts anzuwenden: Die Bearbeitung enthält keine ausstehenden Änderungen.
+306	Begrenzte visuelle Tabelle wird im Hintergrund analysiert und vorbereitet…
+307	Ausstehende Zellen- und strukturelle Zeilenänderungen
+308	Ausstehende eingefügte Zeile {0}; noch nicht angewendet
+309	{0} ausstehende Zeilen
+310	Plugin bereit. Aktiver Editorpuffer wird gelesen...
+311	Vollständige Bearbeitung wird vorbereitet…
+312	Eigenschaft
+313	Den aktuellen aktiven Notepad++-Editorpuffer lesen und darstellen
+314	Datensatz
+315	Alles verwerfen
+316	{0} Zeilen
+317	Semikolon (;)
+318	Semikolon
+319	Schweregrad
+320	Ausführliche Diagnosemeldungen zu Analyse und Trennzeichen anzeigen
+321	{0} von {1} Zeilen werden angezeigt
+322	Momentaufnahme
+323	Momentaufnahmefehler
+324	Sortierstufe {0}: {1}, {2}. Nur die Ansicht.
+325	 — sortiert nach {0} {1}
+326	Logischer Quelldatensatz {0}
+327	Logischer Quelldatensatz {0}; in der ausstehenden Bearbeitung geändert
+328	{0} Quellzeilen sind zum Löschen markiert und {1} eingefügte Zeilen wurden aus der ausstehenden Bearbeitung entfernt.
+329	{0} Quellzeilen sind zum Löschen markiert. „Anwenden“ schreibt den gesamten Satz; „Alles verwerfen“ stellt jede Zeile wieder her.
+330	Status
+331	Tabulator
+332	Tabulator
+333	Tabellenfehler
+334	Die Bearbeitung der aktiven Zelle konnte nicht übernommen werden. Korrigieren Sie den Wert, bevor Sie eine Zeile hinzufügen.
+335	Die Bearbeitung der aktiven Zelle konnte nicht übernommen werden. Korrigieren Sie den Wert, bevor Sie Zeilen löschen.
+336	Die Bearbeitung der aktiven Zelle konnte nicht übernommen werden. Korrigieren Sie den Wert vor dem Anwenden.
+337	Die neu eingefügte Zeile wurde aus der ausstehenden Bearbeitung entfernt.
+338	Die Zeilenanzeigespalte ist nicht konfiguriert.
+339	Die ausgewählte Zeilenmenge ist für diese Bearbeitung nicht mehr gültig. Es wurden keine Zeilen gelöscht.
+340	Die ausgewählten Zeilen waren bereits gelöscht. Es wurde keine weitere Änderung vorgenommen.
+341	Die Quellzeile ist zum Löschen markiert. „Anwenden“ schreibt die Löschung; „Alles verwerfen“ stellt sie wieder her.
+342	Die visuelle Tabelle konnte nicht erstellt werden. Der Editorinhalt wurde nicht geändert.
+343	Zuverlässige automatische Erkennung verwenden oder ein Trennzeichen ausdrücklich auswählen
+344	Warten auf das aktive Notepad++-Dokument.
+345	{0} - {1} x {2:N0} Spalten
+346	Änderungen übernehmen
+347	Nachher
+348	Alle Datenzellen
+349	Vorher
+350	CSV-Spalte
+351	Wählen Sie einen Vorgang und einen Bereich und klicken Sie dann auf „Vorschau“.
+352	Aktuelle Spalte
+353	Suchen:
+354	kleinbuchstaben
+355	Vorgang:
+356	Anderer Leerraum wird maskiert; Längen zählen UTF-16-Einheiten. Lange Werte werden gekürzt.
+357	Die Vorschau konnte nicht erstellt werden. Prüfen Sie Bereich und Suchtext oder wählen Sie einen kleineren Bereich (höchstens 250,000 Zellen / 16 Mi Zeichen).
+358	Zuerst eine Vorschau erstellen. „Änderungen übernehmen“ aktualisiert die ausstehenden Änderungen; „Anwenden“ in der Symbolleiste schreibt nach Notepad++.\nKopfzeilen sind ausgeschlossen, wenn Kopfzeile = erster Datensatz. Groß-/Kleinschreibung ist kulturunabhängig.
+359	Datensatz-ID
+360	Text ersetzen (wörtlich)
+361	Ersetzen durch:
+362	Bereich:
+363	Wählen Sie eine CSV-Datenspalte aus.
+364	Ausgewählte Zellen / Zeilen
+365	ausgefüllte orange Punkte markieren Leerzeichen. 
+366	Leerzeichenanzeigen sind ausgeblendet. 
+367	{0:N0} Zielzellen; {1:N0} Änderungen in {2:N0} Zeilen. Die ersten 50 Änderungen werden angezeigt; 
+368	Die Bearbeitung wurde geändert.
+369	Die Vorschau ist nicht mehr gültig. Prüfen Sie die Bearbeitung und erstellen Sie eine neue Vorschau.
+370	CSV-Zellen umwandeln
+371	{0:N0} Zellen in der ausstehenden Bearbeitung umgewandelt. Verwenden Sie „Anwenden“, um Notepad++ zu aktualisieren, oder „Alles verwerfen“, um ausstehende Änderungen zu verwerfen.
+372	Äußeren Leerraum entfernen
+373	GROSSBUCHSTABEN
+374	Ansicht zurücksetzen
+375	Leerzeichen anzeigen

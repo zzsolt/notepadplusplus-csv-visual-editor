@@ -1,0 +1,12 @@
+{
+  "format": 1,
+  "sourceFingerprint": "b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499",
+  "keyCount": 376,
+  "catalogs": {
+    "de": {"file": "de.tsv", "gitBlob": "0d098c6a06c97f018d12cf1b9a2d924350c45405"},
+    "fr": {"file": "fr.tsv", "gitBlob": "6074888b17eefeed4964cc90b76f5ac2a46e7330"},
+    "es": {"file": "es.tsv", "gitBlob": "2620d7ea863b170137adfb0ca143b510ecd69f4b"},
+    "it": {"file": "it.tsv", "gitBlob": "4d7c8856a71f247fcd8668ccb620c97ea5dc42d8"},
+    "pt-PT": {"file": "pt-PT.tsv", "gitBlob": "ce49a2de729044dd8a932363e826ad4597c55029"}
+  }
+}

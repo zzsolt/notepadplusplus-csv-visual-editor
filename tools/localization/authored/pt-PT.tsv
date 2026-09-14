@@ -1,0 +1,378 @@
+# language: pt-PT
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Um editor visual de CSV para o Notepad++
+001	Acerca do CSV Visual Editor
+002	Contacto: {0}
+003	Contactar o programador {0}
+004	Programador: {0}
+005	Versão de desenvolvimento
+006	Gosta do CSV Visual Editor? Apoie o projeto.\nAtribua-lhe uma estrela no GitHub, partilhe a sua opinião ou contacte o programador para contribuir. Obrigado!
+007	Idioma da interface: {0}
+008	Não foi possível abrir uma aplicação associada. Contacto: {0}
+009	Projeto no GitHub
+010	Versão: {0}
+011	Versão e compilação
+012	{0} bloqueado porque o modelo de edição pendente foi alterado. Não foi mantida qualquer alteração parcial.
+013	{0} bloqueado: os retângulos da área de transferência e da seleção têm dimensões diferentes.
+014	{0} bloqueado: o retângulo de destino ultrapassa a tabela CSV.
+015	{0} bloqueado: não existe um retângulo de destino editável.
+016	Foram copiadas {0} × {1} células CSV.
+017	Copiar/Cortar bloqueado: uma célula selecionada contém uma tabulação ou quebra de linha que não pode ser representada sem ambiguidade como texto simples de folha de cálculo.
+018	A cópia requer células CSV, não uma seleção de linhas completas para eliminar.
+019	A cópia requer uma seleção retangular contígua de células de dados CSV.
+020	Foram cortadas {0} células para a área de transferência e esvaziadas na sessão de edição pendente. «Aplicar» escreve esse esvaziamento no Notepad++.
+021	Corte concluído; as células selecionadas já estavam vazias. A área de transferência contém os valores originais.
+022	{0} só está disponível no modo de edição.
+023	{0} não está disponível para a tabela atual.
+024	Colagem bloqueada: {0} Nenhum dado foi alterado.
+025	Colagem concluída; todos os valores de destino já eram idênticos.
+026	Foram coladas {0} células alteradas na sessão de edição pendente. «Aplicar» escreve-as no Notepad++.
+027	{0} requer um retângulo de células CSV, não uma seleção de linhas completas para eliminar.
+028	{0} requer uma seleção retangular contígua de células de dados CSV.
+029	Os destinos de {0} não estão disponíveis fora do modelo estável de linhas do modo de edição.
+030	Não foi possível confirmar a edição da célula ativa antes de copiar.
+031	Não foi possível confirmar a edição da célula ativa. Corrija o valor antes de {0}.
+032	A área de transferência não contém células em texto simples.
+033	A área de transferência do Windows está temporariamente indisponível. Nenhum dado foi alterado.
+034	Copiar o retângulo de células CSV selecionado para a área de transferência do Windows (Ctrl+C)
+035	Copiar as células CSV selecionadas e esvaziá-las na sessão de edição pendente (Ctrl+X)
+036	Colar células de uma folha de cálculo na célula ou no retângulo CSV selecionado (Ctrl+V)
+037	Pré-visualizar a substituição de texto, a remoção de caracteres em branco exteriores ou a alteração de maiúsculas/minúsculas nas edições CSV pendentes
+038	Selecionar a célula ou linha CSV atual no buffer de origem do Notepad++
+039	Origem
+040	Transformar
+041	Acerca de
+042	Aplicar
+043	Ascendente
+044	Cancelar
+045	Fechar
+046	Coluna
+047	Copiar
+048	Cortar
+049	Descendente
+050	Editar
+051	Sair da edição
+052	Distinguir maiúsculas
+053	Número
+054	Ordem original
+055	Colar
+056	Pré-visualização
+057	Atualizar
+058	Linhas
+059	Tabela
+060	Texto
+061	Valor
+062	Resumo da coluna: contagens, valores distintos, intervalo numérico e valores frequentes na vista atual.
+063	O resumo da coluna requer uma tabela pronta e só de leitura. Saia primeiro do modo de edição.
+064	Filtrar e ordenar: combinar regras de colunas e níveis de ordenação textual/numérica. Apenas a vista; o CSV não é alterado.
+065	Filtrar e ordenar: combinar regras de colunas e até três níveis de ordenação textual/numérica. Apenas a vista.
+066	Filtrar e ordenar: {0} condições, {1} níveis de ordenação. Repor vista limpa todas as regras.
+067	A filtragem e a ordenação requerem uma tabela pronta e só de leitura. Saia primeiro do modo de edição.
+068	Diagnósticos (0)
+069	0 alterações
+070	Adicionar condição
+071	Adicionar nível de ordenação
+072	Aplicar vista
+073	Maiúsculas/minúsculas
+074	Comparação de texto que distingue maiúsculas e minúsculas. Os espaços nos valores são literais.
+075	Verifique as regras: {0}
+076	Condição
+077	{0} / 8 condições; {1} / 3 níveis de ordenação. Pré-visualize para verificar as linhas correspondentes.
+078	Contém
+079	Não contém
+080	Não é igual a
+081	Vazio = zero caracteres. Apenas brancos = sequência não vazia de espaços/tabulações/quebras de linha.\nOs números usam um ponto decimal (-12.5), sem agrupamento ou expoentes; a precisão tem de ser exata.
+082	Termina com
+083	É igual a
+084	Valor do filtro
+085	Filtros
+086	Está vazio
+087	Não está vazio
+088	Não contém apenas brancos
+089	Contém apenas brancos
+090	Texto literal, incluindo espaços. As regras numéricas requerem um decimal exato com ponto.
+091	Corresponder a TODAS as condições
+092	Corresponder a QUALQUER condição
+093	Número =
+094	Número >
+095	Número >=
+096	Número <
+097	Número <=
+098	Número (decimal)
+099	Pré-visualização: {0:N0} de {1:N0} linhas apresentadas. CSV inalterado.
+100	Remover condição
+101	Remover nível de ordenação
+102	Repor regras
+103	As regras também respeitam a pesquisa atual. Cancelar mantém a vista ativa.
+104	Ordenação
+105	Começa com
+106	Texto: ordem ordinal sem distinguir maiúsculas e minúsculas. Número: decimais exatos; valores inválidos/vazios no fim.\nAs chaves iguais mantêm a ordem de origem. Remova todos os níveis para repor essa ordem.
+107	A projeção é limitada; as linhas não apresentadas não estão incluídas. 
+108	Filtrar e ordenar
+109	O primeiro nível tem prioridade; os seguintes resolvem os empates. Máximo de 3.
+110	Valor (literal, incluindo espaços)
+111	Apenas a vista — os valores CSV e a ordem de origem não mudam. {0:N0} linhas apresentadas.\n
+112	Aplicar está bloqueado porque {0} não tem um perfil de codificação explicitamente suportado. O conteúdo do editor não foi alterado.
+113	Aplicar está bloqueado porque a validação rigorosa da codificação {0} não produziu uma conversão de ida e volta exata. O conteúdo do editor não foi alterado.
+114	Aplicar está bloqueado porque a substituição pendente não pode ser representada exatamente em {0}. Não foi usado nenhum carácter de substituição e o conteúdo do editor não foi alterado.
+115	Aplicar ainda não está ativado para {0}. O conteúdo do editor não foi alterado. A escrita só está ativada para UTF-8 (65001) e Windows-1250 (1250), após validação sem perdas. Utilize «Reverter tudo» ou converta o documento para UTF-8 no Notepad++ e volte a abrir o modo de edição.
+116	Atualizar está desativado enquanto o modo de edição está ativo. Aplique ou reverta primeiro todas as alterações pendentes.
+117	Página de códigos do Scintilla {0}
+118	O documento ativo tem {0:N0} bytes. O limite seguro atual da captura é de {1:N0} bytes.
+119	Não foi possível ler o documento ativo do Notepad++. O conteúdo do editor não foi alterado.
+120	O resultado de Aplicar não é um estado de bloqueio por codificação.
+121	A construção da tabela em segundo plano terminou sem resultado.
+122	As alterações CSV foram aplicadas com sucesso, mas não foi possível restaurar a posição anterior do cursor ou a seleção. Todas as alterações ao documento continuam a poder ser anuladas numa única operação.
+123	a página de códigos atual do editor
+124	Não foi possível converter o buffer do editor numa tabela visual. Escolha um delimitador explícito ou atualize depois de corrigir o documento.
+125	A construção da tabela devolveu um resultado incompleto.
+126	&Acerca de
+127	&Limpar pesquisa
+128	&CSV
+129	&Delimitador
+130	&Editar
+131	Esc na pesquisa
+132	&Pesquisar na tabela
+133	&Cabeçalho
+134	Célula correspondente &seguinte
+135	Célula correspondente &anterior
+136	Repor vista: limpar a pesquisa, as condições das colunas e toda a ordenação.
+137	&Pesquisa
+138	&Coluna de pesquisa
+139	Mostrar espaços: pequenos pontos laranja preenchidos. Apenas apresentação; os valores CSV não mudam.
+140	Mostrar &tabela
+141	&Ordenar por
+142	&Tabela
+143	&Ver
+144	Um valor de filtro pode conter, no máximo, 4,096 caracteres.
+145	TODAS
+146	Uma marca inicial de ordem dos bytes foi excluída do primeiro campo.
+147	QUALQUER
+148	Surgiu uma aspa num campo que não estava delimitado por aspas.
+149	As linhas da área de transferência têm de formar uma matriz retangular de células.
+150	Código de diagnóstico: {0}.
+151	Cada nível de ordenação tem de usar uma coluna diferente.
+152	Erro
+153	alta
+154	Informação
+155	baixa
+156	média
+157	Nenhum delimitador suportado produziu uma estrutura de vários campos suficientemente fiável.
+158	nenhuma
+159	Uma linha visual exigiria {0:N0} células, ultrapassando o limite global atual de {1:N0}. Nenhuma coluna foi ocultada.
+160	O registo tem {0} campos; eram esperados {1} com base no número de campos mais frequente na amostra.
+161	Espaços: {0}; iniciais: {1}; finais: {2}. Comprimento: {3} unidades UTF-16.\nOs pontos laranja assinalam espaços reais. A distância visual entre eles é aumentada para facilitar a leitura; os caracteres CSV não mudam. As contagens inicial e final sobrepõem-se numa célula composta só por espaços.
+162	A matriz de células da área de transferência ultrapassa o limite seguro de colagem.
+163	A área de transferência contém um carácter de controlo não suportado.
+164	A área de transferência contém mais colunas do que o editor pode colar em segurança.
+165	A área de transferência contém mais linhas do que o editor pode colar em segurança.
+166	O texto da área de transferência ultrapassa o limite seguro de 16 Mi unidades de caracteres UTF-16.
+167	O último campo entre aspas não foi fechado antes do fim do texto.
+168	O número de campos difere do dos outros registos.
+169	Não foi possível concluir a operação. Verifique o documento, os valores selecionados e os limites de tamanho.
+170	O documento analisado contém {0:N0} colunas, ultrapassando o limite atual da tabela visual de {1:N0}. Nenhuma coluna foi ocultada.
+171	O delimitador sugerido tem uma confiança baixa. Verifique a definição do delimitador.
+172	Dois delimitadores candidatos têm pontuações semelhantes. Verifique a definição do delimitador.
+173	Foram encontrados caracteres inesperados depois de uma aspa de fecho.
+174	desconhecida
+175	Utilize um número decimal exato com ponto, como -12.5. Agrupamentos, expoentes e valores arredondados não são suportados.
+176	Utilize, no máximo, oito condições de filtro não nulas.
+177	Utilize, no máximo, três níveis de ordenação não nulos.
+178	As regras da vista referem-se a uma coluna fora da tabela atual.
+179	Aviso
+180	Resumo da coluna
+181	Filtrar e ordenar
+182	Abrir tabela visual
+183	Atualizar tabela
+184	nova:{0}
+185	nova:{0} *
+186	Selecionar
+187	Selecionar linhas completas para eliminar
+188	Registo lógico de origem ou linha estrutural pendente
+189	Não foi possível identificar a coluna indicadora de linhas.
+190	A linha tem de pertencer a uma DataGridView.
+191	Todas as colunas
+192	{0:N0} / {1:N0} células
+193	{0:N0} células
+194	Limpar pesquisa
+195	Limpar pesquisa (Esc). Manter a coluna de pesquisa e a ordenação.
+196	Filtra as linhas apresentadas. Enter: célula correspondente seguinte. Shift+Enter: anterior. Escape: limpar.
+197	Célula correspondente seguinte
+198	Célula correspondente seguinte (F3 / Enter)
+199	Sem correspondências
+200	Nenhuma linha correspondente.\nAjuste a pesquisa ou utilize Ver > Filtrar e ordenar / Repor vista.
+201	Célula correspondente anterior
+202	Célula correspondente anterior (Shift+F3 / Shift+Enter)
+203	Pesquisar em todas as colunas de dados ou escolher uma coluna.
+204	Coluna de pesquisa
+205	Pesquisar nas linhas CSV apresentadas (Ctrl+F). Os valores e o texto de origem não mudam.
+206	Pesquisar na tabela...
+207	Pesquisar na tabela
+208	Resultados da pesquisa
+209	A pesquisar...
+210	Ir para a origem bloqueado: está ativo outro documento do Notepad++. Volte ao CSV apresentado ou atualize a tabela.
+211	Ir para a origem bloqueado porque o resultado de análise guardado já não corresponde à sua captura de origem imutável. Atualize primeiro a tabela.
+212	Ir para a origem bloqueado: o comprimento da codificação rigorosa não corresponde ao comprimento do documento indicado pelo Scintilla.
+213	Ir para a origem bloqueado: o conteúdo ativo do editor mudou depois de esta tabela ser apresentada. Atualize primeiro a tabela.
+214	Ir para a origem bloqueado: a página de códigos atual do Scintilla não tem um perfil explícito de posições em bytes.
+215	Ir para a origem bloqueado: a página de códigos do editor mudou depois de esta tabela ser apresentada. Atualize primeiro a tabela.
+216	Ir para a origem bloqueado: a célula projetada selecionada não tem um campo de origem em bruto.
+217	Ir para a origem bloqueado: o intervalo de caracteres de origem não pôde ser convertido sem perdas em posições de bytes do Scintilla.
+218	Ir para a origem bloqueado: o registo lógico de origem não está disponível no resultado de análise guardado.
+219	Ir para a origem falhou: não foi possível ler o buffer ativo do Notepad++. O conteúdo do documento não foi alterado.
+220	Ir para a origem falhou ao mover a seleção do Scintilla. O conteúdo do documento não foi alterado.
+221	Ir para a origem não está disponível até a tabela visual atual ter uma referência de origem completa. Atualize primeiro a tabela.
+222	Ir para a origem requer uma linha ou célula CSV atual.
+223	Ir para a origem não foi concluído. O conteúdo do documento não foi alterado.
+224	Selecionado o registo de origem {0}, coluna {1}, no Notepad++.
+225	Selecionado o registo de origem {0} no Notepad++.
+226	A linha visual atual não disponibiliza uma identidade estável do registo de origem.
+227	Esta linha inserida pendente não tem uma localização de origem até Aplicar terminar.
+228	Vista atual: {0:N0} de {1:N0} linhas apresentadas.
+229	Os valores distintos usam o texto exato, com distinção de maiúsculas e minúsculas, incluindo valores vazios.\nLinhas repetidas = linhas menos valores distintos. O intervalo numérico usa valores decimais exatos com ponto.
+230	Vazio
+231	Tipo
+232	Valores mais frequentes (até 20)
+233	Não disponível
+234	Mínimo numérico: {0}     Máximo: {1}\nValor mais longo: {2:N0} unidades UTF-16. {3:N0} valores aparecem mais de uma vez.
+235	 Projeção limitada; NÃO é o ficheiro completo.
+236	Linhas: {0:N0}     Vazias: {1:N0}     Apenas brancos: {2:N0}\nDistintos: {3:N0}     Linhas repetidas: {4:N0}     Numéricos: {5:N0}
+237	Resumo da coluna
+238	Caracteres em branco
+239	Foi adicionada uma linha nova à sessão de edição pendente. «Aplicar» escreve-a no buffer do editor; «Reverter tudo» descarta-a.
+240	Uma linha de origem não disponibilizou o seu índice de registo de origem.
+241	Ação
+242	A captura do documento ativo falhou. O conteúdo do editor não foi alterado.
+243	Adicionar linha
+244	Todas as edições pendentes de células e linhas foram revertidas. O buffer do editor Notepad++ não foi alterado.
+245	Aplicar todas as edições de células e linhas ao editor ativo como uma única operação que pode ser anulada
+246	Aplicar bloqueado: está ativo outro documento do Notepad++. Volte ao documento original ou utilize «Reverter tudo».
+247	Aplicar bloqueado: o buffer do editor mudou depois de iniciar o modo de edição. Reverta e atualize antes de editar novamente.
+248	Aplicar bloqueado: a página de códigos do editor mudou depois de iniciar o modo de edição. Reverta e volte a abrir o modo de edição.
+249	Aplicar falhou. A sessão de edição continua aberta; verifique o buffer do editor antes de tentar novamente ou reverter.
+250	Aplicar não foi concluído. Não foi tentada qualquer substituição automática do conteúdo.
+251	Detetar automaticamente
+252	confiança automática {0}
+253	{0} — a deteção automática do delimitador não é fiável; é necessária uma seleção manual.
+254	Deteção automática
+255	Pontuações dos candidatos
+256	{0} células / {1} linhas (+{2} / -{3})
+257	Carácter
+258	{0} caracteres / {1} bytes no editor
+259	Escolha Vírgula, Ponto e vírgula ou Tabulação na lista Delimitador acima.
+260	Escolher explicitamente se o primeiro registo lógico é um cabeçalho
+261	Limpar
+262	Limpar o filtro de pesquisa atual e a ordenação apenas da vista
+263	Código
+264	 - {0} condições de colunas ({1}), {2} níveis de ordenação
+265	{0} — {1} × {2} colunas — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Vírgula (,)
+267	vírgula
+268	Confiança
+269	Eliminar todas as linhas de dados estáveis selecionadas da sessão de edição pendente
+270	Eliminar linha
+271	Eliminar linhas ({0})
+272	Eliminar a linha de dados estável selecionada da sessão de edição pendente
+273	Eliminar a linha ou as linhas de dados estáveis selecionadas da sessão de edição pendente
+274	Delimitador:
+275	Diagnósticos ({0})
+276	Descartar todas as alterações pendentes de células, inserções e eliminações
+277	Documento
+278	 — MODO DE EDIÇÃO: {0} células, {1} linhas, +{2} / -{3}
+279	 - Modo de edição
+280	O modo de edição contém alterações pendentes. Utilize «Aplicar» ou «Reverter tudo» antes de sair.
+281	O modo de edição não está disponível para a tabela atual. Resolva primeiro os erros de análise ou os limites de apresentação.
+282	A edição não pode começar a partir de uma projeção visual limitada em linhas.
+283	A edição não pode começar enquanto o CSV analisado contiver erros.
+284	A edição não está disponível para a tabela atual.
+285	{0} — buffer do editor vazio; não há registos CSV para apresentar.
+286	Entrar no modo explícito de edição de células e linhas
+287	Entrar no modo explícito de edição de células e linhas. «Aplicar» escreve apenas no buffer do editor.
+288	Entrar no modo explícito de edição de células e linhas. O modelo completo de edição só é criado quando solicitado.
+289	{0} erros, {1} avisos
+290	primeira linha como cabeçalho
+291	A primeira linha é o cabeçalho
+292	Cabeçalho:
+293	Inserir uma linha nova depois da selecionada, ou acrescentar no fim quando nenhuma linha estiver selecionada
+294	{0} — a carregar dados CSV em segundo plano; o Notepad++ continua a responder.
+295	seleção manual
+296	{0} correspondentes de {1} linhas apresentadas
+297	Mensagem
+298	Foram removidas {0} linhas recém-inseridas da sessão pendente.
+299	Não há diagnósticos para apresentar.
+300	Sem linha de cabeçalho
+301	sem linha de cabeçalho
+302	Nenhuma linha correspondente.\nExperimente outro texto de pesquisa ou outra coluna.
+303	sem diagnósticos de análise
+304	Não foi possível selecionar em segurança um delimitador fiável.
+305	Nada a aplicar: a sessão de edição não contém alterações pendentes.
+306	A analisar e preparar uma tabela visual limitada em segundo plano…
+307	Alterações pendentes de células e da estrutura das linhas
+308	Linha inserida pendente {0}; ainda não aplicada
+309	{0} linhas pendentes
+310	Plugin pronto. A ler o buffer ativo do editor...
+311	A preparar a sessão de edição completa…
+312	Propriedade
+313	Ler e apresentar o buffer atualmente ativo do editor Notepad++
+314	Registo
+315	Reverter tudo
+316	{0} linhas
+317	Ponto e vírgula (;)
+318	ponto e vírgula
+319	Gravidade
+320	Mostrar diagnósticos detalhados da análise e do delimitador
+321	a mostrar {0} de {1} linhas
+322	Captura
+323	Erro de captura
+324	Nível de ordenação {0}: {1}, {2}. Apenas a vista.
+325	 — ordenado por {0} {1}
+326	Registo lógico de origem {0}
+327	Registo lógico de origem {0}; alterado na sessão de edição pendente
+328	Foram marcadas {0} linhas de origem para eliminação e removidas {1} linhas inseridas da sessão pendente.
+329	Foram marcadas {0} linhas de origem para eliminação. «Aplicar» escreve o conjunto; «Reverter tudo» restaura todas as linhas.
+330	Estado
+331	Tabulação
+332	tabulação
+333	Erro da tabela
+334	Não foi possível confirmar a edição da célula ativa. Corrija o valor antes de adicionar uma linha.
+335	Não foi possível confirmar a edição da célula ativa. Corrija o valor antes de eliminar linhas.
+336	Não foi possível confirmar a edição da célula ativa. Corrija o valor antes de aplicar.
+337	A linha recém-inserida foi removida da sessão pendente.
+338	A coluna indicadora de linhas não está configurada.
+339	O conjunto de linhas selecionado já não é válido para esta sessão de edição. Nenhuma linha foi eliminada.
+340	As linhas selecionadas já tinham sido eliminadas. Não foi feita qualquer alteração adicional.
+341	A linha de origem está marcada para eliminação. «Aplicar» escreve a eliminação; «Reverter tudo» restaura-a.
+342	Não foi possível criar a tabela visual. O conteúdo do editor não foi alterado.
+343	Utilizar uma deteção automática fiável ou escolher um delimitador explicitamente
+344	A aguardar o documento ativo do Notepad++.
+345	{0} - {1} x {2:N0} colunas
+346	Aceitar alterações
+347	Depois
+348	Todas as células de dados
+349	Antes
+350	Coluna CSV
+351	Escolha uma operação e um âmbito, depois clique em «Pré-visualização».
+352	Coluna atual
+353	Localizar:
+354	minúsculas
+355	Operação:
+356	Os restantes caracteres em branco são representados por sequências de escape; os comprimentos contam unidades UTF-16. Os valores longos são abreviados.
+357	Não foi possível criar a pré-visualização. Verifique o âmbito e o texto a localizar, ou selecione um âmbito menor (máximo de 250,000 células / 16 Mi caracteres).
+358	Pré-visualize primeiro. «Aceitar alterações» atualiza as edições pendentes; «Aplicar» na barra de ferramentas escreve no Notepad++.\nOs cabeçalhos são excluídos quando Cabeçalho = primeiro registo. A conversão de maiúsculas/minúsculas é independente das definições regionais.
+359	ID do registo
+360	Substituir texto (literal)
+361	Substituir por:
+362	Âmbito:
+363	Selecione uma coluna de dados CSV.
+364	Células / linhas selecionadas
+365	os pontos laranja preenchidos assinalam espaços. 
+366	os indicadores de espaços estão ocultos. 
+367	{0:N0} células de destino; {1:N0} alterações em {2:N0} linhas. A mostrar as primeiras 50 alterações; 
+368	A sessão de edição foi alterada.
+369	A pré-visualização já não é válida. Verifique a sessão de edição e crie uma nova pré-visualização.
+370	Transformar células CSV
+371	Foram transformadas {0:N0} células na sessão de edição pendente. Utilize «Aplicar» para atualizar o Notepad++ ou «Reverter tudo» para descartar as edições pendentes.
+372	Remover caracteres em branco exteriores
+373	MAIÚSCULAS
+374	Repor vista
+375	Mostrar espaços
