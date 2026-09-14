@@ -1,0 +1,378 @@
+# language: eo
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vida CSV-redaktilo por Notepad++
+001	Pri CSV Visual Editor
+002	Kontakto: {0}
+003	Kontakti la programiston {0}
+004	Programisto: {0}
+005	Evoluiga versio
+006	Ĉu vi ŝatas CSV Visual Editor? Subtenu la projekton.\nDonu al ĝi stelon ĉe GitHub, dividu viajn rimarkojn aŭ kontaktu la programiston por kontribui. Dankon!
+007	Interfaca lingvo: {0}
+008	Neniu asociita aplikaĵo povis esti malfermita. Kontakto: {0}
+009	Projekto ĉe GitHub
+010	Versio: {0}
+011	Versio kaj konstruo
+012	{0} estis blokita ĉar la modelo de pritraktataj redaktoj ŝanĝiĝis. Neniu parta ŝanĝo estis konservita.
+013	{0} estis blokita: la tonduja kaj elektita rektanguloj havas malsamajn dimensiojn.
+014	{0} estis blokita: la cela rektangulo etendiĝas ekster la CSV-tabelo.
+015	{0} estis blokita: ne ekzistas redaktebla cela rektangulo.
+016	Kopiitaj {0} × {1} CSV-ĉeloj.
+017	Kopiado/tondado estis blokita: elektita ĉelo enhavas tabon aŭ linirompon, kiu ne povas esti sendube prezentita kiel simpla kalkultabela teksto.
+018	Kopiado bezonas CSV-ĉelojn, ne elekton de tutaj vicoj por forigo.
+019	Kopiado bezonas unu kontinuan rektangulan elekton de CSV-datumĉeloj.
+020	Tonditaj {0} ĉeloj al la tondujo kaj malplenigitaj en la pritraktata redaktosesio. Apliki skribas la malplenigon al Notepad++.
+021	Tondado finiĝis; la elektitaj ĉeloj jam estis malplenaj. La tondujo enhavas iliajn originajn valorojn.
+022	{0} disponeblas nur en redakta reĝimo.
+023	{0} ne disponeblas por la nuna tabelo.
+024	Algluado estis blokita: {0} Neniuj datumoj estis ŝanĝitaj.
+025	Algluado finiĝis; ĉiuj celaj valoroj jam estis identaj.
+026	Algluitaj {0} ŝanĝitaj ĉeloj en la pritraktata redaktosesio. Apliki skribas ilin al Notepad++.
+027	{0} bezonas rektangulon de CSV-ĉeloj, ne elekton de tutaj vicoj por forigo.
+028	{0} bezonas unu kontinuan rektangulan elekton de CSV-datumĉeloj.
+029	Celoj por {0} ne disponeblas ekster la stabila vicmodelo de redakta reĝimo.
+030	La redakto de la aktiva ĉelo ne povis esti konfirmita antaŭ kopiado.
+031	La redakto de la aktiva ĉelo ne povis esti konfirmita. Korektu la valoron antaŭ {0}.
+032	La tondujo ne enhavas ĉelojn kiel simpla teksto.
+033	La Vindoza tondujo provizore ne disponeblas. Neniuj datumoj estis ŝanĝitaj.
+034	Kopii la elektitan rektangulon de CSV-ĉeloj al la Vindoza tondujo (Ctrl+C)
+035	Kopii elektitajn CSV-ĉelojn kaj malplenigi ilin en la pritraktata redaktosesio (Ctrl+X)
+036	Alglui kalkultabelajn ĉelojn en la elektitan CSV-ĉelon aŭ rektangulon (Ctrl+V)
+037	Antaŭrigardi tekstan anstataŭigon, forigon de eksteraj blankspacoj aŭ ŝanĝon de uskleco en pritraktataj CSV-redaktoj
+038	Elekti la nunan CSV-ĉelon aŭ vicon en la fonta bufro de Notepad++
+039	Fonto
+040	Transformi
+041	Pri
+042	Apliki
+043	Kreske
+044	Nuligi
+045	Fermi
+046	Kolumno
+047	Kopii
+048	Tondi
+049	Malkreske
+050	Redakti
+051	Fini redaktadon
+052	Usklecodistinga
+053	Nombro
+054	Origina ordo
+055	Alglui
+056	Antaŭrigardo
+057	Refreŝigi
+058	Vicoj
+059	Tabelo
+060	Teksto
+061	Valoro
+062	Kolumna resumo: nombroj, distingaj valoroj, nombra intervalo kaj oftaj valoroj en la nuna vido.
+063	Kolumna resumo bezonas pretan nurlegeblan tabelon. Unue forlasu redaktan reĝimon.
+064	Filtri kaj ordigi: kombini kolumnajn regulojn kaj tekstajn/nombrajn ordignivelojn. Nur la vido ŝanĝiĝas; CSV restas senŝanĝa.
+065	Filtri kaj ordigi: kombini kolumnajn regulojn kaj ĝis tri tekstajn/nombrajn ordignivelojn. Nur la vido ŝanĝiĝas.
+066	Filtri kaj ordigi: {0} kondiĉoj, {1} ordigniveloj. Restarigi vidon forigas ĉiujn regulojn.
+067	Filtrado kaj ordigo bezonas pretan nurlegeblan tabelon. Unue forlasu redaktan reĝimon.
+068	Diagnozoj (0)
+069	0 ŝanĝoj
+070	Aldoni kondiĉon
+071	Aldoni ordignivelon
+072	Apliki vidon
+073	Uskleco
+074	Tekstkomparo kun distingo inter majuskloj kaj minuskloj. Spacoj en valoroj estas traktataj laŭvorte.
+075	Kontrolu la regulojn: {0}
+076	Kondiĉo
+077	{0} / 8 kondiĉoj; {1} / 3 ordigniveloj. Antaŭrigardu por kontroli kongruajn vicojn.
+078	Enhavas
+079	Ne enhavas
+080	Ne egalas al
+081	Malplena = neniuj signoj. Nur blankspaco = nemalplena sinsekvo de spacoj/taboj/linirompoj.\nNombroj uzas dekuman punkton (-12.5), sen grupigo aŭ eksponentoj; precizeco devas esti ĝusta.
+082	Finiĝas per
+083	Egalas al
+084	Filtra valoro
+085	Filtriloj
+086	Estas malplena
+087	Ne estas malplena
+088	Ne estas nur blankspaco
+089	Estas nur blankspaco
+090	Laŭvorta teksto, inkluzive spacojn. Nombraj reguloj bezonas precizan dekuman nombron kun punkto.
+091	Kongruu kun ĈIUJ kondiĉoj
+092	Kongruu kun IU kondiĉo
+093	Nombro =
+094	Nombro >
+095	Nombro >=
+096	Nombro <
+097	Nombro <=
+098	Nombro (dekuma)
+099	Antaŭrigardo: {0:N0} el {1:N0} montrataj vicoj. CSV senŝanĝa.
+100	Forigi kondiĉon
+101	Forigi ordignivelon
+102	Restarigi regulojn
+103	Reguloj ankaŭ respektas la nunan serĉon. Nuligi konservas la aktivan vidon.
+104	Ordigo
+105	Komenciĝas per
+106	Teksto: ordinara ordo sen usklecodistingo. Nombro: precizaj dekumoj; nevalidaj/malplenaj valoroj laste.\nEgalaj ŝlosiloj konservas fontan ordon. Forigu ĉiujn nivelojn por restarigi fontan ordon.
+107	La projekcio estas limigita; nemontrataj vicoj ne estas inkluditaj. 
+108	Filtri kaj ordigi
+109	La supra nivelo havas prioritaton; postaj niveloj solvas egalecojn. Maksimume 3.
+110	Valoro (laŭvorta, inkluzive spacojn)
+111	Nur la vido — CSV-valoroj kaj fonta ordo restas senŝanĝaj. {0:N0} montrataj vicoj.\n
+112	Apliko estas blokita ĉar {0} ne havas eksplicite subtenatan kodprofilon. La enhavo de la redaktilo ne estis ŝanĝita.
+113	Apliko estas blokita ĉar strikta kodkontrolo por {0} ne produktis ĝustan tien-reenan konverton. La enhavo de la redaktilo ne estis ŝanĝita.
+114	Apliko estas blokita ĉar la pritraktata anstataŭaĵo ne povas esti precize prezentita en {0}. Neniu anstataŭiga signo estis uzata kaj la enhavo de la redaktilo ne estis ŝanĝita.
+115	Apliko ankoraŭ ne estas ebligita por {0}. La enhavo de la redaktilo ne estis ŝanĝita. Skribado estas ebligita nur por UTF-8 (65001) kaj Windows-1250 (1250), post senperda kontrolo. Uzu Malfari ĉion aŭ konvertu la dokumenton al UTF-8 en Notepad++ kaj remalfermu redaktan reĝimon.
+116	Refreŝigo estas malebligita en redakta reĝimo. Unue apliku aŭ malfaru ĉiujn pritraktatajn ŝanĝojn.
+117	Scintilla-kodpaĝo {0}
+118	La aktiva dokumento estas {0:N0} bajtoj. La nuna sekura limo de momentkopio estas {1:N0} bajtoj.
+119	La aktiva Notepad++-dokumento ne povis esti legita. La enhavo de la redaktilo ne estis ŝanĝita.
+120	La aplika rezulto ne estas stato de kodbloko.
+121	Fona tabelkonstruo finiĝis sen rezulto.
+122	La CSV-ŝanĝoj estis aplikitaj, sed la antaŭa kursora pozicio aŭ elekto ne povis esti restarigita. La tuta dokumentŝanĝo ankoraŭ povas esti malfarita per unu ago.
+123	la nuna kodpaĝo de la redaktilo
+124	La redaktila bufro ne povis esti konvertita al vida tabelo. Elektu apartigilon eksplicite aŭ refreŝigu post korektado de la dokumento.
+125	Tabelkonstruo liveris nekompletan rezulton.
+126	&Pri
+127	&Forviŝi serĉon
+128	&CSV
+129	&Apartigilo
+130	&Redakti
+131	Esc en serĉo
+132	&Serĉi en tabelo
+133	&Kaplinio
+134	&Sekva kongrua ĉelo
+135	&Antaŭa kongrua ĉelo
+136	Restarigi vidon: forviŝi serĉon, kolumnajn kondiĉojn kaj ĉiun ordigon.
+137	&Serĉo
+138	Serĉ&kolumno
+139	Montri spacojn: malgrandaj plenaj oranĝaj punktoj. Nur por montrado; CSV-valoroj ne ŝanĝiĝas.
+140	Montri &tabelon
+141	&Ordigi laŭ
+142	&Tabelo
+143	&Vido
+144	Filtra valoro povas enhavi maksimume 4,096 signojn.
+145	ĈIUJ
+146	Komenca bajtorda marko estis ekskludita el la unua kampo.
+147	IU
+148	Citilo aperis en kampo ne ĉirkaŭita de citiloj.
+149	La tondujaj vicoj devas formi unu rektangulan ĉelmatricon.
+150	Diagnoza kodo: {0}.
+151	Ĉiu ordignivelo devas uzi malsaman kolumnon.
+152	Eraro
+153	alta
+154	Informo
+155	malalta
+156	meza
+157	Neniu subtenata apartigilo produktis sufiĉe fidindan plurkampa strukturon.
+158	neniu
+159	Unu vida vico bezonus {0:N0} ĉelojn, superante la nunan totalan limon de {1:N0}. Neniu kolumno estis kaŝita.
+160	La rikordo havas {0} kampojn; {1} estis atenditaj laŭ la plej ofta nombro en la specimeno.
+161	Spacoj: {0}; komencaj: {1}; finaj: {2}. Longo: {3} UTF-16-unuoj.\nOranĝaj punktoj markas realajn spacojn. La montra interspaco estas pligrandigita por legebleco; CSV-signoj ne ŝanĝiĝas. Komencaj kaj finaj nombroj interkovras en ĉelo kiu enhavas nur spacojn.
+162	La tonduja ĉelmatrico superas la sekuran algluan limon.
+163	La tondujo enhavas nesubtenatan stirsignon.
+164	La tondujo enhavas pli da kolumnoj ol la redaktilo povas sekure alglui.
+165	La tondujo enhavas pli da vicoj ol la redaktilo povas sekure alglui.
+166	La tonduja teksto superas la sekuran limon de 16 Mi UTF-16-signunuoj.
+167	La fina citita kampo ne estis fermita antaŭ la fino de la teksto.
+168	La kamponombro malsamas de la aliaj rikordoj.
+169	La operacio ne povis esti finita. Kontrolu la dokumenton, elektitajn valorojn kaj grandecolimojn.
+170	La analizita dokumento enhavas {0:N0} kolumnojn, superante la nunan limon de {1:N0} de la vida tabelo. Neniu kolumno estis kaŝita.
+171	La proponita apartigilo havas malaltan fidon. Kontrolu la agordon de apartigilo.
+172	Du apartigilaj kandidatoj havas similajn poentarojn. Kontrolu la agordon de apartigilo.
+173	Neatenditaj signoj sekvas ferman citilon.
+174	nekonata
+175	Uzu precizan dekuman nombron kun punkto, ekzemple -12.5. Grupigo, eksponentoj kaj rondigitaj valoroj ne estas subtenataj.
+176	Uzu maksimume ok filtrajn kondiĉojn kiuj ne estas null.
+177	Uzu maksimume tri ordignivelojn kiuj ne estas null.
+178	La vidreguloj referencas kolumnon ekster la nuna tabelo.
+179	Averto
+180	Kolumna resumo
+181	Filtri kaj ordigi
+182	Malfermi vidan tabelon
+183	Refreŝigi tabelon
+184	nova:{0}
+185	nova:{0} *
+186	Elekti
+187	Elekti tutajn vicojn por forigo
+188	Logika fonta rikordo aŭ pritraktata struktura vico
+189	La vicindikila kolumno ne povis esti identigita.
+190	La vico devas aparteni al DataGridView.
+191	Ĉiuj kolumnoj
+192	{0:N0} / {1:N0} ĉeloj
+193	{0:N0} ĉeloj
+194	Forviŝi serĉon
+195	Forviŝi serĉon (Esc). Konservi serĉkolumnon kaj ordigon.
+196	Filtras montratajn vicojn. Enter: sekva kongrua ĉelo. Shift+Enter: antaŭa. Escape: forviŝi.
+197	Sekva kongrua ĉelo
+198	Sekva kongrua ĉelo (F3 / Enter)
+199	Neniuj kongruoj
+200	Neniuj kongruaj vicoj.\nĜustigu la serĉon aŭ uzu Vido > Filtri kaj ordigi / Restarigi vidon.
+201	Antaŭa kongrua ĉelo
+202	Antaŭa kongrua ĉelo (Shift+F3 / Shift+Enter)
+203	Serĉi ĉiujn datumkolumnojn aŭ elekti unu kolumnon.
+204	Serĉkolumno
+205	Serĉi montratajn CSV-vicojn (Ctrl+F). Valoroj kaj fonta teksto ne ŝanĝiĝas.
+206	Serĉi en tabelo...
+207	Serĉi en tabelo
+208	Serĉrezultoj
+209	Serĉante...
+210	Iri al fonto estis blokita: alia Notepad++-dokumento estas aktiva. Reiru al la montrata CSV aŭ refreŝigu la tabelon.
+211	Iri al fonto estis blokita ĉar la konservita analiza rezulto ne plu kongruas kun sia neŝanĝebla fonta momentkopio. Unue refreŝigu la tabelon.
+212	Iri al fonto estis blokita: la strikte kodita longo ne kongruas kun la dokumentlongo raportita de Scintilla.
+213	Iri al fonto estis blokita: la aktiva redaktila enhavo ŝanĝiĝis post montrado de la tabelo. Unue refreŝigu la tabelon.
+214	Iri al fonto estis blokita: la nuna Scintilla-kodpaĝo ne havas eksplicitan bajtpozician profilon.
+215	Iri al fonto estis blokita: la kodpaĝo de la redaktilo ŝanĝiĝis post montrado de la tabelo. Unue refreŝigu la tabelon.
+216	Iri al fonto estis blokita: la elektita projekciita ĉelo ne havas krudan fontan kampon.
+217	Iri al fonto estis blokita: la fonta signo-intervalo ne povis esti senperde mapita al Scintilla-bajtoj.
+218	Iri al fonto estis blokita: la logika fonta rikordo ne disponeblas en la konservita analiza rezulto.
+219	Iri al fonto malsukcesis: la aktiva Notepad++-bufro ne povis esti legita. La dokumentenhavo ne estis ŝanĝita.
+220	Iri al fonto malsukcesis dum movado de la Scintilla-elekto. La dokumentenhavo ne estis ŝanĝita.
+221	Iri al fonto ne disponeblas ĝis la nuna vida tabelo havas kompletan fontan bazlinion. Unue refreŝigu la tabelon.
+222	Iri al fonto bezonas nunan CSV-vicon aŭ ĉelon.
+223	Iri al fonto ne estis kompletigita. La dokumentenhavo ne estis ŝanĝita.
+224	Elektita fonta rikordo {0}, kolumno {1} en Notepad++.
+225	Elektita fonta rikordo {0} en Notepad++.
+226	La nuna vida vico ne provizas stabilan identecon de fonta rikordo.
+227	Ĉi tiu pritraktata enigita vico ne havas fontan pozicion ĝis apliko finiĝas.
+228	Nuna vido: {0:N0} el {1:N0} montrataj vicoj.
+229	Distingaj valoroj uzas precizan usklecodistingan tekston, inkluzive malplenajn valorojn.\nRipetitaj vicoj = vicoj minus distingaj valoroj. La nombra intervalo uzas precizajn dekumajn valorojn kun punkto.
+230	Malplena
+231	Tipo
+232	Plej oftaj valoroj (ĝis 20)
+233	Ne disponebla
+234	Nombra minimumo: {0}     Maksimumo: {1}\nPlej longa valoro: {2:N0} UTF-16-unuoj. {3:N0} valoroj aperas pli ol unu fojon.
+235	 Limigita projekcio; ĉi tio NE estas la tuta dosiero.
+236	Vicoj: {0:N0}     Malplenaj: {1:N0}     Nur blankspaco: {2:N0}\nDistingaj: {3:N0}     Ripetitaj vicoj: {4:N0}     Nombraj: {5:N0}
+237	Kolumna resumo
+238	Blankspaco
+239	Nova vico estis aldonita al la pritraktata redaktosesio. Apliki skribas ĝin al la redaktila bufro; Malfari ĉion forĵetas ĝin.
+240	Fonta vico ne provizis sian fontan rikordan indekson.
+241	Ago
+242	Momentkopio de la aktiva dokumento malsukcesis. La enhavo de la redaktilo ne estis ŝanĝita.
+243	Aldoni vicon
+244	Ĉiuj pritraktataj ĉelaj kaj vicaj redaktoj estis malfaritaj. La Notepad++-redaktila bufro ne estis ŝanĝita.
+245	Apliki ĉiujn ĉelajn kaj vicajn redaktojn al la aktiva redaktilo kiel unu malfarebla ago
+246	Apliko estis blokita: alia Notepad++-dokumento estas aktiva. Reiru al la origina dokumento aŭ uzu Malfari ĉion.
+247	Apliko estis blokita: la redaktila bufro ŝanĝiĝis post komenco de redakta reĝimo. Malfaru kaj refreŝigu antaŭ nova redaktado.
+248	Apliko estis blokita: la kodpaĝo de la redaktilo ŝanĝiĝis post komenco de redakta reĝimo. Malfaru kaj remalfermu redaktan reĝimon.
+249	Apliko malsukcesis. La redaktosesio restas malfermita; kontrolu la redaktilan bufron antaŭ reprovo aŭ malfaro.
+250	Apliko ne estis kompletigita. Neniu aŭtomata superskribo estis provita.
+251	Aŭtomate detekti
+252	aŭtomata fido {0}
+253	{0} — aŭtomata apartigila detekto ne estas fidinda; mana elekto estas bezonata.
+254	Aŭtomata detekto
+255	Kandidataj poentaroj
+256	{0} ĉeloj / {1} vicoj (+{2} / -{3})
+257	Signo
+258	{0} signoj / {1} redaktilaj bajtoj
+259	Elektu Komon, Punktokomon aŭ Tabon en la apartigila listo supre.
+260	Eksplicite elekti ĉu la unua logika rikordo estas kaplinio
+261	Forviŝi
+262	Forviŝi la nunan serĉfiltrilon kaj nur-vidan ordigon
+263	Kodo
+264	 - {0} kolumnaj kondiĉoj ({1}), {2} ordigniveloj
+265	{0} — {1} × {2} kolumnoj — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komo (,)
+267	komo
+268	Fido
+269	Forigi ĉiujn elektitajn stabilajn datumvicojn el la pritraktata redaktosesio
+270	Forigi vicon
+271	Forigi vicojn ({0})
+272	Forigi la elektitan stabilan datumvicon el la pritraktata redaktosesio
+273	Forigi la elektitan stabilan datumvicon aŭ vicojn el la pritraktata redaktosesio
+274	Apartigilo:
+275	Diagnozoj ({0})
+276	Forĵeti ĉiujn pritraktatajn ĉelŝanĝojn, enigojn kaj forigojn
+277	Dokumento
+278	 — REDAKTA REĜIMO: {0} ĉeloj, {1} vicoj, +{2} / -{3}
+279	 - Redakta reĝimo
+280	Redakta reĝimo enhavas pritraktatajn ŝanĝojn. Uzu Apliki aŭ Malfari ĉion antaŭ ol eliri.
+281	Redakta reĝimo ne disponeblas por la nuna tabelo. Unue solvu analizajn erarojn aŭ montrajn limojn.
+282	Redaktado ne povas komenciĝi el vida projekcio kun limigita nombro de vicoj.
+283	Redaktado ne povas komenciĝi dum la analizita CSV enhavas erarojn.
+284	Redaktado ne disponeblas por la nuna tabelo.
+285	{0} — malplena redaktila bufro; neniuj CSV-rikordoj por montri.
+286	Eksplicite eniri redaktan reĝimon por ĉeloj kaj vicoj
+287	Eksplicite eniri redaktan reĝimon por ĉeloj kaj vicoj. Apliki skribas nur al la redaktila bufro.
+288	Eksplicite eniri redaktan reĝimon por ĉeloj kaj vicoj. La plena redakta modelo estas kreita nur laŭpete.
+289	{0} eraroj, {1} avertoj
+290	unua vico kiel kaplinio
+291	Unua vico estas kaplinio
+292	Kaplinio:
+293	Enigi novan vicon post la elektita vico aŭ aldoni ĉe la fino se neniu vico estas elektita
+294	{0} — ŝargante CSV-datumojn en la fono; Notepad++ restas respondema.
+295	mana elekto
+296	{0} kongruaj el {1} montrataj vicoj
+297	Mesaĝo
+298	{0} nove enigitaj vicoj estis forigitaj el la pritraktata sesio.
+299	Neniuj diagnozoj por montri.
+300	Neniu kaplinia vico
+301	neniu kaplinia vico
+302	Neniuj kongruaj vicoj.\nProvu alian serĉtekston aŭ kolumnon.
+303	neniuj analizaj diagnozoj
+304	Neniu fidinda apartigilo povis esti sekure elektita.
+305	Nenio por apliki: la redaktosesio ne havas pritraktatajn ŝanĝojn.
+306	Analizante kaj preparante limigitan vidan tabelon en la fono…
+307	Pritraktataj ĉelŝanĝoj kaj strukturaj vicŝanĝoj
+308	Pritraktata enigita vico {0}; ankoraŭ ne aplikita
+309	{0} pritraktataj vicoj
+310	Kromprogramo preta. Legante la aktivan redaktilan bufron...
+311	Preparante la plenan redaktosesion…
+312	Eco
+313	Legi kaj montri la nuntempe aktivan Notepad++-redaktilan bufron
+314	Rikordo
+315	Malfari ĉion
+316	{0} vicoj
+317	Punktokomo (;)
+318	punktokomo
+319	Graveco
+320	Montri detalajn analizajn kaj apartigilajn diagnozojn
+321	montrante {0} el {1} vicoj
+322	Momentkopio
+323	Momentkopia eraro
+324	Ordignivelo {0}: {1}, {2}. Nur la vido.
+325	 — ordigita laŭ {0} {1}
+326	Logika fonta rikordo {0}
+327	Logika fonta rikordo {0}; ŝanĝita en la pritraktata redaktosesio
+328	{0} fontaj vicoj estas markitaj por forigo kaj {1} enigitaj vicoj estis forigitaj el la pritraktata sesio.
+329	{0} fontaj vicoj estas markitaj por forigo. Apliki skribas la tutan aron; Malfari ĉion restarigas ĉiun vicon.
+330	Stato
+331	Tabo
+332	tabo
+333	Tabela eraro
+334	La redakto de la aktiva ĉelo ne povis esti konfirmita. Korektu la valoron antaŭ aldono de vico.
+335	La redakto de la aktiva ĉelo ne povis esti konfirmita. Korektu la valoron antaŭ forigo de vicoj.
+336	La redakto de la aktiva ĉelo ne povis esti konfirmita. Korektu la valoron antaŭ apliko.
+337	La nove enigita vico estis forigita el la pritraktata sesio.
+338	La vicindikila kolumno ne estas agordita.
+339	La elektita vicaro ne plu validas por ĉi tiu redaktosesio. Neniuj vicoj estis forigitaj.
+340	La elektitaj vicoj jam estis forigitaj. Neniu plia ŝanĝo estis farita.
+341	La fonta vico estas markita por forigo. Apliki skribas la forigon; Malfari ĉion restarigas la vicon.
+342	La vida tabelo ne povis esti kreita. La enhavo de la redaktilo ne estis ŝanĝita.
+343	Uzi fidindan aŭtomatan detekton aŭ eksplicite elekti apartigilon
+344	Atendante la aktivan Notepad++-dokumenton.
+345	{0} - {1} x {2:N0} kolumnoj
+346	Akcepti ŝanĝojn
+347	Poste
+348	Ĉiuj datumĉeloj
+349	Antaŭe
+350	CSV-kolumno
+351	Elektu agon kaj amplekson, poste alklaku Antaŭrigardon.
+352	Nuna kolumno
+353	Trovi:
+354	minuskloj
+355	Ago:
+356	Alia blankspaco estas montrata per eskapsekvencoj; longoj kalkulas UTF-16-unuojn. Longaj valoroj estas mallongigitaj.
+357	La antaŭrigardo ne povis esti kreita. Kontrolu amplekson kaj serĉtekston aŭ elektu malpli grandan amplekson (maksimume 250,000 ĉeloj / 16 Mi signoj).
+358	Unue antaŭrigardu. Akcepti ŝanĝojn ĝisdatigas pritraktatajn redaktojn; Apliki en la ilobreto skribas al Notepad++.\nKaplinioj estas ekskluditaj kiam Kaplinio = unua rikordo. Uskleca konverto estas sendependa de lokaj agordoj.
+359	Rikorda ID
+360	Anstataŭigi tekston (laŭvorte)
+361	Anstataŭigi per:
+362	Amplekso:
+363	Elektu CSV-datumkolumnon.
+364	Elektitaj ĉeloj / vicoj
+365	plenaj oranĝaj punktoj markas spacojn. 
+366	spacindikiloj estas kaŝitaj. 
+367	{0:N0} celaj ĉeloj; {1:N0} ŝanĝoj en {2:N0} vicoj. Montrante la unuajn 50 ŝanĝojn; 
+368	La redaktosesio ŝanĝiĝis.
+369	La antaŭrigardo ne plu validas. Kontrolu la redaktosesion kaj kreu novan antaŭrigardon.
+370	Transformi CSV-ĉelojn
+371	Transformitaj {0:N0} ĉeloj en la pritraktata redaktosesio. Uzu Apliki por ĝisdatigi Notepad++ aŭ Malfari ĉion por forĵeti pritraktatajn redaktojn.
+372	Forigi eksterajn blankspacojn
+373	MAJUSKLOJ
+374	Restarigi vidon
+375	Montri spacojn
