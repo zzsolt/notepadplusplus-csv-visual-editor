@@ -1,0 +1,378 @@
+# language: id
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Editor CSV visual untuk Notepad++
+001	Tentang CSV Visual Editor
+002	Kontak: {0}
+003	Hubungi pengembang {0}
+004	Pengembang: {0}
+005	Versi pengembangan
+006	Suka CSV Visual Editor? Dukung proyek ini.\nBeri bintang di GitHub, bagikan masukan Anda, atau hubungi pengembang untuk berkontribusi. Terima kasih!
+007	Bahasa antarmuka: {0}
+008	Aplikasi terkait tidak dapat dibuka. Kontak: {0}
+009	Proyek di GitHub
+010	Versi: {0}
+011	Versi dan build
+012	{0} diblokir karena model edit tertunda berubah. Tidak ada perubahan sebagian yang dipertahankan.
+013	{0} diblokir: persegi panjang clipboard dan pilihan memiliki ukuran berbeda.
+014	{0} diblokir: persegi panjang tujuan melampaui tabel CSV.
+015	{0} diblokir: tidak ada persegi panjang tujuan yang dapat diedit.
+016	Menyalin {0} × {1} sel CSV.
+017	Salin/Potong diblokir: sel yang dipilih berisi tab atau pemisah baris yang tidak dapat direpresentasikan secara tegas sebagai teks spreadsheet biasa.
+018	Salin memerlukan sel CSV, bukan pemilihan seluruh baris untuk dihapus.
+019	Salin memerlukan satu pilihan persegi panjang sel data CSV yang bersebelahan.
+020	Memotong {0} sel ke clipboard dan mengosongkannya dalam sesi edit tertunda. Terapkan menulis pengosongan itu ke Notepad++.
+021	Pemotongan selesai; sel yang dipilih sudah kosong. Clipboard berisi nilai aslinya.
+022	{0} hanya tersedia dalam mode Edit.
+023	{0} tidak tersedia untuk tabel saat ini.
+024	Tempel diblokir: {0} Tidak ada data yang diubah.
+025	Tempel selesai; semua nilai tujuan sudah identik.
+026	Menempelkan {0} sel yang berubah ke sesi edit tertunda. Terapkan menulisnya ke Notepad++.
+027	{0} memerlukan persegi panjang sel CSV, bukan pemilihan seluruh baris untuk dihapus.
+028	{0} memerlukan satu pilihan persegi panjang sel data CSV yang bersebelahan.
+029	Tujuan {0} tidak tersedia di luar model baris mode Edit yang stabil.
+030	Edit sel aktif tidak dapat disimpan sebelum menyalin.
+031	Edit sel aktif tidak dapat disimpan. Perbaiki nilainya sebelum {0}.
+032	Clipboard tidak berisi sel teks biasa.
+033	Clipboard Windows untuk sementara tidak tersedia. Tidak ada data yang diubah.
+034	Salin persegi panjang sel CSV yang dipilih ke clipboard Windows (Ctrl+C)
+035	Salin sel CSV yang dipilih dan kosongkan dalam sesi Edit tertunda (Ctrl+X)
+036	Tempel sel spreadsheet ke sel atau persegi panjang CSV yang dipilih (Ctrl+V)
+037	Pratinjau penggantian teks, pemangkasan spasi luar, atau perubahan huruf besar/kecil pada edit CSV tertunda
+038	Pilih sel atau baris CSV saat ini di buffer sumber Notepad++
+039	Sumber
+040	Transformasi
+041	Tentang
+042	Terapkan
+043	Menaik
+044	Batal
+045	Tutup
+046	Kolom
+047	Salin
+048	Potong
+049	Menurun
+050	Edit
+051	Keluar dari edit
+052	Cocokkan huruf besar/kecil
+053	Angka
+054	Urutan asli
+055	Tempel
+056	Pratinjau
+057	Segarkan
+058	Baris
+059	Tabel
+060	Teks
+061	Nilai
+062	Ringkasan kolom: jumlah, nilai unik, rentang numerik, dan nilai yang sering muncul dalam tampilan saat ini.
+063	Ringkasan kolom memerlukan tabel siap pakai yang hanya-baca. Keluar dari mode Edit terlebih dahulu.
+064	Filter dan Urutkan: gabungkan aturan kolom dan tingkat pengurutan teks/numerik. Hanya tampilan; CSV tidak berubah.
+065	Filter dan Urutkan: gabungkan aturan kolom dan hingga tiga tingkat pengurutan teks/numerik. Hanya tampilan.
+066	Filter dan Urutkan: {0} kondisi, {1} tingkat pengurutan. Reset Tampilan menghapus semua aturan.
+067	Pemfilteran dan pengurutan memerlukan tabel siap pakai yang hanya-baca. Keluar dari mode Edit terlebih dahulu.
+068	Diagnostik (0)
+069	0 perubahan
+070	Tambah kondisi
+071	Tambah tingkat pengurutan
+072	Terapkan tampilan
+073	Huruf besar/kecil
+074	Perbandingan teks peka huruf besar/kecil. Spasi di dalam nilai diperlakukan secara literal.
+075	Periksa aturan: {0}
+076	Kondisi
+077	{0} / 8 kondisi; {1} / 3 tingkat pengurutan. Pratinjau untuk memeriksa baris yang cocok.
+078	Berisi
+079	Tidak berisi
+080	Tidak sama dengan
+081	Kosong = nol karakter. Hanya spasi putih = urutan spasi/tab/pemisah baris yang tidak kosong.\nAngka menggunakan titik desimal (-12.5), tanpa pengelompokan atau eksponen; presisi harus tepat.
+082	Diakhiri dengan
+083	Sama dengan
+084	Nilai filter
+085	Filter
+086	Kosong
+087	Tidak kosong
+088	Bukan hanya spasi putih
+089	Hanya spasi putih
+090	Teks literal, termasuk spasi. Aturan numerik memerlukan angka desimal tepat dengan titik.
+091	Cocokkan SEMUA kondisi
+092	Cocokkan SALAH SATU kondisi
+093	Angka =
+094	Angka >
+095	Angka >=
+096	Angka <
+097	Angka <=
+098	Angka (desimal)
+099	Pratinjau: {0:N0} dari {1:N0} baris yang ditampilkan. CSV tidak berubah.
+100	Hapus kondisi
+101	Hapus tingkat pengurutan
+102	Reset aturan
+103	Aturan juga menghormati pencarian saat ini. Batal mempertahankan tampilan aktif.
+104	Pengurutan
+105	Diawali dengan
+106	Teks: urutan ordinal tanpa peka huruf besar/kecil. Angka: desimal tepat; nilai tidak valid/kosong terakhir.\nKunci yang sama mempertahankan urutan sumber. Hapus semua tingkat untuk memulihkan urutan sumber.
+107	Proyeksi dibatasi; baris yang tidak ditampilkan tidak disertakan. 
+108	Filter dan Urutkan
+109	Tingkat teratas diprioritaskan; tingkat berikutnya memecahkan nilai yang sama. Maksimum 3.
+110	Nilai (literal, termasuk spasi)
+111	Hanya tampilan — nilai CSV dan urutan sumber tetap tidak berubah. {0:N0} baris ditampilkan.\n
+112	Terapkan diblokir karena {0} tidak memiliki profil pengodean yang didukung secara eksplisit. Isi editor tidak diubah.
+113	Terapkan diblokir karena validasi pengodean ketat untuk {0} tidak melakukan konversi bolak-balik secara tepat. Isi editor tidak diubah.
+114	Terapkan diblokir karena penggantian tertunda tidak dapat direpresentasikan secara tepat dalam {0}. Tidak ada karakter pengganti yang digunakan dan isi editor tidak diubah.
+115	Terapkan belum diaktifkan untuk {0}. Isi editor tidak diubah. Penulisan host hanya diaktifkan untuk UTF-8 (65001) dan Windows-1250 (1250), setelah validasi tanpa kehilangan. Gunakan Kembalikan Semua atau konversi dokumen ke UTF-8 di Notepad++ lalu buka kembali mode Edit.
+116	Segarkan dinonaktifkan saat mode Edit aktif. Terapkan atau kembalikan semua perubahan tertunda terlebih dahulu.
+117	Halaman kode Scintilla {0}
+118	Dokumen aktif berukuran {0:N0} byte. Batas aman snapshot saat ini adalah {1:N0} byte.
+119	Dokumen Notepad++ aktif tidak dapat dibaca. Isi editor tidak diubah.
+120	Hasil Terapkan bukan status diblokir pengodean.
+121	Pembuatan tabel latar belakang selesai tanpa hasil.
+122	Perubahan CSV berhasil diterapkan, tetapi posisi caret atau pilihan sebelumnya tidak dapat dipulihkan. Perubahan dokumen lengkap masih dapat dibatalkan sebagai satu operasi.
+123	halaman kode editor saat ini
+124	Buffer editor tidak dapat diubah menjadi tabel visual. Pilih delimiter secara eksplisit atau segarkan setelah memperbaiki dokumen.
+125	Pembuatan tabel mengembalikan hasil yang tidak lengkap.
+126	&Tentang
+127	&Bersihkan pencarian
+128	&CSV
+129	&Delimiter
+130	&Edit
+131	Esc dalam pencarian
+132	&Cari dalam tabel
+133	&Header
+134	&Sel cocok berikutnya
+135	&Sel cocok sebelumnya
+136	Reset Tampilan: bersihkan pencarian, kondisi kolom, dan semua pengurutan.
+137	&Pencarian
+138	&Kolom pencarian
+139	Tampilkan spasi: titik oranye kecil berisi. Hanya tampilan; nilai CSV tidak berubah.
+140	Tampilkan &tabel
+141	&Urutkan berdasarkan
+142	&Tabel
+143	&Tampilan
+144	Nilai filter dapat berisi paling banyak 4,096 karakter.
+145	SEMUA
+146	Tanda urutan byte awal dikecualikan dari bidang pertama.
+147	SALAH SATU
+148	Tanda kutip muncul dalam bidang yang tidak diapit tanda kutip.
+149	Baris clipboard harus membentuk satu matriks sel persegi panjang.
+150	Kode diagnostik: {0}.
+151	Setiap tingkat pengurutan harus menggunakan kolom yang berbeda.
+152	Kesalahan
+153	tinggi
+154	Informasi
+155	rendah
+156	sedang
+157	Tidak ada delimiter yang didukung yang menghasilkan struktur multi-bidang yang cukup andal.
+158	tidak ada
+159	Satu baris visual memerlukan {0:N0} sel, melebihi batas total saat ini {1:N0}. Tidak ada kolom yang disembunyikan.
+160	Rekaman memiliki {0} bidang; {1} diharapkan berdasarkan jumlah yang paling umum dalam sampel.
+161	Spasi: {0}; di awal: {1}; di akhir: {2}. Panjang: {3} unit UTF-16.\nTitik oranye menandai spasi nyata. Jarak tampilan ditingkatkan agar mudah dibaca; karakter CSV tidak berubah. Jumlah di awal dan akhir tumpang tindih dalam sel yang hanya berisi spasi.
+162	Matriks sel clipboard melebihi batas aman tempel.
+163	Clipboard berisi karakter kontrol yang tidak didukung.
+164	Clipboard berisi lebih banyak kolom daripada yang dapat ditempel editor dengan aman.
+165	Clipboard berisi lebih banyak baris daripada yang dapat ditempel editor dengan aman.
+166	Teks clipboard melebihi batas aman 16 Mi unit karakter UTF-16.
+167	Bidang berkutip terakhir tidak ditutup sebelum akhir teks.
+168	Jumlah bidang berbeda dari rekaman lain.
+169	Operasi tidak dapat diselesaikan. Periksa dokumen, nilai yang dipilih, dan batas ukuran.
+170	Dokumen yang diurai berisi {0:N0} kolom, melebihi batas tabel visual saat ini {1:N0}. Tidak ada kolom yang disembunyikan.
+171	Delimiter yang disarankan memiliki keyakinan rendah. Periksa pengaturan delimiter.
+172	Dua kandidat delimiter memiliki skor serupa. Periksa pengaturan delimiter.
+173	Karakter tak terduga mengikuti tanda kutip penutup.
+174	tidak diketahui
+175	Gunakan angka desimal tepat dengan titik, seperti -12.5. Pengelompokan, eksponen, dan nilai yang dibulatkan tidak didukung.
+176	Gunakan paling banyak delapan kondisi filter non-null.
+177	Gunakan paling banyak tiga tingkat pengurutan non-null.
+178	Aturan tampilan merujuk ke kolom di luar tabel saat ini.
+179	Peringatan
+180	Ringkasan kolom
+181	Filter dan Urutkan
+182	Buka tabel visual
+183	Segarkan tabel
+184	baru:{0}
+185	baru:{0} *
+186	Pilih
+187	Pilih seluruh baris untuk dihapus
+188	Rekaman logis sumber atau baris struktural tertunda
+189	Kolom indikator baris tidak dapat diidentifikasi.
+190	Baris harus menjadi milik DataGridView.
+191	Semua kolom
+192	{0:N0} / {1:N0} sel
+193	{0:N0} sel
+194	Bersihkan pencarian
+195	Bersihkan pencarian (Esc). Pertahankan kolom pencarian dan pengurutan.
+196	Memfilter baris yang ditampilkan. Enter: sel cocok berikutnya. Shift+Enter: sebelumnya. Escape: bersihkan.
+197	Sel cocok berikutnya
+198	Sel cocok berikutnya (F3 / Enter)
+199	Tidak ada kecocokan
+200	Tidak ada baris yang cocok.\nSesuaikan pencarian atau gunakan Tampilan > Filter dan Urutkan / Reset Tampilan.
+201	Sel cocok sebelumnya
+202	Sel cocok sebelumnya (Shift+F3 / Shift+Enter)
+203	Cari semua kolom data atau pilih satu kolom.
+204	Kolom pencarian
+205	Cari baris CSV yang ditampilkan (Ctrl+F). Nilai dan teks sumber tidak berubah.
+206	Cari dalam tabel...
+207	Cari dalam tabel
+208	Hasil pencarian
+209	Mencari...
+210	Ke Sumber diblokir: dokumen Notepad++ lain sedang aktif. Kembali ke CSV yang ditampilkan atau segarkan tabel.
+211	Ke Sumber diblokir karena hasil penguraian yang dipertahankan tidak lagi cocok dengan snapshot sumbernya yang tidak berubah. Segarkan tabel terlebih dahulu.
+212	Ke Sumber diblokir: panjang pengodean ketat tidak cocok dengan panjang dokumen yang dilaporkan Scintilla.
+213	Ke Sumber diblokir: isi editor aktif berubah sejak tabel ditampilkan. Segarkan tabel terlebih dahulu.
+214	Ke Sumber diblokir: halaman kode Scintilla saat ini tidak memiliki profil posisi byte eksplisit.
+215	Ke Sumber diblokir: halaman kode editor berubah sejak tabel ditampilkan. Segarkan tabel terlebih dahulu.
+216	Ke Sumber diblokir: sel proyeksi yang dipilih tidak memiliki bidang sumber mentah.
+217	Ke Sumber diblokir: rentang karakter sumber tidak dapat dipetakan tanpa kehilangan ke byte Scintilla.
+218	Ke Sumber diblokir: rekaman logis sumber tidak tersedia dalam hasil penguraian yang dipertahankan.
+219	Ke Sumber gagal: buffer Notepad++ aktif tidak dapat dibaca. Isi dokumen tidak diubah.
+220	Ke Sumber gagal saat memindahkan pilihan Scintilla. Isi dokumen tidak diubah.
+221	Ke Sumber tidak tersedia hingga tabel visual saat ini memiliki baseline sumber yang lengkap. Segarkan tabel terlebih dahulu.
+222	Ke Sumber memerlukan baris atau sel CSV saat ini.
+223	Ke Sumber tidak selesai. Isi dokumen tidak diubah.
+224	Memilih rekaman sumber {0}, kolom {1}, di Notepad++.
+225	Memilih rekaman sumber {0} di Notepad++.
+226	Baris visual saat ini tidak menyediakan identitas rekaman sumber yang stabil.
+227	Baris sisipan tertunda ini tidak memiliki lokasi sumber hingga penerapan selesai.
+228	Tampilan saat ini: {0:N0} dari {1:N0} baris yang ditampilkan.
+229	Nilai unik dihitung berdasarkan teks persis yang peka huruf besar/kecil, termasuk nilai kosong.\nBaris berulang = baris dikurangi nilai unik. Rentang numerik menggunakan nilai desimal tepat dengan titik.
+230	Kosong
+231	Jenis
+232	Nilai paling sering (hingga 20)
+233	Tidak tersedia
+234	Minimum numerik: {0}     Maksimum: {1}\nNilai terpanjang: {2:N0} unit UTF-16. {3:N0} nilai muncul lebih dari sekali.
+235	 Proyeksi terbatas; ini BUKAN seluruh berkas.
+236	Baris: {0:N0}     Kosong: {1:N0}     Hanya spasi putih: {2:N0}\nUnik: {3:N0}     Baris berulang: {4:N0}     Numerik: {5:N0}
+237	Ringkasan kolom
+238	Spasi putih
+239	Baris baru ditambahkan ke sesi Edit tertunda. Terapkan menulisnya ke buffer editor; Kembalikan Semua membuangnya.
+240	Baris sumber tidak menyediakan indeks rekaman sumbernya.
+241	Tindakan
+242	Snapshot dokumen aktif gagal. Isi editor tidak diubah.
+243	Tambah baris
+244	Semua edit sel dan baris tertunda dikembalikan. Buffer editor Notepad++ tidak diubah.
+245	Terapkan semua edit sel dan baris ke editor aktif sebagai satu operasi yang dapat dibatalkan
+246	Terapkan diblokir: dokumen Notepad++ lain sedang aktif. Kembali ke dokumen asli atau gunakan Kembalikan Semua.
+247	Terapkan diblokir: buffer editor berubah sejak mode Edit dimulai. Kembalikan dan segarkan sebelum mengedit lagi.
+248	Terapkan diblokir: halaman kode editor berubah sejak mode Edit dimulai. Kembalikan lalu buka kembali mode Edit.
+249	Terapkan gagal. Sesi edit tetap terbuka; periksa buffer editor sebelum mencoba lagi atau mengembalikan.
+250	Terapkan tidak selesai. Tidak ada penimpaan otomatis yang dicoba.
+251	Deteksi otomatis
+252	keyakinan otomatis {0}
+253	{0} — deteksi delimiter otomatis tidak andal; pilihan manual diperlukan.
+254	Deteksi otomatis
+255	Skor kandidat
+256	{0} sel / {1} baris (+{2} / -{3})
+257	Karakter
+258	{0} karakter / {1} byte editor
+259	Pilih Koma, Titik Koma, atau Tab dari daftar Delimiter di atas.
+260	Pilih secara eksplisit apakah rekaman logis pertama adalah header
+261	Bersihkan
+262	Bersihkan filter pencarian saat ini dan pengurutan hanya-tampilan
+263	Kode
+264	 - {0} kondisi kolom ({1}), {2} tingkat pengurutan
+265	{0} — {1} × {2} kolom — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Koma (,)
+267	koma
+268	Keyakinan
+269	Hapus semua baris data stabil yang dipilih dari sesi Edit tertunda
+270	Hapus Baris
+271	Hapus Baris ({0})
+272	Hapus baris data stabil yang dipilih dari sesi Edit tertunda
+273	Hapus satu atau beberapa baris data stabil yang dipilih dari sesi Edit tertunda
+274	Delimiter:
+275	Diagnostik ({0})
+276	Buang semua perubahan sel, penyisipan, dan penghapusan tertunda
+277	Dokumen
+278	 — MODE EDIT: {0} sel, {1} baris, +{2} / -{3}
+279	 - Mode Edit
+280	Mode Edit berisi perubahan tertunda. Gunakan Terapkan atau Kembalikan Semua sebelum keluar.
+281	Mode Edit tidak tersedia untuk tabel saat ini. Atasi kesalahan pengurai atau batas tampilan terlebih dahulu.
+282	Pengeditan tidak dapat dimulai dari proyeksi visual dengan jumlah baris terbatas.
+283	Pengeditan tidak dapat dimulai saat CSV yang diurai berisi kesalahan.
+284	Pengeditan tidak tersedia untuk tabel saat ini.
+285	{0} — buffer editor kosong; tidak ada rekaman CSV untuk ditampilkan.
+286	Masuk ke mode edit sel dan baris secara eksplisit
+287	Masuk ke mode edit sel dan baris secara eksplisit. Terapkan hanya menulis ke buffer editor.
+288	Masuk ke mode edit sel dan baris secara eksplisit. Model edit lengkap hanya dibuat saat diminta.
+289	{0} kesalahan, {1} peringatan
+290	baris pertama sebagai header
+291	Baris pertama adalah header
+292	Header:
+293	Sisipkan baris baru setelah baris yang dipilih, atau tambahkan di akhir jika tidak ada baris yang dipilih
+294	{0} — memuat data CSV di latar belakang; Notepad++ tetap responsif.
+295	pilihan manual
+296	{0} cocok dari {1} baris yang ditampilkan
+297	Pesan
+298	{0} baris yang baru disisipkan dihapus dari sesi tertunda.
+299	Tidak ada diagnostik untuk ditampilkan.
+300	Tanpa baris header
+301	tanpa baris header
+302	Tidak ada baris yang cocok.\nCoba teks pencarian atau kolom lain.
+303	tidak ada diagnostik pengurai
+304	Tidak ada delimiter andal yang dapat dipilih dengan aman.
+305	Tidak ada yang perlu diterapkan: sesi edit tidak memiliki perubahan tertunda.
+306	Mengurai dan menyiapkan tabel visual terbatas di latar belakang…
+307	Perubahan sel dan struktur baris tertunda
+308	Baris sisipan tertunda {0}; belum diterapkan
+309	{0} baris tertunda
+310	Plugin siap. Membaca buffer editor aktif...
+311	Menyiapkan sesi edit lengkap…
+312	Properti
+313	Baca dan tampilkan buffer editor Notepad++ yang sedang aktif
+314	Rekaman
+315	Kembalikan Semua
+316	{0} baris
+317	Titik Koma (;)
+318	titik koma
+319	Tingkat keparahan
+320	Tampilkan diagnostik pengurai dan delimiter terperinci
+321	menampilkan {0} dari {1} baris
+322	Snapshot
+323	Kesalahan snapshot
+324	Tingkat pengurutan {0}: {1}, {2}. Hanya tampilan.
+325	 — diurutkan berdasarkan {0} {1}
+326	Rekaman logis sumber {0}
+327	Rekaman logis sumber {0}; diubah dalam sesi Edit tertunda
+328	{0} baris sumber ditandai untuk dihapus dan {1} baris sisipan dihapus dari sesi tertunda.
+329	{0} baris sumber ditandai untuk dihapus. Terapkan menulis seluruh batch; Kembalikan Semua memulihkan setiap baris.
+330	Status
+331	Tab
+332	tab
+333	Kesalahan tabel
+334	Edit sel aktif tidak dapat disimpan. Perbaiki nilainya sebelum menambah baris.
+335	Edit sel aktif tidak dapat disimpan. Perbaiki nilainya sebelum menghapus baris.
+336	Edit sel aktif tidak dapat disimpan. Perbaiki nilainya sebelum menerapkan.
+337	Baris yang baru disisipkan dihapus dari sesi tertunda.
+338	Kolom indikator baris tidak dikonfigurasi.
+339	Set baris yang dipilih tidak lagi valid untuk sesi edit ini. Tidak ada baris yang dihapus.
+340	Baris yang dipilih sudah dihapus. Tidak ada perubahan tambahan.
+341	Baris sumber ditandai untuk dihapus. Terapkan menulis penghapusan; Kembalikan Semua memulihkan baris.
+342	Tabel visual tidak dapat dibuat. Isi editor tidak diubah.
+343	Gunakan deteksi otomatis yang andal atau pilih delimiter secara eksplisit
+344	Menunggu dokumen Notepad++ aktif.
+345	{0} - {1} x {2:N0} kolom
+346	Terima perubahan
+347	Sesudah
+348	Semua sel data
+349	Sebelum
+350	Kolom CSV
+351	Pilih operasi dan cakupan, lalu klik Pratinjau.
+352	Kolom saat ini
+353	Cari:
+354	huruf kecil
+355	Operasi:
+356	Spasi putih lainnya ditampilkan sebagai urutan escape; panjang dihitung dalam unit UTF-16. Nilai panjang dipendekkan.
+357	Pratinjau tidak dapat dibuat. Periksa cakupan dan teks pencarian, atau pilih cakupan lebih kecil (maksimum 250,000 sel / 16 Mi karakter).
+358	Pratinjau terlebih dahulu. Terima perubahan memperbarui edit tertunda; Terapkan pada bilah alat menulis ke Notepad++.\nHeader dikecualikan saat Header = Rekaman pertama. Konversi huruf besar/kecil tidak bergantung budaya.
+359	ID rekaman
+360	Ganti teks (literal)
+361	Ganti dengan:
+362	Cakupan:
+363	Pilih kolom data CSV.
+364	Sel / baris yang dipilih
+365	titik oranye berisi menandai spasi. 
+366	indikator spasi disembunyikan. 
+367	{0:N0} sel tujuan; {1:N0} perubahan dalam {2:N0} baris. Menampilkan 50 perubahan pertama; 
+368	Sesi edit berubah.
+369	Pratinjau tidak lagi valid. Periksa sesi edit dan buat pratinjau baru.
+370	Transformasi sel CSV
+371	Mentransformasi {0:N0} sel dalam sesi Edit tertunda. Gunakan Terapkan untuk memperbarui Notepad++ atau Kembalikan Semua untuk membuang edit tertunda.
+372	Pangkas spasi putih luar
+373	HURUF BESAR
+374	Reset Tampilan
+375	Tampilkan spasi
