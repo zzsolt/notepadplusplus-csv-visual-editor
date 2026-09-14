@@ -1,0 +1,378 @@
+# language: vi
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Trình chỉnh sửa CSV trực quan cho Notepad++
+001	Giới thiệu CSV Visual Editor
+002	Liên hệ: {0}
+003	Liên hệ nhà phát triển {0}
+004	Nhà phát triển: {0}
+005	Phiên bản phát triển
+006	Bạn thích CSV Visual Editor? Hãy ủng hộ dự án.\nHãy gắn sao trên GitHub, chia sẻ phản hồi hoặc liên hệ nhà phát triển để đóng góp. Cảm ơn!
+007	Ngôn ngữ giao diện: {0}
+008	Không thể mở ứng dụng liên kết. Liên hệ: {0}
+009	Dự án trên GitHub
+010	Phiên bản: {0}
+011	Phiên bản và bản dựng
+012	{0} bị chặn vì mô hình chỉnh sửa đang chờ đã thay đổi. Không giữ lại thay đổi một phần nào.
+013	{0} bị chặn: các hình chữ nhật trên bảng tạm và vùng chọn có kích thước khác nhau.
+014	{0} bị chặn: hình chữ nhật đích vượt ra ngoài bảng CSV.
+015	{0} bị chặn: không có hình chữ nhật đích có thể chỉnh sửa.
+016	Đã sao chép {0} × {1} ô CSV.
+017	Sao chép/Cắt bị chặn: một ô được chọn chứa tab hoặc xuống dòng không thể biểu diễn rõ ràng dưới dạng văn bản bảng tính thuần túy.
+018	Sao chép yêu cầu các ô CSV, không phải vùng chọn toàn bộ hàng để xóa.
+019	Sao chép yêu cầu một vùng chọn hình chữ nhật liền nhau của các ô dữ liệu CSV.
+020	Đã cắt {0} ô vào bảng tạm và làm trống chúng trong phiên chỉnh sửa đang chờ. Áp dụng sẽ ghi việc làm trống vào Notepad++.
+021	Cắt hoàn tất; các ô được chọn đã trống sẵn. Bảng tạm chứa các giá trị ban đầu của chúng.
+022	{0} chỉ khả dụng trong chế độ Chỉnh sửa.
+023	{0} không khả dụng cho bảng hiện tại.
+024	Dán bị chặn: {0} Không có dữ liệu nào bị thay đổi.
+025	Dán hoàn tất; tất cả giá trị đích đã giống nhau.
+026	Đã dán {0} ô thay đổi vào phiên chỉnh sửa đang chờ. Áp dụng sẽ ghi chúng vào Notepad++.
+027	{0} yêu cầu một hình chữ nhật các ô CSV, không phải vùng chọn toàn bộ hàng để xóa.
+028	{0} yêu cầu một vùng chọn hình chữ nhật liền nhau của các ô dữ liệu CSV.
+029	Các đích của {0} không khả dụng ngoài mô hình hàng ổn định của chế độ Chỉnh sửa.
+030	Không thể xác nhận chỉnh sửa ô đang hoạt động trước khi sao chép.
+031	Không thể xác nhận chỉnh sửa ô đang hoạt động. Hãy sửa giá trị trước khi {0}.
+032	Bảng tạm không chứa các ô dưới dạng văn bản thuần túy.
+033	Bảng tạm Windows tạm thời không khả dụng. Không có dữ liệu nào bị thay đổi.
+034	Sao chép hình chữ nhật các ô CSV được chọn vào bảng tạm Windows (Ctrl+C)
+035	Sao chép các ô CSV được chọn và làm trống chúng trong phiên Chỉnh sửa đang chờ (Ctrl+X)
+036	Dán các ô bảng tính vào ô hoặc hình chữ nhật CSV đã chọn (Ctrl+V)
+037	Xem trước việc thay thế văn bản, cắt khoảng trắng bên ngoài hoặc đổi chữ hoa/thường trong các chỉnh sửa CSV đang chờ
+038	Chọn ô hoặc hàng CSV hiện tại trong bộ đệm nguồn Notepad++
+039	Nguồn
+040	Chuyển đổi
+041	Giới thiệu
+042	Áp dụng
+043	Tăng dần
+044	Hủy
+045	Đóng
+046	Cột
+047	Sao chép
+048	Cắt
+049	Giảm dần
+050	Chỉnh sửa
+051	Thoát chỉnh sửa
+052	Phân biệt hoa/thường
+053	Số
+054	Thứ tự ban đầu
+055	Dán
+056	Xem trước
+057	Làm mới
+058	Hàng
+059	Bảng
+060	Văn bản
+061	Giá trị
+062	Tóm tắt cột: số lượng, giá trị riêng biệt, phạm vi số và các giá trị thường gặp trong chế độ xem hiện tại.
+063	Tóm tắt cột yêu cầu một bảng chỉ đọc đã sẵn sàng. Hãy thoát chế độ Chỉnh sửa trước.
+064	Lọc và Sắp xếp: kết hợp quy tắc cột và các mức sắp xếp văn bản/số. Chỉ thay đổi chế độ xem; CSV không đổi.
+065	Lọc và Sắp xếp: kết hợp quy tắc cột và tối đa ba mức sắp xếp văn bản/số. Chỉ thay đổi chế độ xem.
+066	Lọc và Sắp xếp: {0} điều kiện, {1} mức sắp xếp. Đặt lại Chế độ xem sẽ xóa mọi quy tắc.
+067	Lọc và sắp xếp yêu cầu một bảng chỉ đọc đã sẵn sàng. Hãy thoát chế độ Chỉnh sửa trước.
+068	Chẩn đoán (0)
+069	0 thay đổi
+070	Thêm điều kiện
+071	Thêm mức sắp xếp
+072	Áp dụng chế độ xem
+073	Chữ hoa/thường
+074	So sánh văn bản có phân biệt hoa/thường. Khoảng trắng bên trong giá trị được xử lý theo nghĩa đen.
+075	Kiểm tra quy tắc: {0}
+076	Điều kiện
+077	{0} / 8 điều kiện; {1} / 3 mức sắp xếp. Hãy xem trước để kiểm tra các hàng phù hợp.
+078	Chứa
+079	Không chứa
+080	Không bằng
+081	Trống = không có ký tự. Chỉ khoảng trắng = chuỗi không rỗng gồm dấu cách/tab/xuống dòng.\nSố dùng dấu chấm thập phân (-12.5), không nhóm hoặc số mũ; độ chính xác phải tuyệt đối.
+082	Kết thúc bằng
+083	Bằng
+084	Giá trị lọc
+085	Bộ lọc
+086	Trống
+087	Không trống
+088	Không chỉ là khoảng trắng
+089	Chỉ là khoảng trắng
+090	Văn bản theo nghĩa đen, bao gồm dấu cách. Quy tắc số yêu cầu số thập phân chính xác với dấu chấm.
+091	Khớp TẤT CẢ điều kiện
+092	Khớp BẤT KỲ điều kiện nào
+093	Số =
+094	Số >
+095	Số >=
+096	Số <
+097	Số <=
+098	Số (thập phân)
+099	Xem trước: {0:N0} trên {1:N0} hàng hiển thị. CSV không đổi.
+100	Xóa điều kiện
+101	Xóa mức sắp xếp
+102	Đặt lại quy tắc
+103	Quy tắc cũng tôn trọng tìm kiếm hiện tại. Hủy giữ nguyên chế độ xem đang hoạt động.
+104	Sắp xếp
+105	Bắt đầu bằng
+106	Văn bản: thứ tự theo mã ký tự không phân biệt hoa/thường. Số: số thập phân chính xác; giá trị không hợp lệ/trống ở cuối.\nKhóa bằng nhau giữ thứ tự nguồn. Xóa mọi mức để khôi phục thứ tự nguồn.
+107	Phép chiếu bị giới hạn; các hàng không hiển thị không được bao gồm. 
+108	Lọc và Sắp xếp
+109	Mức trên cùng được ưu tiên; các mức sau phân xử giá trị bằng nhau. Tối đa 3.
+110	Giá trị (theo nghĩa đen, bao gồm dấu cách)
+111	Chỉ chế độ xem — giá trị CSV và thứ tự nguồn không thay đổi. Hiển thị {0:N0} hàng.\n
+112	Áp dụng bị chặn vì {0} không có hồ sơ mã hóa được hỗ trợ rõ ràng. Nội dung trình chỉnh sửa không thay đổi.
+113	Áp dụng bị chặn vì kiểm tra mã hóa nghiêm ngặt cho {0} không chuyển đổi khứ hồi chính xác. Nội dung trình chỉnh sửa không thay đổi.
+114	Áp dụng bị chặn vì phần thay thế đang chờ không thể được biểu diễn chính xác trong {0}. Không dùng ký tự thay thế và nội dung trình chỉnh sửa không thay đổi.
+115	Áp dụng chưa được bật cho {0}. Nội dung trình chỉnh sửa không thay đổi. Ghi vào ứng dụng chủ chỉ được bật cho UTF-8 (65001) và Windows-1250 (1250), sau khi xác minh không mất dữ liệu. Dùng Hoàn nguyên Tất cả hoặc chuyển tài liệu sang UTF-8 trong Notepad++ rồi mở lại chế độ Chỉnh sửa.
+116	Làm mới bị tắt khi chế độ Chỉnh sửa đang hoạt động. Hãy Áp dụng hoặc hoàn nguyên tất cả thay đổi đang chờ trước.
+117	Trang mã Scintilla {0}
+118	Tài liệu đang hoạt động có {0:N0} byte. Giới hạn ảnh chụp an toàn hiện tại là {1:N0} byte.
+119	Không thể đọc tài liệu Notepad++ đang hoạt động. Nội dung trình chỉnh sửa không thay đổi.
+120	Kết quả Áp dụng không phải trạng thái bị chặn do mã hóa.
+121	Tạo bảng nền đã hoàn tất mà không có kết quả.
+122	Các thay đổi CSV đã được áp dụng thành công, nhưng không thể khôi phục vị trí con trỏ hoặc vùng chọn trước đó. Toàn bộ thay đổi tài liệu vẫn có thể hoàn tác như một thao tác duy nhất.
+123	trang mã trình chỉnh sửa hiện tại
+124	Không thể chuyển bộ đệm trình chỉnh sửa thành bảng trực quan. Hãy chọn rõ dấu phân cách hoặc làm mới sau khi sửa tài liệu.
+125	Tạo bảng trả về kết quả không đầy đủ.
+126	&Giới thiệu
+127	&Xóa tìm kiếm
+128	&CSV
+129	&Dấu phân cách
+130	&Chỉnh sửa
+131	Esc trong tìm kiếm
+132	&Tìm trong bảng
+133	&Tiêu đề
+134	&Ô khớp tiếp theo
+135	&Ô khớp trước đó
+136	Đặt lại Chế độ xem: xóa tìm kiếm, điều kiện cột và mọi sắp xếp.
+137	&Tìm kiếm
+138	&Cột tìm kiếm
+139	Hiển thị dấu cách: chấm cam nhỏ đặc. Chỉ hiển thị; giá trị CSV không đổi.
+140	Hiển thị &bảng
+141	&Sắp xếp theo
+142	&Bảng
+143	&Chế độ xem
+144	Giá trị lọc có thể chứa tối đa 4,096 ký tự.
+145	TẤT CẢ
+146	Dấu thứ tự byte ở đầu đã bị loại khỏi trường đầu tiên.
+147	BẤT KỲ
+148	Dấu ngoặc kép xuất hiện trong trường không được bao quanh bởi dấu ngoặc kép.
+149	Các hàng bảng tạm phải tạo thành một ma trận ô hình chữ nhật duy nhất.
+150	Mã chẩn đoán: {0}.
+151	Mỗi mức sắp xếp phải dùng một cột khác nhau.
+152	Lỗi
+153	cao
+154	Thông tin
+155	thấp
+156	trung bình
+157	Không có dấu phân cách được hỗ trợ nào tạo cấu trúc nhiều trường đủ tin cậy.
+158	không có
+159	Một hàng trực quan sẽ cần {0:N0} ô, vượt quá giới hạn tổng hiện tại {1:N0}. Không có cột nào bị ẩn.
+160	Bản ghi có {0} trường; dự kiến {1} dựa trên số lượng phổ biến nhất trong mẫu.
+161	Dấu cách: {0}; đầu: {1}; cuối: {2}. Độ dài: {3} đơn vị UTF-16.\nChấm cam đánh dấu dấu cách thật. Khoảng cách hiển thị được tăng để dễ đọc; ký tự CSV không thay đổi. Số lượng đầu và cuối chồng lấp trong ô chỉ có dấu cách.
+162	Ma trận ô bảng tạm vượt quá giới hạn dán an toàn.
+163	Bảng tạm chứa ký tự điều khiển không được hỗ trợ.
+164	Bảng tạm có nhiều cột hơn mức trình chỉnh sửa có thể dán an toàn.
+165	Bảng tạm có nhiều hàng hơn mức trình chỉnh sửa có thể dán an toàn.
+166	Văn bản bảng tạm vượt quá giới hạn an toàn 16 Mi đơn vị ký tự UTF-16.
+167	Trường có dấu ngoặc kép cuối cùng không được đóng trước cuối văn bản.
+168	Số trường khác với các bản ghi khác.
+169	Không thể hoàn tất thao tác. Kiểm tra tài liệu, giá trị được chọn và giới hạn kích thước.
+170	Tài liệu đã phân tích chứa {0:N0} cột, vượt quá giới hạn bảng trực quan hiện tại {1:N0}. Không có cột nào bị ẩn.
+171	Dấu phân cách đề xuất có độ tin cậy thấp. Hãy kiểm tra cài đặt dấu phân cách.
+172	Hai ứng viên dấu phân cách có điểm tương tự. Hãy kiểm tra cài đặt dấu phân cách.
+173	Có ký tự không mong đợi sau dấu ngoặc kép đóng.
+174	không rõ
+175	Dùng số thập phân chính xác với dấu chấm, chẳng hạn -12.5. Nhóm, số mũ và giá trị làm tròn không được hỗ trợ.
+176	Dùng tối đa tám điều kiện lọc khác null.
+177	Dùng tối đa ba mức sắp xếp khác null.
+178	Quy tắc chế độ xem tham chiếu cột ngoài bảng hiện tại.
+179	Cảnh báo
+180	Tóm tắt cột
+181	Lọc và Sắp xếp
+182	Mở bảng trực quan
+183	Làm mới bảng
+184	mới:{0}
+185	mới:{0} *
+186	Chọn
+187	Chọn toàn bộ hàng để xóa
+188	Bản ghi logic nguồn hoặc hàng cấu trúc đang chờ
+189	Không xác định được cột chỉ báo hàng.
+190	Hàng phải thuộc một DataGridView.
+191	Tất cả cột
+192	{0:N0} / {1:N0} ô
+193	{0:N0} ô
+194	Xóa tìm kiếm
+195	Xóa tìm kiếm (Esc). Giữ cột tìm kiếm và sắp xếp.
+196	Lọc các hàng hiển thị. Enter: ô khớp tiếp theo. Shift+Enter: trước đó. Escape: xóa.
+197	Ô khớp tiếp theo
+198	Ô khớp tiếp theo (F3 / Enter)
+199	Không có kết quả
+200	Không có hàng khớp.\nĐiều chỉnh tìm kiếm hoặc dùng Chế độ xem > Lọc và Sắp xếp / Đặt lại Chế độ xem.
+201	Ô khớp trước đó
+202	Ô khớp trước đó (Shift+F3 / Shift+Enter)
+203	Tìm tất cả cột dữ liệu hoặc chọn một cột.
+204	Cột tìm kiếm
+205	Tìm các hàng CSV hiển thị (Ctrl+F). Giá trị và văn bản nguồn không thay đổi.
+206	Tìm trong bảng...
+207	Tìm trong bảng
+208	Kết quả tìm kiếm
+209	Đang tìm...
+210	Đi tới Nguồn bị chặn: một tài liệu Notepad++ khác đang hoạt động. Quay lại CSV đang hiển thị hoặc làm mới bảng.
+211	Đi tới Nguồn bị chặn vì kết quả phân tích được giữ lại không còn khớp ảnh chụp nguồn bất biến của nó. Hãy làm mới bảng trước.
+212	Đi tới Nguồn bị chặn: độ dài mã hóa nghiêm ngặt không khớp độ dài tài liệu do Scintilla báo cáo.
+213	Đi tới Nguồn bị chặn: nội dung trình chỉnh sửa đang hoạt động đã thay đổi từ khi bảng được hiển thị. Hãy làm mới bảng trước.
+214	Đi tới Nguồn bị chặn: trang mã Scintilla hiện tại thiếu hồ sơ vị trí byte rõ ràng.
+215	Đi tới Nguồn bị chặn: trang mã trình chỉnh sửa đã thay đổi từ khi bảng được hiển thị. Hãy làm mới bảng trước.
+216	Đi tới Nguồn bị chặn: ô chiếu được chọn không có trường nguồn thô.
+217	Đi tới Nguồn bị chặn: phạm vi ký tự nguồn không thể ánh xạ không mất dữ liệu sang byte Scintilla.
+218	Đi tới Nguồn bị chặn: bản ghi logic nguồn không có trong kết quả phân tích được giữ lại.
+219	Đi tới Nguồn thất bại: không thể đọc bộ đệm Notepad++ đang hoạt động. Nội dung tài liệu không thay đổi.
+220	Đi tới Nguồn thất bại khi di chuyển vùng chọn Scintilla. Nội dung tài liệu không thay đổi.
+221	Đi tới Nguồn không khả dụng cho đến khi bảng trực quan hiện tại có đường cơ sở nguồn đầy đủ. Hãy làm mới bảng trước.
+222	Đi tới Nguồn cần hàng hoặc ô CSV hiện tại.
+223	Đi tới Nguồn không hoàn tất. Nội dung tài liệu không thay đổi.
+224	Đã chọn bản ghi nguồn {0}, cột {1}, trong Notepad++.
+225	Đã chọn bản ghi nguồn {0} trong Notepad++.
+226	Hàng trực quan hiện tại không cung cấp danh tính bản ghi nguồn ổn định.
+227	Hàng chèn đang chờ này không có vị trí nguồn cho đến khi áp dụng hoàn tất.
+228	Chế độ xem hiện tại: {0:N0} trên {1:N0} hàng hiển thị.
+229	Giá trị riêng biệt được tính theo văn bản chính xác có phân biệt hoa/thường, bao gồm cả giá trị trống.\nHàng lặp = số hàng trừ số giá trị riêng biệt. Phạm vi số dùng giá trị thập phân chính xác với dấu chấm.
+230	Trống
+231	Loại
+232	Giá trị thường gặp nhất (tối đa 20)
+233	Không khả dụng
+234	Tối thiểu số: {0}     Tối đa: {1}\nGiá trị dài nhất: {2:N0} đơn vị UTF-16. {3:N0} giá trị xuất hiện nhiều hơn một lần.
+235	 Phép chiếu bị giới hạn; đây KHÔNG phải toàn bộ tệp.
+236	Hàng: {0:N0}     Trống: {1:N0}     Chỉ khoảng trắng: {2:N0}\nRiêng biệt: {3:N0}     Hàng lặp: {4:N0}     Số: {5:N0}
+237	Tóm tắt cột
+238	Khoảng trắng
+239	Một hàng mới được thêm vào phiên Chỉnh sửa đang chờ. Áp dụng ghi nó vào bộ đệm trình chỉnh sửa; Hoàn nguyên Tất cả loại bỏ nó.
+240	Một hàng nguồn không cung cấp chỉ mục bản ghi nguồn của nó.
+241	Hành động
+242	Ảnh chụp tài liệu đang hoạt động thất bại. Nội dung trình chỉnh sửa không thay đổi.
+243	Thêm hàng
+244	Tất cả chỉnh sửa ô và hàng đang chờ đã được hoàn nguyên. Bộ đệm trình chỉnh sửa Notepad++ không thay đổi.
+245	Áp dụng tất cả chỉnh sửa ô và hàng vào trình chỉnh sửa đang hoạt động dưới dạng một thao tác có thể hoàn tác
+246	Áp dụng bị chặn: một tài liệu Notepad++ khác đang hoạt động. Quay lại tài liệu gốc hoặc dùng Hoàn nguyên Tất cả.
+247	Áp dụng bị chặn: bộ đệm trình chỉnh sửa đã thay đổi từ khi bắt đầu chế độ Chỉnh sửa. Hoàn nguyên và làm mới trước khi chỉnh sửa lại.
+248	Áp dụng bị chặn: trang mã trình chỉnh sửa đã thay đổi từ khi bắt đầu chế độ Chỉnh sửa. Hoàn nguyên rồi mở lại chế độ Chỉnh sửa.
+249	Áp dụng thất bại. Phiên chỉnh sửa vẫn mở; kiểm tra bộ đệm trình chỉnh sửa trước khi thử lại hoặc hoàn nguyên.
+250	Áp dụng không hoàn tất. Không thử ghi đè tự động.
+251	Tự động phát hiện
+252	độ tin cậy tự động {0}
+253	{0} — tự động phát hiện dấu phân cách không đáng tin cậy; cần chọn thủ công.
+254	Tự động phát hiện
+255	Điểm ứng viên
+256	{0} ô / {1} hàng (+{2} / -{3})
+257	Ký tự
+258	{0} ký tự / {1} byte trình chỉnh sửa
+259	Chọn Dấu phẩy, Dấu chấm phẩy hoặc Tab từ danh sách Dấu phân cách ở trên.
+260	Chọn rõ bản ghi logic đầu tiên có phải là tiêu đề hay không
+261	Xóa
+262	Xóa bộ lọc tìm kiếm hiện tại và sắp xếp chỉ chế độ xem
+263	Mã
+264	 - {0} điều kiện cột ({1}), {2} mức sắp xếp
+265	{0} — {1} × {2} cột — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Dấu phẩy (,)
+267	dấu phẩy
+268	Độ tin cậy
+269	Xóa tất cả hàng dữ liệu ổn định đã chọn khỏi phiên Chỉnh sửa đang chờ
+270	Xóa Hàng
+271	Xóa Hàng ({0})
+272	Xóa hàng dữ liệu ổn định đã chọn khỏi phiên Chỉnh sửa đang chờ
+273	Xóa một hoặc nhiều hàng dữ liệu ổn định đã chọn khỏi phiên Chỉnh sửa đang chờ
+274	Dấu phân cách:
+275	Chẩn đoán ({0})
+276	Loại bỏ tất cả thay đổi ô, chèn và xóa đang chờ
+277	Tài liệu
+278	 — CHẾ ĐỘ CHỈNH SỬA: {0} ô, {1} hàng, +{2} / -{3}
+279	 - Chế độ Chỉnh sửa
+280	Chế độ Chỉnh sửa có thay đổi đang chờ. Dùng Áp dụng hoặc Hoàn nguyên Tất cả trước khi rời khỏi.
+281	Chế độ Chỉnh sửa không khả dụng cho bảng hiện tại. Hãy giải quyết lỗi phân tích hoặc giới hạn hiển thị trước.
+282	Không thể bắt đầu chỉnh sửa từ phép chiếu trực quan bị giới hạn số hàng.
+283	Không thể bắt đầu chỉnh sửa khi CSV đã phân tích có lỗi.
+284	Chỉnh sửa không khả dụng cho bảng hiện tại.
+285	{0} — bộ đệm trình chỉnh sửa trống; không có bản ghi CSV để hiển thị.
+286	Vào chế độ chỉnh sửa ô và hàng rõ ràng
+287	Vào chế độ chỉnh sửa ô và hàng rõ ràng. Áp dụng chỉ ghi vào bộ đệm trình chỉnh sửa.
+288	Vào chế độ chỉnh sửa ô và hàng rõ ràng. Mô hình chỉnh sửa đầy đủ chỉ được tạo khi yêu cầu.
+289	{0} lỗi, {1} cảnh báo
+290	hàng đầu tiên là tiêu đề
+291	Hàng đầu tiên là tiêu đề
+292	Tiêu đề:
+293	Chèn hàng mới sau hàng được chọn, hoặc thêm ở cuối nếu không có hàng nào được chọn
+294	{0} — đang tải dữ liệu CSV trong nền; Notepad++ vẫn phản hồi.
+295	chọn thủ công
+296	{0} khớp trên {1} hàng hiển thị
+297	Thông báo
+298	Đã xóa {0} hàng mới chèn khỏi phiên đang chờ.
+299	Không có chẩn đoán để hiển thị.
+300	Không có hàng tiêu đề
+301	không có hàng tiêu đề
+302	Không có hàng khớp.\nHãy thử văn bản tìm kiếm hoặc cột khác.
+303	không có chẩn đoán phân tích
+304	Không thể chọn an toàn một dấu phân cách đáng tin cậy.
+305	Không có gì để áp dụng: phiên chỉnh sửa không có thay đổi đang chờ.
+306	Đang phân tích và chuẩn bị bảng trực quan bị giới hạn trong nền…
+307	Thay đổi ô và cấu trúc hàng đang chờ
+308	Hàng chèn đang chờ {0}; chưa áp dụng
+309	{0} hàng đang chờ
+310	Plugin đã sẵn sàng. Đang đọc bộ đệm trình chỉnh sửa đang hoạt động...
+311	Đang chuẩn bị phiên chỉnh sửa đầy đủ…
+312	Thuộc tính
+313	Đọc và hiển thị bộ đệm trình chỉnh sửa Notepad++ hiện đang hoạt động
+314	Bản ghi
+315	Hoàn nguyên Tất cả
+316	{0} hàng
+317	Dấu chấm phẩy (;)
+318	dấu chấm phẩy
+319	Mức độ nghiêm trọng
+320	Hiển thị chẩn đoán phân tích và dấu phân cách chi tiết
+321	hiển thị {0} trên {1} hàng
+322	Ảnh chụp
+323	Lỗi ảnh chụp
+324	Mức sắp xếp {0}: {1}, {2}. Chỉ chế độ xem.
+325	 — sắp xếp theo {0} {1}
+326	Bản ghi logic nguồn {0}
+327	Bản ghi logic nguồn {0}; đã thay đổi trong phiên Chỉnh sửa đang chờ
+328	{0} hàng nguồn được đánh dấu để xóa và {1} hàng chèn được loại khỏi phiên đang chờ.
+329	{0} hàng nguồn được đánh dấu để xóa. Áp dụng ghi toàn bộ lô; Hoàn nguyên Tất cả khôi phục từng hàng.
+330	Trạng thái
+331	Tab
+332	tab
+333	Lỗi bảng
+334	Không thể xác nhận chỉnh sửa ô đang hoạt động. Sửa giá trị trước khi thêm hàng.
+335	Không thể xác nhận chỉnh sửa ô đang hoạt động. Sửa giá trị trước khi xóa hàng.
+336	Không thể xác nhận chỉnh sửa ô đang hoạt động. Sửa giá trị trước khi áp dụng.
+337	Hàng mới chèn đã bị loại khỏi phiên đang chờ.
+338	Cột chỉ báo hàng chưa được cấu hình.
+339	Tập hàng được chọn không còn hợp lệ cho phiên chỉnh sửa này. Không có hàng nào bị xóa.
+340	Các hàng được chọn đã bị xóa trước đó. Không có thay đổi thêm.
+341	Hàng nguồn được đánh dấu để xóa. Áp dụng ghi thao tác xóa; Hoàn nguyên Tất cả khôi phục hàng.
+342	Không thể tạo bảng trực quan. Nội dung trình chỉnh sửa không thay đổi.
+343	Dùng tự động phát hiện đáng tin cậy hoặc chọn rõ dấu phân cách
+344	Đang chờ tài liệu Notepad++ hoạt động.
+345	{0} - {1} x {2:N0} cột
+346	Chấp nhận thay đổi
+347	Sau
+348	Tất cả ô dữ liệu
+349	Trước
+350	Cột CSV
+351	Chọn thao tác và phạm vi, rồi nhấp Xem trước.
+352	Cột hiện tại
+353	Tìm:
+354	chữ thường
+355	Thao tác:
+356	Khoảng trắng khác được hiển thị dưới dạng chuỗi escape; độ dài tính theo đơn vị UTF-16. Giá trị dài được rút gọn.
+357	Không thể tạo xem trước. Kiểm tra phạm vi và văn bản tìm, hoặc chọn phạm vi nhỏ hơn (tối đa 250,000 ô / 16 Mi ký tự).
+358	Hãy xem trước trước. Chấp nhận thay đổi cập nhật các chỉnh sửa đang chờ; Áp dụng trên thanh công cụ ghi vào Notepad++.\nTiêu đề bị loại khi Tiêu đề = Bản ghi đầu tiên. Chuyển đổi hoa/thường không phụ thuộc vùng văn hóa.
+359	ID bản ghi
+360	Thay thế văn bản (theo nghĩa đen)
+361	Thay bằng:
+362	Phạm vi:
+363	Chọn một cột dữ liệu CSV.
+364	Ô / hàng đã chọn
+365	chấm cam đặc đánh dấu dấu cách. 
+366	chỉ báo dấu cách bị ẩn. 
+367	{0:N0} ô đích; {1:N0} thay đổi trong {2:N0} hàng. Hiển thị 50 thay đổi đầu tiên; 
+368	Phiên chỉnh sửa đã thay đổi.
+369	Xem trước không còn hợp lệ. Kiểm tra phiên chỉnh sửa và tạo xem trước mới.
+370	Chuyển đổi ô CSV
+371	Đã chuyển đổi {0:N0} ô trong phiên Chỉnh sửa đang chờ. Dùng Áp dụng để cập nhật Notepad++ hoặc Hoàn nguyên Tất cả để loại bỏ chỉnh sửa đang chờ.
+372	Cắt khoảng trắng bên ngoài
+373	CHỮ HOA
+374	Đặt lại Chế độ xem
+375	Hiển thị dấu cách
