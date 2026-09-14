@@ -1,0 +1,378 @@
+# language: gl
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Un editor CSV visual para Notepad++
+001	Acerca de CSV Visual Editor
+002	Contacto: {0}
+003	Contactar co desenvolvedor {0}
+004	Desenvolvedor: {0}
+005	Versión de desenvolvemento
+006	Gústache CSV Visual Editor? Apoia o proxecto.\nDálle unha estrela en GitHub, comparte os teus comentarios ou contacta co desenvolvedor para contribuír. Grazas!
+007	Idioma da interface: {0}
+008	Non se puido abrir ningunha aplicación asociada. Contacto: {0}
+009	Proxecto en GitHub
+010	Versión: {0}
+011	Versión e compilación
+012	Bloqueouse {0} porque cambiou o modelo de edicións pendentes. Non se conservou ningún cambio parcial.
+013	Bloqueouse {0}: os rectángulos do portapapeis e da selección teñen dimensións diferentes.
+014	Bloqueouse {0}: o rectángulo de destino sae fóra da táboa CSV.
+015	Bloqueouse {0}: non hai ningún rectángulo de destino editable.
+016	Copiáronse {0} × {1} celas CSV.
+017	Bloqueouse Copiar/Cortar: unha cela seleccionada contén unha tabulación ou un salto de liña que non se pode representar sen ambigüidade como texto simple de folla de cálculo.
+018	Copiar require celas CSV, non unha selección de filas completas para eliminar.
+019	Copiar require unha única selección rectangular contigua de celas de datos CSV.
+020	Cortáronse {0} celas ao portapapeis e baleiráronse na sesión de edición pendente. Aplicar escribe o baleirado en Notepad++.
+021	Cortar completouse; as celas seleccionadas xa estaban baleiras. O portapapeis contén os seus valores orixinais.
+022	{0} só está dispoñible no modo Edición.
+023	{0} non está dispoñible para a táboa actual.
+024	Bloqueouse Pegar: {0} Non se modificou ningún dato.
+025	Pegar completouse; todos os valores de destino xa eran idénticos.
+026	Pegáronse {0} celas modificadas na sesión de edición pendente. Aplicar escríbeas en Notepad++.
+027	{0} require un rectángulo de celas CSV, non unha selección de filas completas para eliminar.
+028	{0} require unha única selección rectangular contigua de celas de datos CSV.
+029	Os destinos de {0} non están dispoñibles fóra do modelo estable de filas do modo Edición.
+030	Non se puido confirmar a edición da cela activa antes de copiar.
+031	Non se puido confirmar a edición da cela activa. Corrixe o valor antes de {0}.
+032	O portapapeis non contén celas como texto simple.
+033	O portapapeis de Windows non está dispoñible temporalmente. Non se modificou ningún dato.
+034	Copiar o rectángulo seleccionado de celas CSV ao portapapeis de Windows (Ctrl+C)
+035	Copiar as celas CSV seleccionadas e baleiralas na sesión de edición pendente (Ctrl+X)
+036	Pegar celas dunha folla de cálculo na cela ou rectángulo CSV seleccionado (Ctrl+V)
+037	Previsualizar substitución de texto, recorte de espazos en branco exteriores ou cambio de maiúsculas/minúsculas nas edicións CSV pendentes
+038	Seleccionar a cela ou fila CSV actual no búfer de orixe de Notepad++
+039	Orixe
+040	Transformar
+041	Acerca de
+042	Aplicar
+043	Ascendente
+044	Cancelar
+045	Pechar
+046	Columna
+047	Copiar
+048	Cortar
+049	Descendente
+050	Editar
+051	Saír da edición
+052	Distinguir maiúsculas/minúsculas
+053	Número
+054	Orde orixinal
+055	Pegar
+056	Previsualizar
+057	Actualizar
+058	Filas
+059	Táboa
+060	Texto
+061	Valor
+062	Resumo da columna: recontos, valores distintos, intervalo numérico e valores frecuentes na vista actual.
+063	O resumo da columna require unha táboa lista e de só lectura. Sae primeiro do modo Edición.
+064	Filtrar e ordenar: combina regras de columnas e niveis de ordenación de texto/número. Só a vista; o CSV non cambia.
+065	Filtrar e ordenar: combina regras de columnas e ata tres niveis de ordenación de texto/número. Só a vista.
+066	Filtrar e ordenar: {0} condicións, {1} niveis de ordenación. Restablecer vista limpa todas as regras.
+067	Filtrar e ordenar require unha táboa lista e de só lectura. Sae primeiro do modo Edición.
+068	Diagnósticos (0)
+069	0 cambios
+070	Engadir condición
+071	Engadir nivel de ordenación
+072	Aplicar vista
+073	Maiúsculas/minúsculas
+074	Comparación de texto sensible a maiúsculas/minúsculas. Os espazos dentro dos valores trátanse literalmente.
+075	Comproba as regras: {0}
+076	Condición
+077	{0} / 8 condicións; {1} / 3 niveis de ordenación. Previsualiza para comprobar as filas coincidentes.
+078	Contén
+079	Non contén
+080	Non é igual a
+081	Baleiro = cero caracteres. Só espazos en branco = secuencia non baleira de espazos/tabulacións/saltos de liña.\nOs números usan punto decimal (-12.5), sen agrupación nin expoñentes; a precisión debe ser exacta.
+082	Remata con
+083	É igual a
+084	Valor do filtro
+085	Filtros
+086	Está baleiro
+087	Non está baleiro
+088	Non é só espazo en branco
+089	É só espazo en branco
+090	Texto literal, incluídos os espazos. As regras numéricas requiren un número decimal exacto con punto.
+091	Coincidir con TODAS as condicións
+092	Coincidir con CALQUERA condición
+093	Número =
+094	Número >
+095	Número >=
+096	Número <
+097	Número <=
+098	Número (decimal)
+099	Previsualización: {0:N0} de {1:N0} filas mostradas. CSV sen cambios.
+100	Eliminar condición
+101	Eliminar nivel de ordenación
+102	Restablecer regras
+103	As regras tamén respectan a busca actual. Cancelar conserva a vista activa.
+104	Ordenación
+105	Comeza con
+106	Texto: orde ordinal sen distinguir maiúsculas/minúsculas. Número: decimais exactos; valores non válidos/baleiros ao final.\nAs claves iguais conservan a orde da orixe. Elimina todos os niveis para restaurar a orde da orixe.
+107	A proxección está limitada; as filas non mostradas non se inclúen. 
+108	Filtrar e ordenar
+109	O nivel superior ten prioridade; os niveis posteriores resolven os empates. Máximo 3.
+110	Valor (literal, incluídos os espazos)
+111	Só a vista — os valores CSV e a orde da orixe permanecen sen cambios. {0:N0} filas mostradas.\n
+112	Aplicar está bloqueado porque {0} non ten un perfil de codificación admitido explicitamente. O contido do editor non se modificou.
+113	Aplicar está bloqueado porque a validación estrita da codificación para {0} non realizou unha conversión exacta de ida e volta. O contido do editor non se modificou.
+114	Aplicar está bloqueado porque a substitución pendente non se pode representar exactamente en {0}. Non se usaron caracteres de substitución e o contido do editor non se modificou.
+115	Aplicar aínda non está activado para {0}. O contido do editor non se modificou. As escrituras no host só están activadas para UTF-8 (65001) e Windows-1250 (1250), tras validación sen perdas. Usa Reverter todo ou converte o documento a UTF-8 en Notepad++ e volve abrir o modo Edición.
+116	Actualizar está desactivado mentres o modo Edición está activo. Aplica ou reverte primeiro todos os cambios pendentes.
+117	Páxina de códigos Scintilla {0}
+118	O documento activo ten {0:N0} bytes. O límite seguro actual da instantánea é de {1:N0} bytes.
+119	Non se puido ler o documento activo de Notepad++. O contido do editor non se modificou.
+120	O resultado de Aplicar non é un estado bloqueado por codificación.
+121	A creación da táboa en segundo plano terminou sen resultado.
+122	Os cambios CSV aplicáronse correctamente, pero non se puido restaurar a posición anterior do cursor ou da selección. O cambio completo do documento aínda pode desfacerse como unha única operación.
+123	a páxina de códigos actual do editor
+124	Non se puido converter o búfer do editor nunha táboa visual. Escolle explicitamente un delimitador ou actualiza despois de corrixir o documento.
+125	A creación da táboa devolveu un resultado incompleto.
+126	&Acerca de
+127	&Limpar busca
+128	&CSV
+129	&Delimitador
+130	&Editar
+131	Esc na busca
+132	&Buscar na táboa
+133	&Cabeceira
+134	&Seguinte cela coincidente
+135	&Anterior cela coincidente
+136	Restablecer vista: limpa a busca, as condicións das columnas e todas as ordenacións.
+137	&Busca
+138	&Columna de busca
+139	Mostrar espazos: pequenos puntos laranxas sólidos. Só visualización; os valores CSV non cambian.
+140	Mostrar &táboa
+141	&Ordenar por
+142	&Táboa
+143	&Vista
+144	Un valor de filtro pode conter como máximo 4,096 caracteres.
+145	TODAS
+146	Excluíuse unha marca inicial de orde de bytes do primeiro campo.
+147	CALQUERA
+148	Apareceu unha comiña nun campo que non estaba entre comiñas.
+149	As filas do portapapeis deben formar unha única matriz rectangular de celas.
+150	Código de diagnóstico: {0}.
+151	Cada nivel de ordenación debe usar unha columna diferente.
+152	Erro
+153	alta
+154	Información
+155	baixa
+156	media
+157	Ningún delimitador admitido produciu unha estrutura de varios campos coa confianza suficiente.
+158	nenhum
+159	Unha soa fila visual requiriría {0:N0} celas, superando o límite total actual de {1:N0}. Non se ocultou ningunha columna.
+160	O rexistro ten {0} campos; esperábanse {1} segundo o número máis frecuente na mostra.
+161	Espazos: {0}; iniciais: {1}; finais: {2}. Lonxitude: {3} unidades UTF-16.\nOs puntos laranxas marcan espazos reais. O espazado visual increméntase para facilitar a lectura; os caracteres CSV non cambian. Os recontos inicial e final solápanse nunha cela que só contén espazos.
+162	A matriz de celas do portapapeis supera o límite seguro de pegado.
+163	O portapapeis contén un carácter de control non admitido.
+164	O portapapeis contén máis columnas das que o editor pode pegar con seguridade.
+165	O portapapeis contén máis filas das que o editor pode pegar con seguridade.
+166	O texto do portapapeis supera o límite seguro de 16 Mi unidades de caracteres UTF-16.
+167	O último campo entre comiñas non se pechou antes do final do texto.
+168	O número de campos difire dos demais rexistros.
+169	Non se puido completar a operación. Comproba o documento, os valores seleccionados e os límites de tamaño.
+170	O documento analizado contén {0:N0} columnas, superando o límite actual da táboa visual de {1:N0}. Non se ocultou ningunha columna.
+171	O delimitador suxerido ten unha confianza baixa. Comproba a configuración do delimitador.
+172	Dous candidatos a delimitador teñen puntuacións similares. Comproba a configuración do delimitador.
+173	Hai caracteres inesperados despois dunha comiña de peche.
+174	descoñecida
+175	Usa un número decimal exacto con punto, como -12.5. Non se admiten agrupacións, expoñentes nin valores redondeados.
+176	Usa como máximo oito condicións de filtro non nulas.
+177	Usa como máximo tres niveis de ordenación non nulos.
+178	As regras da vista fan referencia a unha columna fóra da táboa actual.
+179	Aviso
+180	Resumo da columna
+181	Filtrar e ordenar
+182	Abrir táboa visual
+183	Actualizar táboa
+184	nova:{0}
+185	nova:{0} *
+186	Seleccionar
+187	Seleccionar filas completas para eliminar
+188	Rexistro lóxico de orixe ou fila estrutural pendente
+189	Non se puido identificar a columna do indicador de fila.
+190	A fila debe pertencer a un DataGridView.
+191	Todas as columnas
+192	{0:N0} / {1:N0} celas
+193	{0:N0} celas
+194	Limpar busca
+195	Limpar busca (Esc). Manter a columna de busca e a ordenación.
+196	Filtra as filas mostradas. Enter: seguinte cela coincidente. Shift+Enter: anterior. Escape: limpar.
+197	Seguinte cela coincidente
+198	Seguinte cela coincidente (F3 / Enter)
+199	Sen coincidencias
+200	Non hai filas coincidentes.\nAxusta a busca ou usa Vista > Filtrar e ordenar / Restablecer vista.
+201	Anterior cela coincidente
+202	Anterior cela coincidente (Shift+F3 / Shift+Enter)
+203	Buscar en todas as columnas de datos ou escoller unha columna.
+204	Columna de busca
+205	Buscar nas filas CSV mostradas (Ctrl+F). Os valores e o texto de orixe non cambian.
+206	Buscar na táboa...
+207	Buscar na táboa
+208	Resultados da busca
+209	Buscando...
+210	Ir á orixe bloqueouse: está activo outro documento de Notepad++. Volve ao CSV mostrado ou actualiza a táboa.
+211	Ir á orixe bloqueouse porque o resultado de análise conservado xa non coincide coa súa instantánea de orixe inmutable. Actualiza primeiro a táboa.
+212	Ir á orixe bloqueouse: a lonxitude codificada estritamente non coincide coa lonxitude do documento informada por Scintilla.
+213	Ir á orixe bloqueouse: o contido do editor activo cambiou desde que se mostrou a táboa. Actualiza primeiro a táboa.
+214	Ir á orixe bloqueouse: a páxina de códigos Scintilla actual non ten un perfil explícito de posición de bytes.
+215	Ir á orixe bloqueouse: a páxina de códigos do editor cambiou desde que se mostrou a táboa. Actualiza primeiro a táboa.
+216	Ir á orixe bloqueouse: a cela proxectada seleccionada non ten un campo de orixe sen procesar.
+217	Ir á orixe bloqueouse: non se puido mapear sen perdas o intervalo de caracteres de orixe aos bytes de Scintilla.
+218	Ir á orixe bloqueouse: o rexistro lóxico de orixe non está dispoñible no resultado de análise conservado.
+219	Ir á orixe fallou: non se puido ler o búfer activo de Notepad++. O contido do documento non se modificou.
+220	Ir á orixe fallou ao mover a selección de Scintilla. O contido do documento non se modificou.
+221	Ir á orixe non está dispoñible ata que a táboa visual actual teña unha base de orixe completa. Actualiza primeiro a táboa.
+222	Ir á orixe require unha fila ou cela CSV actual.
+223	Ir á orixe non se completou. O contido do documento non se modificou.
+224	Seleccionouse o rexistro de orixe {0}, columna {1}, en Notepad++.
+225	Seleccionouse o rexistro de orixe {0} en Notepad++.
+226	A fila visual actual non proporciona unha identidade estable do rexistro de orixe.
+227	Esta fila inserida pendente non ten unha localización de orixe ata que se complete Aplicar.
+228	Vista actual: {0:N0} de {1:N0} filas mostradas.
+229	Os valores distintos cóntanse usando texto exacto sensible a maiúsculas/minúsculas, incluídos os valores baleiros.\nFilas repetidas = filas menos valores distintos. O intervalo numérico usa valores decimais exactos con punto.
+230	Baleiro
+231	Tipo
+232	Valores máis frecuentes (ata 20)
+233	Non dispoñible
+234	Mínimo numérico: {0}     Máximo: {1}\nValor máis longo: {2:N0} unidades UTF-16. {3:N0} valores aparecen máis dunha vez.
+235	 Proxección limitada; isto NON é o ficheiro completo.
+236	Filas: {0:N0}     Baleiras: {1:N0}     Só espazo en branco: {2:N0}\nDistintos: {3:N0}     Filas repetidas: {4:N0}     Numéricos: {5:N0}
+237	Resumo da columna
+238	Espazo en branco
+239	Engadiuse unha nova fila á sesión de Edición pendente. Aplicar escríbea no búfer do editor; Reverter todo descártaa.
+240	Unha fila de orixe non proporcionou o índice do seu rexistro de orixe.
+241	Acción
+242	Fallou a instantánea do documento activo. O contido do editor non se modificou.
+243	Engadir fila
+244	Revertéronse todas as edicións de celas e filas pendentes. O búfer do editor de Notepad++ non se modificou.
+245	Aplicar todas as edicións de celas e filas ao editor activo como unha única operación que se pode desfacer
+246	Aplicar bloqueouse: está activo outro documento de Notepad++. Volve ao documento orixinal ou usa Reverter todo.
+247	Aplicar bloqueouse: o búfer do editor cambiou desde que se iniciou o modo Edición. Reverte e actualiza antes de volver editar.
+248	Aplicar bloqueouse: a páxina de códigos do editor cambiou desde que se iniciou o modo Edición. Reverte e volve abrir o modo Edición.
+249	Aplicar fallou. A sesión de edición permanece aberta; comproba o búfer do editor antes de tentalo de novo ou reverter.
+250	Aplicar non se completou. Non se intentou ningunha sobrescritura automática.
+251	Detectar automaticamente
+252	confianza automática {0}
+253	{0} — a detección automática do delimitador non é fiable; é necesaria unha selección manual.
+254	Detección automática
+255	Puntuacións dos candidatos
+256	{0} celas / {1} filas (+{2} / -{3})
+257	Carácter
+258	{0} caracteres / {1} bytes do editor
+259	Escolle Coma, Punto e coma ou Tabulación na lista Delimitador de arriba.
+260	Escoller explicitamente se o primeiro rexistro lóxico é unha cabeceira
+261	Limpar
+262	Limpar o filtro de busca actual e a ordenación de só vista
+263	Código
+264	 - {0} condicións de columna ({1}), {2} niveis de ordenación
+265	{0} — {1} × {2} columnas — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Coma (,)
+267	coma
+268	Confianza
+269	Eliminar todas as filas de datos estables seleccionadas da sesión de Edición pendente
+270	Eliminar fila
+271	Eliminar filas ({0})
+272	Eliminar a fila de datos estable seleccionada da sesión de Edición pendente
+273	Eliminar a fila ou filas de datos estables seleccionadas da sesión de Edición pendente
+274	Delimitador:
+275	Diagnósticos ({0})
+276	Descartar todos os cambios de celas, insercións e eliminacións pendentes
+277	Documento
+278	 — MODO EDICIÓN: {0} celas, {1} filas, +{2} / -{3}
+279	 - Modo Edición
+280	O modo Edición contén cambios pendentes. Usa Aplicar ou Reverter todo antes de saír.
+281	O modo Edición non está dispoñible para a táboa actual. Resolve primeiro os erros de análise ou os límites de visualización.
+282	A edición non pode iniciarse desde unha proxección visual limitada en número de filas.
+283	A edición non pode iniciarse mentres o CSV analizado conteña erros.
+284	A edición non está dispoñible para a táboa actual.
+285	{0} — búfer do editor baleiro; non hai rexistros CSV que mostrar.
+286	Entrar explicitamente no modo de edición de celas e filas
+287	Entrar explicitamente no modo de edición de celas e filas. Aplicar só escribe no búfer do editor.
+288	Entrar explicitamente no modo de edición de celas e filas. O modelo de edición completo créase só cando se solicita.
+289	{0} erros, {1} avisos
+290	primeira fila como cabeceira
+291	A primeira fila é a cabeceira
+292	Cabeceira:
+293	Inserir unha nova fila despois da fila seleccionada ou engadila ao final se non hai ningunha fila seleccionada
+294	{0} — cargando datos CSV en segundo plano; Notepad++ segue respondendo.
+295	selección manual
+296	{0} coincidentes de {1} filas mostradas
+297	Mensaxe
+298	Elimináronse {0} filas inseridas recentemente da sesión pendente.
+299	Non hai diagnósticos que mostrar.
+300	Sen fila de cabeceira
+301	sen fila de cabeceira
+302	Non hai filas coincidentes.\nProba outro texto de busca ou outra columna.
+303	sen diagnósticos de análise
+304	Non se puido seleccionar con seguridade ningún delimitador fiable.
+305	Nada que aplicar: a sesión de edición non ten cambios pendentes.
+306	Analizando e preparando unha táboa visual limitada en segundo plano…
+307	Cambios pendentes de celas e estrutura de filas
+308	Fila inserida pendente {0}; aínda non aplicada
+309	{0} filas pendentes
+310	O complemento está listo. Lendo o búfer do editor activo...
+311	Preparando a sesión de edición completa…
+312	Propiedade
+313	Ler e mostrar o búfer do editor de Notepad++ activo actualmente
+314	Rexistro
+315	Reverter todo
+316	{0} filas
+317	Punto e coma (;)
+318	punto e coma
+319	Gravidade
+320	Mostrar diagnósticos detallados de análise e delimitador
+321	mostrando {0} de {1} filas
+322	Instantánea
+323	Erro da instantánea
+324	Nivel de ordenación {0}: {1}, {2}. Só vista.
+325	 — ordenado por {0} {1}
+326	Rexistro lóxico de orixe {0}
+327	Rexistro lóxico de orixe {0}; modificado na sesión de Edición pendente
+328	{0} filas de orixe están marcadas para eliminar e {1} filas inseridas foron retiradas da sesión pendente.
+329	{0} filas de orixe están marcadas para eliminar. Aplicar escribe o lote completo; Reverter todo restaura cada fila.
+330	Estado
+331	Tabulación
+332	tabulación
+333	Erro da táboa
+334	Non se puido confirmar a edición da cela activa. Corrixe o valor antes de engadir unha fila.
+335	Non se puido confirmar a edición da cela activa. Corrixe o valor antes de eliminar filas.
+336	Non se puido confirmar a edición da cela activa. Corrixe o valor antes de aplicar.
+337	A fila inserida recentemente foi retirada da sesión pendente.
+338	A columna do indicador de fila non está configurada.
+339	O conxunto de filas seleccionado xa non é válido para esta sesión de edición. Non se eliminou ningunha fila.
+340	As filas seleccionadas xa estaban eliminadas. Non se fixo ningún cambio adicional.
+341	A fila de orixe está marcada para eliminar. Aplicar escribe a eliminación; Reverter todo restaura a fila.
+342	Non se puido xerar a táboa visual. O contido do editor non se modificou.
+343	Usa a detección automática fiable ou selecciona explicitamente un delimitador
+344	Agardando polo documento activo de Notepad++.
+345	{0} - {1} x {2:N0} columnas
+346	Aceptar cambios
+347	Despois
+348	Todas as celas de datos
+349	Antes
+350	Columna CSV
+351	Escolle unha operación e un ámbito e despois preme Previsualizar.
+352	Columna actual
+353	Buscar:
+354	minúsculas
+355	Operación:
+356	Os demais espazos en branco móstranse como secuencias de escape; as lonxitudes contan unidades UTF-16. Os valores longos acúrtanse.
+357	Non se puido crear a previsualización. Comproba o ámbito e o texto de busca, ou escolle un ámbito menor (máximo 250,000 celas / 16 Mi caracteres).
+358	Previsualiza primeiro. Aceptar cambios actualiza as edicións pendentes; Aplicar na barra de ferramentas escribe en Notepad++.\nAs cabeceiras exclúense cando Cabeceira = Primeiro rexistro. A conversión de maiúsculas/minúsculas é independente da configuración rexional.
+359	ID do rexistro
+360	Substituír texto (literal)
+361	Substituír por:
+362	Ámbito:
+363	Escolle unha columna de datos CSV.
+364	Celas / filas seleccionadas
+365	os puntos laranxas sólidos marcan espazos. 
+366	os indicadores de espazo están ocultos. 
+367	{0:N0} celas de destino; {1:N0} cambios en {2:N0} filas. Móstranse os primeiros 50 cambios; 
+368	A sesión de edición cambiou.
+369	A previsualización xa non é válida. Comproba a sesión de edición e crea unha nova previsualización.
+370	Transformar celas CSV
+371	Transformáronse {0:N0} celas na sesión de Edición pendente. Usa Aplicar para actualizar Notepad++ ou Reverter todo para descartar as edicións pendentes.
+372	Recortar espazos en branco exteriores
+373	MAIÚSCULAS
+374	Restablecer vista
+375	Mostrar espazos
