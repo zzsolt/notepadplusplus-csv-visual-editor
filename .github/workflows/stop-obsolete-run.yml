@@ -1,0 +1,41 @@
+name: Stop obsolete catalog run
+on:
+  push:
+    branches: [agent/actions-stop-34823405454]
+    paths: [.github/workflows/stop-obsolete-run.yml]
+permissions:
+  actions: write
+  contents: read
+jobs:
+  stop-and-preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Cancel only the obsolete translation run
+        shell: bash
+        run: |
+          set -euo pipefail
+          state=$(gh api "repos/$GH_REPO/actions/runs/34823405454" --jq .status)
+          if [ "$state" != completed ]; then
+            gh api --method POST "repos/$GH_REPO/actions/runs/34823405454/cancel"
+          fi
+      - name: Preserve source and completed translation artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p recovery/providers
+          gh api "repos/$GH_REPO/actions/runs/34823405454/artifacts?per_page=100" > recovery/provider-manifest.json
+          gh run download 34823405454 --dir recovery/providers
+          gh api "repos/$GH_REPO/tarball/23962c4f907ea09b1e950e72130c27adfc3c8ff5" > recovery/source-23962c4.tar.gz
+          printf '%s\n' 23962c4f907ea09b1e950e72130c27adfc3c8ff5 > recovery/source-commit.txt
+          sha256sum recovery/source-23962c4.tar.gz > recovery/source-sha256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: local-recovery-34823405454
+          path: recovery/
+          if-no-files-found: error
+          retention-days: 7
