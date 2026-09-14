@@ -1,0 +1,378 @@
+# language: fur
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Un editôr CSV visuâl par Notepad++
+001	Informazions su CSV Visual Editor
+002	Contat: {0}
+003	Contate il svilupadôr {0}
+004	Svilupadôr: {0}
+005	Version di svilup
+006	Ti plâs CSV Visual Editor? Sosten il progjet.\nMet une stele su GitHub, condivît il to parê o contate il svilupadôr par contribuî. Graciis!
+007	Lenghe de interface: {0}
+008	Nissune aplicazion associade e je stade vierte. Contat: {0}
+009	Progjet su GitHub
+010	Version: {0}
+011	Version e compilazion
+012	{0} al è stât blocât parcè che il model des modifichis in spiete al è cambiât. Nissune modifiche parziâl e je stade mantignude.
+013	{0} al è stât blocât: i retangui tal tacuin e te selezion a àn dimensions diferentis.
+014	{0} al è stât blocât: il retangul di destinazion al va fûr de tabele CSV.
+015	{0} al è stât blocât: nol è nissun retangul di destinazion modificabil.
+016	Copiadis {0} × {1} celis CSV.
+017	Copie/Taie e je stade blocade: une cele selezionade e conten une tabulazion o une gnove rie che no pues jessi rapresentade cence ambiguitât come test sempliç di sfuei di calcul.
+018	Copie e domande celis CSV, no une selezion di riis interiis par eliminâ.
+019	Copie e domande une sole selezion retangolâr continue di celis di dâts CSV.
+020	Taiadis {0} celis tal tacuin e svuedadis te session di modifiche in spiete. Apliche al scrîf il svuedament in Notepad++.
+021	Tai completât; lis celis selezionadis a jerin za vueidis. Il tacuin al conten i lôr valôrs origjinâi.
+022	{0} al è disponibil dome tal mode Modifiche.
+023	{0} nol è disponibil pe tabele atuâl.
+024	Incole e je stade blocade: {0} Nissun dât al è stât modificât.
+025	Incole completade; ducj i valôrs di destinazion a jerin za compagns.
+026	Incoladis {0} celis cambiadis te session di modifiche in spiete. Apliche al scrîf lis celis in Notepad++.
+027	{0} al domande un retangul di celis CSV, no une selezion di riis interiis par eliminâ.
+028	{0} al domande une sole selezion retangolâr continue di celis di dâts CSV.
+029	Lis destinazions di {0} no son disponibilis fûr dal model stabil des riis dal mode Modifiche.
+030	La modifiche de cele ative no je stade confermade prime de copie.
+031	La modifiche de cele ative no je stade confermade. Comede il valôr prime di {0}.
+032	Il tacuin nol conten celis come test sempliç.
+033	Il tacuin di Windows nol è disponibil pal moment. Nissun dât al è stât modificât.
+034	Copie il retangul di celis CSV selezionât tal tacuin di Windows (Ctrl+C)
+035	Copie lis celis CSV selezionadis e svuedilis te session di modifiche in spiete (Ctrl+X)
+036	Incole celis di sfuei di calcul te cele o tal retangul CSV selezionât (Ctrl+V)
+037	Anteprime de sostituzion dal test, dal tai dai spazis esternis o dal cambi di maiusculis/minusculis tes modifichis CSV in spiete
+038	Selezione la cele o la rie CSV atuâl tal buffer sorzint di Notepad++
+039	Sorzint
+040	Trasforme
+041	Informazions
+042	Apliche
+043	Cressint
+044	Anule
+045	Siere
+046	Colone
+047	Copie
+048	Taie
+049	Decressint
+050	Modifiche
+051	Jes de modifiche
+052	Diferencie maiusculis/minusculis
+053	Numar
+054	Ordin origjinâl
+055	Incole
+056	Anteprime
+057	Inzorne
+058	Riis
+059	Tabele
+060	Test
+061	Valôr
+062	Somari de colone: contis, valôrs diferents, interval numeric e valôrs frecuents te viodude atuâl.
+063	Il somari de colone al domande une tabele pronte dome in leture. Jes prime dal mode Modifiche.
+064	Filtre e ordene: combine regulis di colone e nivei di ordenament test/numeric. Dome la viodude; il CSV nol cambie.
+065	Filtre e ordene: combine regulis di colone e fin a trê nivei di ordenament test/numeric. Dome la viodude.
+066	Filtre e ordene: {0} condizions, {1} nivei di ordenament. Ripristine viodude al nete dutis lis regulis.
+067	Filtri e ordenament a domandin une tabele pronte dome in leture. Jes prime dal mode Modifiche.
+068	Diagnostiche (0)
+069	0 cambiaments
+070	Zonte condizion
+071	Zonte nivel di ordenament
+072	Apliche viodude
+073	Maiusculis/minusculis
+074	Confront dal test sens distinçion? No, cun distinçion tra maiusculis e minusculis. I spazis tai valôrs a vegnin tratâts in maniere literâl.
+075	Controle lis regulis: {0}
+076	Condizion
+077	{0} / 8 condizions; {1} / 3 nivei di ordenament. Dopre la anteprime par controlâ lis riis corispondentis.
+078	Al conten
+079	Nol conten
+080	Nol è compagn di
+081	Vueit = zero caratars. Dome spazis blancs = une secuence no vueide di spazis/tabulazions/gnovis riis.\nI numars a doprin il pont decimâl (-12.5), cence grupaments o esponents; la precision e à di jessi esate.
+082	Al finìs cun
+083	Al è compagn di
+084	Valôr dal filtri
+085	Filtris
+086	Al è vueit
+087	Nol è vueit
+088	Nol è dome spazis blancs
+089	Al è dome spazis blancs
+090	Test literâl, spazis includûts. Lis regulis numerichis a domandin un numar decimâl esat cul pont.
+091	Corispondence cun DUTIS lis condizions
+092	Corispondence cun CUALSISEI condizion
+093	Numar =
+094	Numar >
+095	Numar >=
+096	Numar <
+097	Numar <=
+098	Numar (decimâl)
+099	Anteprime: {0:N0} di {1:N0} riis mostradis. CSV no modificât.
+100	Gjave condizion
+101	Gjave nivel di ordenament
+102	Ripristine regulis
+103	Lis regulis a rispietin ancje la ricercje atuâl. Anule al ten la viodude ative.
+104	Ordenament
+105	Al scomence cun
+106	Test: ordin ordinal cence distingui maiusculis/minusculis. Numar: decimâi esats; valôrs no valits/vueits ae fin.\nClâfs compagnis a tignin l'ordin sorzint. Gjave ducj i nivei par ripristinâ l'ordin sorzint.
+107	La proiezion e je limitade; lis riis no mostradis no son includudis. 
+108	Filtre e ordene
+109	Il nivel parsore al à prioritât; i nivei dopo a rompìn lis paritâts. Massim 3.
+110	Valôr (literâl, spazis includûts)
+111	Dome la viodude — i valôrs CSV e l'ordin sorzint a restin compagns. {0:N0} riis mostradis.\n
+112	Apliche al è blocât parcè che {0} nol à un profîl di codifiche supuartât in maniere esplicite. Il contignût dal editôr nol è stât modificât.
+113	Apliche al è blocât parcè che la validazion strente de codifiche par {0} no à fat une conversion esate di lade e tornade. Il contignût dal editôr nol è stât modificât.
+114	Apliche al è blocât parcè che la sostituzion in spiete no pues jessi rapresentade esatamentri in {0}. Nissun caratar sostitutîf al è stât doprât e il contignût dal editôr nol è stât modificât.
+115	Apliche nol è ancjemò abilitât par {0}. Il contignût dal editôr nol è stât modificât. Lis scrituris tal host a son abilitadis dome par UTF-8 (65001) e Windows-1250 (1250), dopo la validazion cence pierditis. Dopre Ripristine dut o convertìs il document in UTF-8 in Notepad++ e torne a vierzi il mode Modifiche.
+116	Inzorne al è disabilitât cuant che il mode Modifiche al è atîf. Apliche o ripristine prime ducj i cambiaments in spiete.
+117	Pagjine di codiç Scintilla {0}
+118	Il document atîf al è di {0:N0} byte. Il limit sigûr atuâl de istantanie al è di {1:N0} byte.
+119	No si è rivâts a lei il document atîf di Notepad++. Il contignût dal editôr nol è stât modificât.
+120	Il risultât di Apliche nol è un stât blocât pe codifiche.
+121	La costruzion de tabele in sotfont e je finide cence risultât.
+122	I cambiaments CSV a son stâts aplicâts, ma no si è rivâts a ripristinâ la posizion prime dal cursôr o de selezion. Dut il cambiament dal document al pues ancjemò jessi anulât come une sole operazion.
+123	la pagjine di codiç atuâl dal editôr
+124	Il buffer dal editôr nol è stât trasformât in une tabele visuâl. Sielç in maniere esplicite un delimitadôr o inzorne dopo vê comedât il document.
+125	La costruzion de tabele e à tornât un risultât incomplet.
+126	&Informazions
+127	&Nete ricercje
+128	&CSV
+129	&Delimitadôr
+130	&Modifiche
+131	Esc te ricercje
+132	&Cjate te tabele
+133	&Intestazion
+134	&Prossime cele corispondente
+135	&Prime cele corispondente
+136	Ripristine viodude: nete la ricercje, lis condizions des colonis e ducj i ordenaments.
+137	&Ricercje
+138	&Colone di ricercje
+139	Mostre spazis: piciui ponts narants plens. Dome visualizazion; i valôrs CSV no cambiin.
+140	Mostre &tabele
+141	&Ordene par
+142	&Tabele
+143	&Viodude
+144	Un valôr di filtri al pues contignî al massim 4,096 caratars.
+145	DUTIS
+146	Une marcje iniziâl dal ordin dai byte e je stade escludude dal prin cjamp.
+147	CUALSISEI
+148	Un virgulut al è comparît intun cjamp no sierât tra virguluts.
+149	Lis riis dal tacuin a àn di formâ une sole matriç retangolâr di celis.
+150	Codiç di diagnostiche: {0}.
+151	Ogni nivel di ordenament al à di doprâ une colone diferente.
+152	Erôr
+153	alte
+154	Informazion
+155	basse
+156	medie
+157	Nissun delimitadôr supuartât al à prodot une struture a plui cjamps cun suficient fiducie.
+158	nissun
+159	Une rie visuâl e domandarès {0:N0} celis, sorepassant il limit totâl atuâl di {1:N0}. Nissune colone e je stade platade.
+160	Il regjistri al à {0} cjamps; si spietavin {1} in base al numar plui comun tal campion.
+161	Spazis: {0}; iniziâi: {1}; finâi: {2}. Lungjece: {3} unitâts UTF-16.\nI ponts narants a segnin spazis reâi. La distance di visualizazion e je aumentade par lei miôr; i caratars CSV no cambiin. Lis contis iniziâls e finâls si soreponin intune cele cun dome spazis.
+162	La matriç di celis dal tacuin e passe il limit sigûr di incuele.
+163	Il tacuin al conten un caratar di control no supuartât.
+164	Il tacuin al conten plui colonis di chel che l'editôr al pues incuelâ in sigurece.
+165	Il tacuin al conten plui riis di chel che l'editôr al pues incuelâ in sigurece.
+166	Il test dal tacuin al passe il limit sigûr di 16 Mi unitâts di caratar UTF-16.
+167	L'ultin cjamp tra virguluts nol è stât sierât prime de fin dal test.
+168	Il numar di cjamps al è diferent di chel dai altris regjistris.
+169	No si è rivâts a completâ la operazion. Controle il document, i valôrs selezionâts e i limits di dimension.
+170	Il document analizât al conten {0:N0} colonis, sorepassant il limit atuâl de tabele visuâl di {1:N0}. Nissune colone e je stade platade.
+171	Il delimitadôr sugjerît al à une fiducie basse. Controle la impostazion dal delimitadôr.
+172	Doi candidâts delimitadôrs a àn puntuazions similis. Controle la impostazion dal delimitadôr.
+173	Caratars inspietâts a vegnin dopo un virgulut di sieradure.
+174	no cognossude
+175	Dopre un numar decimâl esat cul pont, come -12.5. Grupaments, esponents e valôrs inrodolâts no son supuartâts.
+176	Dopre al massim vot condizions di filtri no null.
+177	Dopre al massim trê nivei di ordenament no null.
+178	Lis regulis de viodude a fasin riferiment a une colone fûr de tabele atuâl.
+179	Avertiment
+180	Somari de colone
+181	Filtre e ordene
+182	Vierç tabele visuâl
+183	Inzorne tabele
+184	gnûf:{0}
+185	gnûf:{0} *
+186	Selezione
+187	Selezione riis interiis par eliminâ
+188	Regjistri logic sorzint o rie struturâl in spiete
+189	La colone dal indicadôr di rie no je stade identificade.
+190	La rie e à di apartignî a un DataGridView.
+191	Dutis lis colonis
+192	{0:N0} / {1:N0} celis
+193	{0:N0} celis
+194	Nete ricercje
+195	Nete ricercje (Esc). Ten la colone di ricercje e l'ordenament.
+196	Filtre lis riis mostradis. Enter: prossime cele corispondente. Shift+Enter: prime. Escape: nete.
+197	Prossime cele corispondente
+198	Prossime cele corispondente (F3 / Enter)
+199	Nissune corispondence
+200	Nissune rie corispondente.\nJuste la ricercje o dopre Viodude > Filtre e ordene / Ripristine viodude.
+201	Prime cele corispondente
+202	Prime cele corispondente (Shift+F3 / Shift+Enter)
+203	Cîr in dutis lis colonis di dâts o sielç une colone.
+204	Colone di ricercje
+205	Cîr tes riis CSV mostradis (Ctrl+F). I valôrs e il test sorzint no cambiin.
+206	Cîr te tabele...
+207	Cîr te tabele
+208	Risultâts de ricercje
+209	Daûr a cirî...
+210	Va ae sorzint al è stât blocât: al è atîf un altri document Notepad++. Torne al CSV mostrât o inzorne la tabele.
+211	Va ae sorzint al è stât blocât parcè che il risultât di analisi conservât nol corispuint plui ae sô istantanie sorzint invariabile. Inzorne prime la tabele.
+212	Va ae sorzint al è stât blocât: la lungjece codificade in maniere strente no corispuint ae lungjece dal document ripuartade di Scintilla.
+213	Va ae sorzint al è stât blocât: il contignût dal editôr atîf al è cambiât dopo che la tabele e je stade mostrade. Inzorne prime la tabele.
+214	Va ae sorzint al è stât blocât: la pagjine di codiç Scintilla atuâl no à un profîl esplicit di posizions byte.
+215	Va ae sorzint al è stât blocât: la pagjine di codiç dal editôr e je cambiade dopo che la tabele e je stade mostrade. Inzorne prime la tabele.
+216	Va ae sorzint al è stât blocât: la cele proietade selezionade no à un cjamp sorzint crût.
+217	Va ae sorzint al è stât blocât: no si è rivâts a mapâ cence pierditis il grup di caratars sorzint sui byte Scintilla.
+218	Va ae sorzint al è stât blocât: il regjistri logic sorzint nol è disponibil tal risultât di analisi conservât.
+219	Va ae sorzint al è falît: no si è rivâts a lei il buffer Notepad++ atîf. Il contignût dal document nol è stât modificât.
+220	Va ae sorzint al è falît tal spostâ la selezion Scintilla. Il contignût dal document nol è stât modificât.
+221	Va ae sorzint nol è disponibil fin che la tabele visuâl atuâl no à une base sorzint complete. Inzorne prime la tabele.
+222	Va ae sorzint al domande une rie o cele CSV atuâl.
+223	Va ae sorzint nol è stât completât. Il contignût dal document nol è stât modificât.
+224	Selezionât il regjistri sorzint {0}, colone {1}, in Notepad++.
+225	Selezionât il regjistri sorzint {0} in Notepad++.
+226	La rie visuâl atuâl no furnìs une identitât stabile dal regjistri sorzint.
+227	Cheste rie inseride in spiete no à une posizion sorzint fin che Apliche nol è completât.
+228	Viodude atuâl: {0:N0} di {1:N0} riis mostradis.
+229	I valôrs diferents a son contâts doprant test esat sens ignorâ maiusculis/minusculis, includint i valôrs vueits.\nRiis ripetudis = riis mancul valôrs diferents. L'interval numeric al dopre valôrs decimâls esats cul pont.
+230	Vueit
+231	Gjenar
+232	Valôrs plui frecuents (fin a 20)
+233	No disponibil
+234	Minim numeric: {0}     Massim: {1}\nValôr plui lunc: {2:N0} unitâts UTF-16. {3:N0} valôrs a comparissin plui di une volte.
+235	 Proiezion limitade; chest NO al è dut il file.
+236	Riis: {0:N0}     Vueidis: {1:N0}     Dome spazis blancs: {2:N0}\nDiferents: {3:N0}     Riis ripetudis: {4:N0}     Numerics: {5:N0}
+237	Somari de colone
+238	Spazi blanc
+239	Une rie gnove e je stade zontade ae session Modifiche in spiete. Apliche le scrîf tal buffer dal editôr; Ripristine dut le scarte.
+240	Une rie sorzint no à furnît l'indiç dal so regjistri sorzint.
+241	Azion
+242	La istantanie dal document atîf e je falide. Il contignût dal editôr nol è stât modificât.
+243	Zonte rie
+244	Dutis lis modifichis di celis e riis in spiete a son stadis ripristinadis. Il buffer dal editôr Notepad++ nol è stât modificât.
+245	Apliche dutis lis modifichis di celis e riis al editôr atîf come une sole operazion anulabile
+246	Apliche al è stât blocât: al è atîf un altri document Notepad++. Torne al document origjinâl o dopre Ripristine dut.
+247	Apliche al è stât blocât: il buffer dal editôr al è cambiât dopo l'inizi dal mode Modifiche. Ripristine e inzorne prime di tornâ a modificâ.
+248	Apliche al è stât blocât: la pagjine di codiç dal editôr e je cambiade dopo l'inizi dal mode Modifiche. Ripristine e torne a vierzi il mode Modifiche.
+249	Apliche al è falît. La session di modifiche e reste vierte; controle il buffer dal editôr prime di tornâ a provâ o ripristinâ.
+250	Apliche nol è stât completât. Nissune sovrescriture automatiche e je stade provade.
+251	Rileve automaticamentri
+252	fiducie automatiche {0}
+253	{0} — il rilevament automatic dal delimitadôr nol è afidabil; e covente une selezion manuâl.
+254	Rilevament automatic
+255	Puntuazions dai candidâts
+256	{0} celis / {1} riis (+{2} / -{3})
+257	Caratar
+258	{0} caratars / {1} byte dal editôr
+259	Sielç Virgule, Pont e virgule o Tab te liste Delimitadôr parsore.
+260	Sielç in maniere esplicite se il prin regjistri logic al è une intestazion
+261	Nete
+262	Nete il filtri di ricercje atuâl e l'ordenament dome de viodude
+263	Codiç
+264	 - {0} condizions di colone ({1}), {2} nivei di ordenament
+265	{0} — {1} × {2} colonis — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Virgule (,)
+267	virgule
+268	Fiducie
+269	Elimine dutis lis riis di dâts stabilis selezionadis de session Modifiche in spiete
+270	Elimine rie
+271	Elimine riis ({0})
+272	Elimine la rie di dâts stabile selezionade de session Modifiche in spiete
+273	Elimine la rie o lis riis di dâts stabilis selezionadis de session Modifiche in spiete
+274	Delimitadôr:
+275	Diagnostiche ({0})
+276	Scarte ducj i cambiaments di celis, inserzions e eliminazions in spiete
+277	Document
+278	 — MODE MODIFICHE: {0} celis, {1} riis, +{2} / -{3}
+279	 - Mode Modifiche
+280	Il mode Modifiche al conten cambiaments in spiete. Dopre Apliche o Ripristine dut prime di jessî.
+281	Il mode Modifiche nol è disponibil pe tabele atuâl. Risolvi prime i erôrs di analisi o i limits di visualizazion.
+282	La modifiche no pues tacâ di une proiezion visuâl cun numar limitât di riis.
+283	La modifiche no pues tacâ cuant che il CSV analizât al conten erôrs.
+284	La modifiche no je disponibile pe tabele atuâl.
+285	{0} — buffer dal editôr vueit; nissun regjistri CSV di mostrâ.
+286	Jentre in maniere esplicite tal mode di modifiche di celis e riis
+287	Jentre in maniere esplicite tal mode di modifiche di celis e riis. Apliche al scrîf dome tal buffer dal editôr.
+288	Jentre in maniere esplicite tal mode di modifiche di celis e riis. Il model complet di modifiche al ven costruît dome su richieste.
+289	{0} erôrs, {1} avertiments
+290	prime rie come intestazion
+291	La prime rie e je la intestazion
+292	Intestazion:
+293	Inserìs une rie gnove dopo la rie selezionade, o zonte ae fin se nissune rie e je selezionade
+294	{0} — daûr a cjamâ dâts CSV in sotfont; Notepad++ al reste reatîf.
+295	selezion manuâl
+296	{0} corispondentis su {1} riis mostradis
+297	Messaç
+298	{0} riis appena inseridis a son stadis gjavadis de session in spiete.
+299	Nissune diagnostiche di mostrâ.
+300	Cence rie di intestazion
+301	cence rie di intestazion
+302	Nissune rie corispondente.\nProve un altri test di ricercje o une altre colone.
+303	cence diagnostiche di analisi
+304	Nissun delimitadôr afidabil al è stât selezionât in sigurece.
+305	Nuie di aplicâ: la session di modifiche no à cambiaments in spiete.
+306	Daûr a analizâ e preparâ une tabele visuâl limitade in sotfont…
+307	Cambiaments in spiete di celis e struture des riis
+308	Rie inseride in spiete {0}; no ancjemò aplicade
+309	{0} riis in spiete
+310	Plugin pront. Daûr a lei il buffer dal editôr atîf...
+311	Daûr a preparâ la session complete di modifiche…
+312	Proprietât
+313	Lei e mostre il buffer dal editôr Notepad++ in chest moment atîf
+314	Regjistri
+315	Ripristine dut
+316	{0} riis
+317	Pont e virgule (;)
+318	pont e virgule
+319	Gravitât
+320	Mostre diagnostiche detaiade di analisi e delimitadôr
+321	mostrant {0} di {1} riis
+322	Istantanie
+323	Erôr di istantanie
+324	Nivel di ordenament {0}: {1}, {2}. Dome viodude.
+325	 — ordenât par {0} {1}
+326	Regjistri logic sorzint {0}
+327	Regjistri logic sorzint {0}; modificât te session Modifiche in spiete
+328	{0} riis sorzint a son marcadis par eliminazion e {1} riis inseridis a son stadis gjavadis de session in spiete.
+329	{0} riis sorzint a son marcadis par eliminazion. Apliche al scrîf dut il grup; Ripristine dut al recupere ogni rie.
+330	Stât
+331	Tab
+332	tab
+333	Erôr di tabele
+334	La modifiche de cele ative no je stade confermade. Comede il valôr prime di zontâ une rie.
+335	La modifiche de cele ative no je stade confermade. Comede il valôr prime di eliminâ riis.
+336	La modifiche de cele ative no je stade confermade. Comede il valôr prime di aplicâ.
+337	La rie appena inseride e je stade gjavade de session in spiete.
+338	La colone dal indicadôr di rie no je configurade.
+339	Il grup di riis selezionât nol è plui valit par cheste session di modifiche. Nissune rie e je stade eliminade.
+340	Lis riis selezionadis a jerin za eliminadis. Nissun cambiament in plui al è stât fat.
+341	La rie sorzint e je marcade par eliminazion. Apliche al scrîf la eliminazion; Ripristine dut al recupere la rie.
+342	La tabele visuâl no je stade gjenerade. Il contignût dal editôr nol è stât modificât.
+343	Dopre un rilevament automatic afidabil o sielç in maniere esplicite un delimitadôr
+344	In spiete dal document Notepad++ atîf.
+345	{0} - {1} x {2:N0} colonis
+346	Acete cambiaments
+347	Dopo
+348	Dutis lis celis di dâts
+349	Prime
+350	Colone CSV
+351	Sielç une operazion e un cjamp, po dopo fâs clic su Anteprime.
+352	Colone atuâl
+353	Cîr:
+354	minusculis
+355	Operazion:
+356	I altris spazis blancs a vegnin mostrâts come secuencis escape; lis lungjecis a contìn unitâts UTF-16. I valôrs luncs a vegnin scurtâts.
+357	No si è rivâts a costruî la anteprime. Controle il cjamp e il test di ricercje, o sielç un cjamp plui piçul (massim 250,000 celis / 16 Mi caratars).
+358	Fâs prime la anteprime. Acete cambiaments al inzorne lis modifichis in spiete; Apliche te sbare dai imprescj al scrîf in Notepad++.\nLis intestazions a son esclududis cuant che Intestazion = Prin regjistri. La conversion maiusculis/minusculis e je indipendente de culture.
+359	ID dal regjistri
+360	Sostituìs test (literâl)
+361	Sostituìs cun:
+362	Cjamp:
+363	Sielç une colone di dâts CSV.
+364	Celis / riis selezionadis
+365	i ponts narants plens a segnin i spazis. 
+366	i indicadôrs dai spazis a son platâts. 
+367	{0:N0} celis destinazion; {1:N0} cambiaments in {2:N0} riis. A son mostrâts i prins 50 cambiaments; 
+368	La session di modifiche e je cambiade.
+369	La anteprime no je plui valide. Controle la session di modifiche e costruìs une anteprime gnove.
+370	Trasforme celis CSV
+371	Trasformadis {0:N0} celis te session Modifiche in spiete. Dopre Apliche par inzornâ Notepad++ o Ripristine dut par scartâ lis modifichis in spiete.
+372	Taie i spazis blancs esternis
+373	MAIUSCULIS
+374	Ripristine viodude
+375	Mostre spazis
