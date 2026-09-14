@@ -1,0 +1,378 @@
+# language: tl
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Isang biswal na CSV editor para sa Notepad++
+001	Tungkol sa CSV Visual Editor
+002	Kontak: {0}
+003	Makipag-ugnayan sa developer na {0}
+004	Developer: {0}
+005	Development build
+006	Nagugustuhan mo ba ang CSV Visual Editor? Suportahan ang proyekto.\nLagyan ito ng star sa GitHub, ibahagi ang feedback mo, o makipag-ugnayan sa developer para tumulong. Salamat!
+007	Wika ng interface: {0}
+008	Walang naka-ugnay na app ang mabuksan. Kontak: {0}
+009	Proyekto sa GitHub
+010	Bersyon: {0}
+011	Bersyon at build
+012	Na-block ang {0} dahil nagbago ang modelo ng mga nakabinbing pag-edit. Walang bahagyang pagbabago ang pinanatili.
+013	Na-block ang {0}: magkaiba ang sukat ng rectangle sa clipboard at ng napiling rectangle.
+014	Na-block ang {0}: lumalampas sa CSV table ang target rectangle.
+015	Na-block ang {0}: walang nae-edit na target rectangle.
+016	Nakopya ang {0} × {1} CSV cell.
+017	Na-block ang copy/cut: may tab o line break ang isang napiling cell na hindi maipapakita nang malinaw bilang plain spreadsheet text.
+018	Kailangang CSV cells ang piliin para mag-copy, hindi buong mga row na napili para burahin.
+019	Kailangan ng isang tuloy-tuloy na rectangular selection ng CSV data cells para mag-copy.
+020	Na-cut ang {0} cell papunta sa clipboard at blinangko ang mga ito sa nakabinbing editing session. Isinusulat ng Apply ang pag-blanko sa Notepad++.
+021	Tapos na ang cut; blangko na ang mga napiling cell. Nasa clipboard ang mga orihinal na value nito.
+022	Available lang ang {0} sa edit mode.
+023	Hindi available ang {0} para sa kasalukuyang table.
+024	Na-block ang paste: {0} Walang nabagong data.
+025	Tapos na ang paste; pareho na ang lahat ng target value.
+026	Na-paste ang {0} binagong cell sa nakabinbing editing session. Isinusulat ng Apply ang mga ito sa Notepad++.
+027	Kailangan ng {0} ng rectangle ng CSV cells, hindi buong mga row na napili para burahin.
+028	Kailangan ng {0} ng isang tuloy-tuloy na rectangular selection ng CSV data cells.
+029	Hindi available ang mga target ng {0} sa labas ng stable row model ng edit mode.
+030	Hindi ma-commit ang edit ng active cell bago mag-copy.
+031	Hindi ma-commit ang edit ng active cell. Ayusin ang value bago ang {0}.
+032	Walang plain-text cells sa clipboard.
+033	Pansamantalang hindi available ang Windows clipboard. Walang nabagong data.
+034	Kopyahin ang napiling rectangle ng CSV cells sa Windows clipboard (Ctrl+C)
+035	Kopyahin ang napiling CSV cells at blangkuhin sa nakabinbing editing session (Ctrl+X)
+036	I-paste ang spreadsheet cells sa napiling CSV cell o rectangle (Ctrl+V)
+037	I-preview ang text replacement, pagtanggal ng outer whitespace, o case conversion sa mga nakabinbing CSV edit
+038	Piliin ang kasalukuyang CSV cell o row sa source buffer ng Notepad++
+039	Source
+040	Transform
+041	Tungkol
+042	Apply
+043	Pataas
+044	Kanselahin
+045	Isara
+046	Column
+047	Kopyahin
+048	I-cut
+049	Pababa
+050	I-edit
+051	Tapusin ang pag-edit
+052	Match case
+053	Number
+054	Original order
+055	I-paste
+056	Preview
+057	Refresh
+058	Rows
+059	Table
+060	Text
+061	Value
+062	Buod ng column: counts, distinct values, numeric range, at madalas na values sa kasalukuyang view.
+063	Kailangan ng column summary ng handa at read-only na table. Lumabas muna sa edit mode.
+064	Filter at sort: pagsamahin ang column rules at text/numeric sort levels. View lang ang nagbabago; hindi nababago ang CSV.
+065	Filter at sort: pagsamahin ang column rules at hanggang tatlong text/numeric sort levels. View lang ang nagbabago.
+066	Filter at sort: {0} condition, {1} sort level. Nililinis ng Reset view ang lahat ng rule.
+067	Kailangan ng filtering at sorting ng handa at read-only na table. Lumabas muna sa edit mode.
+068	Diagnostics (0)
+069	0 pagbabago
+070	Magdagdag ng condition
+071	Magdagdag ng sort level
+072	I-apply ang view
+073	Case
+074	Case-sensitive na text comparison. Literal na tinatrato ang mga space sa value.
+075	Suriin ang rules: {0}
+076	Condition
+077	{0} / 8 condition; {1} / 3 sort level. I-preview para tingnan ang matching rows.
+078	Naglalaman ng
+079	Hindi naglalaman ng
+080	Hindi katumbas ng
+081	Empty = zero character. Whitespace only = hindi bakanteng sequence ng spaces/tabs/line breaks.\nGumagamit ang numbers ng decimal point (-12.5), walang grouping o exponent; kailangang eksakto ang precision.
+082	Nagtatapos sa
+083	Katumbas ng
+084	Filter value
+085	Filters
+086	Empty
+087	Hindi empty
+088	Hindi whitespace only
+089	Whitespace only
+090	Literal na text, kasama ang spaces. Kailangan ng numeric rules ng eksaktong decimal number na may point.
+091	Itugma ang LAHAT ng condition
+092	Itugma ang ANUMANG condition
+093	Number =
+094	Number >
+095	Number >=
+096	Number <
+097	Number <=
+098	Number (decimal)
+099	Preview: {0:N0} sa {1:N0} displayed rows. Hindi nabago ang CSV.
+100	Alisin ang condition
+101	Alisin ang sort level
+102	I-reset ang rules
+103	Sinusunod din ng rules ang kasalukuyang search. Pinapanatili ng Cancel ang active view.
+104	Sorting
+105	Nagsisimula sa
+106	Text: ordinal order na case-insensitive. Number: eksaktong decimals; invalid/empty values sa dulo.\nPinapanatili ng equal keys ang source order. Alisin ang lahat ng level para ibalik ang source order.
+107	Limited ang projection; hindi kasama ang mga row na hindi ipinapakita. 
+108	Filter at sort
+109	May priority ang top level; ginagamit ang susunod na levels kapag magkapareho. Maximum 3.
+110	Value (literal, kasama ang spaces)
+111	View only — hindi nababago ang CSV values at source order. {0:N0} displayed rows.\n
+112	Na-block ang Apply dahil walang explicitly supported encoding profile ang {0}. Hindi binago ang editor content.
+113	Na-block ang Apply dahil hindi nakagawa ng eksaktong round-trip conversion ang strict encoding validation para sa {0}. Hindi binago ang editor content.
+114	Na-block ang Apply dahil hindi maipapakita nang eksakto ang nakabinbing replacement sa {0}. Walang replacement character na ginamit at hindi binago ang editor content.
+115	Hindi pa enabled ang Apply para sa {0}. Hindi binago ang editor content. Enabled lang ang pagsulat para sa UTF-8 (65001) at Windows-1250 (1250), pagkatapos ng lossless validation. Gamitin ang Undo all o i-convert ang document sa UTF-8 sa Notepad++ at buksan ulit ang edit mode.
+116	Disabled ang Refresh sa edit mode. I-apply o i-undo muna ang lahat ng nakabinbing pagbabago.
+117	Scintilla code page {0}
+118	{0:N0} bytes ang active document. {1:N0} bytes ang kasalukuyang safe snapshot limit.
+119	Hindi mabasa ang active Notepad++ document. Hindi binago ang editor content.
+120	Hindi encoding-blocked state ang Apply result.
+121	Natapos ang background table build nang walang result.
+122	Na-apply ang CSV changes pero hindi naibalik ang dating cursor position o selection. Maaari pa ring i-undo ang buong document change sa isang action.
+123	kasalukuyang code page ng editor
+124	Hindi ma-convert ang editor buffer sa visual table. Pumili nang tahasan ng delimiter o mag-refresh pagkatapos ayusin ang document.
+125	Incomplete ang result ng table build.
+126	&Tungkol
+127	&Clear search
+128	&CSV
+129	&Delimiter
+130	&Edit
+131	Esc sa search
+132	&Find in table
+133	&Header
+134	&Next matching cell
+135	&Previous matching cell
+136	Reset view: clear search, column conditions, at lahat ng sorting.
+137	&Search
+138	Search &column
+139	Show spaces: maliliit na filled orange dots. Display only; hindi nababago ang CSV values.
+140	Show &table
+141	&Sort by
+142	&Table
+143	&View
+144	Maaaring hanggang 4,096 character ang filter value.
+145	LAHAT
+146	Inalis ang leading byte-order mark mula sa unang field.
+147	ANUMAN
+148	May quote character sa field na hindi nakapalibot sa quotes.
+149	Dapat bumuo ang clipboard rows ng isang rectangular cell matrix.
+150	Diagnostic code: {0}.
+151	Dapat gumamit ang bawat sort level ng ibang column.
+152	Error
+153	mataas
+154	Information
+155	mababa
+156	katamtaman
+157	Walang supported delimiter na nakagawa ng sapat na reliable multi-field structure.
+158	wala
+159	Kakailanganin ng isang visual row ang {0:N0} cell, lampas sa kasalukuyang total limit na {1:N0}. Walang column na itinago.
+160	May {0} field ang record; {1} ang inaasahan batay sa pinakakaraniwang count sa sample.
+161	Spaces: {0}; leading: {1}; trailing: {2}. Length: {3} UTF-16 units.\nMinamarkahan ng orange dots ang tunay na spaces. Pinalalaki ang display spacing para mabasa; hindi nababago ang CSV characters. Nag-o-overlap ang leading at trailing counts sa cell na puro spaces.
+162	Lampas sa safe paste limit ang clipboard cell matrix.
+163	May unsupported control character ang clipboard.
+164	Mas maraming column ang clipboard kaysa ligtas na mai-paste ng editor.
+165	Mas maraming row ang clipboard kaysa ligtas na mai-paste ng editor.
+166	Lampas sa safe limit na 16 Mi UTF-16 character units ang clipboard text.
+167	Hindi naisara ang huling quoted field bago matapos ang text.
+168	Iba ang field count kumpara sa ibang record.
+169	Hindi nakumpleto ang operation. Suriin ang document, selected values, at size limits.
+170	May {0:N0} column ang parsed document, lampas sa current visual table limit na {1:N0}. Walang column na itinago.
+171	Mababa ang confidence ng suggested delimiter. Suriin ang delimiter setting.
+172	Magkalapit ang score ng dalawang delimiter candidate. Suriin ang delimiter setting.
+173	May unexpected characters pagkatapos ng closing quote.
+174	hindi alam
+175	Gumamit ng eksaktong decimal number na may point, gaya ng -12.5. Hindi supported ang grouping, exponents, at rounded values.
+176	Gumamit ng hanggang walong filter condition na hindi null.
+177	Gumamit ng hanggang tatlong sort level na hindi null.
+178	Tumutukoy ang view rules sa column sa labas ng kasalukuyang table.
+179	Warning
+180	Column summary
+181	Filter at sort
+182	Open visual table
+183	Refresh table
+184	bago:{0}
+185	bago:{0} *
+186	Select
+187	Piliin ang buong rows para burahin
+188	Logical source record o nakabinbing structural row
+189	Hindi matukoy ang row indicator column.
+190	Dapat kabilang ang row sa isang DataGridView.
+191	Lahat ng column
+192	{0:N0} / {1:N0} cell
+193	{0:N0} cell
+194	Clear search
+195	Clear search (Esc). Panatilihin ang search column at sorting.
+196	Fina-filter ang displayed rows. Enter: next matching cell. Shift+Enter: previous. Escape: clear.
+197	Next matching cell
+198	Next matching cell (F3 / Enter)
+199	Walang match
+200	Walang matching row.\nAyusin ang search o gamitin ang View > Filter and sort / Reset view.
+201	Previous matching cell
+202	Previous matching cell (Shift+F3 / Shift+Enter)
+203	Hanapin sa lahat ng data column o pumili ng isang column.
+204	Search column
+205	Hanapin sa displayed CSV rows (Ctrl+F). Hindi nababago ang values at source text.
+206	Search table...
+207	Search table
+208	Search results
+209	Searching...
+210	Na-block ang Go to source: may ibang Notepad++ document na active. Bumalik sa displayed CSV o i-refresh ang table.
+211	Na-block ang Go to source dahil hindi na tugma ang retained parse result sa immutable source snapshot nito. I-refresh muna ang table.
+212	Na-block ang Go to source: hindi tugma ang strictly encoded length sa document length na ini-report ng Scintilla.
+213	Na-block ang Go to source: nagbago ang active editor content pagkatapos ipakita ang table. I-refresh muna ang table.
+214	Na-block ang Go to source: walang explicit byte-position profile ang current Scintilla code page.
+215	Na-block ang Go to source: nagbago ang editor code page pagkatapos ipakita ang table. I-refresh muna ang table.
+216	Na-block ang Go to source: walang raw source field ang selected projected cell.
+217	Na-block ang Go to source: hindi ma-map nang lossless ang source character range sa Scintilla bytes.
+218	Na-block ang Go to source: hindi available ang logical source record sa retained parse result.
+219	Nabigo ang Go to source: hindi mabasa ang active Notepad++ buffer. Hindi binago ang document content.
+220	Nabigo ang Go to source habang inililipat ang Scintilla selection. Hindi binago ang document content.
+221	Hindi available ang Go to source hanggang magkaroon ng complete source baseline ang current visual table. I-refresh muna ang table.
+222	Kailangan ng current CSV row o cell para sa Go to source.
+223	Hindi nakumpleto ang Go to source. Hindi binago ang document content.
+224	Pinili ang source record {0}, column {1}, sa Notepad++.
+225	Pinili ang source record {0} sa Notepad++.
+226	Walang stable source-record identity ang current visual row.
+227	Walang source position ang nakabinbing inserted row na ito hanggang makumpleto ang Apply.
+228	Current view: {0:N0} sa {1:N0} displayed rows.
+229	Gumagamit ang distinct values ng eksaktong case-sensitive text, kasama ang empty values.\nRepeated rows = rows minus distinct values. Gumagamit ang numeric range ng eksaktong decimal values na may point.
+230	Empty
+231	Type
+232	Most common values (hanggang 20)
+233	Not available
+234	Numeric minimum: {0}     Maximum: {1}\nLongest value: {2:N0} UTF-16 units. {3:N0} values ang lumalabas nang higit sa isang beses.
+235	 Limited projection; HINDI ito ang buong file.
+236	Rows: {0:N0}     Empty: {1:N0}     Whitespace only: {2:N0}\nDistinct: {3:N0}     Repeated rows: {4:N0}     Numeric: {5:N0}
+237	Column summary
+238	Whitespace
+239	Nagdagdag ng bagong row sa nakabinbing editing session. Isinusulat ito ng Apply sa editor buffer; itinatapon ito ng Undo all.
+240	Walang ibinigay na source-record index ang isang source row.
+241	Action
+242	Nabigo ang snapshot ng active document. Hindi binago ang editor content.
+243	Add row
+244	Na-undo ang lahat ng nakabinbing cell at row edits. Hindi binago ang Notepad++ editor buffer.
+245	I-apply ang lahat ng cell at row edits sa active editor bilang isang undoable action
+246	Na-block ang Apply: may ibang Notepad++ document na active. Bumalik sa original document o gamitin ang Undo all.
+247	Na-block ang Apply: nagbago ang editor buffer pagkatapos magsimula ang edit mode. I-undo at i-refresh bago muling mag-edit.
+248	Na-block ang Apply: nagbago ang editor code page pagkatapos magsimula ang edit mode. I-undo at buksan ulit ang edit mode.
+249	Nabigo ang Apply. Nananatiling bukas ang editing session; suriin ang editor buffer bago subukan ulit o mag-undo.
+250	Hindi nakumpleto ang Apply. Walang automatic overwrite na sinubukan.
+251	Auto-detect
+252	auto confidence {0}
+253	{0} — hindi reliable ang automatic delimiter detection; kailangan ng manual selection.
+254	Auto detection
+255	Candidate scores
+256	{0} cell / {1} row (+{2} / -{3})
+257	Character
+258	{0} character / {1} editor byte
+259	Piliin ang Comma, Semicolon, o Tab sa delimiter list sa itaas.
+260	Piliin nang tahasan kung header ang unang logical record
+261	Clear
+262	I-clear ang current search filter at view-only sorting
+263	Code
+264	 - {0} column condition ({1}), {2} sort level
+265	{0} — {1} × {2} column — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Comma (,)
+267	comma
+268	Confidence
+269	Burahin ang lahat ng selected stable data rows mula sa nakabinbing editing session
+270	Delete row
+271	Delete rows ({0})
+272	Burahin ang selected stable data row mula sa nakabinbing editing session
+273	Burahin ang selected stable data row o rows mula sa nakabinbing editing session
+274	Delimiter:
+275	Diagnostics ({0})
+276	Itapon ang lahat ng nakabinbing cell changes, insertions, at deletions
+277	Document
+278	 — EDIT MODE: {0} cell, {1} row, +{2} / -{3}
+279	 - Edit mode
+280	May nakabinbing changes ang edit mode. Gamitin ang Apply o Undo all bago lumabas.
+281	Hindi available ang edit mode para sa current table. Ayusin muna ang parse errors o display limits.
+282	Hindi maaaring magsimula ang editing mula sa visual projection na may limited row count.
+283	Hindi maaaring magsimula ang editing habang may errors ang parsed CSV.
+284	Hindi available ang editing para sa current table.
+285	{0} — empty editor buffer; walang CSV records na ipapakita.
+286	Pumasok nang tahasan sa edit mode para sa cells at rows
+287	Pumasok nang tahasan sa edit mode para sa cells at rows. Sa editor buffer lang nagsusulat ang Apply.
+288	Pumasok nang tahasan sa edit mode para sa cells at rows. Ginagawa lang ang full edit model kapag hiniling.
+289	{0} error, {1} warning
+290	unang row bilang header
+291	Header ang unang row
+292	Header:
+293	Mag-insert ng bagong row pagkatapos ng selected row o idagdag sa dulo kung walang row na selected
+294	{0} — naglo-load ng CSV data sa background; responsive pa rin ang Notepad++.
+295	manual selection
+296	{0} matching sa {1} displayed rows
+297	Message
+298	Inalis ang {0} newly inserted row mula sa pending session.
+299	Walang diagnostics na ipapakita.
+300	No header row
+301	no header row
+302	Walang matching row.\nSubukan ang ibang search text o column.
+303	no parse diagnostics
+304	Walang reliable delimiter na ligtas na mapili.
+305	Walang ia-apply: walang pending changes ang editing session.
+306	Nagpa-parse at naghahanda ng limited visual table sa background…
+307	Pending cell changes at structural row changes
+308	Pending inserted row {0}; hindi pa applied
+309	{0} pending row
+310	Handa na ang plugin. Binabasa ang active editor buffer...
+311	Inihahanda ang full editing session…
+312	Property
+313	Basahin at ipakita ang kasalukuyang active Notepad++ editor buffer
+314	Record
+315	Undo all
+316	{0} row
+317	Semicolon (;)
+318	semicolon
+319	Severity
+320	Ipakita ang detailed parse at delimiter diagnostics
+321	showing {0} of {1} rows
+322	Snapshot
+323	Snapshot error
+324	Sort level {0}: {1}, {2}. View only.
+325	 — sorted by {0} {1}
+326	Logical source record {0}
+327	Logical source record {0}; changed in pending edit session
+328	{0} source rows are marked for deletion and {1} inserted rows were removed from the pending session.
+329	{0} source rows are marked for deletion. Apply writes the whole batch; Undo all restores every row.
+330	Status
+331	Tab
+332	tab
+333	Table error
+334	Hindi ma-commit ang edit ng active cell. Ayusin ang value bago mag-add ng row.
+335	Hindi ma-commit ang edit ng active cell. Ayusin ang value bago mag-delete ng rows.
+336	Hindi ma-commit ang edit ng active cell. Ayusin ang value bago mag-apply.
+337	Inalis ang newly inserted row mula sa pending session.
+338	Hindi configured ang row indicator column.
+339	Hindi na valid ang selected row set para sa editing session na ito. Walang row na binura.
+340	Deleted na ang selected rows. Walang karagdagang pagbabago.
+341	Marked for deletion ang source row. Isinusulat ng Apply ang deletion; ibinabalik ng Undo all ang row.
+342	Hindi magawa ang visual table. Hindi binago ang editor content.
+343	Gumamit ng reliable automatic detection o pumili nang tahasan ng delimiter
+344	Naghihintay sa active Notepad++ document.
+345	{0} - {1} x {2:N0} column
+346	Accept changes
+347	After
+348	All data cells
+349	Before
+350	CSV column
+351	Pumili ng operation at scope, pagkatapos i-click ang Preview.
+352	Current column
+353	Find:
+354	lowercase
+355	Operation:
+356	Ipinapakita ang ibang whitespace bilang escape sequences; binibilang ang lengths bilang UTF-16 units. Pinaikli ang mahahabang value.
+357	Hindi magawa ang preview. Suriin ang scope at find text o pumili ng mas maliit na scope (maximum 250,000 cells / 16 Mi characters).
+358	Mag-preview muna. Ina-update ng Accept changes ang pending edits; isinusulat ng Apply sa toolbar sa Notepad++.\nExcluded ang headers kapag Header = first record. Independent sa locale settings ang case conversion.
+359	Record ID
+360	Replace text (literal)
+361	Replace with:
+362	Scope:
+363	Pumili ng CSV data column.
+364	Selected cells / rows
+365	filled orange dots mark spaces. 
+366	space indicators are hidden. 
+367	{0:N0} target cells; {1:N0} changes in {2:N0} rows. Showing the first 50 changes; 
+368	Nagbago ang editing session.
+369	Hindi na valid ang preview. Suriin ang editing session at gumawa ng bagong preview.
+370	Transform CSV cells
+371	Na-transform ang {0:N0} cells sa pending edit session. Gamitin ang Apply para i-update ang Notepad++ o Undo all para itapon ang pending edits.
+372	Trim outer whitespace
+373	UPPERCASE
+374	Reset view
+375	Show spaces
