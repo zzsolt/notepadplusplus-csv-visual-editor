@@ -1,0 +1,378 @@
+# language: ms
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Penyunting CSV visual untuk Notepad++
+001	Perihal CSV Visual Editor
+002	Hubungan: {0}
+003	Hubungi pembangun {0}
+004	Pembangun: {0}
+005	Versi pembangunan
+006	Suka CSV Visual Editor? Sokong projek ini.\nBerikan bintang di GitHub, kongsi maklum balas atau hubungi pembangun untuk menyumbang. Terima kasih!
+007	Bahasa antara muka: {0}
+008	Tiada aplikasi berkaitan dapat dibuka. Hubungan: {0}
+009	Projek di GitHub
+010	Versi: {0}
+011	Versi dan binaan
+012	{0} disekat kerana model suntingan tertunda berubah. Tiada perubahan separa dikekalkan.
+013	{0} disekat: segi empat tepat papan klip dan pilihan mempunyai dimensi berbeza.
+014	{0} disekat: segi empat tepat sasaran melepasi jadual CSV.
+015	{0} disekat: tiada segi empat tepat sasaran yang boleh diedit.
+016	{0} × {1} sel CSV disalin.
+017	Salin/Potong disekat: sel yang dipilih mengandungi tab atau pemisah baris yang tidak dapat diwakili tanpa kekaburan sebagai teks hamparan biasa.
+018	Salin memerlukan sel CSV, bukan pilihan seluruh baris untuk pemadaman.
+019	Salin memerlukan satu pilihan segi empat tepat sel data CSV yang bersambung.
+020	{0} sel dipotong ke papan klip dan dikosongkan dalam sesi suntingan tertunda. Guna menulis pengosongan itu ke Notepad++.
+021	Pemotongan selesai; sel yang dipilih sudah kosong. Papan klip mengandungi nilai asalnya.
+022	{0} hanya tersedia dalam mod Sunting.
+023	{0} tidak tersedia untuk jadual semasa.
+024	Tampal disekat: {0} Tiada data diubah.
+025	Tampal selesai; semua nilai sasaran sudah sama.
+026	{0} sel yang berubah ditampal ke sesi suntingan tertunda. Guna menulisnya ke Notepad++.
+027	{0} memerlukan segi empat tepat sel CSV, bukan pilihan seluruh baris untuk pemadaman.
+028	{0} memerlukan satu pilihan segi empat tepat sel data CSV yang bersambung.
+029	Sasaran {0} tidak tersedia di luar model baris mod Sunting yang stabil.
+030	Suntingan sel aktif tidak dapat disahkan sebelum menyalin.
+031	Suntingan sel aktif tidak dapat disahkan. Betulkan nilai sebelum {0}.
+032	Papan klip tidak mengandungi sel sebagai teks biasa.
+033	Papan klip Windows tidak tersedia buat sementara waktu. Tiada data diubah.
+034	Salin segi empat tepat sel CSV yang dipilih ke papan klip Windows (Ctrl+C)
+035	Salin sel CSV yang dipilih dan kosongkannya dalam sesi Sunting tertunda (Ctrl+X)
+036	Tampal sel hamparan ke dalam sel atau segi empat tepat CSV yang dipilih (Ctrl+V)
+037	Pratonton penggantian teks, pemangkasan ruang putih luar atau perubahan huruf besar/kecil pada suntingan CSV tertunda
+038	Pilih sel atau baris CSV semasa dalam penimbal sumber Notepad++
+039	Sumber
+040	Ubah
+041	Perihal
+042	Guna
+043	Menaik
+044	Batal
+045	Tutup
+046	Lajur
+047	Salin
+048	Potong
+049	Menurun
+050	Sunting
+051	Keluar suntingan
+052	Padankan huruf besar/kecil
+053	Nombor
+054	Susunan asal
+055	Tampal
+056	Pratonton
+057	Segar semula
+058	Baris
+059	Jadual
+060	Teks
+061	Nilai
+062	Ringkasan lajur: bilangan, nilai berbeza, julat berangka dan nilai lazim dalam paparan semasa.
+063	Ringkasan lajur memerlukan jadual baca sahaja yang sedia. Keluar dari mod Sunting terlebih dahulu.
+064	Tapis dan Isih: gabungkan peraturan lajur dan aras pengisihan teks/berangka. Paparan sahaja; CSV tidak berubah.
+065	Tapis dan Isih: gabungkan peraturan lajur dan sehingga tiga aras pengisihan teks/berangka. Paparan sahaja.
+066	Tapis dan Isih: {0} syarat, {1} aras pengisihan. Tetap Semula Paparan mengosongkan semua peraturan.
+067	Penapisan dan pengisihan memerlukan jadual baca sahaja yang sedia. Keluar dari mod Sunting terlebih dahulu.
+068	Diagnostik (0)
+069	0 perubahan
+070	Tambah syarat
+071	Tambah aras pengisihan
+072	Guna paparan
+073	Huruf besar/kecil
+074	Perbandingan teks peka huruf besar/kecil. Ruang dalam nilai diperlakukan secara literal.
+075	Semak peraturan: {0}
+076	Syarat
+077	{0} / 8 syarat; {1} / 3 aras pengisihan. Pratonton untuk menyemak baris yang sepadan.
+078	Mengandungi
+079	Tidak mengandungi
+080	Tidak sama dengan
+081	Kosong = sifar aksara. Ruang putih sahaja = jujukan ruang/tab/pemisah baris yang tidak kosong.\nNombor menggunakan titik perpuluhan (-12.5), tanpa pengumpulan atau eksponen; ketepatan mesti tepat.
+082	Berakhir dengan
+083	Sama dengan
+084	Nilai penapis
+085	Penapis
+086	Kosong
+087	Tidak kosong
+088	Bukan ruang putih sahaja
+089	Ruang putih sahaja
+090	Teks literal, termasuk ruang. Peraturan berangka memerlukan nombor perpuluhan tepat dengan titik.
+091	Padankan SEMUA syarat
+092	Padankan MANA-MANA syarat
+093	Nombor =
+094	Nombor >
+095	Nombor >=
+096	Nombor <
+097	Nombor <=
+098	Nombor (perpuluhan)
+099	Pratonton: {0:N0} daripada {1:N0} baris dipaparkan. CSV tidak berubah.
+100	Buang syarat
+101	Buang aras pengisihan
+102	Tetap semula peraturan
+103	Peraturan turut mematuhi carian semasa. Batal mengekalkan paparan aktif.
+104	Pengisihan
+105	Bermula dengan
+106	Teks: susunan ordinal tanpa peka huruf besar/kecil. Nombor: perpuluhan tepat; nilai tidak sah/kosong di akhir.\nKunci sama mengekalkan susunan sumber. Buang semua aras untuk memulihkan susunan sumber.
+107	Unjuran dibatasi; baris yang tidak dipaparkan tidak disertakan. 
+108	Tapis dan Isih
+109	Aras paling atas diutamakan; aras kemudian memecahkan nilai seri. Maksimum 3.
+110	Nilai (literal, termasuk ruang)
+111	Paparan sahaja — nilai CSV dan susunan sumber kekal tidak berubah. {0:N0} baris dipaparkan.\n
+112	Guna disekat kerana {0} tiada profil pengekodan yang disokong secara jelas. Kandungan penyunting tidak diubah.
+113	Guna disekat kerana pengesahan pengekodan ketat untuk {0} tidak melakukan penukaran pergi-balik tepat. Kandungan penyunting tidak diubah.
+114	Guna disekat kerana penggantian tertunda tidak dapat diwakili tepat dalam {0}. Tiada aksara gantian digunakan dan kandungan penyunting tidak diubah.
+115	Guna belum didayakan untuk {0}. Kandungan penyunting tidak diubah. Penulisan hos hanya didayakan untuk UTF-8 (65001) dan Windows-1250 (1250), selepas pengesahan tanpa kehilangan. Gunakan Kembalikan Semua atau tukar dokumen kepada UTF-8 dalam Notepad++ dan buka semula mod Sunting.
+116	Segar semula dilumpuhkan semasa mod Sunting aktif. Guna atau kembalikan semua perubahan tertunda terlebih dahulu.
+117	Halaman kod Scintilla {0}
+118	Dokumen aktif ialah {0:N0} bait. Had petikan selamat semasa ialah {1:N0} bait.
+119	Dokumen Notepad++ aktif tidak dapat dibaca. Kandungan penyunting tidak diubah.
+120	Hasil Guna bukan status disekat pengekodan.
+121	Pembinaan jadual latar selesai tanpa hasil.
+122	Perubahan CSV berjaya digunakan, tetapi kedudukan karet atau pilihan sebelumnya tidak dapat dipulihkan. Keseluruhan perubahan dokumen masih boleh dibuat asal sebagai satu operasi.
+123	halaman kod penyunting semasa
+124	Penimbal penyunting tidak dapat diubah menjadi jadual visual. Pilih pembatas secara jelas atau segar semula selepas membetulkan dokumen.
+125	Pembinaan jadual mengembalikan hasil yang tidak lengkap.
+126	&Perihal
+127	&Kosongkan carian
+128	&CSV
+129	&Pembatas
+130	&Sunting
+131	Esc dalam carian
+132	&Cari dalam jadual
+133	&Pengepala
+134	&Sel sepadan seterusnya
+135	&Sel sepadan sebelumnya
+136	Tetap Semula Paparan: kosongkan carian, syarat lajur dan semua pengisihan.
+137	&Carian
+138	&Lajur carian
+139	Tunjukkan ruang: titik jingga kecil berisi. Paparan sahaja; nilai CSV tidak berubah.
+140	Tunjukkan &jadual
+141	&Isih mengikut
+142	&Jadual
+143	&Paparan
+144	Nilai penapis boleh mengandungi paling banyak 4,096 aksara.
+145	SEMUA
+146	Tanda susunan bait awal dikecualikan daripada medan pertama.
+147	MANA-MANA
+148	Tanda petik muncul dalam medan yang tidak dikelilingi tanda petik.
+149	Baris papan klip mesti membentuk satu matriks sel segi empat tepat.
+150	Kod diagnostik: {0}.
+151	Setiap aras pengisihan mesti menggunakan lajur yang berbeza.
+152	Ralat
+153	tinggi
+154	Maklumat
+155	rendah
+156	sederhana
+157	Tiada pembatas yang disokong menghasilkan struktur berbilang medan yang cukup boleh dipercayai.
+158	tiada
+159	Satu baris visual memerlukan {0:N0} sel, melebihi had keseluruhan semasa {1:N0}. Tiada lajur disembunyikan.
+160	Rekod mempunyai {0} medan; {1} dijangka berdasarkan bilangan paling lazim dalam sampel.
+161	Ruang: {0}; hadapan: {1}; belakang: {2}. Panjang: {3} unit UTF-16.\nTitik jingga menandakan ruang sebenar. Jarak paparan ditambah untuk kebolehbacaan; aksara CSV tidak berubah. Bilangan hadapan dan belakang bertindih dalam sel yang hanya mengandungi ruang.
+162	Matriks sel papan klip melebihi had tampal selamat.
+163	Papan klip mengandungi aksara kawalan yang tidak disokong.
+164	Papan klip mengandungi lebih banyak lajur daripada yang boleh ditampal penyunting dengan selamat.
+165	Papan klip mengandungi lebih banyak baris daripada yang boleh ditampal penyunting dengan selamat.
+166	Teks papan klip melebihi had selamat 16 Mi unit aksara UTF-16.
+167	Medan bertanda petik terakhir tidak ditutup sebelum akhir teks.
+168	Bilangan medan berbeza daripada rekod lain.
+169	Operasi tidak dapat diselesaikan. Semak dokumen, nilai yang dipilih dan had saiz.
+170	Dokumen yang dihuraikan mengandungi {0:N0} lajur, melebihi had jadual visual semasa {1:N0}. Tiada lajur disembunyikan.
+171	Pembatas yang dicadangkan mempunyai keyakinan rendah. Semak tetapan pembatas.
+172	Dua calon pembatas mempunyai skor serupa. Semak tetapan pembatas.
+173	Aksara tidak dijangka mengikuti tanda petik penutup.
+174	tidak diketahui
+175	Gunakan nombor perpuluhan tepat dengan titik, seperti -12.5. Pengumpulan, eksponen dan nilai dibundarkan tidak disokong.
+176	Gunakan paling banyak lapan syarat penapis bukan null.
+177	Gunakan paling banyak tiga aras pengisihan bukan null.
+178	Peraturan paparan merujuk lajur di luar jadual semasa.
+179	Amaran
+180	Ringkasan lajur
+181	Tapis dan Isih
+182	Buka jadual visual
+183	Segar semula jadual
+184	baru:{0}
+185	baru:{0} *
+186	Pilih
+187	Pilih seluruh baris untuk pemadaman
+188	Rekod logik sumber atau baris struktur tertunda
+189	Lajur penunjuk baris tidak dapat dikenal pasti.
+190	Baris mesti milik DataGridView.
+191	Semua lajur
+192	{0:N0} / {1:N0} sel
+193	{0:N0} sel
+194	Kosongkan carian
+195	Kosongkan carian (Esc). Kekalkan lajur carian dan pengisihan.
+196	Menapis baris yang dipaparkan. Enter: sel sepadan seterusnya. Shift+Enter: sebelumnya. Escape: kosongkan.
+197	Sel sepadan seterusnya
+198	Sel sepadan seterusnya (F3 / Enter)
+199	Tiada padanan
+200	Tiada baris sepadan.\nLaraskan carian atau gunakan Paparan > Tapis dan Isih / Tetap Semula Paparan.
+201	Sel sepadan sebelumnya
+202	Sel sepadan sebelumnya (Shift+F3 / Shift+Enter)
+203	Cari semua lajur data atau pilih satu lajur.
+204	Lajur carian
+205	Cari baris CSV yang dipaparkan (Ctrl+F). Nilai dan teks sumber tidak berubah.
+206	Cari dalam jadual...
+207	Cari dalam jadual
+208	Hasil carian
+209	Mencari...
+210	Pergi ke Sumber disekat: dokumen Notepad++ lain aktif. Kembali ke CSV yang dipaparkan atau segar semula jadual.
+211	Pergi ke Sumber disekat kerana hasil penghuraian yang dikekalkan tidak lagi sepadan dengan petikan sumbernya yang tidak berubah. Segar semula jadual terlebih dahulu.
+212	Pergi ke Sumber disekat: panjang pengekodan ketat tidak sepadan dengan panjang dokumen yang dilaporkan Scintilla.
+213	Pergi ke Sumber disekat: kandungan penyunting aktif telah berubah sejak jadual dipaparkan. Segar semula jadual terlebih dahulu.
+214	Pergi ke Sumber disekat: halaman kod Scintilla semasa tiada profil kedudukan bait yang jelas.
+215	Pergi ke Sumber disekat: halaman kod penyunting telah berubah sejak jadual dipaparkan. Segar semula jadual terlebih dahulu.
+216	Pergi ke Sumber disekat: sel unjuran yang dipilih tiada medan sumber mentah.
+217	Pergi ke Sumber disekat: julat aksara sumber tidak dapat dipetakan tanpa kehilangan kepada bait Scintilla.
+218	Pergi ke Sumber disekat: rekod logik sumber tidak tersedia dalam hasil penghuraian yang dikekalkan.
+219	Pergi ke Sumber gagal: penimbal Notepad++ aktif tidak dapat dibaca. Kandungan dokumen tidak diubah.
+220	Pergi ke Sumber gagal semasa memindahkan pilihan Scintilla. Kandungan dokumen tidak diubah.
+221	Pergi ke Sumber tidak tersedia sehingga jadual visual semasa mempunyai garis dasar sumber lengkap. Segar semula jadual terlebih dahulu.
+222	Pergi ke Sumber memerlukan baris atau sel CSV semasa.
+223	Pergi ke Sumber tidak selesai. Kandungan dokumen tidak diubah.
+224	Memilih rekod sumber {0}, lajur {1}, dalam Notepad++.
+225	Memilih rekod sumber {0} dalam Notepad++.
+226	Baris visual semasa tidak menyediakan identiti rekod sumber yang stabil.
+227	Baris sisipan tertunda ini tiada lokasi sumber sehingga Guna selesai.
+228	Paparan semasa: {0:N0} daripada {1:N0} baris dipaparkan.
+229	Nilai unik dikira menggunakan teks tepat yang peka huruf besar/kecil, termasuk nilai kosong.\nBaris berulang = baris tolak nilai unik. Julat berangka menggunakan nilai perpuluhan tepat dengan titik.
+230	Kosong
+231	Jenis
+232	Nilai paling kerap (sehingga 20)
+233	Tidak tersedia
+234	Minimum berangka: {0}     Maksimum: {1}\nNilai terpanjang: {2:N0} unit UTF-16. {3:N0} nilai muncul lebih daripada sekali.
+235	 Unjuran terhad; ini BUKAN keseluruhan fail.
+236	Baris: {0:N0}     Kosong: {1:N0}     Ruang putih sahaja: {2:N0}\nUnik: {3:N0}     Baris berulang: {4:N0}     Berangka: {5:N0}
+237	Ringkasan lajur
+238	Ruang putih
+239	Baris baru ditambah ke sesi Sunting tertunda. Guna menulisnya ke penimbal penyunting; Kembalikan Semua membuangnya.
+240	Baris sumber tidak menyediakan indeks rekod sumbernya.
+241	Tindakan
+242	Petikan dokumen aktif gagal. Kandungan penyunting tidak diubah.
+243	Tambah baris
+244	Semua suntingan sel dan baris tertunda dikembalikan. Penimbal penyunting Notepad++ tidak diubah.
+245	Guna semua suntingan sel dan baris pada penyunting aktif sebagai satu operasi yang boleh dibuat asal
+246	Guna disekat: dokumen Notepad++ lain aktif. Kembali ke dokumen asal atau gunakan Kembalikan Semua.
+247	Guna disekat: penimbal penyunting berubah sejak mod Sunting bermula. Kembalikan dan segar semula sebelum menyunting lagi.
+248	Guna disekat: halaman kod penyunting berubah sejak mod Sunting bermula. Kembalikan lalu buka semula mod Sunting.
+249	Guna gagal. Sesi suntingan kekal terbuka; semak penimbal penyunting sebelum cuba lagi atau mengembalikan.
+250	Guna tidak selesai. Tiada penulisan ganti automatik dicuba.
+251	Kesan automatik
+252	keyakinan automatik {0}
+253	{0} — pengesanan pembatas automatik tidak boleh dipercayai; pilihan manual diperlukan.
+254	Pengesanan automatik
+255	Skor calon
+256	{0} sel / {1} baris (+{2} / -{3})
+257	Aksara
+258	{0} aksara / {1} bait penyunting
+259	Pilih Koma, Titik Koma atau Tab daripada senarai Pembatas di atas.
+260	Pilih secara jelas sama ada rekod logik pertama ialah pengepala
+261	Kosongkan
+262	Kosongkan penapis carian semasa dan pengisihan paparan sahaja
+263	Kod
+264	 - {0} syarat lajur ({1}), {2} aras pengisihan
+265	{0} — {1} × {2} lajur — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Koma (,)
+267	koma
+268	Keyakinan
+269	Padam semua baris data stabil yang dipilih daripada sesi Sunting tertunda
+270	Padam Baris
+271	Padam Baris ({0})
+272	Padam baris data stabil yang dipilih daripada sesi Sunting tertunda
+273	Padam satu atau lebih baris data stabil yang dipilih daripada sesi Sunting tertunda
+274	Pembatas:
+275	Diagnostik ({0})
+276	Buang semua perubahan sel, sisipan dan pemadaman tertunda
+277	Dokumen
+278	 — MOD SUNTING: {0} sel, {1} baris, +{2} / -{3}
+279	 - Mod Sunting
+280	Mod Sunting mengandungi perubahan tertunda. Gunakan Guna atau Kembalikan Semua sebelum keluar.
+281	Mod Sunting tidak tersedia untuk jadual semasa. Selesaikan ralat penghuraian atau had paparan terlebih dahulu.
+282	Suntingan tidak boleh dimulakan daripada unjuran visual dengan bilangan baris terhad.
+283	Suntingan tidak boleh dimulakan semasa CSV yang dihuraikan mengandungi ralat.
+284	Suntingan tidak tersedia untuk jadual semasa.
+285	{0} — penimbal penyunting kosong; tiada rekod CSV untuk dipaparkan.
+286	Masuk secara jelas ke mod sunting sel dan baris
+287	Masuk secara jelas ke mod sunting sel dan baris. Guna hanya menulis ke penimbal penyunting.
+288	Masuk secara jelas ke mod sunting sel dan baris. Model sunting penuh hanya dibina apabila diminta.
+289	{0} ralat, {1} amaran
+290	baris pertama sebagai pengepala
+291	Baris pertama ialah pengepala
+292	Pengepala:
+293	Sisip baris baru selepas baris yang dipilih, atau tambah pada akhir jika tiada baris dipilih
+294	{0} — memuatkan data CSV di latar; Notepad++ kekal responsif.
+295	pilihan manual
+296	{0} sepadan daripada {1} baris dipaparkan
+297	Mesej
+298	{0} baris yang baru disisipkan dibuang daripada sesi tertunda.
+299	Tiada diagnostik untuk dipaparkan.
+300	Tiada baris pengepala
+301	tiada baris pengepala
+302	Tiada baris sepadan.\nCuba teks carian atau lajur lain.
+303	tiada diagnostik penghuraian
+304	Tiada pembatas boleh dipercayai yang boleh dipilih dengan selamat.
+305	Tiada apa untuk digunakan: sesi sunting tiada perubahan tertunda.
+306	Menghuraikan dan menyediakan jadual visual terhad di latar…
+307	Perubahan sel dan struktur baris tertunda
+308	Baris sisipan tertunda {0}; belum digunakan
+309	{0} baris tertunda
+310	Pemalam sedia. Membaca penimbal penyunting aktif...
+311	Menyediakan sesi sunting penuh…
+312	Sifat
+313	Baca dan paparkan penimbal penyunting Notepad++ yang sedang aktif
+314	Rekod
+315	Kembalikan Semua
+316	{0} baris
+317	Titik Koma (;)
+318	titik koma
+319	Keterukan
+320	Tunjukkan diagnostik penghuraian dan pembatas terperinci
+321	memaparkan {0} daripada {1} baris
+322	Petikan
+323	Ralat petikan
+324	Aras pengisihan {0}: {1}, {2}. Paparan sahaja.
+325	 — diisih mengikut {0} {1}
+326	Rekod logik sumber {0}
+327	Rekod logik sumber {0}; diubah dalam sesi Sunting tertunda
+328	{0} baris sumber ditanda untuk pemadaman dan {1} baris sisipan dibuang daripada sesi tertunda.
+329	{0} baris sumber ditanda untuk pemadaman. Guna menulis seluruh kelompok; Kembalikan Semua memulihkan setiap baris.
+330	Status
+331	Tab
+332	tab
+333	Ralat jadual
+334	Suntingan sel aktif tidak dapat disahkan. Betulkan nilai sebelum menambah baris.
+335	Suntingan sel aktif tidak dapat disahkan. Betulkan nilai sebelum memadam baris.
+336	Suntingan sel aktif tidak dapat disahkan. Betulkan nilai sebelum menggunakan.
+337	Baris yang baru disisipkan dibuang daripada sesi tertunda.
+338	Lajur penunjuk baris tidak dikonfigurasi.
+339	Set baris yang dipilih tidak lagi sah untuk sesi sunting ini. Tiada baris dipadam.
+340	Baris yang dipilih sudah dipadam. Tiada perubahan tambahan dibuat.
+341	Baris sumber ditanda untuk pemadaman. Guna menulis pemadaman; Kembalikan Semua memulihkan baris.
+342	Jadual visual tidak dapat dihasilkan. Kandungan penyunting tidak diubah.
+343	Gunakan pengesanan automatik yang boleh dipercayai atau pilih pembatas secara jelas
+344	Menunggu dokumen Notepad++ aktif.
+345	{0} - {1} x {2:N0} lajur
+346	Terima perubahan
+347	Selepas
+348	Semua sel data
+349	Sebelum
+350	Lajur CSV
+351	Pilih operasi dan skop, kemudian klik Pratonton.
+352	Lajur semasa
+353	Cari:
+354	huruf kecil
+355	Operasi:
+356	Ruang putih lain ditunjukkan sebagai jujukan escape; panjang dikira dalam unit UTF-16. Nilai panjang dipendekkan.
+357	Pratonton tidak dapat dibina. Semak skop dan teks carian, atau pilih skop lebih kecil (maksimum 250,000 sel / 16 Mi aksara).
+358	Pratonton dahulu. Terima perubahan mengemas kini suntingan tertunda; Guna pada bar alat menulis ke Notepad++.\nPengepala dikecualikan apabila Pengepala = Rekod pertama. Penukaran huruf besar/kecil bebas budaya.
+359	ID rekod
+360	Ganti teks (literal)
+361	Ganti dengan:
+362	Skop:
+363	Pilih lajur data CSV.
+364	Sel / baris dipilih
+365	titik jingga berisi menandakan ruang. 
+366	penunjuk ruang disembunyikan. 
+367	{0:N0} sel sasaran; {1:N0} perubahan dalam {2:N0} baris. Memaparkan 50 perubahan pertama; 
+368	Sesi sunting berubah.
+369	Pratonton tidak lagi sah. Semak sesi sunting dan bina pratonton baharu.
+370	Ubah sel CSV
+371	Mengubah {0:N0} sel dalam sesi Sunting tertunda. Gunakan Guna untuk mengemas kini Notepad++ atau Kembalikan Semua untuk membuang suntingan tertunda.
+372	Pangkas ruang putih luar
+373	HURUF BESAR
+374	Tetap Semula Paparan
+375	Tunjukkan ruang
