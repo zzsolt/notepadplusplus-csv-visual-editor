@@ -1,0 +1,378 @@
+# language: eu
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Notepad++-erako CSV editore bisuala
+001	CSV Visual Editor-i buruz
+002	Kontaktua: {0}
+003	Jarri harremanetan {0} garatzailearekin
+004	Garatzailea: {0}
+005	Garapen-bertsioa
+006	CSV Visual Editor gustatzen zaizu? Babestu proiektua.\nEman izar bat GitHub-en, partekatu iritzia edo jarri harremanetan garatzailearekin laguntzeko. Eskerrik asko!
+007	Interfazearen hizkuntza: {0}
+008	Ezin izan da lotutako aplikaziorik ireki. Kontaktua: {0}
+009	Proiektua GitHub-en
+010	Bertsioa: {0}
+011	Bertsioa eta eraikuntza
+012	{0} blokeatu da, zain dauden edizioen eredua aldatu delako. Ez da aldaketa partzialik gorde.
+013	{0} blokeatu da: arbeleko eta hautapeneko laukizuzenek dimentsio desberdinak dituzte.
+014	{0} blokeatu da: helburuko laukizuzena CSV taulatik kanpo doa.
+015	{0} blokeatu da: ez dago editatu daitekeen helburuko laukizuzenik.
+016	{0} × {1} CSV gelaxka kopiatu dira.
+017	Kopiatu/Ebaki blokeatu da: hautatutako gelaxka batek tabulazioa edo lerro-jauzia du, eta ezin da anbiguotasunik gabe kalkulu-orri arrunteko testu gisa irudikatu.
+018	Kopiatzeko CSV gelaxkak behar dira, ez ezabatzeko errenkada osoen hautapena.
+019	Kopiatzeko CSV datu-gelaxken hautapen laukizuzen jarraitu bakarra behar da.
+020	{0} gelaxka ebaki dira arbelera eta zain dagoen edizio-saioan hustu dira. Aplikatu-k hustuketa Notepad++-era idazten du.
+021	Ebakitzea amaitu da; hautatutako gelaxkak jada hutsik zeuden. Arbelak jatorrizko balioak ditu.
+022	{0} Editatu moduan bakarrik dago erabilgarri.
+023	{0} ez dago erabilgarri uneko taularako.
+024	Itsatsi blokeatu da: {0} Ez da daturik aldatu.
+025	Itsastea amaitu da; helburuko balio guztiak jada berdinak ziren.
+026	{0} gelaxka aldatu itsatsi dira zain dagoen edizio-saioan. Aplikatu-k Notepad++-era idazten ditu.
+027	{0}-k CSV gelaxken laukizuzen bat behar du, ez ezabatzeko errenkada osoen hautapena.
+028	{0}-k CSV datu-gelaxken hautapen laukizuzen jarraitu bakarra behar du.
+029	{0}-ren helburuak ez daude erabilgarri Editatu moduko errenkada-eredu egonkorretik kanpo.
+030	Ezin izan da gelaxka aktiboaren edizioa berretsi kopiatu aurretik.
+031	Ezin izan da gelaxka aktiboaren edizioa berretsi. Zuzendu balioa {0} baino lehen.
+032	Arbelak ez du gelaxkarik testu lau gisa.
+033	Windows arbela aldi baterako ez dago erabilgarri. Ez da daturik aldatu.
+034	Kopiatu hautatutako CSV gelaxken laukizuzena Windows arbelera (Ctrl+C)
+035	Kopiatu hautatutako CSV gelaxkak eta hustu zain dagoen Editatu saioan (Ctrl+X)
+036	Itsatsi kalkulu-orriaren gelaxkak hautatutako CSV gelaxkan edo laukizuzenean (Ctrl+V)
+037	Aurreikusi testu-ordezkapena, kanpoko zuriuneen mozketa edo letra larri/minuskulen bihurketa zain dauden CSV edizioetan
+038	Hautatu uneko CSV gelaxka edo errenkada Notepad++-eko iturburu-bufferrean
+039	Iturburua
+040	Eraldatu
+041	Honi buruz
+042	Aplikatu
+043	Goranzkoa
+044	Utzi
+045	Itxi
+046	Zutabea
+047	Kopiatu
+048	Ebaki
+049	Beheranzkoa
+050	Editatu
+051	Irten editatzetik
+052	Bereizi maiuskulak/minuskulak
+053	Zenbakia
+054	Jatorrizko ordena
+055	Itsatsi
+056	Aurreikusi
+057	Freskatu
+058	Errenkadak
+059	Taula
+060	Testua
+061	Balioa
+062	Zutabearen laburpena: zenbaketak, balio desberdinak, zenbakizko tartea eta ohiko balioak uneko ikuspegian.
+063	Zutabearen laburpenak prest dagoen irakurtzeko soilik den taula behar du. Irten lehenik Editatu modutik.
+064	Iragazi eta ordenatu: konbinatu zutabe-arauak eta testu/zenbakizko ordenatze-mailak. Ikuspegia bakarrik; CSV ez da aldatzen.
+065	Iragazi eta ordenatu: konbinatu zutabe-arauak eta gehienez hiru testu/zenbakizko ordenatze-maila. Ikuspegia bakarrik.
+066	Iragazi eta ordenatu: {0} baldintza, {1} ordenatze-maila. Berrezarri ikuspegia-k arau guztiak garbitzen ditu.
+067	Iragazteak eta ordenatzeak prest dagoen irakurtzeko soilik den taula behar dute. Irten lehenik Editatu modutik.
+068	Diagnostikoak (0)
+069	0 aldaketa
+070	Gehitu baldintza
+071	Gehitu ordenatze-maila
+072	Aplikatu ikuspegia
+073	Maiuskulak/minuskulak
+074	Maiuskulak/minuskulak bereizten dituen testu-konparazioa. Balio barruko zuriuneak hitzez hitz tratatzen dira.
+075	Egiaztatu arauak: {0}
+076	Baldintza
+077	{0} / 8 baldintza; {1} / 3 ordenatze-maila. Aurreikusi bat datozen errenkadak egiaztatzeko.
+078	Dauka
+079	Ez dauka
+080	Ez da berdina
+081	Hutsa = zero karaktere. Zuriuneak bakarrik = hutsik ez dagoen espazio/tabulazio/lerro-jauzi sekuentzia.\nZenbakiek puntu hamartarra erabiltzen dute (-12.5), taldekatze edo berretzailerik gabe; doitasunak zehatza izan behar du.
+082	Honekin amaitzen da
+083	Honen berdina da
+084	Iragazki-balioa
+085	Iragazkiak
+086	Hutsik dago
+087	Ez dago hutsik
+088	Ez da zuriunea bakarrik
+089	Zuriunea bakarrik da
+090	Testu literala, espazioak barne. Zenbakizko arauek puntuarekin idatzitako zenbaki hamartar zehatza behar dute.
+091	Bat etorri baldintza GUZTIEKIN
+092	Bat etorri EDOZEIN baldintzarekin
+093	Zenbakia =
+094	Zenbakia >
+095	Zenbakia >=
+096	Zenbakia <
+097	Zenbakia <=
+098	Zenbakia (hamartarra)
+099	Aurreikuspena: bistaratutako {1:N0} errenkadetatik {0:N0}. CSV aldatu gabe.
+100	Kendu baldintza
+101	Kendu ordenatze-maila
+102	Berrezarri arauak
+103	Arauek uneko bilaketa ere errespetatzen dute. Utzi-k ikuspegi aktiboa mantentzen du.
+104	Ordenatzea
+105	Honekin hasten da
+106	Testua: maiuskulak/minuskulak bereizi gabeko ordena ordinala. Zenbakia: hamartar zehatzak; balio baliogabe/hutsak amaieran.\nGako berdinek iturburu-ordena mantentzen dute. Kendu maila guztiak iturburu-ordena berrezartzeko.
+107	Proiekzioa mugatua da; bistaratzen ez diren errenkadak ez dira sartzen. 
+108	Iragazi eta ordenatu
+109	Goiko mailak lehentasuna du; ondorengo mailek berdinketak hausten dituzte. Gehienez 3.
+110	Balioa (literala, espazioak barne)
+111	Ikuspegia bakarrik — CSV balioak eta iturburu-ordena aldatu gabe. {0:N0} errenkada bistaratuta.\n
+112	Aplikatu blokeatuta dago, {0}-k ez duelako espresuki onartutako kodetze-profilik. Editorearen edukia ez da aldatu.
+113	Aplikatu blokeatuta dago, {0}-rako kodetze-baliozkotze zorrotzak ez duelako joan-etorriko bihurketa zehatza egin. Editorearen edukia ez da aldatu.
+114	Aplikatu blokeatuta dago, zain dagoen ordezkapena ezin delako zehazki irudikatu {0}-n. Ez da ordezko karaktererik erabili eta editorearen edukia ez da aldatu.
+115	Aplikatu oraindik ez dago gaituta {0}-rako. Editorearen edukia ez da aldatu. Ostalari-idazketak UTF-8 (65001) eta Windows-1250 (1250)-rako bakarrik daude gaituta, galerarik gabeko baliozkotzearen ondoren. Erabili Berrezarri dena edo bihurtu dokumentua UTF-8-ra Notepad++-en eta ireki berriro Editatu modua.
+116	Freskatu desgaituta dago Editatu modua aktibo dagoenean. Aplikatu edo berrezarri lehenik zain dauden aldaketa guztiak.
+117	Scintilla kode-orria {0}
+118	Dokumentu aktiboak {0:N0} byte ditu. Uneko snapshot seguruaren muga {1:N0} byte da.
+119	Ezin izan da Notepad++ dokumentu aktiboa irakurri. Editorearen edukia ez da aldatu.
+120	Aplikatu-ren emaitza ez da kodetzeak blokeatutako egoera.
+121	Atzeko planoko taula-eraikuntza emaitzarik gabe amaitu da.
+122	CSV aldaketak behar bezala aplikatu dira, baina ezin izan da aurreko kurtsore-kokapena edo hautapena berrezarri. Dokumentuaren aldaketa osoa oraindik eragiketa bakar gisa desegin daiteke.
+123	editorearen uneko kode-orria
+124	Ezin izan da editore-bufferra taula bisual bihurtu. Hautatu mugatzaile bat esplizituki edo freskatu dokumentua zuzendu ondoren.
+125	Taula-eraikuntzak emaitza osatugabea itzuli du.
+126	&Honi buruz
+127	&Garbitu bilaketa
+128	&CSV
+129	&Mugatzailea
+130	&Editatu
+131	Esc bilaketan
+132	&Bilatu taulan
+133	&Goiburua
+134	&Hurrengo gelaxka bat datorrena
+135	&Aurreko gelaxka bat datorrena
+136	Berrezarri ikuspegia: garbitu bilaketa, zutabe-baldintzak eta ordenatze guztiak.
+137	&Bilaketa
+138	&Bilaketa-zutabea
+139	Erakutsi espazioak: puntu laranja txiki beteak. Bistaratzea bakarrik; CSV balioak ez dira aldatzen.
+140	Erakutsi &taula
+141	&Ordenatu honen arabera
+142	&Taula
+143	&Ikuspegia
+144	Iragazki-balio batek gehienez 4,096 karaktere izan ditzake.
+145	GUZTIAK
+146	Hasierako byte-ordenaren marka lehen eremutik kendu da.
+147	EDOZEIN
+148	Komatxo bat komatxoz inguratu gabeko eremu batean agertu da.
+149	Arbeleko errenkadek gelaxken matrize laukizuzen bakarra osatu behar dute.
+150	Diagnostiko-kodea: {0}.
+151	Ordenatze-maila bakoitzak zutabe desberdin bat erabili behar du.
+152	Errorea
+153	altua
+154	Informazioa
+155	baxua
+156	ertaina
+157	Onartutako mugatzaile batek ere ez du fidagarritasun nahikoko eremu anitzeko egiturarik sortu.
+158	bat ere ez
+159	Errenkada bisual bakar batek {0:N0} gelaxka beharko lituzke, uneko {1:N0} muga osoa gaindituz. Ez da zutaberik ezkutatu.
+160	Erregistroak {0} eremu ditu; lagineko kopuru ohikoenaren arabera {1} espero ziren.
+161	Espazioak: {0}; hasierakoak: {1}; amaierakoak: {2}. Luzera: {3} UTF-16 unitate.\nPuntu laranjek benetako espazioak markatzen dituzte. Bistaratze-tartea handitzen da irakurgarritasunerako; CSV karaktereak ez dira aldatzen. Hasierako eta amaierako zenbaketak gainjartzen dira espazioak bakarrik dituen gelaxka batean.
+162	Arbeleko gelaxka-matrizeak itsasteko muga segurua gainditzen du.
+163	Arbelak onartzen ez den kontrol-karaktere bat dauka.
+164	Arbelak editoreak segurtasunez itsats ditzakeenak baino zutabe gehiago ditu.
+165	Arbelak editoreak segurtasunez itsats ditzakeenak baino errenkada gehiago ditu.
+166	Arbeleko testuak 16 Mi UTF-16 karaktere-unitateko muga segurua gainditzen du.
+167	Komatxoz inguratutako azken eremua ez da itxi testuaren amaiera baino lehen.
+168	Eremu kopurua beste erregistroena ez bezalakoa da.
+169	Ezin izan da eragiketa osatu. Egiaztatu dokumentua, hautatutako balioak eta tamaina-mugak.
+170	Analizatutako dokumentuak {0:N0} zutabe ditu, taula bisualaren uneko {1:N0} muga gaindituz. Ez da zutaberik ezkutatu.
+171	Iradokitako mugatzaileak fidagarritasun txikia du. Egiaztatu mugatzaile-ezarpena.
+172	Bi mugatzaile hautagaiek puntuazio antzekoak dituzte. Egiaztatu mugatzaile-ezarpena.
+173	Ustekabeko karaktereak daude ixteko komatxo baten ondoren.
+174	ezezaguna
+175	Erabili puntuarekin idatzitako zenbaki hamartar zehatza, adibidez -12.5. Taldekatzea, berretzaileak eta biribildutako balioak ez dira onartzen.
+176	Erabili gehienez zortzi null ez diren iragazki-baldintza.
+177	Erabili gehienez hiru null ez diren ordenatze-maila.
+178	Ikuspegi-arauek uneko taulatik kanpoko zutabe bati egiten diote erreferentzia.
+179	Abisua
+180	Zutabearen laburpena
+181	Iragazi eta ordenatu
+182	Ireki taula bisuala
+183	Freskatu taula
+184	berria:{0}
+185	berria:{0} *
+186	Hautatu
+187	Hautatu errenkada osoak ezabatzeko
+188	Iturburu-erregistro logikoa edo zain dagoen egitura-errenkada
+189	Ezin izan da errenkada-adierazlearen zutabea identifikatu.
+190	Errenkadak DataGridView bati dagokio.
+191	Zutabe guztiak
+192	{0:N0} / {1:N0} gelaxka
+193	{0:N0} gelaxka
+194	Garbitu bilaketa
+195	Garbitu bilaketa (Esc). Mantendu bilaketa-zutabea eta ordenatzea.
+196	Bistaratutako errenkadak iragazten ditu. Enter: hurrengo gelaxka bat datorrena. Shift+Enter: aurrekoa. Escape: garbitu.
+197	Hurrengo gelaxka bat datorrena
+198	Hurrengo gelaxka bat datorrena (F3 / Enter)
+199	Ez dago bat-etortzerik
+200	Ez dago bat datorren errenkadarik.\nDoitu bilaketa edo erabili Ikuspegia > Iragazi eta ordenatu / Berrezarri ikuspegia.
+201	Aurreko gelaxka bat datorrena
+202	Aurreko gelaxka bat datorrena (Shift+F3 / Shift+Enter)
+203	Bilatu datu-zutabe guztietan edo hautatu zutabe bat.
+204	Bilaketa-zutabea
+205	Bilatu bistaratutako CSV errenkadetan (Ctrl+F). Balioak eta iturburu-testua ez dira aldatzen.
+206	Bilatu taulan...
+207	Bilatu taulan
+208	Bilaketa-emaitzak
+209	Bilatzen...
+210	Joan iturburura blokeatu da: beste Notepad++ dokumentu bat aktibo dago. Itzuli bistaratutako CSV-ra edo freskatu taula.
+211	Joan iturburura blokeatu da, gordetako analisi-emaitza jada ez datorrelako bat bere iturburu-snapshot aldaezinarekin. Freskatu taula lehenik.
+212	Joan iturburura blokeatu da: zorrotz kodetutako luzera ez dator bat Scintilla-k jakinarazitako dokumentu-luzerarekin.
+213	Joan iturburura blokeatu da: editore aktiboaren edukia aldatu da taula bistaratu zenetik. Freskatu taula lehenik.
+214	Joan iturburura blokeatu da: uneko Scintilla kode-orriak ez du byte-kokapeneko profil espliziturik.
+215	Joan iturburura blokeatu da: editorearen kode-orria aldatu da taula bistaratu zenetik. Freskatu taula lehenik.
+216	Joan iturburura blokeatu da: hautatutako proiekzio-gelaxkak ez du iturburu-eremu gordinarik.
+217	Joan iturburura blokeatu da: iturburu-karaktereen barrutia ezin izan da galerarik gabe Scintilla byteetara mapatu.
+218	Joan iturburura blokeatu da: iturburu-erregistro logikoa ez dago gordetako analisi-emaitzan erabilgarri.
+219	Joan iturburura huts egin du: ezin izan da Notepad++ buffer aktiboa irakurri. Dokumentuaren edukia ez da aldatu.
+220	Joan iturburura huts egin du Scintilla hautapena mugitzean. Dokumentuaren edukia ez da aldatu.
+221	Joan iturburura ez dago erabilgarri uneko taula bisualak iturburu-oinarri osoa izan arte. Freskatu taula lehenik.
+222	Joan iturburura egiteko uneko CSV errenkada edo gelaxka behar da.
+223	Joan iturburura ez da osatu. Dokumentuaren edukia ez da aldatu.
+224	Notepad++-en iturburu-erregistroa {0}, zutabea {1}, hautatu da.
+225	Notepad++-en iturburu-erregistroa {0} hautatu da.
+226	Uneko errenkada bisualak ez du iturburu-erregistroaren identitate egonkorrik ematen.
+227	Zain dagoen txertatutako errenkada honek ez du iturburu-kokapenik Aplikatu osatu arte.
+228	Uneko ikuspegia: bistaratutako {1:N0} errenkadetatik {0:N0}.
+229	Balio desberdinak maiuskulak/minuskulak bereizten dituen testu zehatzaren arabera zenbatzen dira, balio hutsak barne.\nErrepikatutako errenkadak = errenkadak ken balio desberdinak. Zenbakizko tarteak puntuarekin idatzitako hamartar zehatzak erabiltzen ditu.
+230	Hutsa
+231	Mota
+232	Balio ohikoenak (gehienez 20)
+233	Ez dago erabilgarri
+234	Gutxieneko zenbakia: {0}     Gehienekoa: {1}\nBalio luzeena: {2:N0} UTF-16 unitate. {3:N0} balio behin baino gehiagotan agertzen dira.
+235	 Proiekzio mugatua; hau EZ da fitxategi osoa.
+236	Errenkadak: {0:N0}     Hutsak: {1:N0}     Zuriuneak bakarrik: {2:N0}\nDesberdinak: {3:N0}     Errepikatutako errenkadak: {4:N0}     Zenbakizkoak: {5:N0}
+237	Zutabearen laburpena
+238	Zuriunea
+239	Errenkada berri bat gehitu da zain dagoen Editatu saioan. Aplikatu-k editore-bufferrean idazten du; Berrezarri dena-k baztertu egiten du.
+240	Iturburu-errenkada batek ez du bere iturburu-erregistroaren indizea eman.
+241	Ekintza
+242	Dokumentu aktiboaren snapshot-ak huts egin du. Editorearen edukia ez da aldatu.
+243	Gehitu errenkada
+244	Zain zeuden gelaxka- eta errenkada-edizio guztiak berrezarri dira. Notepad++ editore-bufferra ez da aldatu.
+245	Aplikatu gelaxka- eta errenkada-edizio guztiak editore aktiboari desegin daitekeen eragiketa bakar gisa
+246	Aplikatu blokeatu da: beste Notepad++ dokumentu bat aktibo dago. Itzuli jatorrizko dokumentura edo erabili Berrezarri dena.
+247	Aplikatu blokeatu da: editore-bufferra aldatu da Editatu modua hasi zenetik. Berrezarri eta freskatu berriro editatu aurretik.
+248	Aplikatu blokeatu da: editorearen kode-orria aldatu da Editatu modua hasi zenetik. Berrezarri eta ireki berriro Editatu modua.
+249	Aplikatu-k huts egin du. Edizio-saioak irekita jarraitzen du; egiaztatu editore-bufferra berriro saiatu edo berrezarri aurretik.
+250	Aplikatu ez da osatu. Ez da berridazketa automatikorik saiatu.
+251	Detektatu automatikoki
+252	konfiantza automatikoa {0}
+253	{0} — mugatzailearen detekzio automatikoa ez da fidagarria; eskuzko hautapena behar da.
+254	Detekzio automatikoa
+255	Hautagaien puntuazioak
+256	{0} gelaxka / {1} errenkada (+{2} / -{3})
+257	Karakterea
+258	{0} karaktere / {1} editore-byte
+259	Hautatu Koma, Puntu eta koma edo Tab goiko Mugatzailea zerrendan.
+260	Hautatu esplizituki lehen erregistro logikoa goiburua den ala ez
+261	Garbitu
+262	Garbitu uneko bilaketa-iragazkia eta ikuspegi-soileko ordenatzea
+263	Kodea
+264	 - {0} zutabe-baldintza ({1}), {2} ordenatze-maila
+265	{0} — {1} × {2} zutabe — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Koma (,)
+267	koma
+268	Konfiantza
+269	Ezabatu hautatutako datu-errenkada egonkor guztiak zain dagoen Editatu saiotik
+270	Ezabatu errenkada
+271	Ezabatu errenkadak ({0})
+272	Ezabatu hautatutako datu-errenkada egonkorra zain dagoen Editatu saiotik
+273	Ezabatu hautatutako datu-errenkada egonkorra edo errenkadak zain dagoen Editatu saiotik
+274	Mugatzailea:
+275	Diagnostikoak ({0})
+276	Baztertu zain dauden gelaxka-aldaketa, txertatze eta ezabatze guztiak
+277	Dokumentua
+278	 — EDITATU MODUA: {0} gelaxka, {1} errenkada, +{2} / -{3}
+279	 - Editatu modua
+280	Editatu moduak zain dauden aldaketak ditu. Erabili Aplikatu edo Berrezarri dena irten aurretik.
+281	Editatu modua ez dago erabilgarri uneko taularako. Konpondu analizatzailearen erroreak edo bistaratze-mugak lehenik.
+282	Ezin da edizioa hasi errenkada kopuru mugatuko proiekzio bisual batetik.
+283	Ezin da edizioa hasi analizatutako CSV-k erroreak dituen bitartean.
+284	Edizioa ez dago erabilgarri uneko taularako.
+285	{0} — editore-buffer hutsa; ez dago CSV erregistrorik bistaratzeko.
+286	Sartu esplizituki gelaxka- eta errenkada-edizio moduan
+287	Sartu esplizituki gelaxka- eta errenkada-edizio moduan. Aplikatu-k editore-bufferrean bakarrik idazten du.
+288	Sartu esplizituki gelaxka- eta errenkada-edizio moduan. Edizio-eredu osoa eskatzen denean bakarrik eraikitzen da.
+289	{0} errore, {1} abisu
+290	lehen errenkada goiburu gisa
+291	Lehen errenkada goiburua da
+292	Goiburua:
+293	Txertatu errenkada berri bat hautatutako errenkadaren ondoren, edo gehitu amaieran errenkadarik hautatu ez bada
+294	{0} — CSV datuak atzeko planoan kargatzen; Notepad++ erantzuten jarraitzen du.
+295	eskuzko hautapena
+296	{0} bat dator {1} bistaratutako errenkadetatik
+297	Mezua
+298	Txertatu berri diren {0} errenkada zain dagoen saiotik kendu dira.
+299	Ez dago diagnostikorik bistaratzeko.
+300	Goiburu-errenkadarik ez
+301	goiburu-errenkadarik ez
+302	Ez dago bat datorren errenkadarik.\nSaiatu beste bilaketa-testu edo zutabe batekin.
+303	analisi-diagnostikorik ez
+304	Ezin izan da mugatzaile fidagarririk segurtasunez hautatu.
+305	Ez dago aplikatzeko ezer: edizio-saioak ez du zain dagoen aldaketarik.
+306	Mugatutako taula bisuala atzeko planoan analizatzen eta prestatzen…
+307	Zain dauden gelaxka- eta errenkada-egitura aldaketak
+308	Zain dagoen txertatutako errenkada {0}; oraindik aplikatu gabe
+309	{0} errenkada zain
+310	Plugina prest dago. Editore-buffer aktiboa irakurtzen...
+311	Edizio-saio osoa prestatzen…
+312	Propietatea
+313	Irakurri eta bistaratu unean aktibo dagoen Notepad++ editore-bufferra
+314	Erregistroa
+315	Berrezarri dena
+316	{0} errenkada
+317	Puntu eta koma (;)
+318	puntu eta koma
+319	Larritasuna
+320	Erakutsi analisi- eta mugatzaile-diagnostiko zehatzak
+321	{1} errenkadetatik {0} bistaratzen
+322	Snapshota
+323	Snapshot-errorea
+324	Ordenatze-maila {0}: {1}, {2}. Ikuspegia bakarrik.
+325	 — {0} {1}-ren arabera ordenatuta
+326	Iturburu-erregistro logikoa {0}
+327	Iturburu-erregistro logikoa {0}; zain dagoen Editatu saioan aldatua
+328	{0} iturburu-errenkada ezabatzeko markatu dira eta {1} txertatutako errenkada kendu dira zain dagoen saiotik.
+329	{0} iturburu-errenkada ezabatzeko markatu dira. Aplikatu-k multzo osoa idazten du; Berrezarri dena-k errenkada bakoitza leheneratzen du.
+330	Egoera
+331	Tab
+332	tab
+333	Taula-errorea
+334	Ezin izan da gelaxka aktiboaren edizioa berretsi. Zuzendu balioa errenkada bat gehitu aurretik.
+335	Ezin izan da gelaxka aktiboaren edizioa berretsi. Zuzendu balioa errenkadak ezabatu aurretik.
+336	Ezin izan da gelaxka aktiboaren edizioa berretsi. Zuzendu balioa aplikatu aurretik.
+337	Txertatu berri den errenkada zain dagoen saiotik kendu da.
+338	Errenkada-adierazlearen zutabea ez dago konfiguratuta.
+339	Hautatutako errenkada multzoa jada ez da baliozkoa edizio-saio honetarako. Ez da errenkadarik ezabatu.
+340	Hautatutako errenkadak jada ezabatuta zeuden. Ez da aldaketa gehigarririk egin.
+341	Iturburu-errenkada ezabatzeko markatuta dago. Aplikatu-k ezabaketa idazten du; Berrezarri dena-k errenkada leheneratzen du.
+342	Ezin izan da taula bisuala sortu. Editorearen edukia ez da aldatu.
+343	Erabili detekzio automatiko fidagarria edo hautatu mugatzaile bat esplizituki
+344	Notepad++ dokumentu aktiboaren zain.
+345	{0} - {1} x {2:N0} zutabe
+346	Onartu aldaketak
+347	Ondoren
+348	Datu-gelaxka guztiak
+349	Aurretik
+350	CSV zutabea
+351	Hautatu eragiketa eta esparrua, eta egin klik Aurreikusi.
+352	Uneko zutabea
+353	Bilatu:
+354	minuskulak
+355	Eragiketa:
+356	Beste zuriuneak ihes-sekuentzia gisa bistaratzen dira; luzerak UTF-16 unitatetan zenbatzen dira. Balio luzeak laburtzen dira.
+357	Ezin izan da aurreikuspena sortu. Egiaztatu esparrua eta bilaketa-testua, edo aukeratu esparru txikiagoa (gehienez 250,000 gelaxka / 16 Mi karaktere).
+358	Aurreikusi lehenik. Onartu aldaketak-ek zain dauden edizioak eguneratzen ditu; tresna-barrako Aplikatu-k Notepad++-era idazten du.\nGoiburuak kanpo uzten dira Goiburua = Lehen erregistroa denean. Maiuskula/minuskula bihurketa kulturatik independentea da.
+359	Erregistro-IDa
+360	Ordeztu testua (literala)
+361	Ordeztu honekin:
+362	Esparrua:
+363	Hautatu CSV datu-zutabe bat.
+364	Hautatutako gelaxkak / errenkadak
+365	puntu laranja beteek espazioak markatzen dituzte. 
+366	espazio-adierazleak ezkutatuta daude. 
+367	{0:N0} helburu-gelaxka; {1:N0} aldaketa {2:N0} errenkadatan. Lehen 50 aldaketak erakusten; 
+368	Edizio-saioa aldatu da.
+369	Aurreikuspena jada ez da baliozkoa. Egiaztatu edizio-saioa eta sortu aurreikuspen berria.
+370	Eraldatu CSV gelaxkak
+371	Zain dagoen Editatu saioan {0:N0} gelaxka eraldatu dira. Erabili Aplikatu Notepad++ eguneratzeko edo Berrezarri dena zain dauden edizioak baztertzeko.
+372	Moztu kanpoko zuriuneak
+373	MAIUSKULAK
+374	Berrezarri ikuspegia
+375	Erakutsi espazioak
