@@ -1,0 +1,378 @@
+# language: ga
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Eagarthóir amhairc CSV do Notepad++
+001	Maidir le CSV Visual Editor
+002	Teagmháil: {0}
+003	Téigh i dteagmháil leis an bhforbróir {0}
+004	Forbróir: {0}
+005	Leagan forbartha
+006	An maith leat CSV Visual Editor? Tacaigh leis an tionscadal.\nCuir réalta leis ar GitHub, roinn d'aiseolas, nó téigh i dteagmháil leis an bhforbróir faoi rannchuidiú. Go raibh maith agat!
+007	Teanga an chomhéadain: {0}
+008	Níorbh fhéidir aon aip ghaolmhar a oscailt. Teagmháil: {0}
+009	Tionscadal ar GitHub
+010	Leagan: {0}
+011	Leagan agus tógáil
+012	Cuireadh bac ar {0} mar gur athraigh samhail na n-eagarthóireachtaí ar feitheamh. Níor coinníodh aon athrú páirteach.
+013	Cuireadh bac ar {0}: tá toisí éagsúla ag dronuilleoga an ghearrthaisce agus an roghnaithe.
+014	Cuireadh bac ar {0}: síneann an dronuilleog sprice thar an tábla CSV.
+015	Cuireadh bac ar {0}: níl dronuilleog sprice ineagarthóireachta ann.
+016	Cóipeáladh {0} × {1} cealla CSV.
+017	Cuireadh bac ar chóipeáil/gearradh: tá táb nó briseadh líne i gcill roghnaithe nach féidir a léiriú gan débhríocht mar ghnáth-théacs scarbhileoige.
+018	Teastaíonn cealla CSV don chóipeáil, ní roghnú sraitheanna iomlána le scriosadh.
+019	Teastaíonn roghnú dronuilleogach leanúnach amháin de chealla sonraí CSV don chóipeáil.
+020	Gearradh {0} cealla chuig an ngearrthaisce agus folmhaíodh iad sa seisiún eagarthóireachta ar feitheamh. Scríobhann Cuir i bhfeidhm an folmhú chuig Notepad++.
+021	Críochnaíodh an gearradh; bhí na cealla roghnaithe folamh cheana féin. Tá a mbunluachanna sa ghearrthaisce.
+022	Níl {0} ar fáil ach sa mhód eagarthóireachta.
+023	Níl {0} ar fáil don tábla reatha.
+024	Cuireadh bac ar ghreamú: {0} Níor athraíodh aon sonraí.
+025	Críochnaíodh an greamú; bhí na spriocluachanna uile comhionann cheana féin.
+026	Greamaíodh {0} cealla athraithe sa seisiún eagarthóireachta ar feitheamh. Scríobhann Cuir i bhfeidhm iad chuig Notepad++.
+027	Teastaíonn dronuilleog de chealla CSV ó {0}, ní roghnú sraitheanna iomlána le scriosadh.
+028	Teastaíonn roghnú dronuilleogach leanúnach amháin de chealla sonraí CSV ó {0}.
+029	Níl spriocanna {0} ar fáil lasmuigh de shamhail chobhsaí sraithe an mhóid eagarthóireachta.
+030	Níorbh fhéidir eagarthóireacht na cille gníomhaí a dheimhniú roimh chóipeáil.
+031	Níorbh fhéidir eagarthóireacht na cille gníomhaí a dheimhniú. Ceartaigh an luach roimh {0}.
+032	Níl cealla mar ghnáth-théacs sa ghearrthaisce.
+033	Níl gearrthaisce Windows ar fáil go sealadach. Níor athraíodh aon sonraí.
+034	Cóipeáil an dronuilleog roghnaithe de chealla CSV chuig gearrthaisce Windows (Ctrl+C)
+035	Cóipeáil na cealla CSV roghnaithe agus folmhaigh iad sa seisiún eagarthóireachta ar feitheamh (Ctrl+X)
+036	Greamaigh cealla scarbhileoige isteach sa chill CSV nó sa dronuilleog roghnaithe (Ctrl+V)
+037	Réamhamharc ar athsholáthar téacs, baint spás bán seachtrach, nó athrú cáis sna heagarthóireachtaí CSV ar feitheamh
+038	Roghnaigh an chill nó an tsraith CSV reatha i maolán foinse Notepad++
+039	Foinse
+040	Claochlú
+041	Maidir leis
+042	Cuir i bhfeidhm
+043	Ardaitheach
+044	Cealaigh
+045	Dún
+046	Colún
+047	Cóipeáil
+048	Gearr
+049	Íslitheach
+050	Cuir in eagar
+051	Scoir den eagarthóireacht
+052	Meaitseáil cás
+053	Uimhir
+054	Ord bunaidh
+055	Greamaigh
+056	Réamhamharc
+057	Athnuaigh
+058	Sraitheanna
+059	Tábla
+060	Téacs
+061	Luach
+062	Achoimre colúin: comhairimh, luachanna ar leith, raon uimhriúil agus luachanna coitianta san amharc reatha.
+063	Teastaíonn tábla réidh inléite amháin don achoimre colúin. Scoir den mhód eagarthóireachta ar dtús.
+064	Scag agus sórtáil: comhcheangail rialacha colúin agus leibhéil sórtála téacs/uimhriúla. Ní athraíonn ach an t-amharc; fanann CSV gan athrú.
+065	Scag agus sórtáil: comhcheangail rialacha colúin agus suas le trí leibhéal sórtála téacs/uimhriúla. Ní athraíonn ach an t-amharc.
+066	Scag agus sórtáil: {0} coinníoll, {1} leibhéal sórtála. Glanann Athshocraigh amharc na rialacha uile.
+067	Teastaíonn tábla réidh inléite amháin don scagadh agus don sórtáil. Scoir den mhód eagarthóireachta ar dtús.
+068	Diagnóisic (0)
+069	0 athrú
+070	Cuir coinníoll leis
+071	Cuir leibhéal sórtála leis
+072	Cuir an t-amharc i bhfeidhm
+073	Cás
+074	Comparáid téacs atá íogair do chás. Déileáiltear le spásanna i luachanna go litriúil.
+075	Seiceáil na rialacha: {0}
+076	Coinníoll
+077	{0} / 8 coinníoll; {1} / 3 leibhéal sórtála. Déan réamhamharc chun sraitheanna meaitseála a sheiceáil.
+078	Tá ann
+079	Níl ann
+080	Ní ionann agus
+081	Folamh = náid carachtar. Spás bán amháin = seicheamh neamhfholamh de spásanna/táib/bristeacha líne.\nÚsáideann uimhreacha pointe deachúlach (-12.5), gan grúpáil ná easpónant; caithfidh an cruinneas a bheith beacht.
+082	Críochnaíonn le
+083	Is ionann agus
+084	Luach scagaire
+085	Scagairí
+086	Tá sé folamh
+087	Níl sé folamh
+088	Ní spás bán amháin é
+089	Spás bán amháin
+090	Téacs litriúil, lena n-áirítear spásanna. Teastaíonn uimhir dheachúlach bheacht le pointe ó rialacha uimhriúla.
+091	Meaitseáil GACH coinníoll
+092	Meaitseáil AON choinníoll
+093	Uimhir =
+094	Uimhir >
+095	Uimhir >=
+096	Uimhir <
+097	Uimhir <=
+098	Uimhir (deachúlach)
+099	Réamhamharc: {0:N0} as {1:N0} sraith ar taispeáint. CSV gan athrú.
+100	Bain coinníoll
+101	Bain leibhéal sórtála
+102	Athshocraigh rialacha
+103	Urramaíonn na rialacha an cuardach reatha freisin. Coinníonn Cealaigh an t-amharc gníomhach.
+104	Sórtáil
+105	Tosaíonn le
+106	Téacs: ord ordúil gan idirdhealú cáis. Uimhir: deachúlacha beachta; luachanna neamhbhailí/folmha ar deireadh.\nCoinníonn eochracha comhionanna ord na foinse. Bain gach leibhéal chun ord na foinse a athbhunú.
+107	Tá an teilgean teoranta; ní áirítear sraitheanna nach dtaispeántar. 
+108	Scag agus sórtáil
+109	Tá tosaíocht ag an leibhéal is airde; réitíonn leibhéil níos déanaí comhionannas. Uasmhéid 3.
+110	Luach (litriúil, lena n-áirítear spásanna)
+111	Amharc amháin — fanann luachanna CSV agus ord na foinse gan athrú. {0:N0} sraith ar taispeáint.\n
+112	Cuireadh bac ar Chuir i bhfeidhm mar níl próifíl ionchódaithe a dtacaítear léi go sainráite ag {0}. Níor athraíodh ábhar an eagarthóra.
+113	Cuireadh bac ar Chuir i bhfeidhm mar níor thug bailíochtú dian ionchódaithe do {0} tiontú cruinn anonn is anall. Níor athraíodh ábhar an eagarthóra.
+114	Cuireadh bac ar Chuir i bhfeidhm mar ní féidir an t-athsholáthar ar feitheamh a léiriú go beacht in {0}. Níor úsáideadh carachtar ionaid agus níor athraíodh ábhar an eagarthóra.
+115	Níl Cuir i bhfeidhm cumasaithe fós do {0}. Níor athraíodh ábhar an eagarthóra. Ní chumasaítear scríobh ach do UTF-8 (65001) agus Windows-1250 (1250), tar éis bailíochtú gan chaillteanas. Úsáid Cealaigh gach rud nó tiontaigh an doiciméad go UTF-8 in Notepad++ agus athoscail an mód eagarthóireachta.
+116	Tá Athnuaigh díchumasaithe sa mhód eagarthóireachta. Cuir i bhfeidhm nó cealaigh gach athrú ar feitheamh ar dtús.
+117	Leathanach cóid Scintilla {0}
+118	Tá an doiciméad gníomhach {0:N0} beart. Is é {1:N0} beart an teorainn shábháilte reatha don seat.
+119	Níorbh fhéidir an doiciméad gníomhach Notepad++ a léamh. Níor athraíodh ábhar an eagarthóra.
+120	Ní staid blocála ionchódaithe é toradh Cuir i bhfeidhm.
+121	Chríochnaigh tógáil an tábla sa chúlra gan toradh.
+122	Cuireadh na hathruithe CSV i bhfeidhm, ach níorbh fhéidir suíomh an chúrsóra nó an roghnú roimhe seo a athbhunú. Is féidir an t-athrú iomlán ar an doiciméad a chealú fós in aon ghníomh amháin.
+123	leathanach cóid reatha an eagarthóra
+124	Níorbh fhéidir maolán an eagarthóra a thiontú ina thábla amhairc. Roghnaigh teorantóir go sainráite nó athnuaigh tar éis an doiciméad a cheartú.
+125	Thug tógáil an tábla toradh neamhiomlán ar ais.
+126	&Maidir leis
+127	&Glan cuardach
+128	&CSV
+129	&Teorantóir
+130	&Cuir in eagar
+131	Esc sa chuardach
+132	&Aimsigh sa tábla
+133	&Ceanntásc
+134	&An chéad chill mheaitseála eile
+135	&An chill mheaitseála roimhe seo
+136	Athshocraigh amharc: glan cuardach, coinníollacha colúin agus gach sórtáil.
+137	&Cuardach
+138	&Colún cuardaigh
+139	Taispeáin spásanna: poncanna beaga oráiste líonta. Taispeáint amháin; ní athraíonn luachanna CSV.
+140	Taispeáin &tábla
+141	&Sórtáil de réir
+142	&Tábla
+143	&Amharc
+144	Féadfaidh luach scagaire suas le 4,096 carachtar a bheith ann.
+145	GACH
+146	Fágadh marc ord beart tosaigh as an gcéad réimse.
+147	AON
+148	Bhí carachtar athfhriotail i réimse nach raibh timpeallaithe ag athfhriotail.
+149	Caithfidh sraitheanna an ghearrthaisce maitrís dhronuilleogach amháin de chealla a chruthú.
+150	Cód diagnóiseach: {0}.
+151	Caithfidh gach leibhéal sórtála colún difriúil a úsáid.
+152	Earráid
+153	ard
+154	Eolas
+155	íseal
+156	meánach
+157	Níor tháirg aon teorantóir tacaithe struchtúr ilréimse a bhí sách iontaofa.
+158	dada
+159	Bheadh {0:N0} cealla ag teastáil ó shraith amhairc amháin, níos mó ná an teorainn iomlán reatha de {1:N0}. Níor folaíodh aon cholún.
+160	Tá {0} réimse sa taifead; bhíothas ag súil le {1} bunaithe ar an gcomhaireamh is coitianta sa sampla.
+161	Spásanna: {0}; tosaigh: {1}; deiridh: {2}. Fad: {3} aonad UTF-16.\nMarcálann poncanna oráiste spásanna fíora. Méadaítear an spásáil taispeána le haghaidh inléiteachta; ní athraíonn carachtair CSV. Forluíonn na comhairimh tosaigh agus deiridh i gcill nach bhfuil inti ach spásanna.
+162	Sáraíonn maitrís ceall an ghearrthaisce an teorainn shábháilte greamaithe.
+163	Tá carachtar rialaithe nach dtacaítear leis sa ghearrthaisce.
+164	Tá níos mó colún sa ghearrthaisce ná mar is féidir leis an eagarthóir a ghreamú go sábháilte.
+165	Tá níos mó sraitheanna sa ghearrthaisce ná mar is féidir leis an eagarthóir a ghreamú go sábháilte.
+166	Sáraíonn téacs an ghearrthaisce an teorainn shábháilte de 16 Mi aonad carachtair UTF-16.
+167	Níor dúnadh an réimse deireanach faoi athfhriotail roimh dheireadh an téacs.
+168	Tá líon na réimsí difriúil ó na taifid eile.
+169	Níorbh fhéidir an oibríocht a chríochnú. Seiceáil an doiciméad, na luachanna roghnaithe agus na teorainneacha méide.
+170	Tá {0:N0} colún sa doiciméad parsáilte, níos mó ná teorainn reatha an tábla amhairc de {1:N0}. Níor folaíodh aon cholún.
+171	Tá muinín íseal sa teorantóir molta. Seiceáil socrú an teorantóra.
+172	Tá scóir chomhchosúla ag dhá iarrthóir teorantóra. Seiceáil socrú an teorantóra.
+173	Leanann carachtair gan choinne athfhriotal dúnta.
+174	anaithnid
+175	Úsáid uimhir dheachúlach bheacht le pointe, mar shampla -12.5. Ní thacaítear le grúpáil, easpónant ná luachanna slánaithe.
+176	Úsáid suas le hocht gcoinníoll scagaire nach null iad.
+177	Úsáid suas le trí leibhéal sórtála nach null iad.
+178	Tagraíonn rialacha an amhairc do cholún lasmuigh den tábla reatha.
+179	Rabhadh
+180	Achoimre colúin
+181	Scag agus sórtáil
+182	Oscail tábla amhairc
+183	Athnuaigh tábla
+184	nua:{0}
+185	nua:{0} *
+186	Roghnaigh
+187	Roghnaigh sraitheanna iomlána le scriosadh
+188	Taifead foinse loighciúil nó sraith struchtúrach ar feitheamh
+189	Níorbh fhéidir colún táscaire na sraithe a aithint.
+190	Caithfidh an tsraith a bheith mar chuid de DataGridView.
+191	Gach colún
+192	{0:N0} / {1:N0} cealla
+193	{0:N0} cealla
+194	Glan cuardach
+195	Glan cuardach (Esc). Coinnigh an colún cuardaigh agus an sórtáil.
+196	Scagann sé sraitheanna ar taispeáint. Enter: an chéad chill mheaitseála eile. Shift+Enter: an ceann roimhe seo. Escape: glan.
+197	An chéad chill mheaitseála eile
+198	An chéad chill mheaitseála eile (F3 / Enter)
+199	Gan meaitseáil
+200	Níl aon sraith mheaitseála ann.\nCoigeartaigh an cuardach nó úsáid Amharc > Scag agus sórtáil / Athshocraigh amharc.
+201	An chill mheaitseála roimhe seo
+202	An chill mheaitseála roimhe seo (Shift+F3 / Shift+Enter)
+203	Cuardaigh gach colún sonraí nó roghnaigh colún amháin.
+204	Colún cuardaigh
+205	Cuardaigh sraitheanna CSV ar taispeáint (Ctrl+F). Ní athraíonn luachanna ná téacs foinse.
+206	Cuardaigh sa tábla...
+207	Cuardaigh sa tábla
+208	Torthaí cuardaigh
+209	Ag cuardach...
+210	Cuireadh bac ar Téigh go dtí an fhoinse: tá doiciméad Notepad++ eile gníomhach. Fill ar an CSV ar taispeáint nó athnuaigh an tábla.
+211	Cuireadh bac ar Téigh go dtí an fhoinse mar ní mheaitseálann toradh an pharsála coinnithe a sheat foinse do-athraithe a thuilleadh. Athnuaigh an tábla ar dtús.
+212	Cuireadh bac ar Téigh go dtí an fhoinse: ní mheaitseálann an fad dian-ionchódaithe fad an doiciméid a thuairiscigh Scintilla.
+213	Cuireadh bac ar Téigh go dtí an fhoinse: d'athraigh ábhar an eagarthóra ghníomhaigh tar éis an tábla a thaispeáint. Athnuaigh an tábla ar dtús.
+214	Cuireadh bac ar Téigh go dtí an fhoinse: níl próifíl shuíomh beart shainráite ag leathanach cóid reatha Scintilla.
+215	Cuireadh bac ar Téigh go dtí an fhoinse: d'athraigh leathanach cóid an eagarthóra tar éis an tábla a thaispeáint. Athnuaigh an tábla ar dtús.
+216	Cuireadh bac ar Téigh go dtí an fhoinse: níl réimse amh foinse ag an gcill teilgthe roghnaithe.
+217	Cuireadh bac ar Téigh go dtí an fhoinse: níorbh fhéidir raon carachtar na foinse a mhapáil gan chaillteanas go bearta Scintilla.
+218	Cuireadh bac ar Téigh go dtí an fhoinse: níl an taifead foinse loighciúil ar fáil sa toradh parsála coinnithe.
+219	Theip ar Téigh go dtí an fhoinse: níorbh fhéidir maolán gníomhach Notepad++ a léamh. Níor athraíodh ábhar an doiciméid.
+220	Theip ar Téigh go dtí an fhoinse agus an roghnú Scintilla á bhogadh. Níor athraíodh ábhar an doiciméid.
+221	Níl Téigh go dtí an fhoinse ar fáil go dtí go mbeidh bonnlíne foinse iomlán ag an tábla amhairc reatha. Athnuaigh an tábla ar dtús.
+222	Teastaíonn sraith nó cill CSV reatha ó Téigh go dtí an fhoinse.
+223	Níor críochnaíodh Téigh go dtí an fhoinse. Níor athraíodh ábhar an doiciméid.
+224	Roghnaíodh taifead foinse {0}, colún {1}, in Notepad++.
+225	Roghnaíodh taifead foinse {0} in Notepad++.
+226	Ní sholáthraíonn an tsraith amhairc reatha aitheantas cobhsaí don taifead foinse.
+227	Níl suíomh foinse ag an tsraith ionsáite ar feitheamh seo go dtí go gcríochnaítear Cuir i bhfeidhm.
+228	Amharc reatha: {0:N0} as {1:N0} sraith ar taispeáint.
+229	Úsáideann luachanna ar leith téacs beacht atá íogair do chás, lena n-áirítear luachanna folmha.\nSraitheanna athdhéanta = sraitheanna lúide luachanna ar leith. Úsáideann an raon uimhriúil luachanna deachúlacha beachta le pointe.
+230	Folamh
+231	Cineál
+232	Na luachanna is coitianta (suas le 20)
+233	Níl ar fáil
+234	Íosmhéid uimhriúil: {0}     Uasmhéid: {1}\nLuach is faide: {2:N0} aonad UTF-16. Tá {3:N0} luach le feiceáil níos mó ná uair amháin.
+235	 Teilgean teoranta; NÍ hé seo an comhad iomlán.
+236	Sraitheanna: {0:N0}     Folamh: {1:N0}     Spás bán amháin: {2:N0}\nAr leith: {3:N0}     Sraitheanna athdhéanta: {4:N0}     Uimhriúil: {5:N0}
+237	Achoimre colúin
+238	Spás bán
+239	Cuireadh sraith nua leis an seisiún eagarthóireachta ar feitheamh. Scríobhann Cuir i bhfeidhm í chuig maolán an eagarthóra; caitheann Cealaigh gach rud amach í.
+240	Níor sholáthair sraith foinse innéacs a taifid foinse.
+241	Gníomh
+242	Theip ar sheat den doiciméad gníomhach. Níor athraíodh ábhar an eagarthóra.
+243	Cuir sraith leis
+244	Cealaíodh gach eagarthóireacht cealla agus sraithe ar feitheamh. Níor athraíodh maolán eagarthóra Notepad++.
+245	Cuir gach eagarthóireacht cealla agus sraithe i bhfeidhm ar an eagarthóir gníomhach mar aon ghníomh amháin is féidir a chealú
+246	Cuireadh bac ar Chuir i bhfeidhm: tá doiciméad Notepad++ eile gníomhach. Fill ar an mbundoiciméad nó úsáid Cealaigh gach rud.
+247	Cuireadh bac ar Chuir i bhfeidhm: d'athraigh maolán an eagarthóra tar éis don mhód eagarthóireachta tosú. Cealaigh agus athnuaigh sula n-eagraíonn tú arís.
+248	Cuireadh bac ar Chuir i bhfeidhm: d'athraigh leathanach cóid an eagarthóra tar éis don mhód eagarthóireachta tosú. Cealaigh agus athoscail an mód eagarthóireachta.
+249	Theip ar Chuir i bhfeidhm. Fanann an seisiún eagarthóireachta oscailte; seiceáil maolán an eagarthóra sula ndéanann tú iarracht arís nó sula gcealaíonn tú.
+250	Níor críochnaíodh Cuir i bhfeidhm. Ní dhearnadh iarracht forscríobh uathoibríoch.
+251	Braith go huathoibríoch
+252	muinín uathoibríoch {0}
+253	{0} — níl braite uathoibríoch teorantóra iontaofa; teastaíonn roghnú de láimh.
+254	Brath uathoibríoch
+255	Scóir iarrthóirí
+256	{0} cealla / {1} sraith (+{2} / -{3})
+257	Carachtar
+258	{0} carachtar / {1} beart eagarthóra
+259	Roghnaigh Camóg, Leathstad nó Táb ón liosta teorantóirí thuas.
+260	Roghnaigh go sainráite an ceanntásc é an chéad taifead loighciúil
+261	Glan
+262	Glan an scagaire cuardaigh reatha agus an sórtáil amhairc amháin
+263	Cód
+264	 - {0} coinníoll colúin ({1}), {2} leibhéal sórtála
+265	{0} — {1} × {2} colún — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Camóg (,)
+267	camóg
+268	Muinín
+269	Scrios gach sraith sonraí chobhsaí roghnaithe ón seisiún eagarthóireachta ar feitheamh
+270	Scrios sraith
+271	Scrios sraitheanna ({0})
+272	Scrios an tsraith sonraí chobhsaí roghnaithe ón seisiún eagarthóireachta ar feitheamh
+273	Scrios an tsraith nó na sraitheanna sonraí cobhsaí roghnaithe ón seisiún eagarthóireachta ar feitheamh
+274	Teorantóir:
+275	Diagnóisic ({0})
+276	Caith amach gach athrú cealla, ionsá agus scriosadh ar feitheamh
+277	Doiciméad
+278	 — MÓD EAGARTHÓIREACHTA: {0} cealla, {1} sraith, +{2} / -{3}
+279	 - Mód eagarthóireachta
+280	Tá athruithe ar feitheamh sa mhód eagarthóireachta. Úsáid Cuir i bhfeidhm nó Cealaigh gach rud sula bhfágann tú é.
+281	Níl an mód eagarthóireachta ar fáil don tábla reatha. Réitigh earráidí parsála nó teorainneacha taispeána ar dtús.
+282	Ní féidir eagarthóireacht a thosú ó theilgean amhairc le líon teoranta sraitheanna.
+283	Ní féidir eagarthóireacht a thosú fad a bhíonn earráidí sa CSV parsáilte.
+284	Níl eagarthóireacht ar fáil don tábla reatha.
+285	{0} — maolán eagarthóra folamh; níl taifid CSV le taispeáint.
+286	Téigh go sainráite isteach sa mhód eagarthóireachta do chealla agus sraitheanna
+287	Téigh go sainráite isteach sa mhód eagarthóireachta do chealla agus sraitheanna. Ní scríobhann Cuir i bhfeidhm ach chuig maolán an eagarthóra.
+288	Téigh go sainráite isteach sa mhód eagarthóireachta do chealla agus sraitheanna. Ní chruthaítear an tsamhail eagarthóireachta iomlán ach ar iarratas.
+289	{0} earráid, {1} rabhadh
+290	an chéad sraith mar cheanntásc
+291	Is ceanntásc an chéad sraith
+292	Ceanntásc:
+293	Ionsáigh sraith nua tar éis na sraithe roghnaithe nó cuir leis an deireadh í mura bhfuil sraith roghnaithe
+294	{0} — sonraí CSV á luchtú sa chúlra; fanann Notepad++ freagrúil.
+295	roghnú de láimh
+296	{0} ag meaitseáil as {1} sraith ar taispeáint
+297	Teachtaireacht
+298	Baineadh {0} sraith nua-ionsáite ón seisiún ar feitheamh.
+299	Níl diagnóisic le taispeáint.
+300	Gan sraith cheanntásc
+301	gan sraith cheanntásc
+302	Níl sraitheanna meaitseála ann.\nBain triail as téacs cuardaigh nó colún eile.
+303	gan diagnóisic parsála
+304	Níorbh fhéidir teorantóir iontaofa a roghnú go sábháilte.
+305	Níl aon rud le cur i bhfeidhm: níl athruithe ar feitheamh sa seisiún eagarthóireachta.
+306	Ag parsáil agus ag ullmhú tábla amhairc teoranta sa chúlra…
+307	Athruithe cealla ar feitheamh agus athruithe struchtúracha sraithe
+308	Sraith ionsáite ar feitheamh {0}; níl sí curtha i bhfeidhm fós
+309	{0} sraith ar feitheamh
+310	Tá an breiseán réidh. Maolán an eagarthóra ghníomhaigh á léamh...
+311	An seisiún eagarthóireachta iomlán á ullmhú…
+312	Airí
+313	Léigh agus taispeáin maolán eagarthóra Notepad++ atá gníomhach faoi láthair
+314	Taifead
+315	Cealaigh gach rud
+316	{0} sraith
+317	Leathstad (;)
+318	leathstad
+319	Déine
+320	Taispeáin diagnóisic mhionsonraithe parsála agus teorantóirí
+321	ag taispeáint {0} as {1} sraith
+322	Seat
+323	Earráid seite
+324	Leibhéal sórtála {0}: {1}, {2}. Amharc amháin.
+325	 — sórtáilte de réir {0} {1}
+326	Taifead foinse loighciúil {0}
+327	Taifead foinse loighciúil {0}; athraithe sa seisiún eagarthóireachta ar feitheamh
+328	Tá {0} sraith foinse marcáilte lena scriosadh agus baineadh {1} sraith ionsáite ón seisiún ar feitheamh.
+329	Tá {0} sraith foinse marcáilte lena scriosadh. Scríobhann Cuir i bhfeidhm an bhaisc iomlán; athbhunaíonn Cealaigh gach rud gach sraith.
+330	Stádas
+331	Táb
+332	táb
+333	Earráid tábla
+334	Níorbh fhéidir eagarthóireacht na cille gníomhaí a dheimhniú. Ceartaigh an luach sula gcuireann tú sraith leis.
+335	Níorbh fhéidir eagarthóireacht na cille gníomhaí a dheimhniú. Ceartaigh an luach sula scriosann tú sraitheanna.
+336	Níorbh fhéidir eagarthóireacht na cille gníomhaí a dheimhniú. Ceartaigh an luach sula gcuireann tú i bhfeidhm.
+337	Baineadh an tsraith nua-ionsáite ón seisiún ar feitheamh.
+338	Níl colún táscaire na sraithe cumraithe.
+339	Níl an tacar sraitheanna roghnaithe bailí don seisiún eagarthóireachta seo a thuilleadh. Níor scriosadh aon sraith.
+340	Bhí na sraitheanna roghnaithe scriosta cheana féin. Ní dhearnadh aon athrú breise.
+341	Tá an tsraith foinse marcáilte lena scriosadh. Scríobhann Cuir i bhfeidhm an scriosadh; athbhunaíonn Cealaigh gach rud an tsraith.
+342	Níorbh fhéidir an tábla amhairc a chruthú. Níor athraíodh ábhar an eagarthóra.
+343	Úsáid brath uathoibríoch iontaofa nó roghnaigh teorantóir go sainráite
+344	Ag fanacht leis an doiciméad Notepad++ gníomhach.
+345	{0} - {1} x {2:N0} colún
+346	Glac le hathruithe
+347	Tar éis
+348	Gach cill sonraí
+349	Roimh
+350	Colún CSV
+351	Roghnaigh oibríocht agus scóip, ansin cliceáil Réamhamharc.
+352	Colún reatha
+353	Aimsigh:
+354	litreacha beaga
+355	Oibríocht:
+356	Taispeántar spás bán eile mar sheichimh éalaithe; áirítear faid mar aonaid UTF-16. Giorraítear luachanna fada.
+357	Níorbh fhéidir an réamhamharc a chruthú. Seiceáil an scóip agus an téacs cuardaigh nó roghnaigh scóip níos lú (uasmhéid 250,000 cealla / 16 Mi carachtar).
+358	Déan réamhamharc ar dtús. Nuashonraíonn Glac le hathruithe na heagarthóireachtaí ar feitheamh; scríobhann Cuir i bhfeidhm ar an mbarra uirlisí chuig Notepad++.\nEisiatar ceanntásca nuair atá Ceanntásc = an chéad taifead. Tá athrú cáis neamhspleách ar shocruithe logánta.
+359	Aitheantas taifid
+360	Ionadaigh téacs (go litriúil)
+361	Ionadaigh le:
+362	Scóip:
+363	Roghnaigh colún sonraí CSV.
+364	Cealla / sraitheanna roghnaithe
+365	marcálann poncanna oráiste líonta spásanna. 
+366	tá táscairí spáis i bhfolach. 
+367	{0:N0} cill sprice; {1:N0} athrú i {2:N0} sraith. Ag taispeáint na chéad 50 athrú; 
+368	D'athraigh an seisiún eagarthóireachta.
+369	Níl an réamhamharc bailí a thuilleadh. Seiceáil an seisiún eagarthóireachta agus cruthaigh réamhamharc nua.
+370	Claochlú cealla CSV
+371	Claochlódh {0:N0} cealla sa seisiún eagarthóireachta ar feitheamh. Úsáid Cuir i bhfeidhm chun Notepad++ a nuashonrú nó Cealaigh gach rud chun na heagarthóireachtaí ar feitheamh a chaitheamh amach.
+372	Bain spás bán seachtrach
+373	CEANNLITREACHA
+374	Athshocraigh amharc
+375	Taispeáin spásanna
