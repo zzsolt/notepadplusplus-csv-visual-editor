@@ -1,0 +1,378 @@
+# language: zu
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Isihleli se-CSV esibonakalayo se-Notepad++
+001	Mayelana ne-CSV Visual Editor
+002	Oxhumana naye: {0}
+003	Xhumana nomthuthukisi {0}
+004	Umthuthukisi: {0}
+005	Inguqulo yokuthuthukisa
+006	Uyayithanda i-CSV Visual Editor? Sekela iphrojekthi.\nYinike inkanyezi ku-GitHub, thumela impendulo yakho, noma uxhumane nomthuthukisi ukuze unikele. Siyabonga!
+007	Ulimi lwesixhumi esibonakalayo: {0}
+008	Alukho uhlelo lokusebenza oluhlotshanisiwe oluvulekile. Oxhumana naye: {0}
+009	Iphrojekthi ku-GitHub
+010	Inguqulo: {0}
+011	Inguqulo nokwakhiwa
+012	I-{0} ivinjiwe ngoba imodeli yokuhlela okulindile ishintshile. Alukho ushintsho oluyingxenye olugciniwe.
+013	I-{0} ivinjiwe: onxande bebhodi lokunamathisela nokukhethiwe banobukhulu obuhlukile.
+014	I-{0} ivinjiwe: unxande oqondiwe wedlula ithebula le-CSV.
+015	I-{0} ivinjiwe: awukho unxande oqondiwe ohlelekayo.
+016	Kukopishwe amaseli e-CSV angu-{0} × {1}.
+017	Ukukopisha/ukusika kuvinjiwe: iseli elikhethiwe liqukethe i-tab noma ukunqamuka komugqa okungenakumelelwa ngokucacile njengombhalo ojwayelekile wespredishithi.
+018	Ukukopisha kudinga amaseli e-CSV, hhayi ukukhethwa kwemigqa yonke ukuze isuswe.
+019	Ukukopisha kudinga ukukhetha okukodwa okuqhubekayo okungunxande kwamaseli edatha e-CSV.
+020	Kusikwe amaseli angu-{0} aya ebhodini lokunamathisela futhi angenziwa angenalutho kusikhathi sokuhlela esilindile. Ukusebenzisa kubhala lokho ku-Notepad++.
+021	Ukusika kuqediwe; amaseli akhethiwe ayevele engenalutho. Ibhodi lokunamathisela liqukethe amanani awo okuqala.
+022	I-{0} itholakala kuphela kumodi yokuhlela.
+023	I-{0} ayitholakali kuthebula lamanje.
+024	Ukunamathisela kuvinjiwe: {0} Ayikho idatha eshintshiwe.
+025	Ukunamathisela kuqediwe; wonke amanani okuqondiswe kuwo ayevele efana.
+026	Kunamathiselwe amaseli aguquliwe angu-{0} esikhathini sokuhlela esilindile. Ukusebenzisa kuwabhala ku-Notepad++.
+027	I-{0} idinga unxande wamaseli e-CSV, hhayi ukukhethwa kwemigqa yonke ukuze isuswe.
+028	I-{0} idinga ukukhetha okukodwa okuqhubekayo okungunxande kwamaseli edatha e-CSV.
+029	Okuqondiswe yi-{0} akutholakali ngaphandle kwemodeli yomugqa ezinzile yemodi yokuhlela.
+030	Ukuhlela kweseli elisebenzayo akukwazanga ukuqinisekiswa ngaphambi kokukopisha.
+031	Ukuhlela kweseli elisebenzayo akukwazanga ukuqinisekiswa. Lungisa inani ngaphambi kwe-{0}.
+032	Ibhodi lokunamathisela alinawo amaseli njengombhalo ojwayelekile.
+033	Ibhodi lokunamathisela le-Windows alitholakali okwesikhashana. Ayikho idatha eshintshiwe.
+034	Kopisha unxande okhethiwe wamaseli e-CSV ebhodini lokunamathisela le-Windows (Ctrl+C)
+035	Kopisha amaseli e-CSV akhethiwe bese uwenza angenalutho esikhathini sokuhlela esilindile (Ctrl+X)
+036	Namathisela amaseli espredishithi eselini noma kunxande we-CSV okhethiwe (Ctrl+V)
+037	Buka kuqala ukushintshwa kombhalo, ukususa izikhala ezingaphandle, noma ukuguqula usonhlamvukazi/usonhlamvukazi omncane ekuhlelweni kwe-CSV okulindile
+038	Khetha iseli noma umugqa we-CSV wamanje ebhafarini lomthombo le-Notepad++
+039	Umthombo
+040	Guqula
+041	Mayelana
+042	Sebenzisa
+043	Okukhuphukayo
+044	Khansela
+045	Vala
+046	Ikholomu
+047	Kopisha
+048	Sika
+049	Okwehlayo
+050	Hlela
+051	Phuma ekuhleleni
+052	Qondanisa usonhlamvukazi
+053	Inombolo
+054	Ukuhleleka kwasekuqaleni
+055	Namathisela
+056	Ukubuka kuqala
+057	Vuselela
+058	Imigqa
+059	Ithebula
+060	Umbhalo
+061	Inani
+062	Isifinyezo sekholomu: izibalo, amanani ahlukile, ububanzi bezinombolo namanani avamile ekubukweni kwamanje.
+063	Isifinyezo sekholomu sidinga ithebula elilungile elifundwayo kuphela. Phuma kumodi yokuhlela kuqala.
+064	Hlunga futhi uhlele: hlanganisa imithetho yekholomu namazinga okuhlelwa kombhalo/izinombolo. Ukubuka kuphela; i-CSV ayishintshi.
+065	Hlunga futhi uhlele: hlanganisa imithetho yekholomu namazinga afinyelela kwamathathu okuhlelwa kombhalo/izinombolo. Ukubuka kuphela.
+066	Hlunga futhi uhlele: imibandela engu-{0}, amazinga okuhlela angu-{1}. Setha kabusha ukubuka ususe yonke imithetho.
+067	Ukuhlunga nokuhlela kudinga ithebula elilungile elifundwayo kuphela. Phuma kumodi yokuhlela kuqala.
+068	Ukuxilonga (0)
+069	0 izinguquko
+070	Engeza umbandela
+071	Engeza izinga lokuhlela
+072	Sebenzisa ukubuka
+073	Usonhlamvukazi
+074	Ukuqhathanisa umbhalo okunaka usonhlamvukazi. Izikhala kumanani ziphathwa njengoba zinjalo.
+075	Hlola imithetho: {0}
+076	Umbandela
+077	{0} / 8 imibandela; {1} / 3 amazinga okuhlela. Buka kuqala ukuze uhlole imigqa ehambisanayo.
+078	Kuqukethe
+079	Akuqukethe
+080	Akulingani no
+081	Akunalutho = azikho izinhlamvu. Izikhala kuphela = uchungechunge olungenalutho lwezikhala/ama-tab/ukunqamuka komugqa.\nIzinombolo zisebenzisa iphuzu ledesimali (-12.5), ngaphandle kokuqoqwa noma ama-exponent; ukunemba kufanele kube ngqo.
+082	Kuphela ngo
+083	Kulingana no
+084	Inani lesihlungi
+085	Izihlungi
+086	Akunalutho
+087	Akukhona okungenalutho
+088	Akuzona izikhala kuphela
+089	Izikhala kuphela
+090	Umbhalo njengoba unjalo, kuhlanganise nezikhala. Imithetho yezinombolo idinga inombolo yedesimali enembile enechashazi.
+091	Qondanisa YONKE imibandela
+092	Qondanisa NOMA YIMUPHI umbandela
+093	Inombolo =
+094	Inombolo >
+095	Inombolo >=
+096	Inombolo <
+097	Inombolo <=
+098	Inombolo (idesimali)
+099	Ukubuka kuqala: {0:N0} kwengu-{1:N0} imigqa ebonisiwe. I-CSV ayishintshile.
+100	Susa umbandela
+101	Susa izinga lokuhlela
+102	Setha kabusha imithetho
+103	Imithetho nayo ihlonipha usesho lwamanje. Ukukhansela kugcina ukubuka okusebenzayo.
+104	Ukuhlela
+105	Kuqala ngo
+106	Umbhalo: ukuhleleka okujwayelekile okunganaki usonhlamvukazi. Inombolo: amadesimali anembile; amanani angavumelekile/angenalutho ekugcineni.\nOkhiye abalinganayo bagcina ukuhleleka komthombo. Susa wonke amazinga ukuze ubuyisele ukuhleleka komthombo.
+107	Ukuboniswa kunomkhawulo; imigqa engabonisiwe ayifakiwe. 
+108	Hlunga futhi uhlele
+109	Izinga eliphezulu libaluleke kuqala; amazinga alandelayo axazulula ukulingana. Ubuningi 3.
+110	Inani (njengoba linjalo, kuhlanganise nezikhala)
+111	Ukubuka kuphela — amanani e-CSV nokuhleleka komthombo kuhlala kungashintshi. {0:N0} imigqa ebonisiwe.\n
+112	Ukusebenzisa kuvinjiwe ngoba i-{0} ayinayo iphrofayela yokufaka ikhodi esekelwa ngokucacile. Okuqukethwe komhleli akushintshwanga.
+113	Ukusebenzisa kuvinjiwe ngoba ukuqinisekiswa okuqinile kokufaka ikhodi kwe-{0} akuzange kukhiqize ukuguqulwa okubuyela emuva okunembile. Okuqukethwe komhleli akushintshwanga.
+114	Ukusebenzisa kuvinjiwe ngoba okushintshwayo okulindile akunakumelelwa ngokunembile ku-{0}. Akusetshenziswanga uphawu lokufaka esikhundleni futhi okuqukethwe komhleli akushintshwanga.
+115	Ukusebenzisa akukavunyelwa ku-{0}. Okuqukethwe komhleli akushintshwanga. Ukubhala kuvunyelwe kuphela ku-UTF-8 (65001) naku-Windows-1250 (1250), ngemva kokuqinisekiswa okungenakho ukulahleka. Sebenzisa Hlehlisa konke noma guqula idokhumenti ibe yi-UTF-8 ku-Notepad++ bese uvula kabusha imodi yokuhlela.
+116	Ukuvuselela kukhutshaziwe kumodi yokuhlela. Sebenzisa noma uhlehlise zonke izinguquko ezilindile kuqala.
+117	Ikhasi lekhodi le-Scintilla {0}
+118	Idokhumenti esebenzayo ingu-{0:N0} byte. Umkhawulo ophephile wamanje wesithombe sesikhashana ungu-{1:N0} byte.
+119	Idokhumenti esebenzayo ye-Notepad++ ayikwazanga ukufundwa. Okuqukethwe komhleli akushintshwanga.
+120	Umphumela wokusebenzisa awusona isimo esivinjelwe ukufaka ikhodi.
+121	Ukwakhiwa kwethebula ngemuva kuphele ngaphandle komphumela.
+122	Izinguquko ze-CSV zisetshenzisiwe, kodwa indawo yangaphambilini yekhesa noma ukukhetha akukwazanga ukubuyiselwa. Ushintsho lonke lwedokhumenti lusengahlehliswa ngesenzo esisodwa.
+123	ikhasi lekhodi lamanje lomhleli
+124	Ibhafa yomhleli ayikwazanga ukuguqulwa ibe ithebula elibonakalayo. Khetha ngokucacile isihlukanisi noma uvuselele ngemva kokulungisa idokhumenti.
+125	Ukwakhiwa kwethebula kubuyise umphumela ongaphelele.
+126	&Mayelana
+127	&Sula usesho
+128	&CSV
+129	&Isihlukanisi
+130	&Hlela
+131	Esc kusesho
+132	&Thola kuthebula
+133	&Isihloko
+134	&Iseli elandelayo ehambisanayo
+135	&Iseli eyedlule ehambisanayo
+136	Setha kabusha ukubuka: sula usesho, imibandela yekholomu nokuhlela konke.
+137	&Usesho
+138	&Ikholomu yokusesha
+139	Bonisa izikhala: amachashazi amancane awolintshi agcwele. Ukubonisa kuphela; amanani e-CSV awashintshi.
+140	Bonisa &ithebula
+141	&Hlela nge
+142	&Ithebula
+143	&Ukubuka
+144	Inani lesihlungi lingaba nezinhlamvu ezifika ku-4,096.
+145	YONKE
+146	Uphawu lokulandelana kwama-byte olusekuqaleni lukhishiwe enkambini yokuqala.
+147	NOMA YIMUPHI
+148	Uphawu lokucaphuna luvele enkambini engavalelwe ngamaphawu okucaphuna.
+149	Imigqa yebhodi lokunamathisela kufanele yakhe imatrix eyodwa yamaseli engunxande.
+150	Ikhodi yokuxilonga: {0}.
+151	Izinga ngalinye lokuhlela kufanele lisebenzise ikholomu ehlukile.
+152	Iphutha
+153	phezulu
+154	Ulwazi
+155	phansi
+156	phakathi
+157	Asikho isihlukanisi esisekelwayo esikhiqize isakhiwo semikhakha eminingi esithembeke ngokwanele.
+158	akukho
+159	Umugqa owodwa obonakalayo ungadinga amaseli angu-{0:N0}, udlule umkhawulo ophelele wamanje ongu-{1:N0}. Azikho izikholomu ezifihliwe.
+160	Irekhodi linemikhakha engu-{0}; bekulindelwe engu-{1} ngokusekelwe enanini elivame kakhulu kusampula.
+161	Izikhala: {0}; ekuqaleni: {1}; ekugcineni: {2}. Ubude: {3} amayunithi e-UTF-16.\nAmachashazi awolintshi amaka izikhala zangempela. Isikhala sokubonisa siyandiswa ukuze kufundeke; izinhlamvu ze-CSV azishintshi. Izibalo zasekuqaleni nezasekugcineni ziyagqagqana eselini eliqukethe izikhala kuphela.
+162	Imatrix yamaseli ebhodi lokunamathisela idlula umkhawulo ophephile wokunamathisela.
+163	Ibhodi lokunamathisela liqukethe uphawu lokulawula olungasekelwa.
+164	Ibhodi lokunamathisela linezikholomu eziningi kunalezo umhleli angazinamathisela ngokuphephile.
+165	Ibhodi lokunamathisela linemigqa eminingi kunaleyo umhleli angayinamathisela ngokuphephile.
+166	Umbhalo webhodi lokunamathisela udlula umkhawulo ophephile wamayunithi ezinhlamvu angu-16 Mi UTF-16.
+167	Inkambu yokugcina ecashuniwe ayivalwanga ngaphambi kokuphela kombhalo.
+168	Inani lemikhakha lihlukile kwamanye amarekhodi.
+169	Umsebenzi awukwazanga ukuqedwa. Hlola idokhumenti, amanani akhethiwe nemikhawulo yosayizi.
+170	Idokhumenti ehlaziyiwe inezikholomu ezingu-{0:N0}, idlule umkhawulo wamanje wethebula elibonakalayo ongu-{1:N0}. Azikho izikholomu ezifihliwe.
+171	Isihlukanisi esiphakanyisiwe sinokuzethemba okuphansi. Hlola isilungiselelo sesihlukanisi.
+172	Abakhethwa ababili besihlukanisi banezikolo ezifanayo. Hlola isilungiselelo sesihlukanisi.
+173	Izinhlamvu ezingalindelekile zilandela uphawu lokucaphuna oluvalayo.
+174	akwaziwa
+175	Sebenzisa inombolo yedesimali enembile enechashazi, isibonelo -12.5. Ukuqoqwa, ama-exponent namanani ayindilinga akusekelwa.
+176	Sebenzisa imibandela yesihlungi efika kweyisishiyagalombili engesiyo null.
+177	Sebenzisa amazinga okuhlela afinyelela kwamathathu angasiyo null.
+178	Imithetho yokubuka ibhekisela kukholomu engaphandle kwethebula lamanje.
+179	Isexwayiso
+180	Isifinyezo sekholomu
+181	Hlunga futhi uhlele
+182	Vula ithebula elibonakalayo
+183	Vuselela ithebula
+184	okusha:{0}
+185	okusha:{0} *
+186	Khetha
+187	Khetha imigqa yonke ukuze isuswe
+188	Irekhodi lomthombo elinengqondo noma umugqa wesakhiwo olindile
+189	Ikholomu yesikhombi somugqa ayikwazanga ukukhonjwa.
+190	Umugqa kufanele ube yingxenye ye-DataGridView.
+191	Zonke izikholomu
+192	{0:N0} / {1:N0} amaseli
+193	{0:N0} amaseli
+194	Sula usesho
+195	Sula usesho (Esc). Gcina ikholomu yokusesha nokuhlela.
+196	Ihlunga imigqa ebonisiwe. Enter: iseli elandelayo ehambisanayo. Shift+Enter: eyedlule. Escape: sula.
+197	Iseli elandelayo ehambisanayo
+198	Iseli elandelayo ehambisanayo (F3 / Enter)
+199	Akukho okufanayo
+200	Ayikho imigqa ehambisanayo.\nLungisa usesho noma sebenzisa Ukubuka > Hlunga futhi uhlele / Setha kabusha ukubuka.
+201	Iseli eyedlule ehambisanayo
+202	Iseli eyedlule ehambisanayo (Shift+F3 / Shift+Enter)
+203	Sesha zonke izikholomu zedatha noma ukhethe ikholomu eyodwa.
+204	Ikholomu yokusesha
+205	Sesha imigqa ye-CSV ebonisiwe (Ctrl+F). Amanani nombhalo womthombo akushintshi.
+206	Sesha kuthebula...
+207	Sesha kuthebula
+208	Imiphumela yokusesha
+209	Kuyaseshwa...
+210	Ukuya kumthombo kuvinjiwe: enye idokhumenti ye-Notepad++ iyasebenza. Buyela ku-CSV ebonisiwe noma uvuselele ithebula.
+211	Ukuya kumthombo kuvinjiwe ngoba umphumela wokuhlaziya ogciniwe awusahambisani nesithombe somthombo esingaguquki. Vuselela ithebula kuqala.
+212	Ukuya kumthombo kuvinjiwe: ubude obufakwe ikhodi ngokuqinile abuhambisani nobude bedokhumenti obubikwe yi-Scintilla.
+213	Ukuya kumthombo kuvinjiwe: okuqukethwe komhleli osebenzayo kushintshile ngemva kokuboniswa kwethebula. Vuselela ithebula kuqala.
+214	Ukuya kumthombo kuvinjiwe: ikhasi lekhodi le-Scintilla lamanje alinayo iphrofayela yendawo ye-byte ecacile.
+215	Ukuya kumthombo kuvinjiwe: ikhasi lekhodi lomhleli lishintshile ngemva kokuboniswa kwethebula. Vuselela ithebula kuqala.
+216	Ukuya kumthombo kuvinjiwe: iseli elikhethiwe elibonisiwe alinayo inkambu yomthombo eluhlaza.
+217	Ukuya kumthombo kuvinjiwe: ibanga lezinhlamvu zomthombo alikwazanga ukumakwa kuma-byte e-Scintilla ngaphandle kokulahleka.
+218	Ukuya kumthombo kuvinjiwe: irekhodi lomthombo elinengqondo alitholakali kumphumela wokuhlaziya ogciniwe.
+219	Ukuya kumthombo kuhlulekile: ibhafa ye-Notepad++ esebenzayo ayikwazanga ukufundwa. Okuqukethwe kwedokhumenti akushintshwanga.
+220	Ukuya kumthombo kuhlulekile ngesikhathi kuhanjiswa ukukhethwa kwe-Scintilla. Okuqukethwe kwedokhumenti akushintshwanga.
+221	Ukuya kumthombo akutholakali kuze kube ithebula elibonakalayo lamanje linesisekelo somthombo esiphelele. Vuselela ithebula kuqala.
+222	Ukuya kumthombo kudinga umugqa noma iseli le-CSV lamanje.
+223	Ukuya kumthombo akuqedwanga. Okuqukethwe kwedokhumenti akushintshwanga.
+224	Kukhethwe irekhodi lomthombo {0}, ikholomu {1}, ku-Notepad++.
+225	Kukhethwe irekhodi lomthombo {0} ku-Notepad++.
+226	Umugqa obonakalayo wamanje awunikezi ubunikazi obuzinzile berekhodi lomthombo.
+227	Lo mugqa ofakiwe olindile awunayo indawo yomthombo kuze kuqedwe Ukusebenzisa.
+228	Ukubuka kwamanje: {0:N0} kwengu-{1:N0} imigqa ebonisiwe.
+229	Amanani ahlukile asebenzisa umbhalo onembile onaka usonhlamvukazi, kuhlanganise namanani angenalutho.\nImigqa ephindaphindiwe = imigqa kususwe amanani ahlukile. Ububanzi bezinombolo busebenzisa amanani edesimali anembile anechashazi.
+230	Akunalutho
+231	Uhlobo
+232	Amanani avame kakhulu (afinyelela ku-20)
+233	Akutholakali
+234	Ubuncane bezinombolo: {0}     Ubukhulu: {1}\nInani elide kakhulu: {2:N0} amayunithi e-UTF-16. Amanani angu-{3:N0} avela ngaphezu kokukodwa.
+235	 Ukuboniswa kunomkhawulo; lokhu AKUSIYO ifayela lonke.
+236	Imigqa: {0:N0}     Okungenalutho: {1:N0}     Izikhala kuphela: {2:N0}\nOkuhlukile: {3:N0}     Imigqa ephindaphindiwe: {4:N0}     Izinombolo: {5:N0}
+237	Isifinyezo sekholomu
+238	Izikhala
+239	Umugqa omusha wengezwe esikhathini sokuhlela esilindile. Ukusebenzisa kuwubhala ebhafarini lomhleli; Hlehlisa konke kuyawulahla.
+240	Umugqa womthombo awuzange unikeze inkomba yerekhodi lomthombo.
+241	Isenzo
+242	Isithombe sesikhashana sedokhumenti esebenzayo sehlulekile. Okuqukethwe komhleli akushintshwanga.
+243	Engeza umugqa
+244	Konke ukuhlelwa kwamaseli nemigqa okulindile kuhlehlisiwe. Ibhafa yomhleli we-Notepad++ ayishintshwanga.
+245	Sebenzisa konke ukuhlelwa kwamaseli nemigqa kumhleli osebenzayo njengesenzo esisodwa esingahlehliswa
+246	Ukusebenzisa kuvinjiwe: enye idokhumenti ye-Notepad++ iyasebenza. Buyela kudokhumenti yasekuqaleni noma usebenzise Hlehlisa konke.
+247	Ukusebenzisa kuvinjiwe: ibhafa yomhleli ishintshile ngemva kokuqala kwemodi yokuhlela. Hlehlisa futhi uvuselele ngaphambi kokuhlela futhi.
+248	Ukusebenzisa kuvinjiwe: ikhasi lekhodi lomhleli lishintshile ngemva kokuqala kwemodi yokuhlela. Hlehlisa bese uvula kabusha imodi yokuhlela.
+249	Ukusebenzisa kuhlulekile. Isikhathi sokuhlela sihlala sivulekile; hlola ibhafa yomhleli ngaphambi kokuzama futhi noma ukuhlehlisa.
+250	Ukusebenzisa akuqedwanga. Akuzange kuzanywe ukubhala ngaphezulu ngokuzenzakalelayo.
+251	Thola ngokuzenzakalelayo
+252	ukuzethemba okuzenzakalelayo {0}
+253	{0} — ukutholwa kwesihlukanisi ngokuzenzakalelayo akuthembekile; kudingeka ukukhetha mathupha.
+254	Ukuthola ngokuzenzakalelayo
+255	Izikolo zabakhethwa
+256	{0} amaseli / {1} imigqa (+{2} / -{3})
+257	Uphawu
+258	{0} izinhlamvu / {1} ama-byte omhleli
+259	Khetha Ukhefana, Isemicolon noma I-Tab ohlwini lwezihlukanisi ngenhla.
+260	Khetha ngokucacile ukuthi irekhodi lokuqala elinengqondo liyisihloko yini
+261	Sula
+262	Sula isihlungi sosesho samanje nokuhlela okushintsha ukubuka kuphela
+263	Ikhodi
+264	 - {0} imibandela yekholomu ({1}), {2} amazinga okuhlela
+265	{0} — {1} × {2} izikholomu — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Ukhefana (,)
+267	ukhefana
+268	Ukuzethemba
+269	Susa yonke imigqa yedatha ezinzile ekhethiwe esikhathini sokuhlela esilindile
+270	Susa umugqa
+271	Susa imigqa ({0})
+272	Susa umugqa wedatha ozinzile okhethiwe esikhathini sokuhlela esilindile
+273	Susa umugqa noma imigqa yedatha ezinzile ekhethiwe esikhathini sokuhlela esilindile
+274	Isihlukanisi:
+275	Ukuxilonga ({0})
+276	Lahla zonke izinguquko zamaseli, okufakiwe nokususwa okulindile
+277	Idokhumenti
+278	 — IMODI YOKUHLELA: {0} amaseli, {1} imigqa, +{2} / -{3}
+279	 - Imodi yokuhlela
+280	Imodi yokuhlela iqukethe izinguquko ezilindile. Sebenzisa Ukusebenzisa noma Hlehlisa konke ngaphambi kokuphuma.
+281	Imodi yokuhlela ayitholakali kuthebula lamanje. Lungisa amaphutha okuhlaziya noma imikhawulo yokubonisa kuqala.
+282	Ukuhlela akukwazi ukuqala ekubonisweni okubonakalayo okunomkhawulo wenani lemigqa.
+283	Ukuhlela akukwazi ukuqala ngenkathi i-CSV ehlaziyiwe iqukethe amaphutha.
+284	Ukuhlela akutholakali kuthebula lamanje.
+285	{0} — ibhafa yomhleli engenalutho; awekho amarekhodi e-CSV azoboniswa.
+286	Ngena ngokucacile kumodi yokuhlela yamaseli nemigqa
+287	Ngena ngokucacile kumodi yokuhlela yamaseli nemigqa. Ukusebenzisa kubhala kuphela ebhafarini lomhleli.
+288	Ngena ngokucacile kumodi yokuhlela yamaseli nemigqa. Imodeli yokuhlela ephelele idalwa kuphela uma iceliwe.
+289	{0} amaphutha, {1} izexwayiso
+290	umugqa wokuqala njengesihloko
+291	Umugqa wokuqala uyisihloko
+292	Isihloko:
+293	Faka umugqa omusha ngemva komugqa okhethiwe noma uwengeze ekugcineni uma kungekho mugqa okhethiwe
+294	{0} — kulayishwa idatha ye-CSV ngemuva; i-Notepad++ iyaqhubeka nokuphendula.
+295	ukukhetha mathupha
+296	{0} ehambisanayo kwengu-{1} imigqa ebonisiwe
+297	Umlayezo
+298	Kususwe imigqa emisha efakiwe engu-{0} esikhathini esilindile.
+299	Akukho ukuxilonga okuzoboniswa.
+300	Awukho umugqa wesihloko
+301	awukho umugqa wesihloko
+302	Ayikho imigqa ehambisanayo.\nZama omunye umbhalo wokusesha noma ikholomu.
+303	akukho ukuxilonga kokuhlaziya
+304	Asikho isihlukanisi esithembekile esikwazile ukukhethwa ngokuphepha.
+305	Akukho okuzosetshenziswa: isikhathi sokuhlela asinazo izinguquko ezilindile.
+306	Kuhlaziywa futhi kulungiselelwa ithebula elibonakalayo elinomkhawulo ngemuva…
+307	Izinguquko zamaseli nezakhiwo zemigqa ezilindile
+308	Umugqa ofakiwe olindile {0}; awukasetshenziswa
+309	{0} imigqa elindile
+310	I-plugin isilungile. Kufundwa ibhafa yomhleli esebenzayo...
+311	Kulungiselelwa isikhathi sokuhlela esiphelele…
+312	Isici
+313	Funda futhi ubonise ibhafa yomhleli we-Notepad++ esebenzayo njengamanje
+314	Irekhodi
+315	Hlehlisa konke
+316	{0} imigqa
+317	Isemicolon (;)
+318	isemicolon
+319	Ubukhulu benkinga
+320	Bonisa ukuxilonga okuningiliziwe kokuhlaziya nesihlukanisi
+321	kuboniswa {0} kwengu-{1} imigqa
+322	Isithombe sesikhashana
+323	Iphutha lesithombe sesikhashana
+324	Izinga lokuhlela {0}: {1}, {2}. Ukubuka kuphela.
+325	 — kuhlelwe ngo-{0} {1}
+326	Irekhodi lomthombo elinengqondo {0}
+327	Irekhodi lomthombo elinengqondo {0}; lishintshiwe esikhathini sokuhlela esilindile
+328	Imigqa yomthombo engu-{0} imakwe ukuthi isuswe futhi imigqa efakiwe engu-{1} isusiwe esikhathini esilindile.
+329	Imigqa yomthombo engu-{0} imakwe ukuthi isuswe. Ukusebenzisa kubhala iqoqo lonke; Hlehlisa konke kubuyisela wonke umugqa.
+330	Isimo
+331	I-Tab
+332	i-tab
+333	Iphutha lethebula
+334	Ukuhlela kweseli elisebenzayo akukwazanga ukuqinisekiswa. Lungisa inani ngaphambi kokwengeza umugqa.
+335	Ukuhlela kweseli elisebenzayo akukwazanga ukuqinisekiswa. Lungisa inani ngaphambi kokususa imigqa.
+336	Ukuhlela kweseli elisebenzayo akukwazanga ukuqinisekiswa. Lungisa inani ngaphambi kokusebenzisa.
+337	Umugqa omusha ofakiwe ususiwe esikhathini esilindile.
+338	Ikholomu yesikhombi somugqa ayilungiselelwe.
+339	Iqoqo lemigqa elikhethiwe alisavumelekile kulesi sikhathi sokuhlela. Ayikho imigqa esusiwe.
+340	Imigqa ekhethiwe yayisisusiwe kakade. Alukho ushintsho olwengeziwe olwenziwe.
+341	Umugqa womthombo umakwe ukuthi ususwe. Ukusebenzisa kubhala ukususwa; Hlehlisa konke kubuyisela umugqa.
+342	Ithebula elibonakalayo alikwazanga ukudalwa. Okuqukethwe komhleli akushintshwanga.
+343	Sebenzisa ukutholwa okuzenzakalelayo okuthembekile noma ukhethe ngokucacile isihlukanisi
+344	Kulindelwe idokhumenti ye-Notepad++ esebenzayo.
+345	{0} - {1} x {2:N0} izikholomu
+346	Yamukela izinguquko
+347	Ngemva
+348	Wonke amaseli edatha
+349	Ngaphambi
+350	Ikholomu ye-CSV
+351	Khetha umsebenzi nobubanzi, bese uchofoza Ukubuka kuqala.
+352	Ikholomu yamanje
+353	Thola:
+354	onhlamvukazi abancane
+355	Umsebenzi:
+356	Ezinye izikhala ziboniswa njengama-escape sequence; ubude bubalwa ngamayunithi e-UTF-16. Amanani amade ayafinyezwa.
+357	Ukubuka kuqala akukwazanga ukudalwa. Hlola ububanzi nombhalo wokusesha noma ukhethe ububanzi obuncane (ubuningi amaseli angu-250,000 / izinhlamvu ezingu-16 Mi).
+358	Buka kuqala kuqala. Yamukela izinguquko kubuyekeza ukuhlela okulindile; Ukusebenzisa kubha yamathuluzi kubhala ku-Notepad++.\nIzihloko azifakwa lapho Isihloko = irekhodi lokuqala. Ukuguqulwa kosonhlamvukazi akuncikile kuzilungiselelo zendawo.
+359	I-ID yerekhodi
+360	Shintsha umbhalo (njengoba unjalo)
+361	Shintsha ngo:
+362	Ububanzi:
+363	Khetha ikholomu yedatha ye-CSV.
+364	Amaseli / imigqa ekhethiwe
+365	amachashazi awolintshi agcwele amaka izikhala. 
+366	izikhombi zezikhala zifihliwe. 
+367	{0:N0} amaseli okuqondiswe kuwo; {1:N0} izinguquko emigqeni engu-{2:N0}. Kuboniswa izinguquko zokuqala ezingu-50; 
+368	Isikhathi sokuhlela sishintshile.
+369	Ukubuka kuqala akusavumelekile. Hlola isikhathi sokuhlela bese udala ukubuka kuqala okusha.
+370	Guqula amaseli e-CSV
+371	Kuguqulwe amaseli angu-{0:N0} esikhathini sokuhlela esilindile. Sebenzisa Ukusebenzisa ukuze ubuyekeze i-Notepad++ noma Hlehlisa konke ukuze ulahle ukuhlela okulindile.
+372	Susa izikhala ezingaphandle
+373	OSONHLAMVUKAZI
+374	Setha kabusha ukubuka
+375	Bonisa izikhala
