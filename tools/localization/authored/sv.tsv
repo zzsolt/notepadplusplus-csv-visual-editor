@@ -1,0 +1,378 @@
+# language: sv
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	En visuell CSV-redigerare för Notepad++
+001	Om CSV Visual Editor
+002	Kontakt: {0}
+003	Kontakta utvecklaren {0}
+004	Utvecklare: {0}
+005	Utvecklingsversion
+006	Gillar du CSV Visual Editor? Stöd projektet.\nGe det en stjärna på GitHub, dela din återkoppling eller kontakta utvecklaren för att bidra. Tack!
+007	Gränssnittsspråk: {0}
+008	Ingen associerad app kunde öppnas. Kontakt: {0}
+009	Projektet på GitHub
+010	Version: {0}
+011	Version och bygge
+012	{0} blockerades eftersom modellen för väntande ändringar ändrades. Ingen partiell ändring behölls.
+013	{0} blockerades: rektanglarna i urklipp och markering har olika dimensioner.
+014	{0} blockerades: målrektangeln sträcker sig utanför CSV-tabellen.
+015	{0} blockerades: det finns ingen redigerbar målrektangel.
+016	Kopierade {0} × {1} CSV-celler.
+017	Kopiering/klippning blockerades: en markerad cell innehåller en tabb eller radbrytning som inte entydigt kan representeras som vanlig kalkylbladstext.
+018	Kopiering kräver CSV-celler, inte markering av hela rader för borttagning.
+019	Kopiering kräver en sammanhängande rektangulär markering av CSV-dataceller.
+020	Klippte {0} celler till urklipp och tömde dem i den väntande redigeringssessionen. Tillämpa skriver tömningen till Notepad++.
+021	Klippningen är klar; de markerade cellerna var redan tomma. Urklipp innehåller deras ursprungliga värden.
+022	{0} är endast tillgängligt i redigeringsläge.
+023	{0} är inte tillgängligt för den aktuella tabellen.
+024	Inklistring blockerades: {0} Inga data ändrades.
+025	Inklistringen är klar; alla målvärden var redan identiska.
+026	Klistrade in {0} ändrade celler i den väntande redigeringssessionen. Tillämpa skriver dem till Notepad++.
+027	{0} kräver en rektangel med CSV-celler, inte markering av hela rader för borttagning.
+028	{0} kräver en sammanhängande rektangulär markering av CSV-dataceller.
+029	Mål för {0} är inte tillgängliga utanför redigeringslägets stabila radmodell.
+030	Redigeringen av den aktiva cellen kunde inte bekräftas före kopiering.
+031	Redigeringen av den aktiva cellen kunde inte bekräftas. Korrigera värdet före {0}.
+032	Urklipp innehåller inte celler som oformaterad text.
+033	Windows urklipp är tillfälligt otillgängligt. Inga data ändrades.
+034	Kopiera den markerade rektangeln med CSV-celler till Windows urklipp (Ctrl+C)
+035	Kopiera de markerade CSV-cellerna och töm dem i den väntande redigeringssessionen (Ctrl+X)
+036	Klistra in kalkylbladsceller i den markerade CSV-cellen eller rektangeln (Ctrl+V)
+037	Förhandsgranska textersättning, borttagning av yttre blanktecken eller ändring av skiftläge i väntande CSV-redigeringar
+038	Markera den aktuella CSV-cellen eller raden i källbufferten i Notepad++
+039	Källa
+040	Omvandla
+041	Om
+042	Tillämpa
+043	Stigande
+044	Avbryt
+045	Stäng
+046	Kolumn
+047	Kopiera
+048	Klipp ut
+049	Fallande
+050	Redigera
+051	Avsluta redigering
+052	Matcha skiftläge
+053	Tal
+054	Ursprunglig ordning
+055	Klistra in
+056	Förhandsgranska
+057	Uppdatera
+058	Rader
+059	Tabell
+060	Text
+061	Värde
+062	Kolumnsammanfattning: antal, unika värden, numeriskt intervall och vanliga värden i den aktuella vyn.
+063	Kolumnsammanfattning kräver en färdig skrivskyddad tabell. Avsluta redigeringsläget först.
+064	Filtrera och sortera: kombinera kolumnregler och text-/numeriska sorteringsnivåer. Endast vyn; CSV ändras inte.
+065	Filtrera och sortera: kombinera kolumnregler och upp till tre text-/numeriska sorteringsnivåer. Endast vyn.
+066	Filtrera och sortera: {0} villkor, {1} sorteringsnivåer. Återställ vy rensar alla regler.
+067	Filtrering och sortering kräver en färdig skrivskyddad tabell. Avsluta redigeringsläget först.
+068	Diagnostik (0)
+069	0 ändringar
+070	Lägg till villkor
+071	Lägg till sorteringsnivå
+072	Tillämpa vy
+073	Skiftläge
+074	Textjämförelse med skillnad på stora och små bokstäver. Mellanslag i värden behandlas bokstavligt.
+075	Kontrollera reglerna: {0}
+076	Villkor
+077	{0} / 8 villkor; {1} / 3 sorteringsnivåer. Förhandsgranska för att kontrollera matchande rader.
+078	Innehåller
+079	Innehåller inte
+080	Är inte lika med
+081	Tom = noll tecken. Endast blanktecken = en icke-tom följd av mellanslag/tabbar/radbrytningar.\nTal använder decimalpunkt (-12.5), utan gruppering eller exponenter; precisionen måste vara exakt.
+082	Slutar med
+083	Är lika med
+084	Filtervärde
+085	Filter
+086	Är tom
+087	Är inte tom
+088	Är inte endast blanktecken
+089	Är endast blanktecken
+090	Bokstavlig text, inklusive mellanslag. Numeriska regler kräver ett exakt decimaltal med punkt.
+091	Matcha ALLA villkor
+092	Matcha VALFRITT villkor
+093	Tal =
+094	Tal >
+095	Tal >=
+096	Tal <
+097	Tal <=
+098	Tal (decimal)
+099	Förhandsgranskning: {0:N0} av {1:N0} visade rader. CSV oförändrad.
+100	Ta bort villkor
+101	Ta bort sorteringsnivå
+102	Återställ regler
+103	Reglerna tar även hänsyn till den aktuella sökningen. Avbryt behåller den aktiva vyn.
+104	Sortering
+105	Börjar med
+106	Text: ordinal ordning utan skillnad på stora och små bokstäver. Tal: exakta decimaler; ogiltiga/tomma värden sist.\nLika nycklar behåller källordningen. Ta bort alla nivåer för att återställa källordningen.
+107	Projektionen är begränsad; rader som inte visas ingår inte. 
+108	Filtrera och sortera
+109	Översta nivån har företräde; senare nivåer avgör likheter. Högst 3.
+110	Värde (bokstavligt, inklusive mellanslag)
+111	Endast vyn — CSV-värden och källordning förblir oförändrade. {0:N0} visade rader.\n
+112	Tillämpning blockeras eftersom {0} inte har någon uttryckligen stödd kodningsprofil. Innehållet i redigeraren ändrades inte.
+113	Tillämpning blockeras eftersom strikt kodningsvalidering för {0} inte gav en exakt tur-och-retur-konvertering. Innehållet i redigeraren ändrades inte.
+114	Tillämpning blockeras eftersom den väntande ersättningen inte kan representeras exakt i {0}. Inga ersättningstecken användes och redigerarens innehåll ändrades inte.
+115	Tillämpning är ännu inte aktiverad för {0}. Redigerarens innehåll ändrades inte. Skrivning är endast aktiverad för UTF-8 (65001) och Windows-1250 (1250), efter förlustfri validering. Använd Återställ alla eller konvertera dokumentet till UTF-8 i Notepad++ och öppna redigeringsläget igen.
+116	Uppdatering är inaktiverad i redigeringsläge. Tillämpa eller återställ först alla väntande ändringar.
+117	Scintilla-kodsida {0}
+118	Det aktiva dokumentet är {0:N0} byte. Den aktuella säkra gränsen för ögonblicksbilden är {1:N0} byte.
+119	Det aktiva Notepad++-dokumentet kunde inte läsas. Redigerarens innehåll ändrades inte.
+120	Resultatet från Tillämpa är inte en kodningsblockerad status.
+121	Bakgrundsbygget av tabellen avslutades utan resultat.
+122	CSV-ändringarna tillämpades, men föregående markörposition eller markering kunde inte återställas. Hela dokumentändringen kan fortfarande ångras som en enda åtgärd.
+123	redigerarens aktuella kodsida
+124	Redigerarbufferten kunde inte omvandlas till en visuell tabell. Välj en avgränsare uttryckligen eller uppdatera efter att dokumentet har korrigerats.
+125	Tabellbygget returnerade ett ofullständigt resultat.
+126	&Om
+127	&Rensa sökning
+128	&CSV
+129	&Avgränsare
+130	&Redigera
+131	Esc i sökningen
+132	&Sök i tabell
+133	&Rubrik
+134	&Nästa matchande cell
+135	&Föregående matchande cell
+136	Återställ vy: rensa sökning, kolumnvillkor och all sortering.
+137	&Sökning
+138	Sök&kolumn
+139	Visa mellanslag: små fyllda orange punkter. Endast visning; CSV-värden ändras inte.
+140	Visa &tabell
+141	&Sortera efter
+142	&Tabell
+143	&Visa
+144	Ett filtervärde får innehålla högst 4,096 tecken.
+145	ALLA
+146	En inledande byteordningsmarkering utelämnades från det första fältet.
+147	VALFRITT
+148	Ett citattecken förekom i ett fält som inte var omgivet av citattecken.
+149	Raderna i urklipp måste bilda en enda rektangulär cellmatris.
+150	Diagnostikkod: {0}.
+151	Varje sorteringsnivå måste använda en annan kolumn.
+152	Fel
+153	hög
+154	Information
+155	låg
+156	medel
+157	Ingen av de avgränsare som stöds gav en tillräckligt tillförlitlig struktur med flera fält.
+158	ingen
+159	En visuell rad skulle kräva {0:N0} celler, vilket överskrider den aktuella totalgränsen {1:N0}. Inga kolumner doldes.
+160	Posten har {0} fält; {1} förväntades baserat på det vanligaste antalet i urvalet.
+161	Mellanslag: {0}; inledande: {1}; avslutande: {2}. Längd: {3} UTF-16-enheter.\nOrange punkter markerar faktiska mellanslag. Visningsavståndet ökas för läsbarhet; CSV-tecken ändras inte. Antalen inledande och avslutande mellanslag överlappar i en cell som bara innehåller mellanslag.
+162	Cellmatrisen i urklipp överskrider den säkra inklistringsgränsen.
+163	Urklipp innehåller ett kontrolltecken som inte stöds.
+164	Urklipp innehåller fler kolumner än redigeraren säkert kan klistra in.
+165	Urklipp innehåller fler rader än redigeraren säkert kan klistra in.
+166	Texten i urklipp överskrider den säkra gränsen på 16 Mi UTF-16-teckenenheter.
+167	Det sista citerade fältet stängdes inte före textens slut.
+168	Antalet fält skiljer sig från de andra posterna.
+169	Åtgärden kunde inte slutföras. Kontrollera dokumentet, de markerade värdena och storleksgränserna.
+170	Det tolkade dokumentet innehåller {0:N0} kolumner, vilket överskrider den visuella tabellens aktuella gräns på {1:N0}. Inga kolumner doldes.
+171	Den föreslagna avgränsaren har låg tillförlitlighet. Kontrollera avgränsarinställningen.
+172	Två avgränsarkandidater har liknande poäng. Kontrollera avgränsarinställningen.
+173	Oväntade tecken följer efter ett avslutande citattecken.
+174	okänd
+175	Använd ett exakt decimaltal med punkt, till exempel -12.5. Gruppering, exponenter och avrundade värden stöds inte.
+176	Använd högst åtta filtervillkor som inte är null.
+177	Använd högst tre sorteringsnivåer som inte är null.
+178	Visningsreglerna hänvisar till en kolumn utanför den aktuella tabellen.
+179	Varning
+180	Kolumnsammanfattning
+181	Filtrera och sortera
+182	Öppna visuell tabell
+183	Uppdatera tabell
+184	ny:{0}
+185	ny:{0} *
+186	Markera
+187	Markera hela rader för borttagning
+188	Logisk källpost eller väntande strukturell rad
+189	Kolumnen med radindikatorer kunde inte identifieras.
+190	Raden måste tillhöra en DataGridView.
+191	Alla kolumner
+192	{0:N0} / {1:N0} celler
+193	{0:N0} celler
+194	Rensa sökning
+195	Rensa sökning (Esc). Behåll sökkolumnen och sorteringen.
+196	Filtrerar visade rader. Enter: nästa matchande cell. Shift+Enter: föregående. Escape: rensa.
+197	Nästa matchande cell
+198	Nästa matchande cell (F3 / Enter)
+199	Inga träffar
+200	Inga matchande rader.\nJustera sökningen eller använd Visa > Filtrera och sortera / Återställ vy.
+201	Föregående matchande cell
+202	Föregående matchande cell (Shift+F3 / Shift+Enter)
+203	Sök i alla datakolumner eller välj en kolumn.
+204	Sökkolumn
+205	Sök i visade CSV-rader (Ctrl+F). Värden och källtext ändras inte.
+206	Sök i tabell...
+207	Sök i tabell
+208	Sökresultat
+209	Söker...
+210	Gå till källa blockerades: ett annat Notepad++-dokument är aktivt. Återgå till den visade CSV-filen eller uppdatera tabellen.
+211	Gå till källa blockerades eftersom det sparade tolkningsresultatet inte längre motsvarar sin oföränderliga källögonblicksbild. Uppdatera tabellen först.
+212	Gå till källa blockerades: den strikt kodade längden matchar inte dokumentlängden som Scintilla rapporterar.
+213	Gå till källa blockerades: innehållet i den aktiva redigeraren ändrades efter att tabellen visades. Uppdatera tabellen först.
+214	Gå till källa blockerades: den aktuella Scintilla-kodsidan saknar en uttrycklig profil för bytepositioner.
+215	Gå till källa blockerades: redigerarens kodsida ändrades efter att tabellen visades. Uppdatera tabellen först.
+216	Gå till källa blockerades: den markerade projicerade cellen har inget rått källfält.
+217	Gå till källa blockerades: källans teckenintervall kunde inte mappas förlustfritt till Scintilla-byte.
+218	Gå till källa blockerades: den logiska källposten är inte tillgänglig i det sparade tolkningsresultatet.
+219	Gå till källa misslyckades: den aktiva Notepad++-bufferten kunde inte läsas. Dokumentinnehållet ändrades inte.
+220	Gå till källa misslyckades när Scintilla-markeringen flyttades. Dokumentinnehållet ändrades inte.
+221	Gå till källa är otillgängligt tills den aktuella visuella tabellen har en fullständig källbas. Uppdatera tabellen först.
+222	Gå till källa kräver en aktuell CSV-rad eller cell.
+223	Gå till källa slutfördes inte. Dokumentinnehållet ändrades inte.
+224	Markerade källpost {0}, kolumn {1} i Notepad++.
+225	Markerade källpost {0} i Notepad++.
+226	Den aktuella visuella raden ger ingen stabil identitet för källposten.
+227	Denna väntande infogade rad har ingen källposition förrän tillämpningen är slutförd.
+228	Aktuell vy: {0:N0} av {1:N0} visade rader.
+229	Unika värden bestäms av exakt text med skillnad på stora och små bokstäver, inklusive tomma värden.\nUpprepade rader = rader minus unika värden. Det numeriska intervallet använder exakta decimalvärden med punkt.
+230	Tom
+231	Typ
+232	Vanligaste värden (upp till 20)
+233	Inte tillgänglig
+234	Numeriskt minimum: {0}     Maximum: {1}\nLängsta värde: {2:N0} UTF-16-enheter. {3:N0} värden förekommer mer än en gång.
+235	 Begränsad projektion; detta är INTE hela filen.
+236	Rader: {0:N0}     Tomma: {1:N0}     Endast blanktecken: {2:N0}\nUnika: {3:N0}     Upprepade rader: {4:N0}     Numeriska: {5:N0}
+237	Kolumnsammanfattning
+238	Blanktecken
+239	En ny rad lades till i den väntande redigeringssessionen. Tillämpa skriver den till redigerarbufferten; Återställ alla kasserar den.
+240	En källrad angav inte indexet för sin källpost.
+241	Åtgärd
+242	Ögonblicksbilden av det aktiva dokumentet misslyckades. Redigerarens innehåll ändrades inte.
+243	Lägg till rad
+244	Alla väntande cell- och radredigeringar återställdes. Notepad++-redigerarbufferten ändrades inte.
+245	Tillämpa alla cell- och radredigeringar på den aktiva redigeraren som en enda ångervänlig åtgärd
+246	Tillämpning blockerades: ett annat Notepad++-dokument är aktivt. Återgå till originaldokumentet eller välj Återställ alla.
+247	Tillämpning blockerades: redigerarbufferten ändrades efter att redigeringsläget startade. Återställ och uppdatera innan du redigerar igen.
+248	Tillämpning blockerades: redigerarens kodsida ändrades efter att redigeringsläget startade. Återställ och öppna redigeringsläget igen.
+249	Tillämpning misslyckades. Redigeringssessionen förblir öppen; kontrollera redigerarbufferten innan du försöker igen eller återställer.
+250	Tillämpningen slutfördes inte. Ingen automatisk överskrivning försöktes.
+251	Identifiera automatiskt
+252	automatisk tillförlitlighet {0}
+253	{0} — automatisk identifiering av avgränsare är inte tillförlitlig; manuellt val krävs.
+254	Automatisk identifiering
+255	Kandidatpoäng
+256	{0} celler / {1} rader (+{2} / -{3})
+257	Tecken
+258	{0} tecken / {1} redigerarbyte
+259	Välj Komma, Semikolon eller Tabb i listan Avgränsare ovan.
+260	Välj uttryckligen om den första logiska posten är en rubrik
+261	Rensa
+262	Rensa det aktuella sökfiltret och sorteringen som endast påverkar vyn
+263	Kod
+264	 - {0} kolumnvillkor ({1}), {2} sorteringsnivåer
+265	{0} — {1} × {2} kolumner — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	komma
+268	Tillförlitlighet
+269	Ta bort alla markerade stabila datarader från den väntande redigeringssessionen
+270	Ta bort rad
+271	Ta bort rader ({0})
+272	Ta bort den markerade stabila dataraden från den väntande redigeringssessionen
+273	Ta bort den markerade stabila dataraden eller raderna från den väntande redigeringssessionen
+274	Avgränsare:
+275	Diagnostik ({0})
+276	Kassera alla väntande celländringar, infogningar och borttagningar
+277	Dokument
+278	 — REDIGERINGSLÄGE: {0} celler, {1} rader, +{2} / -{3}
+279	 - Redigeringsläge
+280	Redigeringsläget innehåller väntande ändringar. Använd Tillämpa eller Återställ alla innan du lämnar redigeringsläget.
+281	Redigeringsläget är inte tillgängligt för den aktuella tabellen. Lös först tolkningsfel eller visningsbegränsningar.
+282	Redigering kan inte startas från en visuell projektion med begränsat antal rader.
+283	Redigering kan inte startas medan den tolkade CSV-filen innehåller fel.
+284	Redigering är inte tillgänglig för den aktuella tabellen.
+285	{0} — tom redigerarbuffert; inga CSV-poster att visa.
+286	Öppna uttryckligt redigeringsläge för celler och rader
+287	Öppna uttryckligt redigeringsläge för celler och rader. Tillämpa skriver endast till redigerarbufferten.
+288	Öppna uttryckligt redigeringsläge för celler och rader. Den fullständiga redigeringsmodellen skapas endast på begäran.
+289	{0} fel, {1} varningar
+290	första raden som rubrik
+291	Första raden är rubrik
+292	Rubrik:
+293	Infoga en ny rad efter den markerade raden, eller lägg till sist om ingen rad är markerad
+294	{0} — CSV-data läses in i bakgrunden; Notepad++ fortsätter att svara.
+295	manuellt val
+296	{0} matchande av {1} visade rader
+297	Meddelande
+298	{0} nyligen infogade rader togs bort från den väntande sessionen.
+299	Ingen diagnostik att visa.
+300	Ingen rubrikrad
+301	ingen rubrikrad
+302	Inga matchande rader.\nProva en annan söktext eller kolumn.
+303	ingen tolkningsdiagnostik
+304	Ingen tillförlitlig avgränsare kunde väljas säkert.
+305	Inget att tillämpa: redigeringssessionen innehåller inga väntande ändringar.
+306	Tolkar och förbereder en begränsad visuell tabell i bakgrunden…
+307	Väntande celländringar och strukturella radändringar
+308	Väntande infogad rad {0}; ännu inte tillämpad
+309	{0} väntande rader
+310	Tillägget är klart. Läser den aktiva redigerarbufferten...
+311	Förbereder den fullständiga redigeringssessionen…
+312	Egenskap
+313	Läs och visa den för närvarande aktiva Notepad++-redigerarbufferten
+314	Post
+315	Återställ alla
+316	{0} rader
+317	Semikolon (;)
+318	semikolon
+319	Allvarlighetsgrad
+320	Visa detaljerad diagnostik för tolkning och avgränsare
+321	visar {0} av {1} rader
+322	Ögonblicksbild
+323	Fel i ögonblicksbild
+324	Sorteringsnivå {0}: {1}, {2}. Endast vyn.
+325	 — sorterad efter {0} {1}
+326	Logisk källpost {0}
+327	Logisk källpost {0}; ändrad i den väntande redigeringssessionen
+328	{0} källrader är markerade för borttagning och {1} infogade rader togs bort från den väntande sessionen.
+329	{0} källrader är markerade för borttagning. Tillämpa skriver hela gruppen; Återställ alla återställer varje rad.
+330	Status
+331	Tabb
+332	tabb
+333	Tabellfel
+334	Redigeringen av den aktiva cellen kunde inte bekräftas. Korrigera värdet innan du lägger till en rad.
+335	Redigeringen av den aktiva cellen kunde inte bekräftas. Korrigera värdet innan du tar bort rader.
+336	Redigeringen av den aktiva cellen kunde inte bekräftas. Korrigera värdet innan du tillämpar.
+337	Den nyligen infogade raden togs bort från den väntande sessionen.
+338	Kolumnen med radindikatorer är inte konfigurerad.
+339	Den markerade uppsättningen rader är inte längre giltig för den här redigeringssessionen. Inga rader togs bort.
+340	De markerade raderna var redan borttagna. Ingen ytterligare ändring gjordes.
+341	Källraden är markerad för borttagning. Tillämpa skriver borttagningen; Återställ alla återställer raden.
+342	Den visuella tabellen kunde inte skapas. Redigerarens innehåll ändrades inte.
+343	Använd tillförlitlig automatisk identifiering eller välj en avgränsare uttryckligen
+344	Väntar på det aktiva Notepad++-dokumentet.
+345	{0} - {1} x {2:N0} kolumner
+346	Godkänn ändringar
+347	Efter
+348	Alla dataceller
+349	Före
+350	CSV-kolumn
+351	Välj en åtgärd och ett område och klicka sedan på Förhandsgranska.
+352	Aktuell kolumn
+353	Sök:
+354	små bokstäver
+355	Åtgärd:
+356	Andra blanktecken visas som escape-sekvenser; längder räknas i UTF-16-enheter. Långa värden förkortas.
+357	Förhandsgranskningen kunde inte skapas. Kontrollera området och söktexten eller välj ett mindre område (högst 250,000 celler / 16 Mi tecken).
+358	Förhandsgranska först. Godkänn ändringar uppdaterar väntande redigeringar; Tillämpa i verktygsfältet skriver till Notepad++.\nRubriker undantas när Rubrik = första posten. Ändring av skiftläge är oberoende av språkinställningarna.
+359	Post-ID
+360	Ersätt text (bokstavligt)
+361	Ersätt med:
+362	Område:
+363	Välj en CSV-datakolumn.
+364	Markerade celler / rader
+365	fyllda orange punkter markerar mellanslag. 
+366	mellanslagsindikatorer är dolda. 
+367	{0:N0} målceller; {1:N0} ändringar i {2:N0} rader. Visar de första 50 ändringarna; 
+368	Redigeringssessionen ändrades.
+369	Förhandsgranskningen är inte längre giltig. Kontrollera redigeringssessionen och skapa en ny förhandsgranskning.
+370	Omvandla CSV-celler
+371	Omvandlade {0:N0} celler i den väntande redigeringssessionen. Använd Tillämpa för att uppdatera Notepad++ eller Återställ alla för att kassera väntande redigeringar.
+372	Ta bort yttre blanktecken
+373	VERSALER
+374	Återställ vy
+375	Visa mellanslag
