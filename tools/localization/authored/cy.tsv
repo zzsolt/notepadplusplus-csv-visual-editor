@@ -1,0 +1,378 @@
+# language: cy
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Golygydd CSV gweledol ar gyfer Notepad++
+001	Ynghylch CSV Visual Editor
+002	Cyswllt: {0}
+003	Cysylltu â'r datblygwr {0}
+004	Datblygwr: {0}
+005	Adeilad datblygu
+006	Yn mwynhau CSV Visual Editor? Cefnogwch y prosiect.\nRhowch seren iddo ar GitHub, rhannwch eich adborth, neu cysylltwch â'r datblygwr ynghylch cyfrannu. Diolch!
+007	Iaith y rhyngwyneb: {0}
+008	Ni ellid agor unrhyw ap cysylltiedig. Cyswllt: {0}
+009	Prosiect ar GitHub
+010	Fersiwn: {0}
+011	Fersiwn ac adeilad
+012	Cafodd {0} ei rwystro oherwydd bod model y golygiadau arfaethedig wedi newid. Ni chadwyd unrhyw newid rhannol.
+013	Cafodd {0} ei rwystro: mae petryalau y clipfwrdd a'r detholiad â dimensiynau gwahanol.
+014	Cafodd {0} ei rwystro: mae'r petryal targed yn ymestyn y tu hwnt i'r tabl CSV.
+015	Cafodd {0} ei rwystro: nid oes petryal targed golygadwy.
+016	Copïwyd {0} × {1} o gelloedd CSV.
+017	Rhwystrwyd copïo/torri: mae cell a ddewiswyd yn cynnwys tab neu doriad llinell na ellir ei gynrychioli'n ddiamwys fel testun taenlen plaen.
+018	Mae copïo yn gofyn am gelloedd CSV, nid detholiad o resi cyfan i'w dileu.
+019	Mae copïo yn gofyn am un detholiad petryalog parhaus o gelloedd data CSV.
+020	Torrwyd {0} o gelloedd i'r clipfwrdd a'u gwagio yn y sesiwn olygu arfaethedig. Mae Cymhwyso yn ysgrifennu'r gwagio i Notepad++.
+021	Cwblhawyd y torri; roedd y celloedd a ddewiswyd eisoes yn wag. Mae'r clipfwrdd yn cynnwys eu gwerthoedd gwreiddiol.
+022	Dim ond yn y modd golygu mae {0} ar gael.
+023	Nid yw {0} ar gael ar gyfer y tabl cyfredol.
+024	Rhwystrwyd gludo: {0} Ni newidiwyd unrhyw ddata.
+025	Cwblhawyd gludo; roedd yr holl werthoedd targed eisoes yn union yr un fath.
+026	Gludwyd {0} o gelloedd wedi'u newid i'r sesiwn olygu arfaethedig. Mae Cymhwyso yn eu hysgrifennu i Notepad++.
+027	Mae {0} yn gofyn am betryal o gelloedd CSV, nid detholiad o resi cyfan i'w dileu.
+028	Mae {0} yn gofyn am un detholiad petryalog parhaus o gelloedd data CSV.
+029	Nid yw targedau {0} ar gael y tu allan i fodel rhes sefydlog y modd golygu.
+030	Ni ellid cadarnhau golygiad y gell weithredol cyn copïo.
+031	Ni ellid cadarnhau golygiad y gell weithredol. Cywirwch y gwerth cyn {0}.
+032	Nid yw'r clipfwrdd yn cynnwys celloedd fel testun plaen.
+033	Nid yw clipfwrdd Windows ar gael dros dro. Ni newidiwyd unrhyw ddata.
+034	Copïo'r petryal celloedd CSV a ddewiswyd i glipfwrdd Windows (Ctrl+C)
+035	Copïo'r celloedd CSV a ddewiswyd a'u gwagio yn y sesiwn olygu arfaethedig (Ctrl+X)
+036	Gludo celloedd taenlen i'r gell neu'r petryal CSV a ddewiswyd (Ctrl+V)
+037	Rhagweld amnewid testun, tynnu gofod gwyn allanol, neu newid priflythrennau/llythrennau bach mewn golygiadau CSV arfaethedig
+038	Dewis y gell neu'r rhes CSV gyfredol ym mwyffer ffynhonnell Notepad++
+039	Ffynhonnell
+040	Trawsnewid
+041	Ynghylch
+042	Cymhwyso
+043	Esgynnol
+044	Canslo
+045	Cau
+046	Colofn
+047	Copïo
+048	Torri
+049	Disgynnol
+050	Golygu
+051	Gadael golygu
+052	Cyfateb priflythrennau
+053	Rhif
+054	Trefn wreiddiol
+055	Gludo
+056	Rhagolwg
+057	Adnewyddu
+058	Rhesi
+059	Tabl
+060	Testun
+061	Gwerth
+062	Crynodeb colofn: cyfrifon, gwerthoedd unigryw, amrediad rhifol a gwerthoedd cyffredin yn y wedd gyfredol.
+063	Mae crynodeb colofn yn gofyn am dabl parod, darllen-yn-unig. Gadewch y modd golygu yn gyntaf.
+064	Hidlo a didoli: cyfuno rheolau colofn a lefelau didoli testun/rhifol. Y wedd yn unig; nid yw CSV yn newid.
+065	Hidlo a didoli: cyfuno rheolau colofn a hyd at dair lefel didoli testun/rhifol. Y wedd yn unig.
+066	Hidlo a didoli: {0} amod, {1} lefel didoli. Mae Ailosod y wedd yn clirio pob rheol.
+067	Mae hidlo a didoli yn gofyn am dabl parod, darllen-yn-unig. Gadewch y modd golygu yn gyntaf.
+068	Diagnosteg (0)
+069	0 newid
+070	Ychwanegu amod
+071	Ychwanegu lefel didoli
+072	Cymhwyso'r wedd
+073	Priflythrennau/llythrennau bach
+074	Cymhariaeth testun sy'n sensitif i briflythrennau. Caiff bylchau mewn gwerthoedd eu trin yn llythrennol.
+075	Gwiriwch y rheolau: {0}
+076	Amod
+077	{0} / 8 amod; {1} / 3 lefel didoli. Rhagwelwch i wirio rhesi sy'n cyfateb.
+078	Yn cynnwys
+079	Nid yw'n cynnwys
+080	Nid yw'n hafal i
+081	Gwag = dim nodau. Gofod gwyn yn unig = dilyniant nad yw'n wag o fylchau/tabiau/toriadau llinell.\nMae rhifau'n defnyddio pwynt degol (-12.5), heb grwpio nac esbonyddion; rhaid i'r manylder fod yn union.
+082	Yn gorffen gyda
+083	Yn hafal i
+084	Gwerth hidlydd
+085	Hidlyddion
+086	Yn wag
+087	Nid yw'n wag
+088	Nid gofod gwyn yn unig
+089	Gofod gwyn yn unig
+090	Testun llythrennol, gan gynnwys bylchau. Mae rheolau rhifol yn gofyn am rif degol union gyda phwynt.
+091	Cyfateb POB amod
+092	Cyfateb UNRHYW amod
+093	Rhif =
+094	Rhif >
+095	Rhif >=
+096	Rhif <
+097	Rhif <=
+098	Rhif (degol)
+099	Rhagolwg: {0:N0} o {1:N0} rhes a ddangosir. CSV heb ei newid.
+100	Tynnu amod
+101	Tynnu lefel didoli
+102	Ailosod rheolau
+103	Mae'r rheolau hefyd yn parchu'r chwiliad cyfredol. Mae Canslo'n cadw'r wedd weithredol.
+104	Didoli
+105	Yn dechrau gyda
+106	Testun: trefn ordinal heb ystyried priflythrennau. Rhif: degolion union; gwerthoedd annilys/gwag yn olaf.\nMae allweddi cyfartal yn cadw trefn y ffynhonnell. Tynnwch bob lefel i adfer trefn y ffynhonnell.
+107	Mae'r tafluniad yn gyfyngedig; nid yw rhesi nas dangosir wedi'u cynnwys. 
+108	Hidlo a didoli
+109	Y lefel uchaf sy'n cael blaenoriaeth; mae lefelau diweddarach yn datrys cyfartaledd. Uchafswm 3.
+110	Gwerth (llythrennol, gan gynnwys bylchau)
+111	Y wedd yn unig — mae gwerthoedd CSV a threfn y ffynhonnell yn aros heb newid. {0:N0} rhes a ddangosir.\n
+112	Rhwystrwyd Cymhwyso oherwydd nad oes gan {0} broffil amgodio a gefnogir yn benodol. Ni newidiwyd cynnwys y golygydd.
+113	Rhwystrwyd Cymhwyso oherwydd na roddodd dilysiad amgodio llym ar gyfer {0} drosiad cylchdaith union. Ni newidiwyd cynnwys y golygydd.
+114	Rhwystrwyd Cymhwyso oherwydd na ellir cynrychioli'r amnewidiad arfaethedig yn union yn {0}. Ni ddefnyddiwyd nod amnewid ac ni newidiwyd cynnwys y golygydd.
+115	Nid yw Cymhwyso wedi'i alluogi eto ar gyfer {0}. Ni newidiwyd cynnwys y golygydd. Dim ond ar gyfer UTF-8 (65001) a Windows-1250 (1250), ar ôl dilysiad di-golled, y mae ysgrifennu wedi'i alluogi. Defnyddiwch Dadwneud popeth neu droswch y ddogfen i UTF-8 yn Notepad++ ac ailagor y modd golygu.
+116	Mae adnewyddu wedi'i analluogi yn y modd golygu. Cymhwyswch neu ddadwnewch bob newid arfaethedig yn gyntaf.
+117	Tudalen god Scintilla {0}
+118	Mae'r ddogfen weithredol yn {0:N0} beit. Y terfyn diogel cyfredol ar gyfer cipolwg yw {1:N0} beit.
+119	Ni ellid darllen y ddogfen Notepad++ weithredol. Ni newidiwyd cynnwys y golygydd.
+120	Nid yw canlyniad Cymhwyso yn gyflwr rhwystro amgodio.
+121	Daeth adeiladu'r tabl yn y cefndir i ben heb ganlyniad.
+122	Cymhwyswyd y newidiadau CSV, ond ni ellid adfer safle'r cyrchwr neu'r dewis blaenorol. Gellir dal dadwneud y newid dogfen cyfan mewn un weithred.
+123	tudalen god gyfredol y golygydd
+124	Ni ellid trosi byffer y golygydd yn dabl gweledol. Dewiswch amffinydd yn benodol neu adnewyddwch ar ôl cywiro'r ddogfen.
+125	Dychwelodd adeiladu'r tabl ganlyniad anghyflawn.
+126	&Ynghylch
+127	&Clirio chwiliad
+128	&CSV
+129	&Amffinydd
+130	&Golygu
+131	Esc mewn chwiliad
+132	&Canfod yn y tabl
+133	&Pennawd
+134	&Cell gyfatebol nesaf
+135	&Cell gyfatebol flaenorol
+136	Ailosod y wedd: clirio chwiliad, amodau colofn a phob didoli.
+137	&Chwilio
+138	&Colofn chwilio
+139	Dangos bylchau: dotiau oren bach wedi'u llenwi. Dangos yn unig; nid yw gwerthoedd CSV yn newid.
+140	Dangos &tabl
+141	&Didoli yn ôl
+142	&Tabl
+143	&Gwedd
+144	Gall gwerth hidlydd gynnwys hyd at 4,096 nod.
+145	POB
+146	Cafodd marc trefn beit cychwynnol ei eithrio o'r maes cyntaf.
+147	UNRHYW
+148	Ymddangosodd dyfynnod mewn maes nad oedd wedi'i amgylchynu gan ddyfynodau.
+149	Rhaid i resi'r clipfwrdd ffurfio un matrics celloedd petryalog.
+150	Cod diagnostig: {0}.
+151	Rhaid i bob lefel didoli ddefnyddio colofn wahanol.
+152	Gwall
+153	uchel
+154	Gwybodaeth
+155	isel
+156	canolig
+157	Ni chynhyrchodd unrhyw amffinydd a gefnogir strwythur aml-faes digon hyderus.
+158	dim
+159	Byddai un rhes weledol angen {0:N0} cell, gan ragori ar y terfyn cyfan presennol o {1:N0}. Ni chuddiwyd unrhyw golofnau.
+160	Mae gan y cofnod {0} maes; disgwylid {1} ar sail y cyfrif mwyaf cyffredin yn y sampl.
+161	Bylchau: {0}; blaen: {1}; cefn: {2}. Hyd: {3} uned UTF-16.\nMae dotiau oren yn marcio bylchau go iawn. Cynyddir y bylchau arddangos er mwyn darllenadwyedd; nid yw nodau CSV yn newid. Mae cyfrifon blaen a chefn yn gorgyffwrdd mewn cell sy'n cynnwys bylchau yn unig.
+162	Mae matrics celloedd y clipfwrdd yn fwy na'r terfyn gludo diogel.
+163	Mae'r clipfwrdd yn cynnwys nod rheoli na chefnogir.
+164	Mae'r clipfwrdd yn cynnwys mwy o golofnau nag y gall y golygydd eu gludo'n ddiogel.
+165	Mae'r clipfwrdd yn cynnwys mwy o resi nag y gall y golygydd eu gludo'n ddiogel.
+166	Mae testun y clipfwrdd yn fwy na'r terfyn diogel o 16 Mi uned nod UTF-16.
+167	Ni chaewyd y maes dyfynedig olaf cyn diwedd y testun.
+168	Mae nifer y meysydd yn wahanol i'r cofnodion eraill.
+169	Ni ellid cwblhau'r weithred. Gwiriwch y ddogfen, y gwerthoedd a ddewiswyd a'r terfynau maint.
+170	Mae'r ddogfen a barciwyd yn cynnwys {0:N0} colofn, gan ragori ar derfyn presennol y tabl gweledol o {1:N0}. Ni chuddiwyd unrhyw golofnau.
+171	Mae gan yr amffinydd a awgrymwyd hyder isel. Gwiriwch osodiad yr amffinydd.
+172	Mae gan ddau ymgeisydd amffinydd sgoriau tebyg. Gwiriwch osodiad yr amffinydd.
+173	Mae nodau annisgwyl yn dilyn dyfynnod cau.
+174	anhysbys
+175	Defnyddiwch rif degol union gyda phwynt, er enghraifft -12.5. Ni chefnogir grwpio, esbonyddion na gwerthoedd wedi'u talgrynnu.
+176	Defnyddiwch hyd at wyth amod hidlo nad ydynt yn null.
+177	Defnyddiwch hyd at dair lefel didoli nad ydynt yn null.
+178	Mae rheolau'r wedd yn cyfeirio at golofn y tu allan i'r tabl cyfredol.
+179	Rhybudd
+180	Crynodeb colofn
+181	Hidlo a didoli
+182	Agor tabl gweledol
+183	Adnewyddu tabl
+184	newydd:{0}
+185	newydd:{0} *
+186	Dewis
+187	Dewis rhesi cyfan i'w dileu
+188	Cofnod ffynhonnell rhesymegol neu res strwythurol arfaethedig
+189	Ni ellid adnabod colofn dangosydd y rhes.
+190	Rhaid i'r rhes berthyn i DataGridView.
+191	Pob colofn
+192	{0:N0} / {1:N0} cell
+193	{0:N0} cell
+194	Clirio chwiliad
+195	Clirio chwiliad (Esc). Cadw'r golofn chwilio a'r didoli.
+196	Hidlo rhesi a ddangosir. Enter: cell gyfatebol nesaf. Shift+Enter: flaenorol. Escape: clirio.
+197	Cell gyfatebol nesaf
+198	Cell gyfatebol nesaf (F3 / Enter)
+199	Dim cyfatebiadau
+200	Dim rhesi cyfatebol.\nAddaswch y chwiliad neu defnyddiwch Gwedd > Hidlo a didoli / Ailosod y wedd.
+201	Cell gyfatebol flaenorol
+202	Cell gyfatebol flaenorol (Shift+F3 / Shift+Enter)
+203	Chwilio pob colofn data neu ddewis un golofn.
+204	Colofn chwilio
+205	Chwilio rhesi CSV a ddangosir (Ctrl+F). Nid yw gwerthoedd na thestun ffynhonnell yn newid.
+206	Chwilio yn y tabl...
+207	Chwilio yn y tabl
+208	Canlyniadau chwilio
+209	Wrthi'n chwilio...
+210	Rhwystrwyd Mynd i'r ffynhonnell: mae dogfen Notepad++ arall yn weithredol. Dychwelwch i'r CSV a ddangosir neu adnewyddwch y tabl.
+211	Rhwystrwyd Mynd i'r ffynhonnell oherwydd nad yw'r canlyniad parsio a gadwyd yn cyfateb mwyach i'w gipolwg ffynhonnell annewidiol. Adnewyddwch y tabl yn gyntaf.
+212	Rhwystrwyd Mynd i'r ffynhonnell: nid yw'r hyd wedi'i amgodio'n llym yn cyfateb i hyd y ddogfen a adroddwyd gan Scintilla.
+213	Rhwystrwyd Mynd i'r ffynhonnell: newidiodd cynnwys y golygydd gweithredol ar ôl dangos y tabl. Adnewyddwch y tabl yn gyntaf.
+214	Rhwystrwyd Mynd i'r ffynhonnell: nid oes proffil safle beit penodol gan dudalen god gyfredol Scintilla.
+215	Rhwystrwyd Mynd i'r ffynhonnell: newidiodd tudalen god y golygydd ar ôl dangos y tabl. Adnewyddwch y tabl yn gyntaf.
+216	Rhwystrwyd Mynd i'r ffynhonnell: nid oes gan y gell dafluniedig a ddewiswyd faes ffynhonnell crai.
+217	Rhwystrwyd Mynd i'r ffynhonnell: ni ellid mapio ystod nodau'r ffynhonnell yn ddi-golled i feitiau Scintilla.
+218	Rhwystrwyd Mynd i'r ffynhonnell: nid yw'r cofnod ffynhonnell rhesymegol ar gael yn y canlyniad parsio a gadwyd.
+219	Methodd Mynd i'r ffynhonnell: ni ellid darllen byffer gweithredol Notepad++. Ni newidiwyd cynnwys y ddogfen.
+220	Methodd Mynd i'r ffynhonnell wrth symud y dewis Scintilla. Ni newidiwyd cynnwys y ddogfen.
+221	Nid yw Mynd i'r ffynhonnell ar gael nes bod gan y tabl gweledol cyfredol waelodlin ffynhonnell gyflawn. Adnewyddwch y tabl yn gyntaf.
+222	Mae Mynd i'r ffynhonnell yn gofyn am res neu gell CSV gyfredol.
+223	Ni chwblhawyd Mynd i'r ffynhonnell. Ni newidiwyd cynnwys y ddogfen.
+224	Dewiswyd cofnod ffynhonnell {0}, colofn {1}, yn Notepad++.
+225	Dewiswyd cofnod ffynhonnell {0} yn Notepad++.
+226	Nid yw'r rhes weledol gyfredol yn darparu hunaniaeth sefydlog i'r cofnod ffynhonnell.
+227	Nid oes gan y rhes fewnosodedig arfaethedig hon safle ffynhonnell hyd nes bod Cymhwyso wedi'i gwblhau.
+228	Gwedd gyfredol: {0:N0} o {1:N0} rhes a ddangosir.
+229	Mae gwerthoedd unigryw yn defnyddio testun union sy'n sensitif i briflythrennau, gan gynnwys gwerthoedd gwag.\nRhesi ailadroddus = rhesi llai gwerthoedd unigryw. Mae'r amrediad rhifol yn defnyddio gwerthoedd degol union gyda phwynt.
+230	Gwag
+231	Math
+232	Gwerthoedd mwyaf cyffredin (hyd at 20)
+233	Ddim ar gael
+234	Isafswm rhifol: {0}     Uchafswm: {1}\nGwerth hiraf: {2:N0} uned UTF-16. Mae {3:N0} gwerth yn ymddangos fwy nag unwaith.
+235	 Tafluniad cyfyngedig; NID hwn yw'r ffeil gyfan.
+236	Rhesi: {0:N0}     Gwag: {1:N0}     Gofod gwyn yn unig: {2:N0}\nUnigryw: {3:N0}     Rhesi ailadroddus: {4:N0}     Rhifol: {5:N0}
+237	Crynodeb colofn
+238	Gofod gwyn
+239	Ychwanegwyd rhes newydd at y sesiwn olygu arfaethedig. Mae Cymhwyso yn ei hysgrifennu i fyffer y golygydd; mae Dadwneud popeth yn ei thaflu.
+240	Ni ddarparodd rhes ffynhonnell fynegai ei chofnod ffynhonnell.
+241	Gweithred
+242	Methodd cipolwg o'r ddogfen weithredol. Ni newidiwyd cynnwys y golygydd.
+243	Ychwanegu rhes
+244	Cafodd pob golygiad cell a rhes arfaethedig ei ddadwneud. Ni newidiwyd byffer golygydd Notepad++.
+245	Cymhwyso pob golygiad cell a rhes i'r golygydd gweithredol fel un weithred y gellir ei dadwneud
+246	Rhwystrwyd Cymhwyso: mae dogfen Notepad++ arall yn weithredol. Dychwelwch i'r ddogfen wreiddiol neu defnyddiwch Dadwneud popeth.
+247	Rhwystrwyd Cymhwyso: newidiodd byffer y golygydd ar ôl dechrau'r modd golygu. Dadwnewch ac adnewyddwch cyn golygu eto.
+248	Rhwystrwyd Cymhwyso: newidiodd tudalen god y golygydd ar ôl dechrau'r modd golygu. Dadwnewch ac ailagorwch y modd golygu.
+249	Methodd Cymhwyso. Mae'r sesiwn olygu yn aros ar agor; gwiriwch byffer y golygydd cyn ceisio eto neu ddadwneud.
+250	Ni chwblhawyd Cymhwyso. Ni geisiwyd trosysgrifo awtomatig.
+251	Canfod yn awtomatig
+252	hyder awtomatig {0}
+253	{0} — nid yw canfod amffinydd yn awtomatig yn ddibynadwy; mae angen dewis â llaw.
+254	Canfod yn awtomatig
+255	Sgoriau ymgeiswyr
+256	{0} cell / {1} rhes (+{2} / -{3})
+257	Nod
+258	{0} nod / {1} beit golygydd
+259	Dewiswch Goma, Hanner colon neu Dab o'r rhestr amffinyddion uchod.
+260	Dewis yn benodol a yw'r cofnod rhesymegol cyntaf yn bennawd
+261	Clirio
+262	Clirio'r hidlydd chwilio cyfredol a'r didoli sy'n effeithio ar y wedd yn unig
+263	Cod
+264	 - {0} amod colofn ({1}), {2} lefel didoli
+265	{0} — {1} × {2} colofn — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Coma (,)
+267	coma
+268	Hyder
+269	Dileu pob rhes ddata sefydlog a ddewiswyd o'r sesiwn olygu arfaethedig
+270	Dileu rhes
+271	Dileu rhesi ({0})
+272	Dileu'r rhes ddata sefydlog a ddewiswyd o'r sesiwn olygu arfaethedig
+273	Dileu'r rhes neu'r rhesi data sefydlog a ddewiswyd o'r sesiwn olygu arfaethedig
+274	Amffinydd:
+275	Diagnosteg ({0})
+276	Taflu pob newid cell, mewnosodiad a dilead arfaethedig
+277	Dogfen
+278	 — MODD GOLYGU: {0} cell, {1} rhes, +{2} / -{3}
+279	 - Modd golygu
+280	Mae'r modd golygu'n cynnwys newidiadau arfaethedig. Defnyddiwch Cymhwyso neu Dadwneud popeth cyn gadael.
+281	Nid yw'r modd golygu ar gael ar gyfer y tabl cyfredol. Datryswch wallau parsio neu derfynau arddangos yn gyntaf.
+282	Ni ellir dechrau golygu o dafluniad gweledol â chyfrif rhesi cyfyngedig.
+283	Ni ellir dechrau golygu tra bo'r CSV wedi'i barsio yn cynnwys gwallau.
+284	Nid yw golygu ar gael ar gyfer y tabl cyfredol.
+285	{0} — byffer golygydd gwag; dim cofnodion CSV i'w dangos.
+286	Mynd yn benodol i'r modd golygu ar gyfer celloedd a rhesi
+287	Mynd yn benodol i'r modd golygu ar gyfer celloedd a rhesi. Mae Cymhwyso'n ysgrifennu i fyffer y golygydd yn unig.
+288	Mynd yn benodol i'r modd golygu ar gyfer celloedd a rhesi. Dim ond ar gais y caiff y model golygu llawn ei greu.
+289	{0} gwall, {1} rhybudd
+290	rhes gyntaf fel pennawd
+291	Y rhes gyntaf yw'r pennawd
+292	Pennawd:
+293	Mewnosod rhes newydd ar ôl y rhes a ddewiswyd neu ychwanegu ar y diwedd os nad oes rhes wedi'i dewis
+294	{0} — llwytho data CSV yn y cefndir; mae Notepad++ yn parhau'n ymatebol.
+295	dewis â llaw
+296	{0} yn cyfateb o {1} rhes a ddangosir
+297	Neges
+298	Tynnwyd {0} rhes newydd ei mewnosod o'r sesiwn arfaethedig.
+299	Dim diagnosteg i'w dangos.
+300	Dim rhes bennawd
+301	dim rhes bennawd
+302	Dim rhesi cyfatebol.\nRhowch gynnig ar destun chwilio neu golofn arall.
+303	dim diagnosteg parsio
+304	Ni ellid dewis amffinydd dibynadwy yn ddiogel.
+305	Dim i'w gymhwyso: nid oes gan y sesiwn olygu unrhyw newidiadau arfaethedig.
+306	Yn parsio ac yn paratoi tabl gweledol cyfyngedig yn y cefndir…
+307	Newidiadau cell arfaethedig a newidiadau strwythurol rhes
+308	Rhes fewnosodedig arfaethedig {0}; heb ei chymhwyso eto
+309	{0} rhes arfaethedig
+310	Ategyn yn barod. Yn darllen byffer y golygydd gweithredol...
+311	Yn paratoi'r sesiwn olygu lawn…
+312	Priodwedd
+313	Darllen a dangos byffer golygydd Notepad++ sy'n weithredol ar hyn o bryd
+314	Cofnod
+315	Dadwneud popeth
+316	{0} rhes
+317	Hanner colon (;)
+318	hanner colon
+319	Difrifoldeb
+320	Dangos diagnosteg fanwl parsio ac amffinyddion
+321	yn dangos {0} o {1} rhes
+322	Cipolwg
+323	Gwall cipolwg
+324	Lefel didoli {0}: {1}, {2}. Y wedd yn unig.
+325	 — wedi'i didoli yn ôl {0} {1}
+326	Cofnod ffynhonnell rhesymegol {0}
+327	Cofnod ffynhonnell rhesymegol {0}; wedi'i newid yn y sesiwn olygu arfaethedig
+328	Mae {0} rhes ffynhonnell wedi'u marcio i'w dileu ac mae {1} rhes a fewnosodwyd wedi'u tynnu o'r sesiwn arfaethedig.
+329	Mae {0} rhes ffynhonnell wedi'u marcio i'w dileu. Mae Cymhwyso yn ysgrifennu'r swp cyfan; mae Dadwneud popeth yn adfer pob rhes.
+330	Statws
+331	Tab
+332	tab
+333	Gwall tabl
+334	Ni ellid cadarnhau golygiad y gell weithredol. Cywirwch y gwerth cyn ychwanegu rhes.
+335	Ni ellid cadarnhau golygiad y gell weithredol. Cywirwch y gwerth cyn dileu rhesi.
+336	Ni ellid cadarnhau golygiad y gell weithredol. Cywirwch y gwerth cyn cymhwyso.
+337	Tynnwyd y rhes newydd ei mewnosod o'r sesiwn arfaethedig.
+338	Nid yw colofn dangosydd y rhes wedi'i ffurfweddu.
+339	Nid yw'r set resi a ddewiswyd bellach yn ddilys ar gyfer y sesiwn olygu hon. Ni ddilëwyd unrhyw resi.
+340	Roedd y rhesi a ddewiswyd eisoes wedi'u dileu. Ni wnaed unrhyw newid ychwanegol.
+341	Mae'r rhes ffynhonnell wedi'i marcio i'w dileu. Mae Cymhwyso yn ysgrifennu'r dilead; mae Dadwneud popeth yn adfer y rhes.
+342	Ni ellid creu'r tabl gweledol. Ni newidiwyd cynnwys y golygydd.
+343	Defnyddio canfod awtomatig dibynadwy neu ddewis amffinydd yn benodol
+344	Yn aros am y ddogfen Notepad++ weithredol.
+345	{0} - {1} x {2:N0} colofn
+346	Derbyn newidiadau
+347	Ar ôl
+348	Pob cell ddata
+349	Cyn
+350	Colofn CSV
+351	Dewiswch weithred a chwmpas, yna cliciwch Rhagolwg.
+352	Colofn gyfredol
+353	Canfod:
+354	llythrennau bach
+355	Gweithred:
+356	Dangosir gofod gwyn arall fel dilyniannau dianc; cyfrifir hyd mewn unedau UTF-16. Caiff gwerthoedd hir eu talfyrru.
+357	Ni ellid creu'r rhagolwg. Gwiriwch y cwmpas a'r testun chwilio neu dewiswch gwmpas llai (uchafswm 250,000 cell / 16 Mi nod).
+358	Rhagwelwch yn gyntaf. Mae Derbyn newidiadau yn diweddaru golygiadau arfaethedig; mae Cymhwyso ar y bar offer yn ysgrifennu i Notepad++.\nCaiff penawdau eu heithrio pan fo Pennawd = cofnod cyntaf. Mae trosi priflythrennau/llythrennau bach yn annibynnol ar y gosodiadau lleol.
+359	ID cofnod
+360	Amnewid testun (llythrennol)
+361	Amnewid gyda:
+362	Cwmpas:
+363	Dewiswch golofn data CSV.
+364	Celloedd / rhesi a ddewiswyd
+365	mae dotiau oren wedi'u llenwi yn marcio bylchau. 
+366	mae dangosyddion bylchau wedi'u cuddio. 
+367	{0:N0} cell darged; {1:N0} newid mewn {2:N0} rhes. Yn dangos y 50 newid cyntaf; 
+368	Mae'r sesiwn olygu wedi newid.
+369	Nid yw'r rhagolwg bellach yn ddilys. Gwiriwch y sesiwn olygu a chreu rhagolwg newydd.
+370	Trawsnewid celloedd CSV
+371	Trawsnewidiwyd {0:N0} cell yn y sesiwn olygu arfaethedig. Defnyddiwch Cymhwyso i ddiweddaru Notepad++ neu Dadwneud popeth i daflu'r golygiadau arfaethedig.
+372	Tynnu gofod gwyn allanol
+373	PRIFLYTHRENNAU
+374	Ailosod y wedd
+375	Dangos bylchau
