@@ -1,0 +1,378 @@
+# language: pl
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Wizualny edytor CSV dla Notepad++
+001	O programie CSV Visual Editor
+002	Kontakt: {0}
+003	Skontaktuj się z programistą {0}
+004	Programista: {0}
+005	Wersja rozwojowa
+006	Podoba Ci się CSV Visual Editor? Wesprzyj projekt.\nDodaj gwiazdkę na GitHub, podziel się opinią lub skontaktuj się z programistą w sprawie współpracy. Dziękujemy!
+007	Język interfejsu: {0}
+008	Nie udało się otworzyć skojarzonej aplikacji. Kontakt: {0}
+009	Projekt na GitHub
+010	Wersja: {0}
+011	Wersja i kompilacja
+012	Zablokowano {0}, ponieważ zmienił się model oczekujących edycji. Nie zachowano żadnych częściowych zmian.
+013	Zablokowano {0}: prostokąty schowka i zaznaczenia mają różne wymiary.
+014	Zablokowano {0}: prostokąt docelowy wykracza poza tabelę CSV.
+015	Zablokowano {0}: brak edytowalnego prostokąta docelowego.
+016	Skopiowano {0} × {1} komórek CSV.
+017	Zablokowano kopiowanie/wycinanie: zaznaczona komórka zawiera tabulator lub znak nowego wiersza, którego nie można jednoznacznie przedstawić jako zwykłego tekstu arkusza kalkulacyjnego.
+018	Kopiowanie wymaga komórek CSV, a nie zaznaczenia całych wierszy do usunięcia.
+019	Kopiowanie wymaga jednego spójnego prostokątnego zaznaczenia komórek danych CSV.
+020	Wycięto {0} komórek do schowka i wyczyszczono je w oczekującej sesji edycji. „Zastosuj” zapisuje wyczyszczenie w Notepad++.
+021	Wycinanie zakończone; zaznaczone komórki były już puste. Schowek zawiera ich pierwotne wartości.
+022	{0} jest dostępne tylko w trybie edycji.
+023	{0} jest niedostępne dla bieżącej tabeli.
+024	Wklejanie zablokowane: {0} Nie zmieniono żadnych danych.
+025	Wklejanie zakończone; wszystkie wartości docelowe były już identyczne.
+026	Wklejono {0} zmienionych komórek do oczekującej sesji edycji. „Zastosuj” zapisuje je w Notepad++.
+027	{0} wymaga prostokąta komórek CSV, a nie zaznaczenia całych wierszy do usunięcia.
+028	{0} wymaga jednego spójnego prostokątnego zaznaczenia komórek danych CSV.
+029	Cele operacji {0} są niedostępne poza stabilnym modelem wierszy trybu edycji.
+030	Nie udało się zatwierdzić edycji aktywnej komórki przed kopiowaniem.
+031	Nie udało się zatwierdzić edycji aktywnej komórki. Popraw wartość przed {0}.
+032	Schowek nie zawiera komórek w postaci zwykłego tekstu.
+033	Schowek Windows jest chwilowo niedostępny. Nie zmieniono żadnych danych.
+034	Kopiuj zaznaczony prostokąt komórek CSV do schowka Windows (Ctrl+C)
+035	Kopiuj zaznaczone komórki CSV i wyczyść je w oczekującej sesji edycji (Ctrl+X)
+036	Wklej komórki arkusza kalkulacyjnego do zaznaczonej komórki lub prostokąta CSV (Ctrl+V)
+037	Podgląd zastępowania tekstu, usuwania skrajnych białych znaków lub zmiany wielkości liter w oczekujących edycjach CSV
+038	Zaznacz bieżącą komórkę lub wiersz CSV w buforze źródłowym Notepad++
+039	Źródło
+040	Przekształć
+041	O programie
+042	Zastosuj
+043	Rosnąco
+044	Anuluj
+045	Zamknij
+046	Kolumna
+047	Kopiuj
+048	Wytnij
+049	Malejąco
+050	Edytuj
+051	Zakończ edycję
+052	Uwzględnij wielkość liter
+053	Liczba
+054	Pierwotna kolejność
+055	Wklej
+056	Podgląd
+057	Odśwież
+058	Wiersze
+059	Tabela
+060	Tekst
+061	Wartość
+062	Podsumowanie kolumny: liczności, różne wartości, zakres liczbowy i częste wartości w bieżącym widoku.
+063	Podsumowanie kolumny wymaga gotowej tabeli tylko do odczytu. Najpierw zakończ tryb edycji.
+064	Filtruj i sortuj: łącz reguły kolumn z poziomami sortowania tekstowego/liczbowego. Tylko widok; CSV bez zmian.
+065	Filtruj i sortuj: łącz reguły kolumn z maksymalnie trzema poziomami sortowania tekstowego/liczbowego. Tylko widok.
+066	Filtruj i sortuj: {0} warunków, {1} poziomów sortowania. Resetowanie widoku usuwa wszystkie reguły.
+067	Filtrowanie i sortowanie wymaga gotowej tabeli tylko do odczytu. Najpierw zakończ tryb edycji.
+068	Diagnostyka (0)
+069	0 zmian
+070	Dodaj warunek
+071	Dodaj poziom sortowania
+072	Zastosuj widok
+073	Wielkość liter
+074	Porównanie tekstu z uwzględnieniem wielkości liter. Spacje w wartościach są traktowane dosłownie.
+075	Sprawdź reguły: {0}
+076	Warunek
+077	{0} / 8 warunków; {1} / 3 poziomów sortowania. Użyj podglądu, aby sprawdzić pasujące wiersze.
+078	Zawiera
+079	Nie zawiera
+080	Nie równa się
+081	Puste = zero znaków. Tylko białe znaki = niepusty ciąg spacji/tabulatorów/znaków nowego wiersza.\nLiczby używają kropki dziesiętnej (-12.5), bez grupowania i wykładników; precyzja musi być dokładna.
+082	Kończy się na
+083	Równa się
+084	Wartość filtra
+085	Filtry
+086	Jest puste
+087	Nie jest puste
+088	Nie zawiera wyłącznie białych znaków
+089	Zawiera wyłącznie białe znaki
+090	Tekst dosłowny, łącznie ze spacjami. Reguły liczbowe wymagają dokładnej liczby dziesiętnej z kropką.
+091	Spełnij WSZYSTKIE warunki
+092	Spełnij DOWOLNY warunek
+093	Liczba =
+094	Liczba >
+095	Liczba >=
+096	Liczba <
+097	Liczba <=
+098	Liczba (dziesiętna)
+099	Podgląd: {0:N0} z {1:N0} wyświetlanych wierszy. CSV bez zmian.
+100	Usuń warunek
+101	Usuń poziom sortowania
+102	Resetuj reguły
+103	Reguły uwzględniają też bieżące wyszukiwanie. Anulowanie zachowuje aktywny widok.
+104	Sortowanie
+105	Zaczyna się od
+106	Tekst: porządek porządkowy bez uwzględniania wielkości liter. Liczba: dokładne wartości dziesiętne; nieprawidłowe/puste wartości na końcu.\nRówne klucze zachowują kolejność źródłową. Usuń wszystkie poziomy, aby ją przywrócić.
+107	Projekcja jest ograniczona; niewyświetlane wiersze nie są uwzględnione. 
+108	Filtruj i sortuj
+109	Pierwszy poziom ma pierwszeństwo; dalsze rozstrzygają remisy. Maksymalnie 3.
+110	Wartość (dosłowna, łącznie ze spacjami)
+111	Tylko widok — wartości CSV i kolejność źródłowa pozostają bez zmian. {0:N0} wyświetlanych wierszy.\n
+112	Zastosowanie zablokowano, ponieważ {0} nie ma jawnie obsługiwanego profilu kodowania. Nie zmieniono zawartości edytora.
+113	Zastosowanie zablokowano, ponieważ ścisła walidacja kodowania {0} nie dała dokładnej konwersji w obie strony. Nie zmieniono zawartości edytora.
+114	Zastosowanie zablokowano, ponieważ oczekującego zastąpienia nie można dokładnie przedstawić w {0}. Nie użyto znaków zastępczych ani nie zmieniono zawartości edytora.
+115	Zastosowanie nie jest jeszcze włączone dla {0}. Nie zmieniono zawartości edytora. Zapis jest włączony tylko dla UTF-8 (65001) i Windows-1250 (1250), po walidacji bezstratności. Użyj „Cofnij wszystko” lub przekonwertuj dokument na UTF-8 w Notepad++, a następnie ponownie otwórz tryb edycji.
+116	Odświeżanie jest wyłączone w trybie edycji. Najpierw zastosuj lub cofnij wszystkie oczekujące zmiany.
+117	Strona kodowa Scintilla {0}
+118	Aktywny dokument ma {0:N0} bajtów. Bieżący bezpieczny limit migawki wynosi {1:N0} bajtów.
+119	Nie udało się odczytać aktywnego dokumentu Notepad++. Nie zmieniono zawartości edytora.
+120	Wynik zastosowania nie jest stanem blokady z powodu kodowania.
+121	Budowanie tabeli w tle zakończyło się bez wyniku.
+122	Zmiany CSV zastosowano pomyślnie, ale nie udało się przywrócić poprzedniej pozycji kursora lub zaznaczenia. Wszystkie zmiany dokumentu nadal można cofnąć jedną operacją.
+123	bieżąca strona kodowa edytora
+124	Nie udało się przekształcić bufora edytora w tabelę wizualną. Wybierz jawny separator lub odśwież po poprawieniu dokumentu.
+125	Budowanie tabeli zwróciło niekompletny wynik.
+126	&O programie
+127	& Wyczyść wyszukiwanie
+128	&CSV
+129	&Separator
+130	&Edycja
+131	Esc w polu wyszukiwania
+132	&Znajdź w tabeli
+133	&Nagłówek
+134	&Następna pasująca komórka
+135	&Poprzednia pasująca komórka
+136	Resetuj widok: wyczyść wyszukiwanie, warunki kolumn i całe sortowanie.
+137	&Wyszukiwanie
+138	&Kolumna wyszukiwania
+139	Pokaż spacje: małe, pełne pomarańczowe kropki. Tylko wyświetlanie; wartości CSV nie zmieniają się.
+140	Pokaż &tabelę
+141	&Sortuj według
+142	&Tabela
+143	&Widok
+144	Wartość filtra może zawierać najwyżej 4,096 znaków.
+145	WSZYSTKIE
+146	Początkowy znacznik kolejności bajtów pominięto w pierwszym polu.
+147	DOWOLNY
+148	W polu nieujętym w cudzysłowy wystąpił cudzysłów.
+149	Wiersze schowka muszą tworzyć jedną prostokątną macierz komórek.
+150	Kod diagnostyczny: {0}.
+151	Każdy poziom sortowania musi używać innej kolumny.
+152	Błąd
+153	wysoka
+154	Informacja
+155	niska
+156	średnia
+157	Żaden obsługiwany separator nie utworzył wystarczająco wiarygodnej struktury z wieloma polami.
+158	brak
+159	Jeden wiersz wizualny wymagałby {0:N0} komórek, co przekracza bieżący łączny limit {1:N0}. Nie ukryto żadnych kolumn.
+160	Rekord ma {0} pól; oczekiwano {1} na podstawie najczęstszej liczby pól w próbce.
+161	Spacje: {0}; początkowe: {1}; końcowe: {2}. Długość: {3} jednostek UTF-16.\nPomarańczowe kropki oznaczają rzeczywiste spacje. Odstępy ich wyświetlania zwiększono dla czytelności; znaki CSV pozostają bez zmian. W komórce z samymi spacjami liczniki początkowy i końcowy nakładają się.
+162	Macierz komórek schowka przekracza bezpieczny limit wklejania.
+163	Schowek zawiera nieobsługiwany znak sterujący.
+164	Schowek zawiera więcej kolumn, niż edytor może bezpiecznie wkleić.
+165	Schowek zawiera więcej wierszy, niż edytor może bezpiecznie wkleić.
+166	Tekst schowka przekracza bezpieczny limit 16 Mi jednostek znakowych UTF-16.
+167	Ostatnie pole ujęte w cudzysłowy nie zostało zamknięte przed końcem tekstu.
+168	Liczba pól różni się od liczby w pozostałych rekordach.
+169	Nie udało się ukończyć operacji. Sprawdź dokument, zaznaczone wartości i limity rozmiaru.
+170	Przeanalizowany dokument zawiera {0:N0} kolumn, co przekracza bieżący limit tabeli wizualnej {1:N0}. Nie ukryto żadnych kolumn.
+171	Sugerowany separator ma niski poziom pewności. Sprawdź ustawienie separatora.
+172	Dwaj kandydaci na separator mają podobne wyniki. Sprawdź ustawienie separatora.
+173	Po zamykającym cudzysłowie wystąpiły nieoczekiwane znaki.
+174	nieznana
+175	Użyj dokładnej liczby dziesiętnej z kropką, np. -12.5. Grupowanie, wykładniki i zaokrąglone wartości nie są obsługiwane.
+176	Użyj najwyżej ośmiu warunków filtra innych niż null.
+177	Użyj najwyżej trzech poziomów sortowania innych niż null.
+178	Reguły widoku odwołują się do kolumny poza bieżącą tabelą.
+179	Ostrzeżenie
+180	Podsumowanie kolumny
+181	Filtruj i sortuj
+182	Otwórz tabelę wizualną
+183	Odśwież tabelę
+184	nowy:{0}
+185	nowy:{0} *
+186	Zaznacz
+187	Zaznacz całe wiersze do usunięcia
+188	Źródłowy rekord logiczny lub oczekujący wiersz strukturalny
+189	Nie udało się ustalić kolumny wskaźników wierszy.
+190	Wiersz musi należeć do kontrolki DataGridView.
+191	Wszystkie kolumny
+192	{0:N0} / {1:N0} komórek
+193	{0:N0} komórek
+194	Wyczyść wyszukiwanie
+195	Wyczyść wyszukiwanie (Esc). Zachowaj kolumnę wyszukiwania i sortowanie.
+196	Filtruje wyświetlane wiersze. Enter: następna pasująca komórka. Shift+Enter: poprzednia. Escape: wyczyść.
+197	Następna pasująca komórka
+198	Następna pasująca komórka (F3 / Enter)
+199	Brak dopasowań
+200	Brak pasujących wierszy.\nZmień wyszukiwanie lub wybierz Widok > Filtruj i sortuj / Resetuj widok.
+201	Poprzednia pasująca komórka
+202	Poprzednia pasująca komórka (Shift+F3 / Shift+Enter)
+203	Przeszukaj wszystkie kolumny danych albo wybierz jedną kolumnę.
+204	Kolumna wyszukiwania
+205	Szukaj w wyświetlanych wierszach CSV (Ctrl+F). Wartości i tekst źródłowy pozostają bez zmian.
+206	Szukaj w tabeli...
+207	Szukaj w tabeli
+208	Wyniki wyszukiwania
+209	Wyszukiwanie...
+210	Przejście do źródła zablokowane: aktywny jest inny dokument Notepad++. Wróć do wyświetlanego CSV lub odśwież tabelę.
+211	Przejście do źródła zablokowane, ponieważ zachowany wynik analizy nie pasuje już do niezmiennej migawki źródła. Najpierw odśwież tabelę.
+212	Przejście do źródła zablokowane: długość po ścisłym kodowaniu nie zgadza się z długością dokumentu zgłoszoną przez Scintilla.
+213	Przejście do źródła zablokowane: aktywna zawartość edytora zmieniła się po wyświetleniu tej tabeli. Najpierw odśwież tabelę.
+214	Przejście do źródła zablokowane: bieżąca strona kodowa Scintilla nie ma jawnego profilu pozycji bajtowych.
+215	Przejście do źródła zablokowane: strona kodowa edytora zmieniła się po wyświetleniu tej tabeli. Najpierw odśwież tabelę.
+216	Przejście do źródła zablokowane: zaznaczona komórka projekcji nie ma surowego pola źródłowego.
+217	Przejście do źródła zablokowane: nie udało się bezstratnie odwzorować zakresu znaków źródłowych na bajty Scintilla.
+218	Przejście do źródła zablokowane: źródłowy rekord logiczny jest niedostępny w zachowanym wyniku analizy.
+219	Przejście do źródła nie powiodło się: nie udało się odczytać aktywnego bufora Notepad++. Nie zmieniono zawartości dokumentu.
+220	Przejście do źródła nie powiodło się podczas przesuwania zaznaczenia Scintilla. Nie zmieniono zawartości dokumentu.
+221	Przejście do źródła jest niedostępne, dopóki bieżąca tabela wizualna nie ma pełnej podstawy źródłowej. Najpierw odśwież tabelę.
+222	Przejście do źródła wymaga bieżącego wiersza lub komórki CSV.
+223	Nie ukończono przejścia do źródła. Nie zmieniono zawartości dokumentu.
+224	Zaznaczono rekord źródłowy {0}, kolumnę {1} w Notepad++.
+225	Zaznaczono rekord źródłowy {0} w Notepad++.
+226	Bieżący wiersz wizualny nie udostępnia stabilnej tożsamości rekordu źródłowego.
+227	Ten oczekujący wstawiony wiersz nie ma lokalizacji źródłowej, dopóki operacja Zastosuj nie zostanie ukończona.
+228	Bieżący widok: {0:N0} z {1:N0} wyświetlanych wierszy.
+229	Różne wartości są ustalane na podstawie dokładnego tekstu z uwzględnieniem wielkości liter, także dla pustych wartości.\nPowtórzone wiersze = wiersze minus różne wartości. Zakres liczbowy używa dokładnych wartości dziesiętnych z kropką.
+230	Puste
+231	Rodzaj
+232	Najczęstsze wartości (do 20)
+233	Niedostępne
+234	Minimum liczbowe: {0}     Maksimum: {1}\nNajdłuższa wartość: {2:N0} jednostek UTF-16. {3:N0} wartości występuje więcej niż raz.
+235	 Projekcja ograniczona; to NIE jest cały plik.
+236	Wiersze: {0:N0}     Puste: {1:N0}     Tylko białe znaki: {2:N0}\nRóżne: {3:N0}     Powtórzone wiersze: {4:N0}     Liczbowe: {5:N0}
+237	Podsumowanie kolumny
+238	Białe znaki
+239	Dodano nowy wiersz do oczekującej sesji edycji. „Zastosuj” zapisuje go w buforze edytora; „Cofnij wszystko” odrzuca go.
+240	Wiersz źródłowy nie udostępnił indeksu swojego rekordu źródłowego.
+241	Operacja
+242	Nie udało się utworzyć migawki aktywnego dokumentu. Nie zmieniono zawartości edytora.
+243	Dodaj wiersz
+244	Cofnięto wszystkie oczekujące edycje komórek i wierszy. Nie zmieniono bufora edytora Notepad++.
+245	Zastosuj wszystkie edycje komórek i wierszy w aktywnym edytorze jako jedną operację możliwą do cofnięcia
+246	Zastosowanie zablokowane: aktywny jest inny dokument Notepad++. Wróć do pierwotnego dokumentu lub użyj „Cofnij wszystko”.
+247	Zastosowanie zablokowane: bufor edytora zmienił się po rozpoczęciu trybu edycji. Cofnij zmiany i odśwież przed ponowną edycją.
+248	Zastosowanie zablokowane: strona kodowa edytora zmieniła się po rozpoczęciu trybu edycji. Cofnij zmiany i ponownie otwórz tryb edycji.
+249	Zastosowanie nie powiodło się. Sesja edycji pozostaje otwarta; sprawdź bufor edytora przed ponowieniem lub cofnięciem.
+250	Zastosowanie nie zostało ukończone. Nie próbowano automatycznie nadpisywać zawartości.
+251	Wykryj automatycznie
+252	automatycznie, pewność: {0}
+253	{0} — automatyczne wykrywanie separatora nie jest wiarygodne; wymagany jest wybór ręczny.
+254	Wykrywanie automatyczne
+255	Wyniki kandydatów
+256	{0} komórek / {1} wierszy (+{2} / -{3})
+257	Znak
+258	{0} znaków / {1} bajtów w edytorze
+259	Wybierz Przecinek, Średnik lub Tabulator z listy Separator powyżej.
+260	Jawnie wybierz, czy pierwszy rekord logiczny jest nagłówkiem
+261	Wyczyść
+262	Wyczyść bieżący filtr wyszukiwania i sortowanie samego widoku
+263	Kod
+264	 - {0} warunków kolumn ({1}), {2} poziomów sortowania
+265	{0} — {1} × {2} kolumn — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Przecinek (,)
+267	przecinek
+268	Pewność
+269	Usuń wszystkie zaznaczone stabilne wiersze danych z oczekującej sesji edycji
+270	Usuń wiersz
+271	Usuń wiersze ({0})
+272	Usuń zaznaczony stabilny wiersz danych z oczekującej sesji edycji
+273	Usuń zaznaczony stabilny wiersz lub wiersze danych z oczekującej sesji edycji
+274	Separator:
+275	Diagnostyka ({0})
+276	Odrzuć wszystkie oczekujące zmiany komórek, wstawienia i usunięcia
+277	Dokument
+278	 — TRYB EDYCJI: {0} komórek, {1} wierszy, +{2} / -{3}
+279	 - Tryb edycji
+280	Tryb edycji zawiera oczekujące zmiany. Użyj „Zastosuj” lub „Cofnij wszystko” przed zakończeniem edycji.
+281	Tryb edycji jest niedostępny dla bieżącej tabeli. Najpierw usuń błędy analizy lub ograniczenia wyświetlania.
+282	Edycji nie można rozpocząć z projekcji wizualnej ograniczonej liczbą wierszy.
+283	Edycji nie można rozpocząć, gdy przeanalizowany CSV zawiera błędy.
+284	Edycja jest niedostępna dla bieżącej tabeli.
+285	{0} — pusty bufor edytora; brak rekordów CSV do wyświetlenia.
+286	Włącz jawny tryb edycji komórek i wierszy
+287	Włącz jawny tryb edycji komórek i wierszy. „Zastosuj” zapisuje tylko do bufora edytora.
+288	Włącz jawny tryb edycji komórek i wierszy. Pełny model edycji jest tworzony tylko na żądanie.
+289	{0} błędów, {1} ostrzeżeń
+290	pierwszy wiersz jako nagłówek
+291	Pierwszy wiersz jest nagłówkiem
+292	Nagłówek:
+293	Wstaw nowy wiersz za zaznaczonym lub dołącz na końcu, gdy nie zaznaczono żadnego wiersza
+294	{0} — wczytywanie danych CSV w tle; Notepad++ nadal odpowiada.
+295	wybór ręczny
+296	{0} pasujących z {1} wyświetlanych wierszy
+297	Komunikat
+298	Usunięto {0} nowo wstawionych wierszy z oczekującej sesji.
+299	Brak komunikatów diagnostycznych do wyświetlenia.
+300	Brak wiersza nagłówka
+301	brak wiersza nagłówka
+302	Brak pasujących wierszy.\nSpróbuj innego tekstu wyszukiwania lub innej kolumny.
+303	brak komunikatów diagnostycznych analizy
+304	Nie udało się bezpiecznie wybrać wiarygodnego separatora.
+305	Brak zmian do zastosowania: sesja edycji nie zawiera oczekujących zmian.
+306	Analizowanie i przygotowywanie ograniczonej tabeli wizualnej w tle…
+307	Oczekujące zmiany komórek i struktury wierszy
+308	Oczekujący wstawiony wiersz {0}; jeszcze niezastosowany
+309	{0} oczekujących wierszy
+310	Wtyczka gotowa. Odczytywanie aktywnego bufora edytora...
+311	Przygotowywanie pełnej sesji edycji…
+312	Właściwość
+313	Odczytaj i wyświetl aktualnie aktywny bufor edytora Notepad++
+314	Rekord
+315	Cofnij wszystko
+316	{0} wierszy
+317	Średnik (;)
+318	średnik
+319	Ważność
+320	Pokaż szczegółowe komunikaty diagnostyczne analizy i separatorów
+321	wyświetlanie {0} z {1} wierszy
+322	Migawka
+323	Błąd migawki
+324	Poziom sortowania {0}: {1}, {2}. Tylko widok.
+325	 — sortowanie według {0} {1}
+326	Źródłowy rekord logiczny {0}
+327	Źródłowy rekord logiczny {0}; zmodyfikowany w oczekującej sesji edycji
+328	{0} wierszy źródłowych oznaczono do usunięcia, a {1} wstawionych wierszy usunięto z oczekującej sesji.
+329	{0} wierszy źródłowych oznaczono do usunięcia. „Zastosuj” zapisuje całą partię; „Cofnij wszystko” przywraca każdy wiersz.
+330	Stan
+331	Tabulator
+332	tabulator
+333	Błąd tabeli
+334	Nie udało się zatwierdzić edycji aktywnej komórki. Popraw wartość przed dodaniem wiersza.
+335	Nie udało się zatwierdzić edycji aktywnej komórki. Popraw wartość przed usuwaniem wierszy.
+336	Nie udało się zatwierdzić edycji aktywnej komórki. Popraw wartość przed zastosowaniem.
+337	Nowo wstawiony wiersz został usunięty z oczekującej sesji.
+338	Kolumna wskaźników wierszy nie jest skonfigurowana.
+339	Zaznaczony zbiór wierszy nie jest już prawidłowy dla tej sesji edycji. Nie usunięto żadnych wierszy.
+340	Zaznaczone wiersze zostały już usunięte. Nie wykonano dodatkowej zmiany.
+341	Wiersz źródłowy oznaczono do usunięcia. „Zastosuj” zapisuje usunięcie; „Cofnij wszystko” przywraca wiersz.
+342	Nie udało się utworzyć tabeli wizualnej. Nie zmieniono zawartości edytora.
+343	Użyj wiarygodnego wykrywania automatycznego lub jawnie wybierz separator
+344	Oczekiwanie na aktywny dokument Notepad++.
+345	{0} - {1} x {2:N0} kolumn
+346	Akceptuj zmiany
+347	Po
+348	Wszystkie komórki danych
+349	Przed
+350	Kolumna CSV
+351	Wybierz operację i zakres, a następnie kliknij „Podgląd”.
+352	Bieżąca kolumna
+353	Znajdź:
+354	małe litery
+355	Operacja:
+356	Pozostałe białe znaki są zapisywane jako sekwencje specjalne; długości liczą jednostki UTF-16. Długie wartości są skracane.
+357	Nie udało się utworzyć podglądu. Sprawdź zakres i szukany tekst lub wybierz mniejszy zakres (maksymalnie 250,000 komórek / 16 Mi znaków).
+358	Najpierw utwórz podgląd. „Akceptuj zmiany” aktualizuje oczekujące edycje; „Zastosuj” na pasku narzędzi zapisuje je w Notepad++.\nNagłówki są wykluczone, gdy Nagłówek = pierwszy rekord. Zmiana wielkości liter jest niezależna od ustawień regionalnych.
+359	ID rekordu
+360	Zastąp tekst (dosłownie)
+361	Zastąp przez:
+362	Zakres:
+363	Wybierz kolumnę danych CSV.
+364	Zaznaczone komórki / wiersze
+365	pełne pomarańczowe kropki oznaczają spacje. 
+366	wskaźniki spacji są ukryte. 
+367	{0:N0} komórek docelowych; {1:N0} zmian w {2:N0} wierszach. Pokazano pierwszych 50 zmian; 
+368	Sesja edycji uległa zmianie.
+369	Podgląd nie jest już prawidłowy. Sprawdź sesję edycji i utwórz nowy podgląd.
+370	Przekształć komórki CSV
+371	Przekształcono {0:N0} komórek w oczekującej sesji edycji. Użyj „Zastosuj”, aby zaktualizować Notepad++, lub „Cofnij wszystko”, aby odrzucić oczekujące edycje.
+372	Usuń skrajne białe znaki
+373	WIELKIE LITERY
+374	Resetuj widok
+375	Pokaż spacje

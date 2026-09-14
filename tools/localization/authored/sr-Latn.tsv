@@ -1,0 +1,378 @@
+# language: sr-Latn
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vizuelni CSV uređivač za Notepad++
+001	O programu CSV Visual Editor
+002	Kontakt: {0}
+003	Kontaktirajte programera {0}
+004	Programer: {0}
+005	Razvojna verzija
+006	Dopada vam se CSV Visual Editor? Podržite projekat.\nDodajte zvezdicu na GitHub-u, pošaljite povratne informacije ili kontaktirajte programera radi saradnje. Hvala!
+007	Jezik interfejsa: {0}
+008	Nije moguće otvoriti pridruženu aplikaciju. Kontakt: {0}
+009	Projekat na GitHub-u
+010	Verzija: {0}
+011	Verzija i izdanje
+012	Radnja {0} je blokirana jer je model izmena na čekanju promenjen. Nijedna delimična izmena nije zadržana.
+013	Radnja {0} je blokirana: pravougaonici ostave i izbora imaju različite dimenzije.
+014	Radnja {0} je blokirana: ciljni pravougaonik prelazi granice CSV tabele.
+015	Radnja {0} je blokirana: nema ciljnog pravougaonika koji se može uređivati.
+016	Kopirano je {0} × {1} CSV ćelija.
+017	Kopiranje/isecanje je blokirano: izabrana ćelija sadrži tabulator ili prelom reda koji nije moguće nedvosmisleno predstaviti kao običan tekst tabelarnog programa.
+018	Kopiranje zahteva CSV ćelije, a ne izbor celih redova za brisanje.
+019	Kopiranje zahteva jedan neprekinut pravougaoni izbor CSV ćelija sa podacima.
+020	U ostavu je isečeno {0} ćelija i one su ispražnjene u sesiji uređivanja na čekanju. „Primeni” zapisuje pražnjenje u Notepad++.
+021	Isecanje je završeno; izabrane ćelije su već bile prazne. Ostava sadrži njihove izvorne vrednosti.
+022	Radnja {0} je dostupna samo u režimu uređivanja.
+023	Radnja {0} nije dostupna za trenutnu tabelu.
+024	Lepljenje je blokirano: {0} Nijedan podatak nije promenjen.
+025	Lepljenje je završeno; sve ciljne vrednosti su već bile jednake.
+026	U sesiju uređivanja na čekanju nalepljeno je {0} promenjenih ćelija. „Primeni” ih zapisuje u Notepad++.
+027	Radnja {0} zahteva pravougaonik CSV ćelija, a ne izbor celih redova za brisanje.
+028	Radnja {0} zahteva jedan neprekinut pravougaoni izbor CSV ćelija sa podacima.
+029	Ciljevi radnje {0} nisu dostupni izvan stabilnog modela redova režima uređivanja.
+030	Uređivanje aktivne ćelije nije bilo moguće potvrditi pre kopiranja.
+031	Uređivanje aktivne ćelije nije bilo moguće potvrditi. Ispravite vrednost pre radnje {0}.
+032	Ostava ne sadrži ćelije u obliku običnog teksta.
+033	Ostava sistema Windows je privremeno nedostupna. Nijedan podatak nije promenjen.
+034	Kopiraj izabrani pravougaonik CSV ćelija u ostavu sistema Windows (Ctrl+C)
+035	Kopiraj izabrane CSV ćelije i isprazni ih u sesiji uređivanja na čekanju (Ctrl+X)
+036	Nalepi ćelije tabelarnog programa u izabranu CSV ćeliju ili pravougaonik (Ctrl+V)
+037	Pregled zamene teksta, uklanjanja rubnih belina ili promene veličine slova u CSV izmenama na čekanju
+038	Izaberi trenutnu CSV ćeliju ili red u izvornom baferu Notepad++
+039	Izvor
+040	Transformiši
+041	O programu
+042	Primeni
+043	Rastuće
+044	Otkaži
+045	Zatvori
+046	Kolona
+047	Kopiraj
+048	Iseci
+049	Opadajuće
+050	Uredi
+051	Završi uređivanje
+052	Razlikuj velika i mala slova
+053	Broj
+054	Izvorni redosled
+055	Nalepi
+056	Pregled
+057	Osveži
+058	Redovi
+059	Tabela
+060	Tekst
+061	Vrednost
+062	Sažetak kolone: brojanja, različite vrednosti, brojčani opseg i česte vrednosti u trenutnom prikazu.
+063	Sažetak kolone zahteva spremnu tabelu samo za čitanje. Prvo završite režim uređivanja.
+064	Filtriraj i sortiraj: kombinuj pravila kolona i nivoe tekstualnog/brojčanog sortiranja. Samo prikaz; CSV se ne menja.
+065	Filtriraj i sortiraj: kombinuj pravila kolona i najviše tri nivoa tekstualnog/brojčanog sortiranja. Samo prikaz.
+066	Filtriraj i sortiraj: {0} uslova, {1} nivoa sortiranja. Vraćanje prikaza uklanja sva pravila.
+067	Filtriranje i sortiranje zahtevaju spremnu tabelu samo za čitanje. Prvo završite režim uređivanja.
+068	Dijagnostika (0)
+069	0 izmena
+070	Dodaj uslov
+071	Dodaj nivo sortiranja
+072	Primeni prikaz
+073	Veličina slova
+074	Poređenje teksta koje razlikuje velika i mala slova. Razmaci u vrednostima tumače se doslovno.
+075	Proverite pravila: {0}
+076	Uslov
+077	{0} / 8 uslova; {1} / 3 nivoa sortiranja. Pregledom proverite redove koji se podudaraju.
+078	Sadrži
+079	Ne sadrži
+080	Nije jednako
+081	Prazno = nijedan znak. Samo beline = neprazan niz razmaka/tabulatora/preloma redova.\nBrojevi koriste decimalnu tačku (-12.5), bez grupisanja ili eksponenata; preciznost mora biti tačna.
+082	Završava se sa
+083	Jednako je
+084	Vrednost filtera
+085	Filteri
+086	Prazno je
+087	Nije prazno
+088	Ne sadrži samo beline
+089	Sadrži samo beline
+090	Doslovan tekst, uključujući razmake. Brojčana pravila zahtevaju tačan decimalni broj sa tačkom.
+091	Zadovolji SVE uslove
+092	Zadovolji BILO KOJI uslov
+093	Broj =
+094	Broj >
+095	Broj >=
+096	Broj <
+097	Broj <=
+098	Broj (decimalni)
+099	Pregled: {0:N0} od {1:N0} prikazanih redova. CSV je nepromenjen.
+100	Ukloni uslov
+101	Ukloni nivo sortiranja
+102	Vrati pravila
+103	Pravila uzimaju u obzir i trenutnu pretragu. Otkazivanje zadržava aktivni prikaz.
+104	Sortiranje
+105	Počinje sa
+106	Tekst: redosled prema kodovima znakova bez razlikovanja velikih i malih slova. Broj: tačne decimalne vrednosti; nevažeće/prazne vrednosti na kraju.\nJednaki ključevi zadržavaju izvorni redosled. Uklonite sve nivoe da biste ga vratili.
+107	Projekcija je ograničena; neprikazani redovi nisu uključeni. 
+108	Filtriraj i sortiraj
+109	Prvi nivo ima prednost; sledeći razrešavaju izjednačenja. Najviše 3.
+110	Vrednost (doslovna, uključujući razmake)
+111	Samo prikaz — CSV vrednosti i izvorni redosled ostaju nepromenjeni. {0:N0} prikazanih redova.\n
+112	Primena je blokirana jer {0} nema izričito podržan profil kodiranja. Sadržaj uređivača nije promenjen.
+113	Primena je blokirana jer stroga provera kodiranja {0} nije dala tačnu konverziju u oba smera. Sadržaj uređivača nije promenjen.
+114	Primena je blokirana jer zamenu na čekanju nije moguće tačno predstaviti kodiranjem {0}. Nisu korišćeni zamenski znakovi i sadržaj uređivača nije promenjen.
+115	Primena za {0} još nije omogućena. Sadržaj uređivača nije promenjen. Upisivanje je omogućeno samo za UTF-8 (65001) i Windows-1250 (1250), nakon provere bez gubitaka. Koristite „Poništi sve” ili pretvorite dokument u UTF-8 u Notepad++ i ponovo otvorite režim uređivanja.
+116	Osvežavanje je onemogućeno u režimu uređivanja. Prvo primenite ili poništite sve izmene na čekanju.
+117	Kodna strana Scintilla {0}
+118	Aktivni dokument ima {0:N0} bajtova. Trenutno bezbedno ograničenje snimka je {1:N0} bajtova.
+119	Aktivni dokument Notepad++ nije moguće pročitati. Sadržaj uređivača nije promenjen.
+120	Rezultat primene nije stanje blokirano kodiranjem.
+121	Izrada tabele u pozadini završena je bez rezultata.
+122	CSV izmene su uspešno primenjene, ali nije bilo moguće vratiti prethodni položaj kursora ili izbor. Sve izmene dokumenta i dalje je moguće poništiti jednom radnjom.
+123	trenutna kodna strana uređivača
+124	Bafer uređivača nije bilo moguće pretvoriti u vizuelnu tabelu. Izričito izaberite razdvajač ili osvežite nakon ispravke dokumenta.
+125	Izrada tabele vratila je nepotpun rezultat.
+126	&O programu
+127	&Očisti pretragu
+128	&CSV
+129	&Razdvajač
+130	&Uredi
+131	Esc u pretrazi
+132	&Pronađi u tabeli
+133	&Zaglavlje
+134	&Sledeća podudarna ćelija
+135	&Prethodna podudarna ćelija
+136	Vrati prikaz: očisti pretragu, uslove kolona i sva sortiranja.
+137	&Pretraga
+138	&Kolona pretrage
+139	Prikaži razmake: male pune narandžaste tačke. Samo prikaz; CSV vrednosti se ne menjaju.
+140	Prikaži &tabelu
+141	&Sortiraj po
+142	&Tabela
+143	&Prikaz
+144	Vrednost filtera može sadržati najviše 4,096 znakova.
+145	SVI
+146	Početna oznaka redosleda bajtova izuzeta je iz prvog polja.
+147	BILO KOJI
+148	U polju bez navodnika pojavio se navodnik.
+149	Redovi ostave moraju činiti jednu pravougaonu matricu ćelija.
+150	Dijagnostički kod: {0}.
+151	Svaki nivo sortiranja mora koristiti različitu kolonu.
+152	Greška
+153	visoka
+154	Informacija
+155	niska
+156	srednja
+157	Nijedan podržani razdvajač nije dao dovoljno pouzdanu strukturu sa više polja.
+158	nema
+159	Jedan vizuelni red zahtevao bi {0:N0} ćelija, što prelazi trenutno ukupno ograničenje od {1:N0}. Nijedna kolona nije sakrivena.
+160	Zapis sadrži {0} polja; očekivano je {1} prema najčešćem broju u uzorku.
+161	Razmaci: {0}; početni: {1}; završni: {2}. Dužina: {3} UTF-16 jedinica.\nNarandžaste tačke označavaju stvarne razmake. Razmak prikaza je povećan radi čitljivosti; CSV znakovi ostaju nepromenjeni. U ćeliji sa samim razmacima početno i završno brojanje se preklapaju.
+162	Matrica ćelija ostave prelazi bezbedno ograničenje lepljenja.
+163	Ostava sadrži nepodržan kontrolni znak.
+164	Ostava sadrži više kolona nego što uređivač može bezbedno nalepiti.
+165	Ostava sadrži više redova nego što uređivač može bezbedno nalepiti.
+166	Tekst ostave prelazi bezbedno ograničenje od 16 Mi UTF-16 znakovnih jedinica.
+167	Poslednje polje u navodnicima nije zatvoreno pre kraja teksta.
+168	Broj polja se razlikuje od drugih zapisa.
+169	Radnju nije bilo moguće dovršiti. Proverite dokument, izabrane vrednosti i ograničenja veličine.
+170	Raščlanjeni dokument sadrži {0:N0} kolona, što prelazi trenutno ograničenje vizuelne tabele od {1:N0}. Nijedna kolona nije sakrivena.
+171	Predloženi razdvajač ima nisku pouzdanost. Proverite podešavanje razdvajača.
+172	Dva kandidata za razdvajač imaju slične ocene. Proverite podešavanje razdvajača.
+173	Nakon završnog navodnika slede neočekivani znakovi.
+174	nepoznata
+175	Koristite tačan decimalni broj sa tačkom, na primer -12.5. Grupisanje, eksponenti i zaokružene vrednosti nisu podržani.
+176	Koristite najviše osam uslova filtera koji nisu null.
+177	Koristite najviše tri nivoa sortiranja koji nisu null.
+178	Pravila prikaza upućuju na kolonu izvan trenutne tabele.
+179	Upozorenje
+180	Sažetak kolone
+181	Filtriraj i sortiraj
+182	Otvori vizuelnu tabelu
+183	Osveži tabelu
+184	novi:{0}
+185	novi:{0} *
+186	Izaberi
+187	Izaberi cele redove za brisanje
+188	Izvorni logički zapis ili strukturni red na čekanju
+189	Nije bilo moguće odrediti kolonu pokazivača redova.
+190	Red mora pripadati kontroli DataGridView.
+191	Sve kolone
+192	{0:N0} / {1:N0} ćelija
+193	{0:N0} ćelija
+194	Očisti pretragu
+195	Očisti pretragu (Esc). Zadrži kolonu pretrage i sortiranje.
+196	Filtrira prikazane redove. Enter: sledeća podudarna ćelija. Shift+Enter: prethodna. Escape: očisti.
+197	Sledeća podudarna ćelija
+198	Sledeća podudarna ćelija (F3 / Enter)
+199	Nema podudaranja
+200	Nema podudarnih redova.\nPrilagodite pretragu ili koristite Prikaz > Filtriraj i sortiraj / Vrati prikaz.
+201	Prethodna podudarna ćelija
+202	Prethodna podudarna ćelija (Shift+F3 / Shift+Enter)
+203	Pretraži sve kolone sa podacima ili izaberi jednu kolonu.
+204	Kolona pretrage
+205	Pretraži prikazane CSV redove (Ctrl+F). Vrednosti i izvorni tekst ostaju nepromenjeni.
+206	Pretraži tabelu...
+207	Pretraži tabelu
+208	Rezultati pretrage
+209	Pretraživanje...
+210	Odlazak na izvor je blokiran: aktivan je drugi dokument Notepad++. Vratite se na prikazani CSV ili osvežite tabelu.
+211	Odlazak na izvor je blokiran jer sačuvani rezultat raščlanjivanja više ne odgovara svom nepromenljivom izvornom snimku. Prvo osvežite tabelu.
+212	Odlazak na izvor je blokiran: dužina strogo kodiranog teksta ne odgovara dužini dokumenta koju prijavljuje Scintilla.
+213	Odlazak na izvor je blokiran: aktivni sadržaj uređivača promenjen je nakon prikaza tabele. Prvo osvežite tabelu.
+214	Odlazak na izvor je blokiran: trenutna kodna strana Scintilla nema izričit profil položaja bajtova.
+215	Odlazak na izvor je blokiran: kodna strana uređivača promenjena je nakon prikaza tabele. Prvo osvežite tabelu.
+216	Odlazak na izvor je blokiran: izabrana projektovana ćelija nema neobrađeno izvorno polje.
+217	Odlazak na izvor je blokiran: opseg izvornih znakova nije bilo moguće bez gubitaka preslikati u bajtove Scintilla.
+218	Odlazak na izvor je blokiran: izvorni logički zapis nije dostupan u sačuvanom rezultatu raščlanjivanja.
+219	Odlazak na izvor nije uspeo: aktivni bafer Notepad++ nije bilo moguće pročitati. Sadržaj dokumenta nije promenjen.
+220	Odlazak na izvor nije uspeo tokom pomeranja izbora Scintilla. Sadržaj dokumenta nije promenjen.
+221	Odlazak na izvor nije dostupan dok trenutna vizuelna tabela nema potpunu izvornu osnovu. Prvo osvežite tabelu.
+222	Odlazak na izvor zahteva trenutni CSV red ili ćeliju.
+223	Odlazak na izvor nije dovršen. Sadržaj dokumenta nije promenjen.
+224	U Notepad++ izabrani su izvorni zapis {0} i kolona {1}.
+225	U Notepad++ izabran je izvorni zapis {0}.
+226	Trenutni vizuelni red ne pruža stabilan identitet izvornog zapisa.
+227	Ovaj umetnuti red na čekanju nema izvorni položaj dok se primena ne dovrši.
+228	Trenutni prikaz: {0:N0} od {1:N0} prikazanih redova.
+229	Različite vrednosti se određuju prema tačnom tekstu uz razlikovanje velikih i malih slova, uključujući prazne vrednosti.\nPonovljeni redovi = redovi minus različite vrednosti. Brojčani opseg koristi tačne decimalne vrednosti sa tačkom.
+230	Prazno
+231	Vrsta
+232	Najčešće vrednosti (do 20)
+233	Nije dostupno
+234	Brojčani minimum: {0}     Maksimum: {1}\nNajduža vrednost: {2:N0} UTF-16 jedinica. {3:N0} vrednosti se pojavljuje više puta.
+235	 Ograničena projekcija; ovo NIJE cela datoteka.
+236	Redovi: {0:N0}     Prazni: {1:N0}     Samo beline: {2:N0}\nRazličiti: {3:N0}     Ponovljeni redovi: {4:N0}     Brojčani: {5:N0}
+237	Sažetak kolone
+238	Beline
+239	Nov red je dodat u sesiju uređivanja na čekanju. „Primeni” ga zapisuje u bafer uređivača; „Poništi sve” ga odbacuje.
+240	Izvorni red nije pružio indeks svog izvornog zapisa.
+241	Radnja
+242	Snimanje aktivnog dokumenta nije uspelo. Sadržaj uređivača nije promenjen.
+243	Dodaj red
+244	Sve izmene ćelija i redova na čekanju su poništene. Bafer uređivača Notepad++ nije promenjen.
+245	Primeni sve izmene ćelija i redova na aktivni uređivač kao jednu radnju koja se može poništiti
+246	Primena je blokirana: aktivan je drugi dokument Notepad++. Vratite se na izvorni dokument ili koristite „Poništi sve”.
+247	Primena je blokirana: bafer uređivača promenjen je nakon pokretanja režima uređivanja. Pre ponovnog uređivanja poništite izmene i osvežite.
+248	Primena je blokirana: kodna strana uređivača promenjena je nakon pokretanja režima uređivanja. Poništite izmene i ponovo otvorite režim uređivanja.
+249	Primena nije uspela. Sesija uređivanja ostaje otvorena; proverite bafer uređivača pre ponovnog pokušaja ili poništavanja.
+250	Primena nije dovršena. Automatsko prepisivanje nije pokušano.
+251	Automatski otkrij
+252	automatska pouzdanost: {0}
+253	{0} — automatsko otkrivanje razdvajača nije pouzdano; potreban je ručni izbor.
+254	Automatsko otkrivanje
+255	Ocene kandidata
+256	{0} ćelija / {1} redova (+{2} / -{3})
+257	Znak
+258	{0} znakova / {1} bajtova uređivača
+259	Sa gornjeg spiska razdvajača izaberite Zarez, Tačka-zarez ili Tabulator.
+260	Izričito izaberi da li je prvi logički zapis zaglavlje
+261	Očisti
+262	Očisti trenutni filter pretrage i sortiranje samo prikaza
+263	Kod
+264	 - {0} uslova kolona ({1}), {2} nivoa sortiranja
+265	{0} — {1} × {2} kolona — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Zarez (,)
+267	zarez
+268	Pouzdanost
+269	Izbriši sve izabrane stabilne redove podataka iz sesije uređivanja na čekanju
+270	Izbriši red
+271	Izbriši redove ({0})
+272	Izbriši izabrani stabilni red podataka iz sesije uređivanja na čekanju
+273	Izbriši izabrani stabilni red ili redove podataka iz sesije uređivanja na čekanju
+274	Razdvajač:
+275	Dijagnostika ({0})
+276	Odbaci sve izmene ćelija, umetanja i brisanja na čekanju
+277	Dokument
+278	 — REŽIM UREĐIVANJA: {0} ćelija, {1} redova, +{2} / -{3}
+279	 - Režim uređivanja
+280	Režim uređivanja sadrži izmene na čekanju. Pre izlaska koristite „Primeni” ili „Poništi sve”.
+281	Režim uređivanja nije dostupan za trenutnu tabelu. Prvo rešite greške raščlanjivanja ili ograničenja prikaza.
+282	Uređivanje nije moguće započeti iz vizuelne projekcije sa ograničenim brojem redova.
+283	Uređivanje nije moguće započeti dok raščlanjeni CSV sadrži greške.
+284	Uređivanje nije dostupno za trenutnu tabelu.
+285	{0} — prazan bafer uređivača; nema CSV zapisa za prikaz.
+286	Uđi u izričiti režim uređivanja ćelija i redova
+287	Uđi u izričiti režim uređivanja ćelija i redova. „Primeni” zapisuje samo u bafer uređivača.
+288	Uđi u izričiti režim uređivanja ćelija i redova. Potpun model uređivanja stvara se samo na zahtev.
+289	{0} grešaka, {1} upozorenja
+290	prvi red kao zaglavlje
+291	Prvi red je zaglavlje
+292	Zaglavlje:
+293	Umetni nov red iza izabranog ili ga dodaj na kraj ako nije izabran nijedan red
+294	{0} — učitavanje CSV podataka u pozadini; Notepad++ ostaje odzivan.
+295	ručni izbor
+296	{0} podudarnih od {1} prikazanih redova
+297	Poruka
+298	Iz sesije na čekanju uklonjeno je {0} novoumetnutih redova.
+299	Nema dijagnostičkih poruka za prikaz.
+300	Bez reda zaglavlja
+301	bez reda zaglavlja
+302	Nema podudarnih redova.\nPokušajte sa drugim tekstom pretrage ili kolonom.
+303	bez dijagnostičkih poruka raščlanjivanja
+304	Nije bilo moguće bezbedno izabrati pouzdan razdvajač.
+305	Nema ničega za primenu: sesija uređivanja nema izmene na čekanju.
+306	Raščlanjivanje i priprema ograničene vizuelne tabele u pozadini…
+307	Izmene ćelija i strukture redova na čekanju
+308	Umetnuti red na čekanju {0}; još nije primenjen
+309	{0} redova na čekanju
+310	Dodatak je spreman. Čitanje aktivnog bafera uređivača...
+311	Priprema potpune sesije uređivanja…
+312	Svojstvo
+313	Pročitaj i prikaži trenutno aktivni bafer uređivača Notepad++
+314	Zapis
+315	Poništi sve
+316	{0} redova
+317	Tačka-zarez (;)
+318	tačka-zarez
+319	Ozbiljnost
+320	Prikaži detaljnu dijagnostiku raščlanjivanja i razdvajača
+321	prikazano {0} od {1} redova
+322	Snimak
+323	Greška snimka
+324	Nivo sortiranja {0}: {1}, {2}. Samo prikaz.
+325	 — sortirano po {0} {1}
+326	Izvorni logički zapis {0}
+327	Izvorni logički zapis {0}; izmenjen u sesiji uređivanja na čekanju
+328	{0} izvornih redova označeno je za brisanje, a {1} umetnutih redova uklonjeno je iz sesije na čekanju.
+329	{0} izvornih redova označeno je za brisanje. „Primeni” zapisuje celu grupu; „Poništi sve” vraća svaki red.
+330	Stanje
+331	Tabulator
+332	tabulator
+333	Greška tabele
+334	Uređivanje aktivne ćelije nije bilo moguće potvrditi. Ispravite vrednost pre dodavanja reda.
+335	Uređivanje aktivne ćelije nije bilo moguće potvrditi. Ispravite vrednost pre brisanja redova.
+336	Uređivanje aktivne ćelije nije bilo moguće potvrditi. Ispravite vrednost pre primene.
+337	Novoumetnuti red uklonjen je iz sesije na čekanju.
+338	Kolona pokazivača redova nije podešena.
+339	Izabrani skup redova više nije važeći za ovu sesiju uređivanja. Nijedan red nije izbrisan.
+340	Izabrani redovi su već bili izbrisani. Nije izvršena dodatna izmena.
+341	Izvorni red je označen za brisanje. „Primeni” zapisuje brisanje; „Poništi sve” ga vraća.
+342	Nije bilo moguće napraviti vizuelnu tabelu. Sadržaj uređivača nije promenjen.
+343	Koristi pouzdano automatsko otkrivanje ili izričito izaberi razdvajač
+344	Čekanje aktivnog dokumenta Notepad++.
+345	{0} - {1} x {2:N0} kolona
+346	Prihvati izmene
+347	Posle
+348	Sve ćelije sa podacima
+349	Pre
+350	CSV kolona
+351	Izaberite radnju i opseg, pa kliknite na „Pregled”.
+352	Trenutna kolona
+353	Pronađi:
+354	mala slova
+355	Radnja:
+356	Ostale beline prikazane su escape-sekvencama; dužine broje UTF-16 jedinice. Duge vrednosti su skraćene.
+357	Nije bilo moguće napraviti pregled. Proverite opseg i traženi tekst ili izaberite manji opseg (najviše 250,000 ćelija / 16 Mi znakova).
+358	Prvo napravite pregled. „Prihvati izmene” ažurira izmene na čekanju; „Primeni” na traci sa alatkama zapisuje u Notepad++.\nZaglavlja se izuzimaju kada je Zaglavlje = prvi zapis. Promena veličine slova ne zavisi od regionalnih podešavanja.
+359	ID zapisa
+360	Zameni tekst (doslovno)
+361	Zameni sa:
+362	Opseg:
+363	Izaberite CSV kolonu sa podacima.
+364	Izabrane ćelije / redovi
+365	pune narandžaste tačke označavaju razmake. 
+366	pokazivači razmaka su sakriveni. 
+367	{0:N0} ciljnih ćelija; {1:N0} izmena u {2:N0} redova. Prikazano je prvih 50 izmena; 
+368	Sesija uređivanja se promenila.
+369	Pregled više nije važeći. Proverite sesiju uređivanja i napravite novi pregled.
+370	Transformiši CSV ćelije
+371	U sesiji uređivanja na čekanju transformisano je {0:N0} ćelija. Koristite „Primeni” da ažurirate Notepad++ ili „Poništi sve” da odbacite izmene na čekanju.
+372	Ukloni rubne beline
+373	VELIKA SLOVA
+374	Vrati prikaz
+375	Prikaži razmake

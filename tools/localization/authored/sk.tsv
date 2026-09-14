@@ -1,0 +1,378 @@
+# language: sk
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vizuálny editor CSV pre Notepad++
+001	O aplikácii CSV Visual Editor
+002	Kontakt: {0}
+003	Kontaktovať vývojára {0}
+004	Vývojár: {0}
+005	Vývojová verzia
+006	Páči sa vám CSV Visual Editor? Podporte projekt.\nPridajte hviezdičku na GitHube, podeľte sa o názor alebo kontaktujte vývojára, ak chcete prispieť. Ďakujeme!
+007	Jazyk rozhrania: {0}
+008	Nepodarilo sa otvoriť priradenú aplikáciu. Kontakt: {0}
+009	Projekt na GitHube
+010	Verzia: {0}
+011	Verzia a zostavenie
+012	Operácia {0} bola zablokovaná, pretože sa zmenil model čakajúcich úprav. Nezachovala sa žiadna čiastočná zmena.
+013	Operácia {0} bola zablokovaná: obdĺžniky schránky a výberu majú rozdielne rozmery.
+014	Operácia {0} bola zablokovaná: cieľový obdĺžnik presahuje tabuľku CSV.
+015	Operácia {0} bola zablokovaná: nie je dostupný upraviteľný cieľový obdĺžnik.
+016	Skopírovaných {0} × {1} buniek CSV.
+017	Kopírovanie/vystrihnutie bolo zablokované: vybraná bunka obsahuje tabulátor alebo koniec riadka, ktorý nemožno jednoznačne vyjadriť ako obyčajný text tabuľkového procesora.
+018	Kopírovanie vyžaduje bunky CSV, nie výber celých riadkov na odstránenie.
+019	Kopírovanie vyžaduje jeden súvislý obdĺžnikový výber dátových buniek CSV.
+020	Do schránky bolo vystrihnutých {0} buniek a v čakajúcej relácii úprav boli vyprázdnené. „Použiť“ zapíše vyprázdnenie do Notepad++.
+021	Vystrihnutie dokončené; vybrané bunky už boli prázdne. Schránka obsahuje ich pôvodné hodnoty.
+022	Operácia {0} je dostupná iba v režime úprav.
+023	Operácia {0} nie je dostupná pre aktuálnu tabuľku.
+024	Prilepenie zablokované: {0} Žiadne údaje sa nezmenili.
+025	Prilepenie dokončené; všetky cieľové hodnoty už boli rovnaké.
+026	Do čakajúcej relácie úprav bolo prilepených {0} zmenených buniek. „Použiť“ ich zapíše do Notepad++.
+027	Operácia {0} vyžaduje obdĺžnik buniek CSV, nie výber celých riadkov na odstránenie.
+028	Operácia {0} vyžaduje jeden súvislý obdĺžnikový výber dátových buniek CSV.
+029	Ciele operácie {0} nie sú dostupné mimo stabilného modelu riadkov režimu úprav.
+030	Úpravu aktívnej bunky sa pred kopírovaním nepodarilo potvrdiť.
+031	Úpravu aktívnej bunky sa nepodarilo potvrdiť. Pred operáciou {0} opravte hodnotu.
+032	Schránka neobsahuje bunky vo forme obyčajného textu.
+033	Schránka Windows je dočasne nedostupná. Žiadne údaje sa nezmenili.
+034	Skopírovať vybraný obdĺžnik buniek CSV do schránky Windows (Ctrl+C)
+035	Skopírovať vybrané bunky CSV a vyprázdniť ich v čakajúcej relácii úprav (Ctrl+X)
+036	Prilepiť bunky tabuľkového procesora do vybranej bunky alebo obdĺžnika CSV (Ctrl+V)
+037	Zobraziť náhľad nahradenia textu, orezania okrajových bielych znakov alebo zmeny veľkosti písmen v čakajúcich úpravách CSV
+038	Vybrať aktuálnu bunku alebo riadok CSV v zdrojovom bufferi Notepad++
+039	Zdroj
+040	Transformovať
+041	O aplikácii
+042	Použiť
+043	Vzostupne
+044	Zrušiť
+045	Zavrieť
+046	Stĺpec
+047	Kopírovať
+048	Vystrihnúť
+049	Zostupne
+050	Upraviť
+051	Ukončiť úpravy
+052	Rozlišovať veľkosť písmen
+053	Číslo
+054	Pôvodné poradie
+055	Prilepiť
+056	Náhľad
+057	Obnoviť
+058	Riadky
+059	Tabuľka
+060	Text
+061	Hodnota
+062	Súhrn stĺpca: počty, odlišné hodnoty, číselný rozsah a časté hodnoty v aktuálnom zobrazení.
+063	Súhrn stĺpca vyžaduje pripravenú tabuľku iba na čítanie. Najprv ukončite režim úprav.
+064	Filtrovať a zoradiť: kombinovať pravidlá stĺpcov a úrovne textového/číselného zoradenia. Iba zobrazenie; CSV sa nemení.
+065	Filtrovať a zoradiť: kombinovať pravidlá stĺpcov a najviac tri úrovne textového/číselného zoradenia. Iba zobrazenie.
+066	Filtrovať a zoradiť: {0} podmienok, {1} úrovní zoradenia. Obnovenie zobrazenia odstráni všetky pravidlá.
+067	Filtrovanie a zoradenie vyžaduje pripravenú tabuľku iba na čítanie. Najprv ukončite režim úprav.
+068	Diagnostika (0)
+069	0 zmien
+070	Pridať podmienku
+071	Pridať úroveň zoradenia
+072	Použiť zobrazenie
+073	Veľkosť písmen
+074	Porovnávanie textu s rozlíšením veľkosti písmen. Medzery v hodnotách sa berú doslovne.
+075	Skontrolujte pravidlá: {0}
+076	Podmienka
+077	{0} / 8 podmienok; {1} / 3 úrovní zoradenia. Náhľadom overte zodpovedajúce riadky.
+078	Obsahuje
+079	Neobsahuje
+080	Nerovná sa
+081	Prázdne = žiadne znaky. Iba biele znaky = neprázdna postupnosť medzier/tabulátorov/koncov riadkov.\nČísla používajú desatinnú bodku (-12.5), bez oddeľovania skupín alebo exponentov; presnosť musí byť zachovaná.
+082	Končí na
+083	Rovná sa
+084	Hodnota filtra
+085	Filtre
+086	Je prázdne
+087	Nie je prázdne
+088	Neobsahuje iba biele znaky
+089	Obsahuje iba biele znaky
+090	Doslovný text vrátane medzier. Číselné pravidlá vyžadujú presné desatinné číslo s bodkou.
+091	Splniť VŠETKY podmienky
+092	Splniť ĽUBOVOĽNÚ podmienku
+093	Číslo =
+094	Číslo >
+095	Číslo >=
+096	Číslo <
+097	Číslo <=
+098	Číslo (desatinné)
+099	Náhľad: {0:N0} z {1:N0} zobrazených riadkov. CSV bez zmeny.
+100	Odobrať podmienku
+101	Odobrať úroveň zoradenia
+102	Obnoviť pravidlá
+103	Pravidlá rešpektujú aj aktuálne hľadanie. Zrušenie ponechá aktívne zobrazenie.
+104	Zoradenie
+105	Začína na
+106	Text: ordinálne poradie bez rozlíšenia veľkosti písmen. Číslo: presné desatinné hodnoty; neplatné/prázdne hodnoty na konci.\nRovnaké kľúče zachovávajú zdrojové poradie. Odobratím všetkých úrovní ho obnovíte.
+107	Projekcia je obmedzená; nezobrazené riadky nie sú zahrnuté. 
+108	Filtrovať a zoradiť
+109	Prvá úroveň má prednosť; ďalšie rozhodujú pri zhode. Najviac 3.
+110	Hodnota (doslovne, vrátane medzier)
+111	Iba zobrazenie — hodnoty CSV a zdrojové poradie zostávajú nezmenené. {0:N0} zobrazených riadkov.\n
+112	Použitie zmien je zablokované, pretože {0} nemá výslovne podporovaný profil kódovania. Obsah editora sa nezmenil.
+113	Použitie zmien je zablokované, pretože prísne overenie kódovania {0} nepreukázalo presný prevod tam a späť. Obsah editora sa nezmenil.
+114	Použitie zmien je zablokované, pretože čakajúce nahradenie nemožno presne vyjadriť v {0}. Nepoužil sa náhradný znak a obsah editora sa nezmenil.
+115	Použitie zmien ešte nie je pre {0} povolené. Obsah editora sa nezmenil. Zápis je po bezstratovom overení povolený iba pre UTF-8 (65001) a Windows-1250 (1250). Použite „Vrátiť všetko“ alebo dokument v Notepad++ preveďte na UTF-8 a znovu otvorte režim úprav.
+116	Obnovenie je v režime úprav zakázané. Najprv použite alebo vráťte všetky čakajúce zmeny.
+117	Kódová stránka Scintilla {0}
+118	Aktívny dokument má {0:N0} bajtov. Aktuálny bezpečný limit snímky je {1:N0} bajtov.
+119	Aktívny dokument Notepad++ sa nepodarilo prečítať. Obsah editora sa nezmenil.
+120	Výsledok použitia zmien nie je stav zablokovaný kódovaním.
+121	Vytváranie tabuľky na pozadí sa skončilo bez výsledku.
+122	Zmeny CSV boli úspešne použité, ale predchádzajúcu pozíciu kurzora alebo výber sa nepodarilo obnoviť. Zmeny dokumentu možno stále vrátiť jednou operáciou.
+123	aktuálna kódová stránka editora
+124	Buffer editora sa nepodarilo previesť na vizuálnu tabuľku. Vyberte konkrétny oddeľovač alebo po oprave dokumentu vykonajte obnovenie.
+125	Vytváranie tabuľky vrátilo neúplný výsledok.
+126	&O aplikácii
+127	&Vymazať hľadanie
+128	&CSV
+129	&Oddeľovač
+130	&Upraviť
+131	Esc v hľadaní
+132	&Nájsť v tabuľke
+133	&Hlavička
+134	&Ďalšia zodpovedajúca bunka
+135	&Predchádzajúca zodpovedajúca bunka
+136	Obnoviť zobrazenie: vymazať hľadanie, podmienky stĺpcov a všetky zoradenia.
+137	&Hľadanie
+138	&Stĺpec hľadania
+139	Zobraziť medzery: malé plné oranžové bodky. Iba zobrazenie; hodnoty CSV sa nemenia.
+140	Zobraziť &tabuľku
+141	&Zoradiť podľa
+142	&Tabuľka
+143	&Zobrazenie
+144	Hodnota filtra môže mať najviac 4,096 znakov.
+145	VŠETKY
+146	Počiatočná značka poradia bajtov bola z prvého poľa vynechaná.
+147	ĽUBOVOĽNÁ
+148	V poli bez úvodzoviek sa objavila úvodzovka.
+149	Riadky schránky musia tvoriť jednu obdĺžnikovú maticu buniek.
+150	Diagnostický kód: {0}.
+151	Každá úroveň zoradenia musí používať iný stĺpec.
+152	Chyba
+153	vysoká
+154	Informácia
+155	nízka
+156	stredná
+157	Žiadny podporovaný oddeľovač nevytvoril dostatočne spoľahlivú štruktúru s viacerými poľami.
+158	žiadna
+159	Jeden vizuálny riadok by vyžadoval {0:N0} buniek, čo presahuje aktuálny celkový limit {1:N0}. Žiadne stĺpce neboli skryté.
+160	Záznam má {0} polí; podľa najčastejšieho počtu vo vzorke sa očakávalo {1}.
+161	Medzery: {0}; počiatočné: {1}; koncové: {2}. Dĺžka: {3} jednotiek UTF-16.\nOranžové bodky označujú skutočné medzery. Na zlepšenie čitateľnosti sú rozstupy ich zobrazenia zväčšené; znaky CSV zostávajú nezmenené. V bunke tvorenej iba medzerami sa počiatočné a koncové počty prekrývajú.
+162	Matica buniek v schránke presahuje bezpečný limit prilepenia.
+163	Schránka obsahuje nepodporovaný riadiaci znak.
+164	Schránka obsahuje viac stĺpcov, než môže editor bezpečne prilepiť.
+165	Schránka obsahuje viac riadkov, než môže editor bezpečne prilepiť.
+166	Text schránky presahuje bezpečný limit 16 Mi znakových jednotiek UTF-16.
+167	Posledné pole v úvodzovkách nebolo pred koncom textu uzavreté.
+168	Počet polí sa líši od ostatných záznamov.
+169	Operáciu sa nepodarilo dokončiť. Skontrolujte dokument, vybrané hodnoty a obmedzenia veľkosti.
+170	Analyzovaný dokument obsahuje {0:N0} stĺpcov, čo presahuje aktuálny limit vizuálnej tabuľky {1:N0}. Žiadne stĺpce neboli skryté.
+171	Navrhnutý oddeľovač má nízku spoľahlivosť. Skontrolujte nastavenie oddeľovača.
+172	Dvaja kandidáti na oddeľovač majú podobné skóre. Skontrolujte nastavenie oddeľovača.
+173	Po uzatváracej úvodzovke nasledujú neočakávané znaky.
+174	neznáma
+175	Použite presné desatinné číslo s bodkou, napríklad -12.5. Oddeľovanie skupín, exponenty a zaokrúhlené hodnoty nie sú podporované.
+176	Použite najviac osem podmienok filtra, ktoré nie sú null.
+177	Použite najviac tri úrovne zoradenia, ktoré nie sú null.
+178	Pravidlá zobrazenia odkazujú na stĺpec mimo aktuálnej tabuľky.
+179	Upozornenie
+180	Súhrn stĺpca
+181	Filtrovať a zoradiť
+182	Otvoriť vizuálnu tabuľku
+183	Obnoviť tabuľku
+184	nový:{0}
+185	nový:{0} *
+186	Vybrať
+187	Vybrať celé riadky na odstránenie
+188	Zdrojový logický záznam alebo čakajúci štrukturálny riadok
+189	Stĺpec ukazovateľov riadkov sa nepodarilo určiť.
+190	Riadok musí patriť do DataGridView.
+191	Všetky stĺpce
+192	{0:N0} / {1:N0} buniek
+193	{0:N0} buniek
+194	Vymazať hľadanie
+195	Vymazať hľadanie (Esc). Zachovať prehľadávaný stĺpec a zoradenie.
+196	Filtruje zobrazené riadky. Enter: ďalšia zodpovedajúca bunka. Shift+Enter: predchádzajúca. Escape: vymazať.
+197	Ďalšia zodpovedajúca bunka
+198	Ďalšia zodpovedajúca bunka (F3 / Enter)
+199	Žiadne zhody
+200	Žiadne zodpovedajúce riadky.\nUpravte hľadanie alebo použite Zobrazenie > Filtrovať a zoradiť / Obnoviť zobrazenie.
+201	Predchádzajúca zodpovedajúca bunka
+202	Predchádzajúca zodpovedajúca bunka (Shift+F3 / Shift+Enter)
+203	Prehľadávať všetky dátové stĺpce alebo vybrať jeden stĺpec.
+204	Stĺpec hľadania
+205	Hľadať v zobrazených riadkoch CSV (Ctrl+F). Hodnoty a zdrojový text sa nemenia.
+206	Hľadať v tabuľke...
+207	Hľadať v tabuľke
+208	Výsledky hľadania
+209	Hľadanie...
+210	Prechod na zdroj zablokovaný: je aktívny iný dokument Notepad++. Vráťte sa k zobrazenému CSV alebo obnovte tabuľku.
+211	Prechod na zdroj zablokovaný, pretože uchovaný výsledok analýzy už nezodpovedá svojej nemennej zdrojovej snímke. Najprv obnovte tabuľku.
+212	Prechod na zdroj zablokovaný: dĺžka pri prísnom kódovaní nezodpovedá dĺžke dokumentu hlásenej Scintillou.
+213	Prechod na zdroj zablokovaný: obsah aktívneho editora sa po zobrazení tabuľky zmenil. Najprv obnovte tabuľku.
+214	Prechod na zdroj zablokovaný: aktuálna kódová stránka Scintilla nemá výslovný profil bajtových pozícií.
+215	Prechod na zdroj zablokovaný: kódová stránka editora sa po zobrazení tabuľky zmenila. Najprv obnovte tabuľku.
+216	Prechod na zdroj zablokovaný: vybraná bunka projekcie nemá pôvodné zdrojové pole.
+217	Prechod na zdroj zablokovaný: rozsah zdrojových znakov nebolo možné bezstratovo mapovať na bajty Scintilla.
+218	Prechod na zdroj zablokovaný: zdrojový logický záznam nie je v uchovanom výsledku analýzy dostupný.
+219	Prechod na zdroj zlyhal: aktívny buffer Notepad++ sa nepodarilo prečítať. Obsah dokumentu sa nezmenil.
+220	Prechod na zdroj zlyhal pri presúvaní výberu Scintilla. Obsah dokumentu sa nezmenil.
+221	Prechod na zdroj nie je dostupný, kým aktuálna vizuálna tabuľka nemá úplný zdrojový základ. Najprv obnovte tabuľku.
+222	Prechod na zdroj vyžaduje aktuálny riadok alebo bunku CSV.
+223	Prechod na zdroj nebol dokončený. Obsah dokumentu sa nezmenil.
+224	V Notepad++ bol vybraný zdrojový záznam {0}, stĺpec {1}.
+225	V Notepad++ bol vybraný zdrojový záznam {0}.
+226	Aktuálny vizuálny riadok neposkytuje stabilnú identitu zdrojového záznamu.
+227	Tento čakajúci vložený riadok nemá zdrojovú pozíciu, kým sa nedokončí použitie zmien.
+228	Aktuálne zobrazenie: {0:N0} z {1:N0} zobrazených riadkov.
+229	Odlišné hodnoty sa určujú podľa presného textu s rozlíšením veľkosti písmen vrátane prázdnych hodnôt.\nOpakované riadky = riadky mínus odlišné hodnoty. Číselný rozsah používa presné desatinné hodnoty s bodkou.
+230	Prázdne
+231	Druh
+232	Najčastejšie hodnoty (najviac 20)
+233	Nie je dostupné
+234	Číselné minimum: {0}     Maximum: {1}\nNajdlhšia hodnota: {2:N0} jednotiek UTF-16. {3:N0} hodnôt sa vyskytuje viackrát.
+235	 Obmedzená projekcia; toto NIE JE celý súbor.
+236	Riadky: {0:N0}     Prázdne: {1:N0}     Iba biele znaky: {2:N0}\nOdlišné: {3:N0}     Opakované riadky: {4:N0}     Číselné: {5:N0}
+237	Súhrn stĺpca
+238	Biele znaky
+239	Do čakajúcej relácie úprav bol pridaný nový riadok. „Použiť“ ho zapíše do buffera editora; „Vrátiť všetko“ ho zahodí.
+240	Zdrojový riadok neposkytol index svojho zdrojového záznamu.
+241	Akcia
+242	Vytvorenie snímky aktívneho dokumentu zlyhalo. Obsah editora sa nezmenil.
+243	Pridať riadok
+244	Všetky čakajúce úpravy buniek a riadkov boli vrátené. Buffer editora Notepad++ sa nezmenil.
+245	Použiť všetky úpravy buniek a riadkov v aktívnom editore ako jednu vratnú operáciu
+246	Použitie zablokované: je aktívny iný dokument Notepad++. Vráťte sa k pôvodnému dokumentu alebo zvoľte „Vrátiť všetko“.
+247	Použitie zablokované: buffer editora sa po začatí režimu úprav zmenil. Pred ďalšími úpravami zmeny vráťte a tabuľku obnovte.
+248	Použitie zablokované: kódová stránka editora sa po začatí režimu úprav zmenila. Vráťte zmeny a znovu otvorte režim úprav.
+249	Použitie zlyhalo. Relácia úprav zostáva otvorená; pred opakovaním alebo vrátením overte buffer editora.
+250	Použitie nebolo dokončené. Nepokúsilo sa o automatické prepísanie.
+251	Automaticky rozpoznať
+252	automatická spoľahlivosť: {0}
+253	{0} — automatické rozpoznanie oddeľovača nie je spoľahlivé; je potrebný ručný výber.
+254	Automatické rozpoznanie
+255	Skóre kandidátov
+256	{0} buniek / {1} riadkov (+{2} / -{3})
+257	Znak
+258	{0} znakov / {1} bajtov editora
+259	V zozname oddeľovačov vyššie vyberte čiarku, bodkočiarku alebo tabulátor.
+260	Výslovne zvoliť, či je prvý logický záznam hlavičkou
+261	Vymazať
+262	Vymazať aktuálny filter hľadania a zoradenie iba pre zobrazenie
+263	Kód
+264	 - {0} podmienok stĺpcov ({1}), {2} úrovní zoradenia
+265	{0} — {1} × {2} stĺpcov — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Čiarka (,)
+267	čiarka
+268	Spoľahlivosť
+269	Odstrániť všetky vybrané stabilné dátové riadky z čakajúcej relácie úprav
+270	Odstrániť riadok
+271	Odstrániť riadky ({0})
+272	Odstrániť vybraný stabilný dátový riadok z čakajúcej relácie úprav
+273	Odstrániť vybraný stabilný dátový riadok alebo riadky z čakajúcej relácie úprav
+274	Oddeľovač:
+275	Diagnostika ({0})
+276	Zahodiť všetky čakajúce zmeny buniek, vloženia a odstránenia
+277	Dokument
+278	 — REŽIM ÚPRAV: {0} buniek, {1} riadkov, +{2} / -{3}
+279	 - Režim úprav
+280	Režim úprav obsahuje čakajúce zmeny. Pred jeho ukončením použite „Použiť“ alebo „Vrátiť všetko“.
+281	Režim úprav nie je pre aktuálnu tabuľku dostupný. Najprv vyriešte chyby analýzy alebo obmedzenia zobrazenia.
+282	Úpravy nemožno začať z vizuálnej projekcie s obmedzeným počtom riadkov.
+283	Úpravy nemožno začať, kým analyzované CSV obsahuje chyby.
+284	Úpravy nie sú pre aktuálnu tabuľku dostupné.
+285	{0} — prázdny buffer editora; žiadne záznamy CSV na zobrazenie.
+286	Vstúpiť do výslovného režimu úprav buniek a riadkov
+287	Vstúpiť do výslovného režimu úprav buniek a riadkov. „Použiť“ zapisuje iba do buffera editora.
+288	Vstúpiť do výslovného režimu úprav buniek a riadkov. Úplný model úprav sa vytvorí až na vyžiadanie.
+289	{0} chýb, {1} upozornení
+290	prvý riadok ako hlavička
+291	Prvý riadok je hlavička
+292	Hlavička:
+293	Vložiť nový riadok za vybraný riadok alebo ho pripojiť na koniec, ak nie je vybraný žiadny riadok
+294	{0} — načítanie údajov CSV na pozadí; Notepad++ zostáva ovládateľný.
+295	ručný výber
+296	{0} zodpovedajúcich z {1} zobrazených riadkov
+297	Správa
+298	Z čakajúcej relácie bolo odstránených {0} novo vložených riadkov.
+299	Žiadne diagnostické správy na zobrazenie.
+300	Bez riadka hlavičky
+301	bez riadka hlavičky
+302	Žiadne zodpovedajúce riadky.\nSkúste iný hľadaný text alebo stĺpec.
+303	žiadne diagnostické správy analýzy
+304	Nepodarilo sa bezpečne vybrať spoľahlivý oddeľovač.
+305	Nie je čo použiť: relácia úprav neobsahuje čakajúce zmeny.
+306	Analýza a príprava obmedzenej vizuálnej tabuľky na pozadí…
+307	Čakajúce zmeny buniek a štruktúry riadkov
+308	Čakajúci vložený riadok {0}; zatiaľ nepoužité
+309	{0} čakajúcich riadkov
+310	Plugin je pripravený. Čítanie aktívneho buffera editora...
+311	Príprava úplnej relácie úprav…
+312	Vlastnosť
+313	Prečítať a vykresliť aktuálne aktívny buffer editora Notepad++
+314	Záznam
+315	Vrátiť všetko
+316	{0} riadkov
+317	Bodkočiarka (;)
+318	bodkočiarka
+319	Závažnosť
+320	Zobraziť podrobnú diagnostiku analýzy a oddeľovačov
+321	zobrazených {0} z {1} riadkov
+322	Snímka
+323	Chyba snímky
+324	Úroveň zoradenia {0}: {1}, {2}. Iba zobrazenie.
+325	 — zoradené podľa {0} {1}
+326	Zdrojový logický záznam {0}
+327	Zdrojový logický záznam {0}; zmenený v čakajúcej relácii úprav
+328	{0} zdrojových riadkov je označených na odstránenie a {1} vložených riadkov bolo odstránených z čakajúcej relácie.
+329	{0} zdrojových riadkov je označených na odstránenie. „Použiť“ zapíše celú dávku; „Vrátiť všetko“ obnoví každý riadok.
+330	Stav
+331	Tabulátor
+332	tabulátor
+333	Chyba tabuľky
+334	Úpravu aktívnej bunky sa nepodarilo potvrdiť. Pred pridaním riadka opravte hodnotu.
+335	Úpravu aktívnej bunky sa nepodarilo potvrdiť. Pred odstránením riadkov opravte hodnotu.
+336	Úpravu aktívnej bunky sa nepodarilo potvrdiť. Pred použitím opravte hodnotu.
+337	Novo vložený riadok bol odstránený z čakajúcej relácie.
+338	Stĺpec ukazovateľov riadkov nie je nastavený.
+339	Vybraná množina riadkov už nie je pre túto reláciu úprav platná. Žiadne riadky neboli odstránené.
+340	Vybrané riadky už boli odstránené. Žiadna ďalšia zmena sa nevykonala.
+341	Zdrojový riadok je označený na odstránenie. „Použiť“ zapíše odstránenie; „Vrátiť všetko“ ho obnoví.
+342	Vizuálnu tabuľku sa nepodarilo vytvoriť. Obsah editora sa nezmenil.
+343	Použiť spoľahlivé automatické rozpoznanie alebo výslovne zvoliť oddeľovač
+344	Čakanie na aktívny dokument Notepad++.
+345	{0} - {1} x {2:N0} stĺpcov
+346	Prijať zmeny
+347	Po
+348	Všetky dátové bunky
+349	Pred
+350	Stĺpec CSV
+351	Vyberte operáciu a rozsah a potom kliknite na „Náhľad“.
+352	Aktuálny stĺpec
+353	Nájsť:
+354	malé písmená
+355	Operácia:
+356	Ostatné biele znaky sa zobrazujú ako escape sekvencie; dĺžky počítajú jednotky UTF-16. Dlhé hodnoty sa skracujú.
+357	Náhľad sa nepodarilo vytvoriť. Skontrolujte rozsah a hľadaný text alebo vyberte menší rozsah (najviac 250,000 buniek / 16 Mi znakov).
+358	Najprv vytvorte náhľad. „Prijať zmeny“ aktualizuje čakajúce úpravy; „Použiť“ na paneli nástrojov zapisuje do Notepad++.\nHlavičky sú vylúčené, ak Hlavička = prvý záznam. Zmena veľkosti písmen nezávisí od miestnych nastavení.
+359	ID záznamu
+360	Nahradiť text (doslovne)
+361	Nahradiť čím:
+362	Rozsah:
+363	Vyberte dátový stĺpec CSV.
+364	Vybrané bunky / riadky
+365	plné oranžové bodky označujú medzery. 
+366	ukazovatele medzier sú skryté. 
+367	{0:N0} cieľových buniek; {1:N0} zmien v {2:N0} riadkoch. Zobrazených prvých 50 zmien; 
+368	Relácia úprav sa zmenila.
+369	Náhľad už nie je platný. Skontrolujte reláciu úprav a vytvorte nový náhľad.
+370	Transformovať bunky CSV
+371	V čakajúcej relácii úprav bolo transformovaných {0:N0} buniek. Pomocou „Použiť“ aktualizujete Notepad++, pomocou „Vrátiť všetko“ čakajúce úpravy zahodíte.
+372	Orezať okrajové biele znaky
+373	VEĽKÉ PÍSMENÁ
+374	Obnoviť zobrazenie
+375	Zobraziť medzery

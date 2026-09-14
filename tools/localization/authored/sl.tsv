@@ -1,0 +1,378 @@
+# language: sl
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Vizualni urejevalnik CSV za Notepad++
+001	O programu CSV Visual Editor
+002	Stik: {0}
+003	Stopite v stik z razvijalcem {0}
+004	Razvijalec: {0}
+005	Razvojna različica
+006	Vam je CSV Visual Editor všeč? Podprite projekt.\nDodajte zvezdico na GitHubu, pošljite povratne informacije ali se z razvijalcem dogovorite za sodelovanje. Hvala!
+007	Jezik vmesnika: {0}
+008	Povezanega programa ni bilo mogoče odpreti. Stik: {0}
+009	Projekt na GitHubu
+010	Različica: {0}
+011	Različica in gradnja
+012	Dejanje {0} je blokirano, ker se je spremenil model čakajočih sprememb. Nobena delna sprememba ni bila ohranjena.
+013	Dejanje {0} je blokirano: pravokotnika odložišča in izbora imata različne mere.
+014	Dejanje {0} je blokirano: ciljni pravokotnik sega čez tabelo CSV.
+015	Dejanje {0} je blokirano: ni ciljnega pravokotnika, ki bi ga bilo mogoče urejati.
+016	Kopiranih je {0} × {1} celic CSV.
+017	Kopiranje/izrezovanje je blokirano: izbrana celica vsebuje tabulator ali prelom vrstice, ki ga ni mogoče nedvoumno predstaviti kot navadno besedilo za preglednice.
+018	Kopiranje zahteva celice CSV, ne izbora celotnih vrstic za brisanje.
+019	Kopiranje zahteva en strnjen pravokotni izbor podatkovnih celic CSV.
+020	V odložišče je izrezanih {0} celic, ki so izpraznjene v čakajoči seji urejanja. »Uveljavi« zapiše prazne vrednosti v Notepad++.
+021	Izrezovanje je končano; izbrane celice so bile že prazne. Odložišče vsebuje njihove izvirne vrednosti.
+022	Dejanje {0} je na voljo samo v načinu urejanja.
+023	Dejanje {0} za trenutno tabelo ni na voljo.
+024	Lepljenje je blokirano: {0} Nobeni podatki niso bili spremenjeni.
+025	Lepljenje je končano; vse ciljne vrednosti so bile že enake.
+026	V čakajočo sejo urejanja je prilepljenih {0} spremenjenih celic. »Uveljavi« jih zapiše v Notepad++.
+027	Dejanje {0} zahteva pravokotnik celic CSV, ne izbora celotnih vrstic za brisanje.
+028	Dejanje {0} zahteva en strnjen pravokotni izbor podatkovnih celic CSV.
+029	Cilji dejanja {0} zunaj stabilnega modela vrstic načina urejanja niso na voljo.
+030	Urejanja dejavne celice pred kopiranjem ni bilo mogoče potrditi.
+031	Urejanja dejavne celice ni bilo mogoče potrditi. Pred dejanjem {0} popravite vrednost.
+032	Odložišče ne vsebuje celic v obliki navadnega besedila.
+033	Odložišče Windows začasno ni na voljo. Nobeni podatki niso bili spremenjeni.
+034	Kopiraj izbrani pravokotnik celic CSV v odložišče Windows (Ctrl+C)
+035	Kopiraj izbrane celice CSV in jih izprazni v čakajoči seji urejanja (Ctrl+X)
+036	Prilepi celice preglednice v izbrano celico ali pravokotnik CSV (Ctrl+V)
+037	Predogled zamenjave besedila, odstranjevanja zunanjih belih znakov ali spremembe velikosti črk v čakajočih spremembah CSV
+038	Izberi trenutno celico ali vrstico CSV v izvornem medpomnilniku Notepad++
+039	Vir
+040	Preoblikuj
+041	O programu
+042	Uveljavi
+043	Naraščajoče
+044	Prekliči
+045	Zapri
+046	Stolpec
+047	Kopiraj
+048	Izreži
+049	Padajoče
+050	Uredi
+051	Končaj urejanje
+052	Razlikuj velike in male črke
+053	Število
+054	Izvirni vrstni red
+055	Prilepi
+056	Predogled
+057	Osveži
+058	Vrstice
+059	Tabela
+060	Besedilo
+061	Vrednost
+062	Povzetek stolpca: števila, različne vrednosti, številski razpon in pogoste vrednosti v trenutnem pogledu.
+063	Povzetek stolpca zahteva pripravljeno tabelo samo za branje. Najprej končajte način urejanja.
+064	Filtriraj in razvrsti: združi pravila stolpcev in ravni besedilnega/številskega razvrščanja. Samo pogled; CSV ostane nespremenjen.
+065	Filtriraj in razvrsti: združi pravila stolpcev in največ tri ravni besedilnega/številskega razvrščanja. Samo pogled.
+066	Filtriraj in razvrsti: {0} pogojev, {1} ravni razvrščanja. Ponastavitev pogleda odstrani vsa pravila.
+067	Filtriranje in razvrščanje zahtevata pripravljeno tabelo samo za branje. Najprej končajte način urejanja.
+068	Diagnostika (0)
+069	0 sprememb
+070	Dodaj pogoj
+071	Dodaj raven razvrščanja
+072	Uveljavi pogled
+073	Velikost črk
+074	Primerjava besedila z razlikovanjem velikosti črk. Presledki v vrednostih se obravnavajo dobesedno.
+075	Preverite pravila: {0}
+076	Pogoj
+077	{0} / 8 pogojev; {1} / 3 ravni razvrščanja. S predogledom preverite ujemajoče se vrstice.
+078	Vsebuje
+079	Ne vsebuje
+080	Ni enako
+081	Prazno = nič znakov. Samo beli znaki = neprazno zaporedje presledkov/tabulatorjev/prelomov vrstic.\nŠtevila uporabljajo decimalno piko (-12.5), brez ločil skupin ali eksponentov; natančnost mora biti ohranjena.
+082	Se konča z
+083	Je enako
+084	Vrednost filtra
+085	Filtri
+086	Je prazno
+087	Ni prazno
+088	Ne vsebuje samo belih znakov
+089	Vsebuje samo bele znake
+090	Dobesedno besedilo, vključno s presledki. Številska pravila zahtevajo natančno decimalno število s piko.
+091	Izpolni VSE pogoje
+092	Izpolni KATERI KOLI pogoj
+093	Število =
+094	Število >
+095	Število >=
+096	Število <
+097	Število <=
+098	Število (decimalno)
+099	Predogled: {0:N0} od {1:N0} prikazanih vrstic. CSV ostane nespremenjen.
+100	Odstrani pogoj
+101	Odstrani raven razvrščanja
+102	Ponastavi pravila
+103	Pravila upoštevajo tudi trenutno iskanje. Preklic ohrani dejavni pogled.
+104	Razvrščanje
+105	Se začne z
+106	Besedilo: vrstni red po kodah znakov brez razlikovanja velikosti črk. Število: natančna decimalna števila; neveljavne/prazne vrednosti na koncu.\nEnaki ključi ohranijo izvorni vrstni red. Odstranite vse ravni, da ga obnovite.
+107	Projekcija je omejena; neprikazane vrstice niso vključene. 
+108	Filtriraj in razvrsti
+109	Prva raven ima prednost; naslednje razrešijo izenačenja. Največ 3.
+110	Vrednost (dobesedno, vključno s presledki)
+111	Samo pogled — vrednosti CSV in izvorni vrstni red ostanejo nespremenjeni. {0:N0} prikazanih vrstic.\n
+112	Uveljavitev je blokirana, ker {0} nima izrecno podprtega profila kodiranja. Vsebina urejevalnika ni bila spremenjena.
+113	Uveljavitev je blokirana, ker strogo preverjanje kodiranja {0} ni zagotovilo natančne pretvorbe v obe smeri. Vsebina urejevalnika ni bila spremenjena.
+114	Uveljavitev je blokirana, ker čakajoče zamenjave ni mogoče natančno predstaviti s kodiranjem {0}. Nadomestni znaki niso bili uporabljeni in vsebina urejevalnika ni bila spremenjena.
+115	Uveljavitev za {0} še ni omogočena. Vsebina urejevalnika ni bila spremenjena. Pisanje je po preverjanju brez izgub omogočeno le za UTF-8 (65001) in Windows-1250 (1250). Uporabite »Povrni vse« ali pretvorite dokument v UTF-8 v Notepad++ in znova odprite način urejanja.
+116	Osveževanje je v načinu urejanja onemogočeno. Najprej uveljavite ali povrnite vse čakajoče spremembe.
+117	Kodna stran Scintilla {0}
+118	Dejavni dokument obsega {0:N0} bajtov. Trenutna varna omejitev posnetka je {1:N0} bajtov.
+119	Dejavnega dokumenta Notepad++ ni bilo mogoče prebrati. Vsebina urejevalnika ni bila spremenjena.
+120	Rezultat uveljavitve ni stanje blokade zaradi kodiranja.
+121	Gradnja tabele v ozadju se je končala brez rezultata.
+122	Spremembe CSV so bile uspešno uveljavljene, vendar prejšnjega položaja kazalca ali izbora ni bilo mogoče obnoviti. Vse spremembe dokumenta je še vedno mogoče razveljaviti z enim dejanjem.
+123	trenutna kodna stran urejevalnika
+124	Medpomnilnika urejevalnika ni bilo mogoče pretvoriti v vizualno tabelo. Izrecno izberite ločilo ali osvežite po popravku dokumenta.
+125	Gradnja tabele je vrnila nepopoln rezultat.
+126	&O programu
+127	&Počisti iskanje
+128	&CSV
+129	&Ločilo
+130	&Uredi
+131	Esc v iskanju
+132	&Poišči v tabeli
+133	&Glava
+134	&Naslednja ujemajoča se celica
+135	&Prejšnja ujemajoča se celica
+136	Ponastavi pogled: počisti iskanje, pogoje stolpcev in vse razvrščanje.
+137	&Iskanje
+138	&Stolpec iskanja
+139	Pokaži presledke: majhne polne oranžne pike. Samo prikaz; vrednosti CSV se ne spremenijo.
+140	Pokaži &tabelo
+141	&Razvrsti po
+142	&Tabela
+143	&Pogled
+144	Vrednost filtra lahko vsebuje največ 4,096 znakov.
+145	VSI
+146	Začetna oznaka vrstnega reda bajtov je bila izključena iz prvega polja.
+147	KATERI KOLI
+148	V polju brez narekovajev se je pojavil narekovaj.
+149	Vrstice odložišča morajo tvoriti eno pravokotno matriko celic.
+150	Diagnostična koda: {0}.
+151	Vsaka raven razvrščanja mora uporabljati drug stolpec.
+152	Napaka
+153	visoka
+154	Informacija
+155	nizka
+156	srednja
+157	Nobeno podprto ločilo ni ustvarilo dovolj zanesljive strukture z več polji.
+158	brez
+159	Ena vizualna vrstica bi zahtevala {0:N0} celic, kar presega trenutno skupno omejitev {1:N0}. Noben stolpec ni bil skrit.
+160	Zapis ima {0} polj; glede na najpogostejše število v vzorcu je bilo pričakovanih {1}.
+161	Presledki: {0}; začetni: {1}; končni: {2}. Dolžina: {3} enot UTF-16.\nOranžne pike označujejo dejanske presledke. Razmik prikaza je povečan za boljšo berljivost; znaki CSV se ne spremenijo. Pri celici s samimi presledki se začetno in končno štetje prekrivata.
+162	Matrika celic v odložišču presega varno omejitev lepljenja.
+163	Odložišče vsebuje nepodprt nadzorni znak.
+164	Odložišče vsebuje več stolpcev, kot jih urejevalnik lahko varno prilepi.
+165	Odložišče vsebuje več vrstic, kot jih urejevalnik lahko varno prilepi.
+166	Besedilo odložišča presega varno omejitev 16 Mi znakovnih enot UTF-16.
+167	Zadnje polje v narekovajih ni bilo zaprto pred koncem besedila.
+168	Število polj se razlikuje od drugih zapisov.
+169	Dejanja ni bilo mogoče dokončati. Preverite dokument, izbrane vrednosti in omejitve velikosti.
+170	Razčlenjeni dokument vsebuje {0:N0} stolpcev, kar presega trenutno omejitev vizualne tabele {1:N0}. Noben stolpec ni bil skrit.
+171	Predlagano ločilo ima nizko zanesljivost. Preverite nastavitev ločila.
+172	Dva kandidata za ločilo imata podobni oceni. Preverite nastavitev ločila.
+173	Za zaključnim narekovajem so nepričakovani znaki.
+174	neznana
+175	Uporabite natančno decimalno število s piko, na primer -12.5. Ločila skupin, eksponenti in zaokrožene vrednosti niso podprti.
+176	Uporabite največ osem pogojev filtra, ki niso null.
+177	Uporabite največ tri ravni razvrščanja, ki niso null.
+178	Pravila pogleda se sklicujejo na stolpec zunaj trenutne tabele.
+179	Opozorilo
+180	Povzetek stolpca
+181	Filtriraj in razvrsti
+182	Odpri vizualno tabelo
+183	Osveži tabelo
+184	nova:{0}
+185	nova:{0} *
+186	Izberi
+187	Izberi celotne vrstice za brisanje
+188	Izvorni logični zapis ali čakajoča strukturna vrstica
+189	Stolpca kazalnikov vrstic ni bilo mogoče določiti.
+190	Vrstica mora pripadati kontrolniku DataGridView.
+191	Vsi stolpci
+192	{0:N0} / {1:N0} celic
+193	{0:N0} celic
+194	Počisti iskanje
+195	Počisti iskanje (Esc). Ohrani iskani stolpec in razvrščanje.
+196	Filtrira prikazane vrstice. Enter: naslednja ujemajoča se celica. Shift+Enter: prejšnja. Escape: počisti.
+197	Naslednja ujemajoča se celica
+198	Naslednja ujemajoča se celica (F3 / Enter)
+199	Ni zadetkov
+200	Ni ujemajočih se vrstic.\nPrilagodite iskanje ali uporabite Pogled > Filtriraj in razvrsti / Ponastavi pogled.
+201	Prejšnja ujemajoča se celica
+202	Prejšnja ujemajoča se celica (Shift+F3 / Shift+Enter)
+203	Išči po vseh podatkovnih stolpcih ali izberi en stolpec.
+204	Stolpec iskanja
+205	Išči po prikazanih vrsticah CSV (Ctrl+F). Vrednosti in izvorno besedilo se ne spremenijo.
+206	Išči v tabeli...
+207	Išči v tabeli
+208	Rezultati iskanja
+209	Iskanje...
+210	Prehod na vir je blokiran: dejaven je drug dokument Notepad++. Vrnite se na prikazani CSV ali osvežite tabelo.
+211	Prehod na vir je blokiran, ker ohranjeni rezultat razčlenjevanja ne ustreza več svojemu nespremenljivemu izvornemu posnetku. Najprej osvežite tabelo.
+212	Prehod na vir je blokiran: dolžina strogo kodiranega besedila se ne ujema z dolžino dokumenta, ki jo sporoča Scintilla.
+213	Prehod na vir je blokiran: vsebina dejavnega urejevalnika se je po prikazu tabele spremenila. Najprej osvežite tabelo.
+214	Prehod na vir je blokiran: trenutna kodna stran Scintilla nima izrecnega profila bajtnih položajev.
+215	Prehod na vir je blokiran: kodna stran urejevalnika se je po prikazu tabele spremenila. Najprej osvežite tabelo.
+216	Prehod na vir je blokiran: izbrana projicirana celica nima surovega izvornega polja.
+217	Prehod na vir je blokiran: obsega izvornih znakov ni bilo mogoče brez izgub preslikati v bajte Scintilla.
+218	Prehod na vir je blokiran: izvorni logični zapis v ohranjenem rezultatu razčlenjevanja ni na voljo.
+219	Prehod na vir ni uspel: dejavnega medpomnilnika Notepad++ ni bilo mogoče prebrati. Vsebina dokumenta ni bila spremenjena.
+220	Prehod na vir ni uspel med premikanjem izbora Scintilla. Vsebina dokumenta ni bila spremenjena.
+221	Prehod na vir ni na voljo, dokler trenutna vizualna tabela nima popolne izvorne osnove. Najprej osvežite tabelo.
+222	Prehod na vir zahteva trenutno vrstico ali celico CSV.
+223	Prehod na vir ni bil dokončan. Vsebina dokumenta ni bila spremenjena.
+224	V Notepad++ sta izbrana izvorni zapis {0} in stolpec {1}.
+225	V Notepad++ je izbran izvorni zapis {0}.
+226	Trenutna vizualna vrstica ne zagotavlja stabilne identitete izvornega zapisa.
+227	Ta čakajoča vstavljena vrstica nima izvornega položaja, dokler se uveljavitev ne konča.
+228	Trenutni pogled: {0:N0} od {1:N0} prikazanih vrstic.
+229	Različne vrednosti se določijo po natančnem besedilu z razlikovanjem velikosti črk, vključno s praznimi vrednostmi.\nPonovljene vrstice = vrstice minus različne vrednosti. Številski razpon uporablja natančne decimalne vrednosti s piko.
+230	Prazno
+231	Vrsta
+232	Najpogostejše vrednosti (do 20)
+233	Ni na voljo
+234	Najmanjše število: {0}     Največje: {1}\nNajdaljša vrednost: {2:N0} enot UTF-16. {3:N0} vrednosti se pojavi večkrat.
+235	 Omejena projekcija; to NI celotna datoteka.
+236	Vrstice: {0:N0}     Prazne: {1:N0}     Samo beli znaki: {2:N0}\nRazlične: {3:N0}     Ponovljene vrstice: {4:N0}     Številske: {5:N0}
+237	Povzetek stolpca
+238	Beli znaki
+239	V čakajočo sejo urejanja je dodana nova vrstica. »Uveljavi« jo zapiše v medpomnilnik urejevalnika; »Povrni vse« jo zavrže.
+240	Izvorna vrstica ni zagotovila indeksa svojega izvornega zapisa.
+241	Dejanje
+242	Posnetek dejavnega dokumenta ni uspel. Vsebina urejevalnika ni bila spremenjena.
+243	Dodaj vrstico
+244	Vse čakajoče spremembe celic in vrstic so povrnjene. Medpomnilnik urejevalnika Notepad++ ni bil spremenjen.
+245	Uveljavi vse spremembe celic in vrstic v dejavnem urejevalniku kot eno razveljavljivo dejanje
+246	Uveljavitev je blokirana: dejaven je drug dokument Notepad++. Vrnite se na izvirni dokument ali uporabite »Povrni vse«.
+247	Uveljavitev je blokirana: medpomnilnik urejevalnika se je po začetku načina urejanja spremenil. Pred ponovnim urejanjem povrnite spremembe in osvežite.
+248	Uveljavitev je blokirana: kodna stran urejevalnika se je po začetku načina urejanja spremenila. Povrnite spremembe in znova odprite način urejanja.
+249	Uveljavitev ni uspela. Seja urejanja ostaja odprta; pred ponovnim poskusom ali povrnitvijo preverite medpomnilnik urejevalnika.
+250	Uveljavitev ni bila dokončana. Samodejno prepisovanje ni bilo poskušeno.
+251	Samodejno zaznaj
+252	samodejna zanesljivost: {0}
+253	{0} — samodejno zaznavanje ločila ni zanesljivo; potreben je ročni izbor.
+254	Samodejno zaznavanje
+255	Ocene kandidatov
+256	{0} celic / {1} vrstic (+{2} / -{3})
+257	Znak
+258	{0} znakov / {1} bajtov urejevalnika
+259	Na zgornjem seznamu ločil izberite Vejica, Podpičje ali Tabulator.
+260	Izrecno izberi, ali je prvi logični zapis glava
+261	Počisti
+262	Počisti trenutni iskalni filter in razvrščanje samega pogleda
+263	Koda
+264	 - {0} pogojev stolpcev ({1}), {2} ravni razvrščanja
+265	{0} — {1} × {2} stolpcev — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Vejica (,)
+267	vejica
+268	Zanesljivost
+269	Izbriši vse izbrane stabilne podatkovne vrstice iz čakajoče seje urejanja
+270	Izbriši vrstico
+271	Izbriši vrstice ({0})
+272	Izbriši izbrano stabilno podatkovno vrstico iz čakajoče seje urejanja
+273	Izbriši izbrano stabilno podatkovno vrstico ali vrstice iz čakajoče seje urejanja
+274	Ločilo:
+275	Diagnostika ({0})
+276	Zavrzi vse čakajoče spremembe celic, vstavljanja in brisanja
+277	Dokument
+278	 — NAČIN UREJANJA: {0} celic, {1} vrstic, +{2} / -{3}
+279	 - Način urejanja
+280	Način urejanja vsebuje čakajoče spremembe. Pred izhodom uporabite »Uveljavi« ali »Povrni vse«.
+281	Način urejanja za trenutno tabelo ni na voljo. Najprej odpravite napake razčlenjevanja ali omejitve prikaza.
+282	Urejanja ni mogoče začeti iz vizualne projekcije z omejenim številom vrstic.
+283	Urejanja ni mogoče začeti, dokler razčlenjeni CSV vsebuje napake.
+284	Urejanje za trenutno tabelo ni na voljo.
+285	{0} — prazen medpomnilnik urejevalnika; ni zapisov CSV za prikaz.
+286	Vstopi v izrecni način urejanja celic in vrstic
+287	Vstopi v izrecni način urejanja celic in vrstic. »Uveljavi« piše samo v medpomnilnik urejevalnika.
+288	Vstopi v izrecni način urejanja celic in vrstic. Celoten model urejanja se ustvari šele na zahtevo.
+289	{0} napak, {1} opozoril
+290	prva vrstica kot glava
+291	Prva vrstica je glava
+292	Glava:
+293	Vstavi novo vrstico za izbrano ali jo dodaj na konec, če ni izbrana nobena vrstica
+294	{0} — nalaganje podatkov CSV v ozadju; Notepad++ ostaja odziven.
+295	ročni izbor
+296	{0} ujemajočih se od {1} prikazanih vrstic
+297	Sporočilo
+298	Iz čakajoče seje je odstranjenih {0} na novo vstavljenih vrstic.
+299	Ni diagnostičnih sporočil za prikaz.
+300	Brez vrstice z glavo
+301	brez vrstice z glavo
+302	Ni ujemajočih se vrstic.\nPoskusite z drugim iskalnim besedilom ali stolpcem.
+303	brez diagnostičnih sporočil razčlenjevanja
+304	Zanesljivega ločila ni bilo mogoče varno izbrati.
+305	Ničesar ni za uveljaviti: seja urejanja nima čakajočih sprememb.
+306	Razčlenjevanje in priprava omejene vizualne tabele v ozadju…
+307	Čakajoče spremembe celic in strukture vrstic
+308	Čakajoča vstavljena vrstica {0}; še ni uveljavljena
+309	{0} čakajočih vrstic
+310	Vtičnik je pripravljen. Branje dejavnega medpomnilnika urejevalnika...
+311	Priprava celotne seje urejanja…
+312	Lastnost
+313	Preberi in izriši trenutno dejavni medpomnilnik urejevalnika Notepad++
+314	Zapis
+315	Povrni vse
+316	{0} vrstic
+317	Podpičje (;)
+318	podpičje
+319	Resnost
+320	Pokaži podrobno diagnostiko razčlenjevanja in ločil
+321	prikazanih {0} od {1} vrstic
+322	Posnetek
+323	Napaka posnetka
+324	Raven razvrščanja {0}: {1}, {2}. Samo pogled.
+325	 — razvrščeno po {0} {1}
+326	Izvorni logični zapis {0}
+327	Izvorni logični zapis {0}; spremenjen v čakajoči seji urejanja
+328	{0} izvornih vrstic je označenih za brisanje in {1} vstavljenih vrstic je odstranjenih iz čakajoče seje.
+329	{0} izvornih vrstic je označenih za brisanje. »Uveljavi« zapiše celoten sklop; »Povrni vse« obnovi vsako vrstico.
+330	Stanje
+331	Tabulator
+332	tabulator
+333	Napaka tabele
+334	Urejanja dejavne celice ni bilo mogoče potrditi. Pred dodajanjem vrstice popravite vrednost.
+335	Urejanja dejavne celice ni bilo mogoče potrditi. Pred brisanjem vrstic popravite vrednost.
+336	Urejanja dejavne celice ni bilo mogoče potrditi. Pred uveljavitvijo popravite vrednost.
+337	Na novo vstavljena vrstica je odstranjena iz čakajoče seje.
+338	Stolpec kazalnikov vrstic ni nastavljen.
+339	Izbrani nabor vrstic za to sejo urejanja ni več veljaven. Nobena vrstica ni bila izbrisana.
+340	Izbrane vrstice so bile že izbrisane. Dodatna sprememba ni bila opravljena.
+341	Izvorna vrstica je označena za brisanje. »Uveljavi« zapiše izbris; »Povrni vse« jo obnovi.
+342	Vizualne tabele ni bilo mogoče ustvariti. Vsebina urejevalnika ni bila spremenjena.
+343	Uporabi zanesljivo samodejno zaznavanje ali izrecno izberi ločilo
+344	Čakanje na dejavni dokument Notepad++.
+345	{0} - {1} x {2:N0} stolpcev
+346	Sprejmi spremembe
+347	Po
+348	Vse podatkovne celice
+349	Pred
+350	Stolpec CSV
+351	Izberite dejanje in obseg ter kliknite »Predogled«.
+352	Trenutni stolpec
+353	Najdi:
+354	male črke
+355	Dejanje:
+356	Drugi beli znaki so prikazani z ubežnimi zaporedji; dolžine štejejo enote UTF-16. Dolge vrednosti so skrajšane.
+357	Predogleda ni bilo mogoče ustvariti. Preverite obseg in iskano besedilo ali izberite manjši obseg (največ 250,000 celic / 16 Mi znakov).
+358	Najprej ustvarite predogled. »Sprejmi spremembe« posodobi čakajoče spremembe; »Uveljavi« v orodni vrstici jih zapiše v Notepad++.\nGlave so izključene, ko je Glava = prvi zapis. Sprememba velikosti črk je neodvisna od področnih nastavitev.
+359	ID zapisa
+360	Zamenjaj besedilo (dobesedno)
+361	Zamenjaj z:
+362	Obseg:
+363	Izberite podatkovni stolpec CSV.
+364	Izbrane celice / vrstice
+365	polne oranžne pike označujejo presledke. 
+366	kazalniki presledkov so skriti. 
+367	{0:N0} ciljnih celic; {1:N0} sprememb v {2:N0} vrsticah. Prikazanih je prvih 50 sprememb; 
+368	Seja urejanja se je spremenila.
+369	Predogled ni več veljaven. Preverite sejo urejanja in ustvarite nov predogled.
+370	Preoblikuj celice CSV
+371	V čakajoči seji urejanja je preoblikovanih {0:N0} celic. Z »Uveljavi« posodobite Notepad++, s »Povrni vse« pa zavržete čakajoče spremembe.
+372	Odstrani zunanje bele znake
+373	VELIKE ČRKE
+374	Ponastavi pogled
+375	Pokaži presledke
