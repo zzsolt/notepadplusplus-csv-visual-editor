@@ -1,0 +1,378 @@
+# language: oc
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Un editor CSV visual per Notepad++
+001	A prepaus de CSV Visual Editor
+002	Contacte: {0}
+003	Contactar lo desvolopaire {0}
+004	Desvolopaire: {0}
+005	Version de desvolopament
+006	Vos agrada CSV Visual Editor? Sostenètz lo projècte.\nMetètz-i una estela sus GitHub, partejatz vòstre vejaire o contactatz lo desvolopaire per contribuir. Mercés!
+007	Lenga de l'interfàcia: {0}
+008	Cap d'aplicacion associada es pas estada dobèrta. Contacte: {0}
+009	Projècte sus GitHub
+010	Version: {0}
+011	Version e compilacion
+012	{0} es estat blocat perque lo modèl de modificacions en espèra a cambiat. Cap de modificacion parciala es pas estada gardada.
+013	{0} es estat blocat: los rectangles del quichapapièrs e de la seleccion an de dimensions diferentas.
+014	{0} es estat blocat: lo rectangle de destinacion passa fòra de la taula CSV.
+015	{0} es estat blocat: i a pas cap de rectangle de destinacion modificable.
+016	{0} × {1} cellulas CSV copiadas.
+017	Copiar/Talhar es estat blocat: una cellula seleccionada conten una tabulacion o un saut de linha que pòt pas èsser representat sens ambigüitat coma tèxte simple de fuèlh de calcul.
+018	Copiar requerís de cellulas CSV, pas una seleccion de linhas entièras per suprimir.
+019	Copiar requerís una sola seleccion rectangulara contigua de cellulas de donadas CSV.
+020	{0} cellulas son estadas talhadas dins lo quichapapièrs e voidadas dins la session de modificacion en espèra. Aplicar escriu lo voidatge dins Notepad++.
+021	Talhar acabat; las cellulas seleccionadas èran ja voidas. Lo quichapapièrs conten lors valors originalas.
+022	{0} es disponible sonque en mòde Modificar.
+023	{0} es pas disponible per la taula actuala.
+024	Pegar es estat blocat: {0} Cap de donada es pas estada modificada.
+025	Pegar acabat; totas las valors de destinacion èran ja identicas.
+026	{0} cellulas modificadas son estadas pegadas dins la session de modificacion en espèra. Aplicar las escriu dins Notepad++.
+027	{0} requerís un rectangle de cellulas CSV, pas una seleccion de linhas entièras per suprimir.
+028	{0} requerís una sola seleccion rectangulara contigua de cellulas de donadas CSV.
+029	Las destinacions de {0} son pas disponiblas fòra del modèl estable de linhas del mòde Modificar.
+030	La modificacion de la cellula activa a pas pogut èsser validada abans de copiar.
+031	La modificacion de la cellula activa a pas pogut èsser validada. Corregissètz la valor abans de {0}.
+032	Lo quichapapièrs conten pas de cellulas en tèxte simple.
+033	Lo quichapapièrs Windows es temporàriament indisponible. Cap de donada es pas estada modificada.
+034	Copiar lo rectangle de cellulas CSV seleccionat dins lo quichapapièrs Windows (Ctrl+C)
+035	Copiar las cellulas CSV seleccionadas e las voidar dins la session de modificacion en espèra (Ctrl+X)
+036	Pegar de cellulas de fuèlh de calcul dins la cellula o lo rectangle CSV seleccionat (Ctrl+V)
+037	Previsualizar lo remplaçament de tèxte, lo retalhatge dels espacis exteriors o lo cambiament de majusculas/minusculas dins las modificacions CSV en espèra
+038	Seleccionar la cellula o la linha CSV actuala dins lo tampon font de Notepad++
+039	Font
+040	Transformar
+041	A prepaus
+042	Aplicar
+043	Creissent
+044	Anullar
+045	Tampar
+046	Colomna
+047	Copiar
+048	Talhar
+049	Descreissent
+050	Modificar
+051	Sortir de la modificacion
+052	Distingir majusculas/minusculas
+053	Nombre
+054	Òrdre original
+055	Pegar
+056	Previsualizar
+057	Actualizar
+058	Linhas
+059	Taula
+060	Tèxte
+061	Valor
+062	Resumit de colomna: comptes, valors distintas, interval numeric e valors frequentas dins la vista actuala.
+063	Lo resumit de colomna requerís una taula prèsta e en lectura sola. Sortissètz d'en primièr del mòde Modificar.
+064	Filtrar e ordenar: combinatz las règlas de colomna e los nivèls d'ordenacion tèxte/numeric. Sonque la vista; lo CSV càmbia pas.
+065	Filtrar e ordenar: combinatz las règlas de colomna e fins a tres nivèls d'ordenacion tèxte/numeric. Sonque la vista.
+066	Filtrar e ordenar: {0} condicions, {1} nivèls d'ordenacion. Reïnicializar la vista escafa totas las règlas.
+067	Filtrar e ordenar requerís una taula prèsta e en lectura sola. Sortissètz d'en primièr del mòde Modificar.
+068	Diagnostics (0)
+069	0 cambiaments
+070	Apondre una condicion
+071	Apondre un nivèl d'ordenacion
+072	Aplicar la vista
+073	Majusculas/minusculas
+074	Comparason de tèxte sens ignorar las majusculas/minusculas. Los espacis dins las valors son tractats literalament.
+075	Verificatz las règlas: {0}
+076	Condicion
+077	{0} / 8 condicions; {1} / 3 nivèls d'ordenacion. Previsualizatz per verificar las linhas correspondentas.
+078	Conten
+079	Conten pas
+080	Es pas egal a
+081	Void = zèro caractèr. Sonque espacis blancs = sequéncia non voida d'espacis/tabulacions/sauts de linha.\nLos nombres utilizan un punt decimal (-12.5), sens gropament ni exponent; la precision deu èsser exacta.
+082	Acaba per
+083	Es egal a
+084	Valor del filtre
+085	Filtres
+086	Es void
+087	Es pas void
+088	Es pas sonque d'espacis blancs
+089	Es sonque d'espacis blancs
+090	Tèxte literal, espacis incluses. Las règlas numericas requerisson un nombre decimal exacte amb un punt.
+091	Correspondre a TOTAS las condicions
+092	Correspondre a QUINA CONDICION QUE SIÁ
+093	Nombre =
+094	Nombre >
+095	Nombre >=
+096	Nombre <
+097	Nombre <=
+098	Nombre (decimal)
+099	Previsualizacion: {0:N0} de {1:N0} linhas afichadas. CSV pas modificat.
+100	Levar la condicion
+101	Levar lo nivèl d'ordenacion
+102	Reïnicializar las règlas
+103	Las règlas respèctan tanben la recèrca actuala. Anullar garda la vista activa.
+104	Ordenacion
+105	Comença per
+106	Tèxte: òrdre ordinal sens distinguir majusculas/minusculas. Nombre: decimals exactes; valors invalidas/voidas a la fin.\nLas claus egalas gardan l'òrdre font. Levatz totes los nivèls per restablir l'òrdre font.
+107	La projeccion es limitada; las linhas pas afichadas son pas inclusas. 
+108	Filtrar e ordenar
+109	Lo nivèl superior es prioritari; los nivèls seguents despartisson las egalitats. Maximum 3.
+110	Valor (literala, espacis incluses)
+111	Sonque la vista — las valors CSV e l'òrdre font demòran pas modificats. {0:N0} linhas afichadas.\n
+112	Aplicar es blocat perque {0} a pas de perfil d'encodatge explicitament pres en carga. Lo contengut de l'editor es pas estat modificat.
+113	Aplicar es blocat perque la validacion estricta de l'encodatge per {0} a pas fach una conversion exacta anada-retorn. Lo contengut de l'editor es pas estat modificat.
+114	Aplicar es blocat perque lo remplaçament en espèra pòt pas èsser representat exactament en {0}. Cap de caractèr de substitucion es pas estat utilizat e lo contengut de l'editor es pas estat modificat.
+115	Aplicar es pas encara activat per {0}. Lo contengut de l'editor es pas estat modificat. Las escrituras dins l'òste son activadas sonque per UTF-8 (65001) e Windows-1250 (1250), aprèp validacion sens pèrda. Utilizatz Restablir tot o convertissètz lo document en UTF-8 dins Notepad++ e tornatz dobrir lo mòde Modificar.
+116	Actualizar es desactivat pendent que lo mòde Modificar es actiu. Aplicatz o restablissètz d'en primièr totes los cambiaments en espèra.
+117	Pagina de còdi Scintilla {0}
+118	Lo document actiu fa {0:N0} octets. Lo limit segur actual de l'instantanèu es {1:N0} octets.
+119	Lo document actiu Notepad++ a pas pogut èsser legit. Lo contengut de l'editor es pas estat modificat.
+120	Lo resultat d'Aplicar es pas un estat blocat per encodatge.
+121	La construccion de la taula en rèireplan s'es acabada sens resultat.
+122	Los cambiaments CSV son estats aplicats corrèctament, mas la posicion precedenta del cursor o la seleccion a pas pogut èsser restablida. Lo cambiament complet del document pòt encara èsser anullat en una sola operacion.
+123	la pagina de còdi actuala de l'editor
+124	Lo tampon de l'editor a pas pogut èsser transformat en taula visuala. Causissètz explicitament un delimitador o actualizatz aprèp aver corregit lo document.
+125	La construccion de la taula a retornat un resultat incomplet.
+126	&A prepaus
+127	&Escafar la recèrca
+128	&CSV
+129	&Delimitador
+130	&Modificar
+131	Esc dins la recèrca
+132	&Recercar dins la taula
+133	&Entèsta
+134	&Cellula correspondenta seguenta
+135	&Cellula correspondenta precedenta
+136	Reïnicializar la vista: escafar la recèrca, las condicions de colomna e totas las ordenacions.
+137	&Recèrca
+138	&Colomna de recèrca
+139	Afichar los espacis: pichons punts iranges plens. Sonque l'afichatge; las valors CSV càmbian pas.
+140	Afichar la &taula
+141	&Ordenar per
+142	&Taula
+143	&Vista
+144	Una valor de filtre pòt conténer al maximum 4,096 caractèrs.
+145	TOTAS
+146	Una marca iniciala d'òrdre dels octets es estada exclusa del primièr camp.
+147	QUINA QUE SIÁ
+148	Un guillemet es aparegut dins un camp pas enquadrat de guillemets.
+149	Las linhas del quichapapièrs devon formar una sola matritz rectangulara de cellulas.
+150	Còdi de diagnostic: {0}.
+151	Cada nivèl d'ordenacion deu utilizar una colomna diferenta.
+152	Error
+153	nauta
+154	Informacion
+155	baissa
+156	mejana
+157	Cap de delimitador pres en carga a pas produsit una estructura de mantun camp amb una fisança sufisenta.
+158	cap
+159	Una sola linha visuala demandariá {0:N0} cellulas, çò que despassa lo limit total actual de {1:N0}. Cap de colomna es pas estada amagada.
+160	L'enregistrament a {0} camps; {1} èran esperats segon lo nombre mai frequent dins l'escapolon.
+161	Espacis: {0}; inicials: {1}; finals: {2}. Longor: {3} unitats UTF-16.\nLos punts iranges marcan d'espacis reals. L'espaciament d'afichatge aumenta per la legibilitat; los caractèrs CSV càmbian pas. Los comptes inicials e finals se recobrisson dins una cellula que conten sonque d'espacis.
+162	La matritz de cellulas del quichapapièrs despassa lo limit segur d'enganament.
+163	Lo quichapapièrs conten un caractèr de contraròtle pas pres en carga.
+164	Lo quichapapièrs conten mai de colomnas que l'editor ne pòt pegar en seguretat.
+165	Lo quichapapièrs conten mai de linhas que l'editor ne pòt pegar en seguretat.
+166	Lo tèxte del quichapapièrs despassa lo limit segur de 16 Mi unitats de caractèrs UTF-16.
+167	Lo darrièr camp entre guillemets es pas estat tampat abans la fin del tèxte.
+168	Lo nombre de camps diferís dels autres enregistraments.
+169	L'operacion a pas pogut èsser acabada. Verificatz lo document, las valors seleccionadas e los limits de talha.
+170	Lo document analisat conten {0:N0} colomnas, çò que despassa lo limit actual de la taula visuala de {1:N0}. Cap de colomna es pas estada amagada.
+171	Lo delimitador suggerit a una fisança baissa. Verificatz lo reglatge del delimitador.
+172	Dos candidats delimitadors an de puntuacions semblablas. Verificatz lo reglatge del delimitador.
+173	De caractèrs inesperats seguisson un guillemet de tampadura.
+174	desconeguda
+175	Utilizatz un nombre decimal exacte amb un punt, coma -12.5. Lo gropament, los exponents e las valors arredondidas son pas preses en carga.
+176	Utilizatz al maximum uèch condicions de filtre non nullas.
+177	Utilizatz al maximum tres nivèls d'ordenacion non nulls.
+178	Las règlas de vista fan referéncia a una colomna fòra de la taula actuala.
+179	Avertiment
+180	Resumit de colomna
+181	Filtrar e ordenar
+182	Dobrir la taula visuala
+183	Actualizar la taula
+184	novèl:{0}
+185	novèl:{0} *
+186	Seleccionar
+187	Seleccionar de linhas entièras per suprimir
+188	Enregistrament logic font o linha estructurala en espèra
+189	La colomna d'indicador de linha a pas pogut èsser identificada.
+190	La linha deu aparténer a un DataGridView.
+191	Totas las colomnas
+192	{0:N0} / {1:N0} cellulas
+193	{0:N0} cellulas
+194	Escafar la recèrca
+195	Escafar la recèrca (Esc). Gardar la colomna de recèrca e l'ordenacion.
+196	Filtra las linhas afichadas. Enter: cellula correspondenta seguenta. Shift+Enter: precedenta. Escape: escafar.
+197	Cellula correspondenta seguenta
+198	Cellula correspondenta seguenta (F3 / Enter)
+199	Cap de correspondéncia
+200	Cap de linha correspondenta.\nAjustatz la recèrca o utilizatz Vista > Filtrar e ordenar / Reïnicializar la vista.
+201	Cellula correspondenta precedenta
+202	Cellula correspondenta precedenta (Shift+F3 / Shift+Enter)
+203	Recercar dins totas las colomnas de donadas o causir una colomna.
+204	Colomna de recèrca
+205	Recercar dins las linhas CSV afichadas (Ctrl+F). Las valors e lo tèxte font càmbian pas.
+206	Recercar dins la taula...
+207	Recercar dins la taula
+208	Resultats de recèrca
+209	Recèrca...
+210	Anar a la font es estat blocat: un autre document Notepad++ es actiu. Tornatz al CSV afichat o actualizatz la taula.
+211	Anar a la font es estat blocat perque lo resultat d'analisi conservat correspond pas mai a son instantanèu font immutable. Actualizatz d'en primièr la taula.
+212	Anar a la font es estat blocat: la longor encodada estrictament correspond pas a la longor de document senhalada per Scintilla.
+213	Anar a la font es estat blocat: lo contengut de l'editor actiu a cambiat dempuèi l'afichatge de la taula. Actualizatz d'en primièr la taula.
+214	Anar a la font es estat blocat: la pagina de còdi Scintilla actuala a pas de perfil explicit de posicion d'octets.
+215	Anar a la font es estat blocat: la pagina de còdi de l'editor a cambiat dempuèi l'afichatge de la taula. Actualizatz d'en primièr la taula.
+216	Anar a la font es estat blocat: la cellula projectada seleccionada a pas de camp font brut.
+217	Anar a la font es estat blocat: lo domeni de caractèrs font a pas pogut èsser mapat sens pèrda als octets Scintilla.
+218	Anar a la font es estat blocat: l'enregistrament logic font es pas disponible dins lo resultat d'analisi conservat.
+219	Anar a la font a fracassat: lo tampon actiu de Notepad++ a pas pogut èsser legit. Lo contengut del document es pas estat modificat.
+220	Anar a la font a fracassat en desplaçant la seleccion Scintilla. Lo contengut del document es pas estat modificat.
+221	Anar a la font es indisponible fins que la taula visuala actuala aja una basa font completa. Actualizatz d'en primièr la taula.
+222	Anar a la font requerís una linha o cellula CSV actuala.
+223	Anar a la font es pas estat acabat. Lo contengut del document es pas estat modificat.
+224	Enregistrament font {0}, colomna {1}, seleccionat dins Notepad++.
+225	Enregistrament font {0} seleccionat dins Notepad++.
+226	La linha visuala actuala provesís pas una identitat establa d'enregistrament font.
+227	Aquela linha inserida en espèra a pas de posicion font fins que l'aplicacion siá acabada.
+228	Vista actuala: {0:N0} de {1:N0} linhas afichadas.
+229	Las valors distintas son comptadas amb lo tèxte exacte sensible a las majusculas/minusculas, inclusas las valors voidas.\nLinhas repetidas = linhas mens valors distintas. L'interval numeric utiliza de valors decimalas exactas amb un punt.
+230	Void
+231	Tipe
+232	Valors mai frequentas (fins a 20)
+233	Indisponible
+234	Minim numeric: {0}     Maxim: {1}\nValor mai longa: {2:N0} unitats UTF-16. {3:N0} valors apareisson mai d'un còp.
+235	 Projeccion limitada; aquò es PAS lo fichièr complet.
+236	Linhas: {0:N0}     Void: {1:N0}     Sonque espacis blancs: {2:N0}\nDistintas: {3:N0}     Linhas repetidas: {4:N0}     Numericas: {5:N0}
+237	Resumit de colomna
+238	Espaci blanc
+239	Una linha novèla es estada aponduda a la session Modificar en espèra. Aplicar l'escriu dins lo tampon de l'editor; Restablir tot la geta.
+240	Una linha font a pas provesit l'indèx de son enregistrament font.
+241	Accion
+242	L'instantanèu del document actiu a fracassat. Lo contengut de l'editor es pas estat modificat.
+243	Apondre una linha
+244	Totas las modificacions de cellulas e linhas en espèra son estadas restablidas. Lo tampon de l'editor Notepad++ es pas estat modificat.
+245	Aplicar totas las modificacions de cellulas e linhas a l'editor actiu coma una sola operacion anulabla
+246	Aplicar es estat blocat: un autre document Notepad++ es actiu. Tornatz al document original o utilizatz Restablir tot.
+247	Aplicar es estat blocat: lo tampon de l'editor a cambiat dempuèi l'aviada del mòde Modificar. Restablissètz e actualizatz abans de tornar modificar.
+248	Aplicar es estat blocat: la pagina de còdi de l'editor a cambiat dempuèi l'aviada del mòde Modificar. Restablissètz e tornatz dobrir lo mòde Modificar.
+249	Aplicar a fracassat. La session de modificacion demòra dobèrta; verificatz lo tampon de l'editor abans de tornar ensajar o restablir.
+250	Aplicar es pas estat acabat. Cap de reescritura automatica es pas estada ensajada.
+251	Detectar automaticament
+252	fisança automatica {0}
+253	{0} — la deteccion automatica del delimitador es pas fisabla; una seleccion manuala es necessària.
+254	Deteccion automatica
+255	Puntuacions dels candidats
+256	{0} cellulas / {1} linhas (+{2} / -{3})
+257	Caractèr
+258	{0} caractèrs / {1} octets d'editor
+259	Causissètz Virgula, Punt-virgula o Tabulacion dins la lista Delimitador çai-sus.
+260	Causir explicitament se lo primièr enregistrament logic es una entèsta
+261	Escafar
+262	Escafar lo filtre de recèrca actual e l'ordenacion sonque de vista
+263	Còdi
+264	 - {0} condicions de colomna ({1}), {2} nivèls d'ordenacion
+265	{0} — {1} × {2} colomnas — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Virgula (,)
+267	virgula
+268	Fisança
+269	Suprimir totas las linhas de donadas establas seleccionadas de la session Modificar en espèra
+270	Suprimir la linha
+271	Suprimir las linhas ({0})
+272	Suprimir la linha de donadas establa seleccionada de la session Modificar en espèra
+273	Suprimir la linha o las linhas de donadas establas seleccionadas de la session Modificar en espèra
+274	Delimitador:
+275	Diagnostics ({0})
+276	Getar totes los cambiaments de cellula, insercions e supressions en espèra
+277	Document
+278	 — MÒDE MODIFICAR: {0} cellulas, {1} linhas, +{2} / -{3}
+279	 - Mòde Modificar
+280	Lo mòde Modificar conten de cambiaments en espèra. Utilizatz Aplicar o Restablir tot abans de sortir.
+281	Lo mòde Modificar es pas disponible per la taula actuala. Resolvetz d'en primièr las errors d'analisi o los limits d'afichatge.
+282	La modificacion pòt pas començar dempuèi una projeccion visuala limitada en nombre de linhas.
+283	La modificacion pòt pas començar mentre lo CSV analisat conten d'errors.
+284	La modificacion es pas disponibla per la taula actuala.
+285	{0} — tampon d'editor void; cap d'enregistrament CSV a afichar.
+286	Dintrar explicitament dins lo mòde de modificacion de cellulas e linhas
+287	Dintrar explicitament dins lo mòde de modificacion de cellulas e linhas. Aplicar escriu sonque dins lo tampon de l'editor.
+288	Dintrar explicitament dins lo mòde de modificacion de cellulas e linhas. Lo modèl de modificacion complet es bastit sonque quand es demandat.
+289	{0} errors, {1} avertiments
+290	primièra linha coma entèsta
+291	La primièra linha es l'entèsta
+292	Entèsta:
+293	Inserir una linha novèla aprèp la linha seleccionada, o apondre a la fin se cap de linha es pas seleccionada
+294	{0} — cargament de donadas CSV en rèireplan; Notepad++ demòra reactiu.
+295	seleccion manuala
+296	{0} correspondentas de {1} linhas afichadas
+297	Messatge
+298	{0} linhas recentament inseridas son estadas levadas de la session en espèra.
+299	Cap de diagnostic a afichar.
+300	Sens linha d'entèsta
+301	sens linha d'entèsta
+302	Cap de linha correspondenta.\nEnsajatz un autre tèxte de recèrca o una autra colomna.
+303	sens diagnostic d'analisi
+304	Cap de delimitador fisable a pas pogut èsser causit en seguretat.
+305	Pas res a aplicar: la session de modificacion a pas de cambiaments en espèra.
+306	Analisi e preparacion d'una taula visuala limitada en rèireplan…
+307	Cambiaments de cellulas e d'estructura de linhas en espèra
+308	Linha inserida en espèra {0}; pas encara aplicada
+309	{0} linhas en espèra
+310	L'extension es prèsta. Lectura del tampon de l'editor actiu...
+311	Preparacion de la session de modificacion completa…
+312	Proprietat
+313	Legir e afichar lo tampon de l'editor Notepad++ actualament actiu
+314	Enregistrament
+315	Restablir tot
+316	{0} linhas
+317	Punt-virgula (;)
+318	punt-virgula
+319	Gravetat
+320	Afichar los diagnostics detalhats d'analisi e de delimitador
+321	afichatge de {0} sus {1} linhas
+322	Instantanèu
+323	Error d'instantanèu
+324	Nivèl d'ordenacion {0}: {1}, {2}. Sonque la vista.
+325	 — ordenat per {0} {1}
+326	Enregistrament logic font {0}
+327	Enregistrament logic font {0}; modificat dins la session Modificar en espèra
+328	{0} linhas font son marcadas per supression e {1} linhas inseridas son estadas levadas de la session en espèra.
+329	{0} linhas font son marcadas per supression. Aplicar escriu tot lo lot; Restablir tot restaura cada linha.
+330	Estat
+331	Tabulacion
+332	tabulacion
+333	Error de taula
+334	La modificacion de la cellula activa a pas pogut èsser validada. Corregissètz la valor abans d'apondre una linha.
+335	La modificacion de la cellula activa a pas pogut èsser validada. Corregissètz la valor abans de suprimir de linhas.
+336	La modificacion de la cellula activa a pas pogut èsser validada. Corregissètz la valor abans d'aplicar.
+337	La linha recentament inserida es estada levada de la session en espèra.
+338	La colomna d'indicador de linha es pas configurada.
+339	L'ensemble de linhas seleccionat es pas mai valid per aquela session de modificacion. Cap de linha es pas estada suprimida.
+340	Las linhas seleccionadas èran ja suprimidas. Cap de cambiament suplementari es pas estat fach.
+341	La linha font es marcada per supression. Aplicar escriu la supression; Restablir tot restaura la linha.
+342	La taula visuala a pas pogut èsser generada. Lo contengut de l'editor es pas estat modificat.
+343	Utilizatz una deteccion automatica fisabla o seleccionatz explicitament un delimitador
+344	En espèra del document Notepad++ actiu.
+345	{0} - {1} x {2:N0} colomnas
+346	Acceptar los cambiaments
+347	Aprèp
+348	Totas las cellulas de donadas
+349	Abans
+350	Colomna CSV
+351	Causissètz una operacion e una portada, puèi clicatz Previsualizar.
+352	Colomna actuala
+353	Recercar:
+354	minusculas
+355	Operacion:
+356	Los autres espacis blancs son afichats coma sequéncias d'escapament; las longors comptan d'unitats UTF-16. Las valors longas son acorchidas.
+357	La previsualizacion a pas pogut èsser bastida. Verificatz la portada e lo tèxte de recèrca, o causissètz una portada mai pichona (maximum 250,000 cellulas / 16 Mi caractèrs).
+358	Previsualizatz d'en primièr. Acceptar los cambiaments actualiza las modificacions en espèra; Aplicar dins la barra d'aisinas escriu dins Notepad++.\nLas entèstas son exclusas quand Entèsta = Primièr enregistrament. La conversion de majusculas/minusculas es independenta de la cultura.
+359	ID d'enregistrament
+360	Remplaçar lo tèxte (literal)
+361	Remplaçar per:
+362	Portada:
+363	Causissètz una colomna de donadas CSV.
+364	Cellulas / linhas seleccionadas
+365	los punts iranges plens marcan los espacis. 
+366	los indicadors d'espaci son amagats. 
+367	{0:N0} cellulas de destinacion; {1:N0} cambiaments dins {2:N0} linhas. Afichatge dels 50 primièrs cambiaments; 
+368	La session de modificacion a cambiat.
+369	La previsualizacion es pas mai valida. Verificatz la session de modificacion e bastissètz una previsualizacion novèla.
+370	Transformar las cellulas CSV
+371	{0:N0} cellulas son estadas transformadas dins la session Modificar en espèra. Utilizatz Aplicar per actualizar Notepad++ o Restablir tot per getar las modificacions en espèra.
+372	Retalhar los espacis blancs exteriors
+373	MAJUSCULAS
+374	Reïnicializar la vista
+375	Afichar los espacis
