@@ -1,0 +1,378 @@
+# language: lb
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	E visuellen CSV-Editeur fir Notepad++
+001	Iwwer CSV Visual Editor
+002	Kontakt: {0}
+003	Den Entwéckler {0} kontaktéieren
+004	Entwéckler: {0}
+005	Entwécklungsversioun
+006	Gefält Iech CSV Visual Editor? Ënnerstëtzt de Projet.\nGitt him e Stär op GitHub, deelt Äre Feedback oder kontaktéiert den Entwéckler fir matzemaachen. Merci!
+007	Sprooch vun der Benotzeruewerfläch: {0}
+008	Keng zougeuerdent App konnt opgemaach ginn. Kontakt: {0}
+009	Projet op GitHub
+010	Versioun: {0}
+011	Versioun a Build
+012	{0} gouf blockéiert, well de Modell vun den ausstoenden Ännerunge geännert gouf. Keng deelweis Ännerung gouf behalen.
+013	{0} gouf blockéiert: Clipboard- a Selektiounsrechtecker hunn ënnerschiddlech Dimensiounen.
+014	{0} gouf blockéiert: den Zilrechteck geet iwwer d'CSV-Tabell eraus.
+015	{0} gouf blockéiert: et gëtt keen editéierbaren Zilrechteck.
+016	{0} × {1} CSV-Zelle kopéiert.
+017	Kopéieren/Ausschneiden gouf blockéiert: eng ausgewielte Zell enthält en Tab oder Zeilenofbroch, deen net eendeiteg als einfache Spreadsheet-Text duergestallt ka ginn.
+018	Kopéiere verlaangt CSV-Zellen, net eng Selektioun vu ganze Reie fir ze läschen.
+019	Kopéiere verlaangt eng eenzeg zesummenhängend rechteckeg Selektioun vu CSV-Datenzellen.
+020	{0} Zellen an de Clipboard ausgeschnidden an an der ausstoender Editiounssessioun eidel gemaach. Uwenn schreiwt d'Eidelmaachen an Notepad++.
+021	Ausschneiden ass fäerdeg; déi ausgewielten Zelle waren schonn eidel. De Clipboard enthält hir ursprénglech Wäerter.
+022	{0} ass nëmmen am Editiounsmodus verfügbar.
+023	{0} ass fir déi aktuell Tabell net verfügbar.
+024	Apechen gouf blockéiert: {0} Keng Date goufe geännert.
+025	Apechen ass fäerdeg; all Zilwäerter waren schonn identesch.
+026	{0} geännert Zellen an d'ausstoend Editiounssessioun agepecht. Uwenn schreiwt se an Notepad++.
+027	{0} verlaangt e Rechteck vu CSV-Zellen, net eng Selektioun vu ganze Reie fir ze läschen.
+028	{0} verlaangt eng eenzeg zesummenhängend rechteckeg Selektioun vu CSV-Datenzellen.
+029	Ziler fir {0} sinn ausserhalb vum stabile Reiemodell vum Editiounsmodus net verfügbar.
+030	D'Editioun vun der aktiver Zell konnt virum Kopéieren net confirméiert ginn.
+031	D'Editioun vun der aktiver Zell konnt net confirméiert ginn. Korrigéiert de Wäert virun {0}.
+032	De Clipboard enthält keng Zellen als einfachen Text.
+033	De Windows-Clipboard ass temporär net verfügbar. Keng Date goufe geännert.
+034	De gewielte Rechteck vu CSV-Zellen an de Windows-Clipboard kopéieren (Ctrl+C)
+035	Déi gewielte CSV-Zellen kopéieren an an der ausstoender Editiounssessioun eidel maachen (Ctrl+X)
+036	Spreadsheet-Zellen an déi gewielte CSV-Zell oder de Rechteck apechen (Ctrl+V)
+037	Text ersetzen, baussenzeg Wäissraim ewechhuelen oder Grouss-/Klengschreiwung an ausstoende CSV-Editioune virukucken
+038	Déi aktuell CSV-Zell oder Rei am Quellbuffer vu Notepad++ auswielen
+039	Quell
+040	Transforméieren
+041	Iwwer
+042	Uwenden
+043	Opsteigend
+044	Ofbriechen
+045	Zoumaachen
+046	Kolonn
+047	Kopéieren
+048	Ausschneiden
+049	Ofsteigend
+050	Editéieren
+051	Editéieren ofschléissen
+052	Grouss-/Klengschreiwung berücksichtegen
+053	Zuel
+054	Ursprénglech Reiefolleg
+055	Apechen
+056	Virschau
+057	Aktualiséieren
+058	Reien
+059	Tabell
+060	Text
+061	Wäert
+062	Kolonnen-Zesummefaassung: Zuelen, eenzegaarteg Wäerter, numeresche Beräich an heefeg Wäerter an der aktueller Vue.
+063	D'Kolonnen-Zesummefaassung verlaangt eng prett, nëmmen liesbar Tabell. Verloosst fir d'éischt den Editiounsmodus.
+064	Filteren a sortéieren: Kolonnereegelen an Text-/Zuelesortéierungsniveauen kombinéieren. Nëmmen d'Vue ännert sech; CSV bleift onverännert.
+065	Filteren a sortéieren: Kolonnereegelen an bis zu dräi Text-/Zuelesortéierungsniveauen kombinéieren. Nëmmen d'Vue.
+066	Filteren a sortéieren: {0} Bedéngungen, {1} Sortéierungsniveauen. Vue zrécksetzen läscht all Reegelen.
+067	Filteren a sortéieren verlaangt eng prett, nëmmen liesbar Tabell. Verloosst fir d'éischt den Editiounsmodus.
+068	Diagnostik (0)
+069	0 Ännerungen
+070	Bedéngung dobäisetzen
+071	Sortéierungsniveau dobäisetzen
+072	Vue uwenden
+073	Grouss-/Klengschreiwung
+074	Textvergläich mat Berücksichtegung vu Grouss-/Klengschreiwung. Espacen an de Wäerter gi wuertwiertlech behandelt.
+075	Kontrolléiert d'Reegelen: {0}
+076	Bedéngung
+077	{0} / 8 Bedéngungen; {1} / 3 Sortéierungsniveauen. Benotzt d'Virschau fir passend Reien ze kontrolléieren.
+078	Enthält
+079	Enthält net
+080	Ass net gläich
+081	Eidel = null Zeechen. Nëmme Wäissraum = net eidel Folleg vu Espacen/Tabs/Zeilenofbréch.\nZuele benotzen en Dezimalpunkt (-12.5), ouni Gruppéierung oder Exponenten; d'Prezisioun muss exakt sinn.
+082	Hält op mat
+083	Ass gläich
+084	Filterwäert
+085	Filteren
+086	Ass eidel
+087	Ass net eidel
+088	Ass net nëmme Wäissraum
+089	Ass nëmme Wäissraum
+090	Wuertwiertlechen Text, inklusiv Espacen. Numeresch Reegelen verlaangen eng exakt Dezimalzuel mat Punkt.
+091	ALL Bedéngunge mussen passen
+092	ENG BELIEWEG Bedéngung muss passen
+093	Zuel =
+094	Zuel >
+095	Zuel >=
+096	Zuel <
+097	Zuel <=
+098	Zuel (dezimal)
+099	Virschau: {0:N0} vun {1:N0} ugewisene Reien. CSV onverännert.
+100	Bedéngung ewechhuelen
+101	Sortéierungsniveau ewechhuelen
+102	Reegelen zrécksetzen
+103	D'Reegelen respektéieren och déi aktuell Sich. Ofbriechen hält déi aktiv Vue bäi.
+104	Sortéierung
+105	Fänkt un mat
+106	Text: ordinal Reiefolleg ouni Grouss-/Klengschreiwung. Zuel: exakt Dezimalzuelen; ongëlteg/eidel Wäerter zum Schluss.\nGläich Schlëssele behalen d'Quellereiefolleg. Huelt all Niveauen ewech fir se zréckzesetzen.
+107	D'Projektioun ass limitéiert; net ugewisen Reie sinn net abegraff. 
+108	Filteren a sortéieren
+109	Den ieweschten Niveau huet Prioritéit; spéider Niveauen léise Gläichheeten. Maximal 3.
+110	Wäert (wuertwiertlech, inklusiv Espacen)
+111	Nëmmen d'Vue — CSV-Wäerter a Quellereiefolleg bleiwen onverännert. {0:N0} ugewisen Reien.\n
+112	Uwenden ass blockéiert, well {0} kee explizitt ënnerstëtzte Kodéierungsprofil huet. Den Inhalt vum Editeur gouf net geännert.
+113	Uwenden ass blockéiert, well streng Kodéierungsvalidéierung fir {0} keng exakt Hin-an-Zréck-Konversioun erginn huet. Den Inhalt vum Editeur gouf net geännert.
+114	Uwenden ass blockéiert, well den ausstoenden Ersatz net exakt an {0} duergestallt ka ginn. Keng Ersatzzeeche goufe benotzt an den Inhalt vum Editeur gouf net geännert.
+115	Uwenden ass fir {0} nach net aktivéiert. Den Inhalt vum Editeur gouf net geännert. Schreiwen ass nëmme fir UTF-8 (65001) a Windows-1250 (1250) aktivéiert, no verlustfräier Validéierung. Benotzt Alles réckgängeg oder konvertéiert d'Dokument an Notepad++ op UTF-8 an opgemaach den Editiounsmodus nei.
+116	Aktualiséieren ass am Editiounsmodus deaktivéiert. Uwenn oder maacht fir d'éischt all ausstoend Ännerunge réckgängeg.
+117	Scintilla-Codepage {0}
+118	Dat aktivt Dokument ass {0:N0} Byte grouss. Déi aktuell sécher Snapshot-Limit ass {1:N0} Byte.
+119	Dat aktivt Notepad++-Dokument konnt net gelies ginn. Den Inhalt vum Editeur gouf net geännert.
+120	D'Uwendungsergebnis ass kee Kodéierungsblockéierungsstatus.
+121	Den Hannergrond-Tabellbau ass ouni Resultat opgehalen.
+122	D'CSV-Ännerunge goufen ugewannt, mee déi viregt Cursorpositioun oder Selektioun konnt net restauréiert ginn. Déi ganz Dokumentännerung kann nach ëmmer mat enger eenzeger Aktioun réckgängeg gemaach ginn.
+123	déi aktuell Codepage vum Editeur
+124	Den Editeur-Buffer konnt net an eng visuell Tabell ëmgewandelt ginn. Wielt explizitt en Trennzeechen oder aktualiséiert nom Korrigéiere vum Dokument.
+125	Den Tabellbau huet en onvollstännegt Resultat zeréckginn.
+126	&Iwwer
+127	&Sich läschen
+128	&CSV
+129	&Trennzeechen
+130	&Editéieren
+131	Esc an der Sich
+132	&An Tabell sichen
+133	&Kappzeil
+134	&Nächst passend Zell
+135	&Viregt passend Zell
+136	Vue zrécksetzen: Sich, Kolonnebedéngungen an all Sortéierung läschen.
+137	&Sich
+138	Sich&kolonn
+139	Espacen weisen: kleng gefëllten orange Punkten. Nëmme fir d'Vue; CSV-Wäerter änneren net.
+140	&Tabell weisen
+141	&Sortéieren no
+142	&Tabell
+143	&Vue
+144	E Filterwäert dierf maximal 4,096 Zeechen enthalen.
+145	ALL
+146	Eng initial Byte-Reiefollegmark gouf aus dem éischte Feld ausgeschloss.
+147	ENG BELIEWEG
+148	En Zitatzeechen ass an engem Feld opgetrueden dat net vun Zitatzeechen ëmgi war.
+149	D'Clipboard-Reie mussen eng eenzeg rechteckeg Zellmatrix bilden.
+150	Diagnostikcode: {0}.
+151	All Sortéierungsniveau muss eng aner Kolonn benotzen.
+152	Feeler
+153	héich
+154	Informatioun
+155	niddreg
+156	mëttel
+157	Keen ënnerstëtzt Trennzeechen huet eng genuch zouverlässeg Multi-Feld-Struktur erginn.
+158	keen
+159	Eng visuell Rei géif {0:N0} Zellen erfuerderen, wat déi aktuell Gesamtlimit vun {1:N0} iwwerschreit. Keng Kolonne goufe verstoppt.
+160	De Rekord huet {0} Felder; {1} goufen erwaart op Basis vum heefegste Feldzuel an der Prouf.
+161	Espacen: {0}; am Ufank: {1}; um Enn: {2}. Längt: {3} UTF-16-Eenheeten.\nOrange Punkte markéieren tatsächlech Espacen. D'Display-Distanz gëtt fir besser Liesbarkeet vergréissert; CSV-Zeechen änneren net. Ufanks- an Endzuelen iwwerschneiden sech an enger Zell déi nëmme Espacen enthält.
+162	D'Clipboard-Zellmatrix iwwerschreit déi sécher Apechlimit.
+163	De Clipboard enthält en net ënnerstëtzte Kontrollzeechen.
+164	De Clipboard enthält méi Kolonne wéi den Editeur sécher apeche kann.
+165	De Clipboard enthält méi Reie wéi den Editeur sécher apeche kann.
+166	De Clipboard-Text iwwerschreit déi sécher Limit vun 16 Mi UTF-16-Zeecheneenheeten.
+167	Dat lescht zitéiert Feld gouf net virum Enn vum Text zougemaach.
+168	D'Zuel vun de Felder ënnerscheet sech vun den anere Rekorder.
+169	D'Operatioun konnt net ofgeschloss ginn. Kontrolléiert d'Dokument, déi ausgewielte Wäerter an d'Gréisstlimiten.
+170	Dat parséiert Dokument enthält {0:N0} Kolonnen, wat déi aktuell Limit vun der visueller Tabell vun {1:N0} iwwerschreit. Keng Kolonne goufe verstoppt.
+171	Dat virgeschloent Trennzeechen huet niddreg Zouverlässegkeet. Kontrolléiert d'Trennzeechen-Astellung.
+172	Zwee Trennzeechen-Kandidaten hunn änlech Bewäertungen. Kontrolléiert d'Trennzeechen-Astellung.
+173	Onerwaart Zeeche kommen no engem zoumaachende Zitatzeechen.
+174	onbekannt
+175	Benotzt eng exakt Dezimalzuel mat Punkt, zum Beispill -12.5. Gruppéierung, Exponenten a gerënnte Wäerter ginn net ënnerstëtzt.
+176	Benotzt maximal aacht Filterbedéngungen déi net null sinn.
+177	Benotzt maximal dräi Sortéierungsniveauen déi net null sinn.
+178	D'Vuereegelen referenzéieren eng Kolonn ausserhalb vun der aktueller Tabell.
+179	Warnung
+180	Kolonnen-Zesummefaassung
+181	Filteren a sortéieren
+182	Visuell Tabell opmaachen
+183	Tabell aktualiséieren
+184	nei:{0}
+185	nei:{0} *
+186	Auswielen
+187	Ganz Reie fir d'Läschen auswielen
+188	Logesche Quellerekord oder ausstoend strukturell Rei
+189	D'Reiindikator-Kolonn konnt net identifizéiert ginn.
+190	D'Rei muss zu engem DataGridView gehéieren.
+191	All Kolonnen
+192	{0:N0} / {1:N0} Zellen
+193	{0:N0} Zellen
+194	Sich läschen
+195	Sich läschen (Esc). Sichkolonn a Sortéierung behalen.
+196	Filtert ugewisen Reien. Enter: nächst passend Zell. Shift+Enter: virdrun. Escape: läschen.
+197	Nächst passend Zell
+198	Nächst passend Zell (F3 / Enter)
+199	Keng Treffer
+200	Keng passend Reien.\nPasst d'Sich un oder benotzt Vue > Filteren a sortéieren / Vue zrécksetzen.
+201	Viregt passend Zell
+202	Viregt passend Zell (Shift+F3 / Shift+Enter)
+203	All Datenkolonne sichen oder eng Kolonn auswielen.
+204	Sichkolonn
+205	An ugewisene CSV-Reie sichen (Ctrl+F). Wäerter a Quelltext änneren net.
+206	An Tabell sichen...
+207	An Tabell sichen
+208	Sichresultater
+209	Sicht...
+210	Op Quell sprangen gouf blockéiert: en anert Notepad++-Dokument ass aktiv. Gitt zeréck op den ugewisene CSV oder aktualiséiert d'Tabell.
+211	Op Quell sprangen gouf blockéiert, well dat gespäichert Parseresultat net méi mat sengem onverännerleche Quell-Snapshot entsprécht. Aktualiséiert fir d'éischt d'Tabell.
+212	Op Quell sprangen gouf blockéiert: déi streng kodéiert Längt entsprécht net der vun Scintilla gemellter Dokumentlängt.
+213	Op Quell sprangen gouf blockéiert: den Inhalt vum aktiven Editeur huet sech geännert nodeems d'Tabell gewise gouf. Aktualiséiert fir d'éischt d'Tabell.
+214	Op Quell sprangen gouf blockéiert: déi aktuell Scintilla-Codepage huet kee explizitte Byte-Positiounsprofil.
+215	Op Quell sprangen gouf blockéiert: d'Codepage vum Editeur huet sech geännert nodeems d'Tabell gewise gouf. Aktualiséiert fir d'éischt d'Tabell.
+216	Op Quell sprangen gouf blockéiert: déi ausgewielte projezéiert Zell huet kee rohe Quellfeld.
+217	Op Quell sprangen gouf blockéiert: de Quell-Zeecheberäich konnt net verlustfräi op Scintilla-Bytes gemappt ginn.
+218	Op Quell sprangen gouf blockéiert: de logesche Quellerekord ass am gespäicherte Parseresultat net verfügbar.
+219	Op Quell sprangen ass feelgeschloen: den aktiven Notepad++-Buffer konnt net gelies ginn. Den Dokumentinhalt gouf net geännert.
+220	Op Quell sprangen ass beim Verréckele vun der Scintilla-Selektioun feelgeschloen. Den Dokumentinhalt gouf net geännert.
+221	Op Quell sprangen ass net verfügbar bis déi aktuell visuell Tabell eng komplett Quell-Basis huet. Aktualiséiert fir d'éischt d'Tabell.
+222	Op Quell sprangen verlaangt eng aktuell CSV-Rei oder Zell.
+223	Op Quell sprangen gouf net ofgeschloss. Den Dokumentinhalt gouf net geännert.
+224	Quellerekord {0}, Kolonn {1}, an Notepad++ ausgewielt.
+225	Quellerekord {0} an Notepad++ ausgewielt.
+226	Déi aktuell visuell Rei bitt keng stabil Identitéit vum Quellerekord.
+227	Dës ausstoend agefügte Rei huet keng Quellpositioun bis Uwenden ofgeschloss ass.
+228	Aktuell Vue: {0:N0} vun {1:N0} ugewisene Reien.
+229	Eenzegaarteg Wäerter benotzen exakten Text mat Berücksichtegung vu Grouss-/Klengschreiwung, inklusiv eidel Wäerter.\nWidderholl Reien = Reien minus eenzegaarteg Wäerter. Den numeresche Beräich benotzt exakt Dezimalwäerter mat Punkt.
+230	Eidel
+231	Typ
+232	Heefegst Wäerter (bis 20)
+233	Net verfügbar
+234	Numeresche Minimum: {0}     Maximum: {1}\nLängste Wäert: {2:N0} UTF-16-Eenheeten. {3:N0} Wäerter kommen méi wéi eemol vir.
+235	 Limitéiert Projektioun; dëst ass NET déi ganz Datei.
+236	Reien: {0:N0}     Eidel: {1:N0}     Nëmme Wäissraum: {2:N0}\nEenzegaarteg: {3:N0}     Widderholl Reien: {4:N0}     Numeresch: {5:N0}
+237	Kolonnen-Zesummefaassung
+238	Wäissraum
+239	Eng nei Rei gouf an d'ausstoend Editiounssessioun dobäigesat. Uwenden schreiwt se an den Editeur-Buffer; Alles réckgängeg verwerft se.
+240	Eng Quellerei huet hiren Quellerekordindex net geliwwert.
+241	Aktioun
+242	Snapshot vum aktiven Dokument ass feelgeschloen. Den Inhalt vum Editeur gouf net geännert.
+243	Rei dobäisetzen
+244	All ausstoend Zell- a Reieditioune goufe réckgängeg gemaach. Den Notepad++-Editeur-Buffer gouf net geännert.
+245	All Zell- a Reieditiounen als eng eenzeg réckgängeg Aktioun op den aktiven Editeur uwenden
+246	Uwenden gouf blockéiert: en anert Notepad++-Dokument ass aktiv. Gitt zeréck op d'Originaldokument oder benotzt Alles réckgängeg.
+247	Uwenden gouf blockéiert: den Editeur-Buffer huet sech geännert nodeems den Editiounsmodus ugefaang huet. Maacht réckgängeg an aktualiséiert ier Dir erëm editéiert.
+248	Uwenden gouf blockéiert: d'Codepage vum Editeur huet sech geännert nodeems den Editiounsmodus ugefaang huet. Maacht réckgängeg an opgemaach den Editiounsmodus nei.
+249	Uwenden ass feelgeschloen. D'Editiounssessioun bleift op; kontrolléiert den Editeur-Buffer ier Dir nach eng Kéier probéiert oder réckgängeg maacht.
+250	Uwenden gouf net ofgeschloss. Keen automatescht Iwwerschreiwe gouf probéiert.
+251	Automatesch erkennen
+252	automatesch Zouverlässegkeet {0}
+253	{0} — automatesch Erkennung vum Trennzeechen ass net zouverlässeg; manuell Auswiel ass néideg.
+254	Automatesch Erkennung
+255	Kandidatebewäertungen
+256	{0} Zellen / {1} Reien (+{2} / -{3})
+257	Zeechen
+258	{0} Zeechen / {1} Editeur-Bytes
+259	Wielt Komma, Semikolon oder Tab an der Trennzeechen-Lëscht uewen.
+260	Explizitt auswielen ob den éischte logesche Rekord eng Kappzeil ass
+261	Läschen
+262	Den aktuelle Sichfilter an d'nëmmen-Vue-Sortéierung läschen
+263	Code
+264	 - {0} Kolonnebedéngungen ({1}), {2} Sortéierungsniveauen
+265	{0} — {1} × {2} Kolonnen — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Komma (,)
+267	komma
+268	Zouverlässegkeet
+269	All ausgewielte stabil Datenreie vun der ausstoender Editiounssessioun läschen
+270	Rei läschen
+271	Reie läschen ({0})
+272	Déi ausgewielte stabil Datenrei vun der ausstoender Editiounssessioun läschen
+273	Déi ausgewielte stabil Datenrei oder Reie vun der ausstoender Editiounssessioun läschen
+274	Trennzeechen:
+275	Diagnostik ({0})
+276	All ausstoend Zellännerungen, Afügungen a Läschunge verwerfen
+277	Dokument
+278	 — EDITIOUNSMODUS: {0} Zellen, {1} Reien, +{2} / -{3}
+279	 - Editiounsmodus
+280	Den Editiounsmodus enthält ausstoend Ännerungen. Benotzt Uwenden oder Alles réckgängeg ier Dir erausgitt.
+281	Den Editiounsmodus ass fir déi aktuell Tabell net verfügbar. Behebt fir d'éischt Parserfeeler oder Display-Limiten.
+282	Editéiere kann net vun enger visueller Projektioun mat limitéierter Reiezuel gestart ginn.
+283	Editéiere kann net gestart ginn, wann de parséierte CSV Feeler enthält.
+284	Editéiere ass fir déi aktuell Tabell net verfügbar.
+285	{0} — eidelen Editeur-Buffer; keng CSV-Rekorder fir unzeweisen.
+286	Explizitt an den Editiounsmodus fir Zellen a Reie goen
+287	Explizitt an den Editiounsmodus fir Zellen a Reie goen. Uwenden schreiwt nëmmen an den Editeur-Buffer.
+288	Explizitt an den Editiounsmodus fir Zellen a Reie goen. De komplette Editiounsmodell gëtt nëmmen op Ufro erstallt.
+289	{0} Feeler, {1} Warnungen
+290	éischt Rei als Kappzeil
+291	Éischt Rei ass Kappzeil
+292	Kappzeil:
+293	Eng nei Rei no der ausgewielter Rei afügen oder um Enn dobäisetzen, wa keng Rei ausgewielt ass
+294	{0} — CSV-Date ginn am Hannergrond gelueden; Notepad++ bleift reaktiounsfäeg.
+295	manuell Auswiel
+296	{0} passend vun {1} ugewisene Reien
+297	Message
+298	{0} nei agefügte Reie goufen aus der ausstoender Sessioun ewechgeholl.
+299	Keng Diagnostik fir unzeweisen.
+300	Keng Kappzeil
+301	keng Kappzeil
+302	Keng passend Reien.\nProbéiert en anere Sichtext oder eng aner Kolonn.
+303	keng Parserdiagnostik
+304	Kee zouverlässegt Trennzeechen konnt sécher ausgewielt ginn.
+305	Näischt unzewenden: d'Editiounssessioun huet keng ausstoend Ännerungen.
+306	Parséieren a Virbereede vun enger limitéierter visueller Tabell am Hannergrond…
+307	Ausstoend Zellännerungen a strukturell Reiännerungen
+308	Ausstoend agefügte Rei {0}; nach net ugewannt
+309	{0} ausstoend Reien
+310	Plugin prett. Den aktiven Editeur-Buffer gëtt gelies...
+311	Déi komplett Editiounssessioun gëtt virbereet…
+312	Eegenschaft
+313	Den aktuell aktiven Notepad++-Editeur-Buffer liesen an uweisen
+314	Rekord
+315	Alles réckgängeg
+316	{0} Reien
+317	Semikolon (;)
+318	semikolon
+319	Schwéierkraaft
+320	Detailléiert Parser- an Trennzeechen-Diagnostik weisen
+321	weist {0} vun {1} Reien
+322	Snapshot
+323	Snapshot-Feeler
+324	Sortéierungsniveau {0}: {1}, {2}. Nëmmen d'Vue.
+325	 — sortéiert no {0} {1}
+326	Logesche Quellerekord {0}
+327	Logesche Quellerekord {0}; an der ausstoender Editiounssessioun geännert
+328	{0} Quellereie si fir d'Läsche markéiert an {1} agefügte Reie goufen aus der ausstoender Sessioun ewechgeholl.
+329	{0} Quellereie si fir d'Läsche markéiert. Uwenden schreiwt de ganze Batch; Alles réckgängeg restauréiert all Rei.
+330	Status
+331	Tab
+332	tab
+333	Tabellfeeler
+334	D'Editioun vun der aktiver Zell konnt net confirméiert ginn. Korrigéiert de Wäert ier Dir eng Rei dobäisetzt.
+335	D'Editioun vun der aktiver Zell konnt net confirméiert ginn. Korrigéiert de Wäert ier Dir Reie läscht.
+336	D'Editioun vun der aktiver Zell konnt net confirméiert ginn. Korrigéiert de Wäert virum Uwenden.
+337	Déi nei agefügte Rei gouf aus der ausstoender Sessioun ewechgeholl.
+338	D'Reiindikator-Kolonn ass net konfiguréiert.
+339	Déi ausgewielte Reiemeng ass fir dës Editiounssessioun net méi valabel. Keng Reie goufe geläscht.
+340	Déi ausgewielte Reie ware schonn geläscht. Keng zousätzlech Ännerung gouf gemaach.
+341	D'Quellerei ass fir d'Läsche markéiert. Uwenden schreiwt d'Läschen; Alles réckgängeg restauréiert d'Rei.
+342	Déi visuell Tabell konnt net erstallt ginn. Den Inhalt vum Editeur gouf net geännert.
+343	Zouverlässeg automatesch Erkennung benotzen oder explizitt en Trennzeechen auswielen
+344	Waart op dat aktivt Notepad++-Dokument.
+345	{0} - {1} x {2:N0} Kolonnen
+346	Ännerungen unhuelen
+347	Duerno
+348	All Datenzellen
+349	Virdrun
+350	CSV-Kolonn
+351	Wielt eng Aktioun an en Ëmfang, a klickt dann op Virschau.
+352	Aktuell Kolonn
+353	Sichen:
+354	kleng Buschtawen
+355	Aktioun:
+356	Aner Wäissraum gëtt als Escape-Sequenze gewisen; Längte ginn an UTF-16-Eenheete gezielt. Laang Wäerter gi verkierzt.
+357	D'Virschau konnt net erstallt ginn. Kontrolléiert den Ëmfang an de Sichtext oder wielt e méi klengen Ëmfang (maximal 250,000 Zellen / 16 Mi Zeechen).
+358	Maacht fir d'éischt eng Virschau. Ännerungen unhuelen aktualiséiert ausstoend Editiounen; Uwenden an der Toolbar schreiwt an Notepad++.\nKappzeile ginn ausgeschloss wann Kappzeil = éischte Rekord. Grouss-/Klengschreiwungs-Konversioun ass onofhängeg vun de Locale-Astellungen.
+359	Rekord-ID
+360	Text ersetzen (wuertwiertlech)
+361	Ersetzen duerch:
+362	Ëmfang:
+363	Wielt eng CSV-Datenkolonn.
+364	Ausgewielte Zellen / Reien
+365	gefëllten orange Punkte markéieren Espacen. 
+366	Espacen-Indikatore sinn verstoppt. 
+367	{0:N0} Zilzellen; {1:N0} Ännerungen an {2:N0} Reien. Déi éischt 50 Ännerunge ginn ugewisen; 
+368	D'Editiounssessioun huet sech geännert.
+369	D'Virschau ass net méi valabel. Kontrolléiert d'Editiounssessioun a maacht eng nei Virschau.
+370	CSV-Zellen transforméieren
+371	{0:N0} Zellen an der ausstoender Editiounssessioun transforméiert. Benotzt Uwenden fir Notepad++ ze aktualiséieren oder Alles réckgängeg fir ausstoend Editiounen ze verwerfen.
+372	Baussenzeg Wäissraum ewechhuelen
+373	GROUSS BUSCHTAWEN
+374	Vue zrécksetzen
+375	Espacen weisen
