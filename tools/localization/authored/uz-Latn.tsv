@@ -1,0 +1,378 @@
+# language: uz-Latn
+# source-fingerprint: b8da12c841cc40f32c498cbf7bb47a6c16bed241b42b4a4f4a0e78d32f2eb499
+000	Notepad++ uchun vizual CSV muharriri
+001	CSV Visual Editor haqida
+002	Aloqa: {0}
+003	Dasturchi {0} bilan bogʻlanish
+004	Dasturchi: {0}
+005	Ishlab chiqish versiyasi
+006	CSV Visual Editor sizga yoqdimi? Loyihani qoʻllab-quvvatlang.\nGitHub’da yulduz bering, fikringizni ulashing yoki hissa qoʻshish uchun dasturchi bilan bogʻlaning. Rahmat!
+007	Interfeys tili: {0}
+008	Bogʻlangan ilovani ochib boʻlmadi. Aloqa: {0}
+009	GitHub’dagi loyiha
+010	Versiya: {0}
+011	Versiya va build
+012	Kutilayotgan tahrirlar modeli oʻzgargani uchun {0} bloklandi. Qisman oʻzgarish saqlanmadi.
+013	{0} bloklandi: clipboard va tanlov toʻrtburchaklarining oʻlchamlari farq qiladi.
+014	{0} bloklandi: maqsad toʻrtburchagi CSV jadvalidan tashqariga chiqadi.
+015	{0} bloklandi: tahrirlanadigan maqsad toʻrtburchagi yoʻq.
+016	{0} × {1} ta CSV katak nusxalandi.
+017	Nusxalash/kesish bloklandi: tanlangan katakda oddiy elektron jadval matni sifatida aniq ifodalab boʻlmaydigan tab yoki qator uzilishi bor.
+018	Nusxalash uchun oʻchirishga tanlangan toʻliq qatorlar emas, CSV kataklari kerak.
+019	Nusxalash uchun CSV maʼlumot kataklarining bitta uzluksiz toʻrtburchak tanlovi kerak.
+020	{0} ta katak clipboard’ga kesildi va kutilayotgan tahrirlash sessiyasida boʻshatildi. Qoʻllash ularni Notepad++ ga yozadi.
+021	Kesish tugadi; tanlangan kataklar allaqachon boʻsh edi. Clipboard ularning dastlabki qiymatlarini saqlaydi.
+022	{0} faqat tahrirlash rejimida mavjud.
+023	{0} joriy jadval uchun mavjud emas.
+024	Joylashtirish bloklandi: {0} Hech qanday maʼlumot oʻzgartirilmadi.
+025	Joylashtirish tugadi; barcha maqsad qiymatlar allaqachon bir xil edi.
+026	Kutilayotgan tahrirlash sessiyasiga {0} ta oʻzgargan katak joylashtirildi. Qoʻllash ularni Notepad++ ga yozadi.
+027	{0} uchun oʻchirishga tanlangan toʻliq qatorlar emas, CSV kataklarining toʻrtburchagi kerak.
+028	{0} uchun CSV maʼlumot kataklarining bitta uzluksiz toʻrtburchak tanlovi kerak.
+029	Tahrirlash rejimining barqaror qator modelidan tashqarida {0} maqsadlari mavjud emas.
+030	Nusxalashdan oldin faol katak tahririni tasdiqlab boʻlmadi.
+031	Faol katak tahririni tasdiqlab boʻlmadi. {0} dan oldin qiymatni tuzating.
+032	Clipboard’da oddiy matn koʻrinishidagi kataklar yoʻq.
+033	Windows clipboard’i vaqtincha mavjud emas. Hech qanday maʼlumot oʻzgartirilmadi.
+034	Tanlangan CSV kataklari toʻrtburchagini Windows clipboard’iga nusxalash (Ctrl+C)
+035	Tanlangan CSV kataklarini nusxalash va kutilayotgan tahrirlash sessiyasida boʻshatish (Ctrl+X)
+036	Elektron jadval kataklarini tanlangan CSV katagi yoki toʻrtburchagiga joylashtirish (Ctrl+V)
+037	Kutilayotgan CSV tahrirlarida matnni almashtirish, tashqi boʻsh joylarni olib tashlash yoki harf registrini oʻzgartirishni oldindan koʻrish
+038	Joriy CSV katagi yoki qatorini Notepad++ manba buferida tanlash
+039	Manba
+040	Oʻzgartirish
+041	Haqida
+042	Qoʻllash
+043	Oʻsish tartibida
+044	Bekor qilish
+045	Yopish
+046	Ustun
+047	Nusxalash
+048	Kesish
+049	Kamayish tartibida
+050	Tahrirlash
+051	Tahrirlashdan chiqish
+052	Registrni hisobga olish
+053	Son
+054	Asl tartib
+055	Joylashtirish
+056	Oldindan koʻrish
+057	Yangilash
+058	Qatorlar
+059	Jadval
+060	Matn
+061	Qiymat
+062	Ustun xulosasi: joriy koʻrinishdagi sonlar, noyob qiymatlar, sonli oraliq va tez-tez uchraydigan qiymatlar.
+063	Ustun xulosasi uchun tayyor, faqat oʻqishga moʻljallangan jadval kerak. Avval tahrirlash rejimidan chiqing.
+064	Filtrlash va saralash: ustun qoidalari va matnli/sonli saralash darajalarini birlashtirish. Faqat koʻrinish oʻzgaradi; CSV oʻzgarmaydi.
+065	Filtrlash va saralash: ustun qoidalari va uchtagacha matnli/sonli saralash darajasini birlashtirish. Faqat koʻrinish oʻzgaradi.
+066	Filtrlash va saralash: {0} shart, {1} saralash darajasi. Koʻrinishni tiklash barcha qoidalarni tozalaydi.
+067	Filtrlash va saralash uchun tayyor, faqat oʻqishga moʻljallangan jadval kerak. Avval tahrirlash rejimidan chiqing.
+068	Diagnostika (0)
+069	0 ta oʻzgarish
+070	Shart qoʻshish
+071	Saralash darajasini qoʻshish
+072	Koʻrinishni qoʻllash
+073	Harf registri
+074	Registrni hisobga oluvchi matn taqqoslash. Qiymatlardagi boʻsh joylar aynan oʻzi kabi qaraladi.
+075	Qoidalarni tekshiring: {0}
+076	Shart
+077	{0} / 8 shart; {1} / 3 saralash darajasi. Mos qatorlarni tekshirish uchun oldindan koʻring.
+078	Oʻz ichiga oladi
+079	Oʻz ichiga olmaydi
+080	Teng emas
+081	Boʻsh = nol belgi. Faqat boʻsh joy = boʻsh boʻlmagan boʻsh joy/tab/qator uzilishlari ketma-ketligi.\nSonlar oʻnlik nuqtadan (-12.5) foydalanadi, guruhlashsiz va daraja koʻrsatkichlarisiz; aniqlik mutlaqo saqlanishi kerak.
+082	Shu bilan tugaydi
+083	Teng
+084	Filtr qiymati
+085	Filtrlar
+086	Boʻsh
+087	Boʻsh emas
+088	Faqat boʻsh joy emas
+089	Faqat boʻsh joy
+090	Boʻsh joylarni ham qoʻshgan holda aynan kiritilgan matn. Sonli qoidalar nuqtali aniq oʻnlik sonni talab qiladi.
+091	BARCHA shartga mos
+092	ISTALGAN shartga mos
+093	Son =
+094	Son >
+095	Son >=
+096	Son <
+097	Son <=
+098	Son (oʻnlik)
+099	Oldindan koʻrish: koʻrsatilgan {1:N0} qatordan {0:N0} tasi. CSV oʻzgarmadi.
+100	Shartni olib tashlash
+101	Saralash darajasini olib tashlash
+102	Qoidalarni tiklash
+103	Qoidalar joriy qidiruvni ham hisobga oladi. Bekor qilish faol koʻrinishni saqlaydi.
+104	Saralash
+105	Shu bilan boshlanadi
+106	Matn: registrni hisobga olmaydigan ordinal tartib. Son: aniq oʻnlik qiymatlar; yaroqsiz/boʻsh qiymatlar oxirida.\nTeng kalitlar manba tartibini saqlaydi. Manba tartibini tiklash uchun barcha darajalarni olib tashlang.
+107	Proyeksiya cheklangan; koʻrsatilmagan qatorlar kiritilmaydi. 
+108	Filtrlash va saralash
+109	Yuqori daraja ustun; keyingi darajalar teng qiymatlarni ajratadi. Koʻpi bilan 3.
+110	Qiymat (aynan, boʻsh joylar bilan)
+111	Faqat koʻrinish — CSV qiymatlari va manba tartibi oʻzgarmaydi. {0:N0} qator koʻrsatilgan.\n
+112	{0} uchun aniq qoʻllab-quvvatlanadigan kodlash profili yoʻqligi sabab Qoʻllash bloklandi. Muharrir mazmuni oʻzgartirilmadi.
+113	{0} uchun qatʼiy kodlash tekshiruvi aniq qayta-aylantirishni bermagani sabab Qoʻllash bloklandi. Muharrir mazmuni oʻzgartirilmadi.
+114	Kutilayotgan almashtirishni {0} ichida aniq ifodalab boʻlmagani sabab Qoʻllash bloklandi. Almashtirish belgisi ishlatilmadi va muharrir mazmuni oʻzgartirilmadi.
+115	{0} uchun Qoʻllash hali yoqilmagan. Muharrir mazmuni oʻzgartirilmadi. Yozish faqat yoʻqotishsiz tekshiruvdan soʻng UTF-8 (65001) va Windows-1250 (1250) uchun yoqiladi. Hammasini bekor qilishdan foydalaning yoki Notepad++ ichida hujjatni UTF-8 ga aylantirib, tahrirlash rejimini qayta oching.
+116	Tahrirlash rejimida Yangilash oʻchirilgan. Avval barcha kutilayotgan oʻzgarishlarni qoʻllang yoki bekor qiling.
+117	Scintilla kod sahifasi {0}
+118	Faol hujjat {0:N0} bayt. Joriy xavfsiz snapshot chegarasi {1:N0} bayt.
+119	Faol Notepad++ hujjatini oʻqib boʻlmadi. Muharrir mazmuni oʻzgartirilmadi.
+120	Qoʻllash natijasi kodlash tufayli bloklangan holat emas.
+121	Fon rejimidagi jadval qurilishi natijasiz tugadi.
+122	CSV oʻzgarishlari qoʻllandi, ammo oldingi kursor joyi yoki tanlovni tiklab boʻlmadi. Hujjatning barcha oʻzgarishini hali ham bitta amal bilan bekor qilish mumkin.
+123	muharrirning joriy kod sahifasi
+124	Muharrir buferini vizual jadvalga aylantirib boʻlmadi. Ajratgichni aniq tanlang yoki hujjatni tuzatgandan soʻng yangilang.
+125	Jadval qurilishi toʻliq boʻlmagan natija qaytardi.
+126	&Haqida
+127	&Qidiruvni tozalash
+128	&CSV
+129	&Ajratgich
+130	&Tahrirlash
+131	Qidiruvda Esc
+132	&Jadvaldan topish
+133	&Sarlavha
+134	&Keyingi mos katak
+135	&Oldingi mos katak
+136	Koʻrinishni tiklash: qidiruvni, ustun shartlarini va barcha saralashni tozalash.
+137	&Qidiruv
+138	&Qidiruv ustuni
+139	Boʻsh joylarni koʻrsatish: kichik toʻliq toʻq sariq nuqtalar. Faqat koʻrsatish; CSV qiymatlari oʻzgarmaydi.
+140	&Jadvalni koʻrsatish
+141	&Shu boʻyicha saralash
+142	&Jadval
+143	&Koʻrinish
+144	Filtr qiymati koʻpi bilan 4,096 belgi boʻlishi mumkin.
+145	BARCHA
+146	Boshlangʻich bayt tartibi belgisi birinchi maydondan chiqarildi.
+147	ISTALGAN
+148	Qoʻshtirnoqqa olinmagan maydonda qoʻshtirnoq belgisi paydo boʻldi.
+149	Clipboard qatorlari bitta toʻrtburchak katak matritsasini hosil qilishi kerak.
+150	Diagnostika kodi: {0}.
+151	Har bir saralash darajasi boshqa ustundan foydalanishi kerak.
+152	Xato
+153	yuqori
+154	Maʼlumot
+155	past
+156	oʻrta
+157	Qoʻllab-quvvatlanadigan ajratgichlarning hech biri yetarlicha ishonchli koʻp maydonli tuzilma bermadi.
+158	yoʻq
+159	Bitta vizual qatorga {0:N0} katak kerak boʻlar edi, bu joriy umumiy {1:N0} chegarasidan oshadi. Hech bir ustun yashirilmadi.
+160	Yozuvda {0} ta maydon bor; namuna ichidagi eng koʻp uchraydigan songa koʻra {1} ta kutilgan.
+161	Boʻsh joylar: {0}; boshida: {1}; oxirida: {2}. Uzunligi: {3} UTF-16 birligi.\nToʻq sariq nuqtalar haqiqiy boʻsh joylarni belgilaydi. Oʻqilishi uchun koʻrsatish oraligʻi kengaytiriladi; CSV belgilar oʻzgarmaydi. Faqat boʻsh joylardan iborat katakda bosh va oxir hisoblari ustma-ust tushadi.
+162	Clipboard katak matritsasi xavfsiz joylashtirish chegarasidan oshadi.
+163	Clipboard’da qoʻllab-quvvatlanmaydigan boshqaruv belgisi bor.
+164	Clipboard’da muharrir xavfsiz joylashtira oladiganidan koʻp ustun bor.
+165	Clipboard’da muharrir xavfsiz joylashtira oladiganidan koʻp qator bor.
+166	Clipboard matni xavfsiz 16 Mi UTF-16 belgi birligi chegarasidan oshadi.
+167	Oxirgi qoʻshtirnoqli maydon matn tugashidan oldin yopilmadi.
+168	Maydonlar soni boshqa yozuvlardan farq qiladi.
+169	Amalni tugatib boʻlmadi. Hujjatni, tanlangan qiymatlarni va oʻlcham chegaralarini tekshiring.
+170	Tahlil qilingan hujjatda {0:N0} ustun bor, bu vizual jadvalning joriy {1:N0} chegarasidan oshadi. Hech bir ustun yashirilmadi.
+171	Taklif qilingan ajratgich ishonchliligi past. Ajratgich sozlamasini tekshiring.
+172	Ikki ajratgich nomzodining ballari oʻxshash. Ajratgich sozlamasini tekshiring.
+173	Yopuvchi qoʻshtirnoqdan keyin kutilmagan belgilar bor.
+174	nomaʼlum
+175	-12.5 kabi nuqtali aniq oʻnlik sonni ishlating. Guruhlash, daraja koʻrsatkichlari va yaxlitlangan qiymatlar qoʻllab-quvvatlanmaydi.
+176	null boʻlmagan sakkiztagacha filtr shartidan foydalaning.
+177	null boʻlmagan uchtagacha saralash darajasidan foydalaning.
+178	Koʻrinish qoidalari joriy jadvaldan tashqaridagi ustunga murojaat qiladi.
+179	Ogohlantirish
+180	Ustun xulosasi
+181	Filtrlash va saralash
+182	Vizual jadvalni ochish
+183	Jadvalni yangilash
+184	yangi:{0}
+185	yangi:{0} *
+186	Tanlash
+187	Oʻchirish uchun toʻliq qatorlarni tanlash
+188	Mantiqiy manba yozuvi yoki kutilayotgan tuzilmaviy qator
+189	Qator koʻrsatkichi ustunini aniqlab boʻlmadi.
+190	Qator DataGridView tarkibida boʻlishi kerak.
+191	Barcha ustunlar
+192	{0:N0} / {1:N0} katak
+193	{0:N0} katak
+194	Qidiruvni tozalash
+195	Qidiruvni tozalash (Esc). Qidiruv ustuni va saralashni saqlash.
+196	Koʻrsatilgan qatorlarni filtrlash. Enter: keyingi mos katak. Shift+Enter: oldingi. Escape: tozalash.
+197	Keyingi mos katak
+198	Keyingi mos katak (F3 / Enter)
+199	Moslik yoʻq
+200	Mos qatorlar yoʻq.\nQidiruvni oʻzgartiring yoki Koʻrinish > Filtrlash va saralash / Koʻrinishni tiklashdan foydalaning.
+201	Oldingi mos katak
+202	Oldingi mos katak (Shift+F3 / Shift+Enter)
+203	Barcha maʼlumot ustunlaridan qidirish yoki bitta ustun tanlash.
+204	Qidiruv ustuni
+205	Koʻrsatilgan CSV qatorlaridan qidirish (Ctrl+F). Qiymatlar va manba matni oʻzgarmaydi.
+206	Jadvaldan qidirish...
+207	Jadvaldan qidirish
+208	Qidiruv natijalari
+209	Qidirilmoqda...
+210	Manbaga oʻtish bloklandi: boshqa Notepad++ hujjati faol. Koʻrsatilgan CSV ga qayting yoki jadvalni yangilang.
+211	Manbaga oʻtish bloklandi: saqlangan tahlil natijasi endi oʻzgarmas manba snapshot’iga mos kelmaydi. Avval jadvalni yangilang.
+212	Manbaga oʻtish bloklandi: qatʼiy kodlangan uzunlik Scintilla bildirgan hujjat uzunligiga mos kelmaydi.
+213	Manbaga oʻtish bloklandi: jadval koʻrsatilgandan keyin faol muharrir mazmuni oʻzgardi. Avval jadvalni yangilang.
+214	Manbaga oʻtish bloklandi: joriy Scintilla kod sahifasida aniq bayt-joylashuv profili yoʻq.
+215	Manbaga oʻtish bloklandi: jadval koʻrsatilgandan keyin muharrir kod sahifasi oʻzgardi. Avval jadvalni yangilang.
+216	Manbaga oʻtish bloklandi: tanlangan proyeksiya katagida xom manba maydoni yoʻq.
+217	Manbaga oʻtish bloklandi: manba belgilar oraligʻini Scintilla baytlariga yoʻqotishsiz moslashtirib boʻlmadi.
+218	Manbaga oʻtish bloklandi: mantiqiy manba yozuvi saqlangan tahlil natijasida mavjud emas.
+219	Manbaga oʻtish muvaffaqiyatsiz: faol Notepad++ buferini oʻqib boʻlmadi. Hujjat mazmuni oʻzgartirilmadi.
+220	Scintilla tanlovini koʻchirishda manbaga oʻtish muvaffaqiyatsiz boʻldi. Hujjat mazmuni oʻzgartirilmadi.
+221	Joriy vizual jadvalda toʻliq manba bazasi boʻlmaguncha manbaga oʻtish mavjud emas. Avval jadvalni yangilang.
+222	Manbaga oʻtish uchun joriy CSV qatori yoki katagi kerak.
+223	Manbaga oʻtish tugallanmadi. Hujjat mazmuni oʻzgartirilmadi.
+224	Notepad++ da manba yozuvi {0}, ustun {1} tanlandi.
+225	Notepad++ da manba yozuvi {0} tanlandi.
+226	Joriy vizual qator barqaror manba-yozuv identifikatorini bermaydi.
+227	Bu kutilayotgan kiritilgan qatorda Qoʻllash tugamaguncha manba joyi yoʻq.
+228	Joriy koʻrinish: koʻrsatilgan {1:N0} qatordan {0:N0} tasi.
+229	Noyob qiymatlar boʻsh qiymatlarni ham qoʻshib, registrni hisobga oluvchi aniq matndan foydalanadi.\nTakrorlangan qatorlar = qatorlar soni minus noyob qiymatlar soni. Sonli oraliq nuqtali aniq oʻnlik qiymatlardan foydalanadi.
+230	Boʻsh
+231	Turi
+232	Eng koʻp uchraydigan qiymatlar (20 tagacha)
+233	Mavjud emas
+234	Sonli minimum: {0}     Maksimum: {1}\nEng uzun qiymat: {2:N0} UTF-16 birligi. {3:N0} qiymat bir martadan koʻp uchraydi.
+235	 Cheklangan proyeksiya; bu butun fayl EMAS.
+236	Qatorlar: {0:N0}     Boʻsh: {1:N0}     Faqat boʻsh joy: {2:N0}\nNoyob: {3:N0}     Takrorlangan qatorlar: {4:N0}     Sonli: {5:N0}
+237	Ustun xulosasi
+238	Boʻsh joy
+239	Kutilayotgan tahrirlash sessiyasiga yangi qator qoʻshildi. Qoʻllash uni muharrir buferiga yozadi; Hammasini bekor qilish uni tashlab yuboradi.
+240	Manba qatori oʻz manba yozuvi indeksini bermadi.
+241	Amal
+242	Faol hujjat snapshot’i muvaffaqiyatsiz. Muharrir mazmuni oʻzgartirilmadi.
+243	Qator qoʻshish
+244	Barcha kutilayotgan katak va qator tahrirlari bekor qilindi. Notepad++ muharrir buferi oʻzgartirilmadi.
+245	Barcha katak va qator tahrirlarini faol muharrirga bitta bekor qilinadigan amal sifatida qoʻllash
+246	Qoʻllash bloklandi: boshqa Notepad++ hujjati faol. Asl hujjatga qayting yoki Hammasini bekor qilishdan foydalaning.
+247	Qoʻllash bloklandi: tahrirlash rejimi boshlangandan keyin muharrir buferi oʻzgardi. Qayta tahrirlashdan oldin bekor qiling va yangilang.
+248	Qoʻllash bloklandi: tahrirlash rejimi boshlangandan keyin muharrir kod sahifasi oʻzgardi. Bekor qiling va tahrirlash rejimini qayta oching.
+249	Qoʻllash muvaffaqiyatsiz. Tahrirlash sessiyasi ochiq qoladi; qayta urinish yoki bekor qilishdan oldin muharrir buferini tekshiring.
+250	Qoʻllash tugallanmadi. Avtomatik ustidan yozish urinishi qilinmadi.
+251	Avtomatik aniqlash
+252	avtomatik ishonch {0}
+253	{0} — ajratgichni avtomatik aniqlash ishonchsiz; qoʻlda tanlash kerak.
+254	Avtomatik aniqlash
+255	Nomzod ballari
+256	{0} katak / {1} qator (+{2} / -{3})
+257	Belgi
+258	{0} belgi / {1} muharrir bayti
+259	Yuqoridagi ajratgichlar roʻyxatidan Vergul, Nuqtali vergul yoki Tab’ni tanlang.
+260	Birinchi mantiqiy yozuv sarlavha ekanini aniq tanlash
+261	Tozalash
+262	Joriy qidiruv filtrini va faqat koʻrinishga taʼsir qiluvchi saralashni tozalash
+263	Kod
+264	 - {0} ustun sharti ({1}), {2} saralash darajasi
+265	{0} — {1} × {2} ustun — {3}, {4} — {5} — {6}{7}{8}{9}.
+266	Vergul (,)
+267	vergul
+268	Ishonch
+269	Barcha tanlangan barqaror maʼlumot qatorlarini kutilayotgan tahrirlash sessiyasidan oʻchirish
+270	Qatorni oʻchirish
+271	Qatorlarni oʻchirish ({0})
+272	Tanlangan barqaror maʼlumot qatorini kutilayotgan tahrirlash sessiyasidan oʻchirish
+273	Tanlangan barqaror maʼlumot qatori yoki qatorlarini kutilayotgan tahrirlash sessiyasidan oʻchirish
+274	Ajratgich:
+275	Diagnostika ({0})
+276	Barcha kutilayotgan katak oʻzgarishlari, kiritishlar va oʻchirishlarni tashlab yuborish
+277	Hujjat
+278	 — TAHRIRLASH REJIMI: {0} katak, {1} qator, +{2} / -{3}
+279	 - Tahrirlash rejimi
+280	Tahrirlash rejimida kutilayotgan oʻzgarishlar bor. Chiqishdan oldin Qoʻllash yoki Hammasini bekor qilishdan foydalaning.
+281	Joriy jadval uchun tahrirlash rejimi mavjud emas. Avval tahlil xatolari yoki koʻrsatish chegaralarini hal qiling.
+282	Qator soni cheklangan vizual proyeksiyadan tahrirlashni boshlash mumkin emas.
+283	Tahlil qilingan CSV’da xatolar bor paytda tahrirlashni boshlash mumkin emas.
+284	Joriy jadval uchun tahrirlash mavjud emas.
+285	{0} — boʻsh muharrir buferi; koʻrsatiladigan CSV yozuvlari yoʻq.
+286	Kataklar va qatorlar uchun aniq tahrirlash rejimiga kirish
+287	Kataklar va qatorlar uchun aniq tahrirlash rejimiga kirish. Qoʻllash faqat muharrir buferiga yozadi.
+288	Kataklar va qatorlar uchun aniq tahrirlash rejimiga kirish. Toʻliq tahrirlash modeli faqat soʻralganda yaratiladi.
+289	{0} xato, {1} ogohlantirish
+290	birinchi qator sarlavha sifatida
+291	Birinchi qator — sarlavha
+292	Sarlavha:
+293	Tanlangan qatordan keyin yangi qator kiritish yoki qator tanlanmagan boʻlsa oxiriga qoʻshish
+294	{0} — CSV maʼlumotlari fonda yuklanmoqda; Notepad++ javob berishda davom etadi.
+295	qoʻlda tanlash
+296	koʻrsatilgan {1} qatordan {0} tasi mos
+297	Xabar
+298	Kutilayotgan sessiyadan {0} ta yangi kiritilgan qator olib tashlandi.
+299	Koʻrsatish uchun diagnostika yoʻq.
+300	Sarlavha qatori yoʻq
+301	sarlavha qatori yoʻq
+302	Mos qatorlar yoʻq.\nBoshqa qidiruv matni yoki ustunni sinab koʻring.
+303	tahlil diagnostikasi yoʻq
+304	Ishonchli ajratgichni xavfsiz tanlab boʻlmadi.
+305	Qoʻllanadigan narsa yoʻq: tahrirlash sessiyasida kutilayotgan oʻzgarishlar yoʻq.
+306	Cheklangan vizual jadval fonda tahlil qilinmoqda va tayyorlanmoqda…
+307	Kutilayotgan katak oʻzgarishlari va tuzilmaviy qator oʻzgarishlari
+308	Kutilayotgan kiritilgan qator {0}; hali qoʻllanmagan
+309	{0} kutilayotgan qator
+310	Plagin tayyor. Faol muharrir buferi oʻqilmoqda...
+311	Toʻliq tahrirlash sessiyasi tayyorlanmoqda…
+312	Xususiyat
+313	Hozir faol boʻlgan Notepad++ muharrir buferini oʻqish va koʻrsatish
+314	Yozuv
+315	Hammasini bekor qilish
+316	{0} qator
+317	Nuqtali vergul (;)
+318	nuqtali vergul
+319	Jiddiylik
+320	Batafsil tahlil va ajratgich diagnostikasini koʻrsatish
+321	{1} qatordan {0} tasi koʻrsatilmoqda
+322	Snapshot
+323	Snapshot xatosi
+324	Saralash darajasi {0}: {1}, {2}. Faqat koʻrinish.
+325	 — {0} {1} boʻyicha saralangan
+326	Mantiqiy manba yozuvi {0}
+327	Mantiqiy manba yozuvi {0}; kutilayotgan tahrirlash sessiyasida oʻzgartirilgan
+328	{0} manba qatori oʻchirish uchun belgilandi va {1} kiritilgan qator kutilayotgan sessiyadan olib tashlandi.
+329	{0} manba qatori oʻchirish uchun belgilandi. Qoʻllash butun toʻplamni yozadi; Hammasini bekor qilish har bir qatorni tiklaydi.
+330	Holat
+331	Tab
+332	tab
+333	Jadval xatosi
+334	Faol katak tahririni tasdiqlab boʻlmadi. Qator qoʻshishdan oldin qiymatni tuzating.
+335	Faol katak tahririni tasdiqlab boʻlmadi. Qatorlarni oʻchirishdan oldin qiymatni tuzating.
+336	Faol katak tahririni tasdiqlab boʻlmadi. Qoʻllashdan oldin qiymatni tuzating.
+337	Yangi kiritilgan qator kutilayotgan sessiyadan olib tashlandi.
+338	Qator koʻrsatkichi ustuni sozlanmagan.
+339	Tanlangan qatorlar toʻplami bu tahrirlash sessiyasi uchun endi yaroqsiz. Hech qanday qator oʻchirilmadi.
+340	Tanlangan qatorlar avval oʻchirilgan. Qoʻshimcha oʻzgarish qilinmadi.
+341	Manba qatori oʻchirish uchun belgilandi. Qoʻllash oʻchirishni yozadi; Hammasini bekor qilish qatorni tiklaydi.
+342	Vizual jadvalni yaratib boʻlmadi. Muharrir mazmuni oʻzgartirilmadi.
+343	Ishonchli avtomatik aniqlashdan foydalanish yoki ajratgichni aniq tanlash
+344	Faol Notepad++ hujjati kutilmoqda.
+345	{0} - {1} x {2:N0} ustun
+346	Oʻzgarishlarni qabul qilish
+347	Keyin
+348	Barcha maʼlumot kataklari
+349	Oldin
+350	CSV ustuni
+351	Amal va diapazonni tanlang, soʻng Oldindan koʻrish tugmasini bosing.
+352	Joriy ustun
+353	Topish:
+354	kichik harflar
+355	Amal:
+356	Boshqa boʻsh joylar escape-ketma-ketliklari sifatida koʻrsatiladi; uzunlik UTF-16 birliklarida hisoblanadi. Uzun qiymatlar qisqartiriladi.
+357	Oldindan koʻrishni yaratib boʻlmadi. Diapazon va qidiruv matnini tekshiring yoki kichikroq diapazon tanlang (eng koʻpi 250,000 katak / 16 Mi belgi).
+358	Avval oldindan koʻring. Oʻzgarishlarni qabul qilish kutilayotgan tahrirlarni yangilaydi; asboblar panelidagi Qoʻllash Notepad++ ga yozadi.\nSarlavha = birinchi yozuv boʻlsa, sarlavhalar chiqarib tashlanadi. Registrni oʻzgartirish hudud sozlamalaridan mustaqil.
+359	Yozuv ID
+360	Matnni almashtirish (aynan)
+361	Shu bilan almashtirish:
+362	Diapazon:
+363	CSV maʼlumot ustunini tanlang.
+364	Tanlangan kataklar / qatorlar
+365	toʻliq toʻq sariq nuqtalar boʻsh joylarni belgilaydi. 
+366	boʻsh joy koʻrsatkichlari yashirilgan. 
+367	{0:N0} maqsad katak; {2:N0} qatorda {1:N0} oʻzgarish. Dastlabki 50 oʻzgarish koʻrsatiladi; 
+368	Tahrirlash sessiyasi oʻzgardi.
+369	Oldindan koʻrish endi yaroqsiz. Tahrirlash sessiyasini tekshirib, yangi oldindan koʻrish yarating.
+370	CSV kataklarini oʻzgartirish
+371	Kutilayotgan tahrirlash sessiyasida {0:N0} katak oʻzgartirildi. Notepad++ ni yangilash uchun Qoʻllashni yoki kutilayotgan tahrirlarni tashlash uchun Hammasini bekor qilishni ishlating.
+372	Tashqi boʻsh joylarni olib tashlash
+373	BOSH HARFLAR
+374	Koʻrinishni tiklash
+375	Boʻsh joylarni koʻrsatish
