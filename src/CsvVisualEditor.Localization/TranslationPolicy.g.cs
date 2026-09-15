@@ -6,11 +6,11 @@ internal static class TranslationPolicy
     internal static readonly IReadOnlySet<string> SupportedCodes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
         "en",
+        "hu",
         "zh-CN",
         "hi",
         "es",
         "ar",
         "fr",
-        "hu",
     };
 }
