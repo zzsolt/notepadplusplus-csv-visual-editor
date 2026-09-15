@@ -20,6 +20,7 @@ internal sealed class CsvDataGridView : DataGridView
     }
 
     private const int WmKeyDown = 0x0100;
+    private const int WmSysKeyDown = 0x0104;
     private const int WmCut = 0x0300;
     private const int WmCopy = 0x0301;
     private const int WmPaste = 0x0302;
@@ -146,7 +147,7 @@ internal sealed class CsvDataGridView : DataGridView
 
     protected override void WndProc(ref Message message)
     {
-        if (message.Msg == WmKeyDown &&
+        if ((message.Msg is WmKeyDown or WmSysKeyDown) &&
             SearchCommandHandler?.Invoke((Keys)message.WParam.ToInt32() | ModifierKeys) == true) return;
         if (TryResolveNativeClipboardCommand(
                 message.Msg,

@@ -1504,6 +1504,70 @@
     "View.ShowSpaces": {
       "text": "स्पेस दिखाएँ",
       "sourceHash": "2c65f4696fd7ebc36461381e5fc4cb60d09cf2add06e33dfee52f58b1a3e46d0"
+    },
+    "Cell.Title": {
+      "text": "सेल का विवरण",
+      "sourceHash": "c0224a51a6db8ec49eaf1bd9622bbbc2fff83cd85c7f007021cd5b522c248ecd"
+    },
+    "Cell.OpenHint": {
+      "text": "चुने हुए सेल की पूरी सामग्री देखें या संपादित करें (Alt+Enter)। लागू करने तक बदलाव लंबित रहते हैं।",
+      "sourceHash": "7c6798c3e11a604ecc9bea0925b74e13fde6083da63415841636f43a30a81d6d"
+    },
+    "Cell.ReadOnlyHint": {
+      "text": "केवल पढ़ने के लिए। मान बदलने के लिए यह विंडो बंद करें और तालिका में संपादन मोड खोलें।",
+      "sourceHash": "c8504c3dd9efc602e00dfb55ece9e7ae832d3b2fb0897869487d8122a9f4aa3e"
+    },
+    "Cell.EditHint": {
+      "text": "तालिका में लागू करने तक बदलाव लंबित रहते हैं। Ctrl+Enter इस सेल का बदलाव स्वीकार करता है; Esc इस विंडो के बदलाव छोड़ देता है।",
+      "sourceHash": "b18f6bea6b845e77307c2df50196d5005f977d94416cf781919216068a288150"
+    },
+    "Cell.NotationHint": {
+      "text": "· = स्पेस; \\t = टैब; \\r = CR; \\n = LF; \\\\ = बैकस्लैश; \\uXXXX = UTF-16 इकाई। वास्तविक मध्य बिंदु के लिए \\u00B7 लिखें। पूर्वावलोकन केवल प्रदर्शन है।",
+      "sourceHash": "2f97bc3837eaacaa07573cba1fbd3ec435adf50c3746bc4b5206a579308adfc6"
+    },
+    "Cell.ExactText": {
+      "text": "सटीक पाठ",
+      "sourceHash": "c3417030ff775b135e0784d35fd37ec84f735f806f4f753bf7e7c1f24109e01b"
+    },
+    "Cell.WordWrap": {
+      "text": "पाठ लपेटें",
+      "sourceHash": "1906c4a2765f5d2bfae817546c47fb03995e8e08254ccac617d286cc909cfac7"
+    },
+    "Cell.TooLarge": {
+      "text": "सेल विवरण की सीमा {0:N0} UTF-16 इकाइयाँ है। कोई डेटा काटा या बदला नहीं गया।",
+      "sourceHash": "b956ae9f4c7e95533f44eccc36a24eb27b984ca0648737371b9da8fb006dde38"
+    },
+    "Cell.InvalidEscape": {
+      "text": "अक्षर {0:N0} पर अमान्य एस्केप है। \\\\, \\t, \\r, \\n या \\uXXXX का उपयोग करें। कोई बदलाव स्वीकार नहीं हुआ।",
+      "sourceHash": "2ecc1c3ff4928f8ccfa1838cb310c3007000b6ee771974225335dd7a0c10d71a"
+    },
+    "Cell.Metrics": {
+      "text": "लंबाई: {0:N0} UTF-16 इकाइयाँ | स्पेस: {1:N0} | टैब: {2:N0}\nपंक्ति अंत: CRLF {3:N0} | LF {4:N0} | CR {5:N0}",
+      "sourceHash": "e3994efbd0a8b98be79b38048371f35ef654339eb3fc11993f01ab4465db4f36"
+    },
+    "Cell.EmptyValue": {
+      "text": "खाली मान (शून्य अक्षर)।",
+      "sourceHash": "686226c4f9290850dc0175eb7f8f742df2b82e35e795e0c0c239004d884a2ff1"
+    },
+    "Cell.WhitespaceOnly": {
+      "text": "इस मान में केवल रिक्त स्थान वाले वर्ण हैं; यह खाली नहीं है।",
+      "sourceHash": "1e1c45914ca83f68b8ed1bd42b7e1bb5b8a8c4e1df6b0792287468ef78ebd6ae"
+    },
+    "Cell.Location": {
+      "text": "रिकॉर्ड {0} | स्तंभ {1}",
+      "sourceHash": "3099902fad8f60c455d251ea6fa0775cd96f20d19389b4c0c5dfcc07d4f029c2"
+    },
+    "Cell.SelectCell": {
+      "text": "पहले एक CSV डेटा सेल चुनें। पंक्ति संकेतक और निदान सेल यहाँ संपादित नहीं किए जा सकते।",
+      "sourceHash": "c420bf7f268b52c4fdacd29ae491ae31a1a65e15912de4066643d68af9576f01"
+    },
+    "Cell.ChangeStaged": {
+      "text": "सेल का बदलाव लंबित संपादन में स्वीकार कर लिया गया है। Notepad++ को अपडेट करने के लिए लागू करें, या लंबित संपादन छोड़ने के लिए सभी बदलाव वापस करें।",
+      "sourceHash": "7a8b748af0c917d356042adc987fe0f79ccc6e8ede0863286c78d74d968b44e8"
+    },
+    "Cell.ContextChanged": {
+      "text": "यह विंडो खुली रहने के दौरान तालिका या सेल बदल गया। सेल का बदलाव स्वीकार नहीं हुआ; सेल विवरण फिर से खोलें।",
+      "sourceHash": "9b230743c91644ac54d30d6c9fa5c044e6531cab5d51e8b84b2a697d3642ae82"
     }
   }
 }

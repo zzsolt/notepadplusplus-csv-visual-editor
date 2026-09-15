@@ -75,5 +75,5 @@ internal sealed partial class CsvGridForm
     }
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData) =>
-        TryHandleSearchKey(keyData) || base.ProcessCmdKey(ref msg, keyData);
+        TryHandleCellDetailsKey(keyData) || TryHandleSearchKey(keyData) || base.ProcessCmdKey(ref msg, keyData);
 }

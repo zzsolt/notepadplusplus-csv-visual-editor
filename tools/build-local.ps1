@@ -1,5 +1,5 @@
 param(
-    [string] $PackageVersion = ("0.14.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
+    [string] $PackageVersion = ("0.15.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
 )
 
 $ErrorActionPreference = 'Stop'

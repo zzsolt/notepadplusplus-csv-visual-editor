@@ -17,6 +17,7 @@ internal static class CsvCommandIdentity
         "CsvClipboardCutButton" => "Cut",
         "CsvClipboardPasteButton" => "Paste",
         "CsvGoToSourceButton" => "Source",
+        "CsvCellDetailsButton" => "Cell details",
         "CsvTransformButton" => "Transform",
         "CsvDataViewButton" => "Filter and sort",
         "CsvColumnSummaryButton" => "Column summary",

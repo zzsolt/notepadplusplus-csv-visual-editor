@@ -1504,6 +1504,70 @@
     "View.ShowSpaces": {
       "text": "Mostrar espacios",
       "sourceHash": "2c65f4696fd7ebc36461381e5fc4cb60d09cf2add06e33dfee52f58b1a3e46d0"
+    },
+    "Cell.Title": {
+      "text": "Detalles de la celda",
+      "sourceHash": "c0224a51a6db8ec49eaf1bd9622bbbc2fff83cd85c7f007021cd5b522c248ecd"
+    },
+    "Cell.OpenHint": {
+      "text": "Ver o editar el contenido completo de la celda seleccionada (Alt+Enter). Los cambios quedan pendientes hasta Aplicar.",
+      "sourceHash": "7c6798c3e11a604ecc9bea0925b74e13fde6083da63415841636f43a30a81d6d"
+    },
+    "Cell.ReadOnlyHint": {
+      "text": "Vista de solo lectura. Para cambiar un valor, cierre esta ventana y active el modo de edición de la tabla.",
+      "sourceHash": "c8504c3dd9efc602e00dfb55ece9e7ae832d3b2fb0897869487d8122a9f4aa3e"
+    },
+    "Cell.EditHint": {
+      "text": "Los cambios quedan pendientes hasta Aplicar en la tabla. Ctrl+Enter acepta esta celda; Esc descarta los cambios de esta ventana.",
+      "sourceHash": "b18f6bea6b845e77307c2df50196d5005f977d94416cf781919216068a288150"
+    },
+    "Cell.NotationHint": {
+      "text": "· = espacio; \\t = tabulador; \\r = CR; \\n = LF; \\\\ = barra inversa; \\uXXXX = unidad UTF-16. Un punto medio literal es \\u00B7. La vista previa solo muestra el contenido.",
+      "sourceHash": "2f97bc3837eaacaa07573cba1fbd3ec435adf50c3746bc4b5206a579308adfc6"
+    },
+    "Cell.ExactText": {
+      "text": "Texto exacto",
+      "sourceHash": "c3417030ff775b135e0784d35fd37ec84f735f806f4f753bf7e7c1f24109e01b"
+    },
+    "Cell.WordWrap": {
+      "text": "Ajustar texto",
+      "sourceHash": "1906c4a2765f5d2bfae817546c47fb03995e8e08254ccac617d286cc909cfac7"
+    },
+    "Cell.TooLarge": {
+      "text": "Los detalles de celda admiten hasta {0:N0} unidades UTF-16. No se truncaron ni cambiaron datos.",
+      "sourceHash": "b956ae9f4c7e95533f44eccc36a24eb27b984ca0648737371b9da8fb006dde38"
+    },
+    "Cell.InvalidEscape": {
+      "text": "Escape no válido en el carácter {0:N0}. Use \\\\, \\t, \\r, \\n o \\uXXXX. No se ha aceptado ningún cambio.",
+      "sourceHash": "2ecc1c3ff4928f8ccfa1838cb310c3007000b6ee771974225335dd7a0c10d71a"
+    },
+    "Cell.Metrics": {
+      "text": "Longitud: {0:N0} unidades UTF-16 | Espacios: {1:N0} | Tabuladores: {2:N0}\nFinales de línea: CRLF {3:N0} | LF {4:N0} | CR {5:N0}",
+      "sourceHash": "e3994efbd0a8b98be79b38048371f35ef654339eb3fc11993f01ab4465db4f36"
+    },
+    "Cell.EmptyValue": {
+      "text": "Valor vacío (cero caracteres).",
+      "sourceHash": "686226c4f9290850dc0175eb7f8f742df2b82e35e795e0c0c239004d884a2ff1"
+    },
+    "Cell.WhitespaceOnly": {
+      "text": "Este valor solo contiene caracteres en blanco; no está vacío.",
+      "sourceHash": "1e1c45914ca83f68b8ed1bd42b7e1bb5b8a8c4e1df6b0792287468ef78ebd6ae"
+    },
+    "Cell.Location": {
+      "text": "Registro {0} | Columna {1}",
+      "sourceHash": "3099902fad8f60c455d251ea6fa0775cd96f20d19389b4c0c5dfcc07d4f029c2"
+    },
+    "Cell.SelectCell": {
+      "text": "Seleccione primero una celda de datos CSV. Los indicadores de fila y las celdas de diagnóstico no se editan aquí.",
+      "sourceHash": "c420bf7f268b52c4fdacd29ae491ae31a1a65e15912de4066643d68af9576f01"
+    },
+    "Cell.ChangeStaged": {
+      "text": "El cambio de celda se añadió a las ediciones pendientes. Use Aplicar para actualizar Notepad++ o Revertir todo para descartar las ediciones pendientes.",
+      "sourceHash": "7a8b748af0c917d356042adc987fe0f79ccc6e8ede0863286c78d74d968b44e8"
+    },
+    "Cell.ContextChanged": {
+      "text": "La tabla o la celda cambió mientras esta ventana estaba abierta. No se aceptó el cambio; vuelva a abrir los detalles de la celda.",
+      "sourceHash": "9b230743c91644ac54d30d6c9fa5c044e6531cab5d51e8b84b2a697d3642ae82"
     }
   }
 }

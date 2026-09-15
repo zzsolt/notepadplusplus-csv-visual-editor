@@ -27,7 +27,7 @@ internal sealed class CsvCommandSurface : IDisposable
         foreach (var button in strips.SelectMany(static strip => strip.Items.OfType<ToolStripButton>()))
         {
             var text = CsvCommandIdentity.Of(button);
-            var parent = text.StartsWith("Refresh", StringComparison.Ordinal) || text == "Source" ? Table :
+            var parent = text.StartsWith("Refresh", StringComparison.Ordinal) || (text is "Source" or "Cell details") ? Table :
                 text.StartsWith("Diagnostics", StringComparison.Ordinal) || text.StartsWith("Show spaces", StringComparison.Ordinal) || (text is "Reset view" or "Filter and sort" or "Column summary") ? View :
                 text == "Clear" ? Search : Edit;
             Bind(parent, button);
@@ -37,6 +37,7 @@ internal sealed class CsvCommandSurface : IDisposable
     private void Bind(ToolStripMenuItem parent, ToolStripButton button)
     {
         var item = new ToolStripMenuItem();
+        if (CsvCommandIdentity.Of(button) == "Cell details") item.ShortcutKeyDisplayString = "Alt+Enter";
         // Never capture a stale availability explanation or repeatedly prepend names
         // every time the command surface is installed.
         var caption = button.Text ?? string.Empty;

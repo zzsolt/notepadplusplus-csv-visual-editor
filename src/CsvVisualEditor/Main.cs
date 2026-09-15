@@ -39,6 +39,7 @@ partial class Main : IDotNetPlugin
         Utils.SetCommand(L10n.Get(TextKey.Native_ColumnSummary), () => OpenDataTool(summary: true));
         Utils.MakeSeparator();
         Utils.SetCommand(L10n.Get(TextKey.Common_About), ShowAboutDialog);
+        Utils.SetCommand(L10n.Get(TextKey.Cell_Title), OpenCellDetails);
     }
 
     public void OnBeNotified(ScNotification notification)
@@ -116,6 +117,13 @@ partial class Main : IDotNetPlugin
         if (!_gridForm.Visible) _gridForm.ShowDockingForm();
         if (summary) _gridForm.ShowColumnSummary();
         else _gridForm.ShowDataViewDialog();
+    }
+
+    private void OpenCellDetails()
+    {
+        if (_gridForm is null) { ToggleDialog(); return; }
+        if (!_gridForm.Visible) _gridForm.ShowDockingForm();
+        _gridForm.ShowCellDetails();
     }
 
     private void RefreshTable()

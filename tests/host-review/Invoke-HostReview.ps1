@@ -169,6 +169,22 @@ try {
     Save-Window $form 'panel-clear.png'
     $labels=@([CsvHostWindows]::Children($form) | ForEach-Object { [CsvHostWindows]::ControlText($_) })
     if($labels -match '1 / 1') {throw 'Clear left a stale result counter'}
+    # Inspect the actual production cell dialog without creating pending edits.
+    $details = Open-DataDialog 'Cell details' 'Cell details'
+    Require-DialogText $details 'Read-only inspection.'
+    $valueEditors = @([CsvHostWindows]::Children($details) | Where-Object {
+        [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.Edit.', [StringComparison]::OrdinalIgnoreCase) -and [CsvHostWindows]::IsWindowVisible($_)
+    })
+    if ($valueEditors.Count -ne 1) { throw 'Expected exactly one visible exact cell editor' }
+    $expectedNotation = ([string][char]0xB7) * 2 + 'alpha' + ([string][char]0xB7) * 2
+    if ([CsvHostWindows]::ControlText($valueEditors[0]) -cne $expectedNotation) { throw 'Production cell detail value or space notation is incorrect' }
+    $acceptButtons = @([CsvHostWindows]::Children($details) | Where-Object {
+        [CsvHostWindows]::IsWindowVisible($_) -and [CsvHostWindows]::ControlText($_) -eq 'Accept changes'
+    })
+    if ($acceptButtons.Count -ne 0) { throw 'Read-only cell details must not offer acceptance' }
+    Save-Window $details 'cell-details-production.png'
+    Click-DataButton $details 'Close'
+    if ([CsvHostWindows]::ControlText($editors[0]) -cne $fixture) { throw 'Cell inspection changed the Scintilla source' }
     # 0.13: drive the ACTUAL production dialogs, not a test-only implementation.
     $rules = Open-DataDialog 'Filter and Sort' 'Filter and sort'
     Click-DataButton $rules 'Add condition'

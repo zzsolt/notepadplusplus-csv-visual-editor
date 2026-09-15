@@ -243,7 +243,7 @@ internal sealed partial class CsvGridForm : DockingForm
         _grid.CurrentCellChanged += (_, _) => UpdateSearchSummary();
         if (_grid is CsvDataGridView csvGrid)
         {
-            csvGrid.SearchCommandHandler = TryHandleSearchKey;
+            csvGrid.SearchCommandHandler = keyData => TryHandleCellDetailsKey(keyData) || TryHandleSearchKey(keyData);
             csvGrid.ClipboardCommandHandler = keyData =>
                 CsvGridClipboardController.TryHandleGridCommand(csvGrid, this, keyData);
         }
@@ -1443,6 +1443,7 @@ internal sealed partial class CsvGridForm : DockingForm
 
     private void UpdateControlAvailability()
     {
+        UpdateCellDetailsAvailability();
         UpdateDataToolAvailability();
         var hasTable = _projection is not null;
         var canEdit = CanStartEditMode();

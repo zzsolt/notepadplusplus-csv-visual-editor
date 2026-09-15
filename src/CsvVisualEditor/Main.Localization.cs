@@ -20,7 +20,7 @@ partial class Main
         // Command IDs belong to Notepad++; refresh them only after initialization.
         PluginData.FuncItems.RefreshItems();
         TextKey?[] keys = [TextKey.Native_OpenTable, TextKey.Native_RefreshTable,
-            TextKey.Native_FilterSort, TextKey.Native_ColumnSummary, null, TextKey.Common_About];
+            TextKey.Native_FilterSort, TextKey.Native_ColumnSummary, null, TextKey.Common_About, TextKey.Cell_Title];
         for (var index = 0; index < keys.Length && index < PluginData.FuncItems.Items.Count; index++)
         {
             if (keys[index] is not TextKey key) continue;

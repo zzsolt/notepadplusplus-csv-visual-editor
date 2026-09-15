@@ -30,6 +30,7 @@ internal static class CsvCommandIcons
         else if (command.StartsWith("Diagnostics", StringComparison.Ordinal)) { g.DrawEllipse(accent, 2, 2, 16, 16); Line(ink, 10, 9, 10, 14); using var dot = new SolidBrush(foreground); g.FillEllipse(dot, 9, 5, 2, 2); }
         else if (command == "Filter and sort") { g.DrawPolygon(ink, [new PointF(2, 3), new(18, 3), new(12, 10), new(12, 16), new(8, 18), new(8, 10)]); Line(accent, 4, 3, 16, 3); }
         else if (command == "Column summary") { Line(ink, 3, 3, 3, 17); Line(ink, 3, 17, 18, 17); g.DrawRectangle(accent, 6, 10, 2, 5); g.DrawRectangle(ink, 11, 6, 2, 9); g.DrawRectangle(accent, 16, 3, 2, 12); }
+        else if (command == "Cell details") { g.DrawRectangle(ink, 2, 2, 16, 16); Line(ink, 5, 7, 11, 7); Line(ink, 5, 11, 9, 11); Line(accent, 10, 15, 15, 10); Line(accent, 15, 10, 15, 15); Line(accent, 15, 15, 10, 15); }
         else if (command == "Search") { g.DrawEllipse(ink, 3, 3, 10, 10); Line(ink, 12, 12, 17, 17); }
         else if (command == "Previous match") { Line(ink, 5, 12, 10, 7); Line(ink, 10, 7, 15, 12); }
         else if (command == "Next match") { Line(ink, 5, 8, 10, 13); Line(ink, 10, 13, 15, 8); }

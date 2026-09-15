@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.15 (unreleased)
+
+- Add resizable cell details with exact whitespace and line-ending inspection.
+- Add lossless pending cell editing, validation and preview through toolbar, menu and Alt+Enter.
+- Localize the new controls in all seven maintained interface languages.
+
+## 0.14
+
+- Add English, Hungarian, Simplified Chinese, Hindi, Spanish, Arabic and French interfaces.
+- Follow the Notepad++ display language; use English for other languages.
+
 ## 0.13
 
 - Add combined column conditions and three-level text/numeric sorting.

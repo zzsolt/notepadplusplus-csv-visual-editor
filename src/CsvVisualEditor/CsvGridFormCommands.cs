@@ -21,6 +21,7 @@ internal sealed partial class CsvGridForm
         // Restore view tools before binding the permanent menu, without adding
         // duplicate event handlers when the command surface is reinstalled.
         InstallDataTools();
+        InstallCellDetails();
         if (!_spaceHandlerAttached)
         {
             _spaceHandlerAttached = true;

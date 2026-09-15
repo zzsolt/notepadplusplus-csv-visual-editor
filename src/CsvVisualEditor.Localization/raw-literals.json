@@ -9,6 +9,14 @@
       "mailto:",
       "zzsolt@gmail.com"
     ],
+    "CsvCellDetailsDialog.cs": [
+      "CsvCellAccept",
+      "CsvCellCancel",
+      "CsvCellMetrics",
+      "CsvCellValidation",
+      "CsvCellValueEditor",
+      "CsvCellValuePreview"
+    ],
     "CsvColumnSummaryDialog.cs": [
       "Count",
       "CsvCloseSummary",
@@ -25,6 +33,7 @@
       "Add",
       "Add Row",
       "Apply",
+      "Cell details",
       "Column summary",
       "Copy",
       "Cut",
@@ -46,10 +55,12 @@
     "CsvCommandIdentity.cs": [
       "Add Row",
       "Apply",
+      "Cell details",
       "Column summary",
       "Copy",
       "CsvAddRowButton",
       "CsvApplyButton",
+      "CsvCellDetailsButton",
       "CsvClipboardCopyButton",
       "CsvClipboardCutButton",
       "CsvClipboardPasteButton",
@@ -78,6 +89,8 @@
       "Transform"
     ],
     "CsvCommandSurface.cs": [
+      "Alt+Enter",
+      "Cell details",
       "Clear",
       "Column summary",
       "Ctrl+F",
@@ -91,6 +104,12 @@
     ],
     "CsvDataGridView.cs": [
       "CsvColumn"
+    ],
+    "CsvDataToolStyle.cs": [
+      "CsvFilterCombination",
+      "CsvFilterOperator",
+      "CsvSortDirection",
+      "CsvSortKind"
     ],
     "CsvDataViewDialog.cs": [
       "CsvAddFilter",
@@ -158,6 +177,9 @@
       "Property",
       "Value"
     ],
+    "CsvGridFormCellDetails.cs": [
+      "CsvCellDetailsButton"
+    ],
     "CsvGridFormCommands.cs": [
       "CsvShowSpacesButton"
     ],
@@ -215,12 +237,6 @@
     "NotepadUiLanguage.cs": [
       "SendMessageW",
       "user32.dll"
-    ],
-    "CsvDataToolStyle.cs": [
-      "CsvFilterCombination",
-      "CsvFilterOperator",
-      "CsvSortDirection",
-      "CsvSortKind"
     ]
   }
 }
