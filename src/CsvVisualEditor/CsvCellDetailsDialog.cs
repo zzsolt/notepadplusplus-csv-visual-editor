@@ -2,6 +2,7 @@ namespace CsvVisualEditor;
 
 using CsvVisualEditor.Core;
 using CsvVisualEditor.Localization;
+using System.ComponentModel;
 
 /// <summary>
 /// A detached, lossless view/editor for exactly one cell. It never writes to a
@@ -30,8 +31,14 @@ internal sealed class CsvCellDetailsDialog : Form
     private readonly TabControl _tabs = new() { Dock = DockStyle.Fill };
     private readonly TableLayoutPanel _layout;
 
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal string? Result { get; private set; }
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal string EditorText { get => _editor.Text; set => _editor.Text = value; }
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal bool CanAccept => _accept.Enabled;
 
     internal CsvCellDetailsDialog(string value, string location, bool editable, Color background, Color foreground)
