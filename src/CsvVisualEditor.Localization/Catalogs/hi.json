@@ -1,0 +1,1509 @@
+{
+  "language": "hi",
+  "messages": {
+    "About.AVisualCSVEditorForNotepad": {
+      "text": "Notepad++ के लिए एक दृश्य CSV संपादक",
+      "sourceHash": "d2192a67070b6d0befcfffd5bcea3b1d4f3effd651e0e620c227b47b3972683d"
+    },
+    "About.AboutCSVVisualEditor": {
+      "text": "CSV Visual Editor के बारे में",
+      "sourceHash": "b1f31b2b4fe3d04bb0f84043aaf400a24714c530fee3882620db5a66642d1693"
+    },
+    "About.Contact": {
+      "text": "संपर्क: {0}",
+      "sourceHash": "867dbcb9eb0073935eb554a8510b0ac7b5240c57bddae906d228f7367a79bdde"
+    },
+    "About.ContactDeveloper": {
+      "text": "डेवलपर {0} से संपर्क करें",
+      "sourceHash": "36cd6e0479001987a1cd88b2265e18f2d99a319613367f14eb00c1f947ebf680"
+    },
+    "About.Developer": {
+      "text": "डेवलपर: {0}",
+      "sourceHash": "a02fc5573b93c65c53cfa9285e972201960aea294f82a7dd008bfbaab6338ee7"
+    },
+    "About.DevelopmentBuild": {
+      "text": "विकास संस्करण",
+      "sourceHash": "63d499e28cc580c198f63d4feb38a5ad486cf4edfc14c2928b60b32d7f71e90e"
+    },
+    "About.EnjoyingCSVVisualEditorPleaseSupportTheProject": {
+      "text": "CSV Visual Editor पसंद आ रहा है? परियोजना का समर्थन करें।\nGitHub पर इसे स्टार दें, अपनी प्रतिक्रिया साझा करें, या योगदान के लिए डेवलपर से संपर्क करें। धन्यवाद!",
+      "sourceHash": "e60a9dcedd8c18b51506e14cba236e2534a53cd3f3c13c8abeddabc6e1691629"
+    },
+    "About.InterfaceLanguage": {
+      "text": "इंटरफ़ेस भाषा: {0}",
+      "sourceHash": "63c27cb4d537542f128deb040cf0d6fec2325db7f8d2d10d3603d7d2c39e08f8"
+    },
+    "About.NoAssociatedApplicationCouldBeOpenedContact": {
+      "text": "कोई संबद्ध ऐप नहीं खोला जा सका। संपर्क: {0}",
+      "sourceHash": "dd6691f6714de01161e5cddb7fb13410f3caa7f1d22c27adfa0aa6e2b8d8ce80"
+    },
+    "About.ProjectOnGitHub": {
+      "text": "GitHub पर परियोजना",
+      "sourceHash": "f803aa694000b5fbeb002377b76f30f011f4266dbd682de5d26b8ec042af1aea"
+    },
+    "About.Version": {
+      "text": "संस्करण: {0}",
+      "sourceHash": "06f9249e559a399f8d8c6df14200ddc994828430331a297556d9f60450dd394a"
+    },
+    "About.VersionAndBuild": {
+      "text": "संस्करण और बिल्ड",
+      "sourceHash": "c1ffa3cecb3b7b614a54d8c8eaf5a11d8f7321a6a6a1a6d56e7e3f6f917de14d"
+    },
+    "Clipboard.BlockedBecauseThePendingEditModelChangedNo": {
+      "text": "{0} को रोका गया क्योंकि लंबित संपादन मॉडल बदल गया। कोई आंशिक परिवर्तन नहीं रखा गया।",
+      "sourceHash": "ab0fc3f3fc2b216daa6bba6a6f516ab2db470f2186d694c5516bee9588809e6b"
+    },
+    "Clipboard.BlockedClipboardAndSelectedRectanglesHaveDifferentDimensions": {
+      "text": "{0} को रोका गया: क्लिपबोर्ड और चयनित आयतों के आयाम अलग हैं।",
+      "sourceHash": "07f257154aa012c75b374e6b950f2a29bb8ebcadbf4195fc860e1297136c990f"
+    },
+    "Clipboard.BlockedTheTargetRectangleExtendsBeyondTheCSV": {
+      "text": "{0} को रोका गया: लक्ष्य आयत CSV तालिका से बाहर जाता है।",
+      "sourceHash": "5efd8003aae5f310dc81d0ea5db4597cfc0439bdf2455fa96f537bcb73b6ad63"
+    },
+    "Clipboard.BlockedThereIsNoEditableTargetRectangle": {
+      "text": "{0} को रोका गया: कोई संपादन योग्य लक्ष्य आयत नहीं है।",
+      "sourceHash": "9c5f38bd868834ecca8e706f27041b2b5fe3b6d6bd90b5b006bb32e61bfa2a75"
+    },
+    "Clipboard.CopiedCSVCells": {
+      "text": "{0} × {1} CSV सेल कॉपी किए गए।",
+      "sourceHash": "bb3e2453130a972e9ecb0f0dca535af24acc17ee2137352a91f44873afd84489"
+    },
+    "Clipboard.CopyCutBlockedOneSelectedCellContainsA": {
+      "text": "कॉपी/कट रोका गया: चयनित सेल में टैब या लाइन ब्रेक है जिसे साधारण स्प्रेडशीट पाठ के रूप में बिना अस्पष्टता के प्रस्तुत नहीं किया जा सकता।",
+      "sourceHash": "2a44b7a44aef9861a806a5be13a82acf27923864f0d5ec93b1dc96036a30a0cc"
+    },
+    "Clipboard.CopyRequiresCSVCellsNotCompleteRowDeletion": {
+      "text": "कॉपी करने के लिए CSV सेल चाहिए, हटाने के लिए चुनी गई पूरी पंक्तियाँ नहीं।",
+      "sourceHash": "2f1d66346008fee9d95fb2dd911a8df82857d6f489da6cea24926c5e4c25d023"
+    },
+    "Clipboard.CopyRequiresOneContiguousRectangularSelectionOfCSV": {
+      "text": "कॉपी करने के लिए CSV डेटा सेल का एक सतत आयताकार चयन चाहिए।",
+      "sourceHash": "7dc2b650f80184da9c3fb27dfc39d1e3a9ed9ae7075b8f0acf4ec60562635b90"
+    },
+    "Clipboard.CutCellsIntoTheClipboardAndClearedThem": {
+      "text": "{0} सेल क्लिपबोर्ड में कट किए गए और लंबित संपादन सत्र में खाली किए गए। लागू करें उन्हें Notepad++ में खाली लिखता है।",
+      "sourceHash": "1ee1f0601670fa89ae493c94b384d97093436abbe8597bbf165e7cbdab16b4c1"
+    },
+    "Clipboard.CutCompletedTheSelectedCellsWereAlreadyEmpty": {
+      "text": "कट पूरा हुआ; चयनित सेल पहले से खाली थे। क्लिपबोर्ड में उनके मूल मान हैं।",
+      "sourceHash": "e69e6173206140f92281472777e887bb43523849c3bd085b61c79437fc37f5c8"
+    },
+    "Clipboard.IsAvailableOnlyInEditMode": {
+      "text": "{0} केवल संपादन मोड में उपलब्ध है।",
+      "sourceHash": "718a620852f2a96042d594b909bb484cf424cbecdc3395459724bb737f0124ca"
+    },
+    "Clipboard.IsUnavailableForTheCurrentTable": {
+      "text": "{0} वर्तमान तालिका के लिए उपलब्ध नहीं है।",
+      "sourceHash": "7275f4a8d70753d2ccbad6a014dca8c5d9b2a9b70560eb7d75345306eed736ae"
+    },
+    "Clipboard.PasteBlockedNoDataWasChanged": {
+      "text": "पेस्ट रोका गया: {0} कोई डेटा नहीं बदला गया।",
+      "sourceHash": "3a0e56bf80bd2f4e90856358792217d560b9bce57442ef197fbe673f00507608"
+    },
+    "Clipboard.PasteCompletedAllTargetValuesWereAlreadyIdentical": {
+      "text": "पेस्ट पूरा हुआ; सभी लक्ष्य मान पहले से समान थे।",
+      "sourceHash": "9c37416bbb3d9703e61c86645e003bfa4af8be52ad4c9a8192efb9cd0a62ab72"
+    },
+    "Clipboard.PastedChangedCellsIntoThePendingEditSession": {
+      "text": "{0} बदले हुए सेल लंबित संपादन सत्र में पेस्ट किए गए। लागू करें उन्हें Notepad++ में लिखता है।",
+      "sourceHash": "c3465ac4777c362281907634ca2c96ecb38b278ca28adfafaef31cbe09c6037b"
+    },
+    "Clipboard.RequiresACSVCellRectangleNotCompleteRow": {
+      "text": "{0} को CSV सेल का आयत चाहिए, हटाने के लिए चुनी गई पूरी पंक्तियाँ नहीं।",
+      "sourceHash": "0e7ac400647d061104761816bfd94e217fe6d3426c1665fb044810588a74da21"
+    },
+    "Clipboard.RequiresOneContiguousRectangularSelectionOfCSVData": {
+      "text": "{0} को CSV डेटा सेल का एक सतत आयताकार चयन चाहिए।",
+      "sourceHash": "48bc2b5b9d3194b562b4193cda5c4fbbf6597605315660a473c49f29cbb4e396"
+    },
+    "Clipboard.TargetsAreUnavailableOutsideTheStableEditMode": {
+      "text": "{0} के लक्ष्य संपादन मोड के स्थिर पंक्ति मॉडल के बाहर उपलब्ध नहीं हैं।",
+      "sourceHash": "4031745d341dd3cb404eca134dfe1041288b4370021e8e1a5f617f5f1bb12f25"
+    },
+    "Clipboard.TheActiveCellEditCouldNotBeCommitted": {
+      "text": "कॉपी करने से पहले सक्रिय सेल का संपादन कमिट नहीं किया जा सका।",
+      "sourceHash": "64af703868b4b98503fc2e3d39e70f9cb2c95fc34d4bba8dacedc350517f0630"
+    },
+    "Clipboard.TheActiveCellEditCouldNotBeCommitted2": {
+      "text": "सक्रिय सेल का संपादन कमिट नहीं किया जा सका। {0} से पहले मान ठीक करें।",
+      "sourceHash": "e07730c50ef479c0872e3a6118f224a1dfd435348c34cd30f49b5ff92c914425"
+    },
+    "Clipboard.TheClipboardDoesNotContainPlainTextCells": {
+      "text": "क्लिपबोर्ड में सादा-पाठ सेल नहीं हैं।",
+      "sourceHash": "c46d98401ca0b6c565804d0f5d25f528b10c1aea46f55befba40ef1b476e0e22"
+    },
+    "Clipboard.TheWindowsClipboardIsTemporarilyUnavailableNoData": {
+      "text": "Windows क्लिपबोर्ड अस्थायी रूप से उपलब्ध नहीं है। कोई डेटा नहीं बदला गया।",
+      "sourceHash": "68a5fdf8319c7ab9c01db36ebf0e0562f06ce50a2c536dadccc25c57d951893a"
+    },
+    "Commands.CopyTheSelectedCSVCellRectangleToThe": {
+      "text": "चयनित CSV सेल आयत को Windows क्लिपबोर्ड में कॉपी करें (Ctrl+C)",
+      "sourceHash": "5d67bfa38a6db6478ecceb9beedec0f63de3f1ff6d3d097198bc2b61cb917154"
+    },
+    "Commands.CopyTheSelectedCSVCellsAndClearThem": {
+      "text": "चयनित CSV सेल कॉपी करें और लंबित संपादन सत्र में उन्हें खाली करें (Ctrl+X)",
+      "sourceHash": "7645ca06d3ba1e0a7b46d62d3dd8dc3d08e306d7022502e12d5a40f64aba28f1"
+    },
+    "Commands.PasteSpreadsheetCellsIntoTheSelectedCSVCell": {
+      "text": "स्प्रेडशीट सेल को चयनित CSV सेल या आयत में पेस्ट करें (Ctrl+V)",
+      "sourceHash": "2c9fda38bdd305423a5dea249f2c7d31dd3acbdcc4f4a1afec58caeacf70c481"
+    },
+    "Commands.PreviewTextReplacementTrimmingOrCasingInPending": {
+      "text": "लंबित CSV संपादनों में पाठ बदलने, बाहरी रिक्त स्थान हटाने या अक्षर केस बदलने का पूर्वावलोकन करें",
+      "sourceHash": "809e9efd3e4a4144798a283c383c2c0b2005791cb086fa0479eecf52ff7cf507"
+    },
+    "Commands.SelectTheCurrentCSVCellOrRowIn": {
+      "text": "वर्तमान CSV सेल या पंक्ति को Notepad++ स्रोत बफ़र में चुनें",
+      "sourceHash": "256fc8853b969ce0b64549554688cf4650a36add08eb29ecb176b8cfa4ac9964"
+    },
+    "Commands.Source": {
+      "text": "स्रोत",
+      "sourceHash": "0e570ca6fabe24f94e52c1833f3ffd25567022beb826fa16891f3322051bc221"
+    },
+    "Commands.Transform": {
+      "text": "रूपांतरित करें",
+      "sourceHash": "d2d68041b53daa7577b38494eb66792f9bd9a3450f025587347a00610c67fbce"
+    },
+    "Common.About": {
+      "text": "परिचय",
+      "sourceHash": "4efca0d10c5feb8e9b35eb1d994f2905bb71714e6a271f511d713b539ea5faa1"
+    },
+    "Common.Apply": {
+      "text": "लागू करें",
+      "sourceHash": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851"
+    },
+    "Common.Ascending": {
+      "text": "आरोही",
+      "sourceHash": "77184595bde3befc7f5a20efc97caea43f4858e4c97cd2ee406af2c61db3266c"
+    },
+    "Common.Cancel": {
+      "text": "रद्द करें",
+      "sourceHash": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27"
+    },
+    "Common.Close": {
+      "text": "बंद करें",
+      "sourceHash": "7d9eb7acb13e24625c404401d8e88b2350e32162455885f18276cf802f7701ed"
+    },
+    "Common.Column": {
+      "text": "कॉलम",
+      "sourceHash": "3fdc9a587693f9e63574b30ec55c2b947a7fb4ba5fd11f0cf213072f53d91bdd"
+    },
+    "Common.Copy": {
+      "text": "कॉपी करें",
+      "sourceHash": "e21f935f11d7e966dbbae78da9daa378fe8142a14e7c0cd7434183005faa6c5c"
+    },
+    "Common.Cut": {
+      "text": "कट करें",
+      "sourceHash": "1f45f02561f41db9483cfc00675900237967b8e382b9750d33f677812fe70842"
+    },
+    "Common.Descending": {
+      "text": "अवरोही",
+      "sourceHash": "79479a6c76d8416ab7839952a2f8222e350862464f4d02db13d8d8f9551dbf8e"
+    },
+    "Common.Edit": {
+      "text": "संपादित करें",
+      "sourceHash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344"
+    },
+    "Common.ExitEdit": {
+      "text": "संपादन से बाहर निकलें",
+      "sourceHash": "ee8b39f4dbe6eec9cd08c7d084c74c4555ddd0206ff67ef3f3443454fde66c0e"
+    },
+    "Common.MatchCase": {
+      "text": "अक्षर केस मिलाएँ",
+      "sourceHash": "6198801124962e005dd813b94e3d951d8d70d462c86a1c97d5252a464a4a0c4c"
+    },
+    "Common.Number": {
+      "text": "संख्या",
+      "sourceHash": "bd82cf16699be29ec05cbb763199c12f0dced428dde8381dbdd31c1d5dd0e8d4"
+    },
+    "Common.OriginalOrder": {
+      "text": "मूल क्रम",
+      "sourceHash": "9875877524a54ddcbdb0ca68c51dbe1d45926d904128784b430e1adbe75f8479"
+    },
+    "Common.Paste": {
+      "text": "पेस्ट करें",
+      "sourceHash": "f3380f7b44bd70af2a369de6026bf2ca2a7b36fde9086935efcd62a0e379cc7a"
+    },
+    "Common.Preview": {
+      "text": "पूर्वावलोकन",
+      "sourceHash": "324b134f57c70c729ae3dc4d298bb451656717d70523e942c1ce667b8024ea07"
+    },
+    "Common.Refresh": {
+      "text": "रीफ़्रेश करें",
+      "sourceHash": "0e91610117029a62a478b7fa7df0b8598bebe3ab1e192d4b1882e310719c9671"
+    },
+    "Common.Rows": {
+      "text": "पंक्तियाँ",
+      "sourceHash": "101f2ff3de22441fcab3e15ca0b09ac3428642cf628558f16fa404fc3137baea"
+    },
+    "Common.Table": {
+      "text": "तालिका",
+      "sourceHash": "16d1c9050a0b32e83764a81d801a880773abedfd7f8b0b08a1cd87ca0e404f12"
+    },
+    "Common.Text": {
+      "text": "पाठ",
+      "sourceHash": "71988c4d8e0803ba4519f0b2864c1331c14a1890bf8694e251379177bfedb5c3"
+    },
+    "Common.Value": {
+      "text": "मान",
+      "sourceHash": "8e37953d23daca5ff01b8282c33f4e0a2152f1d1885f94c06418617e3ee1d24e"
+    },
+    "DataTools.ColumnSummaryCountsDistinctValuesNumericRangeAnd": {
+      "text": "कॉलम सारांश: वर्तमान दृश्य में गणना, विशिष्ट मान, संख्यात्मक सीमा और सामान्य मान।",
+      "sourceHash": "7c61c98a83a441c3adf0160fe629f44f40bac7f0765e5d6a88e0e36e5992ebfc"
+    },
+    "DataTools.ColumnSummaryRequiresAReadyReadOnlyTable": {
+      "text": "कॉलम सारांश के लिए तैयार केवल-पढ़ने योग्य तालिका चाहिए। पहले संपादन मोड से बाहर निकलें।",
+      "sourceHash": "67b7f616ebc9935ffcf1f7a52ddce1336befb9c721b40ad96f99468bf0a3a653"
+    },
+    "DataTools.FilterAndSortCombineColumnRulesAndText": {
+      "text": "फ़िल्टर और क्रमबद्ध करें: कॉलम नियम और पाठ/संख्यात्मक क्रमबद्ध स्तर जोड़ें। केवल दृश्य बदलता है; CSV नहीं बदलता।",
+      "sourceHash": "f2783ccffc0d6a112a52657459a4f3bc04f81fa29fa068ada9a4db4d41183d3c"
+    },
+    "DataTools.FilterAndSortCombineColumnRulesAndUp": {
+      "text": "फ़िल्टर और क्रमबद्ध करें: कॉलम नियम और अधिकतम तीन पाठ/संख्यात्मक क्रमबद्ध स्तर जोड़ें। केवल दृश्य बदलता है।",
+      "sourceHash": "59943f8d2769fc7b95c7f946e6603c9eb48ef36fe05f62fd18e12dd29d08823f"
+    },
+    "DataTools.FilterAndSortConditionsSortLevelsResetView": {
+      "text": "फ़िल्टर और क्रमबद्ध करें: {0} शर्तें, {1} क्रमबद्ध स्तर। दृश्य रीसेट करने से सभी नियम हट जाते हैं।",
+      "sourceHash": "0a8c9f92d7b8b727f78fbccf7149f09aac18ffc9376cba3e9d897955b6c530e2"
+    },
+    "DataTools.FilterAndSortRequiresAReadyReadOnly": {
+      "text": "फ़िल्टरिंग और क्रमबद्ध करने के लिए तैयार केवल-पढ़ने योग्य तालिका चाहिए। पहले संपादन मोड से बाहर निकलें।",
+      "sourceHash": "100aae6fdadc0b8a1df71d48bf0d4f74ccce9920d2fcfe5b833a3854eceb22a7"
+    },
+    "Diagnostics.InitialCount": {
+      "text": "निदान (0)",
+      "sourceHash": "d1a811c478cae1fa3d202d9a93a6473096b0407cd322dbd657248d8de4c38eaa"
+    },
+    "Edit.NoChanges": {
+      "text": "0 परिवर्तन",
+      "sourceHash": "93238d7a3eee63e5624d61ed22ae62f56330fbac719dfdc97f394a55d0ab1220"
+    },
+    "Filter.AddCondition": {
+      "text": "शर्त जोड़ें",
+      "sourceHash": "60a0d83510ea99a149507fc5f9d9780e504e40bf7d8fa2d90f7db36f17252514"
+    },
+    "Filter.AddSortLevel": {
+      "text": "क्रमबद्ध स्तर जोड़ें",
+      "sourceHash": "d05ab3a3877798cb0a05ea34aec2ffe8be224cfa58d071003ac49c9b4b2dc6ef"
+    },
+    "Filter.ApplyView": {
+      "text": "दृश्य लागू करें",
+      "sourceHash": "e147a93c4139a3f1d1103ff35ae72b0c4cf86077d4f9edc51d1e90a29e475db2"
+    },
+    "Filter.Case": {
+      "text": "अक्षर केस",
+      "sourceHash": "15f86e24ed25aed154934fb1f3275d9b33e1ebaa64350694ed8661a7d6fc0f21"
+    },
+    "Filter.CaseSensitiveTextComparisonSpacesInValuesAre": {
+      "text": "केस-संवेदी पाठ तुलना। मानों में रिक्त स्थान को अक्षरशः माना जाता है।",
+      "sourceHash": "1f0e95f3bccb189886cf40021f0cafb713a0494d92a3fc9fceb014b017c244ee"
+    },
+    "Filter.CheckTheRules": {
+      "text": "नियम जाँचें: {0}",
+      "sourceHash": "13a8a8c3f686d19d869e010f3d735ed4795f1a93998b7afda885f1d4ce35c546"
+    },
+    "Filter.Condition": {
+      "text": "शर्त",
+      "sourceHash": "39b36d38d6eb03c89206f3b7b74397e7a9d9abb081ad48e3f73dece59dab7ae4"
+    },
+    "Filter.ConditionsSortLevelsPreviewToCheckMatchingRows": {
+      "text": "{0} / 8 शर्तें; {1} / 3 क्रमबद्ध स्तर। मेल खाने वाली पंक्तियाँ जाँचने के लिए पूर्वावलोकन करें।",
+      "sourceHash": "c4e0000a54f104d98acc6161ab34cca237a19349c7b87971720c8659224348df"
+    },
+    "Filter.Contains": {
+      "text": "समाहित करता है",
+      "sourceHash": "2eaecb3d0cf1282f01fc09568b63dc633753a0dbf337365d929d9c28df3d6ca4"
+    },
+    "Filter.DoesNotContain": {
+      "text": "समाहित नहीं करता",
+      "sourceHash": "56fe07f0e32e03ee1e3d643cfe8ff2ec61ffe31f0d880cbfc593fde3ccdac10e"
+    },
+    "Filter.DoesNotEqual": {
+      "text": "बराबर नहीं है",
+      "sourceHash": "e47c3280f3bfbdfccb72e781dc6797d0de3507d1ac433c650efc1935771ba084"
+    },
+    "Filter.EmptyZeroCharactersWhitespaceOnlyNonEmptySpaces": {
+      "text": "खाली = शून्य वर्ण। केवल रिक्त स्थान = स्पेस/टैब/लाइन ब्रेक की गैर-खाली शृंखला।\nसंख्याएँ दशमलव बिंदु (-12.5) का उपयोग करती हैं, समूहकरण या घातांक के बिना; परिशुद्धता बिल्कुल सही होनी चाहिए।",
+      "sourceHash": "e3bdfc345d49d1ec3bbb29b885ac1df312941bd5dad4cf31bcead431d0e0d69a"
+    },
+    "Filter.EndsWith": {
+      "text": "इससे समाप्त होता है",
+      "sourceHash": "fc203569fa858e0ef3d2644e417247d162f933f5e91db77c913471844e2f3ced"
+    },
+    "Filter.Equals": {
+      "text": "इसके बराबर है",
+      "sourceHash": "f939ae3d30c69e332a36892f70d401d457e6993f056b8d0af3fe3d736821f5a1"
+    },
+    "Filter.FilterValue": {
+      "text": "फ़िल्टर मान",
+      "sourceHash": "d9542a271957e5da6241a181f50baa24e710645a5007dfa3e45c27bbad587791"
+    },
+    "Filter.Filters": {
+      "text": "फ़िल्टर",
+      "sourceHash": "546ebb8eb993ea561029d9febd84c363bdb09010bb2cb915a8287762b76b9a64"
+    },
+    "Filter.IsEmpty": {
+      "text": "खाली है",
+      "sourceHash": "f92b47704f75f5d292ef40662e91d093f5db3bdbbef884bb60523140074e83d6"
+    },
+    "Filter.IsNotEmpty": {
+      "text": "खाली नहीं है",
+      "sourceHash": "a043c15c839775945541e733d31593afd26d889ff3dc671d1ff6d79ead511f88"
+    },
+    "Filter.IsNotWhitespaceOnly": {
+      "text": "केवल रिक्त स्थान नहीं है",
+      "sourceHash": "272723617df7ca53cff2fbd72f8cb0d3088a744cd8dd025991081c7c4dce7c0e"
+    },
+    "Filter.IsWhitespaceOnly": {
+      "text": "केवल रिक्त स्थान है",
+      "sourceHash": "5b215a10b7dbd271ecdc0ad0593a2cc9c49374c9ebcc406f85cca9e4bfbf56c4"
+    },
+    "Filter.LiteralTextIncludingSpacesNumericRulesRequireAn": {
+      "text": "अक्षरशः पाठ, स्पेस सहित। संख्यात्मक नियमों के लिए बिंदु वाली सटीक दशमलव संख्या चाहिए।",
+      "sourceHash": "2544ee834c7d70573f8d88f4d6b221fb6f8b3bb8c1b4497280f3b75079a953f0"
+    },
+    "Filter.MatchALLConditions": {
+      "text": "सभी शर्तें मिलाएँ",
+      "sourceHash": "1ce8e95fe35f90800f858c523696524dca8782bf9c2b03342c716d47123a0e8e"
+    },
+    "Filter.MatchANYCondition": {
+      "text": "कोई भी शर्त मिलाएँ",
+      "sourceHash": "5ef0ba84f21316348a51998d2c8cad6cb3e4013e99db89effa464f3bf8b07b9a"
+    },
+    "Filter.Number": {
+      "text": "संख्या =",
+      "sourceHash": "aca27be4f3dec967cd07b15e55f4a61f7daea326a2fcab46ccba19057dc271a5"
+    },
+    "Filter.Number2": {
+      "text": "संख्या >",
+      "sourceHash": "c2f03843c0df626474aafde336151f7cdf76e005cdaf31ed3db6d7c09ef449ac"
+    },
+    "Filter.Number3": {
+      "text": "संख्या >=",
+      "sourceHash": "c2c0df70bc49eb44b951b0820858dbc95910979ce3d976f21c352542c8d408a2"
+    },
+    "Filter.Number4": {
+      "text": "संख्या <",
+      "sourceHash": "746935e1798c5f07646346c91e6820457be4ca56f501c1e69d30859722b60475"
+    },
+    "Filter.Number5": {
+      "text": "संख्या <=",
+      "sourceHash": "54f4eca08f4f4c1e6525b332009147b26e0664c25332cbd9a1ac757b00b949be"
+    },
+    "Filter.NumberDecimal": {
+      "text": "संख्या (दशमलव)",
+      "sourceHash": "b9f6921a8e5f711f0668f988adfe8ed1053579c5ee86343a3a3cbf371c3b4558"
+    },
+    "Filter.PreviewOfDisplayedRowsCSVUnchanged": {
+      "text": "पूर्वावलोकन: दिख रही {1:N0} पंक्तियों में {0:N0}। CSV नहीं बदला।",
+      "sourceHash": "17486d0204edaf5cfb5552bcea3d5041a167f847b0184c19e76f4dd5c11e1095"
+    },
+    "Filter.RemoveCondition": {
+      "text": "शर्त हटाएँ",
+      "sourceHash": "5ac0b06fc9f0d038a09cc4dd62fb7a69d62ee1f1c0d84646ff519d6025d6e766"
+    },
+    "Filter.RemoveSortLevel": {
+      "text": "क्रमबद्ध स्तर हटाएँ",
+      "sourceHash": "8eaf3527f2b35ff365cabf9373867a92ed89c7f4b756eca7f39858939f5fa348"
+    },
+    "Filter.ResetRules": {
+      "text": "नियम रीसेट करें",
+      "sourceHash": "26c3f16f83d1457ea286e78d97a3dc0df362220968984a0bce4e560bd65183e0"
+    },
+    "Filter.RulesAlsoRespectTheCurrentSearchCancelKeeps": {
+      "text": "नियम वर्तमान खोज का भी सम्मान करते हैं। रद्द करने से सक्रिय दृश्य बना रहता है।",
+      "sourceHash": "0f9c5f6e99e4cb306066acb8c6a848b23b8726b96809ddfbe48b849b2c5a4693"
+    },
+    "Filter.Sorting": {
+      "text": "क्रमबद्ध करना",
+      "sourceHash": "cb24f7d40a81b1891300a95fbd8ac4403071cd33ede0e0e4e452c54d84dd56da"
+    },
+    "Filter.StartsWith": {
+      "text": "इससे शुरू होता है",
+      "sourceHash": "03277ef8ef2700bf566e0e716f248ba484a8f29a4294785424aceef734714ac0"
+    },
+    "Filter.TextCaseInsensitiveOrdinalOrderNumberExactDecimals": {
+      "text": "पाठ: केस-असंवेदी ऑर्डिनल क्रम। संख्या: सटीक दशमलव; अमान्य/खाली मान अंत में।\nसमान कुंजियाँ स्रोत क्रम बनाए रखती हैं। स्रोत क्रम बहाल करने के लिए सभी स्तर हटाएँ।",
+      "sourceHash": "5b507d1b40868153e271ba451af1e2658603de7da3827cb097651f525d5d9870"
+    },
+    "Filter.TheProjectionIsLimitedUndisplayedRowsAreNot": {
+      "text": "प्रक्षेपण सीमित है; जो पंक्तियाँ नहीं दिखाई गईं वे शामिल नहीं हैं। ",
+      "sourceHash": "0df6f5d91c130967622e72bd8506f263c6f53882893941e89f4333dc27e4bb34"
+    },
+    "Filter.Title": {
+      "text": "फ़िल्टर और क्रमबद्ध करें",
+      "sourceHash": "06df7c654f2b71f4b1e99e8e7a252cdceb0d0cabb6c8491286202114b2e1f0ba"
+    },
+    "Filter.TopLevelWinsLaterLevelsBreakTiesMaximum": {
+      "text": "ऊपरी स्तर को प्राथमिकता है; बाद के स्तर बराबरी तय करते हैं। अधिकतम 3।",
+      "sourceHash": "8f2c3445658f32eddd5cd8c47ff632915e5e3f2093263d97e33eec5379f0fd75"
+    },
+    "Filter.ValueLiteralIncludingSpaces": {
+      "text": "मान (अक्षरशः, स्पेस सहित)",
+      "sourceHash": "d668b7d57ee5095c1315f5526b7aaf6036b56cca2a8f45c7fd51ce80a0f5c926"
+    },
+    "Filter.ViewOnlyCSVValuesAndSourceOrderAre": {
+      "text": "केवल दृश्य — CSV मान और स्रोत क्रम नहीं बदलते। {0:N0} पंक्तियाँ दिखाई गईं।\n",
+      "sourceHash": "e3de0857e47bf068509f3647752a9953bf5d03801bc99596ba16ab4123545c4f"
+    },
+    "Host.ApplyIsBlockedBecauseHasNoExplicitSupported": {
+      "text": "लागू करना रोका गया क्योंकि {0} के लिए स्पष्ट रूप से समर्थित एन्कोडिंग प्रोफ़ाइल नहीं है। संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "a1c220bd35078a8af2926a7b885c177933487643890aceedb8385668823239f3"
+    },
+    "Host.ApplyIsBlockedBecauseStrictEncodingValidationFor": {
+      "text": "लागू करना रोका गया क्योंकि {0} के लिए सख्त एन्कोडिंग सत्यापन ने सटीक राउंड-ट्रिप रूपांतरण नहीं दिया। संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "9e53a941a2ea83be0d4fd6563a634c83201d6149180d552b9f04156c824ca074"
+    },
+    "Host.ApplyIsBlockedBecauseThePendingReplacementCannot": {
+      "text": "लागू करना रोका गया क्योंकि लंबित प्रतिस्थापन को {0} में सटीक रूप से प्रस्तुत नहीं किया जा सकता। कोई प्रतिस्थापन वर्ण उपयोग नहीं हुआ और संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "b9cec4ad4caa442be93c927c78d85387f55bdcc4b3f0730e568cd320b75f058d"
+    },
+    "Host.ApplyIsNotYetEnabledForNoEditor": {
+      "text": "{0} के लिए लागू करना अभी सक्षम नहीं है। संपादक सामग्री नहीं बदली गई। लिखना केवल UTF-8 (65001) और Windows-1250 (1250) के लिए, हानिरहित सत्यापन के बाद सक्षम है। सब पूर्ववत करें का उपयोग करें या Notepad++ में दस्तावेज़ को UTF-8 में बदलकर संपादन मोड दोबारा खोलें।",
+      "sourceHash": "af926b9f2d3a802e806810630d0049f00041f4a7b7f5bf426f7af4c600e92f12"
+    },
+    "Host.RefreshIsDisabledWhileEditModeIsActive": {
+      "text": "संपादन मोड में रीफ़्रेश अक्षम है। पहले सभी लंबित परिवर्तन लागू या पूर्ववत करें।",
+      "sourceHash": "8f3ca898584038c9fca7f9d68c16402dc92fb9aa9cba2a369be9ce2849dc47c2"
+    },
+    "Host.ScintillaCodePage": {
+      "text": "Scintilla कोड पेज {0}",
+      "sourceHash": "19ff7cb4ca05e5679da5eb6b0aa270649f6609021c6969fdba9e373d6384f8ae"
+    },
+    "Host.TheActiveDocumentIsBytesTheCurrentSafe": {
+      "text": "सक्रिय दस्तावेज़ {0:N0} बाइट है। वर्तमान सुरक्षित स्नैपशॉट सीमा {1:N0} बाइट है।",
+      "sourceHash": "d94ca2f13c5f448b9eeceb63ed7fc85fc2dd57c0fa1d684bd516c087e9998701"
+    },
+    "Host.TheActiveNotepadDocumentCouldNotBeRead": {
+      "text": "सक्रिय Notepad++ दस्तावेज़ पढ़ा नहीं जा सका। संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "6e253c9add1275ec1916306fddd3301eb397dbbc6156e514cf37a1e5facc28db"
+    },
+    "Host.TheApplyResultIsNotAnEncodingBlocked": {
+      "text": "लागू परिणाम एन्कोडिंग-अवरोधित स्थिति नहीं है।",
+      "sourceHash": "275b6155795406d5ec9fa92a9a8651028c2725f4a27bd355aa3aa91e9db56221"
+    },
+    "Host.TheBackgroundTableBuildCompletedWithoutAResult": {
+      "text": "पृष्ठभूमि तालिका निर्माण बिना परिणाम समाप्त हुआ।",
+      "sourceHash": "e0d46b45c637ae3b7e2d625d7c1a1a137223608080081d71f50515e9ae34d54a"
+    },
+    "Host.TheCSVChangesWereAppliedSuccessfullyButThe": {
+      "text": "CSV परिवर्तन लागू हुए, लेकिन पिछली कर्सर स्थिति या चयन बहाल नहीं किया जा सका। पूरे दस्तावेज़ परिवर्तन को अभी भी एक कार्रवाई में पूर्ववत किया जा सकता है।",
+      "sourceHash": "07ce8162214329754e420f91b3662d4ee03d60442a392cbbfe8d9b82c946fb43"
+    },
+    "Host.TheCurrentEditorCodePage": {
+      "text": "संपादक का वर्तमान कोड पेज",
+      "sourceHash": "81e981fcb64ee0d316d3560d84fe6a594a6271ecd2efeabce7355bf926c68248"
+    },
+    "Host.TheEditorBufferCouldNotBeConvertedInto": {
+      "text": "संपादक बफ़र को दृश्य तालिका में नहीं बदला जा सका। डिलिमिटर स्पष्ट रूप से चुनें या दस्तावेज़ ठीक करने के बाद रीफ़्रेश करें।",
+      "sourceHash": "6a87199f414aec0232d76534a8cf322ae8e784cd962cf72bc1fc0000744e5215"
+    },
+    "Host.TheTableBuilderReturnedAnIncompleteResult": {
+      "text": "तालिका निर्माण ने अधूरा परिणाम लौटाया।",
+      "sourceHash": "524caefdcd9f4371d04bd00669a9c0a62fe28c7083c5353eebc2a5f1dc6d58d9"
+    },
+    "Menu.About": {
+      "text": "&परिचय",
+      "sourceHash": "49edb2d040313194436966326c08914e069139876058ed9d6706bce7a5e1d1a9"
+    },
+    "Menu.ClearSearch": {
+      "text": "&खोज साफ़ करें",
+      "sourceHash": "dbc8771687370574861426cba0ca55bfcffc8337025b5078b675ffe2d5e21626"
+    },
+    "Menu.Csv": {
+      "text": "&CSV",
+      "sourceHash": "c100a010cae1ab74a9d42647e8d9180200f7ec4f05ed1ba57a9effa950713a2f"
+    },
+    "Menu.Delimiter": {
+      "text": "&डिलिमिटर",
+      "sourceHash": "01dedbcff5208b4e379b4afe83a182b22bcc02a832620f59bf6f8788b74d83b9"
+    },
+    "Menu.Edit": {
+      "text": "&संपादित करें",
+      "sourceHash": "9a52e0fa1299037743fc76ebb07b87cf85b871f1656ab2c082b9d0a63e17979d"
+    },
+    "Menu.EscInSearch": {
+      "text": "खोज में Esc",
+      "sourceHash": "5fa70548ea5113641b879520691748ffb9c9d8c4bd4122d8176dec51c3ab761c"
+    },
+    "Menu.FindInTable": {
+      "text": "&तालिका में खोजें",
+      "sourceHash": "4ebe110c32edcc9511858ce5a290405a0b322fe4b165ac4e7bb3f056103e80e5"
+    },
+    "Menu.Header": {
+      "text": "&हेडर",
+      "sourceHash": "3fcf0b822652e93dfe58cd5f91e8a45a65aad74a4c1da439422578d2e1959e50"
+    },
+    "Menu.NextMatchingCell": {
+      "text": "&अगला मेल खाने वाला सेल",
+      "sourceHash": "1f5b6400edb0651aec5902737dafe63f856ec1e7e60717de2ea86d9582e78a7e"
+    },
+    "Menu.PreviousMatchingCell": {
+      "text": "&पिछला मेल खाने वाला सेल",
+      "sourceHash": "6c1026f2a1572994dab1593e68f8272009d26be7bdb76cb056ad4f3678107020"
+    },
+    "Menu.ResetViewClearSearchColumnConditionsAndAll": {
+      "text": "दृश्य रीसेट करें: खोज, कॉलम शर्तें और सभी क्रमबद्धता साफ़ करें।",
+      "sourceHash": "d8bd1978004ac02aed166893161d4985a7ebccc59cc3ad35f394cbaab7bff8a5"
+    },
+    "Menu.Search": {
+      "text": "&खोज",
+      "sourceHash": "0699b0b860d923c2fa4845a3a1ce8ac98641ce93f99982e1f3d73bb6b5a48a84"
+    },
+    "Menu.SearchColumn": {
+      "text": "&खोज कॉलम",
+      "sourceHash": "c16fd8c23a2bb339e66a33884183b74edfe65ed95ba22d0bc44964e4992cd4f9"
+    },
+    "Menu.ShowSpacesSmallSolidOrangeDotsDisplayOnly": {
+      "text": "स्पेस दिखाएँ: छोटे भरे हुए नारंगी बिंदु। केवल प्रदर्शन; CSV मान नहीं बदलते।",
+      "sourceHash": "fd4053164aa8dca69245afb56184d793ec12736d1551df1085a8b38e740ea07a"
+    },
+    "Menu.ShowTable": {
+      "text": "&तालिका दिखाएँ",
+      "sourceHash": "1f4b2ce56bea31ca35d1d9d7013104a55888a37660853a5e4cd48faee6b1ad7b"
+    },
+    "Menu.SortBy": {
+      "text": "&इसके अनुसार क्रमबद्ध करें",
+      "sourceHash": "c293cceb48219919d1012a1de00f595d85f512d4b87493f501a5f22d8761b372"
+    },
+    "Menu.Table": {
+      "text": "&तालिका",
+      "sourceHash": "82892104d6cb4d801d7cb8ba98ceb4f60906c2ce97f48077612166a72b21c333"
+    },
+    "Menu.View": {
+      "text": "&दृश्य",
+      "sourceHash": "d8042eb735a92fa6c7bb4b544e5095c5ebd2d01c0f70bf10e9fc809f2db47bc9"
+    },
+    "Messages.AFilterValueMayContainAtMostCharacters": {
+      "text": "फ़िल्टर मान में अधिकतम 4,096 वर्ण हो सकते हैं।",
+      "sourceHash": "b7b387da06e042e1d33cb8b28456cd09b66d1982aa7dd79629cc4b15506c7df9"
+    },
+    "Messages.ALL": {
+      "text": "सभी",
+      "sourceHash": "b5c7aed7cd2a308523e7d2847b7815909e864b2fd9c4ea88b00d35adb2ecdfd7"
+    },
+    "Messages.ALeadingByteOrderMarkWasExcludedFrom": {
+      "text": "प्रारंभिक बाइट-ऑर्डर मार्क पहले फ़ील्ड से बाहर रखा गया।",
+      "sourceHash": "8a2913affc987b84cb721d1548ef49cadd83ae62fcff75361c0e37f39f4a42f8"
+    },
+    "Messages.ANY": {
+      "text": "कोई भी",
+      "sourceHash": "618c79503a3d1476211c8be7776e94e8723596a1e0b0204c050229983c9bfebd"
+    },
+    "Messages.AQuoteAppearedInsideAnUnquotedField": {
+      "text": "बिना उद्धरण से घिरे फ़ील्ड में उद्धरण चिह्न मिला।",
+      "sourceHash": "7be44c81418f24d84726bf6cb60ea46d676b37069839404f3bb9c0e2c5cfa38a"
+    },
+    "Messages.ClipboardRowsMustFormOneRectangularCellMatrix": {
+      "text": "क्लिपबोर्ड पंक्तियों को एक आयताकार सेल मैट्रिक्स बनाना चाहिए।",
+      "sourceHash": "841b679b37819226cf35911df2f5fd2fad12698b5cf8cf2bd37deac6dbb9a0f3"
+    },
+    "Messages.DiagnosticCode": {
+      "text": "निदान कोड: {0}।",
+      "sourceHash": "4066ed4166dea97f661659a65e2bb43f578e0f4ff9f41391accbc7d883f4640e"
+    },
+    "Messages.EachSortLevelMustUseADifferentColumn": {
+      "text": "हर क्रमबद्ध स्तर को अलग कॉलम उपयोग करना चाहिए।",
+      "sourceHash": "fecc1dea38921c183a10ecfce4e3fba32af6a305b98b4a30f671f3bf09f9f20c"
+    },
+    "Messages.Error": {
+      "text": "त्रुटि",
+      "sourceHash": "54a0e8c17ebb21a11f8a25b8042786ef7efe52441e6cc87e92c67e0c4c0c6e78"
+    },
+    "Messages.High": {
+      "text": "उच्च",
+      "sourceHash": "6ef7c9b15ecdd69083724b84cfdc2100351963488b51b4ea2fcbddf493fbec94"
+    },
+    "Messages.Information": {
+      "text": "जानकारी",
+      "sourceHash": "1cb0ba125f84c982b00ba3639cdfb2cee6b70f94b5e0115c045fef607af4f216"
+    },
+    "Messages.Low": {
+      "text": "निम्न",
+      "sourceHash": "6c1ff09db3a73dc4a854f695d20d174a848d55f2d743bab2ee1f8fc75be454f3"
+    },
+    "Messages.Medium": {
+      "text": "मध्यम",
+      "sourceHash": "c082456a7766e23a18db084cd34b6ff510baef506548b897cc80e9b7d3e121c8"
+    },
+    "Messages.NoSupportedDelimiterProducedASufficientlyReliableMulti": {
+      "text": "किसी समर्थित डिलिमिटर ने पर्याप्त विश्वसनीय बहु-फ़ील्ड संरचना नहीं बनाई।",
+      "sourceHash": "6eb6d800983aeb0c1acde9382f94e4d34cfe80b6fcdd8f3eae29e59b6f3b0673"
+    },
+    "Messages.None": {
+      "text": "कोई नहीं",
+      "sourceHash": "140bedbf9c3f6d56a9846d2ba7088798683f4da0c248231336e6a05679e4fdfe"
+    },
+    "Messages.OneVisualRowWouldRequireCellsWhichExceeds": {
+      "text": "एक दृश्य पंक्ति के लिए {0:N0} सेल चाहिए होंगे, जो वर्तमान कुल सीमा {1:N0} से अधिक है। कोई कॉलम छिपाया नहीं गया।",
+      "sourceHash": "e9da4974a68e1a08c38af9fa314fee4ccbdf0495dcd25ba613878f744d033455"
+    },
+    "Messages.RecordHasFieldsExpectedBasedOnTheSampled": {
+      "text": "रिकॉर्ड में {0} फ़ील्ड हैं; नमूने में सबसे सामान्य गणना के आधार पर {1} अपेक्षित थे।",
+      "sourceHash": "d169c81b52100a8e6c0480695e49f75afc9c3f8bdfdbcd76d88be7cb43d988b8"
+    },
+    "Messages.SpacesLeadingTrailingLengthUTFUnitsOrangeDots": {
+      "text": "स्पेस: {0}; शुरू में: {1}; अंत में: {2}। लंबाई: {3} UTF-16 इकाइयाँ।\nनारंगी बिंदु वास्तविक स्पेस दिखाते हैं। पठनीयता के लिए प्रदर्शन दूरी बढ़ाई जाती है; CSV वर्ण नहीं बदलते। केवल स्पेस वाले सेल में शुरू और अंत की गणना ओवरलैप करती है।",
+      "sourceHash": "204323196432e32000fad71b530b945ab061267a2a4024a939ca5a00e2b912f9"
+    },
+    "Messages.TheClipboardCellMatrixExceedsTheSafePaste": {
+      "text": "क्लिपबोर्ड सेल मैट्रिक्स सुरक्षित पेस्ट सीमा से अधिक है।",
+      "sourceHash": "91c35d49786b55ef173a673c98bca5d609c9a3299e2b922a13bd91bfc746ff38"
+    },
+    "Messages.TheClipboardContainsAnUnsupportedControlCharacter": {
+      "text": "क्लिपबोर्ड में असमर्थित नियंत्रण वर्ण है।",
+      "sourceHash": "2e9e67f07565ffc640d7109c7e8d07b20ee251965b443871684cc83c202d0102"
+    },
+    "Messages.TheClipboardContainsMoreColumnsThanTheEditor": {
+      "text": "क्लिपबोर्ड में संपादक द्वारा सुरक्षित रूप से पेस्ट किए जा सकने से अधिक कॉलम हैं।",
+      "sourceHash": "6740d22513e2925ec50f0dd6b3f707ba9fb61b747b8b65c8b4fc2b1a6c2921c0"
+    },
+    "Messages.TheClipboardContainsMoreRowsThanTheEditor": {
+      "text": "क्लिपबोर्ड में संपादक द्वारा सुरक्षित रूप से पेस्ट किए जा सकने से अधिक पंक्तियाँ हैं।",
+      "sourceHash": "c2d7c71f7cf0c3e4f960af1cc94995347bbfd00e6f9aa67bc200ecc01457a096"
+    },
+    "Messages.TheClipboardTextExceedsTheSafeMiUTF": {
+      "text": "क्लिपबोर्ड पाठ 16 Mi UTF-16 वर्ण इकाइयों की सुरक्षित सीमा से अधिक है।",
+      "sourceHash": "7e8fc8328282391459b3e27292a036b95a3c39b6718d5c5e0d1976d51907cac5"
+    },
+    "Messages.TheFinalQuotedFieldWasNotTerminatedBefore": {
+      "text": "अंतिम उद्धृत फ़ील्ड पाठ समाप्त होने से पहले बंद नहीं हुआ।",
+      "sourceHash": "a686badc4ba7171abb50d2e02e309177b0fa9a30cda55d8668c3c47bc6a4405f"
+    },
+    "Messages.TheNumberOfFieldsDiffersFromTheOther": {
+      "text": "फ़ील्ड संख्या अन्य रिकॉर्ड से अलग है।",
+      "sourceHash": "48b2e69f9a41b8b70042a0d8f7bda89fa064af3d2be3416f944db62c97ed3535"
+    },
+    "Messages.TheOperationCouldNotBeCompletedCheckThe": {
+      "text": "कार्रवाई पूरी नहीं की जा सकी। दस्तावेज़, चयनित मान और आकार सीमाएँ जाँचें।",
+      "sourceHash": "40d90af67753b0c9b83da6e20c3fc12aaef2bb1344990bb008d624daa4894060"
+    },
+    "Messages.TheParsedDocumentContainsColumnsWhichExceedsThe": {
+      "text": "पार्स किए गए दस्तावेज़ में {0:N0} कॉलम हैं, जो दृश्य तालिका की वर्तमान सीमा {1:N0} से अधिक है। कोई कॉलम छिपाया नहीं गया।",
+      "sourceHash": "e0d77ec820a62c92334d28bc9a1f8d345f418e0d5cc0167fa1ba0ebac61d5d6b"
+    },
+    "Messages.TheSuggestedDelimiterHasLowConfidenceCheckThe": {
+      "text": "सुझाए गए डिलिमिटर का विश्वास कम है। डिलिमिटर सेटिंग जाँचें।",
+      "sourceHash": "662933ef85c4405f1a6d300aa190fd3dabcc45e2b6febc4e0c49dd983b20a84d"
+    },
+    "Messages.TwoDelimiterCandidatesHaveSimilarScoresCheckThe": {
+      "text": "दो डिलिमिटर उम्मीदवारों के स्कोर समान हैं। डिलिमिटर सेटिंग जाँचें।",
+      "sourceHash": "1f236adfac53a449e0606d7f952324636265ed33b544e893ba2ab2333771579d"
+    },
+    "Messages.UnexpectedCharactersFollowedAClosingQuote": {
+      "text": "बंद होने वाले उद्धरण के बाद अनपेक्षित वर्ण हैं।",
+      "sourceHash": "1b07c192bc104b06eea86608a74519e90c8506183c3b113043f84fdd7df3243e"
+    },
+    "Messages.Unknown": {
+      "text": "अज्ञात",
+      "sourceHash": "b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc"
+    },
+    "Messages.UseAnExactDecimalNumberWithADot": {
+      "text": "बिंदु वाली सटीक दशमलव संख्या उपयोग करें, जैसे -12.5। समूहकरण, घातांक और गोल किए गए मान समर्थित नहीं हैं।",
+      "sourceHash": "b92c75a1d89c381f2ac422ff938b2838f0a90e2e8ea7f4828ae914bf6645b520"
+    },
+    "Messages.UseAtMostEightNonNullFilterConditions": {
+      "text": "अधिकतम आठ फ़िल्टर शर्तें उपयोग करें जो null नहीं हैं।",
+      "sourceHash": "bf8ee5dc0994abc2e546633c5e12218d1fa5dc324c9a983976a01258a02724d1"
+    },
+    "Messages.UseAtMostThreeNonNullSortLevels": {
+      "text": "अधिकतम तीन क्रमबद्ध स्तर उपयोग करें जो null नहीं हैं।",
+      "sourceHash": "f37e4d60ecac2fd4751d4593a74430d2a7f451c94f86325f25ad801f5e94f840"
+    },
+    "Messages.ViewRulesReferToAColumnOutsideThe": {
+      "text": "दृश्य नियम वर्तमान तालिका के बाहर के कॉलम को संदर्भित करते हैं।",
+      "sourceHash": "1c8cee1af702c1b09ab7db4f0d87d749f7e95a2575e34bb7d53b22eeac38665a"
+    },
+    "Messages.Warning": {
+      "text": "चेतावनी",
+      "sourceHash": "e981ddae45d8f4ca53f1ccbe613ad254a041dacf65a06026099a6302d332113b"
+    },
+    "Native.ColumnSummary": {
+      "text": "कॉलम सारांश",
+      "sourceHash": "1edc79877409e115034abfc819b99a708b611b82033a11a914f9504c3b758376"
+    },
+    "Native.FilterSort": {
+      "text": "फ़िल्टर और क्रमबद्ध करें",
+      "sourceHash": "e61c35cceab33ce9b0c21b1af5ec6f9fc5a38bf672916729d2cc9d47c667b3e1"
+    },
+    "Native.OpenTable": {
+      "text": "दृश्य तालिका खोलें",
+      "sourceHash": "bda12ac6e619cfdfe8ed09c6facd7326e3be754e4ea25997d8c12fae1c084e31"
+    },
+    "Native.RefreshTable": {
+      "text": "तालिका रीफ़्रेश करें",
+      "sourceHash": "de7f17128da9d7c1e9b53407f023adc98d5cfbad3f4c0f6d868cbb131db21399"
+    },
+    "Rows.NewIdentifier": {
+      "text": "नया:{0}",
+      "sourceHash": "c132ea2acb0352120f83581fcd19c4682a23a6db2a2199ea78c0364af47a3e6a"
+    },
+    "Rows.NewPendingIdentifier": {
+      "text": "नया:{0} *",
+      "sourceHash": "6b07d38430b17abbf1354d7170cc6253ac8549cd1fc4d528bf38c55abd802abf"
+    },
+    "Rows.Select": {
+      "text": "चुनें",
+      "sourceHash": "2a78025de6aae5e7ff88e5a951bb3a78ddd67388913529cf9e2dd9653e62b02d"
+    },
+    "Rows.SelectCompleteRowsForDeletion": {
+      "text": "हटाने के लिए पूरी पंक्तियाँ चुनें",
+      "sourceHash": "56d57d6b47e4c48512eb5e0f53c8762946330ca0452e42a7238eb1fc396daf93"
+    },
+    "Rows.SourceLogicalRecordOrPendingStructuralRow": {
+      "text": "तार्किक स्रोत रिकॉर्ड या लंबित संरचनात्मक पंक्ति",
+      "sourceHash": "82b5eef552ea45d5da099ea3dcfa62f2f0f55b54ec5ea58b648863b5676825fd"
+    },
+    "Rows.TheRowIndicatorColumnCouldNotBeResolved": {
+      "text": "पंक्ति संकेतक कॉलम पहचाना नहीं जा सका।",
+      "sourceHash": "c15a56bcaa19528eab0a7090fd8f917cd20c7776b8cd6bd60b1a823845ed1902"
+    },
+    "Rows.TheRowMustBelongToADataGridView": {
+      "text": "पंक्ति DataGridView का हिस्सा होनी चाहिए।",
+      "sourceHash": "8bb4654ac43912d3e050f25255a82359e58f49a384b2bf2640e9a2c9a0fa9632"
+    },
+    "Search.AllColumns": {
+      "text": "सभी कॉलम",
+      "sourceHash": "002768032f65a207b5e3e3b16906f24a5412d8c05e862cb932bf10f1ff570f77"
+    },
+    "Search.Cells": {
+      "text": "{0:N0} / {1:N0} सेल",
+      "sourceHash": "f1cc82d2fc781c5577f34600b534ded0bf709cc6a62eb73c8d2129b350a08862"
+    },
+    "Search.Cells2": {
+      "text": "{0:N0} सेल",
+      "sourceHash": "dcffa504f7c0b54a5b4033cd1f23b44c59ad37fcb7a5269cbed6c9fc86811c80"
+    },
+    "Search.ClearSearch": {
+      "text": "खोज साफ़ करें",
+      "sourceHash": "3b7ea51793e9d906afa06afb86252abb48e1125cc96a7f5efabcfd8597ea183a"
+    },
+    "Search.ClearSearchEscKeepColumnScopeAndSorting": {
+      "text": "खोज साफ़ करें (Esc)। खोज कॉलम और क्रमबद्धता रखें।",
+      "sourceHash": "42eb319ad9344022eba6f00274d06bb11627bbc157b3529dc06b1d59b7f31dd2"
+    },
+    "Search.FiltersDisplayedRowsEnterNextMatchingCellShift": {
+      "text": "दिख रही पंक्तियों को फ़िल्टर करता है। Enter: अगला मेल खाने वाला सेल। Shift+Enter: पिछला। Escape: साफ़ करें।",
+      "sourceHash": "ba4347bbbf644719041a331d4b92098960201427ab9f987a0a08dbd47bc88af4"
+    },
+    "Search.NextMatchingCell": {
+      "text": "अगला मेल खाने वाला सेल",
+      "sourceHash": "e1c4e53124ac60a59519886904bff35a223fd4bbcb7fd2591b6b41b96ffe960e"
+    },
+    "Search.NextMatchingCellFEnter": {
+      "text": "अगला मेल खाने वाला सेल (F3 / Enter)",
+      "sourceHash": "794b698b02732db12811db81e786b4fc606c94bd187a4eabb6d12775b4535fd9"
+    },
+    "Search.NoMatches": {
+      "text": "कोई मेल नहीं",
+      "sourceHash": "2df01a03ff43400b2c833c81b6240c1878abdfc99b258c624bc1605329255f6f"
+    },
+    "Search.NoMatchingRowsAdjustTheSearchOrUse": {
+      "text": "कोई मेल खाने वाली पंक्ति नहीं।\nखोज समायोजित करें या दृश्य > फ़िल्टर और क्रमबद्ध करें / दृश्य रीसेट करें का उपयोग करें।",
+      "sourceHash": "e7fbc7b4e85fd2ffbb4987f2a3b7347b490b63780532a077acd7f64fdbe3a2af"
+    },
+    "Search.PreviousMatchingCell": {
+      "text": "पिछला मेल खाने वाला सेल",
+      "sourceHash": "bd8c7c1050a41c552b67fb38bb5c9a7f01c6af7467ba237d51ee3ee8698d5d48"
+    },
+    "Search.PreviousMatchingCellShiftFShiftEnter": {
+      "text": "पिछला मेल खाने वाला सेल (Shift+F3 / Shift+Enter)",
+      "sourceHash": "da78e23de151319a39f2c98ea2071fa28b4d85ba19e5048373a1f2722a70c88f"
+    },
+    "Search.SearchAllDataColumnsOrChooseOneColumn": {
+      "text": "सभी डेटा कॉलम खोजें या एक कॉलम चुनें।",
+      "sourceHash": "467427e3b86d65d2a1035f90dd55087a8c721d7beac050b506ef3cc2ce3594c8"
+    },
+    "Search.SearchColumn": {
+      "text": "खोज कॉलम",
+      "sourceHash": "22443e3fa6741bcec90359b06f06795330d4083f570af3c6225597ee01f658cf"
+    },
+    "Search.SearchInDisplayedCSVRowsCtrlFValues": {
+      "text": "दिख रही CSV पंक्तियाँ खोजें (Ctrl+F)। मान और स्रोत पाठ नहीं बदलते।",
+      "sourceHash": "86dd7699a536515ca6f2b8dc0adbb8103782a5f55db7eec3e4859c68ed623339"
+    },
+    "Search.SearchInTable": {
+      "text": "तालिका खोजें...",
+      "sourceHash": "8b79e923403f45d7743c26333a839ca000ef9d7de725aa1d5efad0b2d70d8252"
+    },
+    "Search.SearchInTable2": {
+      "text": "तालिका खोजें",
+      "sourceHash": "147d5d789c6e330d07337cd8b34e541170000cfc5fee4eeeeb96b567dcb2d8f1"
+    },
+    "Search.SearchResults": {
+      "text": "खोज परिणाम",
+      "sourceHash": "e978b00de465a271a13bf2f6b9d74d67fdfaa7d973a37378fa32f988c3280599"
+    },
+    "Search.Searching": {
+      "text": "खोज जारी है...",
+      "sourceHash": "78c9d9f6ace0e9b850ab68646c51dc2c990edf221c872d1c6ec389dd797c0f21"
+    },
+    "Source.GoToSourceBlockedAnotherNotepadDocumentIs": {
+      "text": "स्रोत पर जाएँ रोका गया: दूसरा Notepad++ दस्तावेज़ सक्रिय है। दिखाई गई CSV पर लौटें या तालिका रीफ़्रेश करें।",
+      "sourceHash": "4ed9d8d9eb9bfae8142cff622600a45d80e72fc574d1c29aa3a03aee994c9eac"
+    },
+    "Source.GoToSourceBlockedBecauseTheRetainedParse": {
+      "text": "स्रोत पर जाएँ रोका गया क्योंकि सहेजा गया पार्स परिणाम अब अपने अपरिवर्तनीय स्रोत स्नैपशॉट से मेल नहीं खाता। पहले तालिका रीफ़्रेश करें।",
+      "sourceHash": "e120e38b4b36697b9f3fe1fd47f3cfa0932255aad599e080a991f04bf7f4ea88"
+    },
+    "Source.GoToSourceBlockedStrictEncodedLengthDoes": {
+      "text": "स्रोत पर जाएँ रोका गया: सख्ती से एन्कोड की गई लंबाई Scintilla द्वारा बताई गई दस्तावेज़ लंबाई से मेल नहीं खाती।",
+      "sourceHash": "bd985b51ad722a464ee149bb75caeb4253e4ab253b118f27064bfdc383bd48ca"
+    },
+    "Source.GoToSourceBlockedTheActiveEditorContent": {
+      "text": "स्रोत पर जाएँ रोका गया: तालिका दिखाने के बाद सक्रिय संपादक सामग्री बदल गई। पहले तालिका रीफ़्रेश करें।",
+      "sourceHash": "3aef9da18d478d5c1b1c0fcc973d4f687af203556afc3fdcdfcd93c94f0cb616"
+    },
+    "Source.GoToSourceBlockedTheCurrentScintillaCode": {
+      "text": "स्रोत पर जाएँ रोका गया: वर्तमान Scintilla कोड पेज में स्पष्ट बाइट-स्थिति प्रोफ़ाइल नहीं है।",
+      "sourceHash": "882cb6f4251a69340d7fefbbfb9a4a004c0b86ffd01dd4d6ca6e5053a3cf0bb8"
+    },
+    "Source.GoToSourceBlockedTheEditorCodePage": {
+      "text": "स्रोत पर जाएँ रोका गया: तालिका दिखाने के बाद संपादक कोड पेज बदल गया। पहले तालिका रीफ़्रेश करें।",
+      "sourceHash": "160298af2e8e59f259f37249adce7b3614bd802e0ee1b53037401d8f23ec4692"
+    },
+    "Source.GoToSourceBlockedTheSelectedProjectedCell": {
+      "text": "स्रोत पर जाएँ रोका गया: चयनित प्रक्षेपित सेल में कच्चा स्रोत फ़ील्ड नहीं है।",
+      "sourceHash": "09d4a837fa31b53f5000a4850193d9df1f6c89a94c773887f3ea2aac9fcd78c2"
+    },
+    "Source.GoToSourceBlockedTheSourceCharacterSpan": {
+      "text": "स्रोत पर जाएँ रोका गया: स्रोत वर्ण सीमा को बिना हानि Scintilla बाइट में मैप नहीं किया जा सका।",
+      "sourceHash": "4dce0849b6cf9a52b02975c77f736da07c6fd97a5eab1f7808c2d053f6fb866a"
+    },
+    "Source.GoToSourceBlockedTheSourceLogicalRecord": {
+      "text": "स्रोत पर जाएँ रोका गया: तार्किक स्रोत रिकॉर्ड सहेजे गए पार्स परिणाम में उपलब्ध नहीं है।",
+      "sourceHash": "b69540fd633e3591374d15ee67381bf0d1ef7424d337c5db738f4e7565027ba3"
+    },
+    "Source.GoToSourceFailedTheActiveNotepadBuffer": {
+      "text": "स्रोत पर जाएँ विफल: सक्रिय Notepad++ बफ़र पढ़ा नहीं जा सका। दस्तावेज़ सामग्री नहीं बदली गई।",
+      "sourceHash": "07093c4694f6984deb421c21b5eba3b4a861c2e4a32e6ccf73084f53e726ef5a"
+    },
+    "Source.GoToSourceFailedWhileMovingTheScintilla": {
+      "text": "Scintilla चयन स्थानांतरित करते समय स्रोत पर जाएँ विफल हुआ। दस्तावेज़ सामग्री नहीं बदली गई।",
+      "sourceHash": "35e14ba2325a72ba8df63810b68c63cefea9d980bfd8176e429aaffdb2cc8344"
+    },
+    "Source.GoToSourceIsUnavailableUntilTheCurrent": {
+      "text": "स्रोत पर जाएँ तब तक उपलब्ध नहीं है जब तक वर्तमान दृश्य तालिका में पूर्ण स्रोत आधाररेखा न हो। पहले तालिका रीफ़्रेश करें।",
+      "sourceHash": "aeea8b75b4a7507b4b5160be8c45cd0ab16cfae4f73c79a472249d86fd9a5444"
+    },
+    "Source.GoToSourceRequiresACurrentCSVRow": {
+      "text": "स्रोत पर जाएँ के लिए वर्तमान CSV पंक्ति या सेल चाहिए।",
+      "sourceHash": "e0a5948c39aaae37409aacd1b582c11b56f5afef060197021db04bcddee2b48e"
+    },
+    "Source.GoToSourceWasNotCompletedNoDocument": {
+      "text": "स्रोत पर जाएँ पूरा नहीं हुआ। दस्तावेज़ सामग्री नहीं बदली गई।",
+      "sourceHash": "7c54d0be524729215ecd43d1a5d6e75b730cf81e7d4615945be761727ef6f862"
+    },
+    "Source.SelectedSourceRecordColumnInNotepad": {
+      "text": "Notepad++ में स्रोत रिकॉर्ड {0}, कॉलम {1} चुना गया।",
+      "sourceHash": "d91f4b2032d2fa93a3ed484daa4e310e2e3b8e831382530746a84d370950abe3"
+    },
+    "Source.SelectedSourceRecordInNotepad": {
+      "text": "Notepad++ में स्रोत रिकॉर्ड {0} चुना गया।",
+      "sourceHash": "92ee80518327e38c3b4752624ee4f975bd555cd2b67f84b8cf7189f418e4e4ae"
+    },
+    "Source.TheCurrentVisualRowDoesNotExposeA": {
+      "text": "वर्तमान दृश्य पंक्ति स्थिर स्रोत-रिकॉर्ड पहचान नहीं देती।",
+      "sourceHash": "89759885634924ed2c1d0be3e2848ba6e1b783e8a4be0639a601923844f7695e"
+    },
+    "Source.ThisPendingInsertedRowHasNoSourceLocation": {
+      "text": "इस लंबित डाली गई पंक्ति का स्रोत स्थान लागू पूरा होने तक नहीं है।",
+      "sourceHash": "369b22f4e90c4c7c51f0f216546f9d10f70753cb8b75f3e838e56845306bbc0a"
+    },
+    "Summary.CurrentViewOfDisplayedRows": {
+      "text": "वर्तमान दृश्य: दिख रही {1:N0} पंक्तियों में {0:N0}।",
+      "sourceHash": "b260aebffdc52ce7b1a144df9c63936972b2f2c54031146f62c14d6008927979"
+    },
+    "Summary.DistinctValuesUseExactCaseSensitiveTextIncluding": {
+      "text": "विशिष्ट मान खाली मान सहित, केस-संवेदी सटीक पाठ का उपयोग करते हैं।\nदोहराई गई पंक्तियाँ = पंक्तियाँ घटा विशिष्ट मान। संख्यात्मक सीमा बिंदु वाली सटीक दशमलव मानों का उपयोग करती है।",
+      "sourceHash": "bf076f49a20d623380993212dc5a2c41911a02a2f8364ba72064db760ab1483d"
+    },
+    "Summary.Empty": {
+      "text": "खाली",
+      "sourceHash": "c6c094bc0054f9cbe34102ff49f86b3928b5ac09f3d2ac87e170d0500675921f"
+    },
+    "Summary.Kind": {
+      "text": "प्रकार",
+      "sourceHash": "f5387f9bb6ed70315a77fdcb9335facc27a9bf241f35955bd2755c55e0c016c7"
+    },
+    "Summary.MostFrequentValuesUpTo": {
+      "text": "सबसे सामान्य मान (अधिकतम 20)",
+      "sourceHash": "aa59d0dc475eef40ea2dec88facbee667da35500cfe818d3ab90fea0a8c71841"
+    },
+    "Summary.NotAvailable": {
+      "text": "उपलब्ध नहीं",
+      "sourceHash": "67a926f7008e2b0e7f2b3f7a4b37597834830110be1d51138f425d6f3449bc09"
+    },
+    "Summary.NumericMinimumMaximumLongestValueUTFUnitsValues": {
+      "text": "संख्यात्मक न्यूनतम: {0}     अधिकतम: {1}\nसबसे लंबा मान: {2:N0} UTF-16 इकाइयाँ। {3:N0} मान एक से अधिक बार आते हैं।",
+      "sourceHash": "69f21e3f2fb4c524848b6e3ed062558f101429ca6f81b4bc4c36b4e03dc01652"
+    },
+    "Summary.ProjectionLimitedThisIsNOTTheWholeFile": {
+      "text": " सीमित प्रक्षेपण; यह पूरी फ़ाइल नहीं है।",
+      "sourceHash": "5a4653673a19abb6724f186c43aae4bb9b02b6eeebbb903f16bee5be623fa835"
+    },
+    "Summary.RowsEmptyWhitespaceOnlyDistinctRepeatedRowsNumeric": {
+      "text": "पंक्तियाँ: {0:N0}     खाली: {1:N0}     केवल रिक्त स्थान: {2:N0}\nविशिष्ट: {3:N0}     दोहराई गई पंक्तियाँ: {4:N0}     संख्यात्मक: {5:N0}",
+      "sourceHash": "39cd59a1f8648c2442df21cf38c1fdedd7dd693e24a8c15eae1f125847396507"
+    },
+    "Summary.Title": {
+      "text": "कॉलम सारांश",
+      "sourceHash": "f3053f8ec545767ee7ff9a49c8c9b4ba95c4e62d0e5a940e0122cb8d92d605b6"
+    },
+    "Summary.Whitespace": {
+      "text": "रिक्त स्थान",
+      "sourceHash": "ca82e2b90df62cd3359b7f778c81903ba533919864323a279eb8a17d18286152"
+    },
+    "Table.ANewRowWasAddedToThePending": {
+      "text": "लंबित संपादन सत्र में नई पंक्ति जोड़ी गई। लागू करें इसे संपादक बफ़र में लिखता है; सब पूर्ववत करें इसे छोड़ देता है।",
+      "sourceHash": "9e3f30c9cb4500fbd8c305603685917163be82e45bf6100f59426039570f2764"
+    },
+    "Table.ASourceRowDidNotExposeItsSource": {
+      "text": "एक स्रोत पंक्ति ने अपना स्रोत रिकॉर्ड इंडेक्स नहीं दिया।",
+      "sourceHash": "5082752b9cd65092db8b969e95377de6b524bdc32e9729fc3b2f0b4a4297bd74"
+    },
+    "Table.Action": {
+      "text": "क्रिया",
+      "sourceHash": "64cff1319d2fd2cbb7a1e84ccecf22c1cc07b24435cdb522f8c0aa525d6002a6"
+    },
+    "Table.ActiveDocumentSnapshotFailedNoEditorContentWas": {
+      "text": "सक्रिय दस्तावेज़ का स्नैपशॉट विफल हुआ। संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "e27001d03e6e0b02f91bcf59cb49885974cea883517d39b006e9fe5fd4231655"
+    },
+    "Table.AddRow": {
+      "text": "पंक्ति जोड़ें",
+      "sourceHash": "02a16a835f1e9c9cbe76a8cb9042d2f3861fc237036221e1f0c60383600f45f6"
+    },
+    "Table.AllPendingCellAndRowEditsWereReverted": {
+      "text": "सभी लंबित सेल और पंक्ति संपादन पूर्ववत किए गए। Notepad++ संपादक बफ़र नहीं बदला गया।",
+      "sourceHash": "d7179589fdad4b10a12f88143de75740e3b0fc2566b6208b53944a57092b5de4"
+    },
+    "Table.ApplyAllCellAndRowEditsToThe": {
+      "text": "सभी सेल और पंक्ति संपादन को सक्रिय संपादक में एक पूर्ववत योग्य क्रिया के रूप में लागू करें",
+      "sourceHash": "6683510f91eb11abcbcb5f4c343b76db16b078fe94262e0a9622cbe1bcaab3b5"
+    },
+    "Table.ApplyBlockedAnotherNotepadDocumentIsActiveReturn": {
+      "text": "लागू करना रोका गया: दूसरा Notepad++ दस्तावेज़ सक्रिय है। मूल दस्तावेज़ पर लौटें या सब पूर्ववत करें का उपयोग करें।",
+      "sourceHash": "add32a4b13a0a7af469720e3b24e09a6d628a63b6d7253f8cbfbcde97dd0f074"
+    },
+    "Table.ApplyBlockedTheEditorBufferChangedAfterEdit": {
+      "text": "लागू करना रोका गया: संपादन मोड शुरू होने के बाद संपादक बफ़र बदल गया। फिर संपादन करने से पहले पूर्ववत करें और रीफ़्रेश करें।",
+      "sourceHash": "3696b1cb1249a473d2d0c3f3db134e6679658a58ec9c148e06581364e9c31f02"
+    },
+    "Table.ApplyBlockedTheEditorCodePageChangedAfter": {
+      "text": "लागू करना रोका गया: संपादन मोड शुरू होने के बाद संपादक कोड पेज बदल गया। पूर्ववत करें और संपादन मोड फिर खोलें।",
+      "sourceHash": "bc4f97905fecbbcd951ebd6182e4293c279c2091f8dd0aedfd6547868e536348"
+    },
+    "Table.ApplyFailedTheEditSessionRemainsOpenVerify": {
+      "text": "लागू करना विफल हुआ। संपादन सत्र खुला रहता है; फिर प्रयास या पूर्ववत करने से पहले संपादक बफ़र जाँचें।",
+      "sourceHash": "799751dd47c40f3b6971a8f34b9b1234278437fa696ea8ba243207272adf1460"
+    },
+    "Table.ApplyWasNotCompletedNoAutomaticOverwriteWas": {
+      "text": "लागू करना पूरा नहीं हुआ। स्वचालित ओवरराइट का प्रयास नहीं किया गया।",
+      "sourceHash": "2a35cc94dbead42fb8e55ce412abd0bb513ae9315fece75fd0fd41b4d6f2e37c"
+    },
+    "Table.AutoDetect": {
+      "text": "स्वतः पहचानें",
+      "sourceHash": "04a4542a50516c8edf7518fbf36b917e1d737b1df63872e26a751f85a6951b92"
+    },
+    "Table.AutomaticConfidence": {
+      "text": "स्वतः विश्वास {0}",
+      "sourceHash": "62f8ead0f09a03d8732eb80c75520dfdb25f957ff2980f47ec6d5cb4bb17f6de"
+    },
+    "Table.AutomaticDelimiterDetectionIsNotReliableManualSelection": {
+      "text": "{0} — स्वतः डिलिमिटर पहचान विश्वसनीय नहीं है; मैन्युअल चयन आवश्यक है।",
+      "sourceHash": "6f7660946313d283e3d47cd1822d536511579df717cbceb153899d32e6009243"
+    },
+    "Table.AutomaticDetection": {
+      "text": "स्वतः पहचान",
+      "sourceHash": "b7ad31a0fee4a609f9a18178fdcc9823e0a123b715082cb2bbf0a7cb9d13d0fd"
+    },
+    "Table.CandidateScores": {
+      "text": "उम्मीदवार स्कोर",
+      "sourceHash": "e481c1478b45671b4eda8d8936b7a52dd7d452be1e1a3e41efe11e4dcf32fc98"
+    },
+    "Table.CellsRows": {
+      "text": "{0} सेल / {1} पंक्तियाँ (+{2} / -{3})",
+      "sourceHash": "00c79d0e73fcffca271aafbb88827f4865a5b66aaa47b2162130861c95938f9b"
+    },
+    "Table.Character": {
+      "text": "वर्ण",
+      "sourceHash": "1405a63e8a78b85c1b035b3c5277e3cc39fa98621c110bc522c85547d8afab1a"
+    },
+    "Table.CharactersEditorBytes": {
+      "text": "{0} वर्ण / {1} संपादक बाइट",
+      "sourceHash": "1d37dcef6822a765c6bfde2bac40ae05efca8f02be386371e9598ddaf2f02b38"
+    },
+    "Table.ChooseCommaSemicolonOrTabFromTheDelimiter": {
+      "text": "ऊपर की डिलिमिटर सूची से अल्पविराम, अर्धविराम या टैब चुनें।",
+      "sourceHash": "a19e9b2962073bcb1e234604a6f81de07cf3764de12d4d9b9b1a2562c4c7eed0"
+    },
+    "Table.ChooseExplicitlyWhetherTheFirstLogicalRecordIs": {
+      "text": "स्पष्ट रूप से चुनें कि पहला तार्किक रिकॉर्ड हेडर है या नहीं",
+      "sourceHash": "b76249748a016d1ff44910ce39d05c90d2d29d244a4f92729d21e0121b579f12"
+    },
+    "Table.Clear": {
+      "text": "साफ़ करें",
+      "sourceHash": "83b12c2216efb4fdc924e1deb5182e905e4926ed0c1c324d467107f46d5a26a9"
+    },
+    "Table.ClearTheCurrentSearchFilterAndViewOnly": {
+      "text": "वर्तमान खोज फ़िल्टर और केवल-दृश्य क्रमबद्धता साफ़ करें",
+      "sourceHash": "f9464c773a2299fd0cb93c9df21b7c9795e62da0b224f67d9756f8eee169d7fc"
+    },
+    "Table.Code": {
+      "text": "कोड",
+      "sourceHash": "340f463033e0fd5ddeabb922df4d4f1b5747494d0f5ed9894f13b6e13ca831f5"
+    },
+    "Table.ColumnConditionsSortLevels": {
+      "text": " - {0} कॉलम शर्तें ({1}), {2} क्रमबद्ध स्तर",
+      "sourceHash": "559251ba63eadf2f5e86f2fbac958ef793f7a540807b25454b75f16bc37f6b58"
+    },
+    "Table.Columns": {
+      "text": "{0} — {1} × {2} कॉलम — {3}, {4} — {5} — {6}{7}{8}{9}।",
+      "sourceHash": "371ba577708d29222df95fc9f19b4b9f7e0cb7abb5bf70049b214e3c923cf28c"
+    },
+    "Table.Comma": {
+      "text": "अल्पविराम (,)",
+      "sourceHash": "88363d66de700d9e04f806c6061a9c51b45c97568683e215327efeee8ca0cbd2"
+    },
+    "Table.Comma2": {
+      "text": "अल्पविराम",
+      "sourceHash": "f36a4e58670569181595399beec37e22c3dba2d8d2abd191b86602a16c23289c"
+    },
+    "Table.Confidence": {
+      "text": "विश्वास",
+      "sourceHash": "6422e3e78f5e5f5a15e92cc57ed7114adb289339251031ccb526d9249437dc82"
+    },
+    "Table.DeleteEverySelectedStableDataRowFromThe": {
+      "text": "लंबित संपादन सत्र से सभी चयनित स्थिर डेटा पंक्तियाँ हटाएँ",
+      "sourceHash": "5370e07df65c2fc57c1d32dfe0971f45747c0e6af5c895cf2e83079175aa2384"
+    },
+    "Table.DeleteRow": {
+      "text": "पंक्ति हटाएँ",
+      "sourceHash": "43654c6556c7d0fca93516d81791b323c7746bb3becdcb8800aa9f31300fe30c"
+    },
+    "Table.DeleteRows": {
+      "text": "पंक्तियाँ हटाएँ ({0})",
+      "sourceHash": "26b3f1f182fa2f9e7fe89f900a928ee1253748087cc0fede8b0471d6c1427b0c"
+    },
+    "Table.DeleteTheSelectedStableDataRowFromThe": {
+      "text": "लंबित संपादन सत्र से चयनित स्थिर डेटा पंक्ति हटाएँ",
+      "sourceHash": "07384444f66df5b0879188bb3aeca87879079c903d57d4b56ed68352f56191f0"
+    },
+    "Table.DeleteTheSelectedStableDataRowOrRows": {
+      "text": "लंबित संपादन सत्र से चयनित स्थिर डेटा पंक्ति या पंक्तियाँ हटाएँ",
+      "sourceHash": "a16d0de04719b955ee96f9d469fc9e985a9ea1106eae112fadeaf4a8782808ef"
+    },
+    "Table.Delimiter": {
+      "text": "डिलिमिटर:",
+      "sourceHash": "a6b77fa4c861bae35faf6773039af58ba0c0f6570c18749b86b26963703f26a4"
+    },
+    "Table.Diagnostics": {
+      "text": "निदान ({0})",
+      "sourceHash": "4a1935fa25c3d10313f6996195d3602e3b849aae112aab7fa72501a2f543359e"
+    },
+    "Table.DiscardEveryPendingCellInsertionAndDeletionChange": {
+      "text": "सभी लंबित सेल परिवर्तन, प्रविष्टियाँ और हटाव छोड़ें",
+      "sourceHash": "f70c8948457b39193648973cafeb1a20c7775fbd711533f240af1b0c344787c9"
+    },
+    "Table.Document": {
+      "text": "दस्तावेज़",
+      "sourceHash": "d6bd8c0aeee80fedb2dbf05c973100c3db04be90c072a88572533f2684131a36"
+    },
+    "Table.EDITMODECellsRows": {
+      "text": " — संपादन मोड: {0} सेल, {1} पंक्तियाँ, +{2} / -{3}",
+      "sourceHash": "4f6cae3eda23a62abc4237d56d5446a8ec91c6946fb83e141f070de6cee03da5"
+    },
+    "Table.EditMode": {
+      "text": " - संपादन मोड",
+      "sourceHash": "478a45c070c8550e9f82bae9e68a8ca5814c5279929d953a83e8d703f7c7609c"
+    },
+    "Table.EditModeContainsPendingChangesUseApplyOr": {
+      "text": "संपादन मोड में लंबित परिवर्तन हैं। बाहर निकलने से पहले लागू करें या सब पूर्ववत करें का उपयोग करें।",
+      "sourceHash": "bfa8625f917ff1b502d32f2750824a869af539ec229c4eb9d51fde4c1d4ee658"
+    },
+    "Table.EditModeIsUnavailableForTheCurrentTable": {
+      "text": "वर्तमान तालिका के लिए संपादन मोड उपलब्ध नहीं है। पहले पार्स त्रुटियाँ या प्रदर्शन सीमाएँ ठीक करें।",
+      "sourceHash": "40e25ff578e91587bee8a6f086f5de27a6ba9dcbc54af97dbde19e6222e201df"
+    },
+    "Table.EditingCannotStartFromARowLimitedVisual": {
+      "text": "सीमित पंक्ति संख्या वाले दृश्य प्रक्षेपण से संपादन शुरू नहीं किया जा सकता।",
+      "sourceHash": "39b12e52bbfa24d664c7ebcc896c8f8a074b6574f69a2b1a6fc2b2f57f4a9da8"
+    },
+    "Table.EditingCannotStartWhileTheParsedCSVContains": {
+      "text": "जब पार्स किए गए CSV में त्रुटियाँ हों तो संपादन शुरू नहीं किया जा सकता।",
+      "sourceHash": "bf8cb02c83fff4d05becb3e2acf141f14ac9529b35d56104fd0eb98c95f088c1"
+    },
+    "Table.EditingIsUnavailableForTheCurrentTable": {
+      "text": "वर्तमान तालिका के लिए संपादन उपलब्ध नहीं है।",
+      "sourceHash": "c632f55bf84791500bf2b0dd2a81846c378435a004eb130ba484e8809a0693ae"
+    },
+    "Table.EmptyEditorBufferNoCSVRecordsToDisplay": {
+      "text": "{0} — खाली संपादक बफ़र; दिखाने के लिए कोई CSV रिकॉर्ड नहीं।",
+      "sourceHash": "317881b8dd97d07f5a9c533ac119eb6263635b2a47e691953792c778d9a4dbce"
+    },
+    "Table.EnterExplicitCellAndRowEditingMode": {
+      "text": "सेल और पंक्तियों के लिए स्पष्ट संपादन मोड में जाएँ",
+      "sourceHash": "4a92a0843c8f5f7542f0471765948245475d77cf9ad241ece1d15de87e6d231e"
+    },
+    "Table.EnterExplicitCellAndRowEditingModeApply": {
+      "text": "सेल और पंक्तियों के लिए स्पष्ट संपादन मोड में जाएँ। लागू करें केवल संपादक बफ़र में लिखता है।",
+      "sourceHash": "dbf0e070b94d4c2d58c0634580324d380274e812ad5cb6a4f671c0f649b50871"
+    },
+    "Table.EnterExplicitCellAndRowEditingModeThe": {
+      "text": "सेल और पंक्तियों के लिए स्पष्ट संपादन मोड में जाएँ। पूर्ण संपादन मॉडल केवल माँग पर बनाया जाता है।",
+      "sourceHash": "740b60050075a942c069064f343bdf47d2548c535386f46e6ff77eb45cb4a398"
+    },
+    "Table.ErrorsWarnings": {
+      "text": "{0} त्रुटियाँ, {1} चेतावनियाँ",
+      "sourceHash": "1afcc6f9f1973bbf6c8180260581e38a5ee6c30dbaefe373637d6f33c08070b3"
+    },
+    "Table.FirstRowAsHeader": {
+      "text": "पहली पंक्ति हेडर के रूप में",
+      "sourceHash": "86882c316ba60ff9c9a99166e18b00a1943aa71446c6970db19d9751abd45c71"
+    },
+    "Table.FirstRowIsHeader": {
+      "text": "पहली पंक्ति हेडर है",
+      "sourceHash": "7b2054068d44a015f22b9de5a6048312ea000e7f9a2dd530265afe9bae6af745"
+    },
+    "Table.Header": {
+      "text": "हेडर:",
+      "sourceHash": "06d5fcb2a0f1eaac878cd0b64a2aee965d23c5b366994f0b8030cac11bfb9ac8"
+    },
+    "Table.InsertANewRowAfterTheSelectedRow": {
+      "text": "चयनित पंक्ति के बाद नई पंक्ति डालें या कोई पंक्ति चयनित न हो तो अंत में जोड़ें",
+      "sourceHash": "9bcd4f525c244da60e35cee47c9a88bf28b0c1a1ffeaf8df5c5242356b2fba46"
+    },
+    "Table.LoadingCSVDataInTheBackgroundNotepadRemains": {
+      "text": "{0} — पृष्ठभूमि में CSV डेटा लोड हो रहा है; Notepad++ उत्तरदायी रहता है।",
+      "sourceHash": "ddfa70ec16a109b76fe3aed18ca920477a52f26201df0ec4d6a817354a73aba4"
+    },
+    "Table.ManualSelection": {
+      "text": "मैन्युअल चयन",
+      "sourceHash": "39c4a0f6eed6f274d89178dc70eac06ce0115310d9ac3f12cb6bd4994106a4a9"
+    },
+    "Table.MatchingOfDisplayedRows": {
+      "text": "दिख रही {1} पंक्तियों में {0} मेल",
+      "sourceHash": "27879ae00b5655920967fc46f7df64f68ba6d338f26b1e24ecde4cec05856beb"
+    },
+    "Table.Message": {
+      "text": "संदेश",
+      "sourceHash": "2f77668a9dfbf8d5848b9eeb4a7145ca94c6ed9236e4a773f6dcafa5132b2f91"
+    },
+    "Table.NewlyInsertedRowsWereRemovedFromThePending": {
+      "text": "लंबित सत्र से {0} नई डाली गई पंक्तियाँ हटाई गईं।",
+      "sourceHash": "87ca5a0884a2872c12eccd1e494e0964b476730fd5c617641fcae1c2ce130f26"
+    },
+    "Table.NoDiagnosticsToDisplay": {
+      "text": "दिखाने के लिए कोई निदान नहीं।",
+      "sourceHash": "8d53681fc064d034d2ca15754eb13fc599ca3cc0ee81efbb8ff20913d14148c0"
+    },
+    "Table.NoHeaderRow": {
+      "text": "कोई हेडर पंक्ति नहीं",
+      "sourceHash": "bf98c17da8222beb45ecf7a144e26043354dd4a94003e1c3afae880d71ef5a76"
+    },
+    "Table.NoHeaderRow2": {
+      "text": "कोई हेडर पंक्ति नहीं",
+      "sourceHash": "650833a1448ad3018ecbb18183f206d5a6bf5ea98da46433fa03975836c8b0e0"
+    },
+    "Table.NoMatchingRowsTryAnotherSearchTextOr": {
+      "text": "कोई मेल खाने वाली पंक्ति नहीं।\nअलग खोज पाठ या कॉलम आज़माएँ।",
+      "sourceHash": "b27c4c1c248c809742aa17ee80026b5ae1a037c89337ec8b6d288dd7f32a0749"
+    },
+    "Table.NoParserDiagnostics": {
+      "text": "कोई पार्स निदान नहीं",
+      "sourceHash": "30493e355b5bac176a6c560caa7261732735856d3dbf390e3d4ed9f39baf4c54"
+    },
+    "Table.NoReliableDelimiterCouldBeSelectedSafely": {
+      "text": "कोई विश्वसनीय डिलिमिटर सुरक्षित रूप से नहीं चुना जा सका।",
+      "sourceHash": "fc0d0de7c2c52e7fd338e7626e4d1117ae569290d0d7d05338c9140a31d7215c"
+    },
+    "Table.NothingToApplyTheEditSessionContainsNo": {
+      "text": "लागू करने के लिए कुछ नहीं: संपादन सत्र में कोई लंबित परिवर्तन नहीं।",
+      "sourceHash": "9cdf27b5ac312dd338f3f3fb308768f9c3b29da9f78606569422799a184f924f"
+    },
+    "Table.ParsingAndPreparingABoundedVisualTableIn": {
+      "text": "पृष्ठभूमि में सीमित दृश्य तालिका पार्स और तैयार की जा रही है…",
+      "sourceHash": "5ce9c8be0d66439d7dc839d9050d3a49cb1dca752aeadb8bc6517c30c51e2408"
+    },
+    "Table.PendingCellAndStructuralRowChanges": {
+      "text": "लंबित सेल परिवर्तन और संरचनात्मक पंक्ति परिवर्तन",
+      "sourceHash": "3dfc21d9b6125f0b2e50aef6137e5d6c9b47abf7bf54f9814ac386351cb4b9bc"
+    },
+    "Table.PendingInsertedRowNotYetApplied": {
+      "text": "लंबित डाली गई पंक्ति {0}; अभी लागू नहीं हुई",
+      "sourceHash": "fa82ebd5a328cf1c1a9b8641fbc0aedce04547733b78aff6065068aea08e5371"
+    },
+    "Table.PendingRows": {
+      "text": "{0} लंबित पंक्तियाँ",
+      "sourceHash": "8cdb650a9fcda9e736a6bf54f374e379fcdec907facd70aa541844c40c191676"
+    },
+    "Table.PluginReadyReadingTheActiveEditorBuffer": {
+      "text": "प्लगइन तैयार है। सक्रिय संपादक बफ़र पढ़ा जा रहा है...",
+      "sourceHash": "a593dcf64a25328fe6c91984dd76e38188de43c9a5b051bd8be3175e7f15a840"
+    },
+    "Table.PreparingTheCompleteEditSession": {
+      "text": "पूर्ण संपादन सत्र तैयार किया जा रहा है…",
+      "sourceHash": "f9509f884fbecda63559a24ff4de611390cd94142714cf5e8cea1c8bca8aa30d"
+    },
+    "Table.Property": {
+      "text": "गुण",
+      "sourceHash": "40040cb181f7f0ee5add2b52e8467c6652477f7ce12af39fe380b5084b64f4fe"
+    },
+    "Table.ReadAndRenderTheCurrentActiveNotepadEditor": {
+      "text": "वर्तमान सक्रिय Notepad++ संपादक बफ़र पढ़ें और दिखाएँ",
+      "sourceHash": "46f0d4351716fd51e3aefa88e2d3b08b7d2b70100375c2518058b4c135eab99c"
+    },
+    "Table.Record": {
+      "text": "रिकॉर्ड",
+      "sourceHash": "bfdd510698ef3ccbf17f2c67fc47790e1ba72894fb74fe284bbc136b47ef73e6"
+    },
+    "Table.RevertAll": {
+      "text": "सब पूर्ववत करें",
+      "sourceHash": "66de29d4daa995351fcf3cec3d5d47378bfaf7cfef96ca205855e7ba376eef74"
+    },
+    "Table.Rows": {
+      "text": "{0} पंक्तियाँ",
+      "sourceHash": "8f710eeb166688620b7488f26da96862e8ac658fafe8c790a354c52b3e56d94b"
+    },
+    "Table.Semicolon": {
+      "text": "अर्धविराम (;)",
+      "sourceHash": "599d532f1133a280ee5a238cf1e25ab1155a94281ad4636681c45bf12c04172d"
+    },
+    "Table.Semicolon2": {
+      "text": "अर्धविराम",
+      "sourceHash": "1e69fcfadd9d966848126920db1d5abf1672e23e7b43f482553e04353252b084"
+    },
+    "Table.Severity": {
+      "text": "गंभीरता",
+      "sourceHash": "5e9f98120dbe568255ee059f39671686982b113d4e917b6d6faf149918c81709"
+    },
+    "Table.ShowDetailedParserAndDelimiterDiagnostics": {
+      "text": "विस्तृत पार्स और डिलिमिटर निदान दिखाएँ",
+      "sourceHash": "aad7e89496973aa64a3fa0f3f769e29ffb581bc3f914bc3d2452b7ad9f9195fd"
+    },
+    "Table.ShowingOfRows": {
+      "text": "{1} पंक्तियों में {0} दिखा रहा है",
+      "sourceHash": "711d5b9e0e0a392b80bd3352f677a567e79b20fe09882e132adfe75896914fe4"
+    },
+    "Table.Snapshot": {
+      "text": "स्नैपशॉट",
+      "sourceHash": "6ad27bd4ec33b079208334dfea86ff96900f95ca640dda1d2638d694d077668b"
+    },
+    "Table.SnapshotError": {
+      "text": "स्नैपशॉट त्रुटि",
+      "sourceHash": "e24c49fca1d342203b531e9afcefda33fffb41079cd7f08e03b55d962a5bb25d"
+    },
+    "Table.SortLevelViewOnly": {
+      "text": "क्रमबद्ध स्तर {0}: {1}, {2}। केवल दृश्य।",
+      "sourceHash": "6d7246af9611b7bad14c5a6de7538c4edc0b9a3cc43af3758f99114fc10b703d"
+    },
+    "Table.SortedBy": {
+      "text": " — {0} {1} से क्रमबद्ध",
+      "sourceHash": "645fdc87ec3c916e2d71210080d36544416c4d68dd13c1235aa4537c42f220b4"
+    },
+    "Table.SourceLogicalRecord": {
+      "text": "तार्किक स्रोत रिकॉर्ड {0}",
+      "sourceHash": "49e50061c2eeeb48fd13c92b7feb21b9cf535dd984481a623cba04819c0b96a1"
+    },
+    "Table.SourceLogicalRecordModifiedInThePendingEdit": {
+      "text": "तार्किक स्रोत रिकॉर्ड {0}; लंबित संपादन सत्र में बदला गया",
+      "sourceHash": "ada491eaf3c2025f280956844cf0cdbe11cbcc8d710de8e8b6c465bc6591751f"
+    },
+    "Table.SourceRowsAreMarkedForDeletionAndInserted": {
+      "text": "{0} स्रोत पंक्तियाँ हटाने के लिए चिह्नित हैं और {1} डाली गई पंक्तियाँ लंबित सत्र से हटाई गईं।",
+      "sourceHash": "ff23d80aa590199a766b90b929be1ed78972b690bfde88776f7c6a6719126f9c"
+    },
+    "Table.SourceRowsAreMarkedForDeletionApplyWrites": {
+      "text": "{0} स्रोत पंक्तियाँ हटाने के लिए चिह्नित हैं। लागू करें पूरा बैच लिखता है; सब पूर्ववत करें हर पंक्ति बहाल करता है।",
+      "sourceHash": "480b1f2be723275821626927df2022fd9fc3cef6aec319e36787d40e067e3f5f"
+    },
+    "Table.Status": {
+      "text": "स्थिति",
+      "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355"
+    },
+    "Table.Tab": {
+      "text": "टैब",
+      "sourceHash": "90ddf1963abb36c9921ce7f1ac9cbd94c9176d13e57c418d3d3c20ce44291c1c"
+    },
+    "Table.Tab2": {
+      "text": "टैब",
+      "sourceHash": "7508386a20565f5cbc526eee8b3c9f39edeecd576ee90cb3dbb5ce5ac3fe9566"
+    },
+    "Table.TableError": {
+      "text": "तालिका त्रुटि",
+      "sourceHash": "b6e75437a7577f614b6d93d68a958e5d1ce87ef16c4471a2a60101217c108a87"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted": {
+      "text": "सक्रिय सेल का संपादन कमिट नहीं किया जा सका। पंक्ति जोड़ने से पहले मान ठीक करें।",
+      "sourceHash": "403e1d4bfe5f333f55df047b95551a1aa0f8108d1777134b8c9d8be84ed288e5"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted2": {
+      "text": "सक्रिय सेल का संपादन कमिट नहीं किया जा सका। पंक्तियाँ हटाने से पहले मान ठीक करें।",
+      "sourceHash": "da804da6ce85bb179d1168398dbbc7a24b802911968f203e8d45c2588801fb1c"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted3": {
+      "text": "सक्रिय सेल का संपादन कमिट नहीं किया जा सका। लागू करने से पहले मान ठीक करें।",
+      "sourceHash": "2a734c72e5242010863fa3e60743941f513b2bbc2403d1975da34f86fa997bcb"
+    },
+    "Table.TheNewlyInsertedRowWasRemovedFromThe": {
+      "text": "नई डाली गई पंक्ति लंबित सत्र से हटाई गई।",
+      "sourceHash": "8fbbb309583c5d4ccd71f2548bcc7418facbc03984640d402417bf2252e84eef"
+    },
+    "Table.TheRowIndicatorColumnIsNotConfigured": {
+      "text": "पंक्ति संकेतक कॉलम कॉन्फ़िगर नहीं है।",
+      "sourceHash": "27dad0e89691e724517a13fa3bb7c11841b2e4ebc4e81784642b57a15f545fc4"
+    },
+    "Table.TheSelectedRowSetIsNoLongerValid": {
+      "text": "चयनित पंक्ति सेट अब इस संपादन सत्र के लिए वैध नहीं है। कोई पंक्ति नहीं हटाई गई।",
+      "sourceHash": "b5e2bd6fc229104f9b30ea37b3a648a1209e96f5ae5bbd86dd5d141e55a52f88"
+    },
+    "Table.TheSelectedRowsWereAlreadyDeletedNoAdditional": {
+      "text": "चयनित पंक्तियाँ पहले ही हटाई जा चुकी थीं। कोई अतिरिक्त परिवर्तन नहीं किया गया।",
+      "sourceHash": "3b5ce491426d7bad86fe9b7ec32349cb14528da0e18c12001c0587b33fb146af"
+    },
+    "Table.TheSourceRowIsMarkedForDeletionApply": {
+      "text": "स्रोत पंक्ति हटाने के लिए चिह्नित है। लागू करें हटाना लिखता है; सब पूर्ववत करें पंक्ति बहाल करता है।",
+      "sourceHash": "8965fd4f6fe27b89f42c871ebf14f5b66c2c1e8c293178f40f0864b17c208fc5"
+    },
+    "Table.TheVisualTableCouldNotBeProducedThe": {
+      "text": "दृश्य तालिका नहीं बनाई जा सकी। संपादक सामग्री नहीं बदली गई।",
+      "sourceHash": "d06ddee1dc61dc14373482d439825b0be57bf073a6ba05a3dc3be86e7497bacb"
+    },
+    "Table.UseReliableAutomaticDetectionOrChooseADelimiter": {
+      "text": "विश्वसनीय स्वतः पहचान उपयोग करें या डिलिमिटर स्पष्ट रूप से चुनें",
+      "sourceHash": "927cadfc87b728b7512310d9990cfe07833de56acb148e4e14eda2d01da37143"
+    },
+    "Table.WaitingForTheActiveNotepadDocument": {
+      "text": "सक्रिय Notepad++ दस्तावेज़ की प्रतीक्षा है।",
+      "sourceHash": "0877b2c8a76eed3b6c941ebe15d029c6410481594336353d288fa3636202346c"
+    },
+    "Table.XColumns": {
+      "text": "{0} - {1} x {2:N0} कॉलम",
+      "sourceHash": "8d34e29f44f6532fcd59908db9d981e2a6f48ddf3372f73c3027c1f37ddb3cf6"
+    },
+    "Transform.AcceptChanges": {
+      "text": "परिवर्तन स्वीकार करें",
+      "sourceHash": "d0b6ea6505a2054224392e759040d59b78e046fd4e2c4ff16a290ee4ccf86c59"
+    },
+    "Transform.After": {
+      "text": "बाद में",
+      "sourceHash": "7b68fe5510851da3d89100c569d3265e044d8656d95750c376b7a0972dea7330"
+    },
+    "Transform.AllDataCells": {
+      "text": "सभी डेटा सेल",
+      "sourceHash": "4e7ade7ada2353ec566e7b7cf0530181a8c1e42efc6ef7bc977117bd0365ab5f"
+    },
+    "Transform.Before": {
+      "text": "पहले",
+      "sourceHash": "9bb725005055412c75a8e8d1fb5a0780595174ac8bbe5a24f768647bd4e4debe"
+    },
+    "Transform.CSVColumn": {
+      "text": "CSV कॉलम",
+      "sourceHash": "00ad2353fd3b965ac4613efa723f7b24cf21a36332356ebcf32077f6ec470f6b"
+    },
+    "Transform.ChooseAnOperationAndScopeThenClickPreview": {
+      "text": "कार्रवाई और दायरा चुनें, फिर पूर्वावलोकन क्लिक करें।",
+      "sourceHash": "ac6b18d08638ac0dec01eeb6e30fded4e000c3eea3190f411363a2c2f17838e5"
+    },
+    "Transform.CurrentColumn": {
+      "text": "वर्तमान कॉलम",
+      "sourceHash": "57cf89765ee6006cc5a77c4950b4ae08253d9449354b72a1d51bfd9cb3ca637a"
+    },
+    "Transform.Find": {
+      "text": "खोजें:",
+      "sourceHash": "8d7fbc1fcb5682c03ec22ab1db8645bcf90221e3b2aa931e0d6bd8483378eb5b"
+    },
+    "Transform.Lowercase": {
+      "text": "छोटे अक्षर",
+      "sourceHash": "46ede93b09bfe7da5d11716d8e00be347779c5e12c8ae9a93d533ecf9b248180"
+    },
+    "Transform.Operation": {
+      "text": "कार्रवाई:",
+      "sourceHash": "204c7b2a7911489be34ebbbef67764f9613eed2f2b6dd881f2657fba67dde053"
+    },
+    "Transform.OtherWhitespaceIsEscapedLengthsCountUTFUnits": {
+      "text": "अन्य रिक्त स्थान एस्केप अनुक्रम के रूप में दिखते हैं; लंबाई UTF-16 इकाइयों में गिनी जाती है। लंबे मान छोटे दिखाए जाते हैं।",
+      "sourceHash": "8c1cb2831e9eb0ac1e3d4c4fb1e247699258b86c054fe7dfbcef94fb741ff8aa"
+    },
+    "Transform.PreviewCouldNotBeCreatedCheckTheScope": {
+      "text": "पूर्वावलोकन नहीं बनाया जा सका। दायरा और खोज पाठ जाँचें या छोटा दायरा चुनें (अधिकतम 250,000 सेल / 16 Mi वर्ण)।",
+      "sourceHash": "ddac5a5bf4570943659e4a16bc826cf89037a13aba6ad93a1c3909c456e553d6"
+    },
+    "Transform.PreviewFirstAcceptChangesUpdatesPendingEditsThe": {
+      "text": "पहले पूर्वावलोकन करें। परिवर्तन स्वीकार करें लंबित संपादन अपडेट करता है; टूलबार का लागू करें Notepad++ में लिखता है।\nहेडर तब बाहर रखे जाते हैं जब हेडर = पहला रिकॉर्ड। केस रूपांतरण लोकेल सेटिंग से स्वतंत्र है।",
+      "sourceHash": "9c7b7b2df539465304a3d08795d88b0264e60d76c214c4f8cca5cd7fa64235d3"
+    },
+    "Transform.RecordID": {
+      "text": "रिकॉर्ड ID",
+      "sourceHash": "a36aceadc2e64ca13c88590a3ee434ea54a2724ce4484ff845d4dee9a28ca5ee"
+    },
+    "Transform.ReplaceTextLiteral": {
+      "text": "पाठ बदलें (अक्षरशः)",
+      "sourceHash": "331048818cf12694c966902f538a837c5dd03d479c47232728aacc795d0a1c26"
+    },
+    "Transform.ReplaceWith": {
+      "text": "इससे बदलें:",
+      "sourceHash": "0b9d1257b2c37998489c12dbef49872df2682f05875850483afdeeafd712216f"
+    },
+    "Transform.Scope": {
+      "text": "दायरा:",
+      "sourceHash": "f0038a9653e1419b5555caa927d0c7db66a7ff10653485cf30e773864e916ac2"
+    },
+    "Transform.SelectACSVDataColumn": {
+      "text": "CSV डेटा कॉलम चुनें।",
+      "sourceHash": "3cd7b9049bccc08dc9aa9b4aa56f21a11c9accf27fb688f1d48c81896832f0ed"
+    },
+    "Transform.SelectedCellsRows": {
+      "text": "चयनित सेल / पंक्तियाँ",
+      "sourceHash": "cadfe203235bf0d053497706836786d43d6baaa18a726f9c2939fa7a911e292d"
+    },
+    "Transform.SolidOrangeDotsMarkEmptySpaces": {
+      "text": "भरे हुए नारंगी बिंदु स्पेस दिखाते हैं। ",
+      "sourceHash": "0c61599f72b7b2161fa6f21306079e26027fa7b4d2f50b678755c9193ed6f685"
+    },
+    "Transform.SpaceIndicatorsAreHidden": {
+      "text": "स्पेस संकेतक छिपे हैं। ",
+      "sourceHash": "793c83255b5db14c4d82fc45422039a4ea22188d8a6c5b52dda604692e6fee94"
+    },
+    "Transform.TargetCellsChangesInRowsShowingTheFirst": {
+      "text": "{0:N0} लक्ष्य सेल; {2:N0} पंक्तियों में {1:N0} परिवर्तन। पहले 50 परिवर्तन दिखाए जा रहे हैं; ",
+      "sourceHash": "edf16babe2504f1779170dfbb187eec05440ab2da0491b4a4f5cb09aa3926aeb"
+    },
+    "Transform.TheEditSessionChanged": {
+      "text": "संपादन सत्र बदल गया है।",
+      "sourceHash": "d25be0c0932cfdd24c8c106d928eba753e0c51fd49f47eb8d37afb9fa634b20b"
+    },
+    "Transform.ThePreviewIsNoLongerValidCheckThe": {
+      "text": "पूर्वावलोकन अब वैध नहीं है। संपादन सत्र जाँचें और नया पूर्वावलोकन बनाएँ।",
+      "sourceHash": "d39491094a7b38dde10797aa6165a8b9fc4b7e19150df197ace8d80ad4bc7407"
+    },
+    "Transform.TransformCSVCells": {
+      "text": "CSV सेल रूपांतरित करें",
+      "sourceHash": "c5bef5b02602943f80680d4d099b3206027f282ae6f60b4193d75d0180711cfa"
+    },
+    "Transform.TransformedCellsInThePendingEditSessionUse": {
+      "text": "लंबित संपादन सत्र में {0:N0} सेल रूपांतरित किए गए। Notepad++ अपडेट करने के लिए लागू करें या लंबित संपादन छोड़ने के लिए सब पूर्ववत करें उपयोग करें।",
+      "sourceHash": "c7d58319ed59e7fc0df0249fd4e7ba97d6db2b2f3c0e67c5ebc4a68e76c444aa"
+    },
+    "Transform.TrimOuterWhitespace": {
+      "text": "बाहरी रिक्त स्थान हटाएँ",
+      "sourceHash": "b8006f9807f8811a97b2abc517c2d7554550e2452ef1afa8f1c91587a66f03c6"
+    },
+    "Transform.UPPERCASE": {
+      "text": "बड़े अक्षर",
+      "sourceHash": "9755f224ef93f473f8115c61076f8346a9759e2b2b7cbd3701e0794338c76b0a"
+    },
+    "View.Reset": {
+      "text": "दृश्य रीसेट करें",
+      "sourceHash": "ce89ae822e8ba0729e948db14281069eead9eac67edfd4a8e8fe8ab0ec79385d"
+    },
+    "View.ShowSpaces": {
+      "text": "स्पेस दिखाएँ",
+      "sourceHash": "2c65f4696fd7ebc36461381e5fc4cb60d09cf2add06e33dfee52f58b1a3e46d0"
+    }
+  }
+}

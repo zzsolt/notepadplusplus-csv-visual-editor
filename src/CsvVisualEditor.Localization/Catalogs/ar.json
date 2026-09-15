@@ -1,0 +1,1509 @@
+{
+  "language": "ar",
+  "messages": {
+    "About.AVisualCSVEditorForNotepad": {
+      "text": "محرر بصري CSV لـ Notepad++",
+      "sourceHash": "d2192a67070b6d0befcfffd5bcea3b1d4f3effd651e0e620c227b47b3972683d"
+    },
+    "About.AboutCSVVisualEditor": {
+      "text": "حول CSV Visual Editor",
+      "sourceHash": "b1f31b2b4fe3d04bb0f84043aaf400a24714c530fee3882620db5a66642d1693"
+    },
+    "About.Contact": {
+      "text": "جهة الاتصال: {0}",
+      "sourceHash": "867dbcb9eb0073935eb554a8510b0ac7b5240c57bddae906d228f7367a79bdde"
+    },
+    "About.ContactDeveloper": {
+      "text": "الاتصال بالمطور {0}",
+      "sourceHash": "36cd6e0479001987a1cd88b2265e18f2d99a319613367f14eb00c1f947ebf680"
+    },
+    "About.Developer": {
+      "text": "مطوّر: {0}",
+      "sourceHash": "a02fc5573b93c65c53cfa9285e972201960aea294f82a7dd008bfbaab6338ee7"
+    },
+    "About.DevelopmentBuild": {
+      "text": "بناء التنمية",
+      "sourceHash": "63d499e28cc580c198f63d4feb38a5ad486cf4edfc14c2928b60b32d7f71e90e"
+    },
+    "About.EnjoyingCSVVisualEditorPleaseSupportTheProject": {
+      "text": "متمتعة CSV Visual Editorيرجى دعم المشروع.\nضعه على GitHub, تشارك تعليقاتك، أو اتصل بالمطور حول المساهمة. شكراً!",
+      "sourceHash": "e60a9dcedd8c18b51506e14cba236e2534a53cd3f3c13c8abeddabc6e1691629"
+    },
+    "About.InterfaceLanguage": {
+      "text": "لغة الواجهة: {0}",
+      "sourceHash": "63c27cb4d537542f128deb040cf0d6fec2325db7f8d2d10d3603d7d2c39e08f8"
+    },
+    "About.NoAssociatedApplicationCouldBeOpenedContact": {
+      "text": "لم يتسن فتح أي تطبيق مرتبط بهذا الطلب. {0}",
+      "sourceHash": "dd6691f6714de01161e5cddb7fb13410f3caa7f1d22c27adfa0aa6e2b8d8ce80"
+    },
+    "About.ProjectOnGitHub": {
+      "text": "مشروع بشأن GitHub",
+      "sourceHash": "f803aa694000b5fbeb002377b76f30f011f4266dbd682de5d26b8ec042af1aea"
+    },
+    "About.Version": {
+      "text": "النسخة: {0}",
+      "sourceHash": "06f9249e559a399f8d8c6df14200ddc994828430331a297556d9f60450dd394a"
+    },
+    "About.VersionAndBuild": {
+      "text": "النسخة والبناء",
+      "sourceHash": "c1ffa3cecb3b7b614a54d8c8eaf5a11d8f7321a6a6a1a6d56e7e3f6f917de14d"
+    },
+    "Clipboard.BlockedBecauseThePendingEditModelChangedNo": {
+      "text": "{0} لم يتم الاحتفاظ بأي تغيير جزئي.",
+      "sourceHash": "ab0fc3f3fc2b216daa6bba6a6f516ab2db470f2186d694c5516bee9588809e6b"
+    },
+    "Clipboard.BlockedClipboardAndSelectedRectanglesHaveDifferentDimensions": {
+      "text": "{0} مسدودة: لقصاصات الملفات والمستطيلات المختارة أبعاد مختلفة.",
+      "sourceHash": "07f257154aa012c75b374e6b950f2a29bb8ebcadbf4195fc860e1297136c990f"
+    },
+    "Clipboard.BlockedTheTargetRectangleExtendsBeyondTheCSV": {
+      "text": "{0} مسدود: يمتد المستطيل المستهدف إلى ما وراء جدول CSV.",
+      "sourceHash": "5efd8003aae5f310dc81d0ea5db4597cfc0439bdf2455fa96f537bcb73b6ad63"
+    },
+    "Clipboard.BlockedThereIsNoEditableTargetRectangle": {
+      "text": "{0} مسدود: لا يوجد مستطيل هدف قابل للتحرير.",
+      "sourceHash": "9c5f38bd868834ecca8e706f27041b2b5fe3b6d6bd90b5b006bb32e61bfa2a75"
+    },
+    "Clipboard.CopiedCSVCells": {
+      "text": "نُسخت {0} × {1} خلايا CSV.",
+      "sourceHash": "bb3e2453130a972e9ecb0f0dca535af24acc17ee2137352a91f44873afd84489"
+    },
+    "Clipboard.CopyCutBlockedOneSelectedCellContainsA": {
+      "text": "مسدودة النسخ/القص: خلية واحدة مختارة تحتوي على علامة تبويب أو فاصل سطر لا يمكن تمثيله بشكل لا لبس فيه كنص عادي في صحيفة بيانات.",
+      "sourceHash": "2a44b7a44aef9861a806a5be13a82acf27923864f0d5ec93b1dc96036a30a0cc"
+    },
+    "Clipboard.CopyRequiresCSVCellsNotCompleteRowDeletion": {
+      "text": "تحتاج النسخة إلى خلايا CSV، وليس حذف الصف الكامل.",
+      "sourceHash": "2f1d66346008fee9d95fb2dd911a8df82857d6f489da6cea24926c5e4c25d023"
+    },
+    "Clipboard.CopyRequiresOneContiguousRectangularSelectionOfCSV": {
+      "text": "وتتطلب النسخة اختيارا مستطيلا متصلا واحدا من خلايا بيانات CSV.",
+      "sourceHash": "7dc2b650f80184da9c3fb27dfc39d1e3a9ed9ae7075b8f0acf4ec60562635b90"
+    },
+    "Clipboard.CutCellsIntoTheClipboardAndClearedThem": {
+      "text": "قطع {0} يسمح لك هذا الخيار بنقل الخلايا إلى القرص الصلب وتطهيرها في جلسة التحرير المعلقة. Notepad++.",
+      "sourceHash": "1ee1f0601670fa89ae493c94b384d97093436abbe8597bbf165e7cbdab16b4c1"
+    },
+    "Clipboard.CutCompletedTheSelectedCellsWereAlreadyEmpty": {
+      "text": "تم إكمال القطع؛ الخلايا المختارة كانت فارغة بالفعل. يحتوي القرص الصلب على قيمها الأصلية.",
+      "sourceHash": "e69e6173206140f92281472777e887bb43523849c3bd085b61c79437fc37f5c8"
+    },
+    "Clipboard.IsAvailableOnlyInEditMode": {
+      "text": "{0} غير متوفر إلا في وضع التحرير.",
+      "sourceHash": "718a620852f2a96042d594b909bb484cf424cbecdc3395459724bb737f0124ca"
+    },
+    "Clipboard.IsUnavailableForTheCurrentTable": {
+      "text": "{0} غير متاح للجدول الحالي.",
+      "sourceHash": "7275f4a8d70753d2ccbad6a014dca8c5d9b2a9b70560eb7d75345306eed736ae"
+    },
+    "Clipboard.PasteBlockedNoDataWasChanged": {
+      "text": "عرقلة اللصق: {0} لم يطرأ أي تغيير على البيانات.",
+      "sourceHash": "3a0e56bf80bd2f4e90856358792217d560b9bce57442ef197fbe673f00507608"
+    },
+    "Clipboard.PasteCompletedAllTargetValuesWereAlreadyIdentical": {
+      "text": "أنجزت عملية اللصق؛ وكانت جميع القيم المستهدفة متطابقة بالفعل.",
+      "sourceHash": "9c37416bbb3d9703e61c86645e003bfa4af8be52ad4c9a8192efb9cd0a62ab72"
+    },
+    "Clipboard.PastedChangedCellsIntoThePendingEditSession": {
+      "text": "ملصق {0} تكتبها إلى الذاكرة Notepad++.",
+      "sourceHash": "c3465ac4777c362281907634ca2c96ecb38b278ca28adfafaef31cbe09c6037b"
+    },
+    "Clipboard.RequiresACSVCellRectangleNotCompleteRow": {
+      "text": "{0} يتطلب مستطيل خلية CSV، وليس اختيار حذف الصف الكامل.",
+      "sourceHash": "0e7ac400647d061104761816bfd94e217fe6d3426c1665fb044810588a74da21"
+    },
+    "Clipboard.RequiresOneContiguousRectangularSelectionOfCSVData": {
+      "text": "{0} يتطلب اختياراً مستطيلاً واحداً متصلاً من خلايا بيانات CSV.",
+      "sourceHash": "48bc2b5b9d3194b562b4193cda5c4fbbf6597605315660a473c49f29cbb4e396"
+    },
+    "Clipboard.TargetsAreUnavailableOutsideTheStableEditMode": {
+      "text": "{0} الأهداف غير متوفرة خارج نموذج الصف Edit-mode المستقر.",
+      "sourceHash": "4031745d341dd3cb404eca134dfe1041288b4370021e8e1a5f617f5f1bb12f25"
+    },
+    "Clipboard.TheActiveCellEditCouldNotBeCommitted": {
+      "text": "لم يكن من الممكن تسليم تعديل الخلية النشطة قبل النسخ.",
+      "sourceHash": "64af703868b4b98503fc2e3d39e70f9cb2c95fc34d4bba8dacedc350517f0630"
+    },
+    "Clipboard.TheActiveCellEditCouldNotBeCommitted2": {
+      "text": "لم يكن من الممكن تسليم تعديل الخلية النشطة. تصحيح القيمة قبل {0}.",
+      "sourceHash": "e07730c50ef479c0872e3a6118f224a1dfd435348c34cd30f49b5ff92c914425"
+    },
+    "Clipboard.TheClipboardDoesNotContainPlainTextCells": {
+      "text": "لا يحتوي القرص الصلب على خلايا نص عادي.",
+      "sourceHash": "c46d98401ca0b6c565804d0f5d25f528b10c1aea46f55befba40ef1b476e0e22"
+    },
+    "Clipboard.TheWindowsClipboardIsTemporarilyUnavailableNoData": {
+      "text": "قلم رصاص ويندوز غير متاح مؤقتا. لم تتغير أي بيانات.",
+      "sourceHash": "68a5fdf8319c7ab9c01db36ebf0e0562f06ce50a2c536dadccc25c57d951893a"
+    },
+    "Commands.CopyTheSelectedCSVCellRectangleToThe": {
+      "text": "نسخ مستطيل الخلية CSV المختار إلى قلم رصاص ويندوز (Ctrl+C)",
+      "sourceHash": "5d67bfa38a6db6478ecceb9beedec0f63de3f1ff6d3d097198bc2b61cb917154"
+    },
+    "Commands.CopyTheSelectedCSVCellsAndClearThem": {
+      "text": "نسخ الخلايا المختارة في CSV وإزالتها في جلسة التحرير المعلقة (Ctrl+X)",
+      "sourceHash": "7645ca06d3ba1e0a7b46d62d3dd8dc3d08e306d7022502e12d5a40f64aba28f1"
+    },
+    "Commands.PasteSpreadsheetCellsIntoTheSelectedCSVCell": {
+      "text": "لصق خلايا جدول البيانات في الخلية أو المستطيل CSV المختار (Ctrl+V)",
+      "sourceHash": "2c9fda38bdd305423a5dea249f2c7d31dd3acbdcc4f4a1afec58caeacf70c481"
+    },
+    "Commands.PreviewTextReplacementTrimmingOrCasingInPending": {
+      "text": "استعراض استبدال النص أو تقصيره أو صياغته في تحريرات CSV المعلقة",
+      "sourceHash": "809e9efd3e4a4144798a283c383c2c0b2005791cb086fa0479eecf52ff7cf507"
+    },
+    "Commands.SelectTheCurrentCSVCellOrRowIn": {
+      "text": "انتقِ الخلية أو الصف الحالي في المخطط Notepad++ فاصل المصدر",
+      "sourceHash": "256fc8853b969ce0b64549554688cf4650a36add08eb29ecb176b8cfa4ac9964"
+    },
+    "Commands.Source": {
+      "text": "المصدر",
+      "sourceHash": "0e570ca6fabe24f94e52c1833f3ffd25567022beb826fa16891f3322051bc221"
+    },
+    "Commands.Transform": {
+      "text": "تحويل",
+      "sourceHash": "d2d68041b53daa7577b38494eb66792f9bd9a3450f025587347a00610c67fbce"
+    },
+    "Common.About": {
+      "text": "حول",
+      "sourceHash": "4efca0d10c5feb8e9b35eb1d994f2905bb71714e6a271f511d713b539ea5faa1"
+    },
+    "Common.Apply": {
+      "text": "تطبيق",
+      "sourceHash": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851"
+    },
+    "Common.Ascending": {
+      "text": "تصاعديا",
+      "sourceHash": "77184595bde3befc7f5a20efc97caea43f4858e4c97cd2ee406af2c61db3266c"
+    },
+    "Common.Cancel": {
+      "text": "إلغاء",
+      "sourceHash": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27"
+    },
+    "Common.Close": {
+      "text": "إغلاق",
+      "sourceHash": "7d9eb7acb13e24625c404401d8e88b2350e32162455885f18276cf802f7701ed"
+    },
+    "Common.Column": {
+      "text": "العمود",
+      "sourceHash": "3fdc9a587693f9e63574b30ec55c2b947a7fb4ba5fd11f0cf213072f53d91bdd"
+    },
+    "Common.Copy": {
+      "text": "نسخة",
+      "sourceHash": "e21f935f11d7e966dbbae78da9daa378fe8142a14e7c0cd7434183005faa6c5c"
+    },
+    "Common.Cut": {
+      "text": "قطع",
+      "sourceHash": "1f45f02561f41db9483cfc00675900237967b8e382b9750d33f677812fe70842"
+    },
+    "Common.Descending": {
+      "text": "تنازلي",
+      "sourceHash": "79479a6c76d8416ab7839952a2f8222e350862464f4d02db13d8d8f9551dbf8e"
+    },
+    "Common.Edit": {
+      "text": "تحرير",
+      "sourceHash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344"
+    },
+    "Common.ExitEdit": {
+      "text": "الخروج",
+      "sourceHash": "ee8b39f4dbe6eec9cd08c7d084c74c4555ddd0206ff67ef3f3443454fde66c0e"
+    },
+    "Common.MatchCase": {
+      "text": "قضية مطابقة",
+      "sourceHash": "6198801124962e005dd813b94e3d951d8d70d462c86a1c97d5252a464a4a0c4c"
+    },
+    "Common.Number": {
+      "text": "العدد",
+      "sourceHash": "bd82cf16699be29ec05cbb763199c12f0dced428dde8381dbdd31c1d5dd0e8d4"
+    },
+    "Common.OriginalOrder": {
+      "text": "الطلب الأصلي",
+      "sourceHash": "9875877524a54ddcbdb0ca68c51dbe1d45926d904128784b430e1adbe75f8479"
+    },
+    "Common.Paste": {
+      "text": "لصق",
+      "sourceHash": "f3380f7b44bd70af2a369de6026bf2ca2a7b36fde9086935efcd62a0e379cc7a"
+    },
+    "Common.Preview": {
+      "text": "العرض المسبق",
+      "sourceHash": "324b134f57c70c729ae3dc4d298bb451656717d70523e942c1ce667b8024ea07"
+    },
+    "Common.Refresh": {
+      "text": "تحديث",
+      "sourceHash": "0e91610117029a62a478b7fa7df0b8598bebe3ab1e192d4b1882e310719c9671"
+    },
+    "Common.Rows": {
+      "text": "الصفوف",
+      "sourceHash": "101f2ff3de22441fcab3e15ca0b09ac3428642cf628558f16fa404fc3137baea"
+    },
+    "Common.Table": {
+      "text": "جدول البيانات",
+      "sourceHash": "16d1c9050a0b32e83764a81d801a880773abedfd7f8b0b08a1cd87ca0e404f12"
+    },
+    "Common.Text": {
+      "text": "النص",
+      "sourceHash": "71988c4d8e0803ba4519f0b2864c1331c14a1890bf8694e251379177bfedb5c3"
+    },
+    "Common.Value": {
+      "text": "القيمة",
+      "sourceHash": "8e37953d23daca5ff01b8282c33f4e0a2152f1d1885f94c06418617e3ee1d24e"
+    },
+    "DataTools.ColumnSummaryCountsDistinctValuesNumericRangeAnd": {
+      "text": "موجز الأعمدة: الأعداد، والقيم المميزة، والنطاق العددي، والقيم المتكررة في العرض الحالي.",
+      "sourceHash": "7c61c98a83a441c3adf0160fe629f44f40bac7f0765e5d6a88e0e36e5992ebfc"
+    },
+    "DataTools.ColumnSummaryRequiresAReadyReadOnlyTable": {
+      "text": "موجز العمود يتطلب جدولا جاهزا للقراءة فقط. أخرج من وضع التحرير أولاً.",
+      "sourceHash": "67b7f616ebc9935ffcf1f7a52ddce1336befb9c721b40ad96f99468bf0a3a653"
+    },
+    "DataTools.FilterAndSortCombineColumnRulesAndText": {
+      "text": "الترشيح والترتيب: الجمع بين قواعد العمود ومستويات الترتيب النصية/الرقمية.",
+      "sourceHash": "f2783ccffc0d6a112a52657459a4f3bc04f81fa29fa068ada9a4db4d41183d3c"
+    },
+    "DataTools.FilterAndSortCombineColumnRulesAndUp": {
+      "text": "الترشيح والترتيب: الجمع بين قواعد الأعمدة وثلاثة مستويات للترتيب النصي/الرقمي.",
+      "sourceHash": "59943f8d2769fc7b95c7f946e6603c9eb48ef36fe05f62fd18e12dd29d08823f"
+    },
+    "DataTools.FilterAndSortConditionsSortLevelsResetView": {
+      "text": "الترشيح والترتيب: {0} الشروط، {1} مستويات الترتيب. إعادة العرض تزيل جميع القواعد.",
+      "sourceHash": "0a8c9f92d7b8b727f78fbccf7149f09aac18ffc9376cba3e9d897955b6c530e2"
+    },
+    "DataTools.FilterAndSortRequiresAReadyReadOnly": {
+      "text": "الترشيح والترتيب يتطلبان جدولا جاهزا للقراءة فقط. أخرج من وضع التحرير أولاً.",
+      "sourceHash": "100aae6fdadc0b8a1df71d48bf0d4f74ccce9920d2fcfe5b833a3854eceb22a7"
+    },
+    "Diagnostics.InitialCount": {
+      "text": "التشخيص (صفر)",
+      "sourceHash": "d1a811c478cae1fa3d202d9a93a6473096b0407cd322dbd657248d8de4c38eaa"
+    },
+    "Edit.NoChanges": {
+      "text": "لا تغييرات",
+      "sourceHash": "93238d7a3eee63e5624d61ed22ae62f56330fbac719dfdc97f394a55d0ab1220"
+    },
+    "Filter.AddCondition": {
+      "text": "إضافة شرط",
+      "sourceHash": "60a0d83510ea99a149507fc5f9d9780e504e40bf7d8fa2d90f7db36f17252514"
+    },
+    "Filter.AddSortLevel": {
+      "text": "أضف مستوى الترتيب",
+      "sourceHash": "d05ab3a3877798cb0a05ea34aec2ffe8be224cfa58d071003ac49c9b4b2dc6ef"
+    },
+    "Filter.ApplyView": {
+      "text": "تطبيق العرض",
+      "sourceHash": "e147a93c4139a3f1d1103ff35ae72b0c4cf86077d4f9edc51d1e90a29e475db2"
+    },
+    "Filter.Case": {
+      "text": "الحالة",
+      "sourceHash": "15f86e24ed25aed154934fb1f3275d9b33e1ebaa64350694ed8661a7d6fc0f21"
+    },
+    "Filter.CaseSensitiveTextComparisonSpacesInValuesAre": {
+      "text": "المقارنة النصية الحساسة للطابع الحرفي للفراغات في القيم.",
+      "sourceHash": "1f0e95f3bccb189886cf40021f0cafb713a0494d92a3fc9fceb014b017c244ee"
+    },
+    "Filter.CheckTheRules": {
+      "text": "تحقق من القواعد: {0}",
+      "sourceHash": "13a8a8c3f686d19d869e010f3d735ed4795f1a93998b7afda885f1d4ce35c546"
+    },
+    "Filter.Condition": {
+      "text": "الحالة",
+      "sourceHash": "39b36d38d6eb03c89206f3b7b74397e7a9d9abb081ad48e3f73dece59dab7ae4"
+    },
+    "Filter.ConditionsSortLevelsPreviewToCheckMatchingRows": {
+      "text": "{0} / 8 شروط؛ {1} / 3 مستويات فرز. استعراض للتحقق من الصفوف المطابقة.",
+      "sourceHash": "c4e0000a54f104d98acc6161ab34cca237a19349c7b87971720c8659224348df"
+    },
+    "Filter.Contains": {
+      "text": "يحتوي على",
+      "sourceHash": "2eaecb3d0cf1282f01fc09568b63dc633753a0dbf337365d929d9c28df3d6ca4"
+    },
+    "Filter.DoesNotContain": {
+      "text": "لا يحتوي على",
+      "sourceHash": "56fe07f0e32e03ee1e3d643cfe8ff2ec61ffe31f0d880cbfc593fde3ccdac10e"
+    },
+    "Filter.DoesNotEqual": {
+      "text": "لا تساوي",
+      "sourceHash": "e47c3280f3bfbdfccb72e781dc6797d0de3507d1ac433c650efc1935771ba084"
+    },
+    "Filter.EmptyZeroCharactersWhitespaceOnlyNonEmptySpaces": {
+      "text": "الفراغ = صفر من الحروف، الفراغ فقط = فراغات غير فارغة/تبويب/قطع سطر.\nتستخدم الأرقام نقطة عشرية (-12.5()، دون تجميع أو أس؛ ويجب أن تكون الدقة دقيقة.",
+      "sourceHash": "e3bdfc345d49d1ec3bbb29b885ac1df312941bd5dad4cf31bcead431d0e0d69a"
+    },
+    "Filter.EndsWith": {
+      "text": "تنتهي بـ",
+      "sourceHash": "fc203569fa858e0ef3d2644e417247d162f933f5e91db77c913471844e2f3ced"
+    },
+    "Filter.Equals": {
+      "text": "تساوي",
+      "sourceHash": "f939ae3d30c69e332a36892f70d401d457e6993f056b8d0af3fe3d736821f5a1"
+    },
+    "Filter.FilterValue": {
+      "text": "قيمة المرشح",
+      "sourceHash": "d9542a271957e5da6241a181f50baa24e710645a5007dfa3e45c27bbad587791"
+    },
+    "Filter.Filters": {
+      "text": "المرشحات",
+      "sourceHash": "546ebb8eb993ea561029d9febd84c363bdb09010bb2cb915a8287762b76b9a64"
+    },
+    "Filter.IsEmpty": {
+      "text": "فارغ",
+      "sourceHash": "f92b47704f75f5d292ef40662e91d093f5db3bdbbef884bb60523140074e83d6"
+    },
+    "Filter.IsNotEmpty": {
+      "text": "ليست فارغة",
+      "sourceHash": "a043c15c839775945541e733d31593afd26d889ff3dc671d1ff6d79ead511f88"
+    },
+    "Filter.IsNotWhitespaceOnly": {
+      "text": "ليس فقط الفراغات البيضاء",
+      "sourceHash": "272723617df7ca53cff2fbd72f8cb0d3088a744cd8dd025991081c7c4dce7c0e"
+    },
+    "Filter.IsWhitespaceOnly": {
+      "text": "هو مساحة فارغة فقط",
+      "sourceHash": "5b215a10b7dbd271ecdc0ad0593a2cc9c49374c9ebcc406f85cca9e4bfbf56c4"
+    },
+    "Filter.LiteralTextIncludingSpacesNumericRulesRequireAn": {
+      "text": "النص الحرفي، بما في ذلك الفراغات - تتطلب القواعد الرقمية رقما عشريا دقيقا مع نقطة.",
+      "sourceHash": "2544ee834c7d70573f8d88f4d6b221fb6f8b3bb8c1b4497280f3b75079a953f0"
+    },
+    "Filter.MatchALLConditions": {
+      "text": "تطابق جميع الشروط",
+      "sourceHash": "1ce8e95fe35f90800f858c523696524dca8782bf9c2b03342c716d47123a0e8e"
+    },
+    "Filter.MatchANYCondition": {
+      "text": "توافق أي شرط",
+      "sourceHash": "5ef0ba84f21316348a51998d2c8cad6cb3e4013e99db89effa464f3bf8b07b9a"
+    },
+    "Filter.Number": {
+      "text": "العدد =",
+      "sourceHash": "aca27be4f3dec967cd07b15e55f4a61f7daea326a2fcab46ccba19057dc271a5"
+    },
+    "Filter.Number2": {
+      "text": "العدد",
+      "sourceHash": "c2f03843c0df626474aafde336151f7cdf76e005cdaf31ed3db6d7c09ef449ac"
+    },
+    "Filter.Number3": {
+      "text": "العدد >=",
+      "sourceHash": "c2c0df70bc49eb44b951b0820858dbc95910979ce3d976f21c352542c8d408a2"
+    },
+    "Filter.Number4": {
+      "text": "العدد <",
+      "sourceHash": "746935e1798c5f07646346c91e6820457be4ca56f501c1e69d30859722b60475"
+    },
+    "Filter.Number5": {
+      "text": "الرقم <=",
+      "sourceHash": "54f4eca08f4f4c1e6525b332009147b26e0664c25332cbd9a1ac757b00b949be"
+    },
+    "Filter.NumberDecimal": {
+      "text": "العدد (عشري)",
+      "sourceHash": "b9f6921a8e5f711f0668f988adfe8ed1053579c5ee86343a3a3cbf371c3b4558"
+    },
+    "Filter.PreviewOfDisplayedRowsCSVUnchanged": {
+      "text": "الصورة: {0:N0} من {1:N0} لم يتغير CSV.",
+      "sourceHash": "17486d0204edaf5cfb5552bcea3d5041a167f847b0184c19e76f4dd5c11e1095"
+    },
+    "Filter.RemoveCondition": {
+      "text": "حذف الشرط",
+      "sourceHash": "5ac0b06fc9f0d038a09cc4dd62fb7a69d62ee1f1c0d84646ff519d6025d6e766"
+    },
+    "Filter.RemoveSortLevel": {
+      "text": "إزالة مستوى الترتيب",
+      "sourceHash": "8eaf3527f2b35ff365cabf9373867a92ed89c7f4b756eca7f39858939f5fa348"
+    },
+    "Filter.ResetRules": {
+      "text": "قواعد إعادة التشغيل",
+      "sourceHash": "26c3f16f83d1457ea286e78d97a3dc0df362220968984a0bce4e560bd65183e0"
+    },
+    "Filter.RulesAlsoRespectTheCurrentSearchCancelKeeps": {
+      "text": "وتحترم القواعد أيضاً البحث الحالي. ويُبقي الإلغاء على العرض النشط.",
+      "sourceHash": "0f9c5f6e99e4cb306066acb8c6a848b23b8726b96809ddfbe48b849b2c5a4693"
+    },
+    "Filter.Sorting": {
+      "text": "الفرز",
+      "sourceHash": "cb24f7d40a81b1891300a95fbd8ac4403071cd33ede0e0e4e452c54d84dd56da"
+    },
+    "Filter.StartsWith": {
+      "text": "تبدأ بـ",
+      "sourceHash": "03277ef8ef2700bf566e0e716f248ba484a8f29a4294785424aceef734714ac0"
+    },
+    "Filter.TextCaseInsensitiveOrdinalOrderNumberExactDecimals": {
+      "text": "النص: الترتيب التسلسلي غير الحساس لحجم الحروف والأرقام: عشرية دقيقة؛ القيم غير الصحيحة/الفراغية في النهاية.\nالمفاتيح المتساوية تحتفظ بترتيب المصدر. إزالة جميع المستويات لاستعادة ترتيب المصدر.",
+      "sourceHash": "5b507d1b40868153e271ba451af1e2658603de7da3827cb097651f525d5d9870"
+    },
+    "Filter.TheProjectionIsLimitedUndisplayedRowsAreNot": {
+      "text": "الإسقاط محدود؛ ولا تشمل الصفوف غير المعروضة. ",
+      "sourceHash": "0df6f5d91c130967622e72bd8506f263c6f53882893941e89f4333dc27e4bb34"
+    },
+    "Filter.Title": {
+      "text": "الترشيح والترتيب",
+      "sourceHash": "06df7c654f2b71f4b1e99e8e7a252cdceb0d0cabb6c8491286202114b2e1f0ba"
+    },
+    "Filter.TopLevelWinsLaterLevelsBreakTiesMaximum": {
+      "text": "أعلى مستوى يفوز؛ المستويات اللاحقة تكسر التعادلات. الحد الأقصى 3.",
+      "sourceHash": "8f2c3445658f32eddd5cd8c47ff632915e5e3f2093263d97e33eec5379f0fd75"
+    },
+    "Filter.ValueLiteralIncludingSpaces": {
+      "text": "القيمة (حرفية، بما في ذلك الفراغات)",
+      "sourceHash": "d668b7d57ee5095c1315f5526b7aaf6036b56cca2a8f45c7fd51ce80a0f5c926"
+    },
+    "Filter.ViewOnlyCSVValuesAndSourceOrderAre": {
+      "text": "العرض فقط - لا تتغير قيم CSV وترتيب المصدر. {0:N0} الصفوف المعروضة.\n",
+      "sourceHash": "e3de0857e47bf068509f3647752a9953bf5d03801bc99596ba16ab4123545c4f"
+    },
+    "Host.ApplyIsBlockedBecauseHasNoExplicitSupported": {
+      "text": "التطبيق مُعطل لأن {0} لم يتغير محتوى المحرر.",
+      "sourceHash": "a1c220bd35078a8af2926a7b885c177933487643890aceedb8385668823239f3"
+    },
+    "Host.ApplyIsBlockedBecauseStrictEncodingValidationFor": {
+      "text": "التطبيق محظور بسبب التحقق الصارم من الترميز لـ {0} لم يحدث تغيير في محتوى المحرر.",
+      "sourceHash": "9e53a941a2ea83be0d4fd6563a634c83201d6149180d552b9f04156c824ca074"
+    },
+    "Host.ApplyIsBlockedBecauseThePendingReplacementCannot": {
+      "text": "قيد التطبيق لأن الاستبدال قيد النظر لا يمكن تمثيله بدقة في {0}- لم تستخدم أي حروف بديلة ولم يتغير محتوى المحرر.",
+      "sourceHash": "b9cec4ad4caa442be93c927c78d85387f55bdcc4b3f0730e568cd320b75f058d"
+    },
+    "Host.ApplyIsNotYetEnabledForNoEditor": {
+      "text": "التطبيق غير متاح بعد لـ {0}. لم يتغير محتوى المحرر. UTF-8 (65001) و(65002) Windows-1250 (1250)، بعد التحقق من صحة البيانات دون فقدان. UTF-8 في Notepad++, ثم أعيد فتح وضع التحرير.",
+      "sourceHash": "af926b9f2d3a802e806810630d0049f00041f4a7b7f5bf426f7af4c600e92f12"
+    },
+    "Host.RefreshIsDisabledWhileEditModeIsActive": {
+      "text": "تم تعطيل تحديث عندما تكون طريقة التحرير نشطة. تطبيق أو إلغاء جميع التغييرات المعلقة أولاً.",
+      "sourceHash": "8f3ca898584038c9fca7f9d68c16402dc92fb9aa9cba2a369be9ce2849dc47c2"
+    },
+    "Host.ScintillaCodePage": {
+      "text": "Scintilla الصفحة الرموزية {0}",
+      "sourceHash": "19ff7cb4ca05e5679da5eb6b0aa270649f6609021c6969fdba9e373d6384f8ae"
+    },
+    "Host.TheActiveDocumentIsBytesTheCurrentSafe": {
+      "text": "الوثيقة النشطة هي {0:N0} الحد المأمون الحالي للصور الفوتوغرافية هو {1:N0} بايت.",
+      "sourceHash": "d94ca2f13c5f448b9eeceb63ed7fc85fc2dd57c0fa1d684bd516c087e9998701"
+    },
+    "Host.TheActiveNotepadDocumentCouldNotBeRead": {
+      "text": "القيمة الفعلية Notepad++ لم يكن بالإمكان قراءة الوثيقة. لم يتغير محتوى المحرر.",
+      "sourceHash": "6e253c9add1275ec1916306fddd3301eb397dbbc6156e514cf37a1e5facc28db"
+    },
+    "Host.TheApplyResultIsNotAnEncodingBlocked": {
+      "text": "ونتيجة تطبيق ليست حالة من حالات منع الترميز.",
+      "sourceHash": "275b6155795406d5ec9fa92a9a8651028c2725f4a27bd355aa3aa91e9db56221"
+    },
+    "Host.TheBackgroundTableBuildCompletedWithoutAResult": {
+      "text": "أُنجزت عملية إنشاء جدول المعلومات الأساسية دون التوصل إلى نتيجة.",
+      "sourceHash": "e0d46b45c637ae3b7e2d625d7c1a1a137223608080081d71f50515e9ae34d54a"
+    },
+    "Host.TheCSVChangesWereAppliedSuccessfullyButThe": {
+      "text": "تم تطبيق التغييرات في CSV بنجاح، ولكن لم يكن من الممكن استعادة العلامة أو الاختيار السابق، وتظل الوثيقة قابلة للإلغاء بالكامل كإجراء واحد.",
+      "sourceHash": "07ce8162214329754e420f91b3662d4ee03d60442a392cbbfe8d9b82c946fb43"
+    },
+    "Host.TheCurrentEditorCodePage": {
+      "text": "الصفحة الرموز الحالية للمحرر",
+      "sourceHash": "81e981fcb64ee0d316d3560d84fe6a594a6271ecd2efeabce7355bf926c68248"
+    },
+    "Host.TheEditorBufferCouldNotBeConvertedInto": {
+      "text": "لم يكن من الممكن تحويل معزول المحرر إلى جدول مرئي. اختار فاصل صريح أو تحديث بعد تصحيح الوثيقة.",
+      "sourceHash": "6a87199f414aec0232d76534a8cf322ae8e784cd962cf72bc1fc0000744e5215"
+    },
+    "Host.TheTableBuilderReturnedAnIncompleteResult": {
+      "text": "أعاد بنّاء الجدول نتيجة غير كاملة.",
+      "sourceHash": "524caefdcd9f4371d04bd00669a9c0a62fe28c7083c5353eebc2a5f1dc6d58d9"
+    },
+    "Menu.About": {
+      "text": "&حول",
+      "sourceHash": "49edb2d040313194436966326c08914e069139876058ed9d6706bce7a5e1d1a9"
+    },
+    "Menu.ClearSearch": {
+      "text": "&إزالة البحث",
+      "sourceHash": "dbc8771687370574861426cba0ca55bfcffc8337025b5078b675ffe2d5e21626"
+    },
+    "Menu.Csv": {
+      "text": "&CSV صيغة البيانات",
+      "sourceHash": "c100a010cae1ab74a9d42647e8d9180200f7ec4f05ed1ba57a9effa950713a2f"
+    },
+    "Menu.Delimiter": {
+      "text": "&الفاصل",
+      "sourceHash": "01dedbcff5208b4e379b4afe83a182b22bcc02a832620f59bf6f8788b74d83b9"
+    },
+    "Menu.Edit": {
+      "text": "&تحرير",
+      "sourceHash": "9a52e0fa1299037743fc76ebb07b87cf85b871f1656ab2c082b9d0a63e17979d"
+    },
+    "Menu.EscInSearch": {
+      "text": "Esc في البحث",
+      "sourceHash": "5fa70548ea5113641b879520691748ffb9c9d8c4bd4122d8176dec51c3ab761c"
+    },
+    "Menu.FindInTable": {
+      "text": "&ابحث في الجدول",
+      "sourceHash": "4ebe110c32edcc9511858ce5a290405a0b322fe4b165ac4e7bb3f056103e80e5"
+    },
+    "Menu.Header": {
+      "text": "&العنوان",
+      "sourceHash": "3fcf0b822652e93dfe58cd5f91e8a45a65aad74a4c1da439422578d2e1959e50"
+    },
+    "Menu.NextMatchingCell": {
+      "text": "&الخلية المطابقة التالية",
+      "sourceHash": "1f5b6400edb0651aec5902737dafe63f856ec1e7e60717de2ea86d9582e78a7e"
+    },
+    "Menu.PreviousMatchingCell": {
+      "text": "&الخلية المطابقة السابقة",
+      "sourceHash": "6c1026f2a1572994dab1593e68f8272009d26be7bdb76cb056ad4f3678107020"
+    },
+    "Menu.ResetViewClearSearchColumnConditionsAndAll": {
+      "text": "إعادة العرض: إزالة البحث، وشروط العمود وجميع عمليات الفرز.",
+      "sourceHash": "d8bd1978004ac02aed166893161d4985a7ebccc59cc3ad35f394cbaab7bff8a5"
+    },
+    "Menu.Search": {
+      "text": "&البحث",
+      "sourceHash": "0699b0b860d923c2fa4845a3a1ce8ac98641ce93f99982e1f3d73bb6b5a48a84"
+    },
+    "Menu.SearchColumn": {
+      "text": "عمود البحث",
+      "sourceHash": "c16fd8c23a2bb339e66a33884183b74edfe65ed95ba22d0bc44964e4992cd4f9"
+    },
+    "Menu.ShowSpacesSmallSolidOrangeDotsDisplayOnly": {
+      "text": "عرض الفراغات: نقاط برتقالية صلبة صغيرة. عرض فقط؛ لا تتغير قيم CSV.",
+      "sourceHash": "fd4053164aa8dca69245afb56184d793ec12736d1551df1085a8b38e740ea07a"
+    },
+    "Menu.ShowTable": {
+      "text": "عرض الجدول",
+      "sourceHash": "1f4b2ce56bea31ca35d1d9d7013104a55888a37660853a5e4cd48faee6b1ad7b"
+    },
+    "Menu.SortBy": {
+      "text": "&الترتيب حسب",
+      "sourceHash": "c293cceb48219919d1012a1de00f595d85f512d4b87493f501a5f22d8761b372"
+    },
+    "Menu.Table": {
+      "text": "&الجدول",
+      "sourceHash": "82892104d6cb4d801d7cb8ba98ceb4f60906c2ce97f48077612166a72b21c333"
+    },
+    "Menu.View": {
+      "text": "&انظر",
+      "sourceHash": "d8042eb735a92fa6c7bb4b544e5095c5ebd2d01c0f70bf10e9fc809f2db47bc9"
+    },
+    "Messages.AFilterValueMayContainAtMostCharacters": {
+      "text": "قد تحتوي قيمة المرشح على أكثر من 4,096 شخصيات.",
+      "sourceHash": "b7b387da06e042e1d33cb8b28456cd09b66d1982aa7dd79629cc4b15506c7df9"
+    },
+    "Messages.ALL": {
+      "text": "كلها",
+      "sourceHash": "b5c7aed7cd2a308523e7d2847b7815909e864b2fd9c4ea88b00d35adb2ecdfd7"
+    },
+    "Messages.ALeadingByteOrderMarkWasExcludedFrom": {
+      "text": "وقد استبعدت من الحقل الأول علامة ترتيب بايت متقدمة.",
+      "sourceHash": "8a2913affc987b84cb721d1548ef49cadd83ae62fcff75361c0e37f39f4a42f8"
+    },
+    "Messages.ANY": {
+      "text": "أي",
+      "sourceHash": "618c79503a3d1476211c8be7776e94e8723596a1e0b0204c050229983c9bfebd"
+    },
+    "Messages.AQuoteAppearedInsideAnUnquotedField": {
+      "text": "ظهر اقتباس داخل حقل غير مقتبسة.",
+      "sourceHash": "7be44c81418f24d84726bf6cb60ea46d676b37069839404f3bb9c0e2c5cfa38a"
+    },
+    "Messages.ClipboardRowsMustFormOneRectangularCellMatrix": {
+      "text": "يجب أن تشكل صفوف القرص المضغوط مصفوفة خلية مستطيلة واحدة.",
+      "sourceHash": "841b679b37819226cf35911df2f5fd2fad12698b5cf8cf2bd37deac6dbb9a0f3"
+    },
+    "Messages.DiagnosticCode": {
+      "text": "رمز التشخيص: {0}.",
+      "sourceHash": "4066ed4166dea97f661659a65e2bb43f578e0f4ff9f41391accbc7d883f4640e"
+    },
+    "Messages.EachSortLevelMustUseADifferentColumn": {
+      "text": "يجب أن يستخدم كل مستوى من مستويات الترتيب عمودا مختلفا.",
+      "sourceHash": "fecc1dea38921c183a10ecfce4e3fba32af6a305b98b4a30f671f3bf09f9f20c"
+    },
+    "Messages.Error": {
+      "text": "خطأ",
+      "sourceHash": "54a0e8c17ebb21a11f8a25b8042786ef7efe52441e6cc87e92c67e0c4c0c6e78"
+    },
+    "Messages.High": {
+      "text": "مرتفع",
+      "sourceHash": "6ef7c9b15ecdd69083724b84cfdc2100351963488b51b4ea2fcbddf493fbec94"
+    },
+    "Messages.Information": {
+      "text": "دال - الإعلام",
+      "sourceHash": "1cb0ba125f84c982b00ba3639cdfb2cee6b70f94b5e0115c045fef607af4f216"
+    },
+    "Messages.Low": {
+      "text": "منخفض",
+      "sourceHash": "6c1ff09db3a73dc4a854f695d20d174a848d55f2d743bab2ee1f8fc75be454f3"
+    },
+    "Messages.Medium": {
+      "text": "متوسطة",
+      "sourceHash": "c082456a7766e23a18db084cd34b6ff510baef506548b897cc80e9b7d3e121c8"
+    },
+    "Messages.NoSupportedDelimiterProducedASufficientlyReliableMulti": {
+      "text": "ولم يسفر أي من الفاصلات المدعومة عن هيكل متعدد الحقول يعول عليه بدرجة كافية.",
+      "sourceHash": "6eb6d800983aeb0c1acde9382f94e4d34cfe80b6fcdd8f3eae29e59b6f3b0673"
+    },
+    "Messages.None": {
+      "text": "لا شيء",
+      "sourceHash": "140bedbf9c3f6d56a9846d2ba7088798683f4da0c248231336e6a05679e4fdfe"
+    },
+    "Messages.OneVisualRowWouldRequireCellsWhichExceeds": {
+      "text": "سيتطلب صف بصري واحد {0:N0} التي تتجاوز الحد اﻹجمالي الحالي للخﻻيا البالغ ٠٠٠ ٠٠٠ ١ {1:N0}لم تكن هناك أعمدة مخفية.",
+      "sourceHash": "e9da4974a68e1a08c38af9fa314fee4ccbdf0495dcd25ba613878f744d033455"
+    },
+    "Messages.RecordHasFieldsExpectedBasedOnTheSampled": {
+      "text": "السجل {0} الميدان؛ المتوقعة {1} استناداً إلى طريقة أخذ العينات.",
+      "sourceHash": "d169c81b52100a8e6c0480695e49f75afc9c3f8bdfdbcd76d88be7cb43d988b8"
+    },
+    "Messages.SpacesLeadingTrailingLengthUTFUnitsOrangeDots": {
+      "text": "المساحات: {0}؛ ورئيسا: {1}؛ يليها: {2}الطول: {3} UTF-16 وحدات.\nتشير النقاط البرتقالية إلى الفراغات الحقيقية، وتم توسيع مسافة عرضها لتيسير القراءة؛ ولم يطرأ أي تغيير على حروف CSV.",
+      "sourceHash": "204323196432e32000fad71b530b945ab061267a2a4024a939ca5a00e2b912f9"
+    },
+    "Messages.TheClipboardCellMatrixExceedsTheSafePaste": {
+      "text": "مصفوفة خلايا القرص الصلب تتجاوز الحد الآمن لللصق.",
+      "sourceHash": "91c35d49786b55ef173a673c98bca5d609c9a3299e2b922a13bd91bfc746ff38"
+    },
+    "Messages.TheClipboardContainsAnUnsupportedControlCharacter": {
+      "text": "يحتوي القرص الصلب على رمز تحكم غير مدعوم.",
+      "sourceHash": "2e9e67f07565ffc640d7109c7e8d07b20ee251965b443871684cc83c202d0102"
+    },
+    "Messages.TheClipboardContainsMoreColumnsThanTheEditor": {
+      "text": "يحتوي القرص المضغوط على أعمدة أكثر مما يمكن للمحرر أن يلصق بأمان.",
+      "sourceHash": "6740d22513e2925ec50f0dd6b3f707ba9fb61b747b8b65c8b4fc2b1a6c2921c0"
+    },
+    "Messages.TheClipboardContainsMoreRowsThanTheEditor": {
+      "text": "يحتوي القرص المضغوط على صفوف أكثر مما يمكن للمحرر أن يلصق بأمان.",
+      "sourceHash": "c2d7c71f7cf0c3e4f960af1cc94995347bbfd00e6f9aa67bc200ecc01457a096"
+    },
+    "Messages.TheClipboardTextExceedsTheSafeMiUTF": {
+      "text": "يتجاوز نص القلم الرصاص الحجم المأمون 16 Mi UTF-16-حد أقصى للحروف",
+      "sourceHash": "7e8fc8328282391459b3e27292a036b95a3c39b6718d5c5e0d1976d51907cac5"
+    },
+    "Messages.TheFinalQuotedFieldWasNotTerminatedBefore": {
+      "text": "ولم يتم إنهاء الحقل الأخير المقتبس قبل نهاية النص.",
+      "sourceHash": "a686badc4ba7171abb50d2e02e309177b0fa9a30cda55d8668c3c47bc6a4405f"
+    },
+    "Messages.TheNumberOfFieldsDiffersFromTheOther": {
+      "text": "ويختلف عدد الحقول عن السجلات الأخرى.",
+      "sourceHash": "48b2e69f9a41b8b70042a0d8f7bda89fa064af3d2be3416f944db62c97ed3535"
+    },
+    "Messages.TheOperationCouldNotBeCompletedCheckThe": {
+      "text": "لم يكن من الممكن إكمال العملية. تحقق من الوثيقة والقيم المختارة وحدود الحجم.",
+      "sourceHash": "40d90af67753b0c9b83da6e20c3fc12aaef2bb1344990bb008d624daa4894060"
+    },
+    "Messages.TheParsedDocumentContainsColumnsWhichExceedsThe": {
+      "text": "وتتضمن الوثيقة المحللة ما يلي: {0:N0} الجدول البصري الحالي البالغ 10 أعمدة، وهو ما يتجاوز {1:N0}لم تكن هناك أعمدة مخفية.",
+      "sourceHash": "e0d77ec820a62c92334d28bc9a1f8d345f418e0d5cc0167fa1ba0ebac61d5d6b"
+    },
+    "Messages.TheSuggestedDelimiterHasLowConfidenceCheckThe": {
+      "text": "الفاصل المقترح له ثقة منخفضة. تحقق من إعداد الفاصل.",
+      "sourceHash": "662933ef85c4405f1a6d300aa190fd3dabcc45e2b6febc4e0c49dd983b20a84d"
+    },
+    "Messages.TwoDelimiterCandidatesHaveSimilarScoresCheckThe": {
+      "text": "مرشحان للفاصل لديهما درجات متشابهة. تحقق من إعداد الفاصل.",
+      "sourceHash": "1f236adfac53a449e0606d7f952324636265ed33b544e893ba2ab2333771579d"
+    },
+    "Messages.UnexpectedCharactersFollowedAClosingQuote": {
+      "text": "أعقبت الحروف غير المتوقعة اقتباسا ختاميا.",
+      "sourceHash": "1b07c192bc104b06eea86608a74519e90c8506183c3b113043f84fdd7df3243e"
+    },
+    "Messages.Unknown": {
+      "text": "غير معروفة",
+      "sourceHash": "b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc"
+    },
+    "Messages.UseAnExactDecimalNumberWithADot": {
+      "text": "استخدم رقما عشريا دقيقا مع نقطة، مثل -12.5. التجميع، والأس، والقيم المقربة غير مدعومة.",
+      "sourceHash": "b92c75a1d89c381f2ac422ff938b2838f0a90e2e8ea7f4828ae914bf6645b520"
+    },
+    "Messages.UseAtMostEightNonNullFilterConditions": {
+      "text": "ويجوز استخدام ثمانية شروط ترشيح غير صفرية على الأكثر.",
+      "sourceHash": "bf8ee5dc0994abc2e546633c5e12218d1fa5dc324c9a983976a01258a02724d1"
+    },
+    "Messages.UseAtMostThreeNonNullSortLevels": {
+      "text": "استخدام ثلاثة مستويات فرز غير صفرية على الأكثر.",
+      "sourceHash": "f37e4d60ecac2fd4751d4593a74430d2a7f451c94f86325f25ad801f5e94f840"
+    },
+    "Messages.ViewRulesReferToAColumnOutsideThe": {
+      "text": "تشير قواعد العرض إلى عمود خارج الجدول الحالي.",
+      "sourceHash": "1c8cee1af702c1b09ab7db4f0d87d749f7e95a2575e34bb7d53b22eeac38665a"
+    },
+    "Messages.Warning": {
+      "text": "تحذير",
+      "sourceHash": "e981ddae45d8f4ca53f1ccbe613ad254a041dacf65a06026099a6302d332113b"
+    },
+    "Native.ColumnSummary": {
+      "text": "موجز العمود",
+      "sourceHash": "1edc79877409e115034abfc819b99a708b611b82033a11a914f9504c3b758376"
+    },
+    "Native.FilterSort": {
+      "text": "الترشيح والترتيب",
+      "sourceHash": "e61c35cceab33ce9b0c21b1af5ec6f9fc5a38bf672916729d2cc9d47c667b3e1"
+    },
+    "Native.OpenTable": {
+      "text": "جدول مرئي مفتوح",
+      "sourceHash": "bda12ac6e619cfdfe8ed09c6facd7326e3be754e4ea25997d8c12fae1c084e31"
+    },
+    "Native.RefreshTable": {
+      "text": "جدول تجديد",
+      "sourceHash": "de7f17128da9d7c1e9b53407f023adc98d5cfbad3f4c0f6d868cbb131db21399"
+    },
+    "Rows.NewIdentifier": {
+      "text": "جديد:{0}",
+      "sourceHash": "c132ea2acb0352120f83581fcd19c4682a23a6db2a2199ea78c0364af47a3e6a"
+    },
+    "Rows.NewPendingIdentifier": {
+      "text": "جديد:{0} *",
+      "sourceHash": "6b07d38430b17abbf1354d7170cc6253ac8549cd1fc4d528bf38c55abd802abf"
+    },
+    "Rows.Select": {
+      "text": "انتقِ",
+      "sourceHash": "2a78025de6aae5e7ff88e5a951bb3a78ddd67388913529cf9e2dd9653e62b02d"
+    },
+    "Rows.SelectCompleteRowsForDeletion": {
+      "text": "انتخب صفوف كاملة للحذف",
+      "sourceHash": "56d57d6b47e4c48512eb5e0f53c8762946330ca0452e42a7238eb1fc396daf93"
+    },
+    "Rows.SourceLogicalRecordOrPendingStructuralRow": {
+      "text": "السجل المنطقي للمصدر أو الصف الهيكلي المعلق",
+      "sourceHash": "82b5eef552ea45d5da099ea3dcfa62f2f0f55b54ec5ea58b648863b5676825fd"
+    },
+    "Rows.TheRowIndicatorColumnCouldNotBeResolved": {
+      "text": "لم يتسن حل عمود مؤشر الصف.",
+      "sourceHash": "c15a56bcaa19528eab0a7090fd8f917cd20c7776b8cd6bd60b1a823845ed1902"
+    },
+    "Rows.TheRowMustBelongToADataGridView": {
+      "text": "يجب أن ينتمي الصف إلى DataGridView.",
+      "sourceHash": "8bb4654ac43912d3e050f25255a82359e58f49a384b2bf2640e9a2c9a0fa9632"
+    },
+    "Search.AllColumns": {
+      "text": "جميع الأعمدة",
+      "sourceHash": "002768032f65a207b5e3e3b16906f24a5412d8c05e862cb932bf10f1ff570f77"
+    },
+    "Search.Cells": {
+      "text": "{0:N0} / {1:N0} خلايا",
+      "sourceHash": "f1cc82d2fc781c5577f34600b534ded0bf709cc6a62eb73c8d2129b350a08862"
+    },
+    "Search.Cells2": {
+      "text": "{0:N0} خلايا",
+      "sourceHash": "dcffa504f7c0b54a5b4033cd1f23b44c59ad37fcb7a5269cbed6c9fc86811c80"
+    },
+    "Search.ClearSearch": {
+      "text": "إزالة البحث",
+      "sourceHash": "3b7ea51793e9d906afa06afb86252abb48e1125cc96a7f5efabcfd8597ea183a"
+    },
+    "Search.ClearSearchEscKeepColumnScopeAndSorting": {
+      "text": "إزالة البحث (Esc). الاحتفاظ بنطاق العمود والترتيب.",
+      "sourceHash": "42eb319ad9344022eba6f00274d06bb11627bbc157b3529dc06b1d59b7f31dd2"
+    },
+    "Search.FiltersDisplayedRowsEnterNextMatchingCellShift": {
+      "text": "المرشحات عرضت الصفوف. إدخال: الخلية التالية المطابقة. Shift+Enter: سابق. الهروب : فارغ",
+      "sourceHash": "ba4347bbbf644719041a331d4b92098960201427ab9f987a0a08dbd47bc88af4"
+    },
+    "Search.NextMatchingCell": {
+      "text": "الخلية المطابقة التالية",
+      "sourceHash": "e1c4e53124ac60a59519886904bff35a223fd4bbcb7fd2591b6b41b96ffe960e"
+    },
+    "Search.NextMatchingCellFEnter": {
+      "text": "الخانة المطابقة التالية (F3 )يدخل(",
+      "sourceHash": "794b698b02732db12811db81e786b4fc606c94bd187a4eabb6d12775b4535fd9"
+    },
+    "Search.NoMatches": {
+      "text": "لا توجد مطابقات",
+      "sourceHash": "2df01a03ff43400b2c833c81b6240c1878abdfc99b258c624bc1605329255f6f"
+    },
+    "Search.NoMatchingRowsAdjustTheSearchOrUse": {
+      "text": "لا توجد صفوف متطابقة\nعدِّل البحث أو استخدم العرض > الترشيح والترتيب / إعادة العرض.",
+      "sourceHash": "e7fbc7b4e85fd2ffbb4987f2a3b7347b490b63780532a077acd7f64fdbe3a2af"
+    },
+    "Search.PreviousMatchingCell": {
+      "text": "الخلية المطابقة السابقة",
+      "sourceHash": "bd8c7c1050a41c552b67fb38bb5c9a7f01c6af7467ba237d51ee3ee8698d5d48"
+    },
+    "Search.PreviousMatchingCellShiftFShiftEnter": {
+      "text": "الخلية المطابقة السابقة (Shift+F3 / Shift+Enter)",
+      "sourceHash": "da78e23de151319a39f2c98ea2071fa28b4d85ba19e5048373a1f2722a70c88f"
+    },
+    "Search.SearchAllDataColumnsOrChooseOneColumn": {
+      "text": "البحث في جميع أعمدة البيانات أو اختيار عمود واحد.",
+      "sourceHash": "467427e3b86d65d2a1035f90dd55087a8c721d7beac050b506ef3cc2ce3594c8"
+    },
+    "Search.SearchColumn": {
+      "text": "عمود البحث",
+      "sourceHash": "22443e3fa6741bcec90359b06f06795330d4083f570af3c6225597ee01f658cf"
+    },
+    "Search.SearchInDisplayedCSVRowsCtrlFValues": {
+      "text": "البحث في صفوف CSV المعروضة (Ctrl+Fولم يطرأ أي تغيير على القيم ونص المصدر.",
+      "sourceHash": "86dd7699a536515ca6f2b8dc0adbb8103782a5f55db7eec3e4859c68ed623339"
+    },
+    "Search.SearchInTable": {
+      "text": "البحث في الجدول...",
+      "sourceHash": "8b79e923403f45d7743c26333a839ca000ef9d7de725aa1d5efad0b2d70d8252"
+    },
+    "Search.SearchInTable2": {
+      "text": "البحث في الجدول",
+      "sourceHash": "147d5d789c6e330d07337cd8b34e541170000cfc5fee4eeeeb96b567dcb2d8f1"
+    },
+    "Search.SearchResults": {
+      "text": "نتائج البحث",
+      "sourceHash": "e978b00de465a271a13bf2f6b9d74d67fdfaa7d973a37378fa32f988c3280599"
+    },
+    "Search.Searching": {
+      "text": "البحث...",
+      "sourceHash": "78c9d9f6ace0e9b850ab68646c51dc2c990edf221c872d1c6ec389dd797c0f21"
+    },
+    "Source.GoToSourceBlockedAnotherNotepadDocumentIs": {
+      "text": "اذهب إلى المصدر المحظور: آخر Notepad++ العودة إلى الملف CSV المعروض أو تحديث الجدول",
+      "sourceHash": "4ed9d8d9eb9bfae8142cff622600a45d80e72fc574d1c29aa3a03aee994c9eac"
+    },
+    "Source.GoToSourceBlockedBecauseTheRetainedParse": {
+      "text": "انتقل إلى المصدر المحظور لأن نتيجة التحليل المحتفظ بها لم تعد تتطابق مع لقطة المصدر الثابتة. تحديث الجدول أولا.",
+      "sourceHash": "e120e38b4b36697b9f3fe1fd47f3cfa0932255aad599e080a991f04bf7f4ea88"
+    },
+    "Source.GoToSourceBlockedStrictEncodedLengthDoes": {
+      "text": "انتقل إلى المصدر المحظور: الطول المشفر الصارم لا يتطابق Scintillaطول الوثيقة المبلغ عنه.",
+      "sourceHash": "bd985b51ad722a464ee149bb75caeb4253e4ab253b118f27064bfdc383bd48ca"
+    },
+    "Source.GoToSourceBlockedTheActiveEditorContent": {
+      "text": "انتقل إلى المصدر المحظور: تغير محتوى المحرر النشط بعد عرض هذا الجدول. تحديث الجدول أولاً.",
+      "sourceHash": "3aef9da18d478d5c1b1c0fcc973d4f687af203556afc3fdcdfcd93c94f0cb616"
+    },
+    "Source.GoToSourceBlockedTheCurrentScintillaCode": {
+      "text": "اذهب إلى المصدر المحظور: Scintilla لا تحتوي صفحة الرموز على بيانات واضحة عن موقع البايت.",
+      "sourceHash": "882cb6f4251a69340d7fefbbfb9a4a004c0b86ffd01dd4d6ca6e5053a3cf0bb8"
+    },
+    "Source.GoToSourceBlockedTheEditorCodePage": {
+      "text": "انتقل إلى المصدر المحظور: صفحة شفرة المحرر تغيرت بعد عرض هذا الجدول. تحديث الجدول أولاً.",
+      "sourceHash": "160298af2e8e59f259f37249adce7b3614bd802e0ee1b53037401d8f23ec4692"
+    },
+    "Source.GoToSourceBlockedTheSelectedProjectedCell": {
+      "text": "انتقل إلى المصدر المحظور: الخلية المسقطة المختارة لا تحتوي على حقل المصدر الخام.",
+      "sourceHash": "09d4a837fa31b53f5000a4850193d9df1f6c89a94c773887f3ea2aac9fcd78c2"
+    },
+    "Source.GoToSourceBlockedTheSourceCharacterSpan": {
+      "text": "انتقل إلى المصدر المحظور: لم يكن من الممكن رسم نطاق الحروف المصدرية دون فقدان إلى Scintilla بايت.",
+      "sourceHash": "4dce0849b6cf9a52b02975c77f736da07c6fd97a5eab1f7808c2d053f6fb866a"
+    },
+    "Source.GoToSourceBlockedTheSourceLogicalRecord": {
+      "text": "انتقل إلى المصدر المحظور: السجل المنطقي للمصدر غير متاح في نتيجة التحليل المحتفظ بها.",
+      "sourceHash": "b69540fd633e3591374d15ee67381bf0d1ef7424d337c5db738f4e7565027ba3"
+    },
+    "Source.GoToSourceFailedTheActiveNotepadBuffer": {
+      "text": "فشلت عملية الانتقال إلى المصدر: النشاط Notepad++ لم يتم تغيير محتوى الوثيقة.",
+      "sourceHash": "07093c4694f6984deb421c21b5eba3b4a861c2e4a32e6ccf73084f53e726ef5a"
+    },
+    "Source.GoToSourceFailedWhileMovingTheScintilla": {
+      "text": "فشلت عملية الانتقال إلى المصدر أثناء تحريك الملف Scintilla لم يطرأ أي تغيير على محتوى الوثيقة.",
+      "sourceHash": "35e14ba2325a72ba8df63810b68c63cefea9d980bfd8176e429aaffdb2cc8344"
+    },
+    "Source.GoToSourceIsUnavailableUntilTheCurrent": {
+      "text": "لا تتوفر إمكانية الانتقال إلى المصدر إلا إذا كان الجدول البصري الحالي يحتوي على خط أساس كامل للمصدر. تجديد الجدول أولا.",
+      "sourceHash": "aeea8b75b4a7507b4b5160be8c45cd0ab16cfae4f73c79a472249d86fd9a5444"
+    },
+    "Source.GoToSourceRequiresACurrentCSVRow": {
+      "text": "يتطلب الانتقال إلى المصدر صفا أو خلية CSV قائمة.",
+      "sourceHash": "e0a5948c39aaae37409aacd1b582c11b56f5afef060197021db04bcddee2b48e"
+    },
+    "Source.GoToSourceWasNotCompletedNoDocument": {
+      "text": "لم يتم الانتهاء من عملية الانتقال إلى المصدر ولم يتغير محتوى الوثيقة.",
+      "sourceHash": "7c54d0be524729215ecd43d1a5d6e75b730cf81e7d4615945be761727ef6f862"
+    },
+    "Source.SelectedSourceRecordColumnInNotepad": {
+      "text": "سجل المصدر المختار {0}العمود {1} في Notepad++.",
+      "sourceHash": "d91f4b2032d2fa93a3ed484daa4e310e2e3b8e831382530746a84d370950abe3"
+    },
+    "Source.SelectedSourceRecordInNotepad": {
+      "text": "سجل المصدر المختار {0} في Notepad++.",
+      "sourceHash": "92ee80518327e38c3b4752624ee4f975bd555cd2b67f84b8cf7189f418e4e4ae"
+    },
+    "Source.TheCurrentVisualRowDoesNotExposeA": {
+      "text": "ولا يكشف الصف المرئي الحالي عن هوية مستقرة لسجل المصدر.",
+      "sourceHash": "89759885634924ed2c1d0be3e2848ba6e1b783e8a4be0639a601923844f7695e"
+    },
+    "Source.ThisPendingInsertedRowHasNoSourceLocation": {
+      "text": "لا يوجد لهذا الصف المُدرَج قيد النظر أي موقع مصدر إلى أن يكتمل تطبيقه.",
+      "sourceHash": "369b22f4e90c4c7c51f0f216546f9d10f70753cb8b75f3e838e56845306bbc0a"
+    },
+    "Summary.CurrentViewOfDisplayedRows": {
+      "text": "الرأي الحالي: {0:N0} من {1:N0} الصفوف المعروضة.",
+      "sourceHash": "b260aebffdc52ce7b1a144df9c63936972b2f2c54031146f62c14d6008927979"
+    },
+    "Summary.DistinctValuesUseExactCaseSensitiveTextIncluding": {
+      "text": "وتستخدم القيم المميزة نصا دقيقا يميز بين الحروف الكبيرة والصغيرة، بما في ذلك القيم الفارغة.\nالصفوف المتكررة = صفوف مطروحا منها القيم المميزة.",
+      "sourceHash": "bf076f49a20d623380993212dc5a2c41911a02a2f8364ba72064db760ab1483d"
+    },
+    "Summary.Empty": {
+      "text": "فارغ",
+      "sourceHash": "c6c094bc0054f9cbe34102ff49f86b3928b5ac09f3d2ac87e170d0500675921f"
+    },
+    "Summary.Kind": {
+      "text": "الطفل",
+      "sourceHash": "f5387f9bb6ed70315a77fdcb9335facc27a9bf241f35955bd2755c55e0c016c7"
+    },
+    "Summary.MostFrequentValuesUpTo": {
+      "text": "القيم الأكثر تواتراً (حتى 20)",
+      "sourceHash": "aa59d0dc475eef40ea2dec88facbee667da35500cfe818d3ab90fea0a8c71841"
+    },
+    "Summary.NotAvailable": {
+      "text": "غير متاحة",
+      "sourceHash": "67a926f7008e2b0e7f2b3f7a4b37597834830110be1d51138f425d6f3449bc09"
+    },
+    "Summary.NumericMinimumMaximumLongestValueUTFUnitsValues": {
+      "text": "الحد الأدنى العددي: {0}     الحد الأقصى: {1}\nأطول قيمة: {2:N0} UTF-16 وحدات. {3:N0} تظهر القيم أكثر من مرة.",
+      "sourceHash": "69f21e3f2fb4c524848b6e3ed062558f101429ca6f81b4bc4c36b4e03dc01652"
+    },
+    "Summary.ProjectionLimitedThisIsNOTTheWholeFile": {
+      "text": " الإسقاط محدود؛ وهذا ليس الملف بأكمله.",
+      "sourceHash": "5a4653673a19abb6724f186c43aae4bb9b02b6eeebbb903f16bee5be623fa835"
+    },
+    "Summary.RowsEmptyWhitespaceOnlyDistinctRepeatedRowsNumeric": {
+      "text": "الصفوف: {0:N0}     فارغ: {1:N0}     الفراغات البيضاء فقط: {2:N0}\nمتميزة: {3:N0}     الصفوف المكررة: {4:N0}     رقمي: {5:N0}",
+      "sourceHash": "39cd59a1f8648c2442df21cf38c1fdedd7dd693e24a8c15eae1f125847396507"
+    },
+    "Summary.Title": {
+      "text": "موجز العمود",
+      "sourceHash": "f3053f8ec545767ee7ff9a49c8c9b4ba95c4e62d0e5a940e0122cb8d92d605b6"
+    },
+    "Summary.Whitespace": {
+      "text": "الفراغات البيضاء",
+      "sourceHash": "ca82e2b90df62cd3359b7f778c81903ba533919864323a279eb8a17d18286152"
+    },
+    "Table.ANewRowWasAddedToThePending": {
+      "text": "تم إضافة صف جديد إلى جلسة التحرير المعلقة. التطبيق يكتبه إلى ذاكرة التحرير المؤقتة؛ إرجاع كل شيء يتخلى عنه.",
+      "sourceHash": "9e3f30c9cb4500fbd8c305603685917163be82e45bf6100f59426039570f2764"
+    },
+    "Table.ASourceRowDidNotExposeItsSource": {
+      "text": "لم يكشف صف مصدر عن فهرس سجل مصدره.",
+      "sourceHash": "5082752b9cd65092db8b969e95377de6b524bdc32e9729fc3b2f0b4a4297bd74"
+    },
+    "Table.Action": {
+      "text": "الإجراء المتخذ",
+      "sourceHash": "64cff1319d2fd2cbb7a1e84ccecf22c1cc07b24435cdb522f8c0aa525d6002a6"
+    },
+    "Table.ActiveDocumentSnapshotFailedNoEditorContentWas": {
+      "text": "فشل التقاط صورة سريعة للمستند النشط. لم يتغير محتوى المحرر.",
+      "sourceHash": "e27001d03e6e0b02f91bcf59cb49885974cea883517d39b006e9fe5fd4231655"
+    },
+    "Table.AddRow": {
+      "text": "أضف صفاً",
+      "sourceHash": "02a16a835f1e9c9cbe76a8cb9042d2f3861fc237036221e1f0c60383600f45f6"
+    },
+    "Table.AllPendingCellAndRowEditsWereReverted": {
+      "text": "وتم إلغاء جميع عمليات تحرير الخلايا والصفوف المعلقة. Notepad++ لم يتم تغيير معزول المحرر.",
+      "sourceHash": "d7179589fdad4b10a12f88143de75740e3b0fc2566b6208b53944a57092b5de4"
+    },
+    "Table.ApplyAllCellAndRowEditsToThe": {
+      "text": "تطبيق جميع تعديلات الخلية والسطر على المحرر النشط كعملية واحدة قابلة للتراجع",
+      "sourceHash": "6683510f91eb11abcbcb5f4c343b76db16b078fe94262e0a9622cbe1bcaab3b5"
+    },
+    "Table.ApplyBlockedAnotherNotepadDocumentIsActiveReturn": {
+      "text": "الطلبات المعلقة: أخرى Notepad++ العودة إلى الوثيقة الأصلية أو العودة إلى كل شيء.",
+      "sourceHash": "add32a4b13a0a7af469720e3b24e09a6d628a63b6d7253f8cbfbcde97dd0f074"
+    },
+    "Table.ApplyBlockedTheEditorBufferChangedAfterEdit": {
+      "text": "تطبيق محظور: تغيرت ذاكرة التحرير المؤقتة بعد بدء وضع التحرير. أرجع وتجدد قبل التحرير مرة أخرى.",
+      "sourceHash": "3696b1cb1249a473d2d0c3f3db134e6679658a58ec9c148e06581364e9c31f02"
+    },
+    "Table.ApplyBlockedTheEditorCodePageChangedAfter": {
+      "text": "تطبيق محظور: تغيرت صفحة شفرة المحرر بعد بدء وضع التحرير. أرجع وفتح وضع التحرير من جديد.",
+      "sourceHash": "bc4f97905fecbbcd951ebd6182e4293c279c2091f8dd0aedfd6547868e536348"
+    },
+    "Table.ApplyFailedTheEditSessionRemainsOpenVerify": {
+      "text": "فشل التطبيق. تظل جلسة التحرير مفتوحة؛ تحقق من ذاكرة التحرير المؤقتة قبل إعادة المحاولة أو الرجوع.",
+      "sourceHash": "799751dd47c40f3b6971a8f34b9b1234278437fa696ea8ba243207272adf1460"
+    },
+    "Table.ApplyWasNotCompletedNoAutomaticOverwriteWas": {
+      "text": "لم يتم الانتهاء من عملية التطبيق ولم تجر محاولة الاستبدال التلقائي.",
+      "sourceHash": "2a35cc94dbead42fb8e55ce412abd0bb513ae9315fece75fd0fd41b4d6f2e37c"
+    },
+    "Table.AutoDetect": {
+      "text": "الكشف التلقائي",
+      "sourceHash": "04a4542a50516c8edf7518fbf36b917e1d737b1df63872e26a751f85a6951b92"
+    },
+    "Table.AutomaticConfidence": {
+      "text": "آلي {0} الثقة",
+      "sourceHash": "62f8ead0f09a03d8732eb80c75520dfdb25f957ff2980f47ec6d5cb4bb17f6de"
+    },
+    "Table.AutomaticDelimiterDetectionIsNotReliableManualSelection": {
+      "text": "{0} — الكشف التلقائي عن الفاصل غير موثوق؛ يجب اختياره يدويًا.",
+      "sourceHash": "6f7660946313d283e3d47cd1822d536511579df717cbceb153899d32e6009243"
+    },
+    "Table.AutomaticDetection": {
+      "text": "الكشف التلقائي",
+      "sourceHash": "b7ad31a0fee4a609f9a18178fdcc9823e0a123b715082cb2bbf0a7cb9d13d0fd"
+    },
+    "Table.CandidateScores": {
+      "text": "درجات المرشحين",
+      "sourceHash": "e481c1478b45671b4eda8d8936b7a52dd7d452be1e1a3e41efe11e4dcf32fc98"
+    },
+    "Table.CellsRows": {
+      "text": "{0} خلايا/ {1} الصفوف (+){2} / -{3})",
+      "sourceHash": "00c79d0e73fcffca271aafbb88827f4865a5b66aaa47b2162130861c95938f9b"
+    },
+    "Table.Character": {
+      "text": "الطابع",
+      "sourceHash": "1405a63e8a78b85c1b035b3c5277e3cc39fa98621c110bc522c85547d8afab1a"
+    },
+    "Table.CharactersEditorBytes": {
+      "text": "{0} الحروف/ {1} المحرر",
+      "sourceHash": "1d37dcef6822a765c6bfde2bac40ae05efca8f02be386371e9598ddaf2f02b38"
+    },
+    "Table.ChooseCommaSemicolonOrTabFromTheDelimiter": {
+      "text": "اختار فاصلة، أو نقطة انقطاع، أو علامة تبويب من قائمة الفاصل أعلاه.",
+      "sourceHash": "a19e9b2962073bcb1e234604a6f81de07cf3764de12d4d9b9b1a2562c4c7eed0"
+    },
+    "Table.ChooseExplicitlyWhetherTheFirstLogicalRecordIs": {
+      "text": "اختار صراحة ما إذا كان السجل المنطقي الأول هو عنوان",
+      "sourceHash": "b76249748a016d1ff44910ce39d05c90d2d29d244a4f92729d21e0121b579f12"
+    },
+    "Table.Clear": {
+      "text": "-مطهر.",
+      "sourceHash": "83b12c2216efb4fdc924e1deb5182e905e4926ed0c1c324d467107f46d5a26a9"
+    },
+    "Table.ClearTheCurrentSearchFilterAndViewOnly": {
+      "text": "إزالة مرشح البحث الحالي والترتيب للعرض فقط",
+      "sourceHash": "f9464c773a2299fd0cb93c9df21b7c9795e62da0b224f67d9756f8eee169d7fc"
+    },
+    "Table.Code": {
+      "text": "الرمز",
+      "sourceHash": "340f463033e0fd5ddeabb922df4d4f1b5747494d0f5ed9894f13b6e13ca831f5"
+    },
+    "Table.ColumnConditionsSortLevels": {
+      "text": " - {0} ظروف العمود ){1}), {2} مستويات الترتيب",
+      "sourceHash": "559251ba63eadf2f5e86f2fbac958ef793f7a540807b25454b75f16bc37f6b58"
+    },
+    "Table.Columns": {
+      "text": "{0} — {1} × {2} أعمدة - {3}, {4} — {5} — {6}{7}{8}{9}.",
+      "sourceHash": "371ba577708d29222df95fc9f19b4b9f7e0cb7abb5bf70049b214e3c923cf28c"
+    },
+    "Table.Comma": {
+      "text": "فاصلة (،)",
+      "sourceHash": "88363d66de700d9e04f806c6061a9c51b45c97568683e215327efeee8ca0cbd2"
+    },
+    "Table.Comma2": {
+      "text": "فقرة",
+      "sourceHash": "f36a4e58670569181595399beec37e22c3dba2d8d2abd191b86602a16c23289c"
+    },
+    "Table.Confidence": {
+      "text": "الثقة",
+      "sourceHash": "6422e3e78f5e5f5a15e92cc57ed7114adb289339251031ccb526d9249437dc82"
+    },
+    "Table.DeleteEverySelectedStableDataRowFromThe": {
+      "text": "حذف كل صف بيانات مستقرة مختارة من جلسة التحرير المعلقة",
+      "sourceHash": "5370e07df65c2fc57c1d32dfe0971f45747c0e6af5c895cf2e83079175aa2384"
+    },
+    "Table.DeleteRow": {
+      "text": "حذف الصف",
+      "sourceHash": "43654c6556c7d0fca93516d81791b323c7746bb3becdcb8800aa9f31300fe30c"
+    },
+    "Table.DeleteRows": {
+      "text": "تحذف الصفوف ({0})",
+      "sourceHash": "26b3f1f182fa2f9e7fe89f900a928ee1253748087cc0fede8b0471d6c1427b0c"
+    },
+    "Table.DeleteTheSelectedStableDataRowFromThe": {
+      "text": "حذف صف البيانات المستقرة المختار من جلسة التحرير المعلقة",
+      "sourceHash": "07384444f66df5b0879188bb3aeca87879079c903d57d4b56ed68352f56191f0"
+    },
+    "Table.DeleteTheSelectedStableDataRowOrRows": {
+      "text": "حذف صف أو صفوف البيانات المستقرة المختارة من جلسة التحرير المعلقة",
+      "sourceHash": "a16d0de04719b955ee96f9d469fc9e985a9ea1106eae112fadeaf4a8782808ef"
+    },
+    "Table.Delimiter": {
+      "text": "الفاصل:",
+      "sourceHash": "a6b77fa4c861bae35faf6773039af58ba0c0f6570c18749b86b26963703f26a4"
+    },
+    "Table.Diagnostics": {
+      "text": "التشخيص ({0})",
+      "sourceHash": "4a1935fa25c3d10313f6996195d3602e3b849aae112aab7fa72501a2f543359e"
+    },
+    "Table.DiscardEveryPendingCellInsertionAndDeletionChange": {
+      "text": "إلغاء كل إدراج خلية معلقة وتغيير الحذف",
+      "sourceHash": "f70c8948457b39193648973cafeb1a20c7775fbd711533f240af1b0c344787c9"
+    },
+    "Table.Document": {
+      "text": "الوثيقة",
+      "sourceHash": "d6bd8c0aeee80fedb2dbf05c973100c3db04be90c072a88572533f2684131a36"
+    },
+    "Table.EDITMODECellsRows": {
+      "text": " - طريقة التحرير: {0} خلايا، {1} صفوف، +{2} / -{3}",
+      "sourceHash": "4f6cae3eda23a62abc4237d56d5446a8ec91c6946fb83e141f070de6cee03da5"
+    },
+    "Table.EditMode": {
+      "text": " - طريقة التحرير",
+      "sourceHash": "478a45c070c8550e9f82bae9e68a8ca5814c5279929d953a83e8d703f7c7609c"
+    },
+    "Table.EditModeContainsPendingChangesUseApplyOr": {
+      "text": "يحتوي وضع التحرير على تغييرات معلقة. استخدم تطبيق أو رد كل شيء قبل مغادرة وضع التحرير.",
+      "sourceHash": "bfa8625f917ff1b502d32f2750824a869af539ec229c4eb9d51fde4c1d4ee658"
+    },
+    "Table.EditModeIsUnavailableForTheCurrentTable": {
+      "text": "طريقة التحرير غير متوفرة للجدول الحالي. حل أخطاء التحليل أو حدود العرض أولاً.",
+      "sourceHash": "40e25ff578e91587bee8a6f086f5de27a6ba9dcbc54af97dbde19e6222e201df"
+    },
+    "Table.EditingCannotStartFromARowLimitedVisual": {
+      "text": "ولا يمكن أن يبدأ التحرير من إسقاط بصري محدود بالصفوف.",
+      "sourceHash": "39b12e52bbfa24d664c7ebcc896c8f8a074b6574f69a2b1a6fc2b2f57f4a9da8"
+    },
+    "Table.EditingCannotStartWhileTheParsedCSVContains": {
+      "text": "لا يمكن بدء التحرير بينما يحتوي CSV المحلل على أخطاء.",
+      "sourceHash": "bf8cb02c83fff4d05becb3e2acf141f14ac9529b35d56104fd0eb98c95f088c1"
+    },
+    "Table.EditingIsUnavailableForTheCurrentTable": {
+      "text": "التحرير غير متاح للجدول الحالي.",
+      "sourceHash": "c632f55bf84791500bf2b0dd2a81846c378435a004eb130ba484e8809a0693ae"
+    },
+    "Table.EmptyEditorBufferNoCSVRecordsToDisplay": {
+      "text": "{0} - فارغ ذاكرة التحرير المؤقتة؛ لا توجد سجلات CSV للعرض.",
+      "sourceHash": "317881b8dd97d07f5a9c533ac119eb6263635b2a47e691953792c778d9a4dbce"
+    },
+    "Table.EnterExplicitCellAndRowEditingMode": {
+      "text": "دخول الوضع الصريح لتحرير الخلية والسطر",
+      "sourceHash": "4a92a0843c8f5f7542f0471765948245475d77cf9ad241ece1d15de87e6d231e"
+    },
+    "Table.EnterExplicitCellAndRowEditingModeApply": {
+      "text": "ادخل طريقة تحرير واضحة للخلية والسطر. تطبيق الكتابات فقط على معزول المحرر.",
+      "sourceHash": "dbf0e070b94d4c2d58c0634580324d380274e812ad5cb6a4f671c0f649b50871"
+    },
+    "Table.EnterExplicitCellAndRowEditingModeThe": {
+      "text": "ادخل طريقة تحرير واضحة للخلية والسطر. لا ينشأ نموذج التحرير الكامل إلا عند الطلب.",
+      "sourceHash": "740b60050075a942c069064f343bdf47d2548c535386f46e6ff77eb45cb4a398"
+    },
+    "Table.ErrorsWarnings": {
+      "text": "{0} الأخطاء، {1} التحذيرات",
+      "sourceHash": "1afcc6f9f1973bbf6c8180260581e38a5ee6c30dbaefe373637d6f33c08070b3"
+    },
+    "Table.FirstRowAsHeader": {
+      "text": "الصف الأول كعنوان",
+      "sourceHash": "86882c316ba60ff9c9a99166e18b00a1943aa71446c6970db19d9751abd45c71"
+    },
+    "Table.FirstRowIsHeader": {
+      "text": "السطر الأول هو العنوان",
+      "sourceHash": "7b2054068d44a015f22b9de5a6048312ea000e7f9a2dd530265afe9bae6af745"
+    },
+    "Table.Header": {
+      "text": "العنوان:",
+      "sourceHash": "06d5fcb2a0f1eaac878cd0b64a2aee965d23c5b366994f0b8030cac11bfb9ac8"
+    },
+    "Table.InsertANewRowAfterTheSelectedRow": {
+      "text": "يدرج صفا جديدا بعد الصف المختار، أو يضيف إذا لم يكن هناك صف مختار",
+      "sourceHash": "9bcd4f525c244da60e35cee47c9a88bf28b0c1a1ffeaf8df5c5242356b2fba46"
+    },
+    "Table.LoadingCSVDataInTheBackgroundNotepadRemains": {
+      "text": "{0} - تحميل بيانات CSV في الخلفية؛ Notepad++ لا تزال مستجيبة.",
+      "sourceHash": "ddfa70ec16a109b76fe3aed18ca920477a52f26201df0ec4d6a817354a73aba4"
+    },
+    "Table.ManualSelection": {
+      "text": "الاختيار اليدوي",
+      "sourceHash": "39c4a0f6eed6f274d89178dc70eac06ce0115310d9ac3f12cb6bd4994106a4a9"
+    },
+    "Table.MatchingOfDisplayedRows": {
+      "text": "{0} المطابقة {1} الصفوف المعروضة",
+      "sourceHash": "27879ae00b5655920967fc46f7df64f68ba6d338f26b1e24ecde4cec05856beb"
+    },
+    "Table.Message": {
+      "text": "الرسالة",
+      "sourceHash": "2f77668a9dfbf8d5848b9eeb4a7145ca94c6ed9236e4a773f6dcafa5132b2f91"
+    },
+    "Table.NewlyInsertedRowsWereRemovedFromThePending": {
+      "text": "{0} حذفت الصفوف المضافة حديثا من الدورة المعلقة.",
+      "sourceHash": "87ca5a0884a2872c12eccd1e494e0964b476730fd5c617641fcae1c2ce130f26"
+    },
+    "Table.NoDiagnosticsToDisplay": {
+      "text": "لا يوجد تشخيص للعرض",
+      "sourceHash": "8d53681fc064d034d2ca15754eb13fc599ca3cc0ee81efbb8ff20913d14148c0"
+    },
+    "Table.NoHeaderRow": {
+      "text": "لا صف عناوين",
+      "sourceHash": "bf98c17da8222beb45ecf7a144e26043354dd4a94003e1c3afae880d71ef5a76"
+    },
+    "Table.NoHeaderRow2": {
+      "text": "لا صف عناوين",
+      "sourceHash": "650833a1448ad3018ecbb18183f206d5a6bf5ea98da46433fa03975836c8b0e0"
+    },
+    "Table.NoMatchingRowsTryAnotherSearchTextOr": {
+      "text": "لا توجد صفوف متطابقة\nحاول البحث عن نص أو عمود آخر.",
+      "sourceHash": "b27c4c1c248c809742aa17ee80026b5ae1a037c89337ec8b6d288dd7f32a0749"
+    },
+    "Table.NoParserDiagnostics": {
+      "text": "لا يوجد تشخيص للمحلل",
+      "sourceHash": "30493e355b5bac176a6c560caa7261732735856d3dbf390e3d4ed9f39baf4c54"
+    },
+    "Table.NoReliableDelimiterCouldBeSelectedSafely": {
+      "text": "ولا يمكن اختيار أي فاصل موثوق به بصورة آمنة.",
+      "sourceHash": "fc0d0de7c2c52e7fd338e7626e4d1117ae569290d0d7d05338c9140a31d7215c"
+    },
+    "Table.NothingToApplyTheEditSessionContainsNo": {
+      "text": "لا شيء ينطبق: لا تحتوي جلسة التحرير على أي تغييرات قيد النظر.",
+      "sourceHash": "9cdf27b5ac312dd338f3f3fb308768f9c3b29da9f78606569422799a184f924f"
+    },
+    "Table.ParsingAndPreparingABoundedVisualTableIn": {
+      "text": "تحليل وإعداد جدول مرئي محدود في الخلفية...",
+      "sourceHash": "5ce9c8be0d66439d7dc839d9050d3a49cb1dca752aeadb8bc6517c30c51e2408"
+    },
+    "Table.PendingCellAndStructuralRowChanges": {
+      "text": "التغييرات المعلقة في الخلايا والصفوف الهيكلية",
+      "sourceHash": "3dfc21d9b6125f0b2e50aef6137e5d6c9b47abf7bf54f9814ac386351cb4b9bc"
+    },
+    "Table.PendingInsertedRowNotYetApplied": {
+      "text": "صف مدرج في انتظار الإدراج {0}لم تنفذ بعد",
+      "sourceHash": "fa82ebd5a328cf1c1a9b8641fbc0aedce04547733b78aff6065068aea08e5371"
+    },
+    "Table.PendingRows": {
+      "text": "{0} صفوف معلقة",
+      "sourceHash": "8cdb650a9fcda9e736a6bf54f374e379fcdec907facd70aa541844c40c191676"
+    },
+    "Table.PluginReadyReadingTheActiveEditorBuffer": {
+      "text": "الملحق جاهز. قراءة معلق المحرر النشط...",
+      "sourceHash": "a593dcf64a25328fe6c91984dd76e38188de43c9a5b051bd8be3175e7f15a840"
+    },
+    "Table.PreparingTheCompleteEditSession": {
+      "text": "إعداد جلسة التحرير الكاملة...",
+      "sourceHash": "f9509f884fbecda63559a24ff4de611390cd94142714cf5e8cea1c8bca8aa30d"
+    },
+    "Table.Property": {
+      "text": "الممتلكات",
+      "sourceHash": "40040cb181f7f0ee5add2b52e8467c6652477f7ce12af39fe380b5084b64f4fe"
+    },
+    "Table.ReadAndRenderTheCurrentActiveNotepadEditor": {
+      "text": "قراءة وجعل النشاط الحالي Notepad++ ذاكرة مؤقتة للمحرر",
+      "sourceHash": "46f0d4351716fd51e3aefa88e2d3b08b7d2b70100375c2518058b4c135eab99c"
+    },
+    "Table.Record": {
+      "text": "السجل",
+      "sourceHash": "bfdd510698ef3ccbf17f2c67fc47790e1ba72894fb74fe284bbc136b47ef73e6"
+    },
+    "Table.RevertAll": {
+      "text": "عودة الجميع",
+      "sourceHash": "66de29d4daa995351fcf3cec3d5d47378bfaf7cfef96ca205855e7ba376eef74"
+    },
+    "Table.Rows": {
+      "text": "{0} صفوف",
+      "sourceHash": "8f710eeb166688620b7488f26da96862e8ac658fafe8c790a354c52b3e56d94b"
+    },
+    "Table.Semicolon": {
+      "text": "نقطة منقطعة (؛)",
+      "sourceHash": "599d532f1133a280ee5a238cf1e25ab1155a94281ad4636681c45bf12c04172d"
+    },
+    "Table.Semicolon2": {
+      "text": "نقطة انقطاع",
+      "sourceHash": "1e69fcfadd9d966848126920db1d5abf1672e23e7b43f482553e04353252b084"
+    },
+    "Table.Severity": {
+      "text": "درجة الخطورة",
+      "sourceHash": "5e9f98120dbe568255ee059f39671686982b113d4e917b6d6faf149918c81709"
+    },
+    "Table.ShowDetailedParserAndDelimiterDiagnostics": {
+      "text": "أظهر تشخيص التفسير والفاصل التفصيلي",
+      "sourceHash": "aad7e89496973aa64a3fa0f3f769e29ffb581bc3f914bc3d2452b7ad9f9195fd"
+    },
+    "Table.ShowingOfRows": {
+      "text": "يبين {0} من {1} صفوف",
+      "sourceHash": "711d5b9e0e0a392b80bd3352f677a567e79b20fe09882e132adfe75896914fe4"
+    },
+    "Table.Snapshot": {
+      "text": "صورة سريعة",
+      "sourceHash": "6ad27bd4ec33b079208334dfea86ff96900f95ca640dda1d2638d694d077668b"
+    },
+    "Table.SnapshotError": {
+      "text": "خطأ صورة سريعة",
+      "sourceHash": "e24c49fca1d342203b531e9afcefda33fffb41079cd7f08e03b55d962a5bb25d"
+    },
+    "Table.SortLevelViewOnly": {
+      "text": "مستوى الترتيب {0}: {1}, {2}-الرؤية فقط",
+      "sourceHash": "6d7246af9611b7bad14c5a6de7538c4edc0b9a3cc43af3758f99114fc10b703d"
+    },
+    "Table.SortedBy": {
+      "text": " - مصنفة حسب {0} {1}",
+      "sourceHash": "645fdc87ec3c916e2d71210080d36544416c4d68dd13c1235aa4537c42f220b4"
+    },
+    "Table.SourceLogicalRecord": {
+      "text": "السجل المنطقي للمصدر {0}",
+      "sourceHash": "49e50061c2eeeb48fd13c92b7feb21b9cf535dd984481a623cba04819c0b96a1"
+    },
+    "Table.SourceLogicalRecordModifiedInThePendingEdit": {
+      "text": "السجل المنطقي للمصدر {0}؛ عُدلت في جلسة التحرير المعلقة",
+      "sourceHash": "ada491eaf3c2025f280956844cf0cdbe11cbcc8d710de8e8b6c465bc6591751f"
+    },
+    "Table.SourceRowsAreMarkedForDeletionAndInserted": {
+      "text": "{0} صفوف المصدر مؤشر عليها بحذفها {1} حذفت الصفوف المدرجة من الدورة المعلقة.",
+      "sourceHash": "ff23d80aa590199a766b90b929be1ed78972b690bfde88776f7c6a6719126f9c"
+    },
+    "Table.SourceRowsAreMarkedForDeletionApplyWrites": {
+      "text": "{0} صفوف المصدر علامة لحذف. تطبيق يكتب دفعة؛ العودة كل يستعيد كل صف.",
+      "sourceHash": "480b1f2be723275821626927df2022fd9fc3cef6aec319e36787d40e067e3f5f"
+    },
+    "Table.Status": {
+      "text": "الحالة الراهنة",
+      "sourceHash": "920e413c7d411b61ef3e8c63b1cb6ad058d5f95f8b481dbafe60248387d8c355"
+    },
+    "Table.Tab": {
+      "text": "علامة التبويب",
+      "sourceHash": "90ddf1963abb36c9921ce7f1ac9cbd94c9176d13e57c418d3d3c20ce44291c1c"
+    },
+    "Table.Tab2": {
+      "text": "علامة التبويب",
+      "sourceHash": "7508386a20565f5cbc526eee8b3c9f39edeecd576ee90cb3dbb5ce5ac3fe9566"
+    },
+    "Table.TableError": {
+      "text": "خطأ في الجدول",
+      "sourceHash": "b6e75437a7577f614b6d93d68a958e5d1ce87ef16c4471a2a60101217c108a87"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted": {
+      "text": "لم يكن من الممكن تسليم تعديل الخلية النشطة. قم بتصحيح القيمة قبل إضافة صف.",
+      "sourceHash": "403e1d4bfe5f333f55df047b95551a1aa0f8108d1777134b8c9d8be84ed288e5"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted2": {
+      "text": "لم يكن من الممكن تسليم تعديل الخلية النشطة. يرجى تصحيح القيمة قبل حذف الصفوف.",
+      "sourceHash": "da804da6ce85bb179d1168398dbbc7a24b802911968f203e8d45c2588801fb1c"
+    },
+    "Table.TheActiveCellEditCouldNotBeCommitted3": {
+      "text": "لم يكن من الممكن تسليم تعديل الخلية النشطة. قم بتصحيح القيمة قبل التطبيق.",
+      "sourceHash": "2a734c72e5242010863fa3e60743941f513b2bbc2403d1975da34f86fa997bcb"
+    },
+    "Table.TheNewlyInsertedRowWasRemovedFromThe": {
+      "text": "وقد حذف الصف الذي أضيف حديثا من الدورة المعلقة.",
+      "sourceHash": "8fbbb309583c5d4ccd71f2548bcc7418facbc03984640d402417bf2252e84eef"
+    },
+    "Table.TheRowIndicatorColumnIsNotConfigured": {
+      "text": "عمود مؤشر الصف غير مكيف.",
+      "sourceHash": "27dad0e89691e724517a13fa3bb7c11841b2e4ebc4e81784642b57a15f545fc4"
+    },
+    "Table.TheSelectedRowSetIsNoLongerValid": {
+      "text": "لم تعد مجموعة الصفوف المختارة صالحة لهذه جلسة التحرير. لم يتم حذف أي صفوف.",
+      "sourceHash": "b5e2bd6fc229104f9b30ea37b3a648a1209e96f5ae5bbd86dd5d141e55a52f88"
+    },
+    "Table.TheSelectedRowsWereAlreadyDeletedNoAdditional": {
+      "text": "وقد حذفت الصفوف المختارة بالفعل ولم يجر أي تغيير إضافي.",
+      "sourceHash": "3b5ce491426d7bad86fe9b7ec32349cb14528da0e18c12001c0587b33fb146af"
+    },
+    "Table.TheSourceRowIsMarkedForDeletionApply": {
+      "text": "الصف المصدر مُعلَّم للحذف. تطبيق يكتب الحذف؛ إرجاع كل شيء يستعيده.",
+      "sourceHash": "8965fd4f6fe27b89f42c871ebf14f5b66c2c1e8c293178f40f0864b17c208fc5"
+    },
+    "Table.TheVisualTableCouldNotBeProducedThe": {
+      "text": "لم يتسن إنتاج الجدول المرئي ولم يتغير محتوى محرر البيانات.",
+      "sourceHash": "d06ddee1dc61dc14373482d439825b0be57bf073a6ba05a3dc3be86e7497bacb"
+    },
+    "Table.UseReliableAutomaticDetectionOrChooseADelimiter": {
+      "text": "استخدام كشف آلي موثوق به أو اختيار فاصل صراحة",
+      "sourceHash": "927cadfc87b728b7512310d9990cfe07833de56acb148e4e14eda2d01da37143"
+    },
+    "Table.WaitingForTheActiveNotepadDocument": {
+      "text": "في انتظار النشاط Notepad++ وثيقة.",
+      "sourceHash": "0877b2c8a76eed3b6c941ebe15d029c6410481594336353d288fa3636202346c"
+    },
+    "Table.XColumns": {
+      "text": "{0} - {1} خ {2:N0} أعمدة",
+      "sourceHash": "8d34e29f44f6532fcd59908db9d981e2a6f48ddf3372f73c3027c1f37ddb3cf6"
+    },
+    "Transform.AcceptChanges": {
+      "text": "قبول التغييرات",
+      "sourceHash": "d0b6ea6505a2054224392e759040d59b78e046fd4e2c4ff16a290ee4ccf86c59"
+    },
+    "Transform.After": {
+      "text": "بعد",
+      "sourceHash": "7b68fe5510851da3d89100c569d3265e044d8656d95750c376b7a0972dea7330"
+    },
+    "Transform.AllDataCells": {
+      "text": "جميع خﻻيا البيانات",
+      "sourceHash": "4e7ade7ada2353ec566e7b7cf0530181a8c1e42efc6ef7bc977117bd0365ab5f"
+    },
+    "Transform.Before": {
+      "text": "قبل",
+      "sourceHash": "9bb725005055412c75a8e8d1fb5a0780595174ac8bbe5a24f768647bd4e4debe"
+    },
+    "Transform.CSVColumn": {
+      "text": "عمود CSV",
+      "sourceHash": "00ad2353fd3b965ac4613efa723f7b24cf21a36332356ebcf32077f6ec470f6b"
+    },
+    "Transform.ChooseAnOperationAndScopeThenClickPreview": {
+      "text": "اختار عملية ونطاق، ثم انقر فوق استعراض.",
+      "sourceHash": "ac6b18d08638ac0dec01eeb6e30fded4e000c3eea3190f411363a2c2f17838e5"
+    },
+    "Transform.CurrentColumn": {
+      "text": "العمود الحالي",
+      "sourceHash": "57cf89765ee6006cc5a77c4950b4ae08253d9449354b72a1d51bfd9cb3ca637a"
+    },
+    "Transform.Find": {
+      "text": "ابحث عن:",
+      "sourceHash": "8d7fbc1fcb5682c03ec22ab1db8645bcf90221e3b2aa931e0d6bd8483378eb5b"
+    },
+    "Transform.Lowercase": {
+      "text": "حرف صغير",
+      "sourceHash": "46ede93b09bfe7da5d11716d8e00be347779c5e12c8ae9a93d533ecf9b248180"
+    },
+    "Transform.Operation": {
+      "text": "التشغيل:",
+      "sourceHash": "204c7b2a7911489be34ebbbef67764f9613eed2f2b6dd881f2657fba67dde053"
+    },
+    "Transform.OtherWhitespaceIsEscapedLengthsCountUTFUnits": {
+      "text": "الفراغات البيضاء اﻷخرى ﻻ تدخل؛ اﻷطوال تحسب UTF-16 وتُختصر القيم الطويلة.",
+      "sourceHash": "8c1cb2831e9eb0ac1e3d4c4fb1e247699258b86c054fe7dfbcef94fb741ff8aa"
+    },
+    "Transform.PreviewCouldNotBeCreatedCheckTheScope": {
+      "text": "لا يمكن إنشاء العرض المسبق. تحقق من النطاق وابحث عن النص، أو اختار نطاقا أصغر (250,000 خلايا/ 16 Mi (حد أقصى 100 حرف).",
+      "sourceHash": "ddac5a5bf4570943659e4a16bc826cf89037a13aba6ad93a1c3909c456e553d6"
+    },
+    "Transform.PreviewFirstAcceptChangesUpdatesPendingEditsThe": {
+      "text": "تقبل التغييرات التي يتم تحديثها في انتظار التحرير؛ شريط الأدوات تطبيق يكتب إلى Notepad++.\nتستبعد العناوين عندما تكون العناوين = السجل الأول.",
+      "sourceHash": "9c7b7b2df539465304a3d08795d88b0264e60d76c214c4f8cca5cd7fa64235d3"
+    },
+    "Transform.RecordID": {
+      "text": "هوية السجل",
+      "sourceHash": "a36aceadc2e64ca13c88590a3ee434ea54a2724ce4484ff845d4dee9a28ca5ee"
+    },
+    "Transform.ReplaceTextLiteral": {
+      "text": "يستعاض عن النص (حرفياً)",
+      "sourceHash": "331048818cf12694c966902f538a837c5dd03d479c47232728aacc795d0a1c26"
+    },
+    "Transform.ReplaceWith": {
+      "text": "يستعاض عنها بما يلي:",
+      "sourceHash": "0b9d1257b2c37998489c12dbef49872df2682f05875850483afdeeafd712216f"
+    },
+    "Transform.Scope": {
+      "text": "النطاق:",
+      "sourceHash": "f0038a9653e1419b5555caa927d0c7db66a7ff10653485cf30e773864e916ac2"
+    },
+    "Transform.SelectACSVDataColumn": {
+      "text": "انقر فوق عمود بيانات CSV.",
+      "sourceHash": "3cd7b9049bccc08dc9aa9b4aa56f21a11c9accf27fb688f1d48c81896832f0ed"
+    },
+    "Transform.SelectedCellsRows": {
+      "text": "الخﻻيا/الصفوف المختارة",
+      "sourceHash": "cadfe203235bf0d053497706836786d43d6baaa18a726f9c2939fa7a911e292d"
+    },
+    "Transform.SolidOrangeDotsMarkEmptySpaces": {
+      "text": "تشير النقاط البرتقالية الثابتة إلى الفراغات. ",
+      "sourceHash": "0c61599f72b7b2161fa6f21306079e26027fa7b4d2f50b678755c9193ed6f685"
+    },
+    "Transform.SpaceIndicatorsAreHidden": {
+      "text": "المؤشرات الفضائية مخفية. ",
+      "sourceHash": "793c83255b5db14c4d82fc45422039a4ea22188d8a6c5b52dda604692e6fee94"
+    },
+    "Transform.TargetCellsChangesInRowsShowingTheFirst": {
+      "text": "{0:N0} الخلايا المستهدفة؛ {1:N0} التغيرات في {2:N0} صفوف. تظهر التغييرات الخمسين الأولى؛ ",
+      "sourceHash": "edf16babe2504f1779170dfbb187eec05440ab2da0491b4a4f5cb09aa3926aeb"
+    },
+    "Transform.TheEditSessionChanged": {
+      "text": "جلسة التحرير تغيرت.",
+      "sourceHash": "d25be0c0932cfdd24c8c106d928eba753e0c51fd49f47eb8d37afb9fa634b20b"
+    },
+    "Transform.ThePreviewIsNoLongerValidCheckThe": {
+      "text": "لم تعد الصورة المسبقة صالحة. تحقق من جلسة التحرير واختر صورة مسبقة جديدة.",
+      "sourceHash": "d39491094a7b38dde10797aa6165a8b9fc4b7e19150df197ace8d80ad4bc7407"
+    },
+    "Transform.TransformCSVCells": {
+      "text": "تحويل الخلايا CSV",
+      "sourceHash": "c5bef5b02602943f80680d4d099b3206027f282ae6f60b4193d75d0180711cfa"
+    },
+    "Transform.TransformedCellsInThePendingEditSessionUse": {
+      "text": "المحولة {0:N0} استخدام تطبيق لتحديث Notepad++, أو عودة كل شيء لإلغاء التحرير المنتظر.",
+      "sourceHash": "c7d58319ed59e7fc0df0249fd4e7ba97d6db2b2f3c0e67c5ebc4a68e76c444aa"
+    },
+    "Transform.TrimOuterWhitespace": {
+      "text": "حذف الفراغات البيضاء في البداية والنهاية",
+      "sourceHash": "b8006f9807f8811a97b2abc517c2d7554550e2452ef1afa8f1c91587a66f03c6"
+    },
+    "Transform.UPPERCASE": {
+      "text": "الحروف الكبيرة",
+      "sourceHash": "9755f224ef93f473f8115c61076f8346a9759e2b2b7cbd3701e0794338c76b0a"
+    },
+    "View.Reset": {
+      "text": "إعادة العرض",
+      "sourceHash": "ce89ae822e8ba0729e948db14281069eead9eac67edfd4a8e8fe8ab0ec79385d"
+    },
+    "View.ShowSpaces": {
+      "text": "أظهر حروف الفراغ",
+      "sourceHash": "2c65f4696fd7ebc36461381e5fc4cb60d09cf2add06e33dfee52f58b1a3e46d0"
+    }
+  }
+}
