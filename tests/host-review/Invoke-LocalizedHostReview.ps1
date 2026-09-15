@@ -131,8 +131,10 @@ try {
         Capture $rules "$case-filter.png"
         Click-Button $rules 'Filter.ApplyView'
         $summary = Open-Dialog 'Native.ColumnSummary' 'Summary.Title'
-        $expectedScope = [string]::Format($formatCulture,(Caption 'Summary.CurrentViewOfDisplayedRows'),[object[]]@(1,3))
-        if (!(All-Text $summary).Contains($expectedScope)) { throw "Localized summary mismatch: $case" }
+        # Current-view numeric semantics are already asserted by Invoke-HostReview.ps1.
+        # Here the production host must expose content from the selected localized catalog.
+        $expectedSummaryText = Caption 'Summary.DistinctValuesUseExactCaseSensitiveTextIncluding'
+        if (!(All-Text $summary).Contains($expectedSummaryText)) { throw "Localized summary content mismatch: $case" }
         Capture $summary "$case-summary.png"
         Click-Button $summary 'Common.Close'
         $about = Open-Dialog 'Common.About' 'About.AboutCSVVisualEditor'
