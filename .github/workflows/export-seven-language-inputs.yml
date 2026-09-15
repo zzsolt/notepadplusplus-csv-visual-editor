@@ -1,0 +1,33 @@
+name: Export seven-language inputs
+on:
+  push:
+    branches: [agent/localization-seven-export]
+    paths: ['.github/workflows/export-seven-language-inputs.yml']
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Collect selected authored translations
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/authored
+          cp tools/localization/authored/fr.tsv out/authored/
+          cp tools/localization/authored/es.tsv out/authored/
+          cp tools/localization/authored/hi.tsv out/authored/
+          cp tools/localization/authored/zh-CN.tsv out/authored/
+          cp tools/localization/curated/hu-*.tsv out/
+          cp tools/localization/curated/manifest.json out/curated-manifest.json
+          cp src/CsvVisualEditor.Localization/Catalogs/en.json out/en.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seven-language-inputs
+          path: out/
+          if-no-files-found: error
+          retention-days: 1
