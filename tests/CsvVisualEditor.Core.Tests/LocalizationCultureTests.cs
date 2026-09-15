@@ -22,9 +22,11 @@ public sealed class LocalizationCultureTests
         {
             foreach (var definition in L10n.Languages)
             {
+                var translated = L10n.TranslatedLanguageCodes.Contains(definition.Code);
                 L10n.InitializeFromNativeLanguage(definition.NativeFilename);
-                Assert.Equal(definition.Code, L10n.LanguageCode);
-                Assert.Equal(definition.RightToLeft, L10n.IsRightToLeft);
+                Assert.Equal(translated ? definition.Code : "en", L10n.LanguageCode);
+                Assert.Equal(translated && definition.RightToLeft, L10n.IsRightToLeft);
+                if (!translated) Assert.Equal("Cancel", L10n.Get(TextKey.Common_Cancel));
                 Assert.Same(culture, CultureInfo.CurrentCulture);
                 Assert.Same(uiCulture, CultureInfo.CurrentUICulture);
                 Assert.Same(defaultCulture, CultureInfo.DefaultThreadCurrentCulture);
