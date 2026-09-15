@@ -6,8 +6,11 @@ $output = (Resolve-Path $OutputPath).Path
 $temporary = Join-Path ([IO.Path]::GetTempPath()) ('csv-languages-' + [guid]::NewGuid())
 New-Item -ItemType Directory $temporary | Out-Null
 $inventory = Get-Content 'src/CsvVisualEditor.Localization/languages.json' -Raw | ConvertFrom-Json -AsHashtable
+$translationPolicy = Get-Content 'src/CsvVisualEditor.Localization/translations.json' -Raw | ConvertFrom-Json -AsHashtable
+$translatedCodes = @($translationPolicy.translatedCodes)
 $upstream = $inventory.upstreamCommit
 if (!$upstream) { throw 'Missing pinned language inventory revision' }
+if ($translationPolicy.fallback -ne 'en' -or $translatedCodes.Count -ne 7 -or !($translatedCodes -contains 'en')) { throw 'Unexpected translated-language policy' }
 Add-Type -AssemblyName System.Drawing
 # Reuse the existing bounded window/message implementation, not a second plugin bridge.
 if (!('CsvHostWindows' -as [type])) {
@@ -70,8 +73,9 @@ try {
     if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne '624579cee4d9082f5f3945ceb2474ab5aeb222c2003b503b3df8f1dde60e4def') { throw 'Pinned host digest mismatch' }
     & 7z x $archive "-o$temporary/base" -y | Out-Null
     if ($LASTEXITCODE -ne 0) { throw 'Cannot extract isolated host' }
-    foreach ($case in @('en','hu','de','ar','ja','unknown')) {
-        $code = if ($case -eq 'unknown') { 'en' } else { $case }
+    $cases = @($translatedCodes) + @('de','ja','unknown')
+    foreach ($case in $cases) {
+        $code = if ($case -eq 'unknown' -or !($translatedCodes -contains $case)) { 'en' } else { $case }
         $messages = (Get-Content "src/CsvVisualEditor.Localization/Catalogs/$code.json" -Raw | ConvertFrom-Json -AsHashtable).messages
         $hostDir = Join-Path $temporary $case
         Copy-Item (Join-Path $temporary 'base') $hostDir -Recurse
@@ -143,7 +147,7 @@ try {
         $evidence | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'language-evidence.json')
         $process.Kill(); $process.WaitForExit(); $process=$null
     }
-    Write-Host 'Localized production-host startup, commands, view tools, source preservation and unknown-language fallback passed.'
+    Write-Host 'Localized production-host startup, commands, view tools, source preservation and English fallback passed for all maintained languages plus unsupported-host cases.'
 } finally {
     if ($process -and !$process.HasExited) { $process.Kill(); $process.WaitForExit() }
     Remove-Item -LiteralPath $temporary -Recurse -Force
