@@ -1,0 +1,63 @@
+name: Finalize cell details source
+on:
+  push:
+    branches: [agent/cell-details-delivery]
+    paths: [.github/workflows/prepare-cell-details.yml]
+permissions:
+  contents: read
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: delivery
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: b74f0dce5df164c77a5e756b21c150552c3f2509
+          path: work
+      - name: Assemble the reviewed transport payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          folder=Path('delivery/.github/cell-details-payload')
+          parts=sorted(folder.glob('part*.txt'))
+          assert len(parts)==5
+          Path('delivery/payload.b64').write_text(''.join(p.read_text().strip() for p in parts))
+          PY
+      - name: Apply exact source delta and validate all seven catalogs
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ../delivery/.github/prepare-cell-details.py ../delivery/payload.b64 4c4a2bbc528170408c6c476581aa25fe78c0dc49a2b167474acfe15474cf116a 2>&1 | tee ../finalization.log
+      - name: Preserve exact source for local inspection
+        if: always()
+        working-directory: work
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > ../source-commit.txt
+          git diff --stat > ../uncommitted-stat.txt
+          git archive --format=tar.gz HEAD > ../cell-details-source.tar.gz
+          sha256sum ../cell-details-source.tar.gz > ../source-sha256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cell-details-source-finalization
+          path: |
+            finalization.log
+            source-commit.txt
+            uncommitted-stat.txt
+            cell-details-source.tar.gz
+            source-sha256.txt
+          if-no-files-found: error
+          retention-days: 7
