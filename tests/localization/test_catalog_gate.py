@@ -26,6 +26,7 @@ class CatalogGateTests(TestCase):
         for p in self.patchers:
             p.start(); self.addCleanup(p.stop)
         self.inventory = {'languages': [{'code': 'en', 'file': 'english.xml'}, {'code': 'hu', 'file': 'hungarian.xml'}]}
+        self.policy = {'fallback': 'en', 'translatedCodes': ['en', 'hu']}
         self.source = {'Test.Rows': {'text': 'Rows: {0:N0}', 'context': 'Visible row count'}}
         self.target = {'Test.Rows': {'text': 'Sorok: {0:N0}'}}
         self.save()
@@ -38,6 +39,7 @@ class CatalogGateTests(TestCase):
             entry['sourceHash'] = hashlib.sha256(entry['text'].encode()).hexdigest()
             if key in self.target: self.target[key]['sourceHash'] = entry['sourceHash']
         self.write('languages.json', self.inventory)
+        self.write('translations.json', self.policy)
         self.write('Catalogs/en.json', {'language': 'en', 'messages': self.source})
         self.write('Catalogs/hu.json', {'language': 'hu', 'messages': self.target})
         self.write('raw-literals.json', {'files': {}})
@@ -101,8 +103,13 @@ class CatalogGateTests(TestCase):
         (self.resource / 'Catalogs/hu.json').write_text('{"language":"hu","language":"en"}')
         with self.assertRaisesRegex(ValueError, 'Duplicate JSON key'): verify.verify()
 
-    def test_new_host_language_requires_catalog(self):
+    def test_new_unsupported_host_language_uses_fallback_without_catalog(self):
         self.inventory['languages'].append({'file': 'french.xml', 'code': 'fr'})
+        self.save(); verify.verify()
+
+    def test_new_supported_language_requires_catalog(self):
+        self.inventory['languages'].append({'file': 'french.xml', 'code': 'fr'})
+        self.policy['translatedCodes'].append('fr')
         self.save(); self.fails('Catalog inventory mismatch')
 
     def test_upstream_inventory_difference_is_a_failure(self):

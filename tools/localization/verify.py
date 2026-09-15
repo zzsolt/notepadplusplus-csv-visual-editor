@@ -1,4 +1,4 @@
-"""Fail closed on missing/stale translations, format changes, and new UI literals."""
+"""Fail closed on the supported translation set, stale text, format changes, and new UI literals."""
 from __future__ import annotations
 from pathlib import Path
 import argparse
@@ -53,6 +53,11 @@ def verify(check_upstream=False, english_only=False) -> None:
     inventory=read(RESOURCE/'languages.json')
     entries=inventory['languages']
     codes={entry['code'] for entry in entries}
+    policy=read(RESOURCE/'translations.json')
+    translated=set(policy.get('translatedCodes', []))
+    if policy.get('fallback')!='en':errors.append('English must remain the localization fallback')
+    if 'en' not in translated:errors.append('English fallback missing from translated language policy')
+    if translated-codes:errors.append('Translation policy contains unknown languages: '+str(sorted(translated-codes)))
     files=[entry['file'] for entry in entries]
     if len(files)!=len(set(files)):errors.append('Duplicate host language filenames')
     if 'en' not in codes:errors.append('English fallback missing')
@@ -62,7 +67,7 @@ def verify(check_upstream=False, english_only=False) -> None:
         if not entry.get('context'):errors.append('Missing translator context: '+key)
         try:placeholders(entry['text'])
         except ValueError as error:errors.append(key+': '+str(error))
-    expected={'en'} if english_only else codes
+    expected={'en'} if english_only else translated
     present={path.stem for path in (RESOURCE/'Catalogs').glob('*.json')}
     if not english_only and present!=expected:errors.append('Catalog inventory mismatch: missing='+str(sorted(expected-present))+' extra='+str(sorted(present-expected)))
     for code in sorted(expected):
@@ -109,7 +114,7 @@ def verify(check_upstream=False, english_only=False) -> None:
         if not upstream:errors.append('Official language inventory could not be parsed')
         if upstream!=set(files):errors.append('Official language inventory changed: add='+str(sorted(upstream-set(files)))+' removed='+str(sorted(set(files)-upstream)))
     if errors:raise SystemExit('\n'.join(errors))
-    print('Localization checks passed:',len(expected),'catalogs,',len(source),'keys;',len(files),'Notepad++ options.')
+    print('Localization checks passed:',len(expected),'translated catalogs,',len(source),'keys;',len(files),'Notepad++ options; unsupported host languages fall back to English.')
 
 
 if __name__=='__main__':

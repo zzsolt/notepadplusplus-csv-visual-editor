@@ -6,8 +6,8 @@ using Xunit;
 
 public sealed class LocalizationCatalogTests
 {
-    public static IEnumerable<object[]> Codes => L10n.Languages.Select(static language => language.Code)
-        .Distinct().Select(static code => new object[] { code });
+    public static IEnumerable<object[]> Codes => L10n.TranslatedLanguageCodes
+        .OrderBy(static code => code, StringComparer.Ordinal).Select(static code => new object[] { code });
 
     [Theory]
     [MemberData(nameof(Codes))]
@@ -22,6 +22,18 @@ public sealed class LocalizationCatalogTests
             Assert.False(string.IsNullOrWhiteSpace(text));
             Assert.True(MessageFormat.HasSameArguments(english, text), code + "/" + key);
             Assert.NotNull(string.Format(CultureInfo.InvariantCulture, text, values));
+        }
+    }
+
+
+    [Fact]
+    public void UnsupportedHostLanguagesFallBackToEnglish()
+    {
+        foreach (var language in L10n.Languages.Where(static item => !L10n.TranslatedLanguageCodes.Contains(item.Code)))
+        {
+            Assert.False(L10n.HasCompleteCatalog(language.Code));
+            Assert.Equal(L10n.GetForLanguage("en", TextKey.Common_Cancel),
+                L10n.GetForLanguage(language.Code, TextKey.Common_Cancel));
         }
     }
 

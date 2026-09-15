@@ -18,14 +18,21 @@ internal static class LocalizationUiNativeAotSmoke
             [new CsvTableRow(1, ["  alpha  ", "12.5"], new CsvSourceSpan(0, 20)),
              new CsvTableRow(2, ["   ", "-12.5"], new CsvSourceSpan(20, 20)),
              new CsvTableRow(3, ["", "2"], new CsvSourceSpan(40, 10))], 3, 0, false);
-        var reviewed = new HashSet<string>(["en", "hu", "de", "ar", "he", "ja", "zh-TW", "ab", "kab", "sgs", "ext"], StringComparer.Ordinal);
+        var reviewed = new HashSet<string>(L10n.TranslatedLanguageCodes, StringComparer.OrdinalIgnoreCase);
         try
         {
             foreach (var language in L10n.Languages.DistinctBy(static item => item.Code))
             {
-                Require(L10n.HasCompleteCatalog(language.Code), "Catalog must be embedded and complete: " + language.Code);
+                var translated = reviewed.Contains(language.Code);
+                Require(L10n.HasCompleteCatalog(language.Code) == translated, "Catalog coverage must match the seven-language policy: " + language.Code);
                 L10n.InitializeFromNativeLanguage(language.NativeFilename);
-                Require(L10n.LanguageCode == language.Code, "Host filename must select its actual language.");
+                if (!translated)
+                {
+                    Require(L10n.LanguageCode == "en" && L10n.Get(TextKey.Common_Cancel) == "Cancel",
+                        "Unsupported Notepad++ languages must fall back to English: " + language.Code);
+                    continue;
+                }
+                Require(L10n.LanguageCode == language.Code, "Translated host filename must select its actual language.");
                 Require(ReferenceEquals(culture, CultureInfo.CurrentCulture) && ReferenceEquals(uiCulture, CultureInfo.CurrentUICulture),
                     "Localization must not change application cultures.");
                 Require(CsvUiText.ColumnName(new CsvTableColumn(0, "Column 1")) == "Column 1", "Real CSV headers must never be translated.");
@@ -72,11 +79,12 @@ internal static class LocalizationUiNativeAotSmoke
                     }
                 }
             }
+            Require(reviewed.SetEquals(new[] { "en", "hu", "zh-CN", "hi", "es", "ar", "fr" }), "Unexpected translated-language policy.");
             L10n.InitializeFromNativeLanguage("custom-unknown.xml");
             Require(L10n.LanguageCode == "en" && L10n.Get(TextKey.Common_Cancel) == "Cancel", "Unknown host language must fall back to English.");
         }
         finally { L10n.SetLanguage("en"); }
-        Console.WriteLine("Localization: all catalogs, native filenames, translated dialogs, layout, RTL data preservation and English fallback PASS.");
+        Console.WriteLine("Localization: seven catalogs, all host filenames, English fallback, translated dialogs, layout and RTL data preservation PASS.");
     }
 
     private static IEnumerable<Control> Descendants(Control root)

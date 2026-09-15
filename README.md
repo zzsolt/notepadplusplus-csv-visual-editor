@@ -10,6 +10,7 @@ A 64-bit Notepad++ plugin for viewing, editing, filtering and inspecting CSV dat
 - Cell editing, row operations, rectangular copy/cut/paste and previewed text transformations.
 - Navigation from a table cell to its source field and optional visible space markers.
 - Conflict-checked Apply with one Notepad++ undo action. Save remains under Notepad++ control.
+- Interface translations: English, Hungarian, Simplified Chinese, Hindi, Spanish, Arabic and French; other Notepad++ languages fall back to English.
 
 ## Installation
 

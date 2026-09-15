@@ -1,5 +1,0 @@
-# Optional development-only dependencies; never required by the plugin DLL.
-ctranslate2==4.6.0
-transformers==4.49.0
-sentencepiece==0.2.0
-huggingface-hub==0.34.4

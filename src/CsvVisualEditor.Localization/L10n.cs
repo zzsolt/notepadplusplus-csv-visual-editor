@@ -20,6 +20,7 @@ public static class L10n
     public static bool IsRightToLeft => Volatile.Read(ref _current).Language.RightToLeft;
     public static CultureInfo FormattingCulture => Volatile.Read(ref _current).Culture;
     public static IReadOnlyList<LanguageDefinition> Languages => LanguageInventory.All;
+    public static IReadOnlySet<string> TranslatedLanguageCodes => TranslationPolicy.SupportedCodes;
 
     /// <summary>Resolve the host's native-language file, not its OS or document encoding.</summary>
     public static string ResolveNativeLanguage(string? filename)
@@ -41,7 +42,9 @@ public static class L10n
     {
         var definition = LanguageInventory.All.FirstOrDefault(language =>
             string.Equals(language.Code, code, StringComparison.OrdinalIgnoreCase)) ?? LanguageInventory.English;
-        var catalog = definition.Code == "en" ? EnglishCatalog() : Cache.GetOrAdd(definition.Code, _ => Load(definition));
+        var catalog = definition.Code == "en" || !TranslationPolicy.SupportedCodes.Contains(definition.Code)
+            ? EnglishCatalog()
+            : Cache.GetOrAdd(definition.Code, _ => Load(definition));
         Volatile.Write(ref _current, catalog);
     }
 
@@ -73,7 +76,9 @@ public static class L10n
         if ((uint)index >= (uint)EnglishText.Values.Length) throw new ArgumentOutOfRangeException(nameof(key));
         var definition = LanguageInventory.All.FirstOrDefault(language =>
             string.Equals(language.Code, code, StringComparison.OrdinalIgnoreCase)) ?? LanguageInventory.English;
-        var catalog = definition.Code == "en" ? EnglishCatalog() : Cache.GetOrAdd(definition.Code, _ => Load(definition));
+        var catalog = definition.Code == "en" || !TranslationPolicy.SupportedCodes.Contains(definition.Code)
+            ? EnglishCatalog()
+            : Cache.GetOrAdd(definition.Code, _ => Load(definition));
         return catalog.Values[index];
     }
 
@@ -82,7 +87,8 @@ public static class L10n
     {
         var definition = LanguageInventory.All.FirstOrDefault(language =>
             string.Equals(language.Code, code, StringComparison.OrdinalIgnoreCase));
-        return definition is not null && (definition.Code == "en" || Cache.GetOrAdd(definition.Code, _ => Load(definition)).Complete);
+        return definition is not null && TranslationPolicy.SupportedCodes.Contains(definition.Code) &&
+            (definition.Code == "en" || Cache.GetOrAdd(definition.Code, _ => Load(definition)).Complete);
     }
 
     private static Catalog EnglishCatalog() => new(LanguageInventory.English, EnglishText.Values,
