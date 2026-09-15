@@ -23,7 +23,7 @@ jobs:
       - shell: pwsh
         run: |
           Expand-Archive prior/CsvVisualEditor-0.15.0-alpha.416.1-win-x64.zip prior/package
-          $script = (Get-Content .github/keyboard-probe.ps1 -Raw).Replace('Changes remain pending', 'Changes stay pending')
+          $script = (Get-Content .github/keyboard-probe.ps1 -Raw).Replace('Changes remain pending', 'Changes stay pending').Replace('Click-At $strip 185 18', 'Click-At $strip 160 18')
           Set-Content .github/keyboard-probe.ps1 $script
           .github/keyboard-probe.ps1 -LibraryPath prior/package/CsvVisualEditor/CsvVisualEditor.dll
       - uses: actions/upload-artifact@v4
