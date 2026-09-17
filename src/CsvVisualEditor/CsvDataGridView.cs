@@ -20,6 +20,8 @@ internal sealed class CsvDataGridView : DataGridView
     }
 
     private const int WmKeyDown = 0x0100;
+    private const int WmKeyUp = 0x0101;
+    private const int WmChar = 0x0102;
     private const int WmSysKeyDown = 0x0104;
     private const int WmCut = 0x0300;
     private const int WmCopy = 0x0301;
@@ -66,7 +68,7 @@ internal sealed class CsvDataGridView : DataGridView
         base.OnSorted(e);
     }
 
-    protected override void OnCellMouseEnter(DataGridViewCellEventArgs e)
+    protected override void OnCellMouseEnter(DataGridViewCellMouseEventArgs e)
     {
         // Unbound non-virtual grids do not request CellToolTipTextNeeded.
         if (!VirtualMode && e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
@@ -131,6 +133,27 @@ internal sealed class CsvDataGridView : DataGridView
     {
         ArgumentNullException.ThrowIfNull(grid);
         return grid is CsvDataGridView && grid.RowHeadersVisible;
+    }
+
+    protected override bool ProcessKeyPreview(ref Message message)
+    {
+        // A native modeless host need not run WinForms key preprocessing before
+        // delivering WM_CHAR. DataGridView otherwise consumes Space here using
+        // its cached CurrentCellWantsInputKey flag. Leave ordinary Space to the
+        // active text editor, which performs the insertion exactly once.
+        if (IsCurrentCellInEditMode &&
+            EditingControl is TextBoxBase { IsHandleCreated: true, ReadOnly: false } editor &&
+            message.HWnd == editor.Handle &&
+            message.Msg is WmKeyDown or WmKeyUp or WmChar &&
+            message.WParam.ToInt64() == (int)Keys.Space &&
+            (ModifierKeys & (Keys.Control | Keys.Alt)) == Keys.None)
+        {
+            return false;
+        }
+
+        // Cell selection, checkboxes, navigation and modified commands retain
+        // their usual grid behavior when no editable text control owns the key.
+        return base.ProcessKeyPreview(ref message);
     }
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
