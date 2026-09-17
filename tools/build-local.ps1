@@ -40,8 +40,9 @@ try {
     Invoke-CheckedNative 'dotnet' @('publish', 'src/CsvVisualEditor/CsvVisualEditor.csproj', '-c', 'Release', '-f', 'net10.0-windows', '-r', 'win-x64', "-p:Version=$PackageVersion", '-o', $publish) 'publish.log'
     $dll = Join-Path $publish 'CsvVisualEditor.dll'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-HostReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'host-review')) 'host-review.log'
+    Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-KeyboardInputReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'keyboard-input-review')) 'keyboard-input-review.log'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-LocalizedHostReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'localized-host-review')) 'localized-host-review.log'
-    # Package ONLY the production DLL that passed both host gates above.
+    # Package ONLY the production DLL that passed all host gates above.
     $layout = Join-Path $destination 'package/CsvVisualEditor'
     New-Item -ItemType Directory $layout -Force | Out-Null
     Copy-Item $dll $layout
