@@ -20,7 +20,7 @@ jobs:
       - name: Publish only the current production plugin
         shell: pwsh
         run: dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj -c Release -f net10.0-windows -r win-x64 -p:Version=0.15.0-keyboard-probe -o keyboard-publish
-      - name: Reproduce the reported typing path in real Notepad++
+      - name: Reproduce Space and literal-backslash typing in real Notepad++
         shell: pwsh
         run: pwsh -NoProfile -File tests/host-review/Invoke-KeyboardInputReview.ps1 -LibraryPath keyboard-publish/CsvVisualEditor.dll -OutputPath keyboard-evidence
       - uses: actions/upload-artifact@v4
