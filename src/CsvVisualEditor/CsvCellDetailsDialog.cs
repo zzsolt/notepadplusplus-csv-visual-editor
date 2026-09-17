@@ -3,6 +3,7 @@ namespace CsvVisualEditor;
 using CsvVisualEditor.Core;
 using CsvVisualEditor.Localization;
 using System.ComponentModel;
+using System.Text;
 
 /// <summary>
 /// A detached, lossless view/editor for exactly one cell. It never writes to a
@@ -11,7 +12,15 @@ using System.ComponentModel;
 internal sealed class CsvCellDetailsDialog : Form
 {
     private readonly string _original;
+    private readonly string _naturalOriginal;
+    private readonly string[] _originalLineEndings;
+    private readonly string _preferredLineEnding;
     private readonly bool _editable;
+    private bool _syncingEditors;
+    private bool _naturalTooLarge;
+
+    // Advanced exact notation. Kept editable for precise CR/LF/tab/backslash work,
+    // but ordinary editing opens on the natural text tab instead.
     private readonly TextBox _editor = new()
     {
         Name = "CsvCellValueEditor", Dock = DockStyle.Fill, Multiline = true,
@@ -21,8 +30,8 @@ internal sealed class CsvCellDetailsDialog : Form
     private readonly TextBox _preview = new()
     {
         Name = "CsvCellValuePreview", Dock = DockStyle.Fill, Multiline = true,
-        ReadOnly = true, ScrollBars = ScrollBars.Both, WordWrap = true,
-        MaxLength = int.MaxValue
+        AcceptsReturn = true, AcceptsTab = false, ScrollBars = ScrollBars.Both,
+        WordWrap = true, MaxLength = int.MaxValue, HideSelection = false
     };
     private readonly Label _metrics = new() { Name = "CsvCellMetrics", AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false };
     private readonly Label _validation = new() { Name = "CsvCellValidation", AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false };
@@ -39,12 +48,18 @@ internal sealed class CsvCellDetailsDialog : Form
     internal string EditorText { get => _editor.Text; set => _editor.Text = value; }
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    internal string NaturalText { get => _preview.Text; set => _preview.Text = value; }
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal bool CanAccept => _accept.Enabled;
 
     internal CsvCellDetailsDialog(string value, string location, bool editable, Color background, Color foreground)
     {
         _original = value;
         _editable = editable;
+        _naturalOriginal = NormalizeForNaturalEditor(value);
+        _originalLineEndings = CollectLineEndings(value);
+        _preferredLineEnding = _originalLineEndings.FirstOrDefault() ?? Environment.NewLine;
         Text = L10n.Get(TextKey.Cell_Title);
         AutoScaleMode = AutoScaleMode.Dpi;
         StartPosition = FormStartPosition.CenterParent;
@@ -64,7 +79,7 @@ internal sealed class CsvCellDetailsDialog : Form
             Text = L10n.Get(TextKey.Cell_NotationHint), AutoSize = true, Dock = DockStyle.Fill, UseMnemonic = false
         };
         var exactPage = new TabPage(L10n.Get(TextKey.Cell_ExactText));
-        var previewPage = new TabPage(L10n.Get(TextKey.Common_Preview));
+        var previewPage = new TabPage(L10n.Get(editable ? TextKey.Common_Edit : TextKey.Common_Preview));
         exactPage.Controls.Add(_editor);
         previewPage.Controls.Add(_preview);
         _tabs.TabPages.AddRange([exactPage, previewPage]);
@@ -100,22 +115,35 @@ internal sealed class CsvCellDetailsDialog : Form
         _layout.Controls.Add(buttons, 0, 6);
         Controls.Add(_layout);
         CancelButton = close;
-        // Enter must insert a newline, never accept the dialog inadvertently.
+        // Enter inserts a real line break in the natural editor; Ctrl+Enter accepts.
         AcceptButton = null;
         _editor.ReadOnly = !editable;
-        _editor.Text = CsvCellTextCodec.Encode(value);
-        _editor.AccessibleName = L10n.Get(TextKey.Cell_ExactText);
-        _preview.AccessibleName = L10n.Get(TextKey.Common_Preview);
-        _editor.TextChanged += (_, _) =>
+        _preview.ReadOnly = !editable;
+        _syncingEditors = true;
+        try
         {
-            _accept.Enabled = false;
-            _validationTimer.Stop();
-            _validationTimer.Start();
-        };
+            _editor.Text = CsvCellTextCodec.Encode(value);
+            _preview.Text = _naturalOriginal;
+        }
+        finally { _syncingEditors = false; }
+        _editor.AccessibleName = L10n.Get(TextKey.Cell_ExactText);
+        _preview.AccessibleName = L10n.Get(editable ? TextKey.Common_Edit : TextKey.Common_Preview);
+        _editor.TextChanged += (_, _) => OnExactTextChanged();
+        _preview.TextChanged += (_, _) => OnNaturalTextChanged();
         _validationTimer.Tick += (_, _) => ValidateValue();
         _tabs.SelectedIndexChanged += (_, _) => ValidateValue();
         Resize += (_, _) => WrapLabels();
-        Shown += (_, _) => { WrapLabels(); _editor.Focus(); _editor.Select(0, 0); };
+        // Read-only inspection keeps the exact notation visible. In Edit mode the
+        // user starts in an ordinary text box where Space, Enter and backslash mean
+        // exactly what they normally mean.
+        _tabs.SelectedIndex = editable ? 1 : 0;
+        Shown += (_, _) =>
+        {
+            WrapLabels();
+            var focus = editable ? _preview : _editor;
+            focus.Focus();
+            focus.Select(0, 0);
+        };
         ApplyTheme(this, background, foreground);
         CsvLocalizationAppearance.Apply(this);
         // CSV content and its escape notation must never be mirrored by UI language.
@@ -130,27 +158,75 @@ internal sealed class CsvCellDetailsDialog : Form
         foreach (var label in _layout.Controls.OfType<Label>()) label.MaximumSize = new Size(width, 0);
     }
 
+    private void OnExactTextChanged()
+    {
+        if (_syncingEditors) return;
+        _naturalTooLarge = false;
+        if (CsvCellTextCodec.TryDecode(_editor.Text, out var value, out _))
+            SetNaturalText(NormalizeForNaturalEditor(value));
+        ScheduleValidation();
+    }
+
+    private void OnNaturalTextChanged()
+    {
+        if (_syncingEditors) return;
+        var value = RestoreNaturalLineEndings(_preview.Text);
+        if (value.Length > CsvCellTextCodec.MaximumValueLength)
+        {
+            _naturalTooLarge = true;
+            _accept.Enabled = false;
+            _metrics.Text = string.Empty;
+            _validation.Text = L10n.Format(TextKey.Cell_TooLarge, CsvCellTextCodec.MaximumValueLength);
+            return;
+        }
+
+        _naturalTooLarge = false;
+        _syncingEditors = true;
+        try { _editor.Text = CsvCellTextCodec.Encode(value); }
+        finally { _syncingEditors = false; }
+        ScheduleValidation();
+    }
+
+    private void ScheduleValidation()
+    {
+        _accept.Enabled = false;
+        _validationTimer.Stop();
+        _validationTimer.Start();
+    }
+
+    private void SetNaturalText(string text)
+    {
+        if (string.Equals(_preview.Text, text, StringComparison.Ordinal)) return;
+        _syncingEditors = true;
+        try { _preview.Text = text; }
+        finally { _syncingEditors = false; }
+    }
+
     internal bool ValidateValue()
     {
         _validationTimer.Stop();
+        if (_naturalTooLarge)
+        {
+            _accept.Enabled = false;
+            _metrics.Text = string.Empty;
+            _validation.Text = L10n.Format(TextKey.Cell_TooLarge, CsvCellTextCodec.MaximumValueLength);
+            return false;
+        }
         if (!CsvCellTextCodec.TryDecode(_editor.Text, out var value, out var offset))
         {
             _accept.Enabled = false;
-            _preview.Clear();
             _metrics.Text = string.Empty;
             _validation.Text = offset < 0
                 ? L10n.Format(TextKey.Cell_TooLarge, CsvCellTextCodec.MaximumValueLength)
                 : L10n.Format(TextKey.Cell_InvalidEscape, offset + 1);
             return false;
         }
+        SetNaturalText(NormalizeForNaturalEditor(value));
         var counts = CsvCellTextCodec.Measure(value);
         _metrics.Text = L10n.Format(TextKey.Cell_Metrics, counts.Utf16Length, counts.Spaces,
             counts.Tabs, counts.CrLf, counts.Lf, counts.Cr);
         _validation.Text = value.Length == 0 ? L10n.Get(TextKey.Cell_EmptyValue) :
             string.IsNullOrWhiteSpace(value) ? L10n.Get(TextKey.Cell_WhitespaceOnly) : string.Empty;
-        // Preview normalization is display-only. Result is always decoded from Exact text.
-        _preview.Text = value.Replace("\r\n", "\n", StringComparison.Ordinal)
-            .Replace('\r', '\n').Replace("\n", "\r\n", StringComparison.Ordinal);
         _accept.Enabled = _editable && !string.Equals(value, _original, StringComparison.Ordinal);
         return true;
     }
@@ -175,6 +251,71 @@ internal sealed class CsvCellDetailsDialog : Form
     {
         if (disposing) _validationTimer.Dispose();
         base.Dispose(disposing);
+    }
+
+    private string RestoreNaturalLineEndings(string text)
+    {
+        var normalized = NormalizeForNaturalEditor(text);
+        if (string.Equals(normalized, _naturalOriginal, StringComparison.Ordinal)) return _original;
+
+        var result = new StringBuilder(text.Length);
+        var endingIndex = 0;
+        for (var i = 0; i < text.Length; i++)
+        {
+            var c = text[i];
+            if (c == '\r')
+            {
+                if (i + 1 < text.Length && text[i + 1] == '\n') i++;
+                result.Append(endingIndex < _originalLineEndings.Length
+                    ? _originalLineEndings[endingIndex]
+                    : _preferredLineEnding);
+                endingIndex++;
+            }
+            else if (c == '\n')
+            {
+                result.Append(endingIndex < _originalLineEndings.Length
+                    ? _originalLineEndings[endingIndex]
+                    : _preferredLineEnding);
+                endingIndex++;
+            }
+            else result.Append(c);
+        }
+        return result.ToString();
+    }
+
+    private static string NormalizeForNaturalEditor(string value)
+    {
+        var result = new StringBuilder(value.Length);
+        for (var i = 0; i < value.Length; i++)
+        {
+            if (value[i] == '\r')
+            {
+                if (i + 1 < value.Length && value[i + 1] == '\n') i++;
+                result.Append(Environment.NewLine);
+            }
+            else if (value[i] == '\n') result.Append(Environment.NewLine);
+            else result.Append(value[i]);
+        }
+        return result.ToString();
+    }
+
+    private static string[] CollectLineEndings(string value)
+    {
+        var endings = new List<string>();
+        for (var i = 0; i < value.Length; i++)
+        {
+            if (value[i] == '\r')
+            {
+                if (i + 1 < value.Length && value[i + 1] == '\n')
+                {
+                    endings.Add("\r\n");
+                    i++;
+                }
+                else endings.Add("\r");
+            }
+            else if (value[i] == '\n') endings.Add("\n");
+        }
+        return endings.ToArray();
     }
 
     private static void ApplyTheme(Control control, Color background, Color foreground)
