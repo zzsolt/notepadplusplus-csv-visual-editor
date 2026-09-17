@@ -1,5 +1,7 @@
 namespace CsvVisualEditor;
 
+using System.Runtime.InteropServices;
+
 /// <summary>
 /// Subclasses the active DataGridView editing-control window. Besides clipboard
 /// routing, it answers the dialog manager's Space-key query so Notepad++ treats
@@ -36,12 +38,11 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 
     protected override void WndProc(ref Message message)
     {
-        if (message.Msg == WmGetDlgCode &&
-            (Keys)message.WParam.ToInt32() == Keys.Space)
+        if (message.Msg == WmGetDlgCode && IsSpaceDialogQuery(message))
         {
-            // IsDialogMessage asks the focused editor whether it wants this exact
-            // key before dispatching it. The modeless Notepad++ host otherwise
-            // consumes Space here, so no WM_CHAR ever reaches the cell editor.
+            // IsDialogMessage can provide the queried virtual key either directly in
+            // wParam or in the MSG pointed to by lParam. Advertise Space as text input
+            // in both forms so the host cannot consume it before the editor gets WM_CHAR.
             base.WndProc(ref message);
             message.Result = (IntPtr)(message.Result.ToInt64() | DlgcWantAllKeys | DlgcWantChars);
             return;
@@ -56,6 +57,23 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         base.WndProc(ref message);
     }
 
+    private static bool IsSpaceDialogQuery(Message message)
+    {
+        if ((Keys)message.WParam.ToInt32() == Keys.Space) return true;
+        if (message.LParam == IntPtr.Zero) return false;
+
+        try
+        {
+            var queried = Marshal.PtrToStructure<DialogMessage>(message.LParam);
+            return queried.Message == WmKeyDown &&
+                   (Keys)queried.WParam.ToInt32() == Keys.Space;
+        }
+        catch (Exception exception) when (exception is ArgumentException or AccessViolationException)
+        {
+            return false;
+        }
+    }
+
     private static bool IsControlVKeyDown(Message message)
     {
         if (message.Msg != WmKeyDown ||
@@ -67,6 +85,15 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         var modifiers = Control.ModifierKeys;
         return (modifiers & Keys.Control) == Keys.Control &&
                (modifiers & Keys.Alt) != Keys.Alt;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct DialogMessage
+    {
+        public IntPtr HWnd;
+        public uint Message;
+        public IntPtr WParam;
+        public IntPtr LParam;
     }
 
     public void Dispose()
