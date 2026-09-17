@@ -3,9 +3,8 @@ namespace CsvVisualEditor;
 /// <summary>
 /// Subclasses the active DataGridView editing-control window and intercepts both
 /// the actual WM_PASTE message and a raw Ctrl+V key message. It also repairs the
-/// Space key on the actual transient text editor: Notepad++/modeless-dialog key
-/// handling can suppress Space before DataGridView sees it, while the editor itself
-/// still raises KeyDown. Handling that control directly keeps ordinary typing reliable.
+/// Space key on the actual transient text editor as a fallback: Notepad++/modeless
+/// dialog key handling can suppress Space before ordinary grid editing sees it.
 /// </summary>
 internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 {
