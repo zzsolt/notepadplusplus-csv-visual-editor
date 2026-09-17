@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 /// <summary>
 /// Subclasses the active DataGridView editing-control window. Besides clipboard
 /// routing, it keeps ordinary Space input inside the transient cell editor before
-/// modeless Notepad++ key handling can suppress it.
+/// modeless Notepad++ dialog handling can consume it.
 /// </summary>
 internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 {
@@ -41,23 +41,11 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
     {
         if (message.Msg == WmGetDlgCode && IsSpaceDialogQuery(message))
         {
-            // IsDialogMessage can provide the queried virtual key either directly in
-            // wParam or in the MSG pointed to by lParam. Advertise Space as text input
-            // in both forms so the host does not treat it as dialog navigation.
+            // IsDialogMessage queries both the keydown and its translated character.
+            // The editor must claim Space in both cases; otherwise the modeless host
+            // can consume the WM_CHAR after the keydown has already been accepted.
             base.WndProc(ref message);
             message.Result = (IntPtr)(message.Result.ToInt64() | DlgcWantAllKeys | DlgcWantChars);
-            return;
-        }
-
-        if (message.Msg == WmKeyDown &&
-            (Keys)message.WParam.ToInt32() == Keys.Space &&
-            (Control.ModifierKeys & (Keys.Control | Keys.Alt)) == Keys.None)
-        {
-            // The host framework suppresses the subsequent KeyPress for Space on the
-            // modeless grid. Deliver exactly one WM_CHAR straight to the native edit
-            // control, then consume the keydown so no second character can be emitted.
-            var character = Message.Create(Handle, WmChar, (IntPtr)' ', message.LParam);
-            base.WndProc(ref character);
             return;
         }
 
