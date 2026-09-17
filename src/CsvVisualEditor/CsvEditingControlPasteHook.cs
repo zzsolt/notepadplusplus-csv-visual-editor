@@ -4,14 +4,14 @@ using System.Runtime.InteropServices;
 
 /// <summary>
 /// Subclasses the active DataGridView editing-control window. Besides clipboard
-/// routing, it answers the dialog manager's Space-key query so Notepad++ treats
-/// Space as text input for the active cell instead of a modeless-dialog command.
-/// This seam is intentionally limited to the transient in-cell editor.
+/// routing, it keeps ordinary Space input inside the transient cell editor before
+/// modeless Notepad++ key handling can suppress it.
 /// </summary>
 internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 {
     private const int WmGetDlgCode = 0x0087;
     private const int WmKeyDown = 0x0100;
+    private const int WmChar = 0x0102;
     private const int WmPaste = 0x0302;
     private const int DlgcWantAllKeys = 0x0004;
     private const int DlgcWantChars = 0x0080;
@@ -43,9 +43,21 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         {
             // IsDialogMessage can provide the queried virtual key either directly in
             // wParam or in the MSG pointed to by lParam. Advertise Space as text input
-            // in both forms so the host cannot consume it before the editor gets WM_CHAR.
+            // in both forms so the host does not treat it as dialog navigation.
             base.WndProc(ref message);
             message.Result = (IntPtr)(message.Result.ToInt64() | DlgcWantAllKeys | DlgcWantChars);
+            return;
+        }
+
+        if (message.Msg == WmKeyDown &&
+            (Keys)message.WParam.ToInt32() == Keys.Space &&
+            (Control.ModifierKeys & (Keys.Control | Keys.Alt)) == Keys.None)
+        {
+            // The host framework suppresses the subsequent KeyPress for Space on the
+            // modeless grid. Deliver exactly one WM_CHAR straight to the native edit
+            // control, then consume the keydown so no second character can be emitted.
+            var character = Message.Create(Handle, WmChar, (IntPtr)' ', message.LParam);
+            base.WndProc(ref character);
             return;
         }
 
@@ -66,8 +78,8 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         try
         {
             var queried = Marshal.PtrToStructure<DialogMessage>(message.LParam);
-            return queried.Message == WmKeyDown &&
-                   (Keys)queried.WParam.ToInt32() == Keys.Space;
+            return (queried.Message == WmKeyDown || queried.Message == WmChar) &&
+                   queried.WParam.ToInt32() == (int)Keys.Space;
         }
         catch (Exception exception) when (exception is ArgumentException or AccessViolationException)
         {
