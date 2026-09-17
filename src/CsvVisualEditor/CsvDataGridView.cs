@@ -68,7 +68,7 @@ internal sealed class CsvDataGridView : DataGridView
         base.OnSorted(e);
     }
 
-    protected override void OnCellMouseEnter(DataGridViewCellMouseEventArgs e)
+    protected override void OnCellMouseEnter(DataGridViewCellEventArgs e)
     {
         // Unbound non-virtual grids do not request CellToolTipTextNeeded.
         if (!VirtualMode && e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
