@@ -4,6 +4,8 @@
 
 - Add resizable cell details with exact whitespace and line-ending inspection.
 - Add lossless pending cell editing, validation and preview through toolbar, menu and Alt+Enter.
+- Make expanded editing use ordinary text by default while retaining advanced exact notation.
+- Fix typed spaces being swallowed during direct grid-cell editing.
 - Localize the new controls in all seven maintained interface languages.
 
 ## 0.14
