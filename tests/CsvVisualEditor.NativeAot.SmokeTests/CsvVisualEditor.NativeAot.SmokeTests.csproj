@@ -21,6 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npp.DotNet.Plugin" Version="1.0.0-alpha.10" />
     <ProjectReference Include="../../src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj" />
     <ProjectReference Include="../../src/CsvVisualEditor.Localization/CsvVisualEditor.Localization.csproj" />
     <Compile Include="../../src/CsvVisualEditor/CsvCommandIdentity.cs" Link="CsvCommandIdentity.cs" />
