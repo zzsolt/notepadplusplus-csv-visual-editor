@@ -5,36 +5,28 @@ on:
     paths: ['.github/workflows/cell-keyboard-probe.yml']
 permissions:
   contents: read
-  actions: read
 jobs:
   probe:
     runs-on: windows-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: agent/cell-details
           persist-credentials: false
-      - uses: actions/download-artifact@v4
+      - uses: actions/setup-dotnet@v4
         with:
-          name: CsvVisualEditor-0.15.0-alpha.416.1-win-x64
-          run-id: 34963625802
-          github-token: ${{ github.token }}
-          path: prior
-      - shell: pwsh
-        run: |
-          Expand-Archive prior/CsvVisualEditor-0.15.0-alpha.416.1-win-x64.zip prior/package
-          $select = @'
-          Click-At $strip 160 18
-          $page=@([CsvHostWindows]::Children($form)|Where-Object {[CsvHostWindows]::Title($_) -eq 'Table'})[0]
-          $grid=@([CsvHostWindows]::Children($page)|Where-Object {[CsvHostWindows]::IsWindowVisible($_) -and [CsvHostWindows]::Class($_).StartsWith('WindowsForms10.Window.8')})[0]
-          Click-At $grid 120 36
-          '@
-          $script = (Get-Content .github/keyboard-probe.ps1 -Raw).Replace('Changes remain pending', 'Changes stay pending').Replace('Click-At $strip 185 18', $select)
-          Set-Content .github/keyboard-probe.ps1 $script
-          .github/keyboard-probe.ps1 -LibraryPath prior/package/CsvVisualEditor/CsvVisualEditor.dll
+          dotnet-version: 10.0.x
+      - name: Publish only the current production plugin
+        shell: pwsh
+        run: dotnet publish src/CsvVisualEditor/CsvVisualEditor.csproj -c Release -f net10.0-windows -r win-x64 -p:Version=0.15.0-keyboard-probe -o keyboard-publish
+      - name: Reproduce the reported typing path in real Notepad++
+        shell: pwsh
+        run: pwsh -NoProfile -File tests/host-review/Invoke-KeyboardInputReview.ps1 -LibraryPath keyboard-publish/CsvVisualEditor.dll -OutputPath keyboard-evidence
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cell-keyboard-reproduction
           path: keyboard-evidence
-          retention-days: 7
+          if-no-files-found: warn
+          retention-days: 2
