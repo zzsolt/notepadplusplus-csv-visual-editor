@@ -60,14 +60,15 @@ try {
     Clear-FocusedEditor
 
     # This exact sequence reproduced the owner report in 0.15.0-alpha.416.1:
-    # the Space key disappeared while paste worked. It must now remain ordinary text.
-    Type-Key 0x41 # A
+    # the Space key disappeared while paste worked. The synthetic virtual-key input
+    # is unshifted, so alphabetic characters are expected in lowercase.
+    Type-Key 0x41 # a
     Type-Key 0x20 # Space
-    Type-Key 0x42 # B
+    Type-Key 0x42 # b
     Type-Key 0xDC # backslash on the runner keyboard
-    Type-Key 0x43 # C
+    Type-Key 0x43 # c
     $inline=[CsvHostWindows]::ControlText([CsvKeyboardReview]::Focus($window))
-    if($inline -cne 'A B\C'){throw "Direct cell typing changed characters: [$inline]"}
+    if($inline -cne 'a b\c'){throw "Direct cell typing changed characters: [$inline]"}
 
     # Opening Cell details commits the active grid editor into the pending model.
     # Edit mode must open on the ordinary-text tab, where one backslash is one
@@ -75,16 +76,16 @@ try {
     $details=Open-DataDialog 'Cell details' 'Cell details'
     $natural=Get-VisibleTextEditor $details
     $opened=[CsvHostWindows]::ControlText($natural)
-    if($opened -cne 'A B\C'){throw "Natural cell editor did not receive exact grid text: [$opened]"}
+    if($opened -cne 'a b\c'){throw "Natural cell editor did not receive exact grid text: [$opened]"}
     Click-At $natural 12 12
     Clear-FocusedEditor
-    Type-Key 0x58 # X
+    Type-Key 0x58 # x
     Type-Key 0x20 # Space
-    Type-Key 0x59 # Y
+    Type-Key 0x59 # y
     Type-Key 0xDC # one literal backslash
-    Type-Key 0x5A # Z
+    Type-Key 0x5A # z
     $naturalTyped=[CsvHostWindows]::ControlText([CsvKeyboardReview]::Focus($window))
-    if($naturalTyped -cne 'X Y\Z'){throw "Natural editor changed characters: [$naturalTyped]"}
+    if($naturalTyped -cne 'x y\z'){throw "Natural editor changed characters: [$naturalTyped]"}
     Click-DataButton $details 'Accept changes'
     Start-Sleep -Milliseconds 250
 
@@ -93,7 +94,7 @@ try {
     $details=Open-DataDialog 'Cell details' 'Cell details'
     $natural=Get-VisibleTextEditor $details
     $reopened=[CsvHostWindows]::ControlText($natural)
-    if($reopened -cne 'X Y\Z'){throw "Reopened pending cell changed characters: [$reopened]"}
+    if($reopened -cne 'x y\z'){throw "Reopened pending cell changed characters: [$reopened]"}
     Save-Window $details 'cell-details-natural-edit.png'
     Click-DataButton $details 'Cancel'
 
