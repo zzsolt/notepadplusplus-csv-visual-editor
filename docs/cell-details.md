@@ -7,32 +7,37 @@ distinguished from values containing only whitespace. The limit is 1,048,576
 UTF-16 units per cell; oversized values are rejected, never truncated.
 
 In read-only mode this is inspection only. To change the value, enable **Edit**
-in the table first, then reopen the cell details. **Accept changes** or
-**Ctrl+Enter** updates only that cell in the pending edit session. The table's
-**Apply** still performs the checked Notepad++ update; **Revert All** discards all
-pending changes. **Cancel**, **Esc** and closing the dialog discard only its
-unaccepted changes. An unchanged value does not create a change.
+in the table first, then reopen the cell details. Edit mode opens on the ordinary
+text tab: type spaces normally, press Enter for a line break, and type a single
+backslash when the cell needs one. **Accept changes** or **Ctrl+Enter** updates
+only that cell in the pending edit session. The table's **Apply** still performs
+the checked Notepad++ update; **Revert All** discards all pending changes.
+**Cancel**, **Esc** and closing the dialog discard only its unaccepted changes.
+An unchanged value does not create a change.
 
-## Exact text and preview
+## Exact text and ordinary editing
 
-The editable **Exact text** tab uses reversible notation so Windows controls
-cannot silently normalize existing line endings:
+The **Exact text** tab is an advanced reversible notation. It exists so mixed
+Windows/Unix line endings, tabs, literal backslashes and invisible UTF-16 units
+can be inspected or edited without native edit-control normalization:
 
 | Notation | Cell value |
 | --- | --- |
-| Middle dot (`·`) | Space (U+0020) |
-| `\\` | One backslash |
+| Middle dot (`·`) or `\u00B7` notation shown by the UI | Space (U+0020) |
+| `\\` | One literal backslash |
 | `\t` | Tab |
 | `\r` | Carriage return |
 | `\n` | Line feed |
 | `\r\n` | CRLF line ending |
 | `\uXXXX` | A UTF-16 code unit, with four hexadecimal digits |
 
-A literal middle dot is written `\u00B7`. Ordinary spaces and new line breaks
-typed into the editor are also accepted. Unknown or incomplete escapes disable
-acceptance and show their position. **Preview** is a read-only visual rendering;
-it is never used as the stored value. **Wrap text** affects display only. Use Tab
-to move focus and type `\t` to insert a tab.
+The doubled backslash in Exact text is notation only; it does not mean that two
+backslashes are stored in the CSV cell. Ordinary editing is the default in Edit
+mode precisely so users do not need to type escape notation for normal work.
+Existing mixed line-ending kinds are preserved by ordinal position while editing
+ordinary text; newly inserted line breaks use the cell's existing line-ending
+style when one exists, otherwise the Windows CRLF default. The exact tab remains
+available when a specific CR/LF sequence must be controlled explicitly.
 
 The selected stable row and physical column are checked before acceptance. A
 refreshed table, removed row or independently changed cell rejects the stale edit.
