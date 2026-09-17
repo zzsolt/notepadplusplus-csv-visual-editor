@@ -1,18 +1,19 @@
 namespace CsvVisualEditor;
 
 /// <summary>
-/// Subclasses the active DataGridView editing-control window and intercepts both
-/// the actual WM_PASTE message and a raw Ctrl+V key message. It also repairs the
-/// Space key on the actual transient text editor as a fallback: Notepad++/modeless
-/// dialog key handling can suppress Space before ordinary grid editing sees it.
+/// Subclasses the active DataGridView editing-control window. Besides clipboard
+/// routing, it answers the dialog manager's Space-key query so Notepad++ treats
+/// Space as text input for the active cell instead of a modeless-dialog command.
 /// </summary>
 internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 {
+    private const int WmGetDlgCode = 0x0087;
     private const int WmKeyDown = 0x0100;
     private const int WmPaste = 0x0302;
+    private const int DlgcWantAllKeys = 0x0004;
+    private const int DlgcWantChars = 0x0080;
 
     private Func<bool>? _tryHandlePaste;
-    private Control? _editingControl;
 
     internal void Attach(Control editingControl, Func<bool> tryHandlePaste)
     {
@@ -20,19 +21,12 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         ArgumentNullException.ThrowIfNull(tryHandlePaste);
 
         Detach();
-        _editingControl = editingControl;
-        _editingControl.KeyDown += OnEditingControlKeyDown;
         _tryHandlePaste = tryHandlePaste;
         AssignHandle(editingControl.Handle);
     }
 
     internal void Detach()
     {
-        if (_editingControl is not null)
-        {
-            _editingControl.KeyDown -= OnEditingControlKeyDown;
-            _editingControl = null;
-        }
         _tryHandlePaste = null;
         if (Handle != IntPtr.Zero)
         {
@@ -40,25 +34,19 @@ internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
         }
     }
 
-    private static void OnEditingControlKeyDown(object? sender, KeyEventArgs e)
+    protected override void WndProc(ref Message message)
     {
-        if (sender is not TextBoxBase editor ||
-            e.KeyCode != Keys.Space ||
-            e.Modifiers is not (Keys.None or Keys.Shift))
+        if (message.Msg == WmGetDlgCode &&
+            (Keys)message.WParam.ToInt32() == Keys.Space)
         {
+            // IsDialogMessage asks the focused editor whether it wants this exact
+            // key before dispatching it. The modeless Notepad++ host otherwise
+            // consumes Space here, so no WM_CHAR ever reaches the cell editor.
+            base.WndProc(ref message);
+            message.Result = (IntPtr)(message.Result.ToInt64() | DlgcWantAllKeys | DlgcWantChars);
             return;
         }
 
-        // The modeless Notepad++ keyboard seam can mark Space as suppressed before
-        // this handler runs. Event subscribers still run, so insert exactly one
-        // ordinary space at the native editor selection and consume the key here.
-        editor.SelectedText = " ";
-        e.Handled = true;
-        e.SuppressKeyPress = true;
-    }
-
-    protected override void WndProc(ref Message message)
-    {
         if ((message.Msg == WmPaste || IsControlVKeyDown(message)) &&
             _tryHandlePaste?.Invoke() == true)
         {
