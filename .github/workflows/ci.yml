@@ -63,7 +63,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 30
     env:
-      PACKAGE_VERSION: 0.15.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
+      PACKAGE_VERSION: 0.16.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -99,6 +99,7 @@ jobs:
             artifacts/local/${{ env.PACKAGE_VERSION }}/artifacts/ui-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/host-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/keyboard-input-review/
+            artifacts/local/${{ env.PACKAGE_VERSION }}/context-menu-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/localized-host-review/
           if-no-files-found: warn
           retention-days: 7

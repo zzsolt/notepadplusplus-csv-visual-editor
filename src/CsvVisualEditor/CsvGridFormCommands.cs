@@ -16,6 +16,7 @@ internal sealed partial class CsvGridForm
 
     internal void InstallCommandSurface()
     {
+        _cellContextMenu?.Dispose();
         _commandSurface?.Dispose();
         // Clipboard toolbar reconstruction clears the interpretation strip.
         // Restore view tools before binding the permanent menu, without adding
@@ -89,6 +90,7 @@ internal sealed partial class CsvGridForm
             _topPanel.SetCellPosition(_searchBar, new TableLayoutPanelCellPosition(0, 3));
             _topPanel.Controls.Add(surface.Menu, 0, 0);
             MainMenuStrip = surface.Menu;
+            InstallCellContextMenu();
             RefreshCommandAppearance();
         }
         finally { _topPanel.ResumeLayout(true); }
@@ -106,6 +108,8 @@ internal sealed partial class CsvGridForm
     private void RefreshCommandAppearance()
     {
         _commandSurface?.ApplyAppearance(BackColor, ForeColor, DeviceDpi);
+        if (_commandSurface is { } surface)
+            _cellContextMenu?.ApplyAppearance(BackColor, ForeColor, surface.Menu.Renderer);
         _searchBar.ApplyAppearance(BackColor, ForeColor);
         _noMatchesLabel.BackColor = _grid.BackgroundColor;
         _noMatchesLabel.ForeColor = ForeColor;

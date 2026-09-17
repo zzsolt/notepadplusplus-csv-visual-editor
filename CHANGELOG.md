@@ -1,11 +1,16 @@
 # Changelog
 
-## 0.15 (unreleased)
+## 0.16 (unreleased)
+
+- Add cell context menus for read-only and Edit modes.
+- Keep right-click targets, rectangular selections and explicit row actions consistent.
+- Share existing localized commands and their safety checks.
+
+## 0.15
 
 - Add resizable cell details with exact whitespace and line-ending inspection.
 - Add lossless pending cell editing, validation and preview through toolbar, menu and Alt+Enter.
-- Make expanded editing use ordinary text by default while retaining advanced exact notation.
-- Fix typed spaces being swallowed during direct grid-cell editing.
+- Use ordinary multiline editing by default and preserve typed spaces and literal backslashes.
 - Localize the new controls in all seven maintained interface languages.
 
 ## 0.14

@@ -1,5 +1,5 @@
 param(
-    [string] $PackageVersion = ("0.15.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
+    [string] $PackageVersion = ("0.16.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
 )
 
 $ErrorActionPreference = 'Stop'
@@ -40,8 +40,9 @@ try {
     Invoke-CheckedNative 'dotnet' @('publish', 'src/CsvVisualEditor/CsvVisualEditor.csproj', '-c', 'Release', '-f', 'net10.0-windows', '-r', 'win-x64', "-p:Version=$PackageVersion", '-o', $publish) 'publish.log'
     $dll = Join-Path $publish 'CsvVisualEditor.dll'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-HostReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'host-review')) 'host-review.log'
-    # Reproduce the owner-reported direct typing path in the real Notepad++ host.
+    # Reproduce direct typing in the real Notepad++ host.
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-KeyboardInputReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'keyboard-input-review')) 'keyboard-input-review.log'
+    Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-ContextMenuReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'context-menu-review')) 'context-menu-review.log'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-LocalizedHostReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'localized-host-review')) 'localized-host-review.log'
     # Package ONLY the production DLL that passed all host gates above.
     $layout = Join-Path $destination 'package/CsvVisualEditor'
