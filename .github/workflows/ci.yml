@@ -98,6 +98,7 @@ jobs:
             artifacts/local/${{ env.PACKAGE_VERSION }}/SHA256.txt
             artifacts/local/${{ env.PACKAGE_VERSION }}/artifacts/ui-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/host-review/
+            artifacts/local/${{ env.PACKAGE_VERSION }}/keyboard-input-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/localized-host-review/
           if-no-files-found: warn
           retention-days: 7
