@@ -77,7 +77,7 @@ internal static class CellContextMenuNativeAotSmoke
                 Item(context, "CsvClipboardCopyButton").PerformClick();
                 Require(clicks == 1, "Context menu dispatches the existing command exactly once.");
                 foreach (var item in context.Menu.Items.OfType<ToolStripMenuItem>())
-                    Require(item.Text == Button(item.Name).Text, "Every caption comes from the localized command source.");
+                    Require(item.Name is { } name && item.Text == Button(name).Text, "Every caption comes from the localized command source.");
                 Require(context.Menu.RightToLeft == (L10n.IsRightToLeft ? RightToLeft.Yes : RightToLeft.No) &&
                     grid.RightToLeft != RightToLeft.Yes, "RTL affects menus, never CSV columns.");
                 Require(Item(context, "CsvShowSpacesButton").Checked, "Toggle state mirrors the source.");
