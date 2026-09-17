@@ -3,6 +3,8 @@ namespace CsvVisualEditor;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using CsvVisualEditor.Core;
+using Npp.DotNet.Plugin.Winforms.Classes;
+using Npp.DotNet.Plugin.Winforms.Extensions;
 
 /// <summary>
 /// DataGridView clipboard-command seam that works inside the native Notepad++ host.
@@ -30,6 +32,22 @@ internal sealed class CsvDataGridView : DataGridView
     internal bool ShowWhitespace { get; set; } = true;
 
     private CsvCellSearchIndex? _searchResults;
+
+    /// <summary>
+    /// FormBase installs a generic modeless-dialog KeyDown handler on every non-text
+    /// child and that handler deliberately suppresses Space. That is useful for button
+    /// chrome but wrong for a DataGridView because its transient cell editor routes
+    /// editing keys through the grid. Remove only that inherited generic handler once
+    /// the grid receives focus; the grid's own search/clipboard handlers remain intact.
+    /// </summary>
+    protected override void OnEnter(EventArgs e)
+    {
+        if (FindForm() is FormBase form)
+        {
+            KeyDown -= form.GenericKeyDownHandler;
+        }
+        base.OnEnter(e);
+    }
 
     internal void SetSearchResults(CsvCellSearchIndex? results)
     {
