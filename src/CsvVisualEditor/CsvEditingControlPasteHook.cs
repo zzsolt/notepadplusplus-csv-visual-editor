@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 /// Subclasses the active DataGridView editing-control window. Besides clipboard
 /// routing, it answers the dialog manager's Space-key query so Notepad++ treats
 /// Space as text input for the active cell instead of a modeless-dialog command.
+/// This seam is intentionally limited to the transient in-cell editor.
 /// </summary>
 internal sealed class CsvEditingControlPasteHook : NativeWindow, IDisposable
 {
