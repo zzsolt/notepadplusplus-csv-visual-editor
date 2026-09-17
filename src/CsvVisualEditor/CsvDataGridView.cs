@@ -113,6 +113,25 @@ internal sealed class CsvDataGridView : DataGridView
         finally { graphics.Restore(state); }
     }
 
+    /// <summary>
+    /// Npp.DotNet.Plugin's modeless-form keyboard helper suppresses Space on non-textbox
+    /// controls to avoid the Windows notification sound. A DataGridView keeps receiving
+    /// that KeyDown while its transient text editing control owns the cell edit, so the
+    /// suppression otherwise drops an ordinary typed space. Undo only that suppression
+    /// for unmodified/Shift+Space text entry while a real cell editor is active.
+    /// </summary>
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (IsCurrentCellInEditMode &&
+            e.KeyCode == Keys.Space &&
+            e.Modifiers is Keys.None or Keys.Shift)
+        {
+            e.Handled = false;
+            e.SuppressKeyPress = false;
+        }
+    }
+
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     internal Func<Keys, bool>? SearchCommandHandler { get; set; }
