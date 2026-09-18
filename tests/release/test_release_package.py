@@ -15,14 +15,14 @@ spec.loader.exec_module(release)
 
 class ReleasePackageTests(unittest.TestCase):
     def test_entry_matches_plugins_admin_contract(self):
-        entry = release.plugin_admin_entry("1.0.0", "a" * 64)
+        entry = release.plugin_admin_entry("1.0.1", "a" * 64)
         self.assertEqual("CsvVisualEditor", entry["folder-name"])
         self.assertEqual("CSV Visual Editor", entry["display-name"])
-        self.assertEqual("1.0.0", entry["version"])
+        self.assertEqual("1.0.1", entry["version"])
         self.assertEqual("[8.9.8,]", entry["npp-compatible-versions"])
         self.assertEqual("a" * 64, entry["id"])
         self.assertTrue(entry["repository"].endswith(
-            "/releases/download/v1.0.0/CsvVisualEditor-1.0.0-win-x64.zip"
+            "/releases/download/v1.0.1/CsvVisualEditor-1.0.1-win-x64.zip"
         ))
         self.assertEqual("Zolnai Zsolt", entry["author"])
 
@@ -36,7 +36,7 @@ class ReleasePackageTests(unittest.TestCase):
                 archive.writestr("CsvVisualEditor.dll", dll.read_bytes())
                 archive.writestr("LICENSE.txt", "GPL")
                 archive.writestr("THIRD_PARTY_NOTICES.txt", "third-party")
-            zip_hash, dll_hash = release.verify_archive(package, dll, "1.0.0")
+            zip_hash, dll_hash = release.verify_archive(package, dll, "1.0.1")
             self.assertEqual(64, len(zip_hash))
             self.assertEqual(release.sha256_bytes(dll.read_bytes()), dll_hash)
 
@@ -49,14 +49,14 @@ class ReleasePackageTests(unittest.TestCase):
                 archive.writestr("LICENSE.txt", "GPL")
                 archive.writestr("THIRD_PARTY_NOTICES.txt", "third-party")
             with self.assertRaises(ValueError):
-                release.verify_archive(package, None, "1.0.0")
+                release.verify_archive(package, None, "1.0.1")
 
     def test_repository_declares_stable_gpl_release(self):
         project = (ROOT / "src/CsvVisualEditor/CsvVisualEditor.csproj").read_text(encoding="utf-8")
-        self.assertIn("<Version>1.0.0</Version>", project)
+        self.assertIn("<Version>1.0.1</Version>", project)
         self.assertIn("<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>", project)
         workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
-        self.assertIn("PACKAGE_VERSION: 1.0.0", workflow)
+        self.assertIn("PACKAGE_VERSION: 1.0.1", workflow)
         build = (ROOT / "tools/build-local.ps1").read_text(encoding="utf-8")
         self.assertIn("Join-Path $layout 'CsvVisualEditor.dll'", build)
         self.assertIn("LICENSE.txt", build)
@@ -67,6 +67,11 @@ class ReleasePackageTests(unittest.TestCase):
         notices = (ROOT / "THIRD_PARTY_NOTICES.txt").read_text(encoding="utf-8")
         self.assertIn("Npp.DotNet.Plugin 1.0.0-alpha.10", notices)
         self.assertIn(".NET Runtime / Native AOT 10.0.12", notices)
+
+    def test_shutdown_does_not_double_free_plugin_name(self):
+        main = (ROOT / "src/CsvVisualEditor/Main.cs").read_text(encoding="utf-8")
+        self.assertIn("PluginData.PluginNamePtr = IntPtr.Zero;", main)
+        self.assertNotIn("Marshal.FreeHGlobal(PluginData.PluginNamePtr)", main)
 
     def test_template_has_required_plugins_admin_fields(self):
         data = json.loads((ROOT / "packaging/nppPluginList/entry.template.json").read_text(encoding="utf-8"))
