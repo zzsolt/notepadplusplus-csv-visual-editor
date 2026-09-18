@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 - 2026-09-18
+
+- Fix shutdown cleanup so Notepad++ can exit normally with CSV Visual Editor loaded.
+- Add a production-host regression check for clean Notepad++ shutdown.
+
 ## 1.0.0 - 2026-09-18
 
 - First stable Windows x64 release.
