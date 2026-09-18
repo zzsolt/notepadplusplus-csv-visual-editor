@@ -9,10 +9,10 @@ on:
         type: boolean
   push:
     branches: [main]
-    paths: ['src/**', 'tests/**', 'tools/**', '.github/**', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
+    paths: ['src/**', 'tests/**', 'tools/**', 'packaging/**', '.github/**', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
   pull_request:
     branches: [main]
-    paths: ['src/**', 'tests/**', 'tools/**', '.github/**', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
+    paths: ['src/**', 'tests/**', 'tools/**', 'packaging/**', '.github/**', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'Directory.Build.*', 'global.json', '**/NuGet.config', '**/nuget.config', '*.sln', '*.slnx', '**/packages.lock.json']
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -48,6 +48,7 @@ jobs:
         run: |
           python -m unittest discover -s tests/ci -p 'test_*.py'
           python -m unittest discover -s tests/localization -p 'test_*.py'
+          python -m unittest discover -s tests/release -p 'test_*.py'
           python tools/localization/verify.py --check-upstream
       - uses: actions/setup-dotnet@v4
         with:
@@ -63,7 +64,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 30
     env:
-      PACKAGE_VERSION: 0.16.0-alpha.${{ github.run_number }}.${{ github.run_attempt }}
+      PACKAGE_VERSION: 1.0.0
     steps:
       - uses: actions/checkout@v4
         with:
@@ -96,6 +97,8 @@ jobs:
           path: |
             artifacts/local/${{ env.PACKAGE_VERSION }}/*.log
             artifacts/local/${{ env.PACKAGE_VERSION }}/SHA256.txt
+            artifacts/local/${{ env.PACKAGE_VERSION }}/release-manifest.json
+            artifacts/local/${{ env.PACKAGE_VERSION }}/nppPluginList-entry.x64.json
             artifacts/local/${{ env.PACKAGE_VERSION }}/artifacts/ui-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/host-review/
             artifacts/local/${{ env.PACKAGE_VERSION }}/keyboard-input-review/
