@@ -1,6 +1,16 @@
 # Changelog
 
-## 0.16 (unreleased)
+## 1.0.0 - 2026-09-18
+
+- First stable Windows x64 release.
+- View, edit, search, filter, sort and summarize CSV data in a docked Notepad++ table.
+- Add rectangular clipboard operations, row editing, previewed transforms and source navigation.
+- Add natural multiline cell details, visible-space inspection and mode-aware cell context menus.
+- Apply pending edits through Notepad++ with conflict/encoding checks and one undo transaction.
+- Ship seven maintained interface languages with English fallback for other Notepad++ languages.
+- License project code under GPL-3.0-only and prepare a Plugins Admin compliant x64 package.
+
+## 0.16 (pre-release development)
 
 - Add cell context menus for read-only and Edit modes.
 - Keep right-click targets, rectangular selections and explicit row actions consistent.
