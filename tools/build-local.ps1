@@ -1,5 +1,5 @@
 param(
-    [string] $PackageVersion = ("0.16.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
+    [string] $PackageVersion = ("1.0.0-local." + [DateTime]::UtcNow.ToString('yyyyMMddHHmmss'))
 )
 
 $ErrorActionPreference = 'Stop'
@@ -22,6 +22,7 @@ try {
     # Fail before any expensive compilation when translations are missing or stale.
     Invoke-CheckedNative 'python' @('-m', 'unittest', 'discover', '-s', 'tests/ci', '-p', 'test_*.py') 'ci-policy.log'
     Invoke-CheckedNative 'python' @('-m', 'unittest', 'discover', '-s', 'tests/localization', '-p', 'test_*.py') 'localization-tests.log'
+    Invoke-CheckedNative 'python' @('-m', 'unittest', 'discover', '-s', 'tests/release', '-p', 'test_*.py') 'release-tests.log'
     Invoke-CheckedNative 'python' @('tools/localization/verify.py', '--check-upstream') 'localization.log'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', '.github/scripts/Test-TestPackagePolicy.ps1') 'package-policy.log'
     Invoke-CheckedNative 'dotnet' @('build', 'src/CsvVisualEditor.Core/CsvVisualEditor.Core.csproj', '-c', 'Release') 'core-build.log'
@@ -44,13 +45,37 @@ try {
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-KeyboardInputReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'keyboard-input-review')) 'keyboard-input-review.log'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-ContextMenuReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'context-menu-review')) 'context-menu-review.log'
     Invoke-CheckedNative 'pwsh' @('-NoProfile', '-File', 'tests/host-review/Invoke-LocalizedHostReview.ps1', '-LibraryPath', $dll, '-OutputPath', (Join-Path $destination 'localized-host-review')) 'localized-host-review.log'
-    # Package ONLY the production DLL that passed all host gates above.
-    $layout = Join-Path $destination 'package/CsvVisualEditor'
+    # Plugins Admin requires the plugin DLL at the ZIP root. Keep the exact
+    # production DLL that passed every host gate above and ship its notices.
+    $layout = Join-Path $destination 'package'
     New-Item -ItemType Directory $layout -Force | Out-Null
-    Copy-Item $dll $layout
+    Copy-Item $dll (Join-Path $layout 'CsvVisualEditor.dll')
+    Copy-Item (Join-Path $root 'LICENSE') (Join-Path $layout 'LICENSE.txt')
+    Copy-Item (Join-Path $root 'THIRD_PARTY_NOTICES.txt') (Join-Path $layout 'THIRD_PARTY_NOTICES.txt')
     $zip = Join-Path $destination "CsvVisualEditor-$PackageVersion-win-x64.zip"
-    Compress-Archive -Path $layout -DestinationPath $zip -CompressionLevel Optimal
+    Compress-Archive -Path (Join-Path $layout '*') -DestinationPath $zip -CompressionLevel Optimal
     Get-FileHash $zip, $dll -Algorithm SHA256 | Format-List | Out-File (Join-Path $destination 'SHA256.txt')
+
+    if ($PackageVersion -match '^\d+\.\d+\.\d+
+}
+finally {
+    Pop-Location
+}
+) {
+        $expectedFileVersion = "$PackageVersion.0"
+        $actualFileVersion = (Get-Item $dll).VersionInfo.FileVersion
+        if ($actualFileVersion -ne $expectedFileVersion) {
+            throw "Plugins Admin version mismatch: DLL file version $actualFileVersion, expected $expectedFileVersion."
+        }
+        Invoke-CheckedNative 'python' @(
+            'tools/release/npp_plugin_package.py',
+            '--zip', $zip,
+            '--dll', $dll,
+            '--version', $PackageVersion,
+            '--entry-out', (Join-Path $destination 'nppPluginList-entry.x64.json'),
+            '--manifest-out', (Join-Path $destination 'release-manifest.json')
+        ) 'plugin-admin-package.log'
+    }
     Write-Host "Validated candidate: $zip"
 }
 finally {
