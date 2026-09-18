@@ -23,3 +23,9 @@ Before submitting upstream:
 The checked-in `entry.template.json` intentionally has a SHA placeholder.
 After the final release build, the exact generated entry and release manifest
 are recorded with the release evidence.
+
+Official references:
+
+- https://npp-user-manual.org/docs/plugins/#plugins-admin
+- https://github.com/notepad-plus-plus/nppPluginList
+- https://github.com/notepad-plus-plus/nppPluginList/blob/master/validator.py
