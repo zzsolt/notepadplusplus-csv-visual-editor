@@ -72,6 +72,9 @@ class ReleasePackageTests(unittest.TestCase):
         main = (ROOT / "src/CsvVisualEditor/Main.cs").read_text(encoding="utf-8")
         self.assertIn("PluginData.PluginNamePtr = IntPtr.Zero;", main)
         self.assertNotIn("Marshal.FreeHGlobal(PluginData.PluginNamePtr)", main)
+        host_review = (ROOT / "tests/host-review/Invoke-HostReview.ps1").read_text(encoding="utf-8")
+        self.assertIn("WaitForExit(10000)", host_review)
+        self.assertIn("CleanShutdownObserved=$false", host_review)
 
     def test_template_has_required_plugins_admin_fields(self):
         data = json.loads((ROOT / "packaging/nppPluginList/entry.template.json").read_text(encoding="utf-8"))
