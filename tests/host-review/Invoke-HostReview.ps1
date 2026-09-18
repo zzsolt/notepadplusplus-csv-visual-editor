@@ -232,8 +232,12 @@ try {
     $aboutText=@([CsvHostWindows]::Children($about) | ForEach-Object { [CsvHostWindows]::ControlText($_) }) -join "`n"
     if(!$aboutText.Contains('Zolnai Zsolt') -or !$aboutText.Contains('zzsolt@gmail.com') -or !$aboutText.Contains($env:PACKAGE_VERSION)) {throw 'Production About content or package version mismatch'}
     Send-Native $about 0x10 ([IntPtr]::Zero) ([IntPtr]::Zero) | Out-Null
-    [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; DataFilterPreviewObserved=$true; DataFilterApplied=$true; DataSummaryObserved=$true; DataCancelPreserved=$true; DataResetObserved=$true; SourceBufferUnchanged=$true; Scope='Automated production-host load/search/resize/About and data filter/preview/apply/cancel/reset/summary, exact source buffer preservation. Not manual acceptance or editing Apply/Undo coverage.' } | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
-    Write-Host 'Real Notepad++ production-DLL load/render/search review completed.'
+    $evidence = [ordered]@{ NotepadVersion=(Get-Item $exe).VersionInfo.ProductVersion; Windows=[Environment]::OSVersion.VersionString; Dpi=[CsvHostWindows]::GetDpiForWindow($form); DllSha256=(Get-FileHash $library -Algorithm SHA256).Hash; ProductionDllLoaded=$true; SearchCountObserved=$true; SearchClearObserved=$true; AboutObserved=$true; PackageVersion=$env:PACKAGE_VERSION; DockWidths=$resizes; DataFilterPreviewObserved=$true; DataFilterApplied=$true; DataSummaryObserved=$true; DataCancelPreserved=$true; DataResetObserved=$true; SourceBufferUnchanged=$true; CleanShutdownObserved=$false; Scope='Automated production-host load/search/resize/About and data filter/preview/apply/cancel/reset/summary, exact source buffer preservation, and normal Notepad++ shutdown with the production plugin loaded. Not manual acceptance or editing Apply/Undo coverage.' }
+    [CsvHostWindows]::PostMessage($window,0x10,[IntPtr]::Zero,[IntPtr]::Zero) | Out-Null
+    if (!$process.WaitForExit(10000)) { throw 'Notepad++ did not exit cleanly with the production plugin loaded' }
+    $evidence.CleanShutdownObserved = $true
+    $evidence | ConvertTo-Json | Set-Content (Join-Path $output 'host-evidence.json')
+    Write-Host 'Real Notepad++ production-DLL load/render/search/shutdown review completed.'
 } finally {
     if($process -and !$process.HasExited) { $process.Kill(); $process.WaitForExit() }
     Remove-Item -LiteralPath $homeDir -Recurse -Force
