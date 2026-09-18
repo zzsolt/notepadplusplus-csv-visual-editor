@@ -31,28 +31,24 @@ Official references:
 - https://github.com/notepad-plus-plus/nppPluginList/blob/master/validator.py
 
 
-## Local Plugins Admin update test after publishing v1.0.1
+## Local Plugins Admin test for the first official submission
 
 The public v1.0.1 release URL and SHA-256 are live. A full current x64 plugin-list
 snapshot with the CSV Visual Editor entry already inserted is checked in as
-`nppPluginList.test.x64.json` for the required local Plugins Admin test.
+`nppPluginList.test.x64.json` for local Plugins Admin validation.
 
-Follow the official Notepad++ test procedure:
+For the first official-list submission, verify the published 1.0.1 entry locally:
 
 1. Use a recent 64-bit portable Notepad++ in a disposable debug directory.
-2. Replace `updater/GUP.exe` with a matching x64 debug GUP build as described
-   by the Notepad++ user manual.
+2. Use the matching debug GUP build required by the Notepad++ local test workflow.
 3. Copy `nppPluginList.test.x64.json` to
    `plugins/Config/nppPluginList.json`.
-4. Start the matching debug Notepad++ executable and open Plugins > Plugins Admin.
-5. For the final update-path test, first install the released CSV Visual Editor 1.0.0 package and confirm About reports 1.0.0.
-6. With Notepad++ closed, copy this repository's current `nppPluginList.test.x64.json` to `plugins/Config/nppPluginList.json`.
-7. Start the matching debug Notepad++ and open Plugins > Plugins Admin > Updates.
-8. Confirm CSV Visual Editor 1.0.1 is offered, run Update, accept the restart, then confirm About reports 1.0.1.
-9. Confirm the plugin opens normally after the update; this is the final lifecycle check before upstream submission.
-10. After PASS, fork `notepad-plus-plus/nppPluginList`, add only the object from
-   `entry.x64.json` to upstream `src/pl.x64.json`, run the upstream validator,
-   and submit the PR.
+4. Confirm CSV Visual Editor 1.0.1 is listed and can be installed, restarted,
+   loaded, deactivated, re-activated and removed successfully.
+5. Submit only the generated object from `entry.x64.json` to upstream
+   `src/pl.x64.json`.
 
-The test snapshot is disposable support material; the upstream PR must modify
-only the official JSON list, per upstream instructions.
+An update from a previous official Plugins Admin version is applicable to later
+releases once such a prior official entry exists. The disposable test snapshot
+is support material only; the upstream PR modifies only the official JSON list.
+
