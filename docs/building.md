@@ -21,3 +21,25 @@ English source messages and translated catalogs live in `src/CsvVisualEditor.Loc
 Validation rejects missing or stale catalogs, malformed placeholders and unreviewed new UI literals. CI checks the official Notepad++ language inventory and representative localized startup, menus and dialogs. Unknown host languages use English; document encoding and CSV numeric semantics do not select the display language.
 
 All commands above must succeed before publishing a build. The seven maintained catalogs must all be current and complete. Do not add partial language coverage or bypass a failed catalog check to generate a distributable package.
+
+
+## Stable release and Plugins Admin
+
+The stable product version is `1.0.0`. Project code is GPL-3.0-only; do not
+remove `LICENSE` or `THIRD_PARTY_NOTICES.txt` from a distributed package.
+
+The complete Windows release gate is:
+
+```powershell
+pwsh -NoProfile -File tools/build-local.ps1 -PackageVersion 1.0.0
+```
+
+It runs release-policy tests in addition to localization, Core, Native AOT and
+real Notepad++ host checks. The resulting ZIP has `CsvVisualEditor.dll`,
+`LICENSE.txt` and `THIRD_PARTY_NOTICES.txt` at the ZIP root. This root-level
+DLL layout is required by Notepad++ Plugins Admin.
+
+For a stable version, the gate also produces `release-manifest.json` and
+`nppPluginList-entry.x64.json`. Publish the exact ZIP at the URL in that entry
+before submitting it to the official `nppPluginList` repository. Do not reuse
+the generated SHA-256 after repacking the ZIP.
