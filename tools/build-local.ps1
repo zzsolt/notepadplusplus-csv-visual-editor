@@ -56,12 +56,7 @@ try {
     Compress-Archive -Path (Join-Path $layout '*') -DestinationPath $zip -CompressionLevel Optimal
     Get-FileHash $zip, $dll -Algorithm SHA256 | Format-List | Out-File (Join-Path $destination 'SHA256.txt')
 
-    if ($PackageVersion -match '^\d+\.\d+\.\d+
-}
-finally {
-    Pop-Location
-}
-) {
+    if ($PackageVersion -match '^\d+\.\d+\.\d+$') {
         $expectedFileVersion = "$PackageVersion.0"
         $actualFileVersion = (Get-Item $dll).VersionInfo.FileVersion
         if ($actualFileVersion -ne $expectedFileVersion) {
