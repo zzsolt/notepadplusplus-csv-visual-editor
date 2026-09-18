@@ -452,11 +452,10 @@ partial class Main : IDotNetPlugin
 
         PluginData.FuncItems.Dispose();
 
-        if (PluginData.PluginNamePtr != IntPtr.Zero)
-        {
-            Marshal.FreeHGlobal(PluginData.PluginNamePtr);
-            PluginData.PluginNamePtr = IntPtr.Zero;
-        }
+        // PluginNamePtr's setter owns the allocation and frees the previous pointer.
+        // Assigning zero is sufficient; freeing it manually first would double-free
+        // the unmanaged string during Notepad++ shutdown.
+        PluginData.PluginNamePtr = IntPtr.Zero;
     }
 }
 
