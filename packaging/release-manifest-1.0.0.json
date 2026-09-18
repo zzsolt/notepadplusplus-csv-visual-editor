@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "zip": "CsvVisualEditor-1.0.0-win-x64.zip",
+  "zipSha256": "e513b9316806662dd358853c7f0a718ba78c50ca5b2992d3db23c4c0d77bd351",
+  "dll": "CsvVisualEditor.dll",
+  "dllSha256": "7ba84aab6b8e733e586e358248859ea6ccf9651f0fe3d5f53aaeacc6b2072385",
+  "pluginAdminList": "src/pl.x64.json",
+  "pluginAdminEntry": {
+    "folder-name": "CsvVisualEditor",
+    "display-name": "CSV Visual Editor",
+    "version": "1.0.0",
+    "npp-compatible-versions": "[8.9.8,]",
+    "id": "e513b9316806662dd358853c7f0a718ba78c50ca5b2992d3db23c4c0d77bd351",
+    "repository": "https://github.com/zzsolt/notepadplusplus-csv-visual-editor/releases/download/v1.0.0/CsvVisualEditor-1.0.0-win-x64.zip",
+    "description": "View, edit, filter and inspect CSV data in a docked table with conflict-checked Apply and Notepad++ undo.",
+    "author": "Zolnai Zsolt",
+    "homepage": "https://github.com/zzsolt/notepadplusplus-csv-visual-editor"
+  }
+}
