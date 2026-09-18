@@ -15,8 +15,8 @@ A 64-bit Notepad++ plugin for viewing, editing, filtering and inspecting CSV dat
 
 ## Version
 
-The first stable release is **1.0.0** for 64-bit Notepad++ on Windows. The
-production release gate is tested with Notepad++ 8.9.8 x64.
+The current stable maintenance line is **1.0.1** for 64-bit Notepad++ on Windows.
+The production release gate is tested with Notepad++ 8.9.8 x64.
 
 ## Installation
 
