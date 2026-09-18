@@ -83,13 +83,12 @@ class PlanTests(unittest.TestCase):
 
     def test_local_candidate_has_every_gate_before_packaging(self):
         text = (ROOT / 'tools/build-local.ps1').read_text()
-        required = ('tools/localization/verify.py', 'Test-TestPackagePolicy.ps1',
+        required = ('tests/release', 'tools/localization/verify.py', 'Test-TestPackagePolicy.ps1',
                     'tests/CsvVisualEditor.Core.SmokeTests', 'tests/CsvVisualEditor.Core.Tests',
                     'tests/CsvVisualEditor.NativeAot.SmokeTests/CsvVisualEditor.NativeAot.SmokeTests.csproj',
                     'Invoke-Smoke.ps1', 'src/CsvVisualEditor/CsvVisualEditor.csproj',
                     'Invoke-HostReview.ps1', 'Invoke-LocalizedHostReview.ps1',
-                    'tests/release', 'npp_plugin_package.py', 'LICENSE.txt', 'THIRD_PARTY_NOTICES.txt',
-                    'Compress-Archive')
+                    'LICENSE.txt', 'THIRD_PARTY_NOTICES.txt', 'Compress-Archive', 'npp_plugin_package.py')
         positions = [text.index(value) for value in required]
         self.assertEqual(sorted(positions), positions)
         self.assertNotIn('--english-only', text)
