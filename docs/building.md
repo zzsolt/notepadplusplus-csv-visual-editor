@@ -25,13 +25,13 @@ All commands above must succeed before publishing a build. The seven maintained 
 
 ## Stable release and Plugins Admin
 
-The stable product version is `1.0.0`. Project code is GPL-3.0-only; do not
+The current stable maintenance version is `1.0.1`. Project code is GPL-3.0-only; do not
 remove `LICENSE` or `THIRD_PARTY_NOTICES.txt` from a distributed package.
 
 The complete Windows release gate is:
 
 ```powershell
-pwsh -NoProfile -File tools/build-local.ps1 -PackageVersion 1.0.0
+pwsh -NoProfile -File tools/build-local.ps1 -PackageVersion 1.0.1
 ```
 
 It runs release-policy tests in addition to localization, Core, Native AOT and
