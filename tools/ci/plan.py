@@ -7,9 +7,9 @@ from pathlib import Path
 import re
 import subprocess
 
-SOURCE_PREFIXES = ('src/', 'tests/', 'tools/', '.github/')
+SOURCE_PREFIXES = ('src/', 'tests/', 'tools/', 'packaging/', '.github/')
 SOURCE_FILES = {'Directory.Build.props', 'Directory.Build.targets', 'global.json',
-                'NuGet.config', 'nuget.config', 'packages.lock.json'}
+                'NuGet.config', 'nuget.config', 'packages.lock.json', 'LICENSE', 'THIRD_PARTY_NOTICES.txt'}
 SHA = re.compile(r'[0-9a-fA-F]{40}')
 
 
