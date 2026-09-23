@@ -123,7 +123,7 @@ jobs:
       contents: write
     steps:
       - name: Download exact release input
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: CsvVisualEditor-release-input-${{ needs.build.outputs.version }}
           path: release-input
