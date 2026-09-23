@@ -91,7 +91,7 @@ jobs:
         run: pwsh -NoProfile -File tools/build-local.ps1 -PackageVersion $env:PACKAGE_VERSION
       - name: Upload candidate diagnostics
         if: always() && steps.candidate.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: CsvVisualEditor-candidate-diagnostics
           path: |
@@ -108,7 +108,7 @@ jobs:
           retention-days: 7
       - name: Upload installable test package
         if: success() && steps.candidate.outcome == 'success' && steps.package_candidate.outputs.publish == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64
           path: artifacts/local/${{ env.PACKAGE_VERSION }}/CsvVisualEditor-${{ env.PACKAGE_VERSION }}-win-x64.zip
